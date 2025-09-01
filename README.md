@@ -92,7 +92,3 @@ Feel free to open issues, submit pull requests, or suggest new modules.
 Development progress is tracked above.
 
 ---
-
-## License
-
-MIT License (see LICENSE file for details)
