@@ -1,7 +1,10 @@
 # MulletEngine
-
 A lightweight game engine written in C++ using modern graphics and utility libraries.  
 This repository documents the development progress and provides instructions for building the project.
+## References
+During the development of MulletEngine, I am actively following and learning from these resources (work in progress):
+- *Game Engine Architecture* by Jason Gregory  
+- [LearnOpenGL](https://learnopengl.com/) – Modern OpenGL tutorials and examples
 
 ## Technologies Used
 
