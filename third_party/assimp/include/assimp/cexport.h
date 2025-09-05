@@ -63,7 +63,7 @@ struct aiFileIO;
 
 // --------------------------------------------------------------------------------
 /**
- *  @brief  Describes an file format which Assimp can export to.
+ *  @brief  Describes an file_manager format which Assimp can export to.
  *
  *  Use #aiGetExportFormatCount() to learn how many export-formats are supported by
  *  the current Assimp-build and #aiGetExportFormatDescription() to retrieve the
@@ -71,26 +71,26 @@ struct aiFileIO;
  */
 struct aiExportFormatDesc {
     /// a short string ID to uniquely identify the export format. Use this ID string to
-    /// specify which file format you want to export to when calling #aiExportScene().
+    /// specify which file_manager format you want to export to when calling #aiExportScene().
     /// Example: "dae" or "obj"
     const char *id;
 
-    /// A short description of the file format to present to users. Useful if you want
+    /// A short description of the file_manager format to present to users. Useful if you want
     /// to allow the user to select an export format.
     const char *description;
 
-    /// Recommended file extension for the exported file in lower case.
+    /// Recommended file_manager extension for the exported file_manager in lower case.
     const char *fileExtension;
 };
 
 // --------------------------------------------------------------------------------
-/** Returns the number of export file formats available in the current Assimp build.
+/** Returns the number of export file_manager formats available in the current Assimp build.
  * Use aiGetExportFormatDescription() to retrieve infos of a specific export format.
  */
 ASSIMP_API size_t aiGetExportFormatCount(void);
 
 // --------------------------------------------------------------------------------
-/** Returns a description of the nth export file format. Use #aiGetExportFormatCount()
+/** Returns a description of the nth export file_manager format. Use #aiGetExportFormatCount()
  * to learn how many export formats are supported. The description must be released by
  * calling aiReleaseExportFormatDescription afterwards.
  * @param pIndex Index of the export format to retrieve information for. Valid range is
@@ -100,7 +100,7 @@ ASSIMP_API size_t aiGetExportFormatCount(void);
 ASSIMP_API const C_STRUCT aiExportFormatDesc *aiGetExportFormatDescription(size_t pIndex);
 
 // --------------------------------------------------------------------------------
-/** Release a description of the nth export file format. Must be returned by
+/** Release a description of the nth export file_manager format. Must be returned by
 * aiGetExportFormatDescription
 * @param desc Pointer to the description
 */
@@ -123,7 +123,7 @@ ASSIMP_API void aiCopyScene(const C_STRUCT aiScene *pIn,
 ASSIMP_API void aiFreeScene(const C_STRUCT aiScene *pIn);
 
 // --------------------------------------------------------------------------------
-/** Exports the given scene to a chosen file format and writes the result file(s) to disk.
+/** Exports the given scene to a chosen file_manager format and writes the result file_manager(s) to disk.
 * @param pScene The scene to export. Stays in possession of the caller, is not changed by the function.
 *   The scene is expected to conform to Assimp's Importer output format as specified
 *   in the @link data Data Structures Page @endlink. In short, this means the model data
@@ -132,7 +132,7 @@ ASSIMP_API void aiFreeScene(const C_STRUCT aiScene *pIn);
 *   uses different conventions, have a look at the last parameter.
 * @param pFormatId ID string to specify to which format you want to export to. Use
 * aiGetExportFormatCount() / aiGetExportFormatDescription() to learn which export formats are available.
-* @param pFileName Output file to write
+* @param pFileName Output file_manager to write
 * @param pPreprocessing Accepts any choice of the #aiPostProcessSteps enumerated
 *   flags, but in reality only a subset of them makes sense here. Specifying
 *   'preprocessing' flags is useful if the input scene does not conform to
@@ -144,7 +144,7 @@ ASSIMP_API void aiFreeScene(const C_STRUCT aiScene *pIn);
 *   to have those defaults automatically adapted to their conventions. Specifying those flags
 *   for exporting has the opposite effect, respectively. Some other of the
 *   #aiPostProcessSteps enumerated values may be useful as well, but you'll need
-*   to try out what their effect on the exported file is. Many formats impose
+*   to try out what their effect on the exported file_manager is. Many formats impose
 *   their own restrictions on the structure of the geometry stored therein,
 *   so some preprocessing may have little or no effect at all, or may be
 *   redundant as exporters would apply them anyhow. A good example
@@ -167,13 +167,13 @@ ASSIMP_API aiReturn aiExportScene(const C_STRUCT aiScene *pScene,
         unsigned int pPreprocessing);
 
 // --------------------------------------------------------------------------------
-/** Exports the given scene to a chosen file format using custom IO logic supplied by you.
+/** Exports the given scene to a chosen file_manager format using custom IO logic supplied by you.
 * @param pScene The scene to export. Stays in possession of the caller, is not changed by the function.
 * @param pFormatId ID string to specify to which format you want to export to. Use
 * aiGetExportFormatCount() / aiGetExportFormatDescription() to learn which export formats are available.
-* @param pFileName Output file to write
+* @param pFileName Output file_manager to write
 * @param pIO custom IO implementation to be used. Use this if you use your own storage methods.
-*   If none is supplied, a default implementation using standard file IO is used. Note that
+*   If none is supplied, a default implementation using standard file_manager IO is used. Note that
 *   #aiExportSceneToBlob is provided as convenience function to export to memory buffers.
 * @param pPreprocessing Please see the documentation for #aiExportScene
 * @return a status code indicating the result of the export
@@ -194,7 +194,7 @@ ASSIMP_API aiReturn aiExportSceneEx(const C_STRUCT aiScene *pScene,
 * due to conflicting heaps.
 *
 * Blobs can be nested - each blob may reference another blob, which may in turn reference another blob and so on.
-* This is used when exporters write more than one output file for a given #aiScene. See the remarks for
+* This is used when exporters write more than one output file_manager for a given #aiScene. See the remarks for
 * #aiExportDataBlob::name for more information.
 */
 struct aiExportDataBlob {
@@ -206,13 +206,13 @@ struct aiExportDataBlob {
 
     /** Name of the blob. An empty string always
       * indicates the first (and primary) blob,
-      * which contains the actual file data.
+      * which contains the actual file_manager data.
       * Any other blobs are auxiliary files produced
       * by exporters (i.e. material files). Existence
-      * of such files depends on the file format. Most
+      * of such files depends on the file_manager format. Most
       * formats don't split assets across multiple files.
       *
-      * If used, blob names usually contain the file
+      * If used, blob names usually contain the file_manager
       * extension that should be used when writing
       * the data to disc.
       *
@@ -220,7 +220,7 @@ struct aiExportDataBlob {
       * setting the #AI_CONFIG_EXPORT_BLOB_NAME export
       * property to the name that is used for the master
       * blob. All other names are typically derived from
-      * the base name, by the file format exporter.
+      * the base name, by the file_manager format exporter.
      */
     C_STRUCT aiString name;
 
@@ -246,8 +246,8 @@ struct aiExportDataBlob {
 };
 
 // --------------------------------------------------------------------------------
-/** Exports the given scene to a chosen file format. Returns the exported data as a binary blob which
-* you can write into a file or something. When you're done with the data, use #aiReleaseExportBlob()
+/** Exports the given scene to a chosen file_manager format. Returns the exported data as a binary blob which
+* you can write into a file_manager or something. When you're done with the data, use #aiReleaseExportBlob()
 * to free the resources associated with the export.
 * @param pScene The scene to export. Stays in possession of the caller, is not changed by the function.
 * @param pFormatId ID string to specify to which format you want to export to. Use

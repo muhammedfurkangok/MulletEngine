@@ -29,7 +29,7 @@
 //
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This file verifies Google Test event listeners receive events at the
+// This file_manager verifies Google Test event listeners receive events at the
 // right times.
 
 #include <string>

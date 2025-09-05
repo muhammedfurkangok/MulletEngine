@@ -42,7 +42,7 @@
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 DOCUMENTATION
 
@@ -238,21 +238,21 @@ CODE
 
  HOW TO UPDATE TO A NEWER VERSION OF DEAR IMGUI
  ----------------------------------------------
- - Update submodule or copy/overwrite every file.
+ - Update submodule or copy/overwrite every file_manager.
  - About imconfig.h:
    - You may modify your copy of imconfig.h, in this case don't overwrite it.
    - or you may locally branch to modify imconfig.h and merge/rebase latest.
    - or you may '#define IMGUI_USER_CONFIG "my_config_file.h"' globally from your build system to
-     specify a custom path for your imconfig.h file and instead not have to modify the default one.
+     specify a custom path for your imconfig.h file_manager and instead not have to modify the default one.
 
  - Overwrite all the sources files except for imconfig.h (if you have modified your copy of imconfig.h)
  - Or maintain your own branch where you have imconfig.h modified as a top-most commit which you can regularly rebase over "master".
- - You can also use '#define IMGUI_USER_CONFIG "my_config_file.h" to redirect configuration to your own file.
+ - You can also use '#define IMGUI_USER_CONFIG "my_config_file.h" to redirect configuration to your own file_manager.
  - Read the "API BREAKING CHANGES" section (below). This is where we list occasional API breaking changes.
    If a function/type has been renamed / or marked obsolete, try to fix the name in your code before it is permanently removed
    from the public API. If you have a problem with a missing function/symbols, search for its name in the code, there will
    likely be a comment about it. Please report any issue to the GitHub page!
- - To find out usage of old API, you can add '#define IMGUI_DISABLE_OBSOLETE_FUNCTIONS' in your configuration file.
+ - To find out usage of old API, you can add '#define IMGUI_DISABLE_OBSOLETE_FUNCTIONS' in your configuration file_manager.
  - Try to keep your copy of Dear ImGui reasonably up to date!
 
 
@@ -263,7 +263,7 @@ CODE
  - In the majority of cases you should be able to use unmodified backends files available in the backends/ folder.
  - Add the Dear ImGui source files + selected backend source files to your projects or using your preferred build system.
    It is recommended you build and statically link the .cpp files as part of your project and NOT as a shared library (DLL).
- - You can later customize the imconfig.h file to tweak some compile-time behavior, such as integrating Dear ImGui types with your own maths types.
+ - You can later customize the imconfig.h file_manager to tweak some compile-time behavior, such as integrating Dear ImGui types with your own maths types.
  - When using Dear ImGui, your programming IDE is your friend: follow the declaration of variables, functions and types to find comments about them.
  - Dear ImGui never touches or knows about your GPU state. The only function that knows about GPU is the draw function that you provide.
    Effectively it means you can create widgets at any time in your code, regardless of considerations of being in "update" vs "render"
@@ -759,7 +759,7 @@ IMPLEMENTING SUPPORT for ImGuiBackendFlags_RendererHasTextures:
                         - ImGui::SetScrollHere()              -> use ImGui::SetScrollHereY()
  - 2021/03/11 (1.82) - clarified that ImDrawList::PathArcTo(), ImDrawList::PathArcToFast() won't render with radius < 0.0f. Previously it sorts of accidentally worked but would generally lead to counter-clockwise paths and have an effect on anti-aliasing.
  - 2021/03/10 (1.82) - upgraded ImDrawList::AddPolyline() and PathStroke() "bool closed" parameter to "ImDrawFlags flags". The matching ImDrawFlags_Closed value is guaranteed to always stay == 1 in the future.
- - 2021/02/22 (1.82) - (*undone in 1.84*) win32+mingw: Re-enabled IME functions by default even under MinGW. In July 2016, issue #738 had me incorrectly disable those default functions for MinGW. MinGW users should: either link with -limm32, either set their imconfig file  with '#define IMGUI_DISABLE_WIN32_DEFAULT_IME_FUNCTIONS'.
+ - 2021/02/22 (1.82) - (*undone in 1.84*) win32+mingw: Re-enabled IME functions by default even under MinGW. In July 2016, issue #738 had me incorrectly disable those default functions for MinGW. MinGW users should: either link with -limm32, either set their imconfig file_manager  with '#define IMGUI_DISABLE_WIN32_DEFAULT_IME_FUNCTIONS'.
  - 2021/02/17 (1.82) - renamed rarely used style.CircleSegmentMaxError (old default = 1.60f) to style.CircleTessellationMaxError (new default = 0.30f) as the meaning of the value changed.
  - 2021/02/03 (1.81) - renamed ListBoxHeader(const char* label, ImVec2 size) to BeginListBox(). Kept inline redirection function (will obsolete).
                      - removed ListBoxHeader(const char* label, int items_count, int height_in_items = -1) in favor of specifying size. Kept inline redirection function (will obsolete).
@@ -773,7 +773,7 @@ IMPLEMENTING SUPPORT for ImGuiBackendFlags_RendererHasTextures:
                         - ImGuiInputTextCallback              -> use ImGuiTextEditCallback
                         - ImGuiInputTextCallbackData          -> use ImGuiTextEditCallbackData
  - 2020/12/21 (1.80) - renamed ImDrawList::AddBezierCurve() to AddBezierCubic(), and PathBezierCurveTo() to PathBezierCubicCurveTo(). Kept inline redirection function (will obsolete).
- - 2020/12/04 (1.80) - added imgui_tables.cpp file! Manually constructed project files will need the new file added!
+ - 2020/12/04 (1.80) - added imgui_tables.cpp file_manager! Manually constructed project files will need the new file_manager added!
  - 2020/11/18 (1.80) - renamed undocumented/internals ImGuiColumnsFlags_* to ImGuiOldColumnFlags_* in prevision of incoming Tables API.
  - 2020/11/03 (1.80) - renamed io.ConfigWindowsMemoryCompactTimer to io.ConfigMemoryCompactTimer as the feature will apply to other data structures
  - 2020/10/14 (1.80) - backends: moved all backends files (imgui_impl_XXXX.cpp, imgui_impl_XXXX.h) from examples/ to backends/.
@@ -858,7 +858,7 @@ IMPLEMENTING SUPPORT for ImGuiBackendFlags_RendererHasTextures:
  - 2018/09/06 (1.65) - renamed stb_truetype.h to imstb_truetype.h, stb_textedit.h to imstb_textedit.h, and stb_rect_pack.h to imstb_rectpack.h.
                        If you were conveniently using the imgui copy of those STB headers in your project you will have to update your include paths.
  - 2018/09/05 (1.65) - renamed io.OptCursorBlink/io.ConfigCursorBlink to io.ConfigInputTextCursorBlink. (#1427)
- - 2018/08/31 (1.64) - added imgui_widgets.cpp file, extracted and moved widgets code out of imgui.cpp into imgui_widgets.cpp. Re-ordered some of the code remaining in imgui.cpp.
+ - 2018/08/31 (1.64) - added imgui_widgets.cpp file_manager, extracted and moved widgets code out of imgui.cpp into imgui_widgets.cpp. Re-ordered some of the code remaining in imgui.cpp.
                        NONE OF THE FUNCTIONS HAVE CHANGED. THE CODE IS SEMANTICALLY 100% IDENTICAL, BUT _EVERY_ FUNCTION HAS BEEN MOVED.
                        Because of this, any local modifications to imgui.cpp will likely conflict when you update. Read docs/CHANGELOG.txt for suggestions.
  - 2018/08/22 (1.63) - renamed IsItemDeactivatedAfterChange() to IsItemDeactivatedAfterEdit() for consistency with new IsItemEdited() API. Kept redirection function (will obsolete soonish as IsItemDeactivatedAfterChange() is very recent).
@@ -1007,7 +1007,7 @@ IMPLEMENTING SUPPORT for ImGuiBackendFlags_RendererHasTextures:
  - 2015/02/08 (1.31) - renamed GetTextLineSpacing() to GetTextLineHeightWithSpacing()
  - 2015/02/01 (1.31) - removed IO.MemReallocFn (unused)
  - 2015/01/19 (1.30) - renamed ImGuiStorage::GetIntPtr()/GetFloatPtr() to GetIntRef()/GetIntRef() because Ptr was conflicting with actual pointer storage functions.
- - 2015/01/11 (1.30) - big font/image API change! now loads TTF file. allow for multiple fonts. no need for a PNG loader.
+ - 2015/01/11 (1.30) - big font/image API change! now loads TTF file_manager. allow for multiple fonts. no need for a PNG loader.
  - 2015/01/11 (1.30) - removed GetDefaultFontData(). uses io.Fonts->GetTextureData*() API to retrieve uncompressed pixels.
                        - old:  const void* png_data; unsigned int png_size; ImGui::GetDefaultFontData(NULL, NULL, &png_data, &png_size); [..Upload texture to GPU..];
                        - new:  unsigned char* pixels; int width, height; io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height); [..Upload texture to GPU..]; io.Fonts->SetTexID(YourTexIdentifier);
@@ -2402,7 +2402,7 @@ const char* ImHashSkipUncontributingPrefix(const char* label)
 // [SECTION] MISC HELPERS/UTILITIES (File functions)
 //-----------------------------------------------------------------------------
 
-// Default file functions
+// Default file_manager functions
 #ifndef IMGUI_DISABLE_DEFAULT_FILE_FUNCTIONS
 
 ImFileHandle ImFileOpen(const char* filename, const char* mode)
@@ -2436,7 +2436,7 @@ ImU64   ImFileRead(void* data, ImU64 sz, ImU64 count, ImFileHandle f)           
 ImU64   ImFileWrite(const void* data, ImU64 sz, ImU64 count, ImFileHandle f)    { return fwrite(data, (size_t)sz, (size_t)count, f); }
 #endif // #ifndef IMGUI_DISABLE_DEFAULT_FILE_FUNCTIONS
 
-// Helper: Load file content into memory
+// Helper: Load file_manager content into memory
 // Memory allocated with IM_ALLOC(), must be freed by user using IM_FREE() == ImGui::MemFree()
 // This can't really be used with "rt" because fseek size won't match read size.
 void*   ImFileLoadToMemory(const char* filename, const char* mode, size_t* out_file_size, int padding_bytes)
@@ -4329,7 +4329,7 @@ void ImGui::Shutdown()
     if (!g.Initialized)
         return;
 
-    // Save settings (unless we haven't attempted to load them: CreateContext/DestroyContext without a call to NewFrame shouldn't save an empty file)
+    // Save settings (unless we haven't attempted to load them: CreateContext/DestroyContext without a call to NewFrame shouldn't save an empty file_manager)
     if (g.SettingsLoaded && g.IO.IniFilename != NULL)
         SaveIniSettingsToDisk(g.IO.IniFilename);
 
@@ -7220,8 +7220,8 @@ static void SetWindowActiveForSkipRefresh(ImGuiWindow* window)
 // Push a new Dear ImGui window to add widgets to.
 // - A default window called "Debug" is automatically stacked at the beginning of every frame so you can use widgets without explicitly calling a Begin/End pair.
 // - Begin/End can be called multiple times during the frame with the same window name to append content.
-// - The window name is used as a unique identifier to preserve window information across frames (and save rudimentary information to the .ini file).
-//   You can use the "##" or "###" markers to use the same label with different id, or same id with different label. See documentation at the top of this file.
+// - The window name is used as a unique identifier to preserve window information across frames (and save rudimentary information to the .ini file_manager).
+//   You can use the "##" or "###" markers to use the same label with different id, or same id with different label. See documentation at the top of this file_manager.
 // - Return false when window is collapsed, so you can early out in your code. You always need to call ImGui::End() even if false is returned.
 // - Passing 'bool* p_open' displays a Close button on the upper-right corner of the window, the pointed value will be set to false when the button is pressed.
 bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
@@ -10590,12 +10590,12 @@ bool ImGui::Shortcut(ImGuiKeyChord key_chord, ImGuiInputFlags flags, ImGuiID own
 
 // Verify ABI compatibility between caller code and compiled version of Dear ImGui. This helps detects some build issues.
 // Called by IMGUI_CHECKVERSION().
-// Verify that the type sizes are matching between the calling file's compilation unit and imgui.cpp's compilation unit
+// Verify that the type sizes are matching between the calling file_manager's compilation unit and imgui.cpp's compilation unit
 // If this triggers you have mismatched headers and compiled code versions.
 // - It could be because of a build issue (using new headers with old compiled code)
 // - It could be because of mismatched configuration #define, compilation settings, packing pragma etc.
 //   THE CONFIGURATION SETTINGS MENTIONED IN imconfig.h MUST BE SET FOR ALL COMPILATION UNITS INVOLVED WITH DEAR IMGUI.
-//   Which is why it is required you put them in your imconfig file (and NOT only before including imgui.h).
+//   Which is why it is required you put them in your imconfig file_manager (and NOT only before including imgui.h).
 //   Otherwise it is possible that different compilation units would see different structure layout.
 //   If you don't want to modify imconfig.h you can use the IMGUI_USER_CONFIG define to change filename.
 bool ImGui::DebugCheckVersionAndDataLayout(const char* version, size_t sz_io, size_t sz_style, size_t sz_vec2, size_t sz_vec4, size_t sz_vert, size_t sz_idx)
@@ -14816,7 +14816,7 @@ void ImGui::EndDragDropTarget()
 //-----------------------------------------------------------------------------
 // [SECTION] LOGGING/CAPTURING
 //-----------------------------------------------------------------------------
-// All text output from the interface can be captured into tty/file/clipboard.
+// All text output from the interface can be captured into tty/file_manager/clipboard.
 // By default, tree nodes are automatically opened during logging.
 //-----------------------------------------------------------------------------
 
@@ -14956,16 +14956,16 @@ void ImGui::LogToTTY(int auto_open_depth)
 #endif
 }
 
-// Start logging/capturing text output to given file
+// Start logging/capturing text output to given file_manager
 void ImGui::LogToFile(int auto_open_depth, const char* filename)
 {
     ImGuiContext& g = *GImGui;
     if (g.LogEnabled)
         return;
 
-    // FIXME: We could probably open the file in text mode "at", however note that clipboard/buffer logging will still
+    // FIXME: We could probably open the file_manager in text mode "at", however note that clipboard/buffer logging will still
     // be subject to outputting OS-incompatible carriage return if within strings the user doesn't use IM_NEWLINE.
-    // By opening the file in binary mode "ab" we have consistent output everywhere.
+    // By opening the file_manager in binary mode "ab" we have consistent output everywhere.
     if (!filename)
         filename = g.IO.LogFilename;
     if (!filename || !filename[0])
@@ -15561,7 +15561,7 @@ static void Platform_SetClipboardTextFn_DefaultImpl(ImGuiContext*, const char* t
 
 #elif defined(__APPLE__) && TARGET_OS_OSX && defined(IMGUI_ENABLE_OSX_DEFAULT_CLIPBOARD_FUNCTIONS)
 
-#include <Carbon/Carbon.h>  // Use old API to avoid need for separate .mm file
+#include <Carbon/Carbon.h>  // Use old API to avoid need for separate .mm file_manager
 static PasteboardRef main_clipboard = 0;
 
 // OSX clipboard implementation

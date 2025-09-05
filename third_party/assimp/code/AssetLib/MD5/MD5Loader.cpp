@@ -93,7 +93,7 @@ MD5Importer::MD5Importer() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MD5Importer::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "MD5Version" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -113,13 +113,13 @@ void MD5Importer::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MD5Importer::InternReadFile(const std::string &pFile, aiScene *_pScene, IOSystem *pIOHandler) {
     mIOHandler = pIOHandler;
     mScene = _pScene;
     mHadMD5Mesh = mHadMD5Anim = mHadMD5Camera = false;
 
-    // remove the file extension
+    // remove the file_manager extension
     const std::string::size_type pos = pFile.find_last_of('.');
     mFile = (std::string::npos == pos ? pFile : pFile.substr(0, pos + 1));
 
@@ -128,9 +128,9 @@ void MD5Importer::InternReadFile(const std::string &pFile, aiScene *_pScene, IOS
         if (extension == "md5camera") {
             LoadMD5CameraFile();
         } else if (mCconfigNoAutoLoad || extension == "md5anim") {
-            // determine file extension and process just *one* file
+            // determine file_manager extension and process just *one* file_manager
             if (extension.length() == 0) {
-                throw DeadlyImportError("Failure, need file extension to determine MD5 part type");
+                throw DeadlyImportError("Failure, need file_manager extension to determine MD5 part type");
             }
             if (extension == "md5anim") {
                 LoadMD5AnimFile();
@@ -146,9 +146,9 @@ void MD5Importer::InternReadFile(const std::string &pFile, aiScene *_pScene, IOS
         throw;
     }
 
-    // make sure we have at least one file
+    // make sure we have at least one file_manager
     if (!mHadMD5Mesh && !mHadMD5Anim && !mHadMD5Camera) {
-        throw DeadlyImportError("Failed to read valid contents out of this MD5* file");
+        throw DeadlyImportError("Failed to read valid contents out of this MD5* file_manager");
     }
 
     // Now rotate the whole scene 90 degrees around the x axis to match our internal coordinate system
@@ -165,7 +165,7 @@ void MD5Importer::InternReadFile(const std::string &pFile, aiScene *_pScene, IOS
 }
 
 // ------------------------------------------------------------------------------------------------
-// Load a file into a memory buffer
+// Load a file_manager into a memory buffer
 void MD5Importer::LoadFileIntoMemory(IOStream *file) {
     // unload the previous buffer, if any
     UnloadFileFromMemory();
@@ -174,7 +174,7 @@ void MD5Importer::LoadFileIntoMemory(IOStream *file) {
     mFileSize = (unsigned int)file->FileSize();
     ai_assert(mFileSize);
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     mBuffer = new char[mFileSize + 1];
     file->Read((void *)mBuffer, 1, mFileSize);
     mLineNumber = 1;
@@ -182,14 +182,14 @@ void MD5Importer::LoadFileIntoMemory(IOStream *file) {
     // append a terminal 0
     mBuffer[mFileSize] = '\0';
 
-    // now remove all line comments from the file
+    // now remove all line comments from the file_manager
     CommentRemover::RemoveLineComments("//", mBuffer, ' ');
 }
 
 // ------------------------------------------------------------------------------------------------
 // Unload the current memory buffer
 void MD5Importer::UnloadFileFromMemory() {
-    // delete the file buffer
+    // delete the file_manager buffer
     delete[] mBuffer;
     mBuffer = nullptr;
     mFileSize = 0;
@@ -321,20 +321,20 @@ void MD5Importer::AttachChilds_Anim(int iParentID, aiNode *piParent, AnimBoneArr
 }
 
 // ------------------------------------------------------------------------------------------------
-// Load a MD5MESH file
+// Load a MD5MESH file_manager
 void MD5Importer::LoadMD5MeshFile() {
     std::string filename = mFile + "md5mesh";
     std::unique_ptr<IOStream> file(mIOHandler->Open(filename, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr || !file->FileSize()) {
-        ASSIMP_LOG_WARN("Failed to access MD5MESH file: ", filename);
+        ASSIMP_LOG_WARN("Failed to access MD5MESH file_manager: ", filename);
         return;
     }
     mHadMD5Mesh = true;
     LoadFileIntoMemory(file.get());
 
-    // now construct a parser and parse the file
+    // now construct a parser and parse the file_manager
     MD5::MD5Parser parser(mBuffer, mFileSize);
 
     // load the mesh information from it
@@ -345,7 +345,7 @@ void MD5Importer::LoadMD5MeshFile() {
     mScene->mRootNode->mNumChildren = 2;
     mScene->mRootNode->mChildren = new aiNode *[2];
 
-    // build the hierarchy from the MD5MESH file
+    // build the hierarchy from the MD5MESH file_manager
     aiNode *pcNode = mScene->mRootNode->mChildren[1] = new aiNode();
     pcNode->mName.Set("<MD5_Hierarchy>");
     pcNode->mParent = mScene->mRootNode;
@@ -543,20 +543,20 @@ void MD5Importer::LoadMD5MeshFile() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Load an MD5ANIM file
+// Load an MD5ANIM file_manager
 void MD5Importer::LoadMD5AnimFile() {
     std::string pFile = mFile + "md5anim";
     std::unique_ptr<IOStream> file(mIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (!file || !file->FileSize()) {
-        ASSIMP_LOG_WARN("Failed to read MD5ANIM file: ", pFile);
+        ASSIMP_LOG_WARN("Failed to read MD5ANIM file_manager: ", pFile);
         return;
     }
 
     LoadFileIntoMemory(file.get());
 
-    // parse the basic file structure
+    // parse the basic file_manager structure
     MD5::MD5Parser parser(mBuffer, mFileSize);
 
     // load the animation information from the parse tree
@@ -651,19 +651,19 @@ void MD5Importer::LoadMD5AnimFile() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Load an MD5CAMERA file
+// Load an MD5CAMERA file_manager
 void MD5Importer::LoadMD5CameraFile() {
     std::string pFile = mFile + "md5camera";
     std::unique_ptr<IOStream> file(mIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (!file || !file->FileSize()) {
-        throw DeadlyImportError("Failed to read MD5CAMERA file: ", pFile);
+        throw DeadlyImportError("Failed to read MD5CAMERA file_manager: ", pFile);
     }
     mHadMD5Camera = true;
     LoadFileIntoMemory(file.get());
 
-    // parse the basic file structure
+    // parse the basic file_manager structure
     MD5::MD5Parser parser(mBuffer, mFileSize);
 
     // load the camera animation data from the parse tree

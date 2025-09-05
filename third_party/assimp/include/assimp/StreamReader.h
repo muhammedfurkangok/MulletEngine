@@ -80,7 +80,7 @@ public:
      *  The StreamReader holds a permanent strong reference to the
      *  stream, which is released upon destruction.
      *  @param stream Input stream. The stream is not restarted if
-     *    its file pointer is not at 0. Instead, the stream reader
+     *    its file_manager pointer is not at 0. Instead, the stream reader
      *    reads from the current position to the end of the stream.
      *  @param le If @c RuntimeSwitch is true: specifies whether the
      *    stream is in little endian byte order. Otherwise the
@@ -191,22 +191,22 @@ public:
     }
 
     // ---------------------------------------------------------------------
-    /** Increase the file pointer (relative seeking)  */
+    /** Increase the file_manager pointer (relative seeking)  */
     void IncPtr(intptr_t plus) {
         mCurrent += plus;
         if (mCurrent > mLimit) {
-            throw DeadlyImportError("End of file or read limit was reached");
+            throw DeadlyImportError("End of file_manager or read limit was reached");
         }
     }
 
     // ---------------------------------------------------------------------
-    /** Get the current file pointer */
+    /** Get the current file_manager pointer */
     int8_t *GetPtr() const {
         return mCurrent;
     }
 
     // ---------------------------------------------------------------------
-    /** Set current file pointer (Get it from #GetPtr). This is if you
+    /** Set current file_manager pointer (Get it from #GetPtr). This is if you
      *  prefer to do pointer arithmetic on your own or want to copy
      *  large chunks of data at once.
      *  @param p The new pointer, which is validated against the size
@@ -214,7 +214,7 @@ public:
     void SetPtr(int8_t *p) {
         mCurrent = p;
         if (mCurrent > mLimit || mCurrent < mBuffer) {
-            throw DeadlyImportError("End of file or read limit was reached");
+            throw DeadlyImportError("End of file_manager or read limit was reached");
         }
     }
 
@@ -229,7 +229,7 @@ public:
         ::memcpy(out, ur, bytes);
     }
 
-    /// @brief Get the current offset from the beginning of the file
+    /// @brief Get the current offset from the beginning of the file_manager
     int GetCurrentPos() const {
         return (unsigned int)(mCurrent - mBuffer);
     }
@@ -242,7 +242,7 @@ public:
     /** Setup a temporary read limit
      *
      *  @param limit Maximum number of bytes to be read from
-     *    the beginning of the file. Specifying UINT_MAX
+     *    the beginning of the file_manager. Specifying UINT_MAX
      *    resets the limit to the original end of the stream.
      *  Returns the previously set limit. */
     unsigned int SetReadLimit(unsigned int _limit) {
@@ -286,7 +286,7 @@ public:
     template <typename T>
     T Get() {
         if (mCurrent + sizeof(T) > mLimit) {
-            throw DeadlyImportError("End of file or stream limit was reached");
+            throw DeadlyImportError("End of file_manager or stream limit was reached");
         }
 
         T f;
@@ -301,7 +301,7 @@ private:
     // ---------------------------------------------------------------------
     void InternBegin() {
         if (nullptr == mStream) {
-            throw DeadlyImportError("StreamReader: Unable to open file");
+            throw DeadlyImportError("StreamReader: Unable to open file_manager");
         }
 
         const size_t filesize = mStream->FileSize() - mStream->Tell();

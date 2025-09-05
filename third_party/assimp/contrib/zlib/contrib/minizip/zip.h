@@ -102,8 +102,8 @@ typedef struct
     uLong       dosDate;       /* if dos_date == 0, tmu_date is used      */
 /*    uLong       flag;        */   /* general purpose bit flag        2 bytes */
 
-    uLong       internal_fa;    /* internal file attributes        2 bytes */
-    uLong       external_fa;    /* external file attributes        4 bytes */
+    uLong       internal_fa;    /* internal file_manager attributes        2 bytes */
+    uLong       external_fa;    /* external file_manager attributes        4 bytes */
 } zip_fileinfo;
 
 typedef const char* zipcharpc;
@@ -119,19 +119,19 @@ extern zipFile ZEXPORT zipOpen64 OF((const void *pathname, int append));
   Create a zipfile.
      pathname contain on Windows XP a filename like "c:\\zlib\\zlib113.zip" or on
        an Unix computer "zlib/zlib113.zip".
-     if the file pathname exist and append==APPEND_STATUS_CREATEAFTER, the zip
-       will be created at the end of the file.
-         (useful if the file contain a self extractor code)
-     if the file pathname exist and append==APPEND_STATUS_ADDINZIP, we will
-       add files in existing zip (be sure you don't add file that doesn't exist)
+     if the file_manager pathname exist and append==APPEND_STATUS_CREATEAFTER, the zip
+       will be created at the end of the file_manager.
+         (useful if the file_manager contain a self extractor code)
+     if the file_manager pathname exist and append==APPEND_STATUS_ADDINZIP, we will
+       add files in existing zip (be sure you don't add file_manager that doesn't exist)
      If the zipfile cannot be opened, the return value is NULL.
      Else, the return value is a zipFile Handle, usable with other function
        of this zip package.
 */
 
 /* Note : there is no delete function into a zipfile.
-   If you want delete file into a zipfile, you must open a zipfile, and create another
-   Of couse, you can use RAW reading and writing to copy the file you did not want delte
+   If you want delete file_manager into a zipfile, you must open a zipfile, and create another
+   Of couse, you can use RAW reading and writing to copy the file_manager you did not want delte
 */
 
 extern zipFile ZEXPORT zipOpen2 OF((const char *pathname,
@@ -173,7 +173,7 @@ extern int ZEXPORT zipOpenNewFileInZip64 OF((zipFile file,
                        int zip64));
 
 /*
-  Open a file in the ZIP for writing.
+  Open a file_manager in the ZIP for writing.
   filename : the filename in zip (if NULL, '-' without quote will be used
   *zipfi contain supplemental information
   if extrafield_local!=NULL and size_extrafield_local>0, extrafield_local
@@ -183,7 +183,7 @@ extern int ZEXPORT zipOpenNewFileInZip64 OF((zipFile file,
   if comment != NULL, comment contain the comment string
   method contain the compression method (0 for store, Z_DEFLATED for deflate)
   level contain the level of compression (can be Z_DEFAULT_COMPRESSION)
-  zip64 is set to 1 if a zip64 extended information block should be added to the local file header.
+  zip64 is set to 1 if a zip64 extended information block should be added to the local file_manager header.
                     this MUST be '1' if the uncompressed size is >= 0xffffffff.
 
 */
@@ -215,7 +215,7 @@ extern int ZEXPORT zipOpenNewFileInZip2_64 OF((zipFile file,
                                             int raw,
                                             int zip64));
 /*
-  Same than zipOpenNewFileInZip, except if raw=1, we write raw file
+  Same than zipOpenNewFileInZip, except if raw=1, we write raw file_manager
  */
 
 extern int ZEXPORT zipOpenNewFileInZip3 OF((zipFile file,
@@ -258,7 +258,7 @@ extern int ZEXPORT zipOpenNewFileInZip3_64 OF((zipFile file,
   Same than zipOpenNewFileInZip2, except
     windowBits,memLevel,,strategy : see parameter strategy in deflateInit2
     password : crypting password (NULL for no crypting)
-    crcForCrypting : crc of file to compress (needed for crypting)
+    crcForCrypting : crc of file_manager to compress (needed for crypting)
  */
 
 extern int ZEXPORT zipOpenNewFileInZip4 OF((zipFile file,
@@ -318,7 +318,7 @@ extern int ZEXPORT zipWriteInFileInZip OF((zipFile file,
 
 extern int ZEXPORT zipCloseFileInZip OF((zipFile file));
 /*
-  Close the current file in the zipfile
+  Close the current file_manager in the zipfile
 */
 
 extern int ZEXPORT zipCloseFileInZipRaw OF((zipFile file,
@@ -330,7 +330,7 @@ extern int ZEXPORT zipCloseFileInZipRaw64 OF((zipFile file,
                                             uLong crc32));
 
 /*
-  Close the current file in the zipfile, for file opened with
+  Close the current file_manager in the zipfile, for file_manager opened with
     parameter raw=1 in zipOpenNewFileInZip2
   uncompressed_size and crc32 are value for the uncompressed size
 */
@@ -346,7 +346,7 @@ extern int ZEXPORT zipRemoveExtraInfoBlock OF((char* pData, int* dataLen, short 
 /*
   zipRemoveExtraInfoBlock -  Added by Mathias Svensson
 
-  Remove extra information block from a extra information data for the local file header or central directory header
+  Remove extra information block from a extra information data for the local file_manager header or central directory header
 
   It is needed to remove ZIP64 extra information blocks when before data is written if using RAW mode.
 

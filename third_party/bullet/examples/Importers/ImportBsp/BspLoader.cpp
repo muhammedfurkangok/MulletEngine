@@ -2,7 +2,7 @@
 ===========================================================================
 Copyright (C) 1999-2005 Id Software, Inc.
 
-This file is part of Quake III Arena source code.
+This file_manager is part of Quake III Arena source code.
 
 Quake III Arena source code is free software; you can redistribute it
 and/or modify it under the terms of the GNU bteral Public License as
@@ -64,7 +64,7 @@ bool BspLoader::loadBSPFile(void *memoryBuffer)
 {
 	BSPHeader *header = (BSPHeader *)memoryBuffer;
 
-	// load the file header
+	// load the file_manager header
 	if (header)
 	{
 		// swap the header
@@ -183,7 +183,7 @@ void BspLoader::parseFromMemory(char *buffer, int size)
 	script++;
 	if (script == &scriptstack[MAX_INCLUDES])
 	{
-		//printf("script file exceeded MAX_INCLUDES");
+		//printf("script file_manager exceeded MAX_INCLUDES");
 	}
 	strcpy(script->filename, "memory buffer");
 

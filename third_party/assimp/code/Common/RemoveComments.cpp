@@ -50,7 +50,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 // ------------------------------------------------------------------------------------------------
-// Remove line comments from a file
+// Remove line comments from a file_manager
 void CommentRemover::RemoveLineComments(const char* szComment, char* szBuffer, char chReplacement /* = ' ' */) {
     // validate parameters
     ai_assert(nullptr != szComment);
@@ -81,7 +81,7 @@ void CommentRemover::RemoveLineComments(const char* szComment, char* szBuffer, c
 }
 
 // ------------------------------------------------------------------------------------------------
-// Remove multi-line comments from a file
+// Remove multi-line comments from a file_manager
 void CommentRemover::RemoveMultiLineComments(const char* szCommentStart,
         const char* szCommentEnd,char* szBuffer,
         char chReplacement) {

@@ -63,7 +63,7 @@ public:
     ~HMPImporter() override;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -77,34 +77,34 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
             IOSystem *pIOHandler) override;
 
     // -------------------------------------------------------------------
-    /** Import a HMP4 file
+    /** Import a HMP4 file_manager
     */
     AI_WONT_RETURN void InternReadFile_HMP4() AI_WONT_RETURN_SUFFIX;
 
     // -------------------------------------------------------------------
-    /** Import a HMP5 file
+    /** Import a HMP5 file_manager
     */
     void InternReadFile_HMP5();
 
     // -------------------------------------------------------------------
-    /** Import a HMP7 file
+    /** Import a HMP7 file_manager
     */
     void InternReadFile_HMP7();
 
     // -------------------------------------------------------------------
-    /** Validate a HMP 5,4,7 file header
+    /** Validate a HMP 5,4,7 file_manager header
     */
     void ValidateHeader_HMP457();
 
     // -------------------------------------------------------------------
-    /** Try to load one material from the file, if this fails create
+    /** Try to load one material from the file_manager, if this fails create
      * a default material
     */
     void CreateMaterial(const unsigned char *szCurrent,
@@ -112,7 +112,7 @@ protected:
 
     // -------------------------------------------------------------------
     /** Build a list of output faces and vertices. The function
-     *  triangulates the height map read from the file
+     *  triangulates the height map read from the file_manager
      * \param width Width of the height field
      * \param width Height of the height field
     */
@@ -127,8 +127,8 @@ protected:
             const unsigned int height);
 
     // -------------------------------------------------------------------
-    /** Read the first skin from the file and skip all others ...
-     *  \param iNumSkins Number of skins in the file
+    /** Read the first skin from the file_manager and skip all others ...
+     *  \param iNumSkins Number of skins in the file_manager
      *  \param szCursor Position of the first skin (offset 84)
     */
     void ReadFirstSkin(unsigned int iNumSkins, const unsigned char *szCursor,

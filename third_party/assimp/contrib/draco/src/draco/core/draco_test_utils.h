@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -33,20 +33,20 @@ namespace draco {
 // Returns test temporary directory.
 std::string GetTestTempDir();
 
-// Returns the full path to a given file system entry, such as test file or test
+// Returns the full path to a given file_manager system entry, such as test file_manager or test
 // directory.
 std::string GetTestFileFullPath(const std::string &entry_name);
 
-// Returns the full path to a given temporary file (a location where tests store
+// Returns the full path to a given temporary file_manager (a location where tests store
 // generated files).
 std::string GetTestTempFileFullPath(const std::string &file_name);
 
-// Generates a new golden file and saves it into the correct folder.
-// Returns false if the file couldn't be created.
+// Generates a new golden file_manager and saves it into the correct folder.
+// Returns false if the file_manager couldn't be created.
 bool GenerateGoldenFile(const std::string &golden_file_name, const void *data,
                         int data_size);
 
-// Compare a golden file content with the input data.
+// Compare a golden file_manager content with the input data.
 // Function will log the first byte position where the data differ.
 // Returns false if there are any differences.
 bool CompareGoldenFile(const std::string &golden_file_name, const void *data,

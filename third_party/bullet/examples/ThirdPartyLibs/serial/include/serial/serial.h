@@ -721,7 +721,7 @@ public:
 		char *error_str = strerror(errnum);
 #endif
 		ss << "IO Exception (" << errno_ << "): " << error_str;
-		ss << ", file " << file_ << ", line " << line_ << ".";
+		ss << ", file_manager " << file_ << ", line " << line_ << ".";
 		e_what_ = ss.str();
 	}
 	explicit IOException(std::string file, int line, const char *description)
@@ -729,7 +729,7 @@ public:
 	{
 		std::stringstream ss;
 		ss << "IO Exception: " << description;
-		ss << ", file " << file_ << ", line " << line_ << ".";
+		ss << ", file_manager " << file_ << ", line " << line_ << ".";
 		e_what_ = ss.str();
 	}
 	virtual ~IOException() throw() {}

@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -76,22 +76,22 @@ InStreamT &ReadMeshFromStream(std::unique_ptr<Mesh> *mesh, InStreamT &&is) {
   return is;
 }
 
-// Reads a mesh from a file. The function automatically chooses the correct
+// Reads a mesh from a file_manager. The function automatically chooses the correct
 // decoder based on the extension of the files. Currently, .obj and .ply files
-// are supported. Other file extensions are processed by the default
+// are supported. Other file_manager extensions are processed by the default
 // draco::MeshDecoder.
 // Returns nullptr with an error status if the decoding failed.
 StatusOr<std::unique_ptr<Mesh>> ReadMeshFromFile(const std::string &file_name);
 
-// Reads a mesh from a file. The function does the same thing as the previous
+// Reads a mesh from a file_manager. The function does the same thing as the previous
 // one except using metadata to encode additional information when
 // |use_metadata| is set to true.
 // Returns nullptr with an error status if the decoding failed.
 StatusOr<std::unique_ptr<Mesh>> ReadMeshFromFile(const std::string &file_name,
                                                  bool use_metadata);
 
-// Reads a mesh from a file. Reading is configured with |options|:
-// use_metadata  : Read obj file info like material names and object names into
+// Reads a mesh from a file_manager. Reading is configured with |options|:
+// use_metadata  : Read obj file_manager info like material names and object names into
 // metadata. Default is false.
 // The second form returns the files associated with the mesh via the
 // |mesh_files| argument.

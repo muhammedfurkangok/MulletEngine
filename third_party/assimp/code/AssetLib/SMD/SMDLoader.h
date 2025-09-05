@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file  SMDLoader.h
- *  @brief Definition of the Valve SMD file format
+ *  @brief Definition of the Valve SMD file_manager format
  */
 
 #pragma once
@@ -62,7 +62,7 @@ namespace Assimp {
 namespace SMD {
 
 // ---------------------------------------------------------------------------
-/** Data structure for a vertex in a SMD file
+/** Data structure for a vertex in a SMD file_manager
 */
 struct Vertex {
     Vertex() AI_NO_EXCEPT : iParentNode(UINT_MAX) {
@@ -83,7 +83,7 @@ struct Vertex {
 };
 
 // ---------------------------------------------------------------------------
-/** Data structure for a face in a SMD file
+/** Data structure for a face in a SMD file_manager
 */
 struct Face {
     Face() AI_NO_EXCEPT :
@@ -99,7 +99,7 @@ struct Face {
 };
 
 // ---------------------------------------------------------------------------
-/** Data structure for a bone in a SMD file
+/** Data structure for a bone in a SMD file_manager
 */
 struct Bone {
     //! Default constructor
@@ -165,7 +165,7 @@ public:
     ~SMDImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
@@ -186,21 +186,21 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
         IOSystem* pIOHandler) override;
 
     // -------------------------------------------------------------------
-    /** Parse the SMD file and create the output scene
+    /** Parse the SMD file_manager and create the output scene
     */
     void ParseFile();
     void ReadSmd(const std::string &pFile, IOSystem* pIOHandler);
 
     // -------------------------------------------------------------------
-    /** Parse the triangles section of the SMD file
-     * \param szCurrent Current position in the file. Points to the first
+    /** Parse the triangles section of the SMD file_manager
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives a pointer to the heading line of
      * the next section (or to EOF)
@@ -210,7 +210,7 @@ protected:
 
     // -------------------------------------------------------------------
     /** Parse the vertex animation section in VTA files
-     * \param szCurrent Current position in the file. Points to the first
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives a pointer to the heading line of
      * the next section (or to EOF)
@@ -219,8 +219,8 @@ protected:
             const char **szCurrentOu, const char *end);
 
     // -------------------------------------------------------------------
-    /** Parse the nodes section of the SMD file
-     * \param szCurrent Current position in the file. Points to the first
+    /** Parse the nodes section of the SMD file_manager
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives a pointer to the heading line of
      * the next section (or to EOF)
@@ -229,8 +229,8 @@ protected:
             const char **szCurrentOut, const char *end);
 
     // -------------------------------------------------------------------
-    /** Parse the skeleton section of the SMD file
-     * \param szCurrent Current position in the file. Points to the first
+    /** Parse the skeleton section of the SMD file_manager
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives a pointer to the heading line of
      * the next section (or to EOF)
@@ -239,8 +239,8 @@ protected:
             const char **szCurrentOut, const char *end);
 
     // -------------------------------------------------------------------
-    /** Parse a single triangle in the SMD file
-     * \param szCurrent Current position in the file. Points to the first
+    /** Parse a single triangle in the SMD file_manager
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives the output cursor position
     */
@@ -248,8 +248,8 @@ protected:
             const char **szCurrentOut, const char *end);
 
     // -------------------------------------------------------------------
-    /** Parse a single vertex in the SMD file
-     * \param szCurrent Current position in the file. Points to the first
+    /** Parse a single vertex in the SMD file_manager
+     * \param szCurrent Current position in the file_manager. Points to the first
      * data line of the section.
      * \param szCurrentOut Receives the output cursor position
      * \param vertex Vertex to be filled
@@ -297,7 +297,7 @@ protected:
             const char **szCurrentOut, const char *end, int &out);
 
     // -------------------------------------------------------------------
-    /** Fix invalid time values in the file
+    /** Fix invalid time values in the file_manager
      */
     void FixTimeValues();
 
@@ -343,7 +343,7 @@ private:
     /** Configuration option: frame to be loaded */
     unsigned int configFrameID;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     std::vector<char> mBuffer;
     char *mEnd;
 
@@ -351,19 +351,19 @@ private:
     */
     aiScene* pScene;
 
-    /** Size of the input file in bytes
+    /** Size of the input file_manager in bytes
      */
     unsigned int iFileSize;
 
-    /** Array of textures found in the file
+    /** Array of textures found in the file_manager
      */
     std::vector<std::string> aszTextures;
 
-    /** Array of triangles found in the file
+    /** Array of triangles found in the file_manager
      */
     std::vector<SMD::Face> asTriangles;
 
-    /** Array of bones found in the file
+    /** Array of bones found in the file_manager
      */
     std::vector<SMD::Bone> asBones;
 

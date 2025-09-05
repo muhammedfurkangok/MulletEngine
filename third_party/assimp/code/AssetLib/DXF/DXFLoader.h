@@ -72,7 +72,7 @@ public:
     ~DXFImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
     * See BaseImporter::CanRead() for details.  */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
         bool checkSig) const override;
@@ -84,7 +84,7 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details */
     void InternReadFile( const std::string& pFile, aiScene* pScene, IOSystem* pIOHandler) override;
 

@@ -1142,7 +1142,7 @@ bool CSimpleSocket::Select(int32 nTimeoutSec, int32 nTimeoutUSec)
 		SetSocketError(CSimpleSocket::SocketTimedout);
 	}
 	//----------------------------------------------------------------------
-	// If a file descriptor (read/write) is set then check the
+	// If a file_manager descriptor (read/write) is set then check the
 	// socket error (SO_ERROR) to see if there is a pending error.
 	//----------------------------------------------------------------------
 	else if ((FD_ISSET(m_socket, &m_readFds)) || (FD_ISSET(m_socket, &m_writeFds)))

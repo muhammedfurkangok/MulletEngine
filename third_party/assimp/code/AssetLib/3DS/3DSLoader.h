@@ -68,7 +68,7 @@ public:
     ~Discreet3DSImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
@@ -90,7 +90,7 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
@@ -125,7 +125,7 @@ protected:
         bool p_bAcceptPercent = true);
 
     // -------------------------------------------------------------------
-    /** Skip a chunk in the file
+    /** Skip a chunk in the file_manager
     */
     void SkipChunk();
 
@@ -135,67 +135,67 @@ protected:
     void GenerateNodeGraph(aiScene* pcOut);
 
     // -------------------------------------------------------------------
-    /** Parse a main top-level chunk in the file
+    /** Parse a main top-level chunk in the file_manager
     */
     void ParseMainChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a top-level chunk in the file
+    /** Parse a top-level chunk in the file_manager
     */
     void ParseChunk(const char* name, unsigned int num);
 
     // -------------------------------------------------------------------
-    /** Parse a top-level editor chunk in the file
+    /** Parse a top-level editor chunk in the file_manager
     */
     void ParseEditorChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a top-level object chunk in the file
+    /** Parse a top-level object chunk in the file_manager
     */
     void ParseObjectChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a material chunk in the file
+    /** Parse a material chunk in the file_manager
     */
     void ParseMaterialChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a mesh chunk in the file
+    /** Parse a mesh chunk in the file_manager
     */
     void ParseMeshChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a light chunk in the file
+    /** Parse a light chunk in the file_manager
     */
     void ParseLightChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a camera chunk in the file
+    /** Parse a camera chunk in the file_manager
     */
     void ParseCameraChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a face list chunk in the file
+    /** Parse a face list chunk in the file_manager
     */
     void ParseFaceChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a keyframe chunk in the file
+    /** Parse a keyframe chunk in the file_manager
     */
     void ParseKeyframeChunk();
 
     // -------------------------------------------------------------------
-    /** Parse a hierarchy chunk in the file
+    /** Parse a hierarchy chunk in the file_manager
     */
     void ParseHierarchyChunk(uint16_t parent);
 
     // -------------------------------------------------------------------
-    /** Parse a texture chunk in the file
+    /** Parse a texture chunk in the file_manager
     */
     void ParseTextureChunk(D3DS::Texture* pcOut);
 
     // -------------------------------------------------------------------
-    /** Convert the meshes in the file
+    /** Convert the meshes in the file_manager
     */
     void ConvertMeshes(aiScene* pcOut);
 
@@ -241,7 +241,7 @@ protected:
     void ApplyMasterScale(aiScene* pScene);
 
     // -------------------------------------------------------------------
-    /** Clamp all indices in the file to a valid range
+    /** Clamp all indices in the file_manager to a valid range
     */
     void CheckIndices(D3DS::Mesh& sMesh);
 
@@ -274,7 +274,7 @@ protected:
     std::string mBackgroundImage;
     bool bHasBG;
 
-    /** true if PRJ file */
+    /** true if PRJ file_manager */
     bool bIsPrj;
 };
 

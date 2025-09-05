@@ -57,7 +57,7 @@ the custom_zlib field of the compress and decompress settings*/
 #ifndef LODEPNG_NO_COMPILE_ENCODER
 #define LODEPNG_COMPILE_ENCODER
 #endif
-/*the optional built in harddisk file loading and saving functions*/
+/*the optional built in harddisk file_manager loading and saving functions*/
 #ifndef LODEPNG_NO_COMPILE_DISK
 #define LODEPNG_COMPILE_DISK
 #endif
@@ -103,7 +103,7 @@ out: Output parameter. Pointer to buffer that will contain the raw pixel data.
      Note: for 16-bit per channel colors, uses big endian format like PNG does.
 w: Output parameter. Pointer to width of pixel data.
 h: Output parameter. Pointer to height of pixel data.
-in: Memory buffer with the PNG file.
+in: Memory buffer with the PNG file_manager.
 insize: size of the in buffer.
 colortype: the desired color type for the raw output image. See explanation on PNG color types.
 bitdepth: the desired bit depth for the raw output image. See explanation on PNG color types.
@@ -123,7 +123,7 @@ unsigned lodepng_decode24(unsigned char** out, unsigned* w, unsigned* h,
 
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Load PNG from disk, from file with given name.
+Load PNG from disk, from file_manager with given name.
 Same as the other decode functions, but instead takes a filename as input.
 */
 unsigned lodepng_decode_file(unsigned char** out, unsigned* w, unsigned* h,
@@ -171,7 +171,7 @@ unsigned lodepng_encode24(unsigned char** out, size_t* outsize,
 
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Converts raw pixel data into a PNG file on disk.
+Converts raw pixel data into a PNG file_manager on disk.
 Same as the other encode functions, but instead takes a filename as output.
 NOTE: This overwrites existing files without warning!
 */
@@ -203,7 +203,7 @@ unsigned decode(std::vector<unsigned char>& out, unsigned& w, unsigned& h,
 				LodePNGColorType colortype = LCT_RGBA, unsigned bitdepth = 8);
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Converts PNG file from disk to raw pixel data in memory.
+Converts PNG file_manager from disk to raw pixel data in memory.
 Same as the other decode functions, but instead takes a filename as input.
 */
 unsigned decode(std::vector<unsigned char>& out, unsigned& w, unsigned& h,
@@ -223,7 +223,7 @@ unsigned encode(std::vector<unsigned char>& out,
 				LodePNGColorType colortype = LCT_RGBA, unsigned bitdepth = 8);
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Converts 32-bit RGBA raw pixel data into a PNG file on disk.
+Converts 32-bit RGBA raw pixel data into a PNG file_manager on disk.
 Same as the other encode functions, but instead takes a filename as output.
 NOTE: This overwrites existing files without warning!
 */
@@ -306,14 +306,14 @@ void lodepng_compress_settings_init(LodePNGCompressSettings* settings);
 #ifdef LODEPNG_COMPILE_PNG
 /*
 Color mode of an image. Contains all information required to decode the pixel
-bits to RGBA colors. This information is the same as used in the PNG file
+bits to RGBA colors. This information is the same as used in the PNG file_manager
 format, and is used both for PNG and raw image data in LodePNG.
 */
 typedef struct LodePNGColorMode
 {
 	/*header (IHDR)*/
-	LodePNGColorType colortype; /*color type, see PNG standard or documentation further in this header file*/
-	unsigned bitdepth;          /*bits per sample, see PNG standard or documentation further in this header file*/
+	LodePNGColorType colortype; /*color type, see PNG standard or documentation further in this header file_manager*/
+	unsigned bitdepth;          /*bits per sample, see PNG standard or documentation further in this header file_manager*/
 
 	/*
   palette (PLTE and tRNS)
@@ -401,10 +401,10 @@ typedef struct LodePNGTime
 typedef struct LodePNGInfo
 {
 	/*header (IHDR), palette (PLTE) and transparency (tRNS) chunks*/
-	unsigned compression_method; /*compression method of the original file. Always 0.*/
-	unsigned filter_method;      /*filter method of the original file*/
-	unsigned interlace_method;   /*interlace method of the original file*/
-	LodePNGColorMode color;      /*color type and bits, palette and transparency of the PNG file*/
+	unsigned compression_method; /*compression method of the original file_manager. Always 0.*/
+	unsigned filter_method;      /*filter method of the original file_manager*/
+	unsigned interlace_method;   /*interlace method of the original file_manager*/
+	LodePNGColorMode color;      /*color type and bits, palette and transparency of the PNG file_manager*/
 
 #ifdef LODEPNG_COMPILE_ANCILLARY_CHUNKS
 	/*
@@ -493,7 +493,7 @@ unsigned lodepng_add_itext(LodePNGInfo* info, const char* key, const char* langt
 /*
 Converts raw buffer from one color type to another color type, based on
 LodePNGColorMode structs to describe the input and output color type.
-See the reference manual at the end of this header file to see which color conversions are supported.
+See the reference manual at the end of this header file_manager to see which color conversions are supported.
 return value = LodePNG error code (0 if all went ok, an error if the conversion isn't supported)
 The out buffer must have size (w * h * bpp + 7) / 8, where bpp is the bits per pixel
 of the output color type (lodepng_get_bpp).
@@ -664,7 +664,7 @@ unsigned lodepng_encode(unsigned char** out, size_t* outsize,
 /*
 The lodepng_chunk functions are normally not needed, except to traverse the
 unknown chunks stored in the LodePNGInfo struct, or add new ones to it.
-It also allows traversing the chunks of an encoded PNG file yourself.
+It also allows traversing the chunks of an encoded PNG file_manager yourself.
 
 PNG standard chunk naming conventions:
 First byte: uppercase = critical, lowercase = ancillary
@@ -778,21 +778,21 @@ unsigned lodepng_deflate(unsigned char** out, size_t* outsize,
 
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Load a file from disk into buffer. The function allocates the out buffer, and
+Load a file_manager from disk into buffer. The function allocates the out buffer, and
 after usage you should free it.
 out: output parameter, contains pointer to loaded buffer.
 outsize: output parameter, size of the allocated out buffer
-filename: the path to the file to load
+filename: the path to the file_manager to load
 return value: error code (0 means ok)
 */
 unsigned lodepng_load_file(unsigned char** out, size_t* outsize, const char* filename);
 
 /*
-Save a file from buffer to disk. Warning, if it exists, this function overwrites
-the file without warning!
+Save a file_manager from buffer to disk. Warning, if it exists, this function overwrites
+the file_manager without warning!
 buffer: the buffer to write
 buffersize: size of the buffer to write
-filename: the path to the file to save to
+filename: the path to the file_manager to save to
 return value: error code (0 means ok)
 */
 unsigned lodepng_save_file(const unsigned char* buffer, size_t buffersize, const char* filename);
@@ -834,13 +834,13 @@ unsigned encode(std::vector<unsigned char>& out,
 
 #ifdef LODEPNG_COMPILE_DISK
 /*
-Load a file from disk into an std::vector. If the vector is empty, then either
-the file doesn't exist or is an empty file.
+Load a file_manager from disk into an std::vector. If the vector is empty, then either
+the file_manager doesn't exist or is an empty file_manager.
 */
 void load_file(std::vector<unsigned char>& buffer, const std::string& filename);
 
 /*
-Save the binary data in an std::vector to a file on disk. The file is overwritten
+Save the binary data in an std::vector to a file_manager on disk. The file_manager is overwritten
 without warning.
 */
 void save_file(const std::vector<unsigned char>& buffer, const std::string& filename);
@@ -920,7 +920,7 @@ LodePNG Documentation
 1. about
 --------
 
-PNG is a file format to store raster images losslessly with good compression,
+PNG is a file_manager format to store raster images losslessly with good compression,
 supporting different color types and alpha channel.
 
 LodePNG is a PNG codec according to the Portable Network Graphics (PNG)
@@ -942,7 +942,7 @@ LodePNG works both in C (ISO C90) and C++, with a C++ wrapper that adds
 extra functionality.
 
 LodePNG exists out of two files:
--lodepng.h: the header file for both C and C++
+-lodepng.h: the header file_manager for both C and C++
 -lodepng.c(pp): give it the name lodepng.c or lodepng.cpp (or .cc) depending on your usage
 
 If you want to start using LodePNG right away without reading this doc, get the
@@ -955,7 +955,7 @@ on any external library. There are functions to decode and encode a PNG with
 a single function call, and extended versions of these functions taking a
 LodePNGState struct allowing to specify or get more information. By default
 the colors of the raw image are always RGB or RGBA, no matter what color type
-the PNG file uses. To read and write files, there are simple functions to
+the PNG file_manager uses. To read and write files, there are simple functions to
 convert the files to/from buffers in memory.
 
 This all makes LodePNG suitable for loading textures in games, demos and small
@@ -1018,10 +1018,10 @@ These files work without modification for both C and C++ compilers because all
 the additional C++ code is in "#ifdef __cplusplus" blocks that make C-compilers
 ignore it, and the C code is made to compile both with strict ISO C90 and C++.
 
-To use the C++ version, you need to rename the source file to lodepng.cpp
+To use the C++ version, you need to rename the source file_manager to lodepng.cpp
 (instead of lodepng.c), and compile it with a C++ compiler.
 
-To use the C version, you need to rename the source file to lodepng.c (instead
+To use the C version, you need to rename the source file_manager to lodepng.c (instead
 of lodepng.cpp), and compile it with a C compiler.
 
 
@@ -1283,7 +1283,7 @@ it.
 6.3. padding bits
 -----------------
 
-In the PNG file format, if a less than 8-bit per pixel color type is used and the scanlines
+In the PNG file_manager format, if a less than 8-bit per pixel color type is used and the scanlines
 have a bit amount that isn't a multiple of 8, then padding bits are used so that each
 scanline starts at a fresh byte. But that is NOT true for the LodePNG raw input and output.
 The raw input image you give to the encoder, and the raw output image you get from the decoder
@@ -1299,7 +1299,7 @@ for any other color format. The 16-bit values are stored in big endian (most
 significant byte first) in these arrays. This is the opposite order of the
 little endian used by x86 CPU's.
 
-LodePNG always uses big endian because the PNG file format does so internally.
+LodePNG always uses big endian because the PNG file_manager format does so internally.
 Conversions to other formats than PNG uses internally are not supported by
 LodePNG on purpose, there are myriads of formats, including endianness of 16-bit
 colors, the order in which you store R, G, B and A, and so on. Supporting and
@@ -1471,8 +1471,8 @@ with pragmas though: warning 4244 about implicit conversions, and warning 4996
 where it wants to use a non-standard function fopen_s instead of the standard C
 fopen.
 
-Visual Studio may want "stdafx.h" files to be included in each source file and
-give an error "unexpected end of file while looking for precompiled header".
+Visual Studio may want "stdafx.h" files to be included in each source file_manager and
+give an error "unexpected end of file_manager while looking for precompiled header".
 This is not standard C++ and will not be added to the stock LodePNG. You can
 disable it for lodepng.cpp only by right clicking it, Properties, C/C++,
 Precompiled Headers, and set it to Not Using Precompiled Headers there.
@@ -1624,7 +1624,7 @@ symbol.
 *) 04 jun 2007: improved support for Visual Studio 2005: crash with accessing
     invalid std::vector element [0] fixed, and level 3 and 4 warnings removed
 *) 02 jun 2007: made the encoder add a tag with version by default
-*) 27 may 2007: zlib and png code separated (but still in the same file),
+*) 27 may 2007: zlib and png code separated (but still in the same file_manager),
     simple encoder/decoder functions added for more simple usage cases
 *) 19 may 2007: minor fixes, some code cleaning, new error added (error 69),
     moved some examples from here to lodepng_examples.cpp

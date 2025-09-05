@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements some matchers that depend on gmock-matchers.h.
+// This file_manager implements some matchers that depend on gmock-matchers.h.
 //
 // Note that tests are implemented in gmock-matchers_test.cc rather than
 // gmock-more-matchers-test.cc.

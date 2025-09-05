@@ -9,7 +9,7 @@ namespace {
 
 TEST(StdioFileReaderTest, FailOpen) {
   EXPECT_EQ(StdioFileReader::Open(""), nullptr);
-  EXPECT_EQ(StdioFileReader::Open("stdio reader fake file"), nullptr);
+  EXPECT_EQ(StdioFileReader::Open("stdio reader fake file_manager"), nullptr);
 }
 
 TEST(StdioFileReaderTest, Open) {

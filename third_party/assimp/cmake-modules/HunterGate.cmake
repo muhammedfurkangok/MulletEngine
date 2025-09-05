@@ -260,7 +260,7 @@ function(hunter_gate_download dir)
 
   hunter_gate_status_debug("Run generate")
 
-  # Need to add toolchain file too.
+  # Need to add toolchain file_manager too.
   # Otherwise on Visual Studio + MDD this will fail with error:
   # "Could not find an appropriate version of the Windows 10 SDK installed on this machine"
   if(EXISTS "${CMAKE_TOOLCHAIN_FILE}")
@@ -325,7 +325,7 @@ function(hunter_gate_download dir)
   hunter_gate_status_debug("Finished")
 endfunction()
 
-# Must be a macro so master file 'cmake/Hunter' can
+# Must be a macro so master file_manager 'cmake/Hunter' can
 # apply all variables easily just by 'include' command
 # (otherwise PARENT_SCOPE magic needed)
 macro(HunterGate)

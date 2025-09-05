@@ -69,7 +69,7 @@ struct ceVec3i {
     ceVec3i( int iX, int iY=0, int iZ=0) : x( iX ), y( iY ), z( iZ ) { /* empty */ }
 };
 
-/// the file header
+/// the file_manager header
 struct sQ3BSPHeader {
     char strID[ 4 ]; ///< Should be "IBSP"
     int iVersion;    ///< 46 for standard levels
@@ -77,7 +77,7 @@ struct sQ3BSPHeader {
 
 /// Describes an entry.
 struct sQ3BSPLump {
-    int iOffset;    ///< Offset from start pointer of file
+    int iOffset;    ///< Offset from start pointer of file_manager
     int iSize;      ///< Size of part
 };
 

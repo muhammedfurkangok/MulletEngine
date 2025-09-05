@@ -2,7 +2,7 @@
 Assimp2Json
 Copyright (c) 2011, Alexander C. Gessler
 
-Licensed under a 3-clause BSD license. See the LICENSE file for more information.
+Licensed under a 3-clause BSD license. See the LICENSE file_manager for more information.
 
 */
 

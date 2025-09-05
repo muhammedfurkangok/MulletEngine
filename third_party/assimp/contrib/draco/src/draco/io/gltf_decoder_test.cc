@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -158,7 +158,7 @@ TEST(GltfDecoderTest, TranslateTriangleGltf) {
     pos_attribute->GetMappedValue(face[c], &pos[c][0]);
   }
 
-  // Test position values match. The glTF file contains a matrix in the main
+  // Test position values match. The glTF file_manager contains a matrix in the main
   // node. The matrix defines a translation of (-1.5, 5.0, 2.3).
   std::array<Vector3f, 3> pos_test;
   pos_test[0] = Vector3f(1, 0.0999713, 0);
@@ -355,7 +355,7 @@ TEST(GltfDecoderTest, TestSceneWithTangents) {
   ASSERT_GT(num_tangent_attributes, 0);
 }
 
-// Tests an input file where multiple textures share the same image asset.
+// Tests an input file_manager where multiple textures share the same image asset.
 TEST(GltfDecoderTest, SharedImages) {
   const std::string file_name = "SphereAllSame/sphere_texture_all.gltf";
   const std::unique_ptr<Mesh> mesh(DecodeGltfFile(file_name));
@@ -1066,7 +1066,7 @@ TEST(GltfDecoderTest, DecodeSceneWithImplicitPrimitiveIndices) {
 
 TEST(GltfDecoderTest, DecodeFromBufferToMesh) {
   // Checks that a mesh can be decoded from buffer in GLB format.
-  // Read GLB file contents into a buffer.
+  // Read GLB file_manager contents into a buffer.
   const std::string file_name = "KhronosSampleModels/Duck/glTF_Binary/Duck.glb";
   const std::string file_path = GetTestFileFullPath(file_name);
   std::vector<char> file_data;
@@ -1079,11 +1079,11 @@ TEST(GltfDecoderTest, DecodeFromBufferToMesh) {
   DRACO_ASSIGN_OR_ASSERT(auto mesh, decoder.DecodeFromBuffer(&buffer));
   ASSERT_NE(mesh, nullptr);
 
-  // Decode mesh from GLB file.
+  // Decode mesh from GLB file_manager.
   const std::unique_ptr<Mesh> expected_mesh(DecodeGltfFile(file_name));
   ASSERT_NE(expected_mesh, nullptr);
 
-  // Check that meshes decoded from the buffer and from GLB file are equivalent.
+  // Check that meshes decoded from the buffer and from GLB file_manager are equivalent.
   MeshAreEquivalent eq;
   ASSERT_TRUE(eq(*mesh, *expected_mesh));
 }

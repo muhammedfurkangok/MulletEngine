@@ -40,9 +40,9 @@ struct ZipFileIO : public CommonFileIOInterface
 				b3Assert(read_bytes == stream_size);
 				if (read_bytes != stream_size)
 				{
-					printf("Error: mismatch reading file %s, expected %d bytes, read %d\n", m_zipfileName.c_str(), stream_size, read_bytes);
+					printf("Error: mismatch reading file_manager %s, expected %d bytes, read %d\n", m_zipfileName.c_str(), stream_size, read_bytes);
 				}
-				zlib_filefunc_def api;  // callbacks for in-mem file
+				zlib_filefunc_def api;  // callbacks for in-mem file_manager
 				
 				m_stream = mem_simple_create_file(&api, &m_buffer[0], stream_size);
 
@@ -118,7 +118,7 @@ struct ZipFileIO : public CommonFileIOInterface
 				result = unzGetGlobalInfo(m_zipfile, &m_global_info );
 				if (result != UNZ_OK)
 				{
-					printf("could not read file global info from %s\n", m_zipfileName.c_str());
+					printf("could not read file_manager global info from %s\n", m_zipfileName.c_str());
 					slot = -1;
 				}
 			}
@@ -209,7 +209,7 @@ struct ZipFileIO : public CommonFileIOInterface
 		fileHandle = fileOpen(orgFileName, "rb");
 		if (fileHandle>=0)
 		{
-			//printf("original file found: [%s]\n", orgFileName);
+			//printf("original file_manager found: [%s]\n", orgFileName);
 			sprintf(relativeFileName, "%s", orgFileName);
 			fileClose(fileHandle);
 			return true;

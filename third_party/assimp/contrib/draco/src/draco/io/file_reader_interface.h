@@ -16,14 +16,14 @@ class FileReaderInterface {
   FileReaderInterface(FileReaderInterface &&) = default;
   FileReaderInterface &operator=(FileReaderInterface &&) = default;
 
-  // Closes the file.
+  // Closes the file_manager.
   virtual ~FileReaderInterface() = default;
 
-  // Reads the entire contents of the input file into |buffer| and returns true.
+  // Reads the entire contents of the input file_manager into |buffer| and returns true.
   virtual bool ReadFileToBuffer(std::vector<char> *buffer) = 0;
   virtual bool ReadFileToBuffer(std::vector<uint8_t> *buffer) = 0;
 
-  // Returns the size of the file.
+  // Returns the size of the file_manager.
   virtual size_t GetFileSize() = 0;
 };
 

@@ -153,14 +153,14 @@ ZEXTERN z_off64_t ZEXPORT gzoffset64 OF((gzFile));
 #define GZ_NONE 0
 #define GZ_READ 7247
 #define GZ_WRITE 31153
-#define GZ_APPEND 1 /* mode set to GZ_WRITE after the file is opened */
+#define GZ_APPEND 1 /* mode set to GZ_WRITE after the file_manager is opened */
 
 /* values for gz_state how */
 #define LOOK 0 /* look for a gzip header */
 #define COPY 1 /* copy input directly */
 #define GZIP 2 /* decompress a gzip stream */
 
-/* internal gzip file state data structure */
+/* internal gzip file_manager state data structure */
 typedef struct
 {
 	/* exposed contents for gzgetc() macro */
@@ -170,7 +170,7 @@ typedef struct
 					   /* x.pos: current position in uncompressed data */
 	/* used for both reading and writing */
 	int mode;           /* see gzip modes above */
-	int fd;             /* file descriptor */
+	int fd;             /* file_manager descriptor */
 	char *path;         /* path or fd for error messages */
 	unsigned size;      /* buffer size, zero if not allocated yet */
 	unsigned want;      /* requested buffer size, default is GZBUFSIZE */
@@ -180,7 +180,7 @@ typedef struct
 	/* just for reading */
 	int how;         /* 0: get header, 1: copy, 2: decompress */
 	z_off64_t start; /* where the gzip data started, for rewinding */
-	int eof;         /* true if end of input file reached */
+	int eof;         /* true if end of input file_manager reached */
 	int past;        /* true if read requested past end */
 	/* just for writing */
 	int level;    /* compression level */

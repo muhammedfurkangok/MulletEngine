@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** @file IOSystem.hpp
  *  @brief File system wrapper for C++. Inherit this class to supply
- *  custom file handling logic to the Import library.
+ *  custom file_manager handling logic to the Import library.
 */
 
 #pragma once
@@ -76,9 +76,9 @@ namespace Assimp {
 class IOStream;
 
 // ---------------------------------------------------------------------------
-/** @brief CPP-API: Interface to the file system.
+/** @brief CPP-API: Interface to the file_manager system.
  *
- *  Derive an own implementation from this interface to supply custom file handling
+ *  Derive an own implementation from this interface to supply custom file_manager handling
  *  to the importer library. If you implement this interface, you also want to
  *  supply a custom implementation for IOStream.
  *
@@ -114,10 +114,10 @@ public:
     AI_FORCE_INLINE bool Exists( const std::string& pFile) const;
 
     // -------------------------------------------------------------------
-    /** @brief Tests for the existence of a file at the given path.
+    /** @brief Tests for the existence of a file_manager at the given path.
      *
-     * @param pFile Path to the file
-     * @return true if there is a file with this path, else false.
+     * @param pFile Path to the file_manager
+     * @return true if there is a file_manager with this path, else false.
      */
     virtual bool Exists( const char* pFile) const = 0;
 
@@ -128,17 +128,17 @@ public:
     virtual char getOsSeparator() const = 0;
 
     // -------------------------------------------------------------------
-    /** @brief Open a new file with a given path.
+    /** @brief Open a new file_manager with a given path.
      *
-     *  When the access to the file is finished, call Close() to release
+     *  When the access to the file_manager is finished, call Close() to release
      *  all associated resources (or the virtual dtor of the IOStream).
      *
-     *  @param pFile Path to the file
-     *  @param pMode Desired file I/O mode. Required are: "wb", "w", "wt",
+     *  @param pFile Path to the file_manager
+     *  @param pMode Desired file_manager I/O mode. Required are: "wb", "w", "wt",
      *         "rb", "r", "rt".
      *
      *  @return New IOStream interface allowing the lib to access
-     *         the underlying file.
+     *         the underlying file_manager.
      *  @note When implementing this class to provide custom IO handling,
      *  you probably have to supply an own implementation of IOStream as well.
      */
@@ -153,9 +153,9 @@ public:
         const std::string& pMode = std::string("rb"));
 
     // -------------------------------------------------------------------
-    /** @brief Closes the given file and releases all resources
+    /** @brief Closes the given file_manager and releases all resources
      *    associated with it.
-     *  @param pFile The file instance previously created by Open().
+     *  @param pFile The file_manager instance previously created by Open().
      */
     virtual void Close( IOStream* pFile) = 0;
 
@@ -167,9 +167,9 @@ public:
      * case-insensitive comparison of the given strings. The default IO
      * system implementation uses OS mechanisms to convert relative into
      * absolute paths, so the result can be trusted.
-     * @param one First file
-     * @param second Second file
-     * @return true if the paths point to the same file. The file needn't
+     * @param one First file_manager
+     * @param second Second file_manager
+     * @return true if the paths point to the same file_manager. The file_manager needn't
      *   be existing, however.
      */
     virtual bool ComparePaths (const char* one,
@@ -226,9 +226,9 @@ public:
 
     // -------------------------------------------------------------------
     /**
-     *  @brief  Will delete the given file.
+     *  @brief  Will delete the given file_manager.
      *  @param file     [in] The filename
-     *  @return true, if the file wase deleted, false if not.
+     *  @return true, if the file_manager wase deleted, false if not.
      */
     virtual bool DeleteFile(const std::string &file);
 

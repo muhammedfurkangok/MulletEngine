@@ -50,10 +50,10 @@ SOFTWARE.
  * The "X11 Window System Protocol" standard defines in Appendix A the
  * keysym codes. These 29-bit integer values identify characters or
  * functions associated with each key (e.g., via the visible
- * engraving) of a keyboard layout. This file assigns mnemonic macro
+ * engraving) of a keyboard layout. This file_manager assigns mnemonic macro
  * names for these keysyms.
  *
- * This file is also compiled (by src/util/makekeys.c in libX11) into
+ * This file_manager is also compiled (by src/util/makekeys.c in libX11) into
  * hash tables that can be accessed with X11 library functions such as
  * XStringToKeysym() and XKeysymToString().
  *
@@ -81,9 +81,9 @@ SOFTWARE.
  * existing legacy keysym values in the range 0x0100 to 0x20ff.
  *
  * Where several mnemonic names are defined for the same keysym in this
- * file, all but the first one listed should be considered deprecated.
+ * file_manager, all but the first one listed should be considered deprecated.
  *
- * Mnemonic names for keysyms are defined in this file with lines
+ * Mnemonic names for keysyms are defined in this file_manager with lines
  * that match one of these Perl regular expressions:
  *
  *    /^\#define XK_([a-zA-Z_0-9]+)\s+0x([0-9a-f]+)\s*\/\* U+([0-9A-F]{4,6}) (.*) \*\/\s*$/
@@ -91,7 +91,7 @@ SOFTWARE.
  *    /^\#define XK_([a-zA-Z_0-9]+)\s+0x([0-9a-f]+)\s*(\/\*\s*(.*)\s*\*\/)?\s*$/
  *
  * Before adding new keysyms, please do consider the following: In
- * addition to the keysym names defined in this file, the
+ * addition to the keysym names defined in this file_manager, the
  * XStringToKeysym() and XKeysymToString() functions will also handle
  * any keysym string of the form "U0020" to "U007E" and "U00A0" to
  * "U10FFFF" for all possible Unicode characters. In other words,
@@ -101,7 +101,7 @@ SOFTWARE.
  * non-hexadecimal mnemonic name is needed, or where the new keysym
  * does not represent any existing Unicode character.
  *
- * When adding new keysyms to this file, do not forget to also update the
+ * When adding new keysyms to this file_manager, do not forget to also update the
  * following as needed:
  *
  *   - the mappings in src/KeyBind.c in the repo

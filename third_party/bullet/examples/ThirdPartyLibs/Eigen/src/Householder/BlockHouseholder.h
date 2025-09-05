@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2010 Vincent Lejeune
@@ -6,12 +6,12 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_BLOCK_HOUSEHOLDER_H
 #define EIGEN_BLOCK_HOUSEHOLDER_H
 
-// This file contains some helper function to deal with block householder reflectors
+// This file_manager contains some helper function to deal with block householder reflectors
 
 namespace Eigen { 
 

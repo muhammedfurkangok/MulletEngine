@@ -699,7 +699,7 @@ bool Path_WriteStringToTextFileAtomic(const std::string &strFilename, const char
 	if (!Path_WriteStringToTextFile(strTmpFilename, pchData))
 		return false;
 
-		// Platform specific atomic file replacement
+		// Platform specific atomic file_manager replacement
 #if defined(_WIN32)
 	std::wstring wsFilename = UTF8to16(strFilename.c_str());
 	std::wstring wsTmpFilename = UTF8to16(strTmpFilename.c_str());
@@ -713,24 +713,24 @@ bool Path_WriteStringToTextFileAtomic(const std::string &strFilename, const char
 	if (rename(strTmpFilename.c_str(), strFilename.c_str()) == -1)
 		return false;
 #else
-#error Do not know how to write atomic file
+#error Do not know how to write atomic file_manager
 #endif
 
 	return true;
 }
 
 #if defined(WIN32)
-#define FILE_URL_PREFIX "file:///"
+#define FILE_URL_PREFIX "file_manager:///"
 #else
-#define FILE_URL_PREFIX "file://"
+#define FILE_URL_PREFIX "file_manager://"
 #endif
 
 // ----------------------------------------------------------------------------------------------------------------------------
-// Purpose: Turns a path to a file on disk into a URL (or just returns the value if it's already a URL)
+// Purpose: Turns a path to a file_manager on disk into a URL (or just returns the value if it's already a URL)
 // ----------------------------------------------------------------------------------------------------------------------------
 std::string Path_FilePathToUrl(const std::string &sRelativePath, const std::string &sBasePath)
 {
-	if (!strnicmp(sRelativePath.c_str(), "http://", 7) || !strnicmp(sRelativePath.c_str(), "https://", 8) || !strnicmp(sRelativePath.c_str(), "file://", 7))
+	if (!strnicmp(sRelativePath.c_str(), "http://", 7) || !strnicmp(sRelativePath.c_str(), "https://", 8) || !strnicmp(sRelativePath.c_str(), "file_manager://", 7))
 	{
 		return sRelativePath;
 	}
@@ -744,7 +744,7 @@ std::string Path_FilePathToUrl(const std::string &sRelativePath, const std::stri
 }
 
 // -----------------------------------------------------------------------------------------------------
-// Purpose: Strips off file:// off a URL and returns the path. For other kinds of URLs an empty string is returned
+// Purpose: Strips off file_manager:// off a URL and returns the path. For other kinds of URLs an empty string is returned
 // -----------------------------------------------------------------------------------------------------
 std::string Path_UrlToFilePath(const std::string &sFileUrl)
 {

@@ -53,9 +53,9 @@ namespace Assimp {
 
 /**
  *  Force embedding of textures (using the path = "*1" convention).
- *  If a texture's file does not exist at the specified path
+ *  If a texture's file_manager does not exist at the specified path
  *  (due, for instance, to an absolute path generated on another system),
- *  it will check if a file with the same name exists at the root folder
+ *  it will check if a file_manager with the same name exists at the root folder
  *  of the imported model. And if so, it uses that.
  */
 class ASSIMP_API EmbedTexturesProcess : public BaseProcess {
@@ -78,7 +78,7 @@ public:
 private:
     // Try several ways to attempt to resolve the image path
     std::string tryToFindValidPath(const std::string &imagePath) const;
-    // Resolve the path and add the file content to the scene as a texture.
+    // Resolve the path and add the file_manager content to the scene as a texture.
     bool addTexture(aiScene *pScene, const std::string &path) const;
 
 private:

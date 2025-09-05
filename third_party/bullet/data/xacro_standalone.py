@@ -264,12 +264,12 @@ def process_includes(doc, base_dir):
               included = parse(f)
             except Exception as e:
               raise XacroException(
-                  "included file \"%s\" generated an error during XML parsing: %s" %
+                  "included file_manager \"%s\" generated an error during XML parsing: %s" %
                   (filename, str(e)))
         except IOError as e:
-          raise XacroException("included file \"%s\" could not be opened: %s" % (filename, str(e)))
+          raise XacroException("included file_manager \"%s\" could not be opened: %s" % (filename, str(e)))
 
-        # Replaces the include tag with the elements of the included file
+        # Replaces the include tag with the elements of the included file_manager
         for c in child_nodes(included.documentElement):
           elt.parentNode.insertBefore(c.cloneNode(deep=True), elt)
 

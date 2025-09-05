@@ -82,10 +82,10 @@ public:
     void load_file();
 
 protected:
-    /** \brief Validate the header data structure of a Half-Life 1 MDL file.
+    /** \brief Validate the header data structure of a Half-Life 1 MDL file_manager.
      * \param[in] header Input header to be validated.
      * \param[in] is_texture_header Whether or not we are reading an MDL
-     *   texture file.
+     *   texture file_manager.
      */
     void validate_header(const Header_HL1 *header, bool is_texture_header);
 
@@ -107,8 +107,8 @@ protected:
 private:
     void release_resources();
 
-    /** \brief Load a file and copy it's content to a buffer.
-     * \param file_path The path to the file to be loaded.
+    /** \brief Load a file_manager and copy it's content to a buffer.
+     * \param file_path The path to the file_manager to be loaded.
      * \param buffer A pointer to a buffer to receive the data.
      */
     template <typename MDLFileHeader>
@@ -160,7 +160,7 @@ private:
     /** Buffer from MDLLoader class. */
     const unsigned char *buffer_;
 
-    /** The full file path to the MDL file we are trying to load.
+    /** The full file_manager path to the MDL file_manager we are trying to load.
      * Used to locate other MDL files since MDL may store resources
      * in external MDL files. */
     const std::string &file_path_;
@@ -175,10 +175,10 @@ private:
     const Header_HL1 *texture_header_;
 
     /** External MDL animation headers.
-     * One for each loaded animation file. */
+     * One for each loaded animation file_manager. */
     SequenceHeader_HL1 **anim_headers_;
 
-    /** Texture file data. */
+    /** Texture file_manager data. */
     unsigned char *texture_buffer_;
 
     /** Animation files data. */
@@ -228,17 +228,17 @@ private:
 template <typename MDLFileHeader>
 void HL1MDLLoader::load_file_into_buffer(const std::string &file_path, unsigned char *&buffer) {
     if (!io_->Exists(file_path))
-        throw DeadlyImportError("Missing file ", DefaultIOSystem::fileName(file_path), ".");
+        throw DeadlyImportError("Missing file_manager ", DefaultIOSystem::fileName(file_path), ".");
 
     std::unique_ptr<IOStream> file(io_->Open(file_path));
 
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open MDL file ", DefaultIOSystem::fileName(file_path), ".");
+        throw DeadlyImportError("Failed to open MDL file_manager ", DefaultIOSystem::fileName(file_path), ".");
     }
 
     const size_t file_size = file->FileSize();
     if (file_size < sizeof(MDLFileHeader)) {
-        throw DeadlyImportError("MDL file is too small.");
+        throw DeadlyImportError("MDL file_manager is too small.");
     }
 
     buffer = new unsigned char[1 + file_size];

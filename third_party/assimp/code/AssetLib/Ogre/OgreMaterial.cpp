@@ -146,7 +146,7 @@ aiMaterial *OgreImporter::ReadMaterial(const std::string &pFile, Assimp::IOSyste
         /* There are three .material options in priority order:
             1) File with the material name (materialName)
             2) File with the mesh files base name (pFile)
-            3) Optional user defined material library file (m_userDefinedMaterialLibFile) */
+            3) Optional user defined material library file_manager (m_userDefinedMaterialLibFile) */
         std::vector<string> potentialFiles;
         potentialFiles.push_back(materialName + ".material");
         potentialFiles.push_back(pFile.substr(0, pFile.rfind(".mesh")) + ".material");
@@ -159,16 +159,16 @@ aiMaterial *OgreImporter::ReadMaterial(const std::string &pFile, Assimp::IOSyste
             if (materialFile) {
                 break;
             }
-            ASSIMP_LOG_VERBOSE_DEBUG("Source file for material '", materialName, "' ", potentialFiles[i], " does not exist");
+            ASSIMP_LOG_VERBOSE_DEBUG("Source file_manager for material '", materialName, "' ", potentialFiles[i], " does not exist");
         }
         if (!materialFile) {
-            ASSIMP_LOG_ERROR("Failed to find source file for material '", materialName, "'");
+            ASSIMP_LOG_ERROR("Failed to find source file_manager for material '", materialName, "'");
             return nullptr;
         }
 
         std::unique_ptr<IOStream> stream(materialFile);
         if (stream->FileSize() == 0) {
-            ASSIMP_LOG_WARN("Source file for material '", materialName, "' is empty (size is 0 bytes)");
+            ASSIMP_LOG_WARN("Source file_manager for material '", materialName, "' is empty (size is 0 bytes)");
             return nullptr;
         }
 
@@ -265,19 +265,19 @@ aiMaterial *OgreImporter::ReadMaterial(const std::string &pFile, Assimp::IOSyste
                 //Properties from Venetica:
                 else if (linePart == "$diffuse_map") {
                     ss >> linePart;
-                    if (linePart[0] == '"') // "file" -> file
+                    if (linePart[0] == '"') // "file_manager" -> file_manager
                         linePart = linePart.substr(1, linePart.size() - 2);
                     aiString ts(linePart);
                     material->AddProperty(&ts, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0));
                 } else if (linePart == "$specular_map") {
                     ss >> linePart;
-                    if (linePart[0] == '"') // "file" -> file
+                    if (linePart[0] == '"') // "file_manager" -> file_manager
                         linePart = linePart.substr(1, linePart.size() - 2);
                     aiString ts(linePart);
                     material->AddProperty(&ts, AI_MATKEY_TEXTURE(aiTextureType_SHININESS, 0));
                 } else if (linePart == "$normal_map") {
                     ss >> linePart;
-                    if (linePart[0] == '"') // "file" -> file
+                    if (linePart[0] == '"') // "file_manager" -> file_manager
                         linePart = linePart.substr(1, linePart.size() - 2);
                     aiString ts(linePart);
                     material->AddProperty(&ts, AI_MATKEY_TEXTURE(aiTextureType_NORMALS, 0));

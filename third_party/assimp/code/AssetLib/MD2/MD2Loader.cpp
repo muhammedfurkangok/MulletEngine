@@ -98,7 +98,7 @@ MD2Importer::MD2Importer()
 {}
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MD2Importer::CanRead( const std::string& pFile, IOSystem* pIOHandler, bool /*checkSig*/) const
 {
     static constexpr uint32_t tokens[] = { AI_MD2_MAGIC_NUMBER_LE };
@@ -125,7 +125,7 @@ void MD2Importer::SetupProperties(const Importer* pImp)
     }
 }
 // ------------------------------------------------------------------------------------------------
-// Validate the file header
+// Validate the file_manager header
 void MD2Importer::ValidateHeader( )
 {
     // check magic number
@@ -136,16 +136,16 @@ void MD2Importer::ValidateHeader( )
                                 ai_str_toprintable((char *)&m_pcHeader->magic, 4));
     }
 
-    // check file format version
+    // check file_manager format version
     if (m_pcHeader->version != 8)
-        ASSIMP_LOG_WARN( "Unsupported MD2 file version. Continuing happily ...");
+        ASSIMP_LOG_WARN( "Unsupported MD2 file_manager version. Continuing happily ...");
 
     // check some values whether they are valid
     if (0 == m_pcHeader->numFrames)
-        throw DeadlyImportError( "Invalid MD2 file: NUM_FRAMES is 0");
+        throw DeadlyImportError( "Invalid MD2 file_manager: NUM_FRAMES is 0");
 
     if (m_pcHeader->offsetEnd > (uint32_t)fileSize)
-        throw DeadlyImportError( "Invalid MD2 file: File is too small");
+        throw DeadlyImportError( "Invalid MD2 file_manager: File is too small");
 
     if (m_pcHeader->numSkins > AI_MAX_ALLOC(MD2::Skin)) {
         throw DeadlyImportError("Invalid MD2 header: Too many skins, would overflow");
@@ -176,7 +176,7 @@ void MD2Importer::ValidateHeader( )
         m_pcHeader->offsetFrames    + m_pcHeader->numFrames * frameSize                 >= fileSize ||
         m_pcHeader->offsetEnd           > fileSize)
     {
-        throw DeadlyImportError("Invalid MD2 header: Some offsets are outside the file");
+        throw DeadlyImportError("Invalid MD2 header: Some offsets are outside the file_manager");
     }
 
     if (m_pcHeader->numSkins > AI_MD2_MAX_SKINS)
@@ -187,23 +187,23 @@ void MD2Importer::ValidateHeader( )
         ASSIMP_LOG_WARN("The model contains more vertices than Quake 2 supports");
 
     if (m_pcHeader->numFrames <= configFrameID )
-        throw DeadlyImportError("MD2: The requested frame (", configFrameID, ") does not exist in the file");
+        throw DeadlyImportError("MD2: The requested frame (", configFrameID, ") does not exist in the file_manager");
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MD2Importer::InternReadFile( const std::string& pFile,
     aiScene* pScene, IOSystem* pIOHandler)
 {
     std::unique_ptr<IOStream> file( pIOHandler->Open( pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open MD2 file ", pFile, "");
+        throw DeadlyImportError("Failed to open MD2 file_manager ", pFile, "");
     }
 
-    // check whether the md3 file is large enough to contain
-    // at least the file header
+    // check whether the md3 file_manager is large enough to contain
+    // at least the file_manager header
     fileSize = (unsigned int)file->FileSize();
     if (fileSize < sizeof(MD2::Header)) {
         throw DeadlyImportError("MD2 File is too small");
@@ -239,7 +239,7 @@ void MD2Importer::InternReadFile( const std::string& pFile,
 
     ValidateHeader();
 
-    // there won't be more than one mesh inside the file
+    // there won't be more than one mesh inside the file_manager
     pScene->mNumMaterials = 1;
     pScene->mRootNode = new aiNode();
     pScene->mRootNode->mNumMeshes = 1;
@@ -333,10 +333,10 @@ void MD2Importer::InternReadFile( const std::string& pFile,
             pcHelper->AddProperty(&szString,AI_MATKEY_TEXTURE_DIFFUSE(0));
         }
         else if (nameTooLong) {
-            ASSIMP_LOG_WARN("Texture file name is too long. It will be skipped.");
+            ASSIMP_LOG_WARN("Texture file_manager name is too long. It will be skipped.");
         }
         else{
-            ASSIMP_LOG_WARN("Texture file name has zero length. It will be skipped.");
+            ASSIMP_LOG_WARN("Texture file_manager name has zero length. It will be skipped.");
         }
     }
     else    {
@@ -355,7 +355,7 @@ void MD2Importer::InternReadFile( const std::string& pFile,
 
         aiString sz;
 
-        // TODO: Try to guess the name of the texture file from the model file name
+        // TODO: Try to guess the name of the texture file_manager from the model file_manager name
 
         sz.Set("$texture_dummy.bmp");
         pcHelper->AddProperty(&sz,AI_MATKEY_TEXTURE_DIFFUSE(0));

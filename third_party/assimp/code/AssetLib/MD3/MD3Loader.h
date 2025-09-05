@@ -61,7 +61,7 @@ using namespace MD3;
 namespace Q3Shader {
 
 // ---------------------------------------------------------------------------
-/** @brief Tiny utility data structure to hold the data of a .skin file
+/** @brief Tiny utility data structure to hold the data of a .skin file_manager
  */
 struct SkinData {
     //! A single entry in texture list
@@ -158,7 +158,7 @@ struct ShaderDataBlock {
 };
 
 // ---------------------------------------------------------------------------
-/** @brief Tiny utility data structure to hold the data of a .shader file
+/** @brief Tiny utility data structure to hold the data of a .shader file_manager
  */
 struct ShaderData {
     //! Shader data blocks
@@ -166,13 +166,13 @@ struct ShaderData {
 };
 
 // ---------------------------------------------------------------------------
-/** @brief Load a shader file
+/** @brief Load a shader file_manager
  *
  *  Generally, parsing is error tolerant. There's no failure.
  *  @param fill Receives output data
  *  @param file File to be read.
  *  @param io IOSystem to be used for reading
- *  @return false if file is not accessible
+ *  @return false if file_manager is not accessible
  */
 bool LoadShader(ShaderData &fill, const std::string &file, IOSystem *io);
 
@@ -185,13 +185,13 @@ bool LoadShader(ShaderData &fill, const std::string &file, IOSystem *io);
 void ConvertShaderToMaterial(aiMaterial *out, const ShaderDataBlock &shader);
 
 // ---------------------------------------------------------------------------
-/** @brief Load a skin file
+/** @brief Load a skin file_manager
  *
  *  Generally, parsing is error tolerant. There's no failure.
  *  @param fill Receives output data
  *  @param file File to be read.
  *  @param io IOSystem to be used for reading
- *  @return false if file is not accessible
+ *  @return false if file_manager is not accessible
  */
 bool LoadSkin(SkinData &fill, const std::string &file, IOSystem *io);
 
@@ -206,7 +206,7 @@ public:
     ~MD3Importer() override;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
     * See BaseImporter::CanRead() for details.  */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
             bool checkSig) const override;
@@ -226,7 +226,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
@@ -239,25 +239,25 @@ protected:
     void ValidateSurfaceHeaderOffsets(const MD3::Surface *pcSurfHeader);
 
     // -------------------------------------------------------------------
-    /** Read a Q3 multipart file
+    /** Read a Q3 multipart file_manager
      *  @return true if multi part has been processed
      */
     bool ReadMultipartFile();
 
     // -------------------------------------------------------------------
-    /** Try to read the skin for a MD3 file
+    /** Try to read the skin for a MD3 file_manager
      *  @param fill Receives output information
      */
     void ReadSkin(Q3Shader::SkinData &fill) const;
 
     // -------------------------------------------------------------------
-    /** Try to read the shader for a MD3 file
+    /** Try to read the shader for a MD3 file_manager
      *  @param fill Receives output information
      */
     void ReadShader(Q3Shader::ShaderData &fill) const;
 
     // -------------------------------------------------------------------
-    /** Convert a texture path in a MD3 file to a proper value
+    /** Convert a texture path in a MD3 file_manager to a proper value
      *  @param[in] texture_name Path to be converted
      *  @param[in] header_path Base path specified in MD3 header
      *  @param[out] out Receives the converted output string
@@ -272,7 +272,7 @@ protected:
     /** Configuration option: process multi-part files */
     bool configHandleMP;
 
-    /** Configuration option: name of skin file to be read */
+    /** Configuration option: name of skin file_manager to be read */
     std::string configSkinFile;
 
     /** Configuration option: whether to load shaders */
@@ -284,22 +284,22 @@ protected:
     /** Configuration option: speed flag was set? */
     bool configSpeedFlag;
 
-    /** Header of the MD3 file */
+    /** Header of the MD3 file_manager */
     BE_NCONST MD3::Header *pcHeader;
 
     /** File buffer  */
     BE_NCONST unsigned char *mBuffer;
 
-    /** Size of the file, in bytes */
+    /** Size of the file_manager, in bytes */
     unsigned int fileSize;
 
-    /** Current file name */
+    /** Current file_manager name */
     std::string mFile;
 
     /** Current base directory  */
     std::string path;
 
-    /** Pure file we're currently reading */
+    /** Pure file_manager we're currently reading */
     std::string filename;
 
     /** Output scene to be filled */

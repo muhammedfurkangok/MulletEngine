@@ -3,7 +3,7 @@
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 // [SECTION] Forward Declarations
 // [SECTION] Widgets: Text, etc.

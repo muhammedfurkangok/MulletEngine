@@ -518,7 +518,7 @@ class ScopedMockLog : public LogSink {
   void send(LogSeverity severity, const char* full_filename,
                     const char* base_filename, int line, const tm* tm_time,
                     const char* message, size_t message_len) override {
-    // We are only interested in the log severity, full file name, and
+    // We are only interested in the log severity, full file_manager name, and
     // log message.
     Log(severity, full_filename, std::string(message, message_len));
   }
@@ -4289,8 +4289,8 @@ particular type than to dump the bytes.
 
 ## Useful Mocks Created Using gMock
 
-<!--#include file="includes/g3_testing_LOGs.md"-->
-<!--#include file="includes/g3_mock_callbacks.md"-->
+<!--#include file_manager="includes/g3_testing_LOGs.md"-->
+<!--#include file_manager="includes/g3_mock_callbacks.md"-->
 
 ### Mock std::function {#MockFunction}
 

@@ -1079,7 +1079,7 @@ private:
     const Document& doc;
 };
 
-/** DOM root for a FBX file */
+/** DOM root for a FBX file_manager */
 class Document {
 public:
     Document(Parser& parser, const ImportSettings& settings);

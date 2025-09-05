@@ -3,7 +3,7 @@
 
 /* THIS IS A GENERATED FILE
  *
- * Do not change!  Changing this file implies a protocol change!
+ * Do not change!  Changing this file_manager implies a protocol change!
  */
 
 #define XA_PRIMARY ((Atom)1)

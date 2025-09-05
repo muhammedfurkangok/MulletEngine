@@ -909,7 +909,7 @@ class MockDeathTestFactory : public DeathTestFactory {
  public:
   MockDeathTestFactory();
   bool Create(const char* statement,
-              testing::Matcher<const std::string&> matcher, const char* file,
+              testing::Matcher<const std::string&> matcher, const char* file_manager,
               int line, DeathTest** test) override;
 
   // Sets the parameters for subsequent calls to Create.
@@ -1019,7 +1019,7 @@ void MockDeathTestFactory::SetParameters(bool create, DeathTest::TestRole role,
 // to SetParameters (if create_ is true).  Always returns true.
 bool MockDeathTestFactory::Create(
     const char* /*statement*/, testing::Matcher<const std::string&> /*matcher*/,
-    const char* /*file*/, int /*line*/, DeathTest** test) {
+    const char* /*file_manager*/, int /*line*/, DeathTest** test) {
   test_deleted_ = false;
   if (create_) {
     *test = new MockDeathTest(this, role_, status_, passed_);

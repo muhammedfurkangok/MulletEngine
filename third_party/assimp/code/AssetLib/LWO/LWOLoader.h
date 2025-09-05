@@ -74,7 +74,7 @@ public:
     ~LWOImporter() override;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -93,7 +93,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
@@ -101,17 +101,17 @@ protected:
 
 private:
     // -------------------------------------------------------------------
-    /** Loads a LWO file in the older LWOB format (LW < 6)
+    /** Loads a LWO file_manager in the older LWOB format (LW < 6)
      */
     void LoadLWOBFile();
 
     // -------------------------------------------------------------------
-    /** Loads a LWO file in the newer LWO2 format (LW >= 6)
+    /** Loads a LWO file_manager in the newer LWO2 format (LW >= 6)
      */
     void LoadLWO2File();
 
     // -------------------------------------------------------------------
-    /** Parsing functions used for all file format versions
+    /** Parsing functions used for all file_manager format versions
     */
     inline void GetS0(std::string &out, unsigned int max);
     inline float GetF4();
@@ -122,20 +122,20 @@ private:
     inline uint8_t GetU1();
 
     // -------------------------------------------------------------------
-    /** Loads a surface chunk from an LWOB file
+    /** Loads a surface chunk from an LWOB file_manager
      *  @param size Maximum size to be read, in bytes.
      */
     void LoadLWOBSurface(unsigned int size);
 
     // -------------------------------------------------------------------
-    /** Loads a surface chunk from an LWO2 file
+    /** Loads a surface chunk from an LWO2 file_manager
      *  @param size Maximum size to be read, in bytes.
      */
     void LoadLWO2Surface(unsigned int size);
     void LoadLWO3Surface(unsigned int size);
 
     // -------------------------------------------------------------------
-    /** Loads a texture block from a LWO2 file.
+    /** Loads a texture block from a LWO2 file_manager.
      *  @param size Maximum size to be read, in bytes.
      *  @param head Header of the SUF.BLOK header
      */
@@ -143,7 +143,7 @@ private:
             unsigned int size);
 
     // -------------------------------------------------------------------
-    /** Loads a shader block from a LWO2 file.
+    /** Loads a shader block from a LWO2 file_manager.
      *  @param size Maximum size to be read, in bytes.
      *  @param head Header of the SUF.BLOK header
      */
@@ -151,7 +151,7 @@ private:
             unsigned int size);
 
     // -------------------------------------------------------------------
-    /** Loads an image map from a LWO2 file
+    /** Loads an image map from a LWO2 file_manager
      *  @param size Maximum size to be read, in bytes.
      *  @param tex Texture object to be filled
      */
@@ -163,7 +163,7 @@ private:
     void LoadLWO2TextureHeader(unsigned int size, LWO::Texture &tex);
 
     // -------------------------------------------------------------------
-    /** Loads the LWO tag list from the file
+    /** Loads the LWO tag list from the file_manager
      *  @param size Maximum size to be read, in bytes.
      */
     void LoadLWOTags(unsigned int size);
@@ -218,7 +218,7 @@ private:
     void LoadNodeData(unsigned int length);
 
     // -------------------------------------------------------------------
-    /** Count vertices and faces in a LWOB/LWO2 file
+    /** Count vertices and faces in a LWOB/LWO2 file_manager
     */
     void CountVertsAndFacesLWO2(unsigned int &verts,
             unsigned int &faces,
@@ -233,7 +233,7 @@ private:
             unsigned int max = UINT_MAX);
 
     // -------------------------------------------------------------------
-    /** Read vertices and faces in a LWOB/LWO2 file
+    /** Read vertices and faces in a LWOB/LWO2 file_manager
     */
     void CopyFaceIndicesLWO2(LWO::FaceList::iterator &it,
             uint16_t *&cursor,
@@ -345,7 +345,7 @@ private:
 
     // -------------------------------------------------------------------
     /** Setup a new texture after the corresponding chunk was
-     *  encountered in the file.
+     *  encountered in the file_manager.
      *  @param list Texture list
      *  @param size Maximum number of bytes to be read
      *  @return Pointer to new texture
@@ -354,40 +354,40 @@ private:
             unsigned int size);
 
 protected:
-    /** true if the file is a LWO2 file*/
+    /** true if the file_manager is a LWO2 file_manager*/
     bool mIsLWO2;
 
-    /** true if the file is a LXOB file*/
+    /** true if the file_manager is a LXOB file_manager*/
     bool mIsLXOB;
 
     bool mIsLWO3;
 
-    /** Temporary list of layers from the file */
+    /** Temporary list of layers from the file_manager */
     LayerList *mLayers;
 
     /** Pointer to the current layer */
     LWO::Layer *mCurLayer;
 
-    /** Temporary tag list from the file */
+    /** Temporary tag list from the file_manager */
     TagList *mTags;
 
     /** Mapping table to convert from tag to surface indices.
         UINT_MAX indicates that a no corresponding surface is available */
     TagMappingTable *mMapping;
 
-    /** Temporary surface list from the file */
+    /** Temporary surface list from the file_manager */
     SurfaceList *mSurfaces;
 
-    /** Temporary clip list from the file */
+    /** Temporary clip list from the file_manager */
     ClipList mClips;
 
-    /** Temporary envelope list from the file */
+    /** Temporary envelope list from the file_manager */
     EnvelopeList mEnvelopes;
 
-    /** file buffer */
+    /** file_manager buffer */
     uint8_t *mFileBuffer;
 
-    /** Size of the file, in bytes */
+    /** Size of the file_manager, in bytes */
     unsigned int fileSize;
 
     /** Output scene */
@@ -484,7 +484,7 @@ inline void LWOImporter::GetS0(std::string &out, unsigned int max) {
     const char *sz = (const char *)mFileBuffer;
     while (*mFileBuffer) {
         if (++iCursor > max) {
-            ASSIMP_LOG_WARN("LWO: Invalid file, string is is too long");
+            ASSIMP_LOG_WARN("LWO: Invalid file_manager, string is is too long");
             break;
         }
         ++mFileBuffer;

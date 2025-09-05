@@ -14,7 +14,7 @@ subject to the following restrictions:
 */
 
 #include "RaytestDemo.h"
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"

@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,7 @@
 
 namespace draco {
 
-// Reads a texture from a file. Reads PNG, JPEG and WEBP texture files.
+// Reads a texture from a file_manager. Reads PNG, JPEG and WEBP texture files.
 // Returns nullptr with an error status if the decoding failed.
 StatusOr<std::unique_ptr<Texture>> ReadTextureFromFile(
     const std::string &file_name);
@@ -41,7 +41,7 @@ StatusOr<std::unique_ptr<Texture>> ReadTextureFromBuffer(const uint8_t *buffer,
 StatusOr<std::unique_ptr<Texture>> ReadTextureFromBuffer(
     const uint8_t *buffer, size_t buffer_size, const std::string &mime_type);
 
-// Writes a texture into a file. Can write PNG, JPEG, WEBP, and KTX2 (with Basis
+// Writes a texture into a file_manager. Can write PNG, JPEG, WEBP, and KTX2 (with Basis
 // compression) texture files depending on the extension specified in
 // |file_name| and image format specified in |texture|. Note that images with
 // Basis compression can only be saved to files in KTX2 format and not to files

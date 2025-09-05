@@ -21,7 +21,7 @@ z_const char* const z_errmsg[10] = {
 	"need dictionary",      /* Z_NEED_DICT       2  */
 	"stream end",           /* Z_STREAM_END      1  */
 	"",                     /* Z_OK              0  */
-	"file error",           /* Z_ERRNO         (-1) */
+	"file_manager error",           /* Z_ERRNO         (-1) */
 	"stream error",         /* Z_STREAM_ERROR  (-2) */
 	"data error",           /* Z_DATA_ERROR    (-3) */
 	"insufficient memory",  /* Z_MEM_ERROR     (-4) */

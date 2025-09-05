@@ -38,7 +38,7 @@ subject to the following restrictions:
 
 #include "Planar2D.h"
 
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include <stdio.h>  //printf debugging
 

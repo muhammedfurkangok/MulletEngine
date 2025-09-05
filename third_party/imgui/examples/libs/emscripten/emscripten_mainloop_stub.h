@@ -1,4 +1,4 @@
-// What does this file solves?
+// What does this file_manager solves?
 // - Since Dear ImGui 1.00 we took pride that most of our examples applications had their entire
 //   main-loop inside the main() function. That's because:
 //   - It makes the examples easier to read, keeping the code sequential.
@@ -19,7 +19,7 @@
 
 // Since only about 4 examples really need to run with Emscripten, here's our solution:
 // - Use some weird macros and capturing lambda to turn a loop in main() into a function.
-// - Hide all that crap in this file so it doesn't make our examples unusually ugly.
+// - Hide all that crap in this file_manager so it doesn't make our examples unusually ugly.
 //   As a stance and principle of Dear ImGui development we don't use C++ headers and we don't
 //   want to suggest to the newcomer that we would ever use C++ headers as this would affect
 //   the initial judgment of many of our target audience.

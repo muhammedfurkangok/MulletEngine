@@ -147,7 +147,7 @@
 #define GMOCK_PP_COMMA_IF(_i) GMOCK_PP_CAT(GMOCK_PP_INTERNAL_COMMA_IF_, _i)
 
 // Internal details follow. Do not use any of these symbols outside of this
-// file or we will break your code.
+// file_manager or we will break your code.
 #define GMOCK_PP_INTENRAL_EMPTY_TUPLE (, , , , , , , , , , , , , , , )
 #define GMOCK_PP_INTERNAL_CAT(_1, _2) _1##_2
 #define GMOCK_PP_INTERNAL_STRINGIZE(...) #__VA_ARGS__

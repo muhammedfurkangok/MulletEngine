@@ -66,22 +66,22 @@ void test_setup(void) {
   zip_entry_close(zip);
   ++total_entries;
 
-  zip_entry_open(zip, "delete/file.1");
+  zip_entry_open(zip, "delete/file_manager.1");
   zip_entry_write(zip, TESTDATA1, strlen(TESTDATA1));
   zip_entry_close(zip);
   ++total_entries;
 
-  zip_entry_open(zip, "delete/file.2");
+  zip_entry_open(zip, "delete/file_manager.2");
   zip_entry_write(zip, TESTDATA2, strlen(TESTDATA2));
   zip_entry_close(zip);
   ++total_entries;
 
-  zip_entry_open(zip, "deleteme/file.3");
+  zip_entry_open(zip, "deleteme/file_manager.3");
   zip_entry_write(zip, TESTDATA1, strlen(TESTDATA1));
   zip_entry_close(zip);
   ++total_entries;
 
-  zip_entry_open(zip, "delete/file.4");
+  zip_entry_open(zip, "delete/file_manager.4");
   zip_entry_write(zip, TESTDATA2, strlen(TESTDATA2));
   zip_entry_close(zip);
   ++total_entries;
@@ -256,21 +256,21 @@ MU_TEST(test_entries_deletebyindex) {
   mu_assert_int_eq(0, zip_entry_close(zip));
   fprintf(stdout, "_: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file.1"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file_manager.1"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.1: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.1: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "deleteme/file.3"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "deleteme/file_manager.3"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.3: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.3: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file.2"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file_manager.2"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.2: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.2: %s\n", zip_strerror(ZIP_ENOENT));
 
   mu_assert_int_eq(total_entries - 5, zip_entries_total(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file.4"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file_manager.4"));
 
   size_t buftmp = 0;
   char *buf = NULL;
@@ -306,18 +306,18 @@ MU_TEST(test_entries_deleteinvalid) {
   mu_assert_int_eq(0, zip_entry_open(zip, "_"));
   mu_assert_int_eq(0, zip_entry_close(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file.1"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file_manager.1"));
   mu_assert_int_eq(0, zip_entry_close(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "deleteme/file.3"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "deleteme/file_manager.3"));
   mu_assert_int_eq(0, zip_entry_close(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file.2"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file_manager.2"));
   mu_assert_int_eq(0, zip_entry_close(zip));
 
   mu_assert_int_eq(total_entries, zip_entries_total(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file.4"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file_manager.4"));
 
   size_t buftmp = 0;
   char *buf = NULL;
@@ -335,8 +335,8 @@ MU_TEST(test_entries_deleteinvalid) {
 }
 
 MU_TEST(test_entries_delete) {
-  char *entries[] = {"delete.me", "_", "delete/file.1", "deleteme/file.3",
-                     "delete/file.2"};
+  char *entries[] = {"delete.me", "_", "delete/file_manager.1", "deleteme/file_manager.3",
+                     "delete/file_manager.2"};
 
   struct zip_t *zip = zip_open(ZIPNAME, 0, 'd');
   mu_check(zip != NULL);
@@ -356,21 +356,21 @@ MU_TEST(test_entries_delete) {
   mu_assert_int_eq(0, zip_entry_close(zip));
   fprintf(stdout, "_: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file.1"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file_manager.1"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.1: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.1: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "deleteme/file.3"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "deleteme/file_manager.3"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.3: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.3: %s\n", zip_strerror(ZIP_ENOENT));
 
-  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file.2"));
+  mu_assert_int_eq(ZIP_ENOENT, zip_entry_open(zip, "delete/file_manager.2"));
   mu_assert_int_eq(0, zip_entry_close(zip));
-  fprintf(stdout, "delete/file.2: %s\n", zip_strerror(ZIP_ENOENT));
+  fprintf(stdout, "delete/file_manager.2: %s\n", zip_strerror(ZIP_ENOENT));
 
   mu_assert_int_eq(total_entries - 5, zip_entries_total(zip));
 
-  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file.4"));
+  mu_assert_int_eq(0, zip_entry_open(zip, "delete/file_manager.4"));
 
   size_t buftmp = 0;
   char *buf = NULL;

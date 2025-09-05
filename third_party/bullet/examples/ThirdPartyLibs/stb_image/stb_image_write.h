@@ -7,22 +7,22 @@ Before including,
 
     #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-in the file that you want to have the implementation.
+in the file_manager that you want to have the implementation.
 
 
 ABOUT:
 
-   This header file is a library for writing images to C stdio. It could be
+   This header file_manager is a library for writing images to C stdio. It could be
    adapted to write to memory or a general streaming interface; let me know.
 
-   The PNG output is not optimal; it is 20-50% larger than the file
+   The PNG output is not optimal; it is 20-50% larger than the file_manager
    written by a decent optimizing implementation. This library is designed
-   for source code compactness and simplicitly, not optimal image file size
+   for source code compactness and simplicitly, not optimal image file_manager size
    or run-time performance.
 
 USAGE:
 
-   There are three functions, one for each image file format:
+   There are three functions, one for each image file_manager format:
 
      int stbi_write_png(char const *filename, int w, int h, int comp, const void *data, int stride_in_bytes);
      int stbi_write_bmp(char const *filename, int w, int h, int comp, const void *data);
@@ -30,7 +30,7 @@ USAGE:
 
    Each function returns 0 on failure and non-0 on success.
    
-   The functions create an image file defined by the parameters. The image
+   The functions create an image file_manager defined by the parameters. The image
    is a rectangle of pixels stored from left-to-right, top-to-bottom.
    Each pixel contains 'comp' channels of data stored interleaved with 8-bits
    per channel, in the following order: 1=Y, 2=YA, 3=RGB, 4=RGBA. (Y is
@@ -40,7 +40,7 @@ USAGE:
    a row of pixels to the first byte of the next row of pixels.
 
    PNG creates output files with the same number of components as the input.
-   The BMP and TGA formats expand Y to RGB in the file format. BMP does not
+   The BMP and TGA formats expand Y to RGB in the file_manager format. BMP does not
    output alpha.
    
    PNG supports writing rectangles of data even when the bytes storing rows of
@@ -199,7 +199,7 @@ int stbi_write_bmp(char const *filename, int x, int y, int comp, const void *dat
 	return outfile(filename, -1, -1, x, y, comp, (void *)data, 0, pad,
 				   "11 4 22 4"
 				   "4 44 22 444444",
-				   'B', 'M', 14 + 40 + (x * 3 + pad) * y, 0, 0, 14 + 40,  // file header
+				   'B', 'M', 14 + 40 + (x * 3 + pad) * y, 0, 0, 14 + 40,  // file_manager header
 				   40, x, y, 1, 24, 0, 0, 0, 0, 0, 0);                    // bitmap header
 }
 

@@ -40,8 +40,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file  BlenderDNA.inl
- *  @brief Blender `DNA` (file format specification embedded in
- *    blend file itself) loader.
+ *  @brief Blender `DNA` (file_manager format specification embedded in
+ *    blend file_manager itself) loader.
  */
 #ifndef INCLUDED_AI_BLEND_DNA_INL
 #define INCLUDED_AI_BLEND_DNA_INL
@@ -380,7 +380,7 @@ bool Structure::ReadFieldPtrVector(vector<TOUT<T>>&out, const char* name, const 
 
 
 	if (ptrval.val)	{
-		// find the file block the pointer is pointing to
+		// find the file_manager block the pointer is pointing to
 		const FileBlockHead* block = LocateFileBlockForAddress(ptrval, db);
 		db.reader->SetCurrentPos(block->start + static_cast<size_t>((ptrval.val - block->address.val)));
 		// FIXME: basically, this could cause problems with 64 bit pointers on 32 bit systems.
@@ -415,7 +415,7 @@ bool Structure :: ResolvePointer(TOUT<T>& out, const Pointer & ptrval, const Fil
         return false;
     }
     const Structure& s = db.dna[f.type];
-    // find the file block the pointer is pointing to
+    // find the file_manager block the pointer is pointing to
     const FileBlockHead* block = LocateFileBlockForAddress(ptrval,db);
 
     // also determine the target type from the block header
@@ -472,13 +472,13 @@ inline bool Structure :: ResolvePointer( std::shared_ptr< FileOffset >& out, con
     bool) const
 {
     // Currently used exclusively by PackedFile::data to represent
-    // a simple offset into the mapped BLEND file.
+    // a simple offset into the mapped BLEND file_manager.
     out.reset();
     if (!ptrval.val) {
         return false;
     }
 
-    // find the file block the pointer is pointing to
+    // find the file_manager block the pointer is pointing to
     const FileBlockHead* block = LocateFileBlockForAddress(ptrval,db);
 
     out =  std::shared_ptr< FileOffset > (new FileOffset());
@@ -502,7 +502,7 @@ bool Structure :: ResolvePointer(vector< TOUT<T> >& out, const Pointer & ptrval,
         return false;
     }
 
-    // find the file block the pointer is pointing to
+    // find the file_manager block the pointer is pointing to
     const FileBlockHead* block = LocateFileBlockForAddress(ptrval,db);
     const size_t num = block->size / (db.i64bit?8:4);
 
@@ -541,7 +541,7 @@ template <> bool Structure :: ResolvePointer<std::shared_ptr,ElemBase>(std::shar
         return false;
     }
 
-    // find the file block the pointer is pointing to
+    // find the file_manager block the pointer is pointing to
     const FileBlockHead* block = LocateFileBlockForAddress(ptrval,db);
 
     // determine the target type from the block header
@@ -595,7 +595,7 @@ template <> bool Structure :: ResolvePointer<std::shared_ptr,ElemBase>(std::shar
 //--------------------------------------------------------------------------------
 const FileBlockHead* Structure :: LocateFileBlockForAddress(const Pointer & ptrval, const FileDatabase& db) const
 {
-    // the file blocks appear in list sorted by
+    // the file_manager blocks appear in list sorted by
     // with ascending base addresses so we can run a
     // binary search to locate the pointer quickly.
 
@@ -607,13 +607,13 @@ const FileBlockHead* Structure :: LocateFileBlockForAddress(const Pointer & ptrv
     vector<FileBlockHead>::const_iterator it = std::lower_bound(db.entries.begin(),db.entries.end(),ptrval);
     if (it == db.entries.end()) {
         // this is crucial, pointers may not be invalid.
-        // this is either a corrupted file or an attempted attack.
+        // this is either a corrupted file_manager or an attempted attack.
         throw DeadlyImportError("Failure resolving pointer 0x",
-            std::hex,ptrval.val,", no file block falls into this address range");
+            std::hex,ptrval.val,", no file_manager block falls into this address range");
     }
     if (ptrval.val >= (*it).address.val + (*it).size) {
         throw DeadlyImportError("Failure resolving pointer 0x",
-            std::hex,ptrval.val,", nearest file block starting at 0x",
+            std::hex,ptrval.val,", nearest file_manager block starting at 0x",
             (*it).address.val," ends at 0x",
             (*it).address.val + (*it).size);
     }

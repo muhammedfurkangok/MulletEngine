@@ -90,7 +90,7 @@ public:
     /// The class destructor.
     ~ColladaLoader() override = default;
 
-    /// Returns whether the class can handle the format of the given file.
+    /// Returns whether the class can handle the format of the given file_manager.
     /// @see BaseImporter::CanRead() for more details.
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 

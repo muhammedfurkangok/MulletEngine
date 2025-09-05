@@ -3,7 +3,7 @@
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
-/* WARNING: this file should *not* be used by applications. It is
+/* WARNING: this file_manager should *not* be used by applications. It is
    part of the implementation of the compression library and is
    subject to change. Applications should only use zlib.h.
  */
@@ -56,7 +56,7 @@
 #  define GZIP_STATE  57    /* gzip header -> BUSY_STATE | EXTRA_STATE */
 #endif
 #define EXTRA_STATE   69    /* gzip extra block -> NAME_STATE */
-#define NAME_STATE    73    /* gzip file name -> COMMENT_STATE */
+#define NAME_STATE    73    /* gzip file_manager name -> COMMENT_STATE */
 #define COMMENT_STATE 91    /* gzip comment -> HCRC_STATE */
 #define HCRC_STATE   103    /* gzip header CRC -> BUSY_STATE */
 #define BUSY_STATE   113    /* deflate -> FINISH_STATE */
@@ -227,12 +227,12 @@ typedef struct internal_state {
      *     data is still in the window so we can still emit a stored block even
      *     when input comes from standard input.  (This can also be done for
      *     all blocks if lit_bufsize is not greater than 32K.)
-     *   - if compression is not successful for a file smaller than 64K, we can
-     *     even emit a stored file instead of a stored block (saving 5 bytes).
+     *   - if compression is not successful for a file_manager smaller than 64K, we can
+     *     even emit a stored file_manager instead of a stored block (saving 5 bytes).
      *     This is applicable only for zip (not gzip or zlib).
      *   - creating new Huffman trees less frequently may not provide fast
      *     adaptation to changes in the input data statistics. (Take for
-     *     example a binary file with poorly compressible code followed by
+     *     example a binary file_manager with poorly compressible code followed by
      *     a highly compressible string table.) Smaller buffer sizes give
      *     fast adaptation but have of course the overhead of transmitting
      *     trees more frequently.
@@ -248,7 +248,7 @@ typedef struct internal_state {
     uInt insert;        /* bytes at end of window left to insert */
 
 #ifdef ZLIB_DEBUG
-    ulg compressed_len; /* total bit length of compressed file mod 2^32 */
+    ulg compressed_len; /* total bit length of compressed file_manager mod 2^32 */
     ulg bits_sent;      /* bit length of compressed data sent mod 2^32 */
 #endif
 
@@ -277,7 +277,7 @@ typedef struct internal_state {
 
 
 #define MIN_LOOKAHEAD (MAX_MATCH+MIN_MATCH+1)
-/* Minimum amount of lookahead, except at the end of the input file.
+/* Minimum amount of lookahead, except at the end of the input file_manager.
  * See deflate.c for comments about the MIN_MATCH+1.
  */
 

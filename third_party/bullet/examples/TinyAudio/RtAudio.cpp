@@ -232,7 +232,7 @@ void RtAudio ::openStream(RtAudio::StreamParameters *outputParameters,
 
 // *************************************************** //
 //
-// Public RtApi definitions (see end of file for
+// Public RtApi definitions (see end of file_manager for
 // private or protected utility functions).
 //
 // *************************************************** //
@@ -3477,7 +3477,7 @@ bool RtApiAsio ::probeDeviceOpen(unsigned int device, StreamMode mode, unsigned 
 	{
 		// Standard method failed. This can happen with strict/misbehaving drivers that return valid buffer size ranges
 		// but only accept the preferred buffer size as parameter for ASIOCreateBuffers. eg. Creatives ASIO driver
-		// in that case, let's be naïve and try that instead
+		// in that case, let's be naï¿½ve and try that instead
 		*bufferSize = preferSize;
 		stream_.bufferSize = *bufferSize;
 		result = ASIOCreateBuffers(handle->bufferInfos, nChannels, stream_.bufferSize, &asioCallbacks);

@@ -171,7 +171,7 @@ int ConvertMappingMode(const std::string &mode) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse a material from the XML file
+// Parse a material from the XML file_manager
 aiMaterial *IrrlichtBase::ParseMaterial(pugi::xml_node& materialNode, unsigned int &matFlags) {
     aiMaterial *mat = new aiMaterial();
     aiColor4D clr;
@@ -381,7 +381,7 @@ aiMaterial *IrrlichtBase::ParseMaterial(pugi::xml_node& materialNode, unsigned i
         }
     }*/
     }
-    //ASSIMP_LOG_ERROR("IRRMESH: Unexpected end of file. Material is not complete");
+    //ASSIMP_LOG_ERROR("IRRMESH: Unexpected end of file_manager. Material is not complete");
 
     return mat;
 }

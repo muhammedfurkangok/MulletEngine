@@ -53,7 +53,7 @@ for dir in "$@"; do
     fi
 done
 
-# Find a dominating file, starting from a given directory and going up.
+# Find a dominating file_manager, starting from a given directory and going up.
 find-dominating-file() {
     if [ -r "$1"/"$2" ]; then
         return 0

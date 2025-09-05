@@ -199,8 +199,8 @@ class GTestXMLTestCase(gtest_test_utils.TestCase):
        by the compiler and is platform dependent.
     *  The line info reported in the first line of the "message"
        attribute and CDATA section of <failure> elements is replaced with the
-       file's basename and a single asterisk for the line number.
-    *  The directory names in file paths are removed.
+       file_manager's basename and a single asterisk for the line number.
+    *  The directory names in file_manager paths are removed.
     *  The stack traces are removed.
 
     Args:
@@ -208,7 +208,7 @@ class GTestXMLTestCase(gtest_test_utils.TestCase):
     """
 
     if element.tagName == 'testcase':
-      source_file = element.getAttributeNode('file')
+      source_file = element.getAttributeNode('file_manager')
       if source_file:
         source_file.value = re.sub(r'^.*[/\\](.*)', '\\1', source_file.value)
     if element.tagName in ('testsuites', 'testsuite', 'testcase'):

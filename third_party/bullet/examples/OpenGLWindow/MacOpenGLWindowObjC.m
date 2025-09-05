@@ -1171,7 +1171,7 @@ int Mac_fileOpenDialog(char* filename, int maxNameLength)
     //http://stackoverflow.com/questions/13987148/nsopenpanel-breaks-my-sdl-opengl-app
     
     NSOpenGLContext *foo = [NSOpenGLContext currentContext];
-    // get the url of a .txt file
+    // get the url of a .txt file_manager
     NSOpenPanel * zOpenPanel = [NSOpenPanel openPanel];
 	NSArray * zAryOfExtensions = [NSArray arrayWithObjects:@"urdf",@"bullet",@"obj",@"sdf",@"stl",nil];
     [zOpenPanel setAllowedFileTypes:zAryOfExtensions];
@@ -1186,14 +1186,14 @@ int Mac_fileOpenDialog(char* filename, int maxNameLength)
     NSURL *zUrl = [zOpenPanel URL];
    if (zUrl)
    {
-       //without the file://
+       //without the file_manager://
        NSString *myString = [zUrl absoluteString];
        int slen = (int)[myString length];
        if (slen < maxNameLength)
        {
            const char *cfilename=[myString UTF8String];
-           //expect file:// at start of URL
-           const char* p = strstr(cfilename, "file://");
+           //expect file_manager:// at start of URL
+           const char* p = strstr(cfilename, "file_manager://");
             if (p==cfilename)
             {
                 int actualLen = (int)strlen(cfilename)-7;

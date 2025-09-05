@@ -32,7 +32,7 @@ TestLoadObj(
 
 	if (index < 0)
 	{
-		printf("file not found %s\n", fileName);
+		printf("file_manager not found %s\n", fileName);
 		return false;
 	}
 

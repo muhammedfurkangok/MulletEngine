@@ -141,7 +141,7 @@ size_t DefaultIOStream::FileSize() const {
 
     if (SIZE_MAX == mCachedSize) {
 
-        // Although fseek/ftell would allow us to reuse the existing file handle here,
+        // Although fseek/ftell would allow us to reuse the existing file_manager handle here,
         // it is generally unsafe because:
         //  - For binary streams, it is not technically well-defined
         //  - For text files the results are meaningless

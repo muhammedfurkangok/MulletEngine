@@ -2,7 +2,7 @@
 //
 // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.
 //
-// Licensed under the MIT License (the "License"); you may not use this file except
+// Licensed under the MIT License (the "License"); you may not use this file_manager except
 // in compliance with the License. You may obtain a copy of the License at
 //
 // http://opensource.org/licenses/MIT
@@ -95,7 +95,7 @@
     RAPIDJSON_NAMESPACE_END need to be defined as well:
 
     \code
-    // in some .cpp file
+    // in some .cpp file_manager
     #define RAPIDJSON_NAMESPACE my::rapidjson
     #define RAPIDJSON_NAMESPACE_BEGIN namespace my { namespace rapidjson {
     #define RAPIDJSON_NAMESPACE_END   } }

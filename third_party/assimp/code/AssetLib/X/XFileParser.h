@@ -117,7 +117,7 @@ protected:
     /// tests and possibly consumes a separator char, but does nothing if there was no separator
     void TestForSeparator();
 
-    //! reads a x file style string
+    //! reads a x file_manager style string
     void GetNextTokenAsString( std::string& poString);
 
     void ReadUntilEndOfLine();
@@ -143,7 +143,7 @@ protected:
 
 protected:
     unsigned int mMajorVersion, mMinorVersion; ///< version numbers
-    bool mIsBinaryFormat; ///< true if the file is in binary, false if it's in text form
+    bool mIsBinaryFormat; ///< true if the file_manager is in binary, false if it's in text form
     unsigned int mBinaryFloatSize; ///< float size in bytes, either 4 or 8
     unsigned int mBinaryNumCount; /// < counter for number arrays in binary format
     const char* mP;

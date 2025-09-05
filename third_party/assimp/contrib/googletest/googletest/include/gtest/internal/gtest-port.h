@@ -34,7 +34,7 @@
 // end with _ are part of Google Test's public API and can be used by
 // code outside Google Test.
 //
-// This file is fundamental to Google Test.  All other Google Test source
+// This file_manager is fundamental to Google Test.  All other Google Test source
 // files are expected to #include this.  Therefore, it cannot #include
 // any other Google Test header.
 
@@ -84,7 +84,7 @@
 //                              std::wstring does/doesn't work (Google Test can
 //                              be used where std::wstring is unavailable).
 //   GTEST_HAS_FILE_SYSTEM    - Define it to 1/0 to indicate whether or not a
-//                              file system is/isn't available.
+//                              file_manager system is/isn't available.
 //   GTEST_HAS_SEH            - Define it to 1/0 to indicate whether the
 //                              compiler supports Microsoft's "Structured
 //                              Exception Handling".
@@ -509,7 +509,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #endif  // GTEST_HAS_STD_WSTRING
 
 #ifndef GTEST_HAS_FILE_SYSTEM
-// Most platforms support a file system.
+// Most platforms support a file_manager system.
 #define GTEST_HAS_FILE_SYSTEM 1
 #endif  // GTEST_HAS_FILE_SYSTEM
 
@@ -638,7 +638,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #ifndef GTEST_HAS_STREAM_REDIRECTION
 // By default, we assume that stream redirection is supported on all
 // platforms except known mobile / embedded ones. Also, if the port doesn't have
-// a file system, stream redirection is not supported.
+// a file_manager system, stream redirection is not supported.
 #if defined(GTEST_OS_WINDOWS_MOBILE) || defined(GTEST_OS_WINDOWS_PHONE) || \
     defined(GTEST_OS_WINDOWS_RT) || defined(GTEST_OS_ESP8266) ||           \
     defined(GTEST_OS_XTENSA) || defined(GTEST_OS_QURT) ||                  \
@@ -661,7 +661,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
      defined(GTEST_OS_NETBSD) || defined(GTEST_OS_FUCHSIA) ||         \
      defined(GTEST_OS_DRAGONFLY) || defined(GTEST_OS_GNU_KFREEBSD) || \
      defined(GTEST_OS_HAIKU) || defined(GTEST_OS_GNU_HURD))
-// Death tests require a file system to work properly.
+// Death tests require a file_manager system to work properly.
 #if GTEST_HAS_FILE_SYSTEM
 #define GTEST_HAS_DEATH_TEST 1
 #endif  // GTEST_HAS_FILE_SYSTEM
@@ -1011,11 +1011,11 @@ class GTEST_API_ RE {
 GTEST_DISABLE_MSC_WARNINGS_POP_()  // 4251
 #endif  // ::testing::internal::RE implementation
 
-// Formats a source file path and a line number as they would appear
+// Formats a source file_manager path and a line number as they would appear
 // in an error message from the compiler used to compile this code.
 GTEST_API_ ::std::string FormatFileLocation(const char* file, int line);
 
-// Formats a file location for compiler-independent XML output.
+// Formats a file_manager location for compiler-independent XML output.
 // Although this function is not platform dependent, we put it next to
 // FormatFileLocation in order to contrast the two functions.
 GTEST_API_ ::std::string FormatCompilerIndependentFileLocation(const char* file,
@@ -1170,10 +1170,10 @@ GTEST_API_ void CaptureStderr();
 GTEST_API_ std::string GetCapturedStderr();
 
 #endif  // GTEST_HAS_STREAM_REDIRECTION
-// Returns the size (in bytes) of a file.
+// Returns the size (in bytes) of a file_manager.
 GTEST_API_ size_t GetFileSize(FILE* file);
 
-// Reads the entire content of a file as a string.
+// Reads the entire content of a file_manager as a string.
 GTEST_API_ std::string ReadEntireFile(FILE* file);
 
 // All command line arguments.
@@ -1198,7 +1198,7 @@ void ClearInjectableArgvs();
 class GTEST_API_ AutoHandle {
  public:
   // Assume that Win32 HANDLE type is equivalent to void*. Doing so allows us to
-  // avoid including <windows.h> in this header file. Including <windows.h> is
+  // avoid including <windows.h> in this header file_manager. Including <windows.h> is
   // undesirable because it defines a lot of symbols and macros that tend to
   // conflict with client code. This assumption is verified by
   // WindowsTypesTest.HANDLEIsVoidStar.
@@ -1993,11 +1993,11 @@ namespace posix {
 typedef struct _stat StatStruct;
 
 #ifdef GTEST_OS_WINDOWS_MOBILE
-inline int FileNo(FILE* file) { return reinterpret_cast<int>(_fileno(file)); }
+inline int FileNo(FILE* file_manager) { return reinterpret_cast<int>(_fileno(file_manager)); }
 // Stat(), RmDir(), and IsDir() are not needed on Windows CE at this
 // time and thus not defined there.
 #else
-inline int FileNo(FILE* file) { return _fileno(file); }
+inline int FileNo(FILE* file_manager) { return _fileno(file_manager); }
 inline int Stat(const char* path, StatStruct* buf) { return _stat(path, buf); }
 inline int RmDir(const char* dir) { return _rmdir(dir); }
 inline bool IsDir(const StatStruct& st) { return (_S_IFDIR & st.st_mode) != 0; }
@@ -2006,7 +2006,7 @@ inline bool IsDir(const StatStruct& st) { return (_S_IFDIR & st.st_mode) != 0; }
 #elif defined(GTEST_OS_ESP8266)
 typedef struct stat StatStruct;
 
-inline int FileNo(FILE* file) { return fileno(file); }
+inline int FileNo(FILE* file_manager) { return fileno(file_manager); }
 inline int Stat(const char* path, StatStruct* buf) {
   // stat function not implemented on ESP8266
   return 0;
@@ -2064,7 +2064,7 @@ inline int StrCaseCmp(const char* s1, const char* s2) {
 
 inline int IsATTY(int fd) {
   // DoIsATTY might change errno (for example ENOTTY in case you redirect stdout
-  // to a file on Linux), which is unexpected, so save the previous value, and
+  // to a file_manager on Linux), which is unexpected, so save the previous value, and
   // restore it after the call.
   int savedErrno = errno;
   int isAttyValue = DoIsATTY(fd);

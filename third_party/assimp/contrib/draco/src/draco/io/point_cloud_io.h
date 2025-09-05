@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -76,9 +76,9 @@ InStreamT &ReadPointCloudFromStream(std::unique_ptr<PointCloud> *point_cloud,
   return is;
 }
 
-// Reads a point cloud from a file. The function automatically chooses the
+// Reads a point cloud from a file_manager. The function automatically chooses the
 // correct decoder based on the extension of the files. Currently, .obj and .ply
-// files are supported. Other file extensions are processed by the default
+// files are supported. Other file_manager extensions are processed by the default
 // draco::PointCloudDecoder.
 // Returns nullptr with an error status if the decoding failed.
 StatusOr<std::unique_ptr<PointCloud>> ReadPointCloudFromFile(

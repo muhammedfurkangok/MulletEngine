@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,7 @@
 
 namespace draco {
 
-// Decodes a Wavefront OBJ file into draco::Mesh (or draco::PointCloud if the
+// Decodes a Wavefront OBJ file_manager into draco::Mesh (or draco::PointCloud if the
 // connectivity data is not needed).. This decoder can handle decoding of
 // positions, texture coordinates, normals and triangular faces.
 // All other geometry properties are ignored.
@@ -33,7 +33,7 @@ class ObjDecoder {
  public:
   ObjDecoder();
 
-  // Decodes an obj file stored in the input file.
+  // Decodes an obj file_manager stored in the input file_manager.
   // Optional argument |mesh_files| will be populated with all paths to files
   // relevant to the loaded mesh.
   Status DecodeFromFile(const std::string &file_name, Mesh *out_mesh);
@@ -52,7 +52,7 @@ class ObjDecoder {
   // Default: true
   void set_deduplicate_input_values(bool v) { deduplicate_input_values_ = v; }
   // Flag for whether using metadata to record other information in the obj
-  // file, e.g. material names, object names.
+  // file_manager, e.g. material names, object names.
   void set_use_metadata(bool flag) { use_metadata_ = flag; }
   // Enables preservation of polygons.
   void set_preserve_polygons(bool flag) { preserve_polygons_ = flag; }
@@ -67,7 +67,7 @@ class ObjDecoder {
 
   // Parses the next mesh property definition (position, tex coord, normal, or
   // face). If the parsed data is unrecognized, it will be skipped.
-  // Returns false when the end of file was reached.
+  // Returns false when the end of file_manager was reached.
   bool ParseDefinition(Status *status);
 
   // Attempts to parse definition of position, normal, tex coord, or face
@@ -90,7 +90,7 @@ class ObjDecoder {
   void MapPointToVertexIndices(PointIndex vert_id,
                                const std::array<int32_t, 3> &indices);
 
-  // Parses material file definitions from a separate file.
+  // Parses material file_manager definitions from a separate file_manager.
   bool ParseMaterialFile(const std::string &file_name, Status *status);
   bool ParseMaterialFileDefinition(Status *status);
 

@@ -118,12 +118,12 @@ const aiImporterDesc* C4DImporter::GetInfo () const {
 
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void C4DImporter::InternReadFile( const std::string& pFile, aiScene* pScene, IOSystem* pIOHandler) {
     std::unique_ptr<IOStream> file( pIOHandler->Open( pFile));
 
     if( file.get() == nullptr ) {
-        ThrowException("failed to open file " + pFile);
+        ThrowException("failed to open file_manager " + pFile);
     }
 
     const size_t file_size = file->FileSize();

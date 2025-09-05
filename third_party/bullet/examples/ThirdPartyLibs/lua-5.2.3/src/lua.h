@@ -2,7 +2,7 @@
 ** $Id: lua.h,v 1.285.1.2 2013/11/11 12:09:16 roberto Exp $
 ** Lua - A Scripting Language
 ** Lua.org, PUC-Rio, Brazil (http://www.lua.org)
-** See Copyright Notice at the end of this file
+** See Copyright Notice at the end of this file_manager
 */
 
 #ifndef lua_h
@@ -95,7 +95,7 @@ typedef LUA_INTEGER lua_Integer;
 typedef LUA_UNSIGNED lua_Unsigned;
 
 /*
-** generic extra include file
+** generic extra include file_manager
 */
 #if defined(LUA_USER_H)
 #include LUA_USER_H

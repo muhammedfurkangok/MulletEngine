@@ -42,9 +42,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** @file texture.h
  *  @brief Defines texture helper structures for the library
  *
- * Used for file formats which embed their textures into the model file.
+ * Used for file_manager formats which embed their textures into the model file_manager.
  * Supported are both normal textures, which are stored as uncompressed
- * pixels, and "compressed" textures, which are stored in a file format
+ * pixels, and "compressed" textures, which are stored in a file_manager format
  * such as PNG or TGA.
  */
 #pragma once
@@ -118,10 +118,10 @@ struct aiTexel {
 // --------------------------------------------------------------------------------
 /** Helper structure to describe an embedded texture
  *
- * Normally textures are contained in external files but some file formats embed
- * them directly in the model file. There are two types of embedded textures:
+ * Normally textures are contained in external files but some file_manager formats embed
+ * them directly in the model file_manager. There are two types of embedded textures:
  * 1. Uncompressed textures. The color data is given in an uncompressed format.
- * 2. Compressed textures stored in a file format like png or jpg. The raw file
+ * 2. Compressed textures stored in a file_manager format like png or jpg. The raw file_manager
  * bytes are given so the application must utilize an image decoder (e.g. DevIL) to
  * get access to the actual color data.
  *
@@ -157,9 +157,9 @@ struct aiTexture {
      * 3. Image contain RGB and 5 bit for R and B channels and 6 bit for G channel, achFormatHint == "rgba5650";
      * 4. One color image with B channel and 1 bit for it, achFormatHint == "rgba0010";
      * If mHeight == 0 then achFormatHint is set set to '\\0\\0\\0\\0' if the loader has no additional
-     * information about the texture file format used OR the
-     * file extension of the format without a trailing dot. If there
-     * are multiple file extensions for a format, the shortest
+     * information about the texture file_manager format used OR the
+     * file_manager extension of the format without a trailing dot. If there
+     * are multiple file_manager extensions for a format, the shortest
      * extension is chosen (JPEG maps to 'jpg', not to 'jpeg').
      * E.g. 'dds\\0', 'pcx\\0', 'jpg\\0'.  All characters are lower-case.
      * The fourth character will always be '\\0'.

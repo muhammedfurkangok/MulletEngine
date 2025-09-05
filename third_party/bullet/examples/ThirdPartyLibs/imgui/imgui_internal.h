@@ -1,7 +1,7 @@
 // dear imgui, v1.60 WIP
 // (internals)
 
-// You may use this file to debug, understand or extend ImGui features but we don't provide any guarantee of forward compatibility!
+// You may use this file_manager to debug, understand or extend ImGui features but we don't provide any guarantee of forward compatibility!
 // Set:
 //   #define IMGUI_DEFINE_MATH_OPERATORS
 // To implement maths operators for ImVec2 (disabled by default to not collide with using IM_VEC2_CLASS_EXTRA along with your own math types+operators)
@@ -553,7 +553,7 @@ struct IMGUI_API ImGuiTextEditState
 	void OnKeyPressed(int key);
 };
 
-// Data saved in imgui.ini file
+// Data saved in imgui.ini file_manager
 struct ImGuiWindowSettings
 {
 	char* Name;
@@ -573,7 +573,7 @@ struct ImGuiWindowSettings
 
 struct ImGuiSettingsHandler
 {
-	const char* TypeName;  // Short description stored in .ini file. Disallowed characters: '[' ']'
+	const char* TypeName;  // Short description stored in .ini file_manager. Disallowed characters: '[' ']'
 	ImGuiID TypeHash;      // == ImHash(TypeName, 0, 0)
 	void* (*ReadOpenFn)(ImGuiContext* ctx, ImGuiSettingsHandler* handler, const char* name);
 	void (*ReadLineFn)(ImGuiContext* ctx, ImGuiSettingsHandler* handler, void* entry, const char* line);
@@ -856,7 +856,7 @@ struct ImGuiContext
 
 	// Logging
 	bool LogEnabled;
-	FILE* LogFile;                  // If != NULL log to stdout/ file
+	FILE* LogFile;                  // If != NULL log to stdout/ file_manager
 	ImGuiTextBuffer* LogClipboard;  // Else log to clipboard. This is pointer so our GImGui static constructor doesn't call heap allocators.
 	int LogStartDepth;
 	int LogAutoExpandMaxDepth;

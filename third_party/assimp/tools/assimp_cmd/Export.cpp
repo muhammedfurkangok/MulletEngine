@@ -51,8 +51,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 const char *AICMD_MSG_EXPORT_HELP_E =
         "assimp export <model> [<out>] [-f<h>] [common parameters]\n"
-        "\t -f<h> Specify the file format. If omitted, the output format is \n"
-        "\t\tderived from the file extension of the given output file  \n"
+        "\t -f<h> Specify the file_manager format. If omitted, the output format is \n"
+        "\t\tderived from the file_manager extension of the given output file_manager  \n"
         "\t[See the assimp_cmd docs for a full list of all common parameters]  \n";
 
 // -----------------------------------------------------------------------------------
@@ -117,10 +117,10 @@ int Assimp_Export(const char *const *params, unsigned int num) {
             printf("assimp export: warning, format id \'%s\' is unknown\n", outf.c_str());
         }
 
-        // retry to see if we know it as file extension
+        // retry to see if we know it as file_manager extension
         outfi = GetMatchingFormat(outf, true);
         if (outfi == SIZE_MAX) {
-            // retry to see if we know the file extension of the output file
+            // retry to see if we know the file_manager extension of the output file_manager
             outfi = GetMatchingFormat(outext, true);
 
             if (outfi == SIZE_MAX) {
@@ -133,7 +133,7 @@ int Assimp_Export(const char *const *params, unsigned int num) {
         }
     }
 
-    // if no output file is specified, take the file name from input file
+    // if no output file_manager is specified, take the file_manager name from input file_manager
     if (out[0] == '-') {
         std::string::size_type pos = in.find_last_of('.');
         if (pos == std::string::npos) {
@@ -144,7 +144,7 @@ int Assimp_Export(const char *const *params, unsigned int num) {
     }
 
     const aiExportFormatDesc *const e = globalExporter->GetExportFormatDescription(outfi);
-    printf("assimp export: select file format: \'%s\' (%s)\n", e->id, e->description);
+    printf("assimp export: select file_manager format: \'%s\' (%s)\n", e->id, e->description);
 
     // import the  model
     const aiScene *scene = ImportModel(import, in);
@@ -152,7 +152,7 @@ int Assimp_Export(const char *const *params, unsigned int num) {
         return AssimpCmdExportError::FailedToImportModel;
     }
 
-    // derive the final file name
+    // derive the final file_manager name
     if (!outext.empty()) {
         out += "." + outext;
     }
@@ -161,7 +161,7 @@ int Assimp_Export(const char *const *params, unsigned int num) {
     if (!ExportModel(scene, import, out, e->id)) {
         return AssimpCmdExportError::FailedToExportModel;
     }
-    printf("assimp export: wrote output file: %s\n", out.c_str());
+    printf("assimp export: wrote output file_manager: %s\n", out.c_str());
     return AssimpCmdError::Success;
 }
 

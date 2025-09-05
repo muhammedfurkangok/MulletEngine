@@ -87,7 +87,7 @@ namespace {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool FBXImporter::CanRead(const std::string & pFile, IOSystem * pIOHandler, bool /*checkSig*/) const {
 	// at least ASCII-FBX files usually have a 'FBX' somewhere in their head
 	static const char *tokens[] = { " \n\r\n " };
@@ -122,19 +122,19 @@ void FBXImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void FBXImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
 	auto streamCloser = [&](IOStream *pStream) {
 		pIOHandler->Close(pStream);
 	};
 	std::unique_ptr<IOStream, decltype(streamCloser)> stream(pIOHandler->Open(pFile, "rb"), streamCloser);
 	if (!stream) {
-		ThrowException("Could not open file for reading");
+		ThrowException("Could not open file_manager for reading");
 	}
 
-    ASSIMP_LOG_DEBUG("Reading FBX file");
+    ASSIMP_LOG_DEBUG("Reading FBX file_manager");
 
-	// read entire file into memory - no streaming for this, fbx
+	// read entire file_manager into memory - no streaming for this, fbx
 	// files can grow large, but the assimp output data structure
 	// then becomes very large, too. Assimp doesn't support
 	// streaming for its output data structures so the net win with
@@ -175,7 +175,7 @@ void FBXImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 			ThrowException("The UnitScaleFactor must be non-zero");
         }
 
-		// Set FBX file scale is relative to CM must be converted to M for
+		// Set FBX file_manager scale is relative to CM must be converted to M for
 		// assimp universal format (M)
 		SetFileScale(size_relative_to_cm * 0.01f);
 

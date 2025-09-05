@@ -422,7 +422,7 @@ void LuaPhysicsSetup::initPhysics()
 	}
 	else
 	{
-		b3Error("Cannot find Lua file%s\n", sLuaFileName);
+		b3Error("Cannot find Lua file_manager%s\n", sLuaFileName);
 	}
 }
 

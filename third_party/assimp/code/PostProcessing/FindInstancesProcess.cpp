@@ -119,7 +119,7 @@ void FindInstancesProcess::Execute( aiScene* pScene)
 
         // use a pseudo hash for all meshes in the scene to quickly find
         // the ones which are possibly equal. This step is executed early
-        // in the pipeline, so we could, depending on the file format,
+        // in the pipeline, so we could, depending on the file_manager format,
         // have several thousand small meshes. That's too much for a brute
         // everyone-against-everyone check involving up to 10 comparisons
         // each.

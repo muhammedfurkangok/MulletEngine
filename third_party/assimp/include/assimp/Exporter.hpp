@@ -71,11 +71,11 @@ class ProgressHandler;
  * symmetric. The same rules for threading etc. apply.
  *
  * In a nutshell, there are two export interfaces: #Export, which writes the
- * output file(s) either to the regular file system or to a user-supplied
+ * output file_manager(s) either to the regular file_manager system or to a user-supplied
  * #IOSystem, and #ExportToBlob which returns a linked list of memory
- * buffers (blob), each referring to one output file (in most cases
- * there will be only one output file of course, but this extra complexity is
- * needed since Assimp aims at supporting a wide range of file formats).
+ * buffers (blob), each referring to one output file_manager (in most cases
+ * there will be only one output file_manager of course, but this extra complexity is
+ * needed since Assimp aims at supporting a wide range of file_manager formats).
  *
  * #ExportToBlob is especially useful if you intend to work
  * with the data in-memory.
@@ -137,9 +137,9 @@ public:
      * #Exporter takes ownership of the object and will destroy it
      * afterwards. The previously assigned handler will be deleted.
      * Pass NULL to take again ownership of your IOSystem and reset Assimp
-     * to use its default implementation, which uses plain file IO.
+     * to use its default implementation, which uses plain file_manager IO.
      *
-     * @param pIOHandler The IO handler to be used in all file accesses
+     * @param pIOHandler The IO handler to be used in all file_manager accesses
      *   of the Importer. */
     void SetIOHandler(IOSystem *pIOHandler);
 
@@ -173,8 +173,8 @@ public:
     void SetProgressHandler(ProgressHandler *pHandler);
 
     // -------------------------------------------------------------------
-    /** Exports the given scene to a chosen file format. Returns the exported
-    * data as a binary blob which you can write into a file or something.
+    /** Exports the given scene to a chosen file_manager format. Returns the exported
+    * data as a binary blob which you can write into a file_manager or something.
     * When you're done with the data, simply let the #Exporter instance go
     * out of scope to have it released automatically.
     * @param pScene The scene to export. Stays in possession of the caller,
@@ -196,11 +196,11 @@ public:
             unsigned int pPreprocessing = 0u, const ExportProperties *pProperties = nullptr);
 
     // -------------------------------------------------------------------
-    /** Convenience function to export directly to a file. Use
+    /** Convenience function to export directly to a file_manager. Use
      *  #SetIOSystem to supply a custom IOSystem to gain fine-grained control
      *  about the output data flow of the export process.
      * @param pBlob A data blob obtained from a previous call to #aiExportScene. Must not be nullptr.
-     * @param pPath Full target file name. Target must be accessible.
+     * @param pPath Full target file_manager name. Target must be accessible.
      * @param pPreprocessing Accepts any choice of the #aiPostProcessSteps enumerated
      *   flags, but in reality only a subset of them makes sense here. Specifying
      *   'preprocessing' flags is useful if the input scene does not conform to
@@ -212,7 +212,7 @@ public:
      *   to have those defaults automatically adapted to their conventions. Specifying those flags
      *   for exporting has the opposite effect, respectively. Some other of the
      *   #aiPostProcessSteps enumerated values may be useful as well, but you'll need
-     *   to try out what their effect on the exported file is. Many formats impose
+     *   to try out what their effect on the exported file_manager is. Many formats impose
      *   their own restrictions on the structure of the geometry stored therein,
      *   so some preprocessing may have little or no effect at all, or may be
      *   redundant as exporters would apply them anyhow. A good example
@@ -266,7 +266,7 @@ public:
     void FreeBlob();
 
     // -------------------------------------------------------------------
-    /** Returns the number of export file formats available in the current
+    /** Returns the number of export file_manager formats available in the current
      *  Assimp build. Use #Exporter::GetExportFormatDescription to
      *  retrieve infos of a specific export format.
      *
@@ -276,7 +276,7 @@ public:
     size_t GetExportFormatCount() const;
 
     // -------------------------------------------------------------------
-    /** Returns a description of the nth export file format. Use #
+    /** Returns a description of the nth export file_manager format. Use #
      *  #Exporter::GetExportFormatCount to learn how many export
      *  formats are supported.
      *

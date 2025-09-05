@@ -157,7 +157,7 @@ int b3AudioListener::tick(void* outputBuffer, void* inputBuffer1, unsigned int n
 			break;
 	}
 
-	//logging to wav file
+	//logging to wav file_manager
 	if (data->m_writeWavOut && numSamples)
 	{
 		data->m_wavOut2.tick((double*)outputBuffer, numSamples);

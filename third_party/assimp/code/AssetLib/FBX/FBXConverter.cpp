@@ -491,7 +491,7 @@ void FBXConverter::ConvertCamera(const Camera &cam, const std::string &orig_name
     // TODO: FBX aperture mode might be storing vertical FOV in need of conversion with aspect ratio.
 
     float fov_deg = cam.FieldOfView();
-    // If FOV not specified in file, compute using FilmWidth and FocalLength.
+    // If FOV not specified in file_manager, compute using FilmWidth and FocalLength.
     if (fov_deg == kFovUnknown) {
         float film_width_inches = cam.FilmWidth();
         float focal_length_mm = cam.FocalLength();
@@ -935,7 +935,7 @@ void FBXConverter::SetupNodeMetadata(const Model &model, aiNode &nd) {
 
     // find user defined properties (3ds Max)
     data->Set(index++, "UserProperties", aiString(PropertyGet<std::string>(props, "UDP3DSMAX", "")));
-    // preserve the info that a node was marked as Null node in the original file.
+    // preserve the info that a node was marked as Null node in the original file_manager.
     data->Set(index++, "IsNull", model.IsNull() ? true : false);
 
     // add unparsed properties to the node's metadata
@@ -1819,7 +1819,7 @@ unsigned int FBXConverter::ConvertVideo(const Video &video) {
     // steal the data from the Video to avoid an additional copy
     out_tex->pcData = reinterpret_cast<aiTexel *>(const_cast<Video &>(video).RelinquishContent());
 
-    // try to extract a hint from the file extension
+    // try to extract a hint from the file_manager extension
     const std::string &filename = video.RelativeFilename().empty() ? video.FileName() : video.RelativeFilename();
     std::string ext = BaseImporter::GetExtension(filename);
 
@@ -1863,7 +1863,7 @@ aiString FBXConverter::GetTexturePath(const Texture *tex) {
                 // TODO: check the possibility of using the flag "AI_CONFIG_IMPORT_FBX_EMBEDDED_TEXTURES_LEGACY_NAMING"
                 // In FBX files textures are now stored internally by Assimp with their filename included
                 // Now Assimp can lookup through the loaded textures after all data is processed
-                // We need to load all textures before referencing them, as FBX file format order may reference a texture before loading it
+                // We need to load all textures before referencing them, as FBX file_manager format order may reference a texture before loading it
                 // This may occur on this case too, it has to be studied
                 path.data[0] = '*';
                 path.length = 1 + ASSIMP_itoa10(path.data + 1, AI_MAXLEN - 1, index);
@@ -2453,7 +2453,7 @@ void FBXConverter::SetShadingPropertiesRaw(aiMaterial *out_mat, const PropertyTa
                 path.length = 1 + ASSIMP_itoa10(path.data + 1, AI_MAXLEN - 1, index);
             }
 
-            out_mat->AddProperty(&path, (name + "|file").c_str(), aiTextureType_UNKNOWN, 0);
+            out_mat->AddProperty(&path, (name + "|file_manager").c_str(), aiTextureType_UNKNOWN, 0);
 
             aiUVTransform uvTrafo;
             // XXX handle all kinds of UV transformations

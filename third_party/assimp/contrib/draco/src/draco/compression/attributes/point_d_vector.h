@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -26,7 +26,7 @@
 
 namespace draco {
 
-// The main class of this file is PointDVector providing an interface similar to
+// The main class of this file_manager is PointDVector providing an interface similar to
 // std::vector<PointD> for arbitrary number of dimensions (without a template
 // argument). PointDVectorIterator is a random access iterator, which allows for
 // compatibility with existing algorithms. PseudoPointD provides for a view on

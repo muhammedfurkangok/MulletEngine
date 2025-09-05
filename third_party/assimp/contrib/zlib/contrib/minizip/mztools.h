@@ -17,10 +17,10 @@ extern "C" {
 
 #include "unzip.h"
 
-/* Repair a ZIP file (missing central directory)
-   file: file to recover
-   fileOut: output file after recovery
-   fileOutTmp: temporary file name used for recovery
+/* Repair a ZIP file_manager (missing central directory)
+   file_manager: file_manager to recover
+   fileOut: output file_manager after recovery
+   fileOutTmp: temporary file_manager name used for recovery
 */
 extern int ZEXPORT unzRepair(const char* file,
                              const char* fileOut,

@@ -1,11 +1,11 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008 Gael Guennebaud <gael.guennebaud@inria.fr>
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 // Function void Eigen::AlignedBox::transform(const Transform& transform)
 // is provided under the following license agreement:
@@ -333,7 +333,7 @@ EIGEN_MAKE_ALIGNED_OPERATOR_NEW_IF_VECTORIZABLE_FIXED_SIZE(_Scalar,_AmbientDim)
    * Transforms this box by \a transform and recomputes it to
    * still be an axis-aligned box.
    *
-   * \note This method is provided under BSD license (see the top of this file).
+   * \note This method is provided under BSD license (see the top of this file_manager).
    */
   template<int Mode, int Options>
   EIGEN_DEVICE_FUNC inline void transform(const Transform<Scalar, AmbientDimAtCompileTime, Mode, Options>& transform)

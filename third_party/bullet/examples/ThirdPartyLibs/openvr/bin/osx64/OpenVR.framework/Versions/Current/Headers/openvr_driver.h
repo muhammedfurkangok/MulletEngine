@@ -2,7 +2,7 @@
 
 // openvr_driver.h
 //========= Copyright Valve Corporation ============//
-// Dynamically generated file. Do not modify this file directly.
+// Dynamically generated file_manager. Do not modify this file_manager directly.
 
 #ifndef _OPENVR_DRIVER_API
 #define _OPENVR_DRIVER_API
@@ -1311,7 +1311,7 @@ enum EVRSettingsError
 	VRSettingsError_WriteFailed = 2,
 	VRSettingsError_ReadFailed = 3,
 	VRSettingsError_JsonParseFailed = 4,
-	VRSettingsError_UnsetSettingHasNoDefault = 5,  // This will be returned if the setting does not appear in the appropriate default file and has not been set
+	VRSettingsError_UnsetSettingHasNoDefault = 5,  // This will be returned if the setting does not appear in the appropriate default file_manager and has not been set
 };
 
 // The maximum length of a settings key
@@ -1322,7 +1322,7 @@ class IVRSettings
 public:
 	virtual const char *GetSettingsErrorNameFromEnum(EVRSettingsError eError) = 0;
 
-	// Returns true if file sync occurred (force or settings dirty)
+	// Returns true if file_manager sync occurred (force or settings dirty)
 	virtual bool Sync(bool bForce = false, EVRSettingsError *peError = nullptr) = 0;
 
 	virtual void SetBool(const char *pchSection, const char *pchSettingsKey, bool bValue, EVRSettingsError *peError = nullptr) = 0;
@@ -2167,7 +2167,7 @@ namespace vr
 class IVRDriverLog
 {
 public:
-	/** Writes a log message to the log file prefixed with the driver name */
+	/** Writes a log message to the log file_manager prefixed with the driver name */
 	virtual void Log(const char *pchLogMessage) = 0;
 };
 

@@ -43,7 +43,7 @@ GTEST_OUTPUT_2_TEST = "gtest_xml_outfile2_test_"
 EXPECTED_XML_1 = """<?xml version="1.0" encoding="UTF-8"?>
 <testsuites tests="1" failures="0" disabled="0" errors="0" time="*" timestamp="*" name="AllTests">
   <testsuite name="PropertyOne" tests="1" failures="0" skipped="0" disabled="0" errors="0" time="*" timestamp="*">
-    <testcase name="TestSomeProperties" file="gtest_xml_outfile1_test_.cc" line="41" status="run" result="completed" time="*" timestamp="*" classname="PropertyOne">
+    <testcase name="TestSomeProperties" file_manager="gtest_xml_outfile1_test_.cc" line="41" status="run" result="completed" time="*" timestamp="*" classname="PropertyOne">
       <properties>
         <property name="SetUpProp" value="1"/>
         <property name="TestSomeProperty" value="1"/>
@@ -57,7 +57,7 @@ EXPECTED_XML_1 = """<?xml version="1.0" encoding="UTF-8"?>
 EXPECTED_XML_2 = """<?xml version="1.0" encoding="UTF-8"?>
 <testsuites tests="1" failures="0" disabled="0" errors="0" time="*" timestamp="*" name="AllTests">
   <testsuite name="PropertyTwo" tests="1" failures="0" skipped="0" disabled="0" errors="0" time="*" timestamp="*">
-    <testcase name="TestInt64ConvertibleProperties" file="gtest_xml_outfile2_test_.cc" line="43" status="run" result="completed" time="*" timestamp="*" classname="PropertyTwo">
+    <testcase name="TestInt64ConvertibleProperties" file_manager="gtest_xml_outfile2_test_.cc" line="43" status="run" result="completed" time="*" timestamp="*" classname="PropertyTwo">
       <properties>
         <property name="SetUpProp" value="2"/>
         <property name="TestFloatProperty" value="3.25"/>
@@ -83,7 +83,7 @@ class GTestXMLOutFilesTest(gtest_xml_test_utils.GTestXMLTestCase):
 
   def setUp(self):
     # We want the trailing '/' that the last "" provides in os.path.join, for
-    # telling Google Test to create an output directory instead of a single file
+    # telling Google Test to create an output directory instead of a single file_manager
     # for xml output.
     self.output_dir_ = os.path.join(
         gtest_test_utils.GetTempDir(), GTEST_OUTPUT_SUBDIR, ""

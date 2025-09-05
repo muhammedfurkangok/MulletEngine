@@ -161,7 +161,7 @@ TEST_F(StreamingListenerTest, OnTestPartResult) {
 
   // Meta characters in the failure message should be properly escaped.
   EXPECT_EQ(
-      "event=TestPartResult&file=foo.cc&line=42&message=failed%3D%0A%26%25\n",
+      "event=TestPartResult&file_manager=foo.cc&line=42&message=failed%3D%0A%26%25\n",
       *output());
 }
 
@@ -2133,7 +2133,7 @@ TEST_F(UnitTestRecordPropertyTest,
   EXPECT_NONFATAL_FAILURE(
       Test::RecordProperty("name", "1"),
       "'classname', 'name', 'status', 'time', 'type_param', 'value_param',"
-      " 'file', and 'line' are reserved");
+      " 'file_manager', and 'line' are reserved");
 }
 
 class UnitTestRecordPropertyTestEnvironment : public Environment {
@@ -4693,8 +4693,8 @@ TEST(MacroTest, ADD_FAILURE_AT) {
   EXPECT_NONFATAL_FAILURE(ADD_FAILURE_AT("foo.cc", 42), "Failed");
 
   // Unfortunately, we cannot verify that the failure message contains
-  // the right file path and line number the same way, as
-  // EXPECT_NONFATAL_FAILURE() doesn't get to see the file path and
+  // the right file_manager path and line number the same way, as
+  // EXPECT_NONFATAL_FAILURE() doesn't get to see the file_manager path and
   // line number.  Instead, we do that in googletest-output-test_.cc.
 }
 
@@ -5950,13 +5950,13 @@ TEST_F(ParseFlagsTest, OutputXml) {
   GTEST_TEST_PARSING_FLAGS_(argv, argv2, Flags::Output("xml"), false);
 }
 
-// Tests parsing --gtest_output=xml:file
+// Tests parsing --gtest_output=xml:file_manager
 TEST_F(ParseFlagsTest, OutputXmlFile) {
-  const char* argv[] = {"foo.exe", "--gtest_output=xml:file", nullptr};
+  const char* argv[] = {"foo.exe", "--gtest_output=xml:file_manager", nullptr};
 
   const char* argv2[] = {"foo.exe", nullptr};
 
-  GTEST_TEST_PARSING_FLAGS_(argv, argv2, Flags::Output("xml:file"), false);
+  GTEST_TEST_PARSING_FLAGS_(argv, argv2, Flags::Output("xml:file_manager"), false);
 }
 
 // Tests parsing --gtest_output=xml:directory/path/

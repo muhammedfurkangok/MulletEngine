@@ -41,10 +41,10 @@ extern "C" {
 /*! @file glfw3.h
  *  @brief The header of the GLFW 3 API.
  *
- *  This is the header file of the GLFW 3 API.  It defines all its types and
+ *  This is the header file_manager of the GLFW 3 API.  It defines all its types and
  *  declares all its functions.
  *
- *  For more information about how to use this file, see @ref build_include.
+ *  For more information about how to use this file_manager, see @ref build_include.
  */
 /*! @defgroup context Context reference
  *  @brief Functions and types related to OpenGL and OpenGL ES contexts.
@@ -1875,7 +1875,7 @@ typedef void (* GLFWcharmodsfun)(GLFWwindow* window, unsigned int codepoint, int
  *
  *  @param[in] window The window that received the event.
  *  @param[in] path_count The number of dropped paths.
- *  @param[in] paths The UTF-8 encoded file and/or directory path names.
+ *  @param[in] paths The UTF-8 encoded file_manager and/or directory path names.
  *
  *  @pointer_lifetime The path array and its strings are valid until the
  *  callback function returns.
@@ -3299,7 +3299,7 @@ GLFWAPI void glfwSetWindowTitle(GLFWwindow* window, const char* title);
  *  [bundle-guide]: https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/
  *
  *  @remark @wayland There is no existing protocol to change an icon, the
- *  window will thus inherit the one defined in the application's desktop file.
+ *  window will thus inherit the one defined in the application's desktop file_manager.
  *  This function will emit @ref GLFW_FEATURE_UNAVAILABLE.
  *
  *  @thread_safety This function must only be called from the main thread.
@@ -5340,7 +5340,7 @@ GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun ca
  *  make a deep copy.
  *
  *  @param[in] window The window whose callback to set.
- *  @param[in] callback The new file drop callback, or `NULL` to remove the
+ *  @param[in] callback The new file_manager drop callback, or `NULL` to remove the
  *  currently set callback.
  *  @return The previously set callback, or `NULL` if no callback was set or the
  *  library had not been [initialized](@ref intro_init).

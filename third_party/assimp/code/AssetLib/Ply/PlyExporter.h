@@ -54,7 +54,7 @@ struct aiMesh;
 namespace Assimp {
 
 // ------------------------------------------------------------------------------------------------
-/** Helper class to export a given scene to a Stanford Ply file. */
+/** Helper class to export a given scene to a Stanford Ply file_manager. */
 // ------------------------------------------------------------------------------------------------
 class PlyExporter {
 public:

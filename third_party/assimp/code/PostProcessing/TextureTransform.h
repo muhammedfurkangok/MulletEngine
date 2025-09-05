@@ -190,7 +190,7 @@ struct STransformVecInfo : public aiUVTransform {
 
 // ---------------------------------------------------------------------------
 /** Helper step to compute final UV coordinate sets if there are scalings
- *  or rotations in the original data read from the file.
+ *  or rotations in the original data read from the file_manager.
 */
 class TextureTransformStep : public BaseProcess {
 public:

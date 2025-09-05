@@ -97,7 +97,7 @@ struct ImportData {
 	// Log to std::err?
 	bool showLog;
 
-	// Log file
+	// Log file_manager
 	std::string logFile;
 
 	// Verbose log mode?
@@ -141,9 +141,9 @@ int ProcessStandardArguments(ImportData& fill,
 	unsigned int num);
 
 // ------------------------------------------------------------------------------
-/** Import a specific model file
+/** Import a specific model file_manager
  *  @param imp Import configuration to be used
- *  @param path Path to the file to be read */
+ *  @param path Path to the file_manager to be read */
 const aiScene* ImportModel(
 	const ImportData& imp,
 	const std::string& path);
@@ -151,9 +151,9 @@ const aiScene* ImportModel(
 #ifndef ASSIMP_BUILD_NO_EXPORT
 
 // ------------------------------------------------------------------------------
-/** Export a specific model file
+/** Export a specific model file_manager
  *  @param imp Import configuration to be used
- *  @param path Path to the file to be written
+ *  @param path Path to the file_manager to be written
  *  @param format Format id*/
 bool ExportModel(const aiScene* pOut,
 	const ImportData& imp,

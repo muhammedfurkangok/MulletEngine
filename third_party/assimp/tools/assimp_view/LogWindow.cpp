@@ -50,7 +50,7 @@ CLogWindow CLogWindow::s_cInstance;
 
 extern HKEY g_hRegistry;
 
-// header for the RTF log file
+// header for the RTF log file_manager
 static const char *AI_VIEW_RTF_LOG_HEADER =
         "{\\rtf1"
         "\\ansi"
@@ -153,7 +153,7 @@ void CLogWindow::Save() {
         // Key was not found. Use C:
         strcpy(szFileName, "");
     } else {
-        // need to remove the file name
+        // need to remove the file_manager name
         char *sz = strrchr(szFileName, '\\');
         if (!sz)
             sz = strrchr(szFileName, '/');
@@ -165,20 +165,20 @@ void CLogWindow::Save() {
         g_hDlg, GetModuleHandle(nullptr),
         "Log files\0*.txt", nullptr, 0, 1,
         szFileName, MAX_PATH, nullptr, 0, nullptr,
-        "Save log to file",
+        "Save log to file_manager",
         OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_NOCHANGEDIR,
         0, 1, ".txt", 0, nullptr, nullptr
     };
     if (GetSaveFileName(&sFilename1) == 0) return;
 
-    // Now store the file in the registry
+    // Now store the file_manager in the registry
     RegSetValueExA(g_hRegistry, "LogDestination", 0, REG_SZ, (const BYTE *)szFileName, MAX_PATH);
 
     FILE *pFile = fopen(szFileName, "wt");
     fprintf(pFile, this->szPlainText.c_str());
     fclose(pFile);
 
-    CLogDisplay::Instance().AddEntry("[INFO] The log file has been saved",
+    CLogDisplay::Instance().AddEntry("[INFO] The log file_manager has been saved",
             D3DCOLOR_ARGB(0xFF, 0xFF, 0xFF, 0));
 }
 

@@ -12,7 +12,7 @@
  */
 
 #include "Springboard.h"
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btDeformableMultiBodyDynamicsWorld.h"
 #include "BulletSoftBody/BulletReducedDeformableBody/btReducedDeformableBody.h"

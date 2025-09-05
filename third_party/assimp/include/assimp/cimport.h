@@ -100,15 +100,15 @@ typedef int aiBool;
 #define AI_TRUE 1
 
 // --------------------------------------------------------------------------------
-/** Reads the given file and returns its content.
+/** Reads the given file_manager and returns its content.
  *
  * If the call succeeds, the imported data is returned in an aiScene structure.
  * The data is intended to be read-only, it stays property of the ASSIMP
  * library and will be stable until aiReleaseImport() is called. After you're
  * done with it, call aiReleaseImport() to free the resources associated with
- * this file. If the import fails, NULL is returned instead. Call
+ * this file_manager. If the import fails, NULL is returned instead. Call
  * aiGetErrorString() to retrieve a human-readable error text.
- * @param pFile Path and filename of the file to be imported,
+ * @param pFile Path and filename of the file_manager to be imported,
  *   expected to be a null-terminated c-string. NULL is not a valid value.
  * @param pFlags Optional post processing steps to be executed after
  *   a successful import. Provide a bitwise combination of the
@@ -120,21 +120,21 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFile(
         unsigned int pFlags);
 
 // --------------------------------------------------------------------------------
-/** Reads the given file using user-defined I/O functions and returns
+/** Reads the given file_manager using user-defined I/O functions and returns
  *   its content.
  *
  * If the call succeeds, the imported data is returned in an aiScene structure.
  * The data is intended to be read-only, it stays property of the ASSIMP
  * library and will be stable until aiReleaseImport() is called. After you're
  * done with it, call aiReleaseImport() to free the resources associated with
- * this file. If the import fails, NULL is returned instead. Call
+ * this file_manager. If the import fails, NULL is returned instead. Call
  * aiGetErrorString() to retrieve a human-readable error text.
- * @param pFile Path and filename of the file to be imported,
+ * @param pFile Path and filename of the file_manager to be imported,
  *   expected to be a null-terminated c-string. NULL is not a valid value.
  * @param pFlags Optional post processing steps to be executed after
  *   a successful import. Provide a bitwise combination of the
  *   #aiPostProcessSteps flags.
- * @param pFS aiFileIO structure. Will be used to open the model file itself
+ * @param pFS aiFileIO structure. Will be used to open the model file_manager itself
  *   and any other files the loader needs to open.  Pass NULL to use the default
  *   implementation.
  * @return Pointer to the imported data or NULL if the import failed.
@@ -148,12 +148,12 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFileEx(
 // --------------------------------------------------------------------------------
 /** Same as #aiImportFileEx, but adds an extra parameter containing importer settings.
  *
- * @param pFile Path and filename of the file to be imported,
+ * @param pFile Path and filename of the file_manager to be imported,
  *   expected to be a null-terminated c-string. NULL is not a valid value.
  * @param pFlags Optional post processing steps to be executed after
  *   a successful import. Provide a bitwise combination of the
  *   #aiPostProcessSteps flags.
- * @param pFS aiFileIO structure. Will be used to open the model file itself
+ * @param pFS aiFileIO structure. Will be used to open the model file_manager itself
  *   and any other files the loader needs to open.  Pass NULL to use the default
  *   implementation.
  * @param pProps #aiPropertyStore instance containing import settings.
@@ -168,15 +168,15 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFileExWithProperties(
         const C_STRUCT aiPropertyStore *pProps);
 
 // --------------------------------------------------------------------------------
-/** Reads the given file from a given memory buffer,
+/** Reads the given file_manager from a given memory buffer,
  *
  * If the call succeeds, the imported data is returned in an aiScene structure.
  * The data is intended to be read-only, it stays property of the ASSIMP
  * library and will be stable until aiReleaseImport() is called. After you're
  * done with it, call aiReleaseImport() to free the resources associated with
- * this file. If the import fails, NULL is returned.
+ * this file_manager. If the import fails, NULL is returned.
  * A human-readable error description can be retrieved by calling aiGetErrorString().
- * @param pBuffer Pointer to the file data
+ * @param pBuffer Pointer to the file_manager data
  * @param pLength Length of pBuffer, in bytes
  * @param pFlags Optional post processing steps to be executed after
  *   a successful import. Provide a bitwise combination of the
@@ -184,9 +184,9 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFileExWithProperties(
  *   scene first in order to fine-tune your post-processing setup,
  *   consider to use #aiApplyPostProcessing().
  * @param pHint An additional hint to the library. If this is a non empty string,
- *   the library looks for a loader to support the file extension specified by pHint
- *   and passes the file to the first matching loader. If this loader is unable to
- *   completely the request, the library continues and tries to determine the file
+ *   the library looks for a loader to support the file_manager extension specified by pHint
+ *   and passes the file_manager to the first matching loader. If this loader is unable to
+ *   completely the request, the library continues and tries to determine the file_manager
  *   format on its own, a task that may or may not be successful.
  *   Check the return value, and you'll know ...
  * @return A pointer to the imported data, NULL if the import failed.
@@ -208,7 +208,7 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFileFromMemory(
 // --------------------------------------------------------------------------------
 /** Same as #aiImportFileFromMemory, but adds an extra parameter containing importer settings.
  *
- * @param pBuffer Pointer to the file data
+ * @param pBuffer Pointer to the file_manager data
  * @param pLength Length of pBuffer, in bytes
  * @param pFlags Optional post processing steps to be executed after
  *   a successful import. Provide a bitwise combination of the
@@ -216,9 +216,9 @@ ASSIMP_API const C_STRUCT aiScene *aiImportFileFromMemory(
  *   scene first in order to fine-tune your post-processing setup,
  *   consider to use #aiApplyPostProcessing().
  * @param pHint An additional hint to the library. If this is a non empty string,
- *   the library looks for a loader to support the file extension specified by pHint
- *   and passes the file to the first matching loader. If this loader is unable to
- *   completely the request, the library continues and tries to determine the file
+ *   the library looks for a loader to support the file_manager extension specified by pHint
+ *   and passes the file_manager to the first matching loader. If this loader is unable to
+ *   completely the request, the library continues and tries to determine the file_manager
  *   format on its own, a task that may or may not be successful.
  *   Check the return value, and you'll know ...
  * @param pProps #aiPropertyStore instance containing import settings.
@@ -264,7 +264,7 @@ ASSIMP_API const C_STRUCT aiScene *aiApplyPostProcessing(
  *  access Assimp's log system. Attaching a log stream can slightly reduce Assimp's
  *  overall import performance.
  *
- *  Usage is rather simple (this will stream the log to a file, named log.txt, and
+ *  Usage is rather simple (this will stream the log to a file_manager, named log.txt, and
  *  the stdout stream of the process:
  *  @code
  *    struct aiLogStream c;
@@ -275,7 +275,7 @@ ASSIMP_API const C_STRUCT aiScene *aiApplyPostProcessing(
  *  @endcode
  *
  *  @param pStreams One of the #aiDefaultLogStream enumerated values.
- *  @param file Solely for the #aiDefaultLogStream_FILE flag: specifies the file to write to.
+ *  @param file Solely for the #aiDefaultLogStream_FILE flag: specifies the file_manager to write to.
  *    Pass NULL for all other flags.
  *  @return The log stream. callback is set to NULL if something went wrong.
  */
@@ -299,7 +299,7 @@ ASSIMP_API void aiAttachLogStream(
 // --------------------------------------------------------------------------------
 /** Enable verbose logging. Verbose logging includes debug-related stuff and
  *  detailed import statistics. This can have severe impact on import performance
- *  and memory consumption. However, it might be useful to find out why a file
+ *  and memory consumption. However, it might be useful to find out why a file_manager
  *  didn't read correctly.
  *  @param d AI_TRUE or AI_FALSE, your decision.
  */
@@ -346,19 +346,19 @@ ASSIMP_API void aiReleaseImport(
 ASSIMP_API const char *aiGetErrorString(void);
 
 // --------------------------------------------------------------------------------
-/** Returns whether a given file extension is supported by ASSIMP
+/** Returns whether a given file_manager extension is supported by ASSIMP
  *
  * @param szExtension Extension for which the function queries support for.
  * Must include a leading dot '.'. Example: ".3ds", ".md3"
- * @return AI_TRUE if the file extension is supported.
+ * @return AI_TRUE if the file_manager extension is supported.
  */
 ASSIMP_API aiBool aiIsExtensionSupported(
         const char *szExtension);
 
 // --------------------------------------------------------------------------------
-/** Get a list of all file extensions supported by ASSIMP.
+/** Get a list of all file_manager extensions supported by ASSIMP.
  *
- * If a file extension is contained in the list this does, of course, not
+ * If a file_manager extension is contained in the list this does, of course, not
  * mean that ASSIMP is able to load all files with this extension.
  * @param szOut String to receive the extension list.
  * Format of the list: "*.3ds;*.obj;*.dae". NULL is not a valid parameter.
@@ -405,7 +405,7 @@ ASSIMP_API void aiReleasePropertyStore(C_STRUCT aiPropertyStore *p);
  *
  * @param store Store to modify. Use #aiCreatePropertyStore to obtain a store.
  * @param szName Name of the configuration property to be set. All supported
- *   public properties are defined in the config.h header file (AI_CONFIG_XXX).
+ *   public properties are defined in the config.h header file_manager (AI_CONFIG_XXX).
  * @param value New value for the property
  */
 ASSIMP_API void aiSetImportPropertyInteger(
@@ -422,7 +422,7 @@ ASSIMP_API void aiSetImportPropertyInteger(
  *
  * @param store Store to modify. Use #aiCreatePropertyStore to obtain a store.
  * @param szName Name of the configuration property to be set. All supported
- *   public properties are defined in the config.h header file (AI_CONFIG_XXX).
+ *   public properties are defined in the config.h header file_manager (AI_CONFIG_XXX).
  * @param value New value for the property
  */
 ASSIMP_API void aiSetImportPropertyFloat(
@@ -439,7 +439,7 @@ ASSIMP_API void aiSetImportPropertyFloat(
  *
  * @param store Store to modify. Use #aiCreatePropertyStore to obtain a store.
  * @param szName Name of the configuration property to be set. All supported
- *   public properties are defined in the config.h header file (AI_CONFIG_XXX).
+ *   public properties are defined in the config.h header file_manager (AI_CONFIG_XXX).
  * @param st New value for the property
  */
 ASSIMP_API void aiSetImportPropertyString(
@@ -456,7 +456,7 @@ ASSIMP_API void aiSetImportPropertyString(
  *
  * @param store Store to modify. Use #aiCreatePropertyStore to obtain a store.
  * @param szName Name of the configuration property to be set. All supported
- *   public properties are defined in the config.h header file (AI_CONFIG_XXX).
+ *   public properties are defined in the config.h header file_manager (AI_CONFIG_XXX).
  * @param mat New value for the property
  */
 ASSIMP_API void aiSetImportPropertyMatrix(
@@ -555,13 +555,13 @@ ASSIMP_API void aiIdentityMatrix4(
         C_STRUCT aiMatrix4x4 *mat);
 
 // --------------------------------------------------------------------------------
-/** Returns the number of import file formats available in the current Assimp build.
+/** Returns the number of import file_manager formats available in the current Assimp build.
  * Use aiGetImportFormatDescription() to retrieve infos of a specific import format.
  */
 ASSIMP_API size_t aiGetImportFormatCount(void);
 
 // --------------------------------------------------------------------------------
-/** Returns a description of the nth import file format. Use #aiGetImportFormatCount()
+/** Returns a description of the nth import file_manager format. Use #aiGetImportFormatCount()
  * to learn how many import formats are supported.
  * @param pIndex Index of the import format to retrieve information for. Valid range is
  *    0 to #aiGetImportFormatCount()

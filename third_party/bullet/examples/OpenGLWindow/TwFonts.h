@@ -1,9 +1,9 @@
 //  ---------------------------------------------------------------------------
 //
-//  @file       TwFonts.h
+//  @file_manager       TwFonts.h
 //  @brief      Bitmaps fonts
 //  @author     Philippe Decaudin - http://www.antisphere.com
-//  @license    This file is part of the AntTweakBar library.
+//  @license    This file_manager is part of the AntTweakBar library.
 //              For conditions of distribution and use, see License.txt
 //
 //  note:       Private header
@@ -21,10 +21,10 @@ A source bitmap includes 224 characters starting from ascii char 32 (i.e. space)
  !"#$%&'()*+,-./0123456789:;<=>?
 @ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
 `abcdefghijklmnopqrstuvwxyz{|}~
-€‚ƒ„…†‡ˆ‰Š‹Œ‘’“”•–—˜™š›œŸ
- ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿
-ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞß
-àáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 First column of a source bitmap is a delimiter with color=zero at the end of each line of characters.
 Last row of a line of characters is a delimiter with color=zero at the last pixel of each character.

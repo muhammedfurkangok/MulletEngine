@@ -119,7 +119,7 @@ Element::Element(const Token& key_token, Parser& parser) :
     do {
         n = parser.AdvanceToNextToken();
         if(!n) {
-            ParseError("unexpected end of file, expected closing bracket",parser.LastToken());
+            ParseError("unexpected end of file_manager, expected closing bracket",parser.LastToken());
         }
 
         if (n->Type() == TokenType_DATA) {
@@ -127,7 +127,7 @@ Element::Element(const Token& key_token, Parser& parser) :
 			TokenPtr prev = n;
             n = parser.AdvanceToNextToken();
             if(!n) {
-                ParseError("unexpected end of file, expected bracket, comma or key",parser.LastToken());
+                ParseError("unexpected end of file_manager, expected bracket, comma or key",parser.LastToken());
             }
 
 			const TokenType ty = n->Type();
@@ -183,7 +183,7 @@ Scope::Scope(Parser& parser,bool topLevel)
     StackAllocator &allocator = parser.GetAllocator();
     TokenPtr n = parser.AdvanceToNextToken();
     if (n == nullptr) {
-        ParseError("unexpected end of file");
+        ParseError("unexpected end of file_manager");
     }
 
     // note: empty scopes are allowed
@@ -207,7 +207,7 @@ Scope::Scope(Parser& parser,bool topLevel)
                 return;
             }
             delete_Element(element);
-            ParseError("unexpected end of file",parser.LastToken());
+            ParseError("unexpected end of file_manager",parser.LastToken());
         } else {
             elements.insert(ElementMap::value_type(str, element));
         }

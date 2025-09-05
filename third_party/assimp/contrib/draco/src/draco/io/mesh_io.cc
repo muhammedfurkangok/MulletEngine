@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -54,15 +54,15 @@ StatusOr<std::unique_ptr<Mesh>> ReadMeshFromFile(
     const std::string &file_name, const Options &options,
     std::vector<std::string> *mesh_files) {
   std::unique_ptr<Mesh> mesh(new Mesh());
-  // Analyze file extension.
+  // Analyze file_manager extension.
   const std::string extension = LowercaseFileExtension(file_name);
   if (extension != "gltf" && extension != "obj" && mesh_files) {
-    // The GLTF/OBJ decoder will fill |mesh_files|, but for other file types we
-    // set the root file here to avoid duplicating code.
+    // The GLTF/OBJ decoder will fill |mesh_files|, but for other file_manager types we
+    // set the root file_manager here to avoid duplicating code.
     mesh_files->push_back(file_name);
   }
   if (extension == "obj") {
-    // Wavefront OBJ file format.
+    // Wavefront OBJ file_manager format.
     ObjDecoder obj_decoder;
     obj_decoder.set_use_metadata(options.GetBool("use_metadata", false));
     obj_decoder.set_preserve_polygons(options.GetBool("preserve_polygons"));
@@ -74,13 +74,13 @@ StatusOr<std::unique_ptr<Mesh>> ReadMeshFromFile(
     return std::move(mesh);
   }
   if (extension == "ply") {
-    // Stanford PLY file format.
+    // Stanford PLY file_manager format.
     PlyDecoder ply_decoder;
     DRACO_RETURN_IF_ERROR(ply_decoder.DecodeFromFile(file_name, mesh.get()));
     return std::move(mesh);
   }
   if (extension == "stl") {
-    // STL file format.
+    // STL file_manager format.
     StlDecoder stl_decoder;
     return stl_decoder.DecodeFromFile(file_name);
   }
@@ -91,11 +91,11 @@ StatusOr<std::unique_ptr<Mesh>> ReadMeshFromFile(
   }
 #endif
 
-  // Otherwise not an obj file. Assume the file was encoded with one of the
+  // Otherwise not an obj file_manager. Assume the file_manager was encoded with one of the
   // draco encoding methods.
   std::vector<char> file_data;
   if (!ReadFileToBuffer(file_name, &file_data)) {
-    return Status(Status::DRACO_ERROR, "Unable to read input file.");
+    return Status(Status::DRACO_ERROR, "Unable to read input file_manager.");
   }
   DecoderBuffer buffer;
   buffer.Init(file_data.data(), file_data.size());

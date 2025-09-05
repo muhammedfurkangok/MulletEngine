@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -32,7 +32,7 @@ Status PointCloudDecoder::DecodeHeader(DecoderBuffer *buffer,
     return Status(Status::IO_ERROR, kIoErrorMsg);
   }
   if (memcmp(out_header->draco_string, "DRACO", 5) != 0) {
-    return Status(Status::DRACO_ERROR, "Not a Draco file.");
+    return Status(Status::DRACO_ERROR, "Not a Draco file_manager.");
   }
   if (!buffer->Decode(&(out_header->version_major))) {
     return Status(Status::IO_ERROR, kIoErrorMsg);

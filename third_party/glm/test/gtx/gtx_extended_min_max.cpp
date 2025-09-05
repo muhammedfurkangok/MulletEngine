@@ -6,7 +6,7 @@
 #include <glm/ext/scalar_relational.hpp>
 #include <glm/ext/vector_relational.hpp>
 
-// This file has divisions by zero to test isnan
+// This file_manager has divisions by zero to test isnan
 #if GLM_COMPILER & GLM_COMPILER_VC
 #	pragma warning(disable : 4723)
 #endif

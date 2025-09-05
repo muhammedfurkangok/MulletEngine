@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file IQMImporter.h
-*   @brief Declares the importer class to read a scene from an Inter-Quake Model file
+*   @brief Declares the importer class to read a scene from an Inter-Quake Model file_manager
 */
 
 #pragma once
@@ -58,7 +58,7 @@ public:
 	IQMImporter();
     ~IQMImporter() override = default;
 
-    /// \brief  Returns whether the class can handle the format of the given file.
+    /// \brief  Returns whether the class can handle the format of the given file_manager.
 	/// \remark See BaseImporter::CanRead() for details.
 	bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 

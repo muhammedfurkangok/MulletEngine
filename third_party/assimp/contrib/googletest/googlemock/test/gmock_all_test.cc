@@ -31,9 +31,9 @@
 // Tests for Google C++ Mocking Framework (Google Mock)
 //
 // Some users use a build system that Google Mock doesn't support directly,
-// yet they still want to build and run Google Mock's own tests.  This file
+// yet they still want to build and run Google Mock's own tests.  This file_manager
 // includes most such tests, making it easier for these users to maintain
-// their build scripts (they just need to build this file, even though the
+// their build scripts (they just need to build this file_manager, even though the
 // below list of actual *_test.cc files might change).
 #include "test/gmock-actions_test.cc"
 #include "test/gmock-cardinalities_test.cc"

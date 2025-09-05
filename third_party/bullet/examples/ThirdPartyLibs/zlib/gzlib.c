@@ -73,14 +73,14 @@ char ZLIB_INTERNAL *gz_strwinerror(error)
 
 #endif /* UNDER_CE */
 
-/* Reset gzip file state */
+/* Reset gzip file_manager state */
 local void gz_reset(state)
 	gz_statep state;
 {
 	state->x.have = 0; /* no output data available */
 	if (state->mode == GZ_READ)
 	{                      /* for reading ... */
-		state->eof = 0;    /* not at end of file */
+		state->eof = 0;    /* not at end of file_manager */
 		state->past = 0;   /* have not read past end yet */
 		state->how = LOOK; /* look for gzip header */
 	}
@@ -90,7 +90,7 @@ local void gz_reset(state)
 	state->strm.avail_in = 0;    /* no input data yet */
 }
 
-/* Open a gzip file either by name or file descriptor. */
+/* Open a gzip file_manager either by name or file_manager descriptor. */
 local gzFile gz_open(path, fd, mode)
 	const void *path;
 int fd;
@@ -192,7 +192,7 @@ const char *mode;
 			free(state);
 			return NULL;
 		}
-		state->direct = 1; /* for empty file */
+		state->direct = 1; /* for empty file_manager */
 	}
 
 	/* save the path name for error messages */
@@ -243,7 +243,7 @@ const char *mode;
 #endif
 											  (state->mode == GZ_WRITE ? O_TRUNC : O_APPEND)));
 
-	/* open the file with the appropriate flags (or just use fd) */
+	/* open the file_manager with the appropriate flags (or just use fd) */
 	state->fd = fd > -1 ? fd : (
 #ifdef _WIN32
 								   fd == -2 ? _wopen(path, oflag, 0666) :
@@ -420,7 +420,7 @@ int whence;
 		if (state->mode != GZ_READ) /* writing -- can't go backwards */
 			return -1;
 		offset += state->x.pos;
-		if (offset < 0) /* before start of file! */
+		if (offset < 0) /* before start of file_manager! */
 			return -1;
 		if (gzrewind(file) == -1) /* rewind, then skip to offset */
 			return -1;
@@ -498,7 +498,7 @@ z_off64_t ZEXPORT gzoffset64(file)
 	if (state->mode != GZ_READ && state->mode != GZ_WRITE)
 		return -1;
 
-	/* compute and return effective offset in file */
+	/* compute and return effective offset in file_manager */
 	offset = LSEEK(state->fd, 0, SEEK_CUR);
 	if (offset == -1)
 		return -1;
@@ -530,7 +530,7 @@ int ZEXPORT gzeof(file)
 	if (state->mode != GZ_READ && state->mode != GZ_WRITE)
 		return 0;
 
-	/* return end-of-file state */
+	/* return end-of-file_manager state */
 	return state->mode == GZ_READ ? state->past : 0;
 }
 
@@ -567,7 +567,7 @@ void ZEXPORT gzclearerr(file)
 	if (state->mode != GZ_READ && state->mode != GZ_WRITE)
 		return;
 
-	/* clear error and end-of-file */
+	/* clear error and end-of-file_manager */
 	if (state->mode == GZ_READ)
 	{
 		state->eof = 0;

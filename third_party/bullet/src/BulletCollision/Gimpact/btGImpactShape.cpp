@@ -1,5 +1,5 @@
 /*
-This source file is part of GIMPACT Library.
+This source file_manager is part of GIMPACT Library.
 
 For the latest info, see http://gimpact.sourceforge.net/
 

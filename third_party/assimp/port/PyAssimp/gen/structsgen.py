@@ -287,4 +287,4 @@ file = open('structs.py', 'w')
 file.write(text)
 file.close()
 
-print("Generation done. You can now review the file 'structs.py' and merge it.")
+print("Generation done. You can now review the file_manager 'structs.py' and merge it.")

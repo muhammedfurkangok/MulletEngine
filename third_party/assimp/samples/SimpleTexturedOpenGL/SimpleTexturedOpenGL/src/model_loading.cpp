@@ -4,7 +4,7 @@
 // textures (by their material ids)
 //
 // Don't worry about the "Couldn't load Image: ...dwarf2.jpg" Message.
-// It's caused by a bad texture reference in the model file (I guess)
+// It's caused by a bad texture reference in the model file_manager (I guess)
 //
 // If you intend to _use_ this code sample in your app, do yourself a favour
 // and replace immediate mode calls with VBOs ...
@@ -109,10 +109,10 @@ void logDebug(const char* logString) {
 
 
 bool Import3DFromFile( const std::string &filename) {
-	// Check if file exists
+	// Check if file_manager exists
     std::ifstream fin(filename.c_str());
 	if(fin.fail()) {
-        std::string message = "Couldn't open file: " + filename;
+        std::string message = "Couldn't open file_manager: " + filename;
 		std::wstring targetMessage;
         //utf8::utf8to16(message.c_str(), message.c_str() + message.size(), targetMessage);
         ::MessageBox(nullptr, targetMessage.c_str(), L"Error", MB_OK | MB_ICONEXCLAMATION);
@@ -130,7 +130,7 @@ bool Import3DFromFile( const std::string &filename) {
 		return false;
 	}
 
-	// Now we can access the file's contents.
+	// Now we can access the file_manager's contents.
     logInfo("Import of scene " + filename + " succeeded.");
 
 	// We're done. Everything will be cleaned up by the importer destructor
@@ -798,7 +798,7 @@ int WINAPI WinMain( HINSTANCE /*hInstance*/,     // The instance
 	createAILogger();
 	logInfo("App fired!");
 
-	// Check the command line for an override file path.
+	// Check the command line for an override file_manager path.
 	int argc;
 	LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
 	if (argv != nullptr && argc > 1)

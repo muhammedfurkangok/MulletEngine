@@ -20,7 +20,7 @@
 namespace Assimp {
 
 /// \class X3DExporter
-/// Class which export aiScene to X3D file.
+/// Class which export aiScene to X3D file_manager.
 ///
 /// Limitations.
 ///
@@ -87,7 +87,7 @@ private:
     void IndentationStringSet(const size_t pNewLevel);
 
     /// \fn void XML_Write(const std::string& pData)
-    /// Write data to XML-file.
+    /// Write data to XML-file_manager.
     /// \param [in] pData - reference to string which must be written.
     void XML_Write(const std::string &pData);
 
@@ -169,25 +169,25 @@ private:
     void NodeHelper_CloseNode(const std::string &pNodeName, const size_t pTabLevel);
 
     /// \fn void Export_Node(const aiNode* pNode, const size_t pTabLevel)
-    /// Export data from scene to XML-file: aiNode.
+    /// Export data from scene to XML-file_manager: aiNode.
     /// \param [in] pNode - source aiNode.
     /// \param [in] pTabLevel - indentation level.
     void Export_Node(const aiNode *pNode, const size_t pTabLevel);
 
     /// \fn void Export_Mesh(const size_t pIdxMesh, const size_t pTabLevel)
-    /// Export data from scene to XML-file: aiMesh.
+    /// Export data from scene to XML-file_manager: aiMesh.
     /// \param [in] pMesh - index of the source aiMesh.
     /// \param [in] pTabLevel - indentation level.
     void Export_Mesh(const size_t pIdxMesh, const size_t pTabLevel);
 
     /// \fn void Export_Material(const size_t pIdxMaterial, const size_t pTabLevel)
-    /// Export data from scene to XML-file: aiMaterial.
+    /// Export data from scene to XML-file_manager: aiMaterial.
     /// \param [in] pIdxMaterial - index of the source aiMaterial.
     /// \param [in] pTabLevel - indentation level.
     void Export_Material(const size_t pIdxMaterial, const size_t pTabLevel);
 
     /// \fn void Export_MetadataBoolean(const aiString& pKey, const bool pValue, const size_t pTabLevel)
-    /// Export data from scene to XML-file: aiMetadata.
+    /// Export data from scene to XML-file_manager: aiMetadata.
     /// \param [in] pKey - source data: value of the metadata key.
     /// \param [in] pValue - source data: value of the metadata value.
     /// \param [in] pTabLevel - indentation level.

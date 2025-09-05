@@ -175,7 +175,7 @@ void Q3BSPFileImporter::InternReadFile(const std::string &rFile, aiScene *scene,
     clear();
     ZipArchiveIOSystem Archive(ioHandler, rFile);
     if (!Archive.isOpen()) {
-        throw DeadlyImportError("Failed to open file ", rFile, ".");
+        throw DeadlyImportError("Failed to open file_manager ", rFile, ".");
     }
 
     std::string archiveName, mapName;
@@ -544,7 +544,7 @@ aiFace *Q3BSPFileImporter::getNextFace(aiMesh *mesh, unsigned int &faceIdx) {
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Imports a texture file.
+//  Imports a texture file_manager.
 bool Q3BSPFileImporter::importTextureFromArchive(const Q3BSP::Q3BSPModel *model,
         ZipArchiveIOSystem *archive, aiScene *,
         aiMaterial *pMatHelper, int textureId) {
@@ -594,8 +594,8 @@ bool Q3BSPFileImporter::importTextureFromArchive(const Q3BSP::Q3BSPModel *model,
             pMatHelper->AddProperty(&name, AI_MATKEY_TEXTURE_DIFFUSE(0));
             mTextures.push_back(curTexture);
         } else {
-            // If it doesn't exist in the archive, it is probably just a reference to an external file.
-            // We'll leave it up to the user to figure out which extension the file has.
+            // If it doesn't exist in the archive, it is probably just a reference to an external file_manager.
+            // We'll leave it up to the user to figure out which extension the file_manager has.
             aiString name;
             strncpy(name.data, pTexture->strName, sizeof name.data);
             name.length = static_cast<ai_uint32>(strlen(name.data));
@@ -607,7 +607,7 @@ bool Q3BSPFileImporter::importTextureFromArchive(const Q3BSP::Q3BSPModel *model,
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Imports a light map file.
+//  Imports a light map file_manager.
 bool Q3BSPFileImporter::importLightmap(const Q3BSP::Q3BSPModel *pModel, aiScene *pScene,
         aiMaterial *pMatHelper, int lightmapId) {
     if (nullptr == pModel || nullptr == pScene || nullptr == pMatHelper) {

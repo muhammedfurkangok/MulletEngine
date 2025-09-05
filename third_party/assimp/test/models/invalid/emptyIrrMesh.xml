@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <mesh xmlns="http://irrlicht.sourceforge.net/IRRMESH_09_2007" version="1.0">
-<!-- This file contains a static mesh in the Irrlicht Engine format with 5 materials.-->
+<!-- This file_manager contains a static mesh in the Irrlicht Engine format with 5 materials.-->
 	<boundingBox minEdge="-856.310974 -268.159119 -55.100883" maxEdge="98.810463 248.437958 1227.140869" />
 	<buffer>
 		<boundingBox minEdge="-1.189549 -13.579381 564.385864" maxEdge="98.810463 86.420624 664.385864" />

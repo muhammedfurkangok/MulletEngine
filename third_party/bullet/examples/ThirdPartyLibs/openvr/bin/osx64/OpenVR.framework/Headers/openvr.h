@@ -2,7 +2,7 @@
 
 // openvr.h
 //========= Copyright Valve Corporation ============//
-// Dynamically generated file. Do not modify this file directly.
+// Dynamically generated file_manager. Do not modify this file_manager directly.
 
 #ifndef _OPENVR_API
 #define _OPENVR_API
@@ -1611,7 +1611,7 @@ public:
 	virtual EVRApplicationError LaunchApplication(const char *pchAppKey) = 0;
 
 	/** Launches an instance of an application of type template, with its app key being pchNewAppKey (which must be unique) and optionally override sections
-		* from the manifest file via AppOverrideKeys_t
+		* from the manifest file_manager via AppOverrideKeys_t
 		*/
 	virtual EVRApplicationError LaunchTemplateApplication(const char *pchTemplateAppKey, const char *pchNewAppKey, VR_ARRAY_COUNT(unKeys) const AppOverrideKeys_t *pKeys, uint32_t unKeys) = 0;
 
@@ -1721,7 +1721,7 @@ enum EVRSettingsError
 	VRSettingsError_WriteFailed = 2,
 	VRSettingsError_ReadFailed = 3,
 	VRSettingsError_JsonParseFailed = 4,
-	VRSettingsError_UnsetSettingHasNoDefault = 5,  // This will be returned if the setting does not appear in the appropriate default file and has not been set
+	VRSettingsError_UnsetSettingHasNoDefault = 5,  // This will be returned if the setting does not appear in the appropriate default file_manager and has not been set
 };
 
 // The maximum length of a settings key
@@ -1732,7 +1732,7 @@ class IVRSettings
 public:
 	virtual const char *GetSettingsErrorNameFromEnum(EVRSettingsError eError) = 0;
 
-	// Returns true if file sync occurred (force or settings dirty)
+	// Returns true if file_manager sync occurred (force or settings dirty)
 	virtual bool Sync(bool bForce = false, EVRSettingsError *peError = nullptr) = 0;
 
 	virtual void SetBool(const char *pchSection, const char *pchSettingsKey, bool bValue, EVRSettingsError *peError = nullptr) = 0;
@@ -1967,7 +1967,7 @@ public:
 	* Height of every corner is 0Y (on the floor). **/
 	virtual bool GetPlayAreaRect(HmdQuad_t *rect) = 0;
 
-	/** Reload Chaperone data from the .vrchap file on disk. */
+	/** Reload Chaperone data from the .vrchap file_manager on disk. */
 	virtual void ReloadInfo(void) = 0;
 
 	/** Optionally give the chaperone system a hit about the color and brightness in the scene **/
@@ -2056,7 +2056,7 @@ public:
 	/** Sets the preferred standing position in the working copy. */
 	virtual void SetWorkingStandingZeroPoseToRawTrackingPose(const HmdMatrix34_t *pMatStandingZeroPoseToRawTrackingPose) = 0;
 
-	/** Tear everything down and reload it from the file on disk */
+	/** Tear everything down and reload it from the file_manager on disk */
 	virtual void ReloadFromDisk(EChaperoneConfigFile configFile) = 0;
 
 	/** Returns the preferred seated position. */
@@ -3251,7 +3251,7 @@ public:
 	 *  A request of the VRScreenshotType_Stereo type will always
 	 *  work. Other types will depend on the underlying application
 	 *  support.
-	 *  The first file name is for the preview image and should be a
+	 *  The first file_manager name is for the preview image and should be a
 	 *  regular screenshot (ideally from the left eye). The second
 	 *  is the VR screenshot in the correct format. They should be
 	 *  in the same aspect ratio.  Formats per type:
@@ -3268,14 +3268,14 @@ public:
 	 *  Note that the VR dashboard will call this function when
 	 *  the user presses the screenshot binding (currently System
 	 *  Button + Trigger).  If Steam is running, the destination
-	 *  file names will be in %TEMP% and will be copied into
+	 *  file_manager names will be in %TEMP% and will be copied into
 	 *  Steam's screenshot library for the running application
 	 *  once SubmitScreenshot() is called.
 	 *  If Steam is not running, the paths will be in the user's
 	 *  documents folder under Documents\SteamVR\Screenshots.
 	 *  Other VR applications can call this to initiate a
 	 *  screenshot outside of user control.
-	 *  The destination file names do not need an extension,
+	 *  The destination file_manager names do not need an extension,
 	 *  will be replaced with the correct one for the format
 	 *  which is currently .png. */
 	virtual vr::EVRScreenshotError RequestScreenshot(vr::ScreenshotHandle_t *pOutScreenshotHandle, vr::EVRScreenshotType type, const char *pchPreviewFilename, const char *pchVRFilename) = 0;
@@ -3309,7 +3309,7 @@ public:
 	/** Tells the compositor to take an internal screenshot of
 	 *  type VRScreenshotType_Stereo. It will take the current
 	 *  submitted scene textures of the running application and
-	 *  write them into the preview image and a side-by-side file
+	 *  write them into the preview image and a side-by-side file_manager
 	 *  for the VR image.
 	 *  This is similar to request screenshot, but doesn't ever
 	 *  talk to the application, just takes the shot and submits. */

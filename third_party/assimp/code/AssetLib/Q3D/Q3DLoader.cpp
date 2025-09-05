@@ -79,7 +79,7 @@ Q3DImporter::Q3DImporter() = default;
 Q3DImporter::~Q3DImporter() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool Q3DImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "quick3Do", "quick3Ds" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -91,7 +91,7 @@ const aiImporterDesc *Q3DImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void Q3DImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
 
@@ -105,13 +105,13 @@ void Q3DImporter::InternReadFile(const std::string &pFile,
     if (stream.GetRemainingSize() < 22)
         throw DeadlyImportError("File is either empty or corrupt: ", pFile);
 
-    // Check the file's signature
+    // Check the file_manager's signature
     if (ASSIMP_strincmp((const char *)stream.GetPtr(), "quick3Do", 8) &&
             ASSIMP_strincmp((const char *)stream.GetPtr(), "quick3Ds", 8)) {
-        throw DeadlyImportError("Not a Quick3D file. Signature string is: ", ai_str_toprintable((const char *)stream.GetPtr(), 8));
+        throw DeadlyImportError("Not a Quick3D file_manager. Signature string is: ", ai_str_toprintable((const char *)stream.GetPtr(), 8));
     }
 
-    // Print the file format version
+    // Print the file_manager format version
     ASSIMP_LOG_INFO("Quick3D File format version: ",
             std::string(&((const char *)stream.GetPtr())[8], 2));
 
@@ -129,7 +129,7 @@ void Q3DImporter::InternReadFile(const std::string &pFile,
         materials.reserve(numMats);
     } catch (const std::bad_alloc &) {
         ASSIMP_LOG_ERROR("Invalid alloc for materials.");
-        throw DeadlyImportError("Invalid Quick3D-file, material allocation failed.");
+        throw DeadlyImportError("Invalid Quick3D-file_manager, material allocation failed.");
     }
 
     std::vector<Mesh> meshes;
@@ -137,7 +137,7 @@ void Q3DImporter::InternReadFile(const std::string &pFile,
         meshes.reserve(numMeshes);
     } catch (const std::bad_alloc &) {
         ASSIMP_LOG_ERROR("Invalid alloc for meshes.");
-        throw DeadlyImportError("Invalid Quick3D-file, mesh allocation failed.");
+        throw DeadlyImportError("Invalid Quick3D-file_manager, mesh allocation failed.");
     }
 
     // Allocate the scene root node
@@ -145,7 +145,7 @@ void Q3DImporter::InternReadFile(const std::string &pFile,
 
     aiColor3D fgColor(0.6f, 0.6f, 0.6f);
 
-    // Now read all file chunks
+    // Now read all file_manager chunks
     while (true) {
         if (stream.GetRemainingSize() < 1) break;
         char c = stream.GetI1();
@@ -374,7 +374,7 @@ void Q3DImporter::InternReadFile(const std::string &pFile,
             // We don't need the rest, but we need to know where this chunk ends.
             unsigned int temp = (unsigned int)(stream.GetI4() * stream.GetI4());
 
-            // skip the background file name
+            // skip the background file_manager name
             while (stream.GetI1())
                 ;
 

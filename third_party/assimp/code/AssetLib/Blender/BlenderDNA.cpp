@@ -173,7 +173,7 @@ void DNAParser::Parse() {
 
             // arrays, however, specify the size of a single element so we
             // need to parse the (possibly multi-dimensional) array declaration
-            // in order to obtain the actual size of the array in the file.
+            // in order to obtain the actual size of the array in the file_manager.
             // Also we need to alter the lookup name to include no array
             // brackets anymore or size fixup won't work (if our size does
             // not match the size read from the DNA).
@@ -339,7 +339,7 @@ void SectionParser ::Next() {
 
     current.start = stream.GetCurrentPos();
     if (stream.GetRemainingSizeToLimit() < current.size) {
-        throw DeadlyImportError("BLEND: invalid size of file block");
+        throw DeadlyImportError("BLEND: invalid size of file_manager block");
     }
 
 #ifdef ASSIMP_BUILD_BLENDER_DEBUG

@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -39,11 +39,11 @@ Status PlyReader::Read(DecoderBuffer *buffer) {
   std::string value;
   // The first line needs to by "ply".
   if (!parser::ParseString(buffer, &value) || value != "ply") {
-    return Status(Status::INVALID_PARAMETER, "Not a valid ply file");
+    return Status(Status::INVALID_PARAMETER, "Not a valid ply file_manager");
   }
   parser::SkipLine(buffer);
 
-  // The second line needs to be the format of the ply file.
+  // The second line needs to be the format of the ply file_manager.
   parser::ParseLine(buffer, &value);
   std::string format, version;
   const std::vector<std::string> words = SplitWords(value);
@@ -96,7 +96,7 @@ StatusOr<bool> PlyReader::ParseEndHeader(DecoderBuffer *buffer) {
   std::array<char, 10> c;
   if (!buffer->Peek(&c)) {
     return Status(Status::INVALID_PARAMETER,
-                  "End of file reached before the end_header");
+                  "End of file_manager reached before the end_header");
   }
   if (std::memcmp(&c[0], "end_header", 10) != 0) {
     return false;

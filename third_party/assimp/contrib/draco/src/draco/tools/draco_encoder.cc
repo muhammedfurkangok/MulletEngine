@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -61,8 +61,8 @@ void Usage() {
   printf("\n");
   printf("Main options:\n");
   printf("  -h | -?               show help.\n");
-  printf("  -i <input>            input file name.\n");
-  printf("  -o <output>           output file name.\n");
+  printf("  -i <input>            input file_manager name.\n");
+  printf("  -o <output>           output file_manager name.\n");
   printf(
       "  -point_cloud          forces the input to be encoded as a point "
       "cloud.\n");
@@ -159,9 +159,9 @@ int EncodePointCloudToFile(const draco::PointCloud &pc, const std::string &file,
     return -1;
   }
   timer.Stop();
-  // Save the encoded geometry into a file.
+  // Save the encoded geometry into a file_manager.
   if (!draco::WriteBufferToFile(buffer.data(), buffer.size(), file)) {
-    printf("Failed to write the output file.\n");
+    printf("Failed to write the output file_manager.\n");
     return -1;
   }
   printf("Encoded point cloud saved to %s (%" PRId64 " ms to encode).\n",
@@ -183,9 +183,9 @@ int EncodeMeshToFile(const draco::Mesh &mesh, const std::string &file,
     return -1;
   }
   timer.Stop();
-  // Save the encoded geometry into a file.
+  // Save the encoded geometry into a file_manager.
   if (!draco::WriteBufferToFile(buffer.data(), buffer.size(), file)) {
-    printf("Failed to create the output file.\n");
+    printf("Failed to create the output file_manager.\n");
     return -1;
   }
   printf("Encoded mesh saved to %s (%" PRId64 " ms to encode).\n", file.c_str(),
@@ -359,7 +359,7 @@ int main(int argc, char **argv) {
   encoder.SetSpeedOptions(speed, speed);
 
   if (options.output.empty()) {
-    // Create a default output file by attaching .drc to the input file name.
+    // Create a default output file_manager by attaching .drc to the input file_manager name.
     options.output = options.input + ".drc";
   }
 

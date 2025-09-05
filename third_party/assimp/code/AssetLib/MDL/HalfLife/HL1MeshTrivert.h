@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file HL1MeshTrivert.h
- *  @brief This file contains the class declaration for the
+ *  @brief This file_manager contains the class declaration for the
  *         HL1 mesh trivert class.
  */
 

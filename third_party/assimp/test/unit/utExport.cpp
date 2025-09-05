@@ -81,7 +81,7 @@ TEST_F(ExporterTest, testExportToBlob) {
     EXPECT_GT(blob->size,  0U);
     EXPECT_EQ(0U, blob->name.length);
 
-    // XXX test chained blobs (i.e. obj file with accompanying mtl script)
+    // XXX test chained blobs (i.e. obj file_manager with accompanying mtl script)
 
     // check if we can read it again
     EXPECT_TRUE(im->ReadFileFromMemory(blob->data,blob->size,0,"dae"));

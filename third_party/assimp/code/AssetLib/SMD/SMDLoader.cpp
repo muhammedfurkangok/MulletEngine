@@ -96,13 +96,13 @@ SMDImporter::SMDImporter() :
 
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool SMDImporter::CanRead( const std::string& filename, IOSystem* /*pIOHandler*/, bool) const {
     return SimpleExtensionCheck(filename, "smd", "vta");
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a list of all supported file extensions
+// Get a list of all supported file_manager extensions
 const aiImporterDesc* SMDImporter::GetInfo () const {
     return &desc;
 }
@@ -123,7 +123,7 @@ void SMDImporter::SetupProperties(const Importer* pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void SMDImporter::InternReadFile( const std::string& pFile, aiScene* scene, IOSystem* pIOHandler) {
     this->pScene = scene;
     ReadSmd(pFile, pIOHandler);
@@ -133,7 +133,7 @@ void SMDImporter::InternReadFile( const std::string& pFile, aiScene* scene, IOSy
     if (asTriangles.empty()) {
         if (asBones.empty()) {
             throw DeadlyImportError("SMD: No triangles and no bones have "
-                "been found in the file. This file seems to be invalid.");
+                "been found in the file_manager. This file_manager seems to be invalid.");
         }
 
         // Set the flag in the scene structure which indicates
@@ -181,7 +181,7 @@ void SMDImporter::InternReadFile( const std::string& pFile, aiScene* scene, IOSy
 }
 
 // ------------------------------------------------------------------------------------------------
-// Write an error message with line number to the log file
+// Write an error message with line number to the log file_manager
 void SMDImporter::LogErrorNoThrow(const char* msg) {
     const size_t _BufferSize = 1024;
     char szTemp[_BufferSize];
@@ -190,7 +190,7 @@ void SMDImporter::LogErrorNoThrow(const char* msg) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Write a warning with line number to the log file
+// Write a warning with line number to the log file_manager
 void SMDImporter::LogWarning(const char* msg) {
     const size_t _BufferSize = 1024;
     char szTemp[_BufferSize];
@@ -200,7 +200,7 @@ void SMDImporter::LogWarning(const char* msg) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Fix invalid time values in the file
+// Fix invalid time values in the file_manager
 void SMDImporter::FixTimeValues() {
     double dDelta = (double)iSmallestFrame;
     double dMax = 0.0f;
@@ -328,7 +328,7 @@ void SMDImporter::CreateOutputMeshes() {
                 // FIX: We use 0.975 as limit, floating-point inaccuracies seem to
                 // be very strong in some SMD exporters. Furthermore it is possible
                 // that the parent of a vertex is 0xffffffff (if the corresponding
-                // entry in the file was unreadable)
+                // entry in the file_manager was unreadable)
                 // ******************************************************************
                 if (fSum < 0.975f && face.avVertices[iVert].iParentNode != UINT_MAX) {
                     if (face.avVertices[iVert].iParentNode >= asBones.size()) {
@@ -540,7 +540,7 @@ void SMDImporter::GetAnimationFileList(const std::string &pFile, IOSystem* pIOHa
         return;
     }
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> buf;
     size_t fileSize = file->FileSize();
     buf.resize(fileSize + 1);
@@ -628,7 +628,7 @@ void SMDImporter::CreateOutputMaterials() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse the file
+// Parse the file_manager
 void SMDImporter::ParseFile() {
     const char* szCurrent = &mBuffer[0];
 
@@ -643,7 +643,7 @@ void SMDImporter::ParseFile() {
             if(!SkipSpaces(szCurrent,&szCurrent, mEnd)) break;
             if (1 != strtoul10(szCurrent,&szCurrent)) {
                 ASSIMP_LOG_WARN("SMD.version is not 1. This "
-                    "file format is not known. Continuing happily ...");
+                    "file_manager format is not known. Continuing happily ...");
             }
             continue;
         }
@@ -675,14 +675,14 @@ void SMDImporter::ParseFile() {
 void SMDImporter::ReadSmd(const std::string &pFile, IOSystem* pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open SMD/VTA file ", pFile, ".");
+        throw DeadlyImportError("Failed to open SMD/VTA file_manager ", pFile, ".");
     }
 
     iFileSize = (unsigned int)file->FileSize();
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     mBuffer.resize(iFileSize + 1);
     TextFileToBuffer(file.get(), mBuffer);
     mEnd = &mBuffer[mBuffer.size() - 1] + 1;
@@ -704,7 +704,7 @@ void SMDImporter::ReadSmd(const std::string &pFile, IOSystem* pIOHandler) {
     asTriangles.clear();
     asBones.clear();
 
-    // parse the file ...
+    // parse the file_manager ...
     ParseFile();
 }
 
@@ -725,7 +725,7 @@ unsigned int SMDImporter::GetTextureIndex(const std::string& filename) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse the nodes section of the file
+// Parse the nodes section of the file_manager
 void SMDImporter::ParseNodesSection(const char* szCurrent, const char** szCurrentOut, const char *end) {
     for ( ;; ) {
         // "end\n" - Ends the nodes section
@@ -740,7 +740,7 @@ void SMDImporter::ParseNodesSection(const char* szCurrent, const char** szCurren
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse the triangles section of the file
+// Parse the triangles section of the file_manager
 void SMDImporter::ParseTrianglesSection(const char *szCurrent, const char **szCurrentOut, const char *end) {
     // Parse a triangle, parse another triangle, parse the next triangle ...
     // and so on until we reach a token that looks quite similar to "end"
@@ -759,7 +759,7 @@ void SMDImporter::ParseTrianglesSection(const char *szCurrent, const char **szCu
     *szCurrentOut = szCurrent;
 }
 // ------------------------------------------------------------------------------------------------
-// Parse the vertex animation section of the file
+// Parse the vertex animation section of the file_manager
 void SMDImporter::ParseVASection(const char *szCurrent, const char **szCurrentOut, const char *end) {
     unsigned int iCurIndex = 0;
     for ( ;; ) {
@@ -802,7 +802,7 @@ void SMDImporter::ParseVASection(const char *szCurrent, const char **szCurrentOu
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse the skeleton section of the file
+// Parse the skeleton section of the file_manager
 void SMDImporter::ParseSkeletonSection(const char *szCurrent, const char **szCurrentOut, const char *end) {
     int iTime = 0;
     for ( ;; ) {
@@ -959,11 +959,11 @@ void SMDImporter::ParseTriangle(const char *szCurrent, const char **szCurrentOut
         return;
     }
 
-    // read the texture file name
+    // read the texture file_manager name
     const char* szLast = szCurrent;
     while (!IsSpaceOrNewLine(*++szCurrent));
 
-    // ... and get the index that belongs to this file name
+    // ... and get the index that belongs to this file_manager name
     face.iTexture = GetTextureIndex(std::string(szLast,(uintptr_t)szCurrent-(uintptr_t)szLast));
 
     SkipSpacesAndLineEnd(szCurrent, &szCurrent, end);

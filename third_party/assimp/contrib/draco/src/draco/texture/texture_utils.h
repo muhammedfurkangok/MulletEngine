@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -30,11 +30,11 @@ namespace draco {
 // Helper class implementing various utilities operating on draco::Texture.
 class TextureUtils {
  public:
-  // Returns |texture| image stem (file basename without extension) based on the
+  // Returns |texture| image stem (file_manager basename without extension) based on the
   // source image filename or an empty string when source image is not set.
   static std::string GetTargetStem(const Texture &texture);
 
-  // Returns |texture| image stem (file basename without extension) based on the
+  // Returns |texture| image stem (file_manager basename without extension) based on the
   // source image filename or a name generated from |index| and |suffix| like
   // "Texture5_BaseColor" when source image is not set.
   static std::string GetOrGenerateTargetStem(const Texture &texture, int index,
@@ -44,7 +44,7 @@ class TextureUtils {
   // mime type or the source image filename.
   static ImageFormat GetTargetFormat(const Texture &texture);
 
-  // Returns |texture| image file extension based on compression settings, the
+  // Returns |texture| image file_manager extension based on compression settings, the
   // source image mime type or the source image filename.
   static std::string GetTargetExtension(const Texture &texture);
 
@@ -59,11 +59,11 @@ class TextureUtils {
   // image filename.
   static ImageFormat GetSourceFormat(const Texture &texture);
 
-  // Returns image format corresponding to a given image file |extension|. NONE
+  // Returns image format corresponding to a given image file_manager |extension|. NONE
   // is returned when |extension| is empty or unknown.
   static ImageFormat GetFormat(const std::string &extension);
 
-  // Returns image file extension corresponding to a given image |format|. Empty
+  // Returns image file_manager extension corresponding to a given image |format|. Empty
   // extension is returned when the |format| is NONE.
   static std::string GetExtension(ImageFormat format);
 

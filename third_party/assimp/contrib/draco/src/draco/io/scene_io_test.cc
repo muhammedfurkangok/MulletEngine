@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -49,7 +49,7 @@ TEST(SceneTest, TestSceneIO) {
 }
 
 TEST(SceneTest, TestSaveToPly) {
-  // A simple test that verifies that a loaded scene can be stored in a PLY file
+  // A simple test that verifies that a loaded scene can be stored in a PLY file_manager
   // format.
   const std::string file_name =
       draco::GetTestFileFullPath("CesiumMilkTruck/glTF/CesiumMilkTruck.gltf");
@@ -67,7 +67,7 @@ TEST(SceneTest, TestSaveToPly) {
 
 TEST(SceneTest, TestSaveToObj) {
   // A simple test that verifies that a loaded scene can be stored in an OBJ
-  // file format.
+  // file_manager format.
   const std::string file_name =
       draco::GetTestFileFullPath("CesiumMilkTruck/glTF/CesiumMilkTruck.gltf");
   DRACO_ASSIGN_OR_ASSERT(std::unique_ptr<draco::Scene> scene,

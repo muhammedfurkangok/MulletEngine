@@ -60,7 +60,7 @@ class IOStream;
 using namespace Assimp::MD5;
 
 // ---------------------------------------------------------------------------
-/** Importer class for the MD5 file format
+/** Importer class for the MD5 file_manager format
 */
 class MD5Importer : public BaseImporter {
 public:
@@ -68,7 +68,7 @@ public:
     ~MD5Importer() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -89,24 +89,24 @@ protected:
     void SetupProperties(const Importer *pImp) override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
             IOSystem *pIOHandler) override;
 
     // -------------------------------------------------------------------
-    /** Load a *.MD5MESH file.
+    /** Load a *.MD5MESH file_manager.
      */
     void LoadMD5MeshFile();
 
     // -------------------------------------------------------------------
-    /** Load a *.MD5ANIM file.
+    /** Load a *.MD5ANIM file_manager.
      */
     void LoadMD5AnimFile();
 
     // -------------------------------------------------------------------
-    /** Load a *.MD5CAMERA file.
+    /** Load a *.MD5CAMERA file_manager.
      */
     void LoadMD5CameraFile();
 
@@ -135,7 +135,7 @@ protected:
     void MakeDataUnique(MD5::MeshDesc &meshSrc);
 
     // -------------------------------------------------------------------
-    /** Load the contents of a specific file into memory and
+    /** Load the contents of a specific file_manager into memory and
      *  allocates a buffer to keep it.
      *
      *  mBuffer is modified to point to this buffer.
@@ -147,14 +147,14 @@ protected:
     /** IOSystem to be used to access files */
     IOSystem *mIOHandler;
 
-    /** Path to the file, excluding the file extension but
+    /** Path to the file_manager, excluding the file_manager extension but
         with the dot */
     std::string mFile;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     char *mBuffer;
 
-    /** Size of the file */
+    /** Size of the file_manager */
     unsigned int mFileSize;
 
     /** Current line number. For debugging purposes */
@@ -163,13 +163,13 @@ protected:
     /** Scene to be filled */
     aiScene *mScene;
 
-    /** true if a MD5MESH file has already been parsed */
+    /** true if a MD5MESH file_manager has already been parsed */
     bool mHadMD5Mesh;
 
-    /** true if a MD5ANIM file has already been parsed */
+    /** true if a MD5ANIM file_manager has already been parsed */
     bool mHadMD5Anim;
 
-    /** true if a MD5CAMERA file has already been parsed */
+    /** true if a MD5CAMERA file_manager has already been parsed */
     bool mHadMD5Camera;
 
     /** configuration option: prevent anim autoload */

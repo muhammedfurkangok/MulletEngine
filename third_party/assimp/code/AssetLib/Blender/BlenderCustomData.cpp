@@ -155,7 +155,7 @@ bool readCustomData(std::shared_ptr<ElemBase> &out, const int cdtype, const size
 
     const CustomDataTypeDescription cdtd = customDataTypeDescriptions[cdtype];
     if (cdtd.Read && cdtd.Create && cdtd.Destroy && cnt > 0) {
-        // allocate cnt elements and parse them from file
+        // allocate cnt elements and parse them from file_manager
         out.reset(cdtd.Create(cnt), cdtd.Destroy);
         return cdtd.Read(out.get(), cnt, db);
     }

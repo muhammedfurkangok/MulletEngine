@@ -29,7 +29,7 @@
 
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This file defines the AssertionResult type.
+// This file_manager defines the AssertionResult type.
 
 #include "gtest/gtest-assertion-result.h"
 

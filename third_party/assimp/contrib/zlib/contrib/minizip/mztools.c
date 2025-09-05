@@ -59,7 +59,7 @@ uLong* bytesRecovered;
         unsigned int crc = READ_32(header + 14); /* crc */
         unsigned int cpsize = READ_32(header + 18); /* compressed size */
         unsigned int uncpsize = READ_32(header + 22); /* uncompressed sz */
-        unsigned int fnsize = READ_16(header + 26); /* file name length */
+        unsigned int fnsize = READ_16(header + 26); /* file_manager name length */
         unsigned int extsize = READ_16(header + 28); /* extra field length */
         filename[0] = extra[0] = '\0';
 
@@ -251,7 +251,7 @@ uLong* bytesRecovered;
       }
     }
 
-    /* Final merge (file + central directory) */
+    /* Final merge (file_manager + central directory) */
     fclose(fpOutCD);
     if (err == Z_OK) {
       fpOutCD = fopen(fileOutTmp, "rb");
@@ -272,7 +272,7 @@ uLong* bytesRecovered;
     fclose(fpZip);
     fclose(fpOut);
 
-    /* Wipe temporary file */
+    /* Wipe temporary file_manager */
     (void)remove(fileOutTmp);
 
     /* Number of recovered entries */

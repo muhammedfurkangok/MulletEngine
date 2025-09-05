@@ -5,7 +5,7 @@
  * Report bugs and download new versions at https://pugixml.org/
  *
  * This library is distributed under the MIT License. See notice at the end
- * of this file.
+ * of this file_manager.
  *
  * This work is based on the pugxml parser, which is:
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
@@ -17,7 +17,7 @@
 #	define PUGIXML_VERSION 1130 // 1.13
 #endif
 
-// Include user configuration file (this can define various configuration macros)
+// Include user configuration file_manager (this can define various configuration macros)
 #include "pugiconfig.hpp"
 
 #ifndef HEADER_PUGIXML_HPP
@@ -255,7 +255,7 @@ namespace pugi
 	// Don't escape attribute values and PCDATA contents. This flag is off by default.
 	const unsigned int format_no_escapes = 0x10;
 
-	// Open file using text mode in xml_document::save_file. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
+	// Open file_manager using text mode in xml_document::save_file. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
 	const unsigned int format_save_file_text = 0x20;
 
 	// Write every attribute on a new line with appropriate indentation. This flag is off by default.
@@ -326,7 +326,7 @@ namespace pugi
 	public:
 		virtual ~xml_writer() {}
 
-		// Write memory chunk into stream/file/whatever
+		// Write memory chunk into stream/file_manager/whatever
 		virtual void write(const void* data, size_t size) = 0;
 	};
 
@@ -715,7 +715,7 @@ namespace pugi
 		xml_object_range<xml_named_node_iterator> children(const char_t* name) const;
 		xml_object_range<xml_attribute_iterator> attributes() const;
 
-		// Get node offset in parsed file/string (in char_t units) for debugging purposes
+		// Get node offset in parsed file_manager/string (in char_t units) for debugging purposes
 		ptrdiff_t offset_debug() const;
 
 		// Get hash value (unique for handles to the same object)
@@ -982,7 +982,7 @@ namespace pugi
 		status_ok = 0,				// No error
 
 		status_file_not_found,		// File was not found during load_file()
-		status_io_error,			// Error reading from file/stream
+		status_io_error,			// Error reading from file_manager/stream
 		status_out_of_memory,		// Could not allocate memory
 		status_internal_error,		// Internal error occurred
 
@@ -1072,7 +1072,7 @@ namespace pugi
 		// Load document from zero-terminated string. No encoding conversions are applied.
 		xml_parse_result load_string(const char_t* contents, unsigned int options = parse_default);
 
-		// Load document from file
+		// Load document from file_manager
 		xml_parse_result load_file(const char* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 		xml_parse_result load_file(const wchar_t* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
@@ -1096,7 +1096,7 @@ namespace pugi
 		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default) const;
 	#endif
 
-		// Save XML to file
+		// Save XML to file_manager
 		bool save_file(const char* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 		bool save_file(const wchar_t* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 

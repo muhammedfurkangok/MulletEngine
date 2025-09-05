@@ -2,7 +2,7 @@
 #ifndef IDUTILS_HPP_
 #define IDUTILS_HPP_
 #include <cstring>
-/// name of file being compiled, without leading path components
+/// name of file_manager being compiled, without leading path components
 #define __INVDYN_FILE_WO_DIR__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #if !defined(BT_ID_WO_BULLET) && !defined(BT_USE_INVERSE_DYNAMICS_WITH_BULLET2)
@@ -12,14 +12,14 @@
 #define id_printf(...) b3Printf(__VA_ARGS__)
 #else  // BT_ID_WO_BULLET
 #include <cstdio>
-/// print error message with file/line information
+/// print error message with file_manager/line information
 #define bt_id_error_message(...)                                             \
 	do                                                                       \
 	{                                                                        \
 		fprintf(stderr, "[Error:%s:%d] ", __INVDYN_FILE_WO_DIR__, __LINE__); \
 		fprintf(stderr, __VA_ARGS__);                                        \
 	} while (0)
-/// print warning message with file/line information
+/// print warning message with file_manager/line information
 #define bt_id_warning_message(...)                                             \
 	do                                                                         \
 	{                                                                          \

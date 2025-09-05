@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
-/* Host.h - Basic header file to provide cross-platform solutions via        */
+/* Host.h - Basic header file_manager to provide cross-platform solutions via        */
 /*                   macros, conditional compilation, etc.                   */
 /*                                                                           */
 /* Author : Mark Carrier (mark@carrierlabs.com)                              */

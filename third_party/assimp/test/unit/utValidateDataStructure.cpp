@@ -173,7 +173,7 @@ void ValidateDataStructureTest::TearDown()
 //781: ReportError("aiTexture::mWidth is zero (aiTexture::mHeight is %i, uncompressed texture)",
 //788: ReportError("aiTexture::mWidth is zero (compressed texture)");
 //791: ReportWarning("aiTexture::achFormatHint must be zero-terminated");
-//794: ReportWarning("aiTexture::achFormatHint should contain a file extension "
+//794: ReportWarning("aiTexture::achFormatHint should contain a file_manager extension "
 //804: ReportError("aiTexture::achFormatHint contains non-lowercase letters");
 //815: ReportError("Empty node animation channel");
 //822: ReportError("aiNodeAnim::mPositionKeys is NULL (aiNodeAnim::mNumPositionKeys is %i)",

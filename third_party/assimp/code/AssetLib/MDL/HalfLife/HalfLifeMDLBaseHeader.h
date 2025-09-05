@@ -56,7 +56,7 @@ struct HalfLifeMDLBaseHeader
     //! Magic number: "IDST"/"IDSQ"
     char ident[4];
 
-    //! The file format version.
+    //! The file_manager format version.
     int32_t version;
 };
 

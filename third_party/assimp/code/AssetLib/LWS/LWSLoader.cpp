@@ -147,7 +147,7 @@ LWSImporter::LWSImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool LWSImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = {
         AI_MAKE_MAGIC("LWSC"),
@@ -157,7 +157,7 @@ bool LWSImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get list of file extensions
+// Get list of file_manager extensions
 const aiImporterDesc *LWSImporter::GetInfo() const {
     return &desc;
 }
@@ -258,7 +258,7 @@ void LWSImporter::ReadEnvelope(const LWS::Element &dad, LWO::Envelope &fill) {
 void LWSImporter::ReadEnvelope_Old(std::list<LWS::Element>::const_iterator &it,const std::list<LWS::Element>::const_iterator &endIt,
         LWS::NodeDesc &nodes, unsigned int) {
     if (++it == endIt) {
-        ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file while parsing object motion");
+        ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file_manager while parsing object motion");
         return;
     }
 
@@ -271,14 +271,14 @@ void LWSImporter::ReadEnvelope_Old(std::list<LWS::Element>::const_iterator &it,c
         envl.type = (LWO::EnvelopeType)(i + 1);
 
         if (++it == endIt) {
-            ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file while parsing object motion");
+            ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file_manager while parsing object motion");
             return;
         }
 
         const unsigned int sub_num = strtoul10((*it).tokens[0].c_str());
         for (unsigned int n = 0; n < sub_num; ++n) {
             if (++it == endIt) {
-                ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file while parsing object motion");
+                ASSIMP_LOG_ERROR("LWS: Encountered unexpected end of file_manager while parsing object motion");
                 return;
             }
 
@@ -337,12 +337,12 @@ void LWSImporter::BuildGraph(aiNode *nd, LWS::NodeDesc &src, std::vector<Attachm
     // If the node is an object
     if (src.type == LWS::NodeDesc::OBJECT) {
 
-        // If the object is from an external file, get it
+        // If the object is from an external file_manager, get it
         aiScene *obj = nullptr;
         if (src.path.length()) {
             obj = batch.GetImport(src.id);
             if (!obj) {
-                ASSIMP_LOG_ERROR("LWS: Failed to read external file ", src.path);
+                ASSIMP_LOG_ERROR("LWS: Failed to read external file_manager ", src.path);
             } else {
                 if (obj->mRootNode->mNumChildren == 1) {
 
@@ -383,7 +383,7 @@ void LWSImporter::BuildGraph(aiNode *nd, LWS::NodeDesc &src, std::vector<Attachm
         //Update the attachment node
         nd = nd->mChildren[0];
 
-        //Push attachment, if the object came from an external file
+        //Push attachment, if the object came from an external file_manager
         if (obj) {
             attach.emplace_back(obj, nd);
         }
@@ -456,7 +456,7 @@ void LWSImporter::BuildGraph(aiNode *nd, LWS::NodeDesc &src, std::vector<Attachm
 }
 
 // ------------------------------------------------------------------------------------------------
-// Determine the exact location of a LWO file
+// Determine the exact location of a LWO file_manager
 std::string LWSImporter::FindLWOFile(const std::string &in) {
     // insert missing directory separator if necessary
     std::string tmp(in);
@@ -468,7 +468,7 @@ std::string LWSImporter::FindLWOFile(const std::string &in) {
         return in;
     }
 
-    // file is not accessible for us ... maybe it's packed by
+    // file_manager is not accessible for us ... maybe it's packed by
     // LightWave's 'Package Scene' command?
 
     // Relevant for us are the following two directories:
@@ -491,21 +491,21 @@ std::string LWSImporter::FindLWOFile(const std::string &in) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read file into given scene data structure
+// Read file_manager into given scene data structure
 void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     io = pIOHandler;
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open LWS file ", pFile, ".");
+        throw DeadlyImportError("Failed to open LWS file_manager ", pFile, ".");
     }
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> mBuffer;
     TextFileToBuffer(file.get(), mBuffer);
 
-    // Parse the file structure
+    // Parse the file_manager structure
     LWS::Element root;
     const char *dummy = &mBuffer[0];
     const char *dummyEnd = dummy + mBuffer.size();
@@ -532,15 +532,15 @@ void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         throw DeadlyImportError("LWS: Not a LightWave scene, magic tag LWSC not found");
     }
 
-    // get file format version and print to log
+    // get file_manager format version and print to log
     ++it;
 
     if (it == root.children.end() || (*it).tokens[0].empty()) {
-        ASSIMP_LOG_ERROR("Invalid LWS file detectedm abort import.");
+        ASSIMP_LOG_ERROR("Invalid LWS file_manager detectedm abort import.");
         return;
     }
     unsigned int version = strtoul10((*it).tokens[0].c_str());
-    ASSIMP_LOG_INFO("LWS file format version is ", (*it).tokens[0]);
+    ASSIMP_LOG_INFO("LWS file_manager format version is ", (*it).tokens[0]);
     first = 0.;
     last = 60.;
     fps = 25.; // seems to be a good default frame rate
@@ -563,7 +563,7 @@ void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             }
         } else if ((*it).tokens[0] == "FramesPerSecond") { // 'FramesPerSecond': frames per second
             fps = strtoul10(c, &c);
-        } else if ((*it).tokens[0] == "LoadObjectLayer") { // 'LoadObjectLayer': load a layer of a specific LWO file
+        } else if ((*it).tokens[0] == "LoadObjectLayer") { // 'LoadObjectLayer': load a layer of a specific LWO file_manager
 
             // get layer index
             const int layer = strtoul10(c, &c);
@@ -582,7 +582,7 @@ void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
                 d.number = cur_object++;
             }
 
-            // and add the file to the import list
+            // and add the file_manager to the import list
             SkipSpaces(&c, end);
             std::string path = FindLWOFile(c);
 
@@ -598,7 +598,7 @@ void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             d.id = batch.AddLoadRequest(path, 0, &props);
 
             nodes.push_back(d);
-        } else if ((*it).tokens[0] == "LoadObject") { // 'LoadObject': load a LWO file into the scene-graph
+        } else if ((*it).tokens[0] == "LoadObject") { // 'LoadObject': load a LWO file_manager into the scene-graph
 
             // add node to list
             LWS::NodeDesc d;
@@ -647,7 +647,7 @@ void LWSImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             if (nodes.empty()) {
                 if (motion_file) {
 
-                    // LightWave motion file. Add dummy node
+                    // LightWave motion file_manager. Add dummy node
                     LWS::NodeDesc d;
                     d.type = LWS::NodeDesc::OBJECT;
                     d.name = c;

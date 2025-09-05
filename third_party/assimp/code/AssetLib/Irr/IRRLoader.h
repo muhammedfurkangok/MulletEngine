@@ -58,9 +58,9 @@ namespace Assimp {
 // ---------------------------------------------------------------------------
 /** Irr importer class.
  *
- * Irr is the native scene file format of the Irrlight engine and its editor
- * irrEdit. As IrrEdit itself is capable of importing quite many file formats,
- * it might be a good file format for data exchange.
+ * Irr is the native scene file_manager format of the Irrlight engine and its editor
+ * irrEdit. As IrrEdit itself is capable of importing quite many file_manager formats,
+ * it might be a good file_manager format for data exchange.
  */
 class IRRImporter : public BaseImporter, public IrrlichtBase {
 public:
@@ -68,7 +68,7 @@ public:
     ~IRRImporter() override;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      *  See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -118,7 +118,7 @@ private:
         int timeForWay;
     };
 
-    /** Data structure for a scene-graph node in an IRR file
+    /** Data structure for a scene-graph node in an IRR file_manager
      */
     struct Node {
         // Type of the node
@@ -208,7 +208,7 @@ private:
     };
 
     // -------------------------------------------------------------------
-    // Parse <node> tag from XML file and extract child node
+    // Parse <node> tag from XML file_manager and extract child node
     // @param node XML node
     // @param guessedMeshesContained number of extra guessed meshes
     IRRImporter::Node *ParseNode(pugi::xml_node &node, BatchLoader& batch);

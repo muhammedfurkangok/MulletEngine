@@ -1,6 +1,6 @@
 CMAKE_MINIMUM_REQUIRED( VERSION 3.8 )
 PROJECT( OpenDDL-Parser )
-# read version number from cpp file of the form: static const char *Version = "0.4.0";
+# read version number from cpp file_manager of the form: static const char *Version = "0.4.0";
 file ( READ code/OpenDDLParser.cpp _ver )
 string( REGEX MATCH "static const char [*]Version[ ]*=[ ]*\"[^\"]*\"" _ver_line "${_ver}" )
 string( REGEX MATCH "[0-9]+\.[0-9]+\.[0-9]+" openddlparser_VERSION "${_ver_line}" )

@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2012 Désiré Nuentsa-Wakam <desire.nuentsa_wakam@inria.fr>
@@ -6,11 +6,11 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 /* 
  
- * NOTE: This file is the modified version of xcolumn_bmod.c file in SuperLU 
+ * NOTE: This file_manager is the modified version of xcolumn_bmod.c file_manager in SuperLU
  
  * -- SuperLU routine (version 3.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,

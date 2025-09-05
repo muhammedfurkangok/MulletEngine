@@ -2126,7 +2126,7 @@ void PhysicsServerCommandProcessor::processCollisionForces(btScalar timeStep)
 {
 #ifdef B3_ENABLE_TINY_AUDIO
 	//this is experimental at the moment: impulse thresholds, sound parameters will be exposed in C-API/pybullet.
-	//audio will go into a wav file, as well as real-time output to speakers/headphones using RtAudio/DAC.
+	//audio will go into a wav file_manager, as well as real-time output to speakers/headphones using RtAudio/DAC.
 
 	int numContactManifolds = m_data->m_dynamicsWorld->getDispatcher()->getNumManifolds();
 	for (int i = 0; i < numContactManifolds; i++)
@@ -2439,7 +2439,7 @@ struct ProgrammaticUrdfInterface : public URDFImporterInterface
 
 		if (isValid)
 		{
-			//backwards compatibility for custom file importers
+			//backwards compatibility for custom file_manager importers
 			jointMaxForce = 0;
 			jointMaxVelocity = 0;
 			jointFriction = 0;
@@ -4713,7 +4713,7 @@ static unsigned char* MyGetRawHeightfieldData(CommonFileIOInterface& fileIO, PHY
 
 	if (ext == ".txt")
 	{
-		//read a csv file as used in DeepLoco
+		//read a csv file_manager as used in DeepLoco
 		{
 			char relativePath[1024];
 			int found = fileIO.findResourcePath(fileName, relativePath, 1024);
@@ -9841,7 +9841,7 @@ bool PhysicsServerCommandProcessor::processReducedDeformable(const UrdfReducedDe
 
 	if (out_sim_type == UrdfGeometry::FILE_OBJ)
 	{
-		printf("Obj file is currently unsupported\n");
+		printf("Obj file_manager is currently unsupported\n");
 		return false;
 	}
 	else if (out_sim_type == UrdfGeometry::FILE_VTK)
@@ -14903,7 +14903,7 @@ bool PhysicsServerCommandProcessor::processRestoreStateCommand(const struct Shar
 		}
 		else
 		{
-			b3Error("Error in restoreState: cannot load file %s\n", clientCmd.m_fileArguments.m_fileName);
+			b3Error("Error in restoreState: cannot load file_manager %s\n", clientCmd.m_fileArguments.m_fileName);
 		}
 	}
 	delete importer;

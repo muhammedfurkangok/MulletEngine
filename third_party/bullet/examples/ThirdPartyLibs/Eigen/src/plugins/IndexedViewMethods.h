@@ -1,15 +1,15 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2017 Gael Guennebaud <gael.guennebaud@inria.fr>
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #if !defined(EIGEN_PARSED_BY_DOXYGEN)
 
-// This file is automatically included twice to generate const and non-const versions
+// This file_manager is automatically included twice to generate const and non-const versions
 
 #ifndef EIGEN_INDEXED_VIEW_METHOD_2ND_PASS
 #define EIGEN_INDEXED_VIEW_METHOD_CONST const

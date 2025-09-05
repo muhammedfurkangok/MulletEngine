@@ -1,6 +1,6 @@
 /*
 Bullet Collision Detection and Physics Library http://bulletphysics.org
-This file is Copyright (c) 2014 Google Inc. 
+This file_manager is Copyright (c) 2014 Google Inc.
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.

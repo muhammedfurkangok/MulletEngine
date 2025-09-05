@@ -38,7 +38,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
-/** @file Default implementation of IOSystem using the standard C file functions */
+/** @file Default implementation of IOSystem using the standard C file_manager functions */
 
 #include <assimp/IOSystem.hpp>
 

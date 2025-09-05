@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -70,7 +70,7 @@ TEST(MeshTest, MeshCopyToExistingMesh) {
 
 // Tests that we can remove unused materials from a mesh.
 TEST(MeshTest, RemoveUnusedMaterials) {
-  // Input mesh has 29 materials defined in the source file but only 7 are
+  // Input mesh has 29 materials defined in the source file_manager but only 7 are
   // actually used.
   const std::unique_ptr<draco::Mesh> mesh =
       draco::ReadMeshFromTestFile("mat_test.obj");
@@ -114,7 +114,7 @@ TEST(MeshTest, RemoveUnusedMaterials) {
 }
 
 TEST(MeshTest, RemoveUnusedMaterialsOnPointClud) {
-  // Input mesh has 29 materials defined in the source file but only 7 are
+  // Input mesh has 29 materials defined in the source file_manager but only 7 are
   // actually used. Same as above test but we remove all faces and treat the
   // model as a point cloud.
   const std::unique_ptr<draco::Mesh> mesh =

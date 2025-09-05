@@ -63,7 +63,7 @@ using namespace D3DS;
 namespace {
 
 //////////////////////////////////////////////////////////////////////////////////////
-// Scope utility to write a 3DS file chunk.
+// Scope utility to write a 3DS file_manager chunk.
 //
 // Upon construction, the chunk header is written with the chunk type (flags)
 // filled out, but the chunk size left empty. Upon destruction, the correct chunk
@@ -155,7 +155,7 @@ void CollectMeshes(const aiNode *node, std::multimap<const aiNode *, unsigned in
 void ExportScene3DS(const char *pFile, IOSystem *pIOSystem, const aiScene *pScene, const ExportProperties * /*pProperties*/) {
     std::shared_ptr<IOStream> outfile(pIOSystem->Open(pFile, "wb"));
     if (!outfile) {
-        throw DeadlyExportError("Could not open output .3ds file: " + std::string(pFile));
+        throw DeadlyExportError("Could not open output .3ds file_manager: " + std::string(pFile));
     }
 
     // TODO: This extra copy should be avoided and all of this made a preprocess
@@ -413,7 +413,7 @@ void Discreet3DSExporter::WriteMeshes() {
     //        nodes can carry (and instance) only one mesh.
     //
     // This exporter currently deep clones all instanced meshes, i.e. for each mesh
-    // attached to a node a full TRIMESH chunk is written to the file.
+    // attached to a node a full TRIMESH chunk is written to the file_manager.
     //
     // Furthermore, the TRIMESH is transformed into world space so that it will
     // appear correctly if importers don't read the scene hierarchy at all.

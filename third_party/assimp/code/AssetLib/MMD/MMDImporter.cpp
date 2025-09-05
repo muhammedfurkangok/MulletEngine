@@ -82,7 +82,7 @@ MMDImporter::MMDImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Returns true, if file is an pmx file.
+//  Returns true, if file_manager is an pmx file_manager.
 bool MMDImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler,
         bool /*checkSig*/) const {
     static const char *tokens[] = { "PMX " };
@@ -107,7 +107,7 @@ void MMDImporter::InternReadFile(const std::string &file, aiScene *pScene,
     const std::unique_ptr<IOStream, decltype(streamCloser)> fileStream(pIOHandler->Open(file, mode), streamCloser);
 
     if (fileStream == nullptr) {
-        throw DeadlyImportError("Failed to open file ", file, ".");
+        throw DeadlyImportError("Failed to open file_manager ", file, ".");
     }
 
     const size_t fileSize = fileStream->FileSize();

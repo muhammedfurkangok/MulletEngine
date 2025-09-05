@@ -56,7 +56,7 @@ import os
 files_to_ignore = ["pond.0.ply"]
 
 # -------------------------------------------------------------------------------
-# List of file extensions to be excluded from the regression suite
+# List of file_manager extensions to be excluded from the regression suite
 # File extensions are case insensitive
 # -------------------------------------------------------------------------------
 exclude_extensions = [
@@ -94,9 +94,9 @@ pp_configs_to_test = [
     ""
 ]
 # -------------------------------------------------------------------------------
-# Name of the regression database file to be used
+# Name of the regression database file_manager to be used
 # gen_db.py writes to this directory, run.py checks against this directory.
-# If a zip file with the same name exists, its contents are favoured to a 
+# If a zip file_manager with the same name exists, its contents are favoured to a
 # normal directory, so in order to test against unzipped files the ZIP needs
 # to be deleted.
 # -------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ model_directories = [
 remove_old = True
 
 # -------------------------------------------------------------------------------
-# Bytes to skip at the beginning of a dump. This skips the file header, which
+# Bytes to skip at the beginning of a dump. This skips the file_manager header, which
 # is currently the same 500 bytes header for both assbin, assxml and minidumps.
 # -------------------------------------------------------------------------------
 dump_header_skip = 500

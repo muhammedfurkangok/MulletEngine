@@ -334,7 +334,7 @@ const AttribType::Info
 struct CustomExtension {
 
     //
-    // A struct containing custom extension data added to a glTF2 file
+    // A struct containing custom extension data added to a glTF2 file_manager
     // Has to contain Object, Array, String, Double, Uint64, and Int64 at a minimum
     // String, Double, Uint64, and Int64 are stored in the Nullables
     // Object and Array are stored in the std::vector
@@ -479,7 +479,7 @@ public:
     /// delete encoding mark. And after that you can repeat process: decode data of mesh, read, delete decoded data.
     ///
     /// Remark. Encoding all data at once is good in world with computers which do not has RAM limitation. So, you must use step by step encoding in
-    /// exporter and importer. And, thanks to such way, there is no need to load whole file into memory.
+    /// exporter and importer. And, thanks to such way, there is no need to load whole file_manager into memory.
     SEncodedRegion *EncodedRegion_Current;
 
 private:
@@ -690,7 +690,7 @@ struct Light : public Object {
 
 //! Image data used to create a texture.
 struct Image : public Object {
-    std::string uri; //! The uri of the image, that can be a file path, a data URI, etc.. (required)
+    std::string uri; //! The uri of the image, that can be a file_manager path, a data URI, etc.. (required)
 
     Ref<BufferView> bufferView;
 

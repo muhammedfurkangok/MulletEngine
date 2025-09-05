@@ -38,7 +38,7 @@ namespace Eigen {
 namespace internal {
 
 /**********************************************************************
-* This file implements general matrix-matrix multiplication using BLAS
+* This file_manager implements general matrix-matrix multiplication using BLAS
 * gemm function via partial specialization of
 * general_matrix_matrix_product::run(..) method for float, double,
 * std::complex<float> and std::complex<double> types

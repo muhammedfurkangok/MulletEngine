@@ -81,7 +81,7 @@ namespace agarose
 	template<typename vec>
 	static void fillTestData(std::vector<vec>& outTestData)
 	{
-		// x,y,z coordinates copied from RCSB PDB file of 1AGA
+		// x,y,z coordinates copied from RCSB PDB file_manager of 1AGA
 		// w coordinate randomized with standard normal distribution
 		static const double _1aga[] = {
 			3.219, -0.637, 19.462, 2.286,

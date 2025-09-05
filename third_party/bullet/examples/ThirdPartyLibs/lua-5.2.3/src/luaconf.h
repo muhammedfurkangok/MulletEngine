@@ -1,6 +1,6 @@
 /*
 ** $Id: luaconf.h,v 1.176.1.1 2013/04/12 18:48:47 roberto Exp $
-** Configuration file for Lua
+** Configuration file_manager for Lua
 ** See Copyright Notice in lua.h
 */
 
@@ -77,7 +77,7 @@
 #if defined(_WIN32) /* { */
 /*
 ** In Windows, any exclamation mark ('!') in the path is replaced by the
-** path of the directory of the executable file of the current process.
+** path of the directory of the executable file_manager of the current process.
 */
 #define LUA_LDIR "!\\lua\\"
 #define LUA_CDIR "!\\"
@@ -503,7 +503,7 @@
 
 /*
 ** Local configuration. You can use this space to add your redefinitions
-** without modifying the main part of the file.
+** without modifying the main part of the file_manager.
 */
 
 #endif

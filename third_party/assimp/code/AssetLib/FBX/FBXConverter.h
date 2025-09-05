@@ -424,7 +424,7 @@ private:
     void TransferDataToScene();
 
     // ------------------------------------------------------------------------------------------------
-    // FBX file could have embedded textures not connected to anything
+    // FBX file_manager could have embedded textures not connected to anything
     void ConvertOrphanedEmbeddedTextures();
 
 private:
@@ -456,7 +456,7 @@ private:
     NodeNameCache mNodeNames;
 
     // Deformer name is not the same as a bone name - it does contain the bone name though :)
-    // Deformer names in FBX are always unique in an FBX file.
+    // Deformer names in FBX are always unique in an FBX file_manager.
     std::map<const std::string, aiBone *> bone_map;
 
     double anim_fps;

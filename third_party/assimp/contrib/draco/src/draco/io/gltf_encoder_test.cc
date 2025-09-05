@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -303,7 +303,7 @@ class GltfEncoderTest : public ::testing::Test {
         << " folder_path:" << folder_path;
   }
 
-  // Encode |mesh| to a temporary glTF file. Then decode the glTF file and
+  // Encode |mesh| to a temporary glTF file_manager. Then decode the glTF file_manager and
   // return the mesh in |mesh_gltf|.
   void MeshToDecodedGltfMesh(const Mesh &mesh,
                              std::unique_ptr<Mesh> *mesh_gltf) {
@@ -314,7 +314,7 @@ class GltfEncoderTest : public ::testing::Test {
     ASSERT_NE(*mesh_gltf, nullptr);
   }
 
-  // Encode |mesh| to a temporary glTF file. Then decode the glTF file as a
+  // Encode |mesh| to a temporary glTF file_manager. Then decode the glTF file_manager as a
   // scene and return it in |scene_gltf|.
   void MeshToDecodedGltfScene(const Mesh &mesh,
                               std::unique_ptr<Scene> *scene_gltf) {
@@ -325,7 +325,7 @@ class GltfEncoderTest : public ::testing::Test {
     ASSERT_NE(*scene_gltf, nullptr);
   }
 
-  // Encode |scene| to a temporary glTF file. Then decode the glTF file and
+  // Encode |scene| to a temporary glTF file_manager. Then decode the glTF file_manager and
   // return the scene in |scene_gltf|.
   void SceneToDecodedGltfScene(const Scene &scene,
                                const std::string &temp_basename,
@@ -337,7 +337,7 @@ class GltfEncoderTest : public ::testing::Test {
     *scene_gltf = DecodeFullPathGltfFileToScene(gltf_file_full_path);
     if (SceneUtils::IsDracoCompressionEnabled(scene)) {
       // Two occurrences of the Draco compression string is the least amount for
-      // a valid Draco compressed glTF file.
+      // a valid Draco compressed glTF file_manager.
       const std::string khr_draco_compression = "KHR_draco_mesh_compression";
       CheckGltfFileAtLeastStringCount(gltf_file_full_path,
                                       khr_draco_compression, 2);
@@ -378,7 +378,7 @@ class GltfEncoderTest : public ::testing::Test {
 };
 
 TEST_F(GltfEncoderTest, TestGltfEncodingAll) {
-  // Test decoded mesh from encoded glTF file stays the same.
+  // Test decoded mesh from encoded glTF file_manager stays the same.
   test_encoding("test_nm.obj.edgebreaker.cl4.2.2.drc");
   test_encoding("cube_att.drc");
   test_encoding("car.drc");
@@ -488,7 +488,7 @@ TEST_F(GltfEncoderTest, EncodeNamedGenericAttribute) {
   CheckGltfFileAtLeastStringCount(gltf_file_full_path, kAttributeName, 1);
 
   // The decoder does not yet support generic attribute names, so instead of
-  // using the decoder we compare against a golden file.
+  // using the decoder we compare against a golden file_manager.
   const std::string gltf_generated_bin_filename =
       draco::GetTestTempFileFullPath("buffer0.bin");
   std::vector<char> generated_buffer;
@@ -608,8 +608,8 @@ TEST_F(GltfEncoderTest, EncodeBoneAnimation) {
   ASSERT_TRUE(anim->GetName().empty());
 
   // TODO(b/145703399): Figure out how to test that all of the input accessors
-  // in animation channels in the encoded glTF file will be the same for this
-  // test file.
+  // in animation channels in the encoded glTF file_manager will be the same for this
+  // test file_manager.
   const int num_input_accessors = 57;
   const int num_output_accessors = 57;
   CheckAnimationAccessors(*transcoded_scene, num_input_accessors,
@@ -891,17 +891,17 @@ TEST_F(GltfEncoderTest, TestDracoCompressionWithGridOptions) {
   const std::string gltf_filename = draco::GetTestTempFileFullPath("temp.glb");
   GltfEncoder encoder;
   DRACO_ASSERT_OK(encoder.EncodeFile(*scene, gltf_filename));
-  // Get the size of the generated file.
+  // Get the size of the generated file_manager.
   const size_t qb_file_size = draco::GetFileSize(gltf_filename);
 
-  // Now set grid quantization and ensure the encoded file size is about the
+  // Now set grid quantization and ensure the encoded file_manager size is about the
   // same. The max instance scale is 3 and model size is |mesh_size| so the grid
   // scale must account for that.
   options.quantization_position.SetGrid(mesh_size * 3. / 255.);
   SceneUtils::SetDracoCompressionOptions(&options, scene.get());
 
   DRACO_ASSERT_OK(encoder.EncodeFile(*scene, gltf_filename));
-  // Get the size of the generated file.
+  // Get the size of the generated file_manager.
   const size_t grid_file_size = draco::GetFileSize(gltf_filename);
 
   ASSERT_EQ(grid_file_size, qb_file_size);
@@ -913,7 +913,7 @@ TEST_F(GltfEncoderTest, TestDracoCompressionWithGridOptions) {
 
   DRACO_ASSERT_OK(encoder.EncodeFile(*scene, gltf_filename));
 
-  // Get the size of the generated file.
+  // Get the size of the generated file_manager.
   const size_t grid_file_size_2 = draco::GetFileSize(gltf_filename);
   ASSERT_GT(grid_file_size_2, grid_file_size);
 }
@@ -937,7 +937,7 @@ TEST_F(GltfEncoderTest, TestOutputType) {
 
   const size_t default_gltf_size = draco::GetFileSize(gltf_file_full_path);
 
-  // Test setting VERBOSE output type will increase the size of the gltf file.
+  // Test setting VERBOSE output type will increase the size of the gltf file_manager.
   gltf_encoder.set_output_type(GltfEncoder::VERBOSE);
   ASSERT_TRUE(gltf_encoder.EncodeToFile<Scene>(*scene, gltf_file_full_path,
                                                folder_path))
@@ -947,7 +947,7 @@ TEST_F(GltfEncoderTest, TestOutputType) {
   ASSERT_GT(verbose_gltf_size, default_gltf_size);
 }
 
-// Tests copying the name of the input texture file to the encoded texture file.
+// Tests copying the name of the input texture file_manager to the encoded texture file_manager.
 TEST_F(GltfEncoderTest, CopyTextureName) {
   std::unique_ptr<draco::Mesh> mesh =
       draco::ReadMeshFromTestFile("CesiumMilkTruck/glTF/CesiumMilkTruck.gltf");
@@ -1000,7 +1000,7 @@ TEST_F(GltfEncoderTest, TestEncodeFileFunctions) {
 
   // Test encoding with only the gltf filename parameter will output the correct
   // bin filename and the textures will be in the same directory as the output
-  // glTF file.
+  // glTF file_manager.
   const std::string output_gltf_filename =
       draco::GetTestTempFileFullPath("encoded_example.gltf");
   std::string output_gltf_dir;
@@ -1022,7 +1022,7 @@ TEST_F(GltfEncoderTest, TestEncodeFileFunctions) {
   ASSERT_GT(output_png_size, 0);
 
   // Test encoding with the gltf and bin filename parameter, the textures will
-  // be in the same directory as the output glTF file.
+  // be in the same directory as the output glTF file_manager.
   const std::string new_bin_filename =
       draco::GetTestTempFileFullPath("different_stem_name.bin");
   ASSERT_TRUE(
@@ -1145,7 +1145,7 @@ TEST_F(GltfEncoderTest, KhrMaterialUnlit) {
   GltfEncoder gltf_encoder;
   ASSERT_TRUE(gltf_encoder.EncodeFile<Scene>(*scene, output_gltf_filename).ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
-  // glTF file should have four occurences of "KHR_materials_unlit". Two in the
+  // glTF file_manager should have four occurences of "KHR_materials_unlit". Two in the
   // materials and one in extensionsUsed and one in extensionsRequired.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_materials_unlit",
                                   4);
@@ -1169,12 +1169,12 @@ TEST_F(GltfEncoderTest, OneMaterialUnlitWithFallback) {
   ASSERT_TRUE(gltf_encoder.EncodeFile<Scene>(*scene, output_gltf_filename).ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
 
-  // glTF file should have two occurences of "KHR_materials_unlit". One in the
+  // glTF file_manager should have two occurences of "KHR_materials_unlit". One in the
   // materials and one in extensionsUsed.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_materials_unlit",
                                   2);
 
-  // The glTF file should provide a fallback to "KHR_materials_unlit", so there
+  // The glTF file_manager should provide a fallback to "KHR_materials_unlit", so there
   // should be no "extensionsRequired" element.
   CheckGltfFileNoString(output_gltf_filename, "extensionsRequired");
 }
@@ -1200,12 +1200,12 @@ TEST_F(GltfEncoderTest, MultipleMaterialsUnlitWithFallback) {
           .ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
 
-  // glTF file should have four occurences of "KHR_materials_unlit". Three in
+  // glTF file_manager should have four occurences of "KHR_materials_unlit". Three in
   // the materials and one in extensionsUsed.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_materials_unlit",
                                   4);
 
-  // The glTF file should provide a fallback to "KHR_materials_unlit", so there
+  // The glTF file_manager should provide a fallback to "KHR_materials_unlit", so there
   // should be no "extensionsRequired" element.
   CheckGltfFileNoString(output_gltf_filename, "extensionsRequired");
 
@@ -1221,12 +1221,12 @@ TEST_F(GltfEncoderTest, MultipleMaterialsUnlitWithFallback) {
           .ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
 
-  // glTF file should have three occurences of "KHR_materials_unlit". One in the
+  // glTF file_manager should have three occurences of "KHR_materials_unlit". One in the
   // materials, one in extensionsUsed, and one in extensionsRequired.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_materials_unlit",
                                   3);
 
-  // The glTF file only has one material with a fallback for
+  // The glTF file_manager only has one material with a fallback for
   // "KHR_materials_unlit". The other two materials have "KHR_materials_unlit"
   // set without a fallback, so there should be an "extensionsRequired" element.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "extensionsRequired",
@@ -1278,12 +1278,12 @@ TEST_F(GltfEncoderTest, PbrNextExtensions) {
   EXPECT_TRUE(original_mat.HasIor());
   EXPECT_TRUE(original_mat.HasSpecular());
 
-  // Write the original model to a temporary file.
+  // Write the original model to a temporary file_manager.
   GltfEncoder encoder;
   const std::string tmp_name = draco::GetTestTempFileFullPath("tmp.gltf");
   DRACO_ASSERT_OK(encoder.EncodeFile<Scene>(*original, tmp_name));
 
-  // Read model from the temporary file.
+  // Read model from the temporary file_manager.
   GltfDecoder decoder;
   DRACO_ASSIGN_OR_ASSERT(auto encoded, decoder.DecodeFromFileToScene(tmp_name));
   ASSERT_NE(encoded, nullptr);
@@ -1308,15 +1308,15 @@ TEST_F(GltfEncoderTest, KhrTextureTransformWithoutFallback) {
   GltfEncoder gltf_encoder;
   ASSERT_TRUE(gltf_encoder.EncodeFile<Scene>(*scene, output_gltf_filename).ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
-  // glTF file should have eight occurences of "KHR_materials_unlit". Six in the
+  // glTF file_manager should have eight occurences of "KHR_materials_unlit". Six in the
   // materials and one in extensionsUsed and one in extensionsRequired.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_texture_transform",
                                   8);
 
-  // glTF file should still contain only two occurences of '"sampler": 0'.
+  // glTF file_manager should still contain only two occurences of '"sampler": 0'.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "\"sampler\": 0", 2);
 
-  // glTF file should have one occurence of "wrapS", "wrapT", "minFilter", and
+  // glTF file_manager should have one occurence of "wrapS", "wrapT", "minFilter", and
   // "magFilter".
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "wrapS", 1);
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "wrapT", 1);
@@ -1343,7 +1343,7 @@ TEST_F(GltfEncoderTest, KhrTextureTransformWithoutFallbackRequried) {
   GltfEncoder gltf_encoder;
   ASSERT_TRUE(gltf_encoder.EncodeFile<Scene>(*scene, output_gltf_filename).ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
-  // glTF file should have eight occurences of "KHR_materials_unlit". Six in the
+  // glTF file_manager should have eight occurences of "KHR_materials_unlit". Six in the
   // materials and one in extensionsUsed and one in extensionsRequired.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_texture_transform",
                                   8);
@@ -1367,19 +1367,19 @@ TEST_F(GltfEncoderTest, KhrTextureTransformWithFallback) {
   GltfEncoder gltf_encoder;
   ASSERT_TRUE(gltf_encoder.EncodeFile<Scene>(*scene, output_gltf_filename).ok())
       << "Failed to encode glTF filename:" << output_gltf_filename;
-  // glTF file should have two occurences of "KHR_materials_unlit". One in the
+  // glTF file_manager should have two occurences of "KHR_materials_unlit". One in the
   // materials and one in extensionsUsed.
   CheckGltfFileAtLeastStringCount(output_gltf_filename, "KHR_texture_transform",
                                   2);
 }
 
-// Tests if the source file has a node with an identity matrix, that we do not
+// Tests if the source file_manager has a node with an identity matrix, that we do not
 // output the identiy matrix.
 TEST_F(GltfEncoderTest, MeshWithIdentityTransformation) {
   const std::string gltf_source_full_path =
       GetTestFileFullPath("Triangle/glTF/Triangle_identity_matrix.gltf");
 
-  // Check that the source file contains one "matrix" and no "translation"
+  // Check that the source file_manager contains one "matrix" and no "translation"
   // strings.
   CheckGltfFileAtLeastStringCount(gltf_source_full_path, "matrix", 1);
   CheckGltfFileNoString(gltf_source_full_path, "translation");
@@ -1417,12 +1417,12 @@ TEST_F(GltfEncoderTest, MeshWithIdentityTransformation) {
   std::unique_ptr<Scene> scene_gltf =
       std::move(ReadSceneFromFile(gltf_file_full_path)).value();
   ASSERT_NE(scene_gltf, nullptr);
-  // Check that the output file contains no "matrix" or "translation" strings.
+  // Check that the output file_manager contains no "matrix" or "translation" strings.
   CheckGltfFileNoString(gltf_file_full_path, "matrix");
   CheckGltfFileNoString(gltf_file_full_path, "translation");
 }
 
-// Tests if the source file has a node with a matrix that only has the
+// Tests if the source file_manager has a node with a matrix that only has the
 // translation values set. If it does then instead of outputting the full matrix
 // we only output the "translation" glTF element.
 TEST_F(GltfEncoderTest, MeshWithTranslationOnlyMatrix) {
@@ -1463,7 +1463,7 @@ TEST_F(GltfEncoderTest, MeshWithTranslationOnlyMatrix) {
 
 // Tests that a scene can be encoded to buffer in GLB format.
 TEST_F(GltfEncoderTest, EncodeToBuffer) {
-  // Load scene from file.
+  // Load scene from file_manager.
   const std::string file_name = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
   const std::unique_ptr<Scene> scene = ReadSceneFromTestFile(file_name);
   ASSERT_NE(scene, nullptr);
@@ -1474,14 +1474,14 @@ TEST_F(GltfEncoderTest, EncodeToBuffer) {
   DRACO_ASSERT_OK(encoder.EncodeToBuffer(*scene, &buffer));
   ASSERT_NE(buffer.size(), 0);
 
-  // Write scene to file in GLB format.
+  // Write scene to file_manager in GLB format.
   const std::string glb_file_path = draco::GetTestTempFileFullPath("temp.glb");
   std::string folder_path;
   std::string glb_file_name;
   draco::SplitPath(glb_file_path, &folder_path, &glb_file_name);
   encoder.EncodeToFile<Scene>(*scene, glb_file_path, folder_path);
 
-  // Check that the buffer contents match the GLB file contents.
+  // Check that the buffer contents match the GLB file_manager contents.
   ASSERT_EQ(buffer.size(), draco::GetFileSize(glb_file_path));
   std::vector<char> file_data;
   ASSERT_TRUE(ReadFileToBuffer(glb_file_path, &file_data));
@@ -1489,7 +1489,7 @@ TEST_F(GltfEncoderTest, EncodeToBuffer) {
 }
 
 TEST_F(GltfEncoderTest, CopyrightAssetIsEncoded) {
-  // Load scene from file.
+  // Load scene from file_manager.
   const std::string file_name = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
   const std::unique_ptr<Scene> scene = ReadSceneFromTestFile(file_name);
   ASSERT_NE(scene, nullptr);
@@ -1526,7 +1526,7 @@ TEST_F(GltfEncoderTest, CopyrightAssetIsEncoded) {
   }
 }
 
-// Tests that a scene with lights can be encoded into a file.
+// Tests that a scene with lights can be encoded into a file_manager.
 TEST_F(GltfEncoderTest, EncodeLights) {
   const std::string file_name = "sphere_lights.gltf";
   const std::unique_ptr<Scene> scene = ReadSceneFromTestFile(file_name);
@@ -1562,9 +1562,9 @@ draco::Status AddGpuInstancingToMilkTruck(draco::Scene *scene) {
   return draco::OkStatus();
 }
 
-// Tests that a scene with instance arrays can be encoded into a file. Decoder
-// has no GPU instancing support, so we will compare encoded file to a golden
-// file.
+// Tests that a scene with instance arrays can be encoded into a file_manager. Decoder
+// has no GPU instancing support, so we will compare encoded file_manager to a golden
+// file_manager.
 TEST_F(GltfEncoderTest, EncodeInstanceArrays) {
   // Read the milk truck.
   auto scene =
@@ -1576,25 +1576,25 @@ TEST_F(GltfEncoderTest, EncodeInstanceArrays) {
   ASSERT_EQ(scene->NumInstanceArrays(), 1);
   ASSERT_EQ(scene->NumNodes(), 5);
 
-  // Prepare file paths.
+  // Prepare file_manager paths.
   const std::string temp_path = draco::GetTestTempFileFullPath("Truck.glb");
   const std::string golden_path =
       GetTestFileFullPath("CesiumRowingTruckWithGpuInstancing.glb");
 
-  // Encode scene to a temporary file in GLB format.
+  // Encode scene to a temporary file_manager in GLB format.
   std::string folder;
   std::string name;
   draco::SplitPath(temp_path, &folder, &name);
   GltfEncoder encoder;
   ASSERT_TRUE(encoder.EncodeToFile<Scene>(*scene, temp_path, folder))
-      << "Failed to encode to temporary file:" << temp_path;
+      << "Failed to encode to temporary file_manager:" << temp_path;
 
-  // Read encoded file to buffer.
+  // Read encoded file_manager to buffer.
   std::vector<char> encoded_data;
   ASSERT_TRUE(ReadFileToBuffer(temp_path, &encoded_data));
 }
 
-// Tests that a scene with materials variants can be encoded into a file.
+// Tests that a scene with materials variants can be encoded into a file_manager.
 TEST_F(GltfEncoderTest, EncodeMaterialsVariants) {
   const std::string file_name =
       "KhronosSampleModels/DragonAttenuation/glTF/DragonAttenuation.gltf";
@@ -1612,7 +1612,7 @@ TEST_F(GltfEncoderTest, EncodeSceneWithMeshFeaturesWithStructuralMetadata) {
   use_case.has_mesh_features = true;
   use_case.has_structural_metadata = true;
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Scene> scene(DecodeTestGltfFileToScene(file_name));
   ASSERT_NE(scene, nullptr);
 
@@ -1632,7 +1632,7 @@ TEST_F(GltfEncoderTest, EncodeSceneWithMeshFeaturesWithDracoCompression) {
   use_case.has_draco_compression = true;
   use_case.has_mesh_features = true;
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Scene> scene(DecodeTestGltfFileToScene(file_name));
   ASSERT_NE(scene, nullptr);
 
@@ -1651,7 +1651,7 @@ TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithStructuralMetadata) {
   use_case.has_mesh_features = true;
   use_case.has_structural_metadata = true;
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
 
@@ -1671,7 +1671,7 @@ TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithDracoCompression) {
   use_case.has_draco_compression = true;
   use_case.has_mesh_features = true;
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
 
@@ -1686,7 +1686,7 @@ TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithDracoCompression) {
 // feature ID sets, enables Draco compression, converts mesh to scene, and
 // encodes the scene to glTF.
 TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithDracoCompressionAsScene) {
-  // Note that although the mesh is loaded from file with no Draco compression,
+  // Note that although the mesh is loaded from file_manager with no Draco compression,
   // the compression is enabled later on.
   const std::string file_name = "BoxMeta/glTF/BoxMeta.gltf";
   GltfTestHelper::UseCase use_case;
@@ -1694,7 +1694,7 @@ TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithDracoCompressionAsScene) {
   use_case.has_mesh_features = true;
   use_case.has_structural_metadata = true;
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
 
@@ -1717,7 +1717,7 @@ TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithDracoCompressionAsScene) {
 TEST_F(GltfEncoderTest, EncodeMeshWithMeshFeaturesWithMultiplePrimitives) {
   const std::string file_name = "BoxesMeta/glTF/BoxesMeta.gltf";
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
   // All mesh features should share two textures.
@@ -1767,7 +1767,7 @@ TEST_F(GltfEncoderTest,
        EncodeMeshWithPropertyAttributesWithMultiplePrimitives) {
   const std::string file_name = "BoxesMeta/glTF/BoxesMeta.gltf";
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
   ASSERT_EQ(mesh->NumPropertyAttributesIndices(), 2);
@@ -1809,7 +1809,7 @@ TEST_F(GltfEncoderTest, EncodePointCloudWithMaterials) {
   const std::string file_name =
       "SphereTwoMaterials/sphere_two_materials_point_cloud.gltf";
 
-  // Read test file from file.
+  // Read test file_manager from file_manager.
   const std::unique_ptr<Mesh> mesh(ReadMeshFromTestFile(file_name));
   ASSERT_NE(mesh, nullptr);
 

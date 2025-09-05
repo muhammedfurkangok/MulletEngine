@@ -363,7 +363,7 @@ void Document::ReadObjects() {
     StackAllocator &allocator = parser.GetAllocator();
 
     // add a dummy entry to represent the Model::RootNode object (id 0),
-    // which is only indirectly defined in the input file
+    // which is only indirectly defined in the input file_manager
     objects[0] = new_LazyObject(0L, *eobjects, *this);
 
     const Scope& sobjects = *eobjects->Compound();

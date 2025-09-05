@@ -1646,7 +1646,7 @@ ImFont* ImFontAtlas::AddFontFromFileTTF(const char* filename, float size_pixels,
 	void* data = ImFileLoadToMemory(filename, "rb", &data_size, 0);
 	if (!data)
 	{
-		IM_ASSERT(0);  // Could not load file.
+		IM_ASSERT(0);  // Could not load file_manager.
 		return NULL;
 	}
 	ImFontConfig font_cfg = font_cfg_template ? *font_cfg_template : ImFontConfig();
@@ -4814,7 +4814,7 @@ void ImGui::RenderRectFilledRangeH(ImDrawList* draw_list, const ImRect& rect, Im
 // DEFAULT FONT DATA
 //-----------------------------------------------------------------------------
 // Compressed with stb_compress() then converted to a C array.
-// Use the program in misc/fonts/binary_to_compressed_c.cpp to create the array from a TTF file.
+// Use the program in misc/fonts/binary_to_compressed_c.cpp to create the array from a TTF file_manager.
 // Decompression from stb.h (public domain) by Sean Barrett https://github.com/nothings/stb/blob/master/stb.h
 //-----------------------------------------------------------------------------
 

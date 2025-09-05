@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 //
-//! @file Definition of in-memory structures for the HL2 MDL file format
+//! @file Definition of in-memory structures for the HL2 MDL file_manager format
 //  and for the HalfLife text format (SMD)
 //
 // The specification has been taken from various sources on the internet.
@@ -73,10 +73,10 @@ struct Header_HL2 {
     //! Version number
     int32_t version;
 
-    //! Original file name in pak ?
+    //! Original file_manager name in pak ?
     char        name[64];
 
-    //! Length of file name/length of file?
+    //! Length of file_manager name/length of file_manager?
     int32_t     length;
 
     //! For viewer, ignored
@@ -91,7 +91,7 @@ struct Header_HL2 {
     // File flags
     int32_t         flags;
 
-    //! NUmber of bones contained in the file
+    //! NUmber of bones contained in the file_manager
     int32_t         numbones;
     int32_t         boneindex;
 
@@ -103,7 +103,7 @@ struct Header_HL2 {
     int32_t         numhitboxes;
     int32_t         hitboxindex;
 
-    //! Animation sequences in the file
+    //! Animation sequences in the file_manager
     int32_t         numseq;
     int32_t         seqindex;
 

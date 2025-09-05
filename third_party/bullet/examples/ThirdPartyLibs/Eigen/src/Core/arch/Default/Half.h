@@ -1,9 +1,9 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 // The conversion routines are Copyright (c) Fabian Giesen, 2016.
 // The original license follows:
@@ -63,16 +63,16 @@ struct half;
 
 namespace half_impl {
 
-// We want to use the __half_raw struct from the HIP header file only during the device compile phase.
+// We want to use the __half_raw struct from the HIP header file_manager only during the device compile phase.
 // This is required because of a quirk in the way TensorFlow GPU builds are done.
 // When compiling TensorFlow source code with GPU support, files that
 //  * contain GPU kernels (i.e. *.cu.cc files) are compiled via hipcc
 //  * do not contain GPU kernels ( i.e. *.cc files) are compiled via gcc (typically)
 //
 // Tensorflow uses the Eigen::half type as its FP16 type, and there are functions that
-//  * are defined in a file that gets compiled via hipcc AND
+//  * are defined in a file_manager that gets compiled via hipcc AND
 //  * have Eigen::half as a pass-by-value argument AND
-//  * are called in a file that gets compiled via gcc
+//  * are called in a file_manager that gets compiled via gcc
 //
 // In the scenario described above the caller and callee will see different versions
 // of the Eigen::half base class __half_raw, and they will be compiled by different compilers
@@ -107,7 +107,7 @@ struct __half_raw {
 
 #elif defined(EIGEN_HAS_HIP_FP16)
   // Nothing to do here
-  // HIP fp16 header file has a definition for __half_raw
+  // HIP fp16 header file_manager has a definition for __half_raw
 #elif defined(EIGEN_HAS_CUDA_FP16)
   #if EIGEN_CUDA_SDK_VER < 90000
     // In CUDA < 9.0, __half is the equivalent of CUDA 9's __half_raw
@@ -142,7 +142,7 @@ struct half_base : public __half_raw {
 struct half : public half_impl::half_base {
 
   // Writing this out as separate #if-else blocks to make the code easier to follow
-  // The same applies to most #if-else blocks in this file
+  // The same applies to most #if-else blocks in this file_manager
 #if !defined(EIGEN_HAS_GPU_FP16) || !defined(EIGEN_GPU_COMPILE_PHASE)
   // Use the same base class for the following two scenarios
   // * when compiling without GPU support enabled
@@ -150,7 +150,7 @@ struct half : public half_impl::half_base {
   typedef half_impl::__half_raw __half_raw;
 #elif defined(EIGEN_HAS_HIP_FP16)
   // Nothing to do here
-  // HIP fp16 header file has a definition for __half_raw
+  // HIP fp16 header file_manager has a definition for __half_raw
 #elif defined(EIGEN_HAS_CUDA_FP16)
   // Note that EIGEN_CUDA_SDK_VER is set to 0 even when compiling with HIP, so
   // (EIGEN_CUDA_SDK_VER < 90000) is true even for HIP!  So keeping this within
@@ -494,7 +494,7 @@ EIGEN_STRONG_INLINE EIGEN_DEVICE_FUNC half operator--(half& a, int) {
 
 EIGEN_STRONG_INLINE EIGEN_DEVICE_FUNC EIGEN_CONSTEXPR __half_raw raw_uint16_to_half(numext::uint16_t x) {
   // We cannot simply do a "return __half_raw(x)" here, because __half_raw is union type
-  // in the hip_fp16 header file, and that will trigger a compile error
+  // in the hip_fp16 header file_manager, and that will trigger a compile error
   // On the other hand, having anything but a return statement also triggers a compile error
   // because this is constexpr function.
   // Fortunately, since we need to disable EIGEN_CONSTEXPR for GPU anyway, we can get out

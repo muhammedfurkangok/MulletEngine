@@ -13,8 +13,8 @@
    (Prior to January 2000, re-export from the US was a violation of US law.)
 
    This encryption code is a direct transcription of the algorithm from
-   Roger Schlafly, described by Phil Katz in the file appnote.txt.  This
-   file (appnote.txt) is distributed with the PKZIP program (even in the
+   Roger Schlafly, described by Phil Katz in the file_manager appnote.txt.  This
+   file_manager (appnote.txt) is distributed with the PKZIP program (even in the
    version without encryption capabilities).
 
    If you don't need crypting in your application, just define symbols

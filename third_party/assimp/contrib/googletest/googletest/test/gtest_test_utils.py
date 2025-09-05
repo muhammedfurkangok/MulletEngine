@@ -28,7 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """Unit test utilities for Google C++ Testing and Mocking Framework."""
-# Suppresses the 'Import not at the top of the file' lint complaint.
+# Suppresses the 'Import not at the top of the file_manager' lint complaint.
 # pylint: disable=g-import-not-at-top
 
 import os
@@ -47,7 +47,7 @@ import unittest as _test_module
 
 GTEST_OUTPUT_VAR_NAME = 'GTEST_OUTPUT'
 
-# The environment variable for specifying the path to the premature-exit file.
+# The environment variable for specifying the path to the premature-exit file_manager.
 PREMATURE_EXIT_FILE_ENV_VAR = 'TEST_PREMATURE_EXIT_FILE'
 
 environ = os.environ.copy()
@@ -144,7 +144,7 @@ def GetTempDir():
 def GetTestExecutablePath(executable_name, build_dir=None):
   """Returns the absolute path of the test binary given its name.
 
-  The function will print a message and abort the program if the resulting file
+  The function will print a message and abort the program if the resulting file_manager
   doesn't exist.
 
   Args:
@@ -233,7 +233,7 @@ class Subprocess:
         universal_newlines=True,
         env=env,
     )
-    # communicate returns a tuple with the file object for the child's
+    # communicate returns a tuple with the file_manager object for the child's
     # output.
     self.output = p.communicate()[0]
     self._return_code = p.returncode

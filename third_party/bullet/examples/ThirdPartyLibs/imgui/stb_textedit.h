@@ -7,7 +7,7 @@
 // stb_textedit.h - v1.9  - public domain - Sean Barrett
 // Development of this library was sponsored by RAD Game Tools
 //
-// This C header file implements the guts of a multi-line text-editing
+// This C header file_manager implements the guts of a multi-line text-editing
 // widget; you implement display, word-wrapping, and low-level string
 // insertion/deletion, and stb_textedit will map user inputs into
 // insertions & deletions, plus updates to the cursor position,
@@ -25,7 +25,7 @@
 //
 //   This software is dual-licensed to the public domain and under the following
 //   license: you are granted a perpetual, irrevocable license to copy, modify,
-//   publish, and distribute this file as you see fit.
+//   publish, and distribute this file_manager as you see fit.
 //
 //
 // DEPENDENCIES
@@ -64,14 +64,14 @@
 //
 // USAGE
 //
-// This file behaves differently depending on what symbols you define
+// This file_manager behaves differently depending on what symbols you define
 // before including it.
 //
 //
-// Header-file mode:
+// Header-file_manager mode:
 //
 //   If you do not define STB_TEXTEDIT_IMPLEMENTATION before including this,
-//   it will operate in "header file" mode. In this mode, it declares a
+//   it will operate in "header file_manager" mode. In this mode, it declares a
 //   single public symbol, STB_TexteditState, which encapsulates the current
 //   state of a text widget (except for the string, which you will store
 //   separately).
@@ -101,7 +101,7 @@
 //   on a large number of symbols which must be defined before the include.
 //
 //   The implementation is defined only as static functions. You will then
-//   need to provide your own APIs in the same file which will access the
+//   need to provide your own APIs in the same file_manager which will access the
 //   static functions.
 //
 //   The basic concept is that you provide a "string" object which
@@ -111,7 +111,7 @@
 //   rich text; even with rich text stb_truetype interacts with your
 //   code as if there was an array of all the displayed characters.
 //
-// Symbols that must be the same in header-file and implementation mode:
+// Symbols that must be the same in header-file_manager and implementation mode:
 //
 //     STB_TEXTEDIT_CHARTYPE             the character type
 //     STB_TEXTEDIT_POSITIONTYPE         small type that a valid cursor position
@@ -263,7 +263,7 @@
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ////
-////   Header-file mode
+////   Header-file_manager mode
 ////
 ////
 

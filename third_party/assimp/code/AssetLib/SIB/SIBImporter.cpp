@@ -197,7 +197,7 @@ static aiString ReadString(StreamReaderLE *stream, uint32_t numWChars) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool SIBImporter::CanRead(const std::string &filename, IOSystem * /*pIOHandler*/, bool /*checkSig*/) const {
     return SimpleExtensionCheck(filename, "sib");
 }
@@ -512,7 +512,7 @@ static void ReadShape(SIB *sib, StreamReaderLE *stream) {
 
     ai_assert(smesh.faceStart.size() == smesh.mtls.size()); // sanity check
 
-    // Silo doesn't store any normals in the file - we need to compute
+    // Silo doesn't store any normals in the file_manager - we need to compute
     // them ourselves. We can't let AssImp handle it as AssImp doesn't
     // know about our creased edges.
     ConnectFaces(&smesh);
@@ -755,7 +755,7 @@ static void ReadInstance(SIB *sib, StreamReaderLE *stream) {
 static void CheckVersion(StreamReaderLE *stream) {
     uint32_t version = stream->GetU4();
     if (version < 1 || version > 2) {
-        throw DeadlyImportError("SIB: Unsupported file version.");
+        throw DeadlyImportError("SIB: Unsupported file_manager version.");
     }
 }
 
@@ -782,7 +782,7 @@ static void ReadScene(SIB *sib, StreamReaderLE *stream) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void SIBImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
 
@@ -794,7 +794,7 @@ void SIBImporter::InternReadFile(const std::string &pFile,
 
     // We should have at least one chunk
     if (stream.GetRemainingSize() < 16)
-        throw DeadlyImportError("SIB file is either empty or corrupt: ", pFile);
+        throw DeadlyImportError("SIB file_manager is either empty or corrupt: ", pFile);
 
     SIB sib;
 

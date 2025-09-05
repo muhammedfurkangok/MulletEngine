@@ -66,7 +66,7 @@ int main( int argc, char *argv[] ) {
     if( 0 == strncmp( FileOption, argv[1], strlen( FileOption ) ) ) {
         filename = argv[ 2 ];
     }
-    std::cout << "file to import: " << filename << std::endl;   
+    std::cout << "file_manager to import: " << filename << std::endl;   
     if( nullptr == filename ) {
         std::cerr << "Invalid filename." << std::endl;
         return Error;
@@ -74,11 +74,11 @@ int main( int argc, char *argv[] ) {
 
     FILE *fileStream = fopen( filename, "r+" );
     if( NULL == filename ) {
-        std::cerr << "Cannot open file " << filename << std::endl;
+        std::cerr << "Cannot open file_manager " << filename << std::endl;
         return Error;
     }
 
-    // obtain file size:
+    // obtain file_manager size:
     fseek( fileStream, 0, SEEK_END );
     const size_t size = ftell( fileStream );   
     rewind( fileStream );   
@@ -91,7 +91,7 @@ int main( int argc, char *argv[] ) {
         OpenDDLParser theParser;
         theParser.setBuffer( buffer, size );
         if( !theParser.parse() ) {
-            std::cerr << "Error while parsing file " << filename << "." << std::endl;
+            std::cerr << "Error while parsing file_manager " << filename << "." << std::endl;
             return Error;
         }
     }

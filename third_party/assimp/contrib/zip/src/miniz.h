@@ -3,7 +3,7 @@
 #endif
 /* miniz.c 3.0.0 - public domain deflate/inflate, zlib-subset, ZIP
    reading/writing/appending, PNG writing See "unlicense" statement at the end
-   of this file. Rich Geldreich <richgel99@gmail.com>, last updated Oct. 13,
+   of this file_manager. Rich Geldreich <richgel99@gmail.com>, last updated Oct. 13,
    2013 Implements RFC 1950: http://www.ietf.org/rfc/rfc1950.txt and RFC 1951:
    http://www.ietf.org/rfc/rfc1951.txt
 
@@ -21,7 +21,7 @@
      Decompression: Use the "tinfl" API's. The entire decompressor is
    implemented as a single function coroutine: see tinfl_decompress(). It
    supports decompression into a 32KB (or larger power of 2) wrapping buffer, or
-   into a memory block large enough to hold the entire file.
+   into a memory block large enough to hold the entire file_manager.
 
      The low-level tdefl/tinfl API's do not make any use of dynamic memory
    allocation.
@@ -51,13 +51,13 @@
 
      The ZIP archive API's where designed with simplicity and efficiency in
    mind, with just enough abstraction to get the job done with minimal fuss.
-   There are simple API's to retrieve file information, read files from existing
+   There are simple API's to retrieve file_manager information, read files from existing
    archives, create new archives, append new files to existing archives, or
    clone archive data from one archive to another. It supports archives located
    in memory or the heap, on disk (using stdio.h), or you can specify custom
-   file read/write callbacks.
+   file_manager read/write callbacks.
 
-     - Archive reading: Just call this function to read a single file from a
+     - Archive reading: Just call this function to read a single file_manager from a
    disk archive:
 
       void *mz_zip_extract_archive_file_to_heap(const char *pZip_filename, const
@@ -65,35 +65,35 @@
 
      For more complex cases, use the "mz_zip_reader" functions. Upon opening an
    archive, the entire central directory is located and read as-is into memory,
-   and subsequent file access only occurs when reading individual files.
+   and subsequent file_manager access only occurs when reading individual files.
 
-     - Archives file scanning: The simple way is to use this function to scan a
-   loaded archive for a specific file:
+     - Archives file_manager scanning: The simple way is to use this function to scan a
+   loaded archive for a specific file_manager:
 
      int mz_zip_reader_locate_file(mz_zip_archive *pZip, const char *pName,
    const char *pComment, mz_uint flags);
 
-     The locate operation can optionally check file comments too, which (as one
-   example) can be used to identify multiple versions of the same file in an
+     The locate operation can optionally check file_manager comments too, which (as one
+   example) can be used to identify multiple versions of the same file_manager in an
    archive. This function uses a simple linear search through the central
      directory, so it's not very fast.
 
      Alternately, you can iterate through all the files in an archive (using
-   mz_zip_reader_get_num_files()) and retrieve detailed info on each file by
+   mz_zip_reader_get_num_files()) and retrieve detailed info on each file_manager by
    calling mz_zip_reader_file_stat().
 
      - Archive creation: Use the "mz_zip_writer" functions. The ZIP writer
-   immediately writes compressed file data to disk and builds an exact image of
+   immediately writes compressed file_manager data to disk and builds an exact image of
    the central directory in memory. The central directory image is written all
-   at once at the end of the archive file when the archive is finalized.
+   at once at the end of the archive file_manager when the archive is finalized.
 
-     The archive writer can optionally align each file's local header and file
+     The archive writer can optionally align each file_manager's local header and file_manager
    data to any power of 2 alignment, which can be useful when the archive will
    be read from optical media. Also, the writer supports placing arbitrary data
    blobs at the very beginning of ZIP archives. Archives written using either
    feature are still readable by any ZIP tool.
 
-     - Archive appending: The simple way to add a single file to an archive is
+     - Archive appending: The simple way to add a single file_manager to an archive is
    to call this function:
 
       mz_bool mz_zip_add_mem_to_archive_file_in_place(const char *pZip_filename,
@@ -103,14 +103,14 @@
      The archive will be created if it doesn't already exist, otherwise it'll be
    appended to. Note the appending is done in-place and is not an atomic
    operation, so if something goes wrong during the operation it's possible the
-   archive could be left without a central directory (although the local file
-   headers and file data will be fine, so the archive will be recoverable).
+   archive could be left without a central directory (although the local file_manager
+   headers and file_manager data will be fine, so the archive will be recoverable).
 
      For more complex archive modification scenarios:
      1. The safest way is to use a mz_zip_reader to read the existing archive,
    cloning only those bits you want to preserve into a new archive using using
    the mz_zip_writer_add_from_zip_reader() function (which compiles the
-     compressed file data as-is). When you're done, delete the old archive and
+     compressed file_manager data as-is). When you're done, delete the old archive and
    rename the newly written archive, and you're done. This is safe but requires
    a bunch of temporary disk space or heap memory.
 
@@ -125,7 +125,7 @@
      No spanning support. Extraction functions can only handle unencrypted,
    stored or deflated files. Requires streams capable of seeking.
 
-   * This is a header file library, like stb_image.c. To get only a header file,
+   * This is a header file_manager library, like stb_image.c. To get only a header file_manager,
    either cut and paste the below header, or create miniz.h, #define
    MINIZ_HEADER_FILE_ONLY, and then include miniz.c from it.
 
@@ -145,12 +145,12 @@
    CRC-32 and adler-32. */
 
 /* Define MINIZ_NO_STDIO to disable all usage and any functions which rely on
- * stdio for file I/O. */
+ * stdio for file_manager I/O. */
 /*#define MINIZ_NO_STDIO */
 
 /* If MINIZ_NO_TIME is specified then the ZIP archive functions will not be able
  * to get the current time, or */
-/* get/set file times, and the C run-time funcs that get/set times won't be
+/* get/set file_manager times, and the C run-time funcs that get/set times won't be
  * called. */
 /* The current downside is the times written to your archives will be from 1979.
  */
@@ -194,7 +194,7 @@
 #endif
 
 #if defined(__TINYC__) && (defined(__linux) || defined(__linux__))
-/* TODO: Work around "error: include file 'sys\utime.h' when compiling with tcc
+/* TODO: Work around "error: include file_manager 'sys\utime.h' when compiling with tcc
  * on Linux */
 #define MINIZ_NO_TIME
 #endif
@@ -805,7 +805,7 @@ MINIZ_EXPORT size_t tdefl_compress_mem_to_mem(void *pOut_buf,
                                               const void *pSrc_buf,
                                               size_t src_buf_len, int flags);
 
-/* Compresses an image to a compressed PNG file in memory. */
+/* Compresses an image to a compressed PNG file_manager in memory. */
 /* On entry: */
 /*  pImage, w, h, and num_chans describe the image to compress. num_chans may be
  * 1, 2, 3, or 4. */
@@ -817,7 +817,7 @@ MINIZ_EXPORT size_t tdefl_compress_mem_to_mem(void *pOut_buf,
  * apps). */
 /* On return: */
 /*  Function returns a pointer to the compressed data, or NULL on failure. */
-/*  *pLen_out will be set to the size of the PNG image file. */
+/*  *pLen_out will be set to the size of the PNG image file_manager. */
 /*  The caller must mz_free() the returned heap block (which will typically be
  * larger than *pLen_out) when it's no longer needed. */
 MINIZ_EXPORT void *
@@ -1202,7 +1202,7 @@ enum {
 };
 
 typedef struct {
-  /* Central directory file index. */
+  /* Central directory file_manager index. */
   mz_uint32 m_file_index;
 
   /* Byte offset of this entry in the archive's central directory. Note we
@@ -1226,11 +1226,11 @@ typedef struct {
    * unpack them you actually get 0 bytes. */
   mz_uint64 m_uncomp_size;
 
-  /* Zip internal and external file attributes. */
+  /* Zip internal and external file_manager attributes. */
   mz_uint16 m_internal_attr;
   mz_uint32 m_external_attr;
 
-  /* Entry's local header file offset in bytes. */
+  /* Entry's local header file_manager offset in bytes. */
   mz_uint64 m_local_header_ofs;
 
   /* Size of comment in bytes. */
@@ -1243,7 +1243,7 @@ typedef struct {
    * doesn't support) */
   mz_bool m_is_encrypted;
 
-  /* MZ_TRUE if the file is not encrypted, a patch file, and if it uses a
+  /* MZ_TRUE if the file_manager is not encrypted, a patch file_manager, and if it uses a
    * compression method we support. */
   mz_bool m_is_supported;
 
@@ -1285,19 +1285,19 @@ typedef enum {
   MZ_ZIP_FLAG_DO_NOT_SORT_CENTRAL_DIRECTORY = 0x0800,
   MZ_ZIP_FLAG_VALIDATE_LOCATE_FILE_FLAG =
       0x1000, /* if enabled, mz_zip_reader_locate_file() will be called on each
-                 file as its validated to ensure the func finds the file in the
+                 file_manager as its validated to ensure the func finds the file_manager in the
                  central dir (intended for testing) */
   MZ_ZIP_FLAG_VALIDATE_HEADERS_ONLY =
       0x2000, /* validate the local headers, but don't decompress the entire
-                 file and check the crc32 */
+                 file_manager and check the crc32 */
   MZ_ZIP_FLAG_WRITE_ZIP64 =
-      0x4000, /* always use the zip64 file format, instead of the original zip
-                 file format with automatic switch to zip64. Use as flags
+      0x4000, /* always use the zip64 file_manager format, instead of the original zip
+                 file_manager format with automatic switch to zip64. Use as flags
                  parameter with mz_zip_writer_init*_v2 */
   MZ_ZIP_FLAG_WRITE_ALLOW_READING = 0x8000,
   MZ_ZIP_FLAG_ASCII_FILENAME = 0x10000,
-  /*After adding a compressed file, seek back
-  to local file header and set the correct sizes*/
+  /*After adding a compressed file_manager, seek back
+  to local file_manager header and set the correct sizes*/
   MZ_ZIP_FLAG_WRITE_HEADER_SET_SIZE = 0x20000
 } mz_zip_flags;
 
@@ -1411,10 +1411,10 @@ MINIZ_EXPORT mz_bool mz_zip_reader_init_mem(mz_zip_archive *pZip,
                                             mz_uint flags);
 
 #ifndef MINIZ_NO_STDIO
-/* Read a archive from a disk file. */
-/* file_start_ofs is the file offset where the archive actually begins, or 0. */
+/* Read a archive from a disk file_manager. */
+/* file_start_ofs is the file_manager offset where the archive actually begins, or 0. */
 /* actual_archive_size is the true total size of the archive, which may be
- * smaller than the file's actual size on disk. If zero the entire file is
+ * smaller than the file_manager's actual size on disk. If zero the entire file_manager is
  * treated as the archive. */
 MINIZ_EXPORT mz_bool mz_zip_reader_init_file(mz_zip_archive *pZip,
                                              const char *pFilename,
@@ -1430,10 +1430,10 @@ MINIZ_EXPORT mz_bool mz_zip_reader_init_file_v2_rpb(mz_zip_archive *pZip,
                                                     mz_uint64 file_start_ofs,
                                                     mz_uint64 archive_size);
 
-/* Read an archive from an already opened FILE, beginning at the current file
+/* Read an archive from an already opened FILE, beginning at the current file_manager
  * position. */
 /* The archive is assumed to be archive_size bytes long. If archive_size is 0,
- * then the entire rest of the file is assumed to contain the archive. */
+ * then the entire rest of the file_manager is assumed to contain the archive. */
 /* The FILE will NOT be closed when mz_zip_reader_end() is called. */
 MINIZ_EXPORT mz_bool mz_zip_reader_init_cfile(mz_zip_archive *pZip,
                                               MZ_FILE *pFile,
@@ -1442,7 +1442,7 @@ MINIZ_EXPORT mz_bool mz_zip_reader_init_cfile(mz_zip_archive *pZip,
 #endif
 
 /* Ends archive reading, freeing all allocations, and closing the input archive
- * file if mz_zip_reader_init_file() was used. */
+ * file_manager if mz_zip_reader_init_file() was used. */
 MINIZ_EXPORT mz_bool mz_zip_reader_end(mz_zip_archive *pZip);
 
 /* -------- ZIP reading or writing */
@@ -1463,7 +1463,7 @@ MINIZ_EXPORT mz_uint64
 mz_zip_get_archive_file_start_offset(mz_zip_archive *pZip);
 MINIZ_EXPORT MZ_FILE *mz_zip_get_cfile(mz_zip_archive *pZip);
 
-/* Reads n bytes of raw archive data, starting at file offset file_ofs, to pBuf.
+/* Reads n bytes of raw archive data, starting at file_manager offset file_ofs, to pBuf.
  */
 MINIZ_EXPORT size_t mz_zip_read_archive_data(mz_zip_archive *pZip,
                                              mz_uint64 file_ofs, void *pBuf,
@@ -1479,20 +1479,20 @@ MINIZ_EXPORT mz_zip_error mz_zip_clear_last_error(mz_zip_archive *pZip);
 MINIZ_EXPORT mz_zip_error mz_zip_get_last_error(mz_zip_archive *pZip);
 MINIZ_EXPORT const char *mz_zip_get_error_string(mz_zip_error mz_err);
 
-/* MZ_TRUE if the archive file entry is a directory entry. */
+/* MZ_TRUE if the archive file_manager entry is a directory entry. */
 MINIZ_EXPORT mz_bool mz_zip_reader_is_file_a_directory(mz_zip_archive *pZip,
                                                        mz_uint file_index);
 
-/* MZ_TRUE if the file is encrypted/strong encrypted. */
+/* MZ_TRUE if the file_manager is encrypted/strong encrypted. */
 MINIZ_EXPORT mz_bool mz_zip_reader_is_file_encrypted(mz_zip_archive *pZip,
                                                      mz_uint file_index);
 
-/* MZ_TRUE if the compression method is supported, and the file is not
- * encrypted, and the file is not a compressed patch file. */
+/* MZ_TRUE if the compression method is supported, and the file_manager is not
+ * encrypted, and the file_manager is not a compressed patch file_manager. */
 MINIZ_EXPORT mz_bool mz_zip_reader_is_file_supported(mz_zip_archive *pZip,
                                                      mz_uint file_index);
 
-/* Retrieves the filename of an archive file entry. */
+/* Retrieves the filename of an archive file_manager entry. */
 /* Returns the number of bytes written to pFilename, or if filename_buf_size is
  * 0 this function returns the number of bytes needed to fully store the
  * filename. */
@@ -1501,9 +1501,9 @@ MINIZ_EXPORT mz_uint mz_zip_reader_get_filename(mz_zip_archive *pZip,
                                                 char *pFilename,
                                                 mz_uint filename_buf_size);
 
-/* Attempts to locates a file in the archive's central directory. */
+/* Attempts to locates a file_manager in the archive's central directory. */
 /* Valid flags: MZ_ZIP_FLAG_CASE_SENSITIVE, MZ_ZIP_FLAG_IGNORE_PATH */
-/* Returns -1 if the file cannot be found. */
+/* Returns -1 if the file_manager cannot be found. */
 MINIZ_EXPORT int mz_zip_reader_locate_file(mz_zip_archive *pZip,
                                            const char *pName,
                                            const char *pComment, mz_uint flags);
@@ -1513,14 +1513,14 @@ MINIZ_EXPORT mz_bool mz_zip_reader_locate_file_v2(mz_zip_archive *pZip,
                                                   mz_uint flags,
                                                   mz_uint32 *file_index);
 
-/* Returns detailed information about an archive file entry. */
+/* Returns detailed information about an archive file_manager entry. */
 MINIZ_EXPORT mz_bool mz_zip_reader_file_stat(mz_zip_archive *pZip,
                                              mz_uint file_index,
                                              mz_zip_archive_file_stat *pStat);
 
-/* MZ_TRUE if the file is in zip64 format. */
-/* A file is considered zip64 if it contained a zip64 end of central directory
- * marker, or if it contained any zip64 extended file information fields in the
+/* MZ_TRUE if the file_manager is in zip64 format. */
+/* A file_manager is considered zip64 if it contained a zip64 end of central directory
+ * marker, or if it contained any zip64 extended file_manager information fields in the
  * central directory. */
 MINIZ_EXPORT mz_bool mz_zip_is_zip64(mz_zip_archive *pZip);
 
@@ -1528,7 +1528,7 @@ MINIZ_EXPORT mz_bool mz_zip_is_zip64(mz_zip_archive *pZip);
 /* The current max supported size is <= MZ_UINT32_MAX. */
 MINIZ_EXPORT size_t mz_zip_get_central_dir_size(mz_zip_archive *pZip);
 
-/* Extracts a archive file to a memory buffer using no memory allocation. */
+/* Extracts a archive file_manager to a memory buffer using no memory allocation. */
 /* There must be at least enough room on the stack to store the inflator's state
  * (~34KB or so). */
 MINIZ_EXPORT mz_bool mz_zip_reader_extract_to_mem_no_alloc(
@@ -1538,7 +1538,7 @@ MINIZ_EXPORT mz_bool mz_zip_reader_extract_file_to_mem_no_alloc(
     mz_zip_archive *pZip, const char *pFilename, void *pBuf, size_t buf_size,
     mz_uint flags, void *pUser_read_buf, size_t user_read_buf_size);
 
-/* Extracts a archive file to a memory buffer. */
+/* Extracts a archive file_manager to a memory buffer. */
 MINIZ_EXPORT mz_bool mz_zip_reader_extract_to_mem(mz_zip_archive *pZip,
                                                   mz_uint file_index,
                                                   void *pBuf, size_t buf_size,
@@ -1549,7 +1549,7 @@ MINIZ_EXPORT mz_bool mz_zip_reader_extract_file_to_mem(mz_zip_archive *pZip,
                                                        size_t buf_size,
                                                        mz_uint flags);
 
-/* Extracts a archive file to a dynamically allocated heap buffer. */
+/* Extracts a archive file_manager to a dynamically allocated heap buffer. */
 /* The memory will be allocated via the mz_zip_archive's alloc/realloc
  * functions. */
 /* Returns NULL and sets the last error on failure. */
@@ -1561,7 +1561,7 @@ MINIZ_EXPORT void *mz_zip_reader_extract_file_to_heap(mz_zip_archive *pZip,
                                                       size_t *pSize,
                                                       mz_uint flags);
 
-/* Extracts a archive file using a callback function to output the file's data.
+/* Extracts a archive file_manager using a callback function to output the file_manager's data.
  */
 MINIZ_EXPORT mz_bool mz_zip_reader_extract_to_callback(
     mz_zip_archive *pZip, mz_uint file_index, mz_file_write_func pCallback,
@@ -1570,7 +1570,7 @@ MINIZ_EXPORT mz_bool mz_zip_reader_extract_file_to_callback(
     mz_zip_archive *pZip, const char *pFilename, mz_file_write_func pCallback,
     void *pOpaque, mz_uint flags);
 
-/* Extract a file iteratively */
+/* Extract a file_manager iteratively */
 MINIZ_EXPORT mz_zip_reader_extract_iter_state *
 mz_zip_reader_extract_iter_new(mz_zip_archive *pZip, mz_uint file_index,
                                mz_uint flags);
@@ -1583,7 +1583,7 @@ MINIZ_EXPORT mz_bool
 mz_zip_reader_extract_iter_free(mz_zip_reader_extract_iter_state *pState);
 
 #ifndef MINIZ_NO_STDIO
-/* Extracts a archive file to a disk file and sets its last accessed and
+/* Extracts a archive file_manager to a disk file_manager and sets its last accessed and
  * modified times. */
 /* This function only extracts files, not archive directory records. */
 MINIZ_EXPORT mz_bool mz_zip_reader_extract_to_file(mz_zip_archive *pZip,
@@ -1594,7 +1594,7 @@ MINIZ_EXPORT mz_bool mz_zip_reader_extract_file_to_file(
     mz_zip_archive *pZip, const char *pArchive_filename,
     const char *pDst_filename, mz_uint flags);
 
-/* Extracts a archive file starting at the current position in the destination
+/* Extracts a archive file_manager starting at the current position in the destination
  * FILE stream. */
 MINIZ_EXPORT mz_bool mz_zip_reader_extract_to_cfile(mz_zip_archive *pZip,
                                                     mz_uint file_index,
@@ -1619,12 +1619,12 @@ MINIZ_EXPORT mz_bool mz_zip_reader_extract_file_to_cfile(
 /* This function compares the archive's local headers, the optional local zip64
  * extended information block, and the optional descriptor following the
  * compressed data vs. the data in the central directory. */
-/* It also validates that each file can be successfully uncompressed unless the
+/* It also validates that each file_manager can be successfully uncompressed unless the
  * MZ_ZIP_FLAG_VALIDATE_HEADERS_ONLY is specified. */
 MINIZ_EXPORT mz_bool mz_zip_validate_file(mz_zip_archive *pZip,
                                           mz_uint file_index, mz_uint flags);
 
-/* Validates an entire archive by calling mz_zip_validate_file() on each file.
+/* Validates an entire archive by calling mz_zip_validate_file() on each file_manager.
  */
 MINIZ_EXPORT mz_bool mz_zip_validate_archive(mz_zip_archive *pZip,
                                              mz_uint flags);
@@ -1677,9 +1677,9 @@ MINIZ_EXPORT mz_bool mz_zip_writer_init_cfile(mz_zip_archive *pZip,
 #endif
 
 /* Converts a ZIP archive reader object into a writer object, to allow efficient
- * in-place file appends to occur on an existing archive. */
+ * in-place file_manager appends to occur on an existing archive. */
 /* For archives opened using mz_zip_reader_init_file, pFilename must be the
- * archive's filename so it can be reopened for writing. If the file can't be
+ * archive's filename so it can be reopened for writing. If the file_manager can't be
  * reopened, mz_zip_reader_end() will be called. */
 /* For archives opened using mz_zip_reader_init_mem, the memory block must be
  * growable using the realloc callback (which defaults to realloc unless you've
@@ -1688,7 +1688,7 @@ MINIZ_EXPORT mz_bool mz_zip_writer_init_cfile(mz_zip_archive *pZip,
  * user provided m_pWrite function cannot be NULL. */
 /* Note: In-place archive modification is not recommended unless you know what
  * you're doing, because if execution stops or something goes wrong before */
-/* the archive is finalized the file's central directory will be hosed. */
+/* the archive is finalized the file_manager's central directory will be hosed. */
 MINIZ_EXPORT mz_bool mz_zip_writer_init_from_reader(mz_zip_archive *pZip,
                                                     const char *pFilename);
 MINIZ_EXPORT mz_bool mz_zip_writer_init_from_reader_v2(mz_zip_archive *pZip,
@@ -1709,7 +1709,7 @@ MINIZ_EXPORT mz_bool mz_zip_writer_add_mem(mz_zip_archive *pZip,
                                            const void *pBuf, size_t buf_size,
                                            mz_uint level_and_flags);
 
-/* Like mz_zip_writer_add_mem(), except you can specify a file comment field,
+/* Like mz_zip_writer_add_mem(), except you can specify a file_manager comment field,
  * and optionally supply the function with already compressed data. */
 /* uncomp_size/uncomp_crc32 are only used if the MZ_ZIP_FLAG_COMPRESSED_DATA
  * flag is specified. */
@@ -1726,10 +1726,10 @@ MINIZ_EXPORT mz_bool mz_zip_writer_add_mem_ex_v2(
     mz_uint user_extra_data_local_len, const char *user_extra_data_central,
     mz_uint user_extra_data_central_len);
 
-/* Adds the contents of a file to an archive. This function also records the
- * disk file's modified time into the archive. */
+/* Adds the contents of a file_manager to an archive. This function also records the
+ * disk file_manager's modified time into the archive. */
 /* File data is supplied via a read callback function. User
- * mz_zip_writer_add_(c)file to add a file directly.*/
+ * mz_zip_writer_add_(c)file_manager to add a file_manager directly.*/
 MINIZ_EXPORT mz_bool mz_zip_writer_add_read_buf_callback(
     mz_zip_archive *pZip, const char *pArchive_name,
     mz_file_read_func read_callback, void *callback_opaque, mz_uint64 max_size,
@@ -1739,8 +1739,8 @@ MINIZ_EXPORT mz_bool mz_zip_writer_add_read_buf_callback(
     const char *user_extra_data_central, mz_uint user_extra_data_central_len);
 
 #ifndef MINIZ_NO_STDIO
-/* Adds the contents of a disk file to an archive. This function also records
- * the disk file's modified time into the archive. */
+/* Adds the contents of a disk file_manager to an archive. This function also records
+ * the disk file_manager's modified time into the archive. */
 /* level_and_flags - compression level (0-10, see MZ_BEST_SPEED,
  * MZ_BEST_COMPRESSION, etc.) logically OR'd with zero or more mz_zip_flags, or
  * just set to MZ_DEFAULT_COMPRESSION. */
@@ -1749,7 +1749,7 @@ MINIZ_EXPORT mz_bool mz_zip_writer_add_file(
     const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags,
     mz_uint32 ext_attributes);
 
-/* Like mz_zip_writer_add_file(), except the file data is read from the
+/* Like mz_zip_writer_add_file(), except the file_manager data is read from the
  * specified FILE stream. */
 MINIZ_EXPORT mz_bool mz_zip_writer_add_cfile(
     mz_zip_archive *pZip, const char *pArchive_name, MZ_FILE *pSrc_file,
@@ -1759,8 +1759,8 @@ MINIZ_EXPORT mz_bool mz_zip_writer_add_cfile(
     const char *user_extra_data_central, mz_uint user_extra_data_central_len);
 #endif
 
-/* Adds a file to an archive by fully cloning the data from another archive. */
-/* This function fully clones the source file's compressed data (no
+/* Adds a file_manager to an archive by fully cloning the data from another archive. */
+/* This function fully clones the source file_manager's compressed data (no
  * recompression), along with its full filename, extra data (it may add or
  * modify the zip64 local header extra data field), and the optional descriptor
  * following the compressed data. */
@@ -1783,7 +1783,7 @@ MINIZ_EXPORT mz_bool mz_zip_writer_finalize_heap_archive(mz_zip_archive *pZip,
                                                          void **ppBuf,
                                                          size_t *pSize);
 
-/* Ends archive writing, freeing all allocations, and closing the output file if
+/* Ends archive writing, freeing all allocations, and closing the output file_manager if
  * mz_zip_writer_init_file() was used. */
 /* Note for the archive to be valid, it *must* have been finalized before ending
  * (this function will not do it for you). */
@@ -1800,7 +1800,7 @@ MINIZ_EXPORT mz_bool mz_zip_writer_end(mz_zip_archive *pZip);
  * MZ_BEST_COMPRESSION, etc.) logically OR'd with zero or more mz_zip_flags, or
  * just set to MZ_DEFAULT_COMPRESSION. */
 /* TODO: Perhaps add an option to leave the existing central dir in place in
- * case the add dies? We could then truncate the file (so the old central dir
+ * case the add dies? We could then truncate the file_manager (so the old central dir
  * would be at the end) if something goes wrong. */
 MINIZ_EXPORT mz_bool mz_zip_add_mem_to_archive_file_in_place(
     const char *pZip_filename, const char *pArchive_name, const void *pBuf,
@@ -1812,8 +1812,8 @@ MINIZ_EXPORT mz_bool mz_zip_add_mem_to_archive_file_in_place_v2(
     mz_uint level_and_flags, mz_zip_error *pErr);
 
 #ifndef MINIZ_NO_STDIO
-/* Reads a single file from an archive into a heap block. */
-/* If pComment is not NULL, only the file with the specified comment will be
+/* Reads a single file_manager from an archive into a heap block. */
+/* If pComment is not NULL, only the file_manager with the specified comment will be
  * extracted. */
 /* Returns NULL on failure. */
 MINIZ_EXPORT void *
@@ -2293,7 +2293,7 @@ int mz_inflate(mz_streamp pStream, int flush) {
 
   if ((flush == MZ_FINISH) && (first_call)) {
     /* MZ_FINISH on the first call implies that the input and output buffers are
-     * large enough to hold the entire compressed/decompressed file. */
+     * large enough to hold the entire compressed/decompressed file_manager. */
     decomp_flags |= TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF;
     in_bytes = pStream->avail_in;
     out_bytes = pStream->avail_out;
@@ -2444,7 +2444,7 @@ const char *mz_error(int err) {
   } s_error_descs[] = {{MZ_OK, ""},
                        {MZ_STREAM_END, "stream end"},
                        {MZ_NEED_DICT, "need dictionary"},
-                       {MZ_ERRNO, "file error"},
+                       {MZ_ERRNO, "file_manager error"},
                        {MZ_STREAM_ERROR, "stream error"},
                        {MZ_DATA_ERROR, "data error"},
                        {MZ_MEM_ERROR, "out of memory"},
@@ -4107,7 +4107,7 @@ void *tdefl_write_image_to_png_file_in_memory_ex(const void *pImage, int w,
                           *pLen_out + 4);
   for (i = 0; i < 4; ++i, c <<= 8)
     (out_buf.m_pBuf + out_buf.m_size - 16)[i] = (mz_uint8)(c >> 24);
-  /* compute final size of file, grab compressed data buffer and return */
+  /* compute final size of file_manager, grab compressed data buffer and return */
   *pLen_out += 57;
   MZ_FREE(pComp);
   return out_buf.m_pBuf;
@@ -4361,7 +4361,7 @@ tinfl_status tinfl_decompress(tinfl_decompressor *r,
          dist_from_out_buf_start;
 
   /* Ensure the output buffer's size is a power of 2, unless the output buffer
-   * is large enough to hold the entire output file (in which case it doesn't
+   * is large enough to hold the entire output file_manager (in which case it doesn't
    * matter). */
   if (((out_buf_size_mask + 1) & out_buf_size_mask) ||
       (pOut_buf_next < pOut_buf_start)) {
@@ -5106,7 +5106,7 @@ static int mz_mkdir(const char *pDirname) {
 
 #else
 #pragma message(                                                               \
-    "Using fopen, ftello, fseeko, stat() etc. path for file I/O - this path may not support large files.")
+    "Using fopen, ftello, fseeko, stat() etc. path for file_manager I/O - this path may not support large files.")
 #ifndef MINIZ_NO_TIME
 #include <utime.h>
 #endif
@@ -5253,7 +5253,7 @@ struct mz_zip_internal_state_tag {
    * central dir header, etc.) */
   mz_bool m_zip64_has_extended_info_fields;
 
-  /* These fields are used by the file, FILE, memory, and memory/heap read/write
+  /* These fields are used by the file_manager, FILE, memory, and memory/heap read/write
    * helpers. */
   MZ_FILE *m_pFile;
   mz_uint64 m_file_archive_start_ofs;
@@ -5576,7 +5576,7 @@ static mz_bool mz_zip_reader_locate_header_sig(mz_zip_archive *pZip,
   if (pZip->m_archive_size < record_size)
     return MZ_FALSE;
 
-  /* Find the record by scanning the file from the end towards the beginning. */
+  /* Find the record by scanning the file_manager from the end towards the beginning. */
   cur_file_ofs =
       MZ_MAX((mz_int64)pZip->m_archive_size - (mz_int64)sizeof(buf_u32), 0);
   for (;;) {
@@ -5599,7 +5599,7 @@ static mz_bool mz_zip_reader_locate_header_sig(mz_zip_archive *pZip,
       break;
     }
 
-    /* Give up if we've searched the entire file, or we've gone back "too far"
+    /* Give up if we've searched the entire file_manager, or we've gone back "too far"
      * (~64kb) */
     if ((!cur_file_ofs) || ((pZip->m_archive_size - cur_file_ofs) >=
                             (MZ_UINT16_MAX + record_size)))
@@ -5638,7 +5638,7 @@ static mz_bool mz_zip_reader_read_central_dir(mz_zip_archive *pZip,
   mz_uint64 zip64_end_of_central_dir_ofs = 0;
 
   /* Basic sanity checks - reject files which are too small, and check the first
-   * 4 bytes of the file to make sure a local header is there. */
+   * 4 bytes of the file_manager to make sure a local header is there. */
   if (pZip->m_archive_size < MZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIZE)
     return mz_zip_set_error(pZip, MZ_ZIP_NOT_AN_ARCHIVE);
 
@@ -5760,7 +5760,7 @@ static mz_bool mz_zip_reader_read_central_dir(mz_zip_archive *pZip,
   if (pZip->m_total_files) {
     mz_uint i, n;
     /* Read the entire central directory into a heap block, and allocate another
-     * heap block to hold the unsorted central dir file record offsets, and
+     * heap block to hold the unsorted central dir file_manager record offsets, and
      * possibly another to hold the sorted indices. */
     if ((!mz_zip_array_resize(pZip, &pZip->m_pState->m_central_dir, cdir_size,
                               MZ_FALSE)) ||
@@ -5780,7 +5780,7 @@ static mz_bool mz_zip_reader_read_central_dir(mz_zip_archive *pZip,
                       cdir_size) != cdir_size)
       return mz_zip_set_error(pZip, MZ_ZIP_FILE_READ_FAILED);
 
-    /* Now create an index into the central directory file records, do some
+    /* Now create an index into the central directory file_manager records, do some
      * basic sanity checking on each record */
     p = (const mz_uint8 *)pZip->m_pState->m_central_dir.m_p;
     for (n = cdir_size, i = 0; i < pZip->m_total_files; ++i) {
@@ -6272,7 +6272,7 @@ mz_bool mz_zip_reader_is_file_a_directory(mz_zip_archive *pZip,
 
   /* Bugfix: This code was also checking if the internal attribute was non-zero,
    * which wasn't correct. */
-  /* Most/all zip writers (hopefully) set DOS file/directory attributes in the
+  /* Most/all zip writers (hopefully) set DOS file_manager/directory attributes in the
    * low 16-bits, so check for the DOS directory flag and ignore the source OS
    * ID in the created by field. */
   /* FIXME: Remove this check? Is it necessary - we already check the filename.
@@ -6597,7 +6597,7 @@ static mz_bool mz_zip_reader_extract_to_mem_no_alloc1(
   } else if (!mz_zip_reader_file_stat(pZip, file_index, &file_stat))
     return MZ_FALSE;
 
-  /* A directory or zero length file */
+  /* A directory or zero length file_manager */
   if ((file_stat.m_is_directory) || (!file_stat.m_comp_size))
     return MZ_TRUE;
 
@@ -6636,7 +6636,7 @@ static mz_bool mz_zip_reader_extract_to_mem_no_alloc1(
     return mz_zip_set_error(pZip, MZ_ZIP_INVALID_HEADER_OR_CORRUPTED);
 
   if ((flags & MZ_ZIP_FLAG_COMPRESSED_DATA) || (!file_stat.m_method)) {
-    /* The file is stored or the caller has requested the compressed data. */
+    /* The file_manager is stored or the caller has requested the compressed data. */
     if (pZip->m_pRead(pZip->m_pIO_opaque, cur_file_ofs, pBuf,
                       (size_t)needed_size) != needed_size)
       return mz_zip_set_error(pZip, MZ_ZIP_FILE_READ_FAILED);
@@ -6652,7 +6652,7 @@ static mz_bool mz_zip_reader_extract_to_mem_no_alloc1(
     return MZ_TRUE;
   }
 
-  /* Decompress the file either directly from memory or from a file input
+  /* Decompress the file_manager either directly from memory or from a file_manager input
    * buffer. */
   tinfl_init(&inflator);
 
@@ -6716,7 +6716,7 @@ static mz_bool mz_zip_reader_extract_to_mem_no_alloc1(
   } while (status == TINFL_STATUS_NEEDS_MORE_INPUT);
 
   if (status == TINFL_STATUS_DONE) {
-    /* Make sure the entire file was decompressed, and check its CRC. */
+    /* Make sure the entire file_manager was decompressed, and check its CRC. */
     if (out_buf_ofs != file_stat.m_uncomp_size) {
       mz_zip_set_error(pZip, MZ_ZIP_UNEXPECTED_DECOMPRESSED_SIZE);
       status = TINFL_STATUS_FAILED;
@@ -6845,7 +6845,7 @@ mz_bool mz_zip_reader_extract_to_callback(mz_zip_archive *pZip,
   if (!mz_zip_reader_file_stat(pZip, file_index, &file_stat))
     return MZ_FALSE;
 
-  /* A directory or zero length file */
+  /* A directory or zero length file_manager */
   if ((file_stat.m_is_directory) || (!file_stat.m_comp_size))
     return MZ_TRUE;
 
@@ -6879,7 +6879,7 @@ mz_bool mz_zip_reader_extract_to_callback(mz_zip_archive *pZip,
   if ((cur_file_ofs + file_stat.m_comp_size) > pZip->m_archive_size)
     return mz_zip_set_error(pZip, MZ_ZIP_INVALID_HEADER_OR_CORRUPTED);
 
-  /* Decompress the file either directly from memory or from a file input
+  /* Decompress the file_manager either directly from memory or from a file_manager input
    * buffer. */
   if (pZip->m_pState->m_pMem) {
     pRead_buf = (mz_uint8 *)pZip->m_pState->m_pMem + cur_file_ofs;
@@ -6897,7 +6897,7 @@ mz_bool mz_zip_reader_extract_to_callback(mz_zip_archive *pZip,
   }
 
   if ((flags & MZ_ZIP_FLAG_COMPRESSED_DATA) || (!file_stat.m_method)) {
-    /* The file is stored or the caller has requested the compressed data. */
+    /* The file_manager is stored or the caller has requested the compressed data. */
     if (pZip->m_pState->m_pMem) {
       if (((sizeof(size_t) == sizeof(mz_uint32))) &&
           (file_stat.m_comp_size > MZ_UINT32_MAX))
@@ -7008,7 +7008,7 @@ mz_bool mz_zip_reader_extract_to_callback(mz_zip_archive *pZip,
 
   if ((status == TINFL_STATUS_DONE) &&
       (!(flags & MZ_ZIP_FLAG_COMPRESSED_DATA))) {
-    /* Make sure the entire file was decompressed, and check its CRC. */
+    /* Make sure the entire file_manager was decompressed, and check its CRC. */
     if (out_buf_ofs != file_stat.m_uncomp_size) {
       mz_zip_set_error(pZip, MZ_ZIP_UNEXPECTED_DECOMPRESSED_SIZE);
       status = TINFL_STATUS_FAILED;
@@ -7063,7 +7063,7 @@ mz_zip_reader_extract_iter_new(mz_zip_archive *pZip, mz_uint file_index,
     return NULL;
   }
 
-  /* Fetch file details */
+  /* Fetch file_manager details */
   if (!mz_zip_reader_file_stat(pZip, file_index, &pState->file_stat)) {
     pZip->m_pFree(pZip->m_pAlloc_opaque, pState);
     return NULL;
@@ -7130,7 +7130,7 @@ mz_zip_reader_extract_iter_new(mz_zip_archive *pZip, mz_uint file_index,
     return NULL;
   }
 
-  /* Decompress the file either directly from memory or from a file input
+  /* Decompress the file_manager either directly from memory or from a file_manager input
    * buffer. */
   if (pZip->m_pState->m_pMem) {
     pState->pRead_buf =
@@ -7184,7 +7184,7 @@ mz_zip_reader_extract_file_iter_new(mz_zip_archive *pZip, const char *pFilename,
                                     mz_uint flags) {
   mz_uint32 file_index;
 
-  /* Locate file index by name */
+  /* Locate file_manager index by name */
   if (!mz_zip_reader_locate_file_v2(pZip, pFilename, NULL, flags, &file_index))
     return NULL;
 
@@ -7202,11 +7202,11 @@ size_t mz_zip_reader_extract_iter_read(mz_zip_reader_extract_iter_state *pState,
 
   if ((pState->flags & MZ_ZIP_FLAG_COMPRESSED_DATA) ||
       (!pState->file_stat.m_method)) {
-    /* The file is stored or the caller has requested the compressed data, calc
+    /* The file_manager is stored or the caller has requested the compressed data, calc
      * amount to return. */
     copied_to_caller = (size_t)MZ_MIN(buf_size, pState->comp_remaining);
 
-    /* Zip is in memory....or requires reading from a file? */
+    /* Zip is in memory....or requires reading from a file_manager? */
     if (pState->pZip->m_pState->m_pMem) {
       /* Copy data to caller's buffer */
       memcpy(pvBuf, pState->pRead_buf, copied_to_caller);
@@ -7247,7 +7247,7 @@ size_t mz_zip_reader_extract_iter_read(mz_zip_reader_extract_iter_state *pState,
                          (pState->out_buf_ofs & (TINFL_LZ_DICT_SIZE - 1));
 
       if (!pState->out_blk_remain) {
-        /* Read more data from file if none available (and reading from file) */
+        /* Read more data from file_manager if none available (and reading from file_manager) */
         if ((!pState->read_buf_avail) && (!pState->pZip->m_pState->m_pMem)) {
           /* Calc read size */
           pState->read_buf_avail =
@@ -7330,7 +7330,7 @@ mz_zip_reader_extract_iter_free(mz_zip_reader_extract_iter_state *pState) {
   /* Was decompression completed and requested? */
   if ((pState->status == TINFL_STATUS_DONE) &&
       (!(pState->flags & MZ_ZIP_FLAG_COMPRESSED_DATA))) {
-    /* Make sure the entire file was decompressed, and check its CRC. */
+    /* Make sure the entire file_manager was decompressed, and check its CRC. */
     if (pState->out_buf_ofs != pState->file_stat.m_uncomp_size) {
       mz_zip_set_error(pState->pZip, MZ_ZIP_UNEXPECTED_DECOMPRESSED_SIZE);
       pState->status = TINFL_STATUS_FAILED;
@@ -7484,7 +7484,7 @@ mz_bool mz_zip_validate_file(mz_zip_archive *pZip, mz_uint file_index,
                                  &file_stat, &found_zip64_ext_data_in_cdir))
     return MZ_FALSE;
 
-  /* A directory or zero length file */
+  /* A directory or zero length file_manager */
   if ((file_stat.m_is_directory) || (!file_stat.m_uncomp_size))
     return MZ_TRUE;
 
@@ -7925,7 +7925,7 @@ mz_bool mz_zip_writer_init_v2(mz_zip_archive *pZip, mz_uint64 existing_size,
   }
 
   if (pZip->m_file_offset_alignment) {
-    /* Ensure user specified file offset alignment is a power of 2. */
+    /* Ensure user specified file_manager offset alignment is a power of 2. */
     if (pZip->m_file_offset_alignment & (pZip->m_file_offset_alignment - 1))
       return mz_zip_set_error(pZip, MZ_ZIP_INVALID_PARAMETER);
   }
@@ -8105,7 +8105,7 @@ mz_bool mz_zip_writer_init_from_reader_v2(mz_zip_archive *pZip,
     return mz_zip_set_error(pZip, MZ_ZIP_INVALID_PARAMETER);
 
   if (flags & MZ_ZIP_FLAG_WRITE_ZIP64) {
-    /* We don't support converting a non-zip64 file to zip64 - this seems like
+    /* We don't support converting a non-zip64 file_manager to zip64 - this seems like
      * more trouble than it's worth. (What about the existing 32-bit data
      * descriptors that could follow the compressed data?) */
     if (!pZip->m_pState->m_zip64)
@@ -8179,7 +8179,7 @@ mz_bool mz_zip_writer_init_from_reader_v2(mz_zip_archive *pZip,
   /* Clear the sorted central dir offsets, they aren't useful or maintained now.
    */
   /* Even though we're now in write mode, files can still be extracted and
-   * verified, but file locates will be slow. */
+   * verified, but file_manager locates will be slow. */
   /* TODO: We could easily maintain the sorted central directory offsets. */
   mz_zip_array_clear(pZip, &pZip->m_pState->m_sorted_central_dir_offsets);
 
@@ -8197,7 +8197,7 @@ mz_bool mz_zip_writer_init_from_reader_v2_noreopen(mz_zip_archive *pZip,
     return mz_zip_set_error(pZip, MZ_ZIP_INVALID_PARAMETER);
 
   if (flags & MZ_ZIP_FLAG_WRITE_ZIP64) {
-    /* We don't support converting a non-zip64 file to zip64 - this seems like
+    /* We don't support converting a non-zip64 file_manager to zip64 - this seems like
      * more trouble than it's worth. (What about the existing 32-bit data
      * descriptors that could follow the compressed data?) */
     if (!pZip->m_pState->m_zip64)
@@ -8261,7 +8261,7 @@ mz_bool mz_zip_writer_init_from_reader_v2_noreopen(mz_zip_archive *pZip,
   /* Clear the sorted central dir offsets, they aren't useful or maintained now.
    */
   /* Even though we're now in write mode, files can still be extracted and
-   * verified, but file locates will be slow. */
+   * verified, but file_manager locates will be slow. */
   /* TODO: We could easily maintain the sorted central directory offsets. */
   mz_zip_array_clear(pZip, &pZip->m_pState->m_sorted_central_dir_offsets);
 
@@ -8612,7 +8612,7 @@ mz_bool mz_zip_writer_add_mem_ex_v2(
   }
 
   /* Try to do any allocations before writing to the archive, so if an
-   * allocation fails the file remains unmodified. (A good idea if we're doing
+   * allocation fails the file_manager remains unmodified. (A good idea if we're doing
    * an in-place modification.) */
   if ((!mz_zip_array_ensure_room(
           pZip, &pState->m_central_dir,
@@ -8839,7 +8839,7 @@ mz_bool mz_zip_writer_add_read_buf_callback(
   pState = pZip->m_pState;
 
   if ((!pState->m_zip64) && (max_size > MZ_UINT32_MAX)) {
-    /* Source file is too large for non-zip64 */
+    /* Source file_manager is too large for non-zip64 */
     /*return mz_zip_set_error(pZip, MZ_ZIP_ARCHIVE_TOO_LARGE); */
     pState->m_zip64 = MZ_TRUE;
   }
@@ -9913,7 +9913,7 @@ mz_bool mz_zip_add_mem_to_archive_file_in_place_v2(
   }
 
   /* Important: The regular non-64 bit version of stat() can fail here if the
-   * file is very large, which could cause the archive to be overwritten. */
+   * file_manager is very large, which could cause the archive to be overwritten. */
   /* So be sure to compile with _LARGEFILE64_SOURCE 1 */
   if (MZ_FILE_STAT(pZip_filename, &file_stat) != 0) {
     /* Create a new archive. */
@@ -10087,7 +10087,7 @@ const char *mz_zip_get_error_string(mz_zip_error mz_err) {
   case MZ_ZIP_TOO_MANY_FILES:
     return "too many files";
   case MZ_ZIP_FILE_TOO_LARGE:
-    return "file too large";
+    return "file_manager too large";
   case MZ_ZIP_UNSUPPORTED_METHOD:
     return "unsupported method";
   case MZ_ZIP_UNSUPPORTED_ENCRYPTION:
@@ -10115,19 +10115,19 @@ const char *mz_zip_get_error_string(mz_zip_error mz_err) {
   case MZ_ZIP_ALLOC_FAILED:
     return "allocation failed";
   case MZ_ZIP_FILE_OPEN_FAILED:
-    return "file open failed";
+    return "file_manager open failed";
   case MZ_ZIP_FILE_CREATE_FAILED:
-    return "file create failed";
+    return "file_manager create failed";
   case MZ_ZIP_FILE_WRITE_FAILED:
-    return "file write failed";
+    return "file_manager write failed";
   case MZ_ZIP_FILE_READ_FAILED:
-    return "file read failed";
+    return "file_manager read failed";
   case MZ_ZIP_FILE_CLOSE_FAILED:
-    return "file close failed";
+    return "file_manager close failed";
   case MZ_ZIP_FILE_SEEK_FAILED:
-    return "file seek failed";
+    return "file_manager seek failed";
   case MZ_ZIP_FILE_STAT_FAILED:
-    return "file stat failed";
+    return "file_manager stat failed";
   case MZ_ZIP_INVALID_PARAMETER:
     return "invalid parameter";
   case MZ_ZIP_INVALID_FILENAME:
@@ -10137,7 +10137,7 @@ const char *mz_zip_get_error_string(mz_zip_error mz_err) {
   case MZ_ZIP_INTERNAL_ERROR:
     return "internal error";
   case MZ_ZIP_FILE_NOT_FOUND:
-    return "file not found";
+    return "file_manager not found";
   case MZ_ZIP_ARCHIVE_TOO_LARGE:
     return "archive is too large";
   case MZ_ZIP_VALIDATION_FAILED:

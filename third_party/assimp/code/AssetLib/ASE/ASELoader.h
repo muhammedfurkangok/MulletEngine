@@ -65,7 +65,7 @@ public:
     ~ASEImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
@@ -79,7 +79,7 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
@@ -95,7 +95,7 @@ protected:
 private:
     // -------------------------------------------------------------------
     /** Generate normal vectors basing on smoothing groups
-     * (in some cases the normal are already contained in the file)
+     * (in some cases the normal are already contained in the file_manager)
      * \param mesh Mesh to work on
      * \return false if the normals have been recomputed
      */
@@ -163,7 +163,7 @@ private:
 
     // -------------------------------------------------------------------
     /** Generate a default material and add it to the parser's list
-     *  Called if no material has been found in the file (rare for ASE,
+     *  Called if no material has been found in the file_manager (rare for ASE,
      *  but not impossible)
      */
     void GenerateDefaultMaterial();
@@ -172,7 +172,7 @@ protected:
     /** Parser instance */
     ASE::Parser* mParser;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     char* mBuffer;
 
     /** Scene to be filled */

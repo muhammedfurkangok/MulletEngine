@@ -59,7 +59,7 @@ bool CPassiveSocket::BindMulticast(const char *pInterface, const char *pGroup, u
 #endif
 
 	//--------------------------------------------------------------------------
-	// Set the following socket option SO_REUSEADDR.  This will allow the file
+	// Set the following socket option SO_REUSEADDR.  This will allow the file_manager
 	// descriptor to be reused immediately after the socket is closed instead
 	// of setting in a TIMED_WAIT state.
 	//--------------------------------------------------------------------------
@@ -139,7 +139,7 @@ bool CPassiveSocket::Listen(const char *pAddr, uint16 nPort, int32 nConnectionBa
 #endif
 
 	//--------------------------------------------------------------------------
-	// Set the following socket option SO_REUSEADDR.  This will allow the file
+	// Set the following socket option SO_REUSEADDR.  This will allow the file_manager
 	// descriptor to be reused immediately after the socket is closed instead
 	// of setting in a TIMED_WAIT state.
 	//--------------------------------------------------------------------------

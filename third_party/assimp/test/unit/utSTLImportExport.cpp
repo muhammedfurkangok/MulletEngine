@@ -65,7 +65,7 @@ TEST_F(utSTLImporterExporter, importSTLFromFileTest) {
 }
 
 TEST_F(utSTLImporterExporter, test_multiple) {
-    // import same file twice, each with its own importer
+    // import same file_manager twice, each with its own importer
     // must work both times and not crash
     Assimp::Importer importer1;
     const aiScene *scene1 = importer1.ReadFile(ASSIMP_TEST_MODELS_DIR "/STL/Spider_ascii.stl", aiProcess_ValidateDataStructure);
@@ -91,7 +91,7 @@ TEST_F(utSTLImporterExporter, test_with_two_solids) {
 
 TEST_F(utSTLImporterExporter, test_with_empty_solid) {
     Assimp::Importer importer;
-    //STL File with empty mesh. We should still be able to import other meshes in this file. ValidateDataStructure should fail.
+    //STL File with empty mesh. We should still be able to import other meshes in this file_manager. ValidateDataStructure should fail.
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/STL/triangle_with_empty_solid.stl", 0);
     EXPECT_NE(nullptr, scene);
 
@@ -112,7 +112,7 @@ TEST_F(utSTLImporterExporter, exporterTest) {
     const aiScene *scene2 = importer.ReadFile(stlFileName, aiProcess_ValidateDataStructure);
     EXPECT_NE(nullptr, scene2);
 
-    // Cleanup, delete the exported file
+    // Cleanup, delete the exported file_manager
     std::remove(stlFileName);
 }
 
@@ -170,7 +170,7 @@ TEST_F(utSTLImporterExporter, test_export_pointclouds) {
     const char *stlFileName = "testExport.stl";
     mAiExporter.Export(&scene, "stl", stlFileName, 0, properties);
 
-    // Cleanup, delete the exported file
+    // Cleanup, delete the exported file_manager
     ::remove(stlFileName);
     delete properties;
 }

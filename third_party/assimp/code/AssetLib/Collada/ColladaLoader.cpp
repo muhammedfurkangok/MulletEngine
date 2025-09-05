@@ -110,9 +110,9 @@ ColladaLoader::ColladaLoader() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool ColladaLoader::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
-    // Look for a DAE file inside, but don't extract it
+    // Look for a DAE file_manager inside, but don't extract it
     ZipArchiveIOSystem zip_archive(pIOHandler, pFile);
     if (zip_archive.isOpen()) {
         return !ColladaParser::ReadZaeManifest(zip_archive).empty();
@@ -132,13 +132,13 @@ void ColladaLoader::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get file extension list
+// Get file_manager extension list
 const aiImporterDesc *ColladaLoader::GetInfo() const {
     return &desc;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void ColladaLoader::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     mFileName = pFile;
 
@@ -153,7 +153,7 @@ void ColladaLoader::InternReadFile(const std::string &pFile, aiScene *pScene, IO
     mTextures.clear();
     mAnims.clear();
 
-    // parse the input file
+    // parse the input file_manager
     ColladaParser parser(pIOHandler, pFile);
 
     if (!parser.mRootNode) {
@@ -1476,7 +1476,7 @@ void ColladaLoader::AddTexture(aiMaterial &mat,
         const Sampler &sampler,
         aiTextureType type,
         unsigned int idx) {
-    // first of all, basic file name
+    // first of all, basic file_manager name
     const aiString name = FindFilenameForEffectTexture(pParser, effect, sampler.mName);
     mat.AddProperty(&name, _AI_MATKEY_TEXTURE_BASE, type, idx);
 
@@ -1697,7 +1697,7 @@ aiString ColladaLoader::FindFilenameForEffectTexture(const ColladaParser &pParse
     if (imIt == pParser.mImageLibrary.end()) {
         ASSIMP_LOG_WARN("Collada: Unable to resolve effect texture entry \"", pName, "\", ended up at ID \"", name, "\".");
 
-        //set default texture file name
+        //set default texture file_manager name
         result.Set(name + ".jpg");
         ColladaParser::UriDecodePath(result);
         return result;
@@ -1729,7 +1729,7 @@ aiString ColladaLoader::FindFilenameForEffectTexture(const ColladaParser &pParse
     }
 
     if (imIt->second.mFileName.empty()) {
-        throw DeadlyImportError("Collada: Invalid texture, no data or file reference given");
+        throw DeadlyImportError("Collada: Invalid texture, no data or file_manager reference given");
     }
 
     result.Set(imIt->second.mFileName);

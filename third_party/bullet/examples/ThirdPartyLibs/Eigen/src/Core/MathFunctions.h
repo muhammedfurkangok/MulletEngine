@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2006-2010 Benoit Jacob <jacob.benoit.1@gmail.com>
@@ -6,7 +6,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_MATHFUNCTIONS_H
 #define EIGEN_MATHFUNCTIONS_H
@@ -349,7 +349,7 @@ struct sqrt_retval
   typedef Scalar type;
 };
 
-// Default implementation relies on numext::sqrt, at bottom of file.
+// Default implementation relies on numext::sqrt, at bottom of file_manager.
 template<typename T>
 struct rsqrt_impl;
 
@@ -1063,7 +1063,7 @@ template<> EIGEN_TMP_NOOPT_ATTRIB bool isinf_impl(const long double& x) { return
 
 #endif
 
-// The following overload are defined at the end of this file
+// The following overload are defined at the end of this file_manager
 template<typename T> EIGEN_DEVICE_FUNC bool isfinite_impl(const std::complex<T>& x);
 template<typename T> EIGEN_DEVICE_FUNC bool isnan_impl(const std::complex<T>& x);
 template<typename T> EIGEN_DEVICE_FUNC bool isinf_impl(const std::complex<T>& x);

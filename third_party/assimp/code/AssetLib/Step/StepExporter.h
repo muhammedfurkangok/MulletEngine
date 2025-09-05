@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file StepExporter.h
- * Declares the exporter class to write a scene to a Collada file
+ * Declares the exporter class to write a scene to a Collada file_manager
  */
 #ifndef AI_STEPEXPORTER_H_INC
 #define AI_STEPEXPORTER_H_INC
@@ -84,7 +84,7 @@ protected:
     /// The IOSystem for output
     IOSystem* mIOSystem;
 
-    /// Name of the file (without extension) where the scene will be exported
+    /// Name of the file_manager (without extension) where the scene will be exported
     std::string mFile;
 
     /// Path of the directory where the scene will be exported

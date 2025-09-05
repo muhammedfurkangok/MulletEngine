@@ -629,17 +629,17 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 				{
 					case ERROR_FILE_NOT_FOUND:
 					{
-						b3Warning("\nCached file not found %s\n", binaryFileName);
+						b3Warning("\nCached file_manager not found %s\n", binaryFileName);
 						break;
 					}
 					case ERROR_PATH_NOT_FOUND:
 					{
-						b3Warning("\nCached file path not found %s\n", binaryFileName);
+						b3Warning("\nCached file_manager path not found %s\n", binaryFileName);
 						break;
 					}
 					default:
 					{
-						b3Warning("\nFailed reading cached file with errorCode = %d\n", errorCode);
+						b3Warning("\nFailed reading cached file_manager with errorCode = %d\n", errorCode);
 					}
 				}
 			}
@@ -688,7 +688,7 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 					}
 					else
 					{
-						b3Warning("\nCached binary file out-of-date (%s)\n", binaryFileName);
+						b3Warning("\nCached binary file_manager out-of-date (%s)\n", binaryFileName);
 					}
 					CloseHandle(srcFileHandle);
 				}
@@ -701,7 +701,7 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 					{
 						case ERROR_FILE_NOT_FOUND:
 						{
-							b3Warning("\nSrc file not found %s\n", clFileNameForCaching);
+							b3Warning("\nSrc file_manager not found %s\n", clFileNameForCaching);
 							break;
 						}
 						case ERROR_PATH_NOT_FOUND:
@@ -711,11 +711,11 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 						}
 						default:
 						{
-							b3Warning("\nnSrc file reading errorCode = %d\n", errorCode);
+							b3Warning("\nnSrc file_manager reading errorCode = %d\n", errorCode);
 						}
 					}
 
-					//we should make sure the src file exists so we can verify the timestamp with binary
+					//we should make sure the src file_manager exists so we can verify the timestamp with binary
 					//					assert(0);
 					b3Warning("Warning: cannot find OpenCL kernel %s to verify timestamp of binary cached kernel %s\n", clFileNameForCaching, binaryFileName);
 					fileUpToDate = true;
@@ -742,9 +742,9 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 	if (fileUpToDate)
 	{
 #ifdef _MSC_VER
-		FILE* file;
-		if (fopen_s(&file, binaryFileName, "rb") != 0)
-			file = 0;
+		FILE* file_manager;
+		if (fopen_s(&file_manager, binaryFileName, "rb") != 0)
+			file_manager = 0;
 #else
 		FILE* file = fopen(binaryFileName, "rb");
 #endif
@@ -872,7 +872,7 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 			// there's no information in the reference whether the string is 0 terminated or not
 			build_log[ret_val_size] = '\0';
 
-			b3Error("Error in clBuildProgram, Line %u in file %s, Log: \n%s\n !!!\n\n", __LINE__, __FILE__, build_log);
+			b3Error("Error in clBuildProgram, Line %u in file_manager %s, Log: \n%s\n !!!\n\n", __LINE__, __FILE__, build_log);
 			free(build_log);
 			if (pErrNum)
 				*pErrNum = localErrNum;
@@ -901,8 +901,8 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 				{
 					FILE* file = 0;
 #ifdef _MSC_VER
-					if (fopen_s(&file, binaryFileName, "wb") != 0)
-						file = 0;
+					if (fopen_s(&file_manager, binaryFileName, "wb") != 0)
+						file_manager = 0;
 #else
 					file = fopen(binaryFileName, "wb");
 #endif
@@ -913,7 +913,7 @@ cl_program b3OpenCLUtils_compileCLProgramFromString(cl_context clContext, cl_dev
 					}
 					else
 					{
-						b3Warning("cannot write file %s\n", binaryFileName);
+						b3Warning("cannot write file_manager %s\n", binaryFileName);
 					}
 				}
 
@@ -944,7 +944,7 @@ cl_kernel b3OpenCLUtils_compileCLKernelFromString(cl_context clContext, cl_devic
 	kernel = clCreateKernel(m_cpProgram, kernelName, &localErrNum);
 	if (localErrNum != CL_SUCCESS)
 	{
-		b3Error("Error in clCreateKernel, Line %u in file %s, cannot find kernel function %s !!!\n\n", __LINE__, __FILE__, kernelName);
+		b3Error("Error in clCreateKernel, Line %u in file_manager %s, cannot find kernel function %s !!!\n\n", __LINE__, __FILE__, kernelName);
 		assert(0);
 		if (pErrNum)
 			*pErrNum = localErrNum;

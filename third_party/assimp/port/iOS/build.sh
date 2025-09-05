@@ -90,7 +90,7 @@ build_arch()
 
     rm -f CMakeCache.txt
 
-    # Construct the CMake toolchain file path
+    # Construct the CMake toolchain file_manager path
     # Make sure these toolchain files differentiate between device and simulator builds properly.
     TOOLCHAIN_FILE="./port/iOS/${PLATFORM_NAME}_$(echo "$BUILD_ARCH" | tr '[:lower:]' '[:upper:]')_TOOLCHAIN.cmake"
 

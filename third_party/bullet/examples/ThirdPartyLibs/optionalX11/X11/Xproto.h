@@ -6,7 +6,7 @@
  * 1. The compiler is able
  * to generate code which addresses one- and two-byte quantities.
  * In the worst case, this would be done with bit-fields.  If bit-fields
- * are used it may be necessary to reorder the request fields in this file,
+ * are used it may be necessary to reorder the request fields in this file_manager,
  * depending on the order in which the machine assigns bit fields to
  * machine words.  There may also be a problem with sign extension,
  * as K+R specify that bitfields are always unsigned.
@@ -231,9 +231,9 @@ SOFTWARE.
 #define sz_xPropIconSize 24
 #define sz_xChangeKeyboardMappingReq 8
 
-/* For the purpose of the structure definitions in this file,
+/* For the purpose of the structure definitions in this file_manager,
 we must redefine the following types in terms of Xmd.h's types, which may
-include bit fields.  All of these are #undef'd at the end of this file,
+include bit fields.  All of these are #undef'd at the end of this file_manager,
 restoring the definitions in X.h.  */
 
 #define Window CARD32

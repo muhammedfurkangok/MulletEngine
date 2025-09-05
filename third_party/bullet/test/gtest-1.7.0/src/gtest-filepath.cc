@@ -67,7 +67,7 @@ namespace internal
 #if GTEST_OS_WINDOWS
 // On Windows, '\\' is the standard path separator, but many tools and the
 // Windows API also accept '/' as an alternate path separator. Unless otherwise
-// noted, a file path can contain either kind of path separators, or a mixture
+// noted, a file_manager path can contain either kind of path separators, or a mixture
 // of them.
 const char kPathSeparator = '\\';
 const char kAlternatePathSeparator = '/';
@@ -116,8 +116,8 @@ FilePath FilePath::GetCurrentDir()
 }
 
 // Returns a copy of the FilePath with the case-insensitive extension removed.
-// Example: FilePath("dir/file.exe").RemoveExtension("EXE") returns
-// FilePath("dir/file"). If a case-insensitive extension is not
+// Example: FilePath("dir/file_manager.exe").RemoveExtension("EXE") returns
+// FilePath("dir/file_manager"). If a case-insensitive extension is not
 // found, returns a copy of the original FilePath.
 FilePath FilePath::RemoveExtension(const char* extension) const
 {
@@ -149,9 +149,9 @@ const char* FilePath::FindLastPathSeparator() const
 }
 
 // Returns a copy of the FilePath with the directory part removed.
-// Example: FilePath("path/to/file").RemoveDirectoryName() returns
-// FilePath("file"). If there is no directory part ("just_a_file"), it returns
-// the FilePath unmodified. If there is no file part ("just_a_dir/") it
+// Example: FilePath("path/to/file_manager").RemoveDirectoryName() returns
+// FilePath("file_manager"). If there is no directory part ("just_a_file"), it returns
+// the FilePath unmodified. If there is no file_manager part ("just_a_dir/") it
 // returns an empty FilePath ("").
 // On Windows platform, '\' is the path separator, otherwise it is '/'.
 FilePath FilePath::RemoveDirectoryName() const
@@ -161,10 +161,10 @@ FilePath FilePath::RemoveDirectoryName() const
 }
 
 // RemoveFileName returns the directory path with the filename removed.
-// Example: FilePath("path/to/file").RemoveFileName() returns "path/to/".
+// Example: FilePath("path/to/file_manager").RemoveFileName() returns "path/to/".
 // If the FilePath is "a_file" or "/a_file", RemoveFileName returns
 // FilePath("./") or, on Windows, FilePath(".\\"). If the filepath does
-// not have a file, like "just/a/dir/", it returns the FilePath unmodified.
+// not have a file_manager, like "just/a/dir/", it returns the FilePath unmodified.
 // On Windows platform, '\' is the path separator, otherwise it is '/'.
 FilePath FilePath::RemoveFileName() const
 {
@@ -215,8 +215,8 @@ FilePath FilePath::ConcatPaths(const FilePath& directory,
 	return FilePath(dir.string() + kPathSeparator + relative_path.string());
 }
 
-// Returns true if pathname describes something findable in the file-system,
-// either a file, directory, or whatever.
+// Returns true if pathname describes something findable in the file_manager-system,
+// either a file_manager, directory, or whatever.
 bool FilePath::FileOrDirectoryExists() const
 {
 #if GTEST_OS_WINDOWS_MOBILE
@@ -230,7 +230,7 @@ bool FilePath::FileOrDirectoryExists() const
 #endif  // GTEST_OS_WINDOWS_MOBILE
 }
 
-// Returns true if pathname describes a directory in the file-system
+// Returns true if pathname describes a directory in the file_manager-system
 // that exists.
 bool FilePath::DirectoryExists() const
 {
@@ -290,7 +290,7 @@ bool FilePath::IsAbsolutePath() const
 #endif
 }
 
-// Returns a pathname for a file that does not currently exist. The pathname
+// Returns a pathname for a file_manager that does not currently exist. The pathname
 // will be directory/base_name.extension or
 // directory/base_name_<number>.extension if directory/base_name.extension
 // already exists. The number will be incremented until a pathname is found
@@ -313,7 +313,7 @@ FilePath FilePath::GenerateUniqueFileName(const FilePath& directory,
 
 // Returns true if FilePath ends with a path separator, which indicates that
 // it is intended to represent a directory. Returns false otherwise.
-// This does NOT check that a directory (or file) actually exists.
+// This does NOT check that a directory (or file_manager) actually exists.
 bool FilePath::IsDirectory() const
 {
 	return !pathname_.empty() &&

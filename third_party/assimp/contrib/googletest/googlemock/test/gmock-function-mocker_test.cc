@@ -29,14 +29,14 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file tests the function mocker classes.
+// This file_manager tests the function mocker classes.
 #include "gmock/gmock-function-mocker.h"
 
 // Silence C4503 (decorated name length exceeded) for MSVC.
 GTEST_DISABLE_MSC_WARNINGS_PUSH_(4503)
 
 #ifdef GTEST_OS_WINDOWS
-// MSDN says the header file to be included for STDMETHOD is BaseTyps.h but
+// MSDN says the header file_manager to be included for STDMETHOD is BaseTyps.h but
 // we are getting compiler errors if we use basetyps.h, hence including
 // objbase.h for definition of STDMETHOD.
 #include <objbase.h>

@@ -38,7 +38,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ----------------------------------------------------------------------
 */
 
-/** @file Android implementation of IOSystem using the standard C file functions.
+/** @file Android implementation of IOSystem using the standard C file_manager functions.
  * Aimed to ease the access to android assets */
 
 #if __ANDROID__ and __ANDROID_API__ > 9 and defined(AI_CONFIG_ANDROID_JNI_ASSIMP_MANAGER_SUPPORT)

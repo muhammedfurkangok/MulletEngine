@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -29,8 +29,8 @@ class ObjEncoder {
  public:
   ObjEncoder();
 
-  // Encodes the mesh or a point cloud  and saves it into a file.
-  // Returns false when either the encoding failed or when the file couldn't be
+  // Encodes the mesh or a point cloud  and saves it into a file_manager.
+  // Returns false when either the encoding failed or when the file_manager couldn't be
   // opened.
   bool EncodeToFile(const PointCloud &pc, const std::string &file_name);
   bool EncodeToFile(const Mesh &mesh, const std::string &file_name);

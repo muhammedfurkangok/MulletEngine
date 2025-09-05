@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 // Functions for creating prediction schemes from a provided prediction method
-// name. The functions in this file can create only basic prediction schemes
+// name. The functions in this file_manager can create only basic prediction schemes
 // that don't require any encoder or decoder specific data. To create more
 // sophisticated prediction schemes, use functions from either
 // prediction_scheme_encoder_factory.h  or,

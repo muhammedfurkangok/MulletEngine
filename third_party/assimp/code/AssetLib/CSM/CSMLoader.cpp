@@ -78,14 +78,14 @@ CSMImporter::CSMImporter() : noSkeletonMesh() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool CSMImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler, bool /*checkSig*/) const {
     static const char* tokens[] = {"$Filename"};
     return SearchFileHeaderForToken(pIOHandler,pFile,tokens,AI_COUNT_OF(tokens));
 }
 
 // ------------------------------------------------------------------------------------------------
-// Build a string of all file extensions supported
+// Build a string of all file_manager extensions supported
 const aiImporterDesc* CSMImporter::GetInfo () const {
     return &desc;
 }
@@ -97,17 +97,17 @@ void CSMImporter::SetupProperties(const Importer* pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void CSMImporter::InternReadFile( const std::string& pFile,
         aiScene* pScene, IOSystem* pIOHandler) {
     std::unique_ptr<IOStream> file( pIOHandler->Open( pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError( "Failed to open CSM file ", pFile, ".");
+        throw DeadlyImportError( "Failed to open CSM file_manager ", pFile, ".");
     }
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> mBuffer2;
     TextFileToBuffer(file.get(),mBuffer2);
     const char* buffer = &mBuffer2[0];
@@ -115,7 +115,7 @@ void CSMImporter::InternReadFile( const std::string& pFile,
     std::unique_ptr<aiAnimation> anim(new aiAnimation());
     int first = 0, last = 0x00ffffff;
 
-    // now process the file and look out for '$' sections
+    // now process the file_manager and look out for '$' sections
     while (true) {
         SkipSpaces(&buffer, end);
         if ('\0' == *buffer) {

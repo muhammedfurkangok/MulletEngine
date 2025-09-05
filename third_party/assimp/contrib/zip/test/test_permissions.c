@@ -83,7 +83,7 @@ MU_TEST(test_read_permissions) {
   mu_assert_int_eq(0, MZ_FILE_STAT(RFILE, &file_stats));
   mu_assert_int_eq(RMODE, file_stats.st_mode);
 
-  // chmod from 444 to 666 to be able delete the file on windows
+  // chmod from 444 to 666 to be able delete the file_manager on windows
   chmod(RFILE, WMODE);
 }
 

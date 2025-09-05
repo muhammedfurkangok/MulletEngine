@@ -40,8 +40,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file  BlenderDNA.h
- *  @brief Blender `DNA` (file format specification embedded in
- *    blend file itself) loader.
+ *  @brief Blender `DNA` (file_manager format specification embedded in
+ *    blend file_manager itself) loader.
  */
 #ifndef INCLUDED_AI_BLEND_DNA_H
 #define INCLUDED_AI_BLEND_DNA_H
@@ -119,7 +119,7 @@ struct ElemBase {
 
 // -------------------------------------------------------------------------------
 /** Represents a generic pointer to a memory location, which can be either 32
- *  or 64 bits. These pointers are loaded from the BLEND file and finally
+ *  or 64 bits. These pointers are loaded from the BLEND file_manager and finally
  *  fixed to point to the real, converted representation of the objects
  *  they used to point to.*/
 // -------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ struct Pointer {
 };
 
 // -------------------------------------------------------------------------------
-/** Represents a generic offset within a BLEND file */
+/** Represents a generic offset within a BLEND file_manager */
 // -------------------------------------------------------------------------------
 struct FileOffset {
     FileOffset() :
@@ -172,7 +172,7 @@ enum FieldFlags {
 };
 
 // -------------------------------------------------------------------------------
-/** Represents a single member of a data structure in a BLEND file */
+/** Represents a single member of a data structure in a BLEND file_manager */
 // -------------------------------------------------------------------------------
 struct Field {
     std::string name;
@@ -190,7 +190,7 @@ struct Field {
 };
 
 // -------------------------------------------------------------------------------
-/** Range of possible behaviors for fields absence in the input file. Some are
+/** Range of possible behaviors for fields absence in the input file_manager. Some are
  *  mission critical so we need them, while others can silently be default
  *  initialized and no animations are harmed. */
 // -------------------------------------------------------------------------------
@@ -208,11 +208,11 @@ enum ErrorPolicy {
 #endif
 
 // -------------------------------------------------------------------------------
-/** Represents a data structure in a BLEND file. A Structure defines n fields
+/** Represents a data structure in a BLEND file_manager. A Structure defines n fields
  *  and their locations and encodings the input stream. Usually, every
  *  Structure instance pertains to one equally-named data structure in the
  *  BlenderScene.h header. This class defines various utilities to map a
- *  binary `blob` read from the file to such a structure instance with
+ *  binary `blob` read from the file_manager to such a structure instance with
  *  meaningful contents. */
 // -------------------------------------------------------------------------------
 class Structure {
@@ -313,7 +313,7 @@ public:
     *   @brief  field parsing for dynamic vectors
     *   @param[in]  out vector of struct to be filled
     *   @param[in]  name of field
-    *   @param[in]  db to access the file, dna, ...
+    *   @param[in]  db to access the file_manager, dna, ...
     *   @return true when read was successful
     */
     template <int error_policy, template <typename> class TOUT, typename T>
@@ -324,7 +324,7 @@ public:
     *   @param[in]  out shared_ptr to be filled
     *   @param[in]  cdtype customdata type to read
     *   @param[in]  name of field ptr
-    *   @param[in]  db to access the file, dna, ...
+    *   @param[in]  db to access the file_manager, dna, ...
     *   @return true when read was successful
     */
     template <int error_policy>
@@ -440,8 +440,8 @@ template <> inline void Structure :: Convert<double> (double& dest,const FileDat
 template <> inline void Structure :: Convert<Pointer> (Pointer& dest,const FileDatabase& db) const;
 
 // -------------------------------------------------------------------------------
-/** Represents the full data structure information for a single BLEND file.
- *  This data is extracted from the DNA1 chunk in the file.
+/** Represents the full data structure information for a single BLEND file_manager.
+ *  This data is extracted from the DNA1 chunk in the file_manager.
  *  #DNAParser does the reading and represents currently the only place where
  *  DNA is altered.*/
 // -------------------------------------------------------------------------------
@@ -512,8 +512,8 @@ public:
 
 #if ASSIMP_BUILD_BLENDER_DEBUG_DNA
     // --------------------------------------------------------
-    /** Dump the DNA to a text file. This is for debugging purposes.
-     *  The output file is `dna.txt` in the current working folder*/
+    /** Dump the DNA to a text file_manager. This is for debugging purposes.
+     *  The output file_manager is `dna.txt` in the current working folder*/
     void DumpToFile();
 #endif
 
@@ -546,11 +546,11 @@ template <>
 inline void Structure ::Convert<Pointer>(Pointer &dest, const FileDatabase &db) const;
 
 // -------------------------------------------------------------------------------
-/** Describes a master file block header. Each master file sections holds n
+/** Describes a master file_manager block header. Each master file_manager sections holds n
  *  elements of a certain SDNA structure (or otherwise unspecified data). */
 // -------------------------------------------------------------------------------
 struct FileBlockHead {
-    // points right after the header of the file block
+    // points right after the header of the file_manager block
     StreamReaderAny::pos start;
 
     std::string id;
@@ -565,7 +565,7 @@ struct FileBlockHead {
     // number of structure instances to follow
     size_t num;
 
-    // file blocks are sorted by address to quickly locate specific memory addresses
+    // file_manager blocks are sorted by address to quickly locate specific memory addresses
     bool operator<(const FileBlockHead &o) const {
         return address.val < o.address.val;
     }
@@ -582,15 +582,15 @@ inline bool operator<(const Pointer &a, const Pointer &b) {
 }
 
 // -------------------------------------------------------------------------------
-/** Utility to read all master file blocks in turn. */
+/** Utility to read all master file_manager blocks in turn. */
 // -------------------------------------------------------------------------------
 class SectionParser {
 public:
     // --------------------------------------------------------
     /** @param stream Inout stream, must point to the
-     *  first section in the file. Call Next() once
+     *  first section in the file_manager. Call Next() once
      *  to have it read.
-     *  @param ptr64 Pointer size in file is 64 bits? */
+     *  @param ptr64 Pointer size in file_manager is 64 bits? */
     SectionParser(StreamReaderAny &stream, bool ptr64) :
             stream(stream), ptr64(ptr64) {
         current.size = current.start = 0;
@@ -616,7 +616,7 @@ public:
 
 #ifndef ASSIMP_BUILD_BLENDER_NO_STATS
 // -------------------------------------------------------------------------------
-/** Import statistics, i.e. number of file blocks read*/
+/** Import statistics, i.e. number of file_manager blocks read*/
 // -------------------------------------------------------------------------------
 class Statistics {
 
@@ -658,7 +658,7 @@ public:
 public:
     ObjectCache(const FileDatabase &db) :
             db(db) {
-        // currently there are only ~400 structure records per blend file.
+        // currently there are only ~400 structure records per blend file_manager.
         // we read only a small part of them and don't cache objects
         // which we don't need, so this should suffice.
         caches.reserve(64);
@@ -713,7 +713,7 @@ public:
 #endif
 
 // -------------------------------------------------------------------------------
-/** Memory representation of a full BLEND file and all its dependencies. The
+/** Memory representation of a full BLEND file_manager and all its dependencies. The
  *  output aiScene is constructed from an instance of this data structure. */
 // -------------------------------------------------------------------------------
 class FileDatabase {
@@ -768,7 +768,7 @@ private:
 #endif
 
 // -------------------------------------------------------------------------------
-/** Factory to extract a #DNA from the DNA1 file block in a BLEND file. */
+/** Factory to extract a #DNA from the DNA1 file_manager block in a BLEND file_manager. */
 // -------------------------------------------------------------------------------
 class DNAParser {
 
@@ -779,7 +779,7 @@ public:
 
 public:
     // --------------------------------------------------------
-    /** Locate the DNA in the file and parse it. The input
+    /** Locate the DNA in the file_manager and parse it. The input
      *  stream is expected to point to the beginning of the DN1
      *  chunk at the time this method is called and is
      *  undefined afterwards.

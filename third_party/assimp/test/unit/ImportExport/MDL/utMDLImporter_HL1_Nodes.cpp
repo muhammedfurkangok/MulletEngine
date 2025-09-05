@@ -230,18 +230,18 @@ public:
     }
 
     /*  Given a model with several bodyparts that contains multiple
-        sub models with the same file name, verify for each bodypart
+        sub models with the same file_manager name, verify for each bodypart
         sub model of the imported model that they have a unique name.
 
         $bodygroup "first_bodypart"
         {
-            studio "triangle"   <------+ duplicate file names.
+            studio "triangle"   <------+ duplicate file_manager names.
             studio "triangle"   -------+
         }                              |
                                        |
         $bodygroup "second_bodypart"   |
         {                              |
-            studio "triangle"   -------+ same as first bodypart, but with same file.
+            studio "triangle"   -------+ same as first bodypart, but with same file_manager.
             studio "triangle"   -------+
         }
 

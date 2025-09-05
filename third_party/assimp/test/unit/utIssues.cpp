@@ -76,7 +76,7 @@ TEST_F( utIssues, OpacityBugWhenExporting_727 ) {
     
     TestModelFactory::releaseDefaultTestModel(&scene);
 
-    // Cleanup. Delete exported dae.dae file
+    // Cleanup. Delete exported dae.dae file_manager
     EXPECT_EQ(0, std::remove(path.c_str()));
 }
 

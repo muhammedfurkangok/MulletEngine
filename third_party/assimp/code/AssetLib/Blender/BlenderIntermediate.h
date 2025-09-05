@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** @file  BlenderIntermediate.h
  *  @brief Internal utility structures for the BlenderLoader. It also serves
- *    as master include file for the whole (internal) Blender subsystem.
+ *    as master include file_manager for the whole (internal) Blender subsystem.
  */
 #ifndef INCLUDED_AI_BLEND_INTERMEDIATE_H
 #define INCLUDED_AI_BLEND_INTERMEDIATE_H
@@ -168,7 +168,7 @@ namespace Blender {
         // next texture ID for each texture type, respectively
         unsigned int next_texture[aiTextureType_UNKNOWN+1];
 
-        // original file data
+        // original file_manager data
         const FileDatabase& db;
     };
 #if defined(_MSC_VER) && _MSC_VER < 1900

@@ -37,7 +37,7 @@ check_include_file(stdint.h    HAVE_STDINT_H)
 check_include_file(stddef.h    HAVE_STDDEF_H)
 
 #
-# Check to see if we have large file support
+# Check to see if we have large file_manager support
 #
 set(CMAKE_REQUIRED_DEFINITIONS -D_LARGEFILE64_SOURCE=1)
 # We add these other definitions here because CheckTypeSize.cmake

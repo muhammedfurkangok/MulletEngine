@@ -38,7 +38,7 @@ namespace Eigen {
 namespace internal {
 
 /**********************************************************************
-* This file implements selfadjoint matrix-vector multiplication using BLAS
+* This file_manager implements selfadjoint matrix-vector multiplication using BLAS
 **********************************************************************/
 
 // symv/hemv specialization

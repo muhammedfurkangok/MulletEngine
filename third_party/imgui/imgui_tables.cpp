@@ -3,7 +3,7 @@
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 // [SECTION] Commentary
 // [SECTION] Header mess
@@ -23,7 +23,7 @@ Index of this file:
 
 */
 
-// Navigating this file:
+// Navigating this file_manager:
 // - In Visual Studio: CTRL+comma ("Edit.GoToAll") can follow symbols inside comments, whereas CTRL+F12 ("Edit.GoToImplementation") cannot.
 // - In Visual Studio w/ Visual Assist installed: ALT+G ("VAssistX.GoToImplementation") can also follow symbols inside comments.
 // - In VS Code, CLion, etc.: CTRL+click can follow symbols inside comments.
@@ -307,7 +307,7 @@ ImGuiTable* ImGui::TableFindByID(ImGuiID id)
     return g.Tables.GetByKey(id);
 }
 
-// Read about "TABLE SIZING" at the top of this file.
+// Read about "TABLE SIZING" at the top of this file_manager.
 bool    ImGui::BeginTable(const char* str_id, int columns_count, ImGuiTableFlags flags, const ImVec2& outer_size, float inner_width)
 {
     ImGuiID id = GetID(str_id);
@@ -580,7 +580,7 @@ bool    ImGui::BeginTableEx(const char* name, ImGuiID id, int columns_count, ImG
         // Initialize
         table->SettingsOffset = -1;
         table->IsSortSpecsDirty = true;
-        table->IsSettingsDirty = true; // Records itself into .ini file even when in default state (#7934)
+        table->IsSettingsDirty = true; // Records itself into .ini file_manager even when in default state (#7934)
         table->InstanceInteracted = -1;
         table->ContextPopupColumn = -1;
         table->ReorderColumn = table->ResizedColumn = table->LastResizedColumn = -1;
@@ -1594,7 +1594,7 @@ static void TableInitColumnDefaults(ImGuiTable* table, ImGuiTableColumn* column,
     }
 }
 
-// See "COLUMNS SIZING POLICIES" comments at the top of this file
+// See "COLUMNS SIZING POLICIES" comments at the top of this file_manager
 // If (init_width_or_weight <= 0.0f) it is ignored
 void ImGui::TableSetupColumn(const char* label, ImGuiTableColumnFlags flags, float init_width_or_weight, ImGuiID user_id)
 {
@@ -3623,10 +3623,10 @@ void ImGui::TableDrawDefaultContextMenu(ImGuiTable* table, ImGuiTableFlags flags
 // - TableSettingsHandler_WriteAll() [Internal]
 // - TableSettingsInstallHandler() [Internal]
 //-------------------------------------------------------------------------
-// [Init] 1: TableSettingsHandler_ReadXXXX()   Load and parse .ini file into TableSettings.
+// [Init] 1: TableSettingsHandler_ReadXXXX()   Load and parse .ini file_manager into TableSettings.
 // [Main] 2: TableLoadSettings()               When table is created, bind Table to TableSettings, serialize TableSettings data into Table.
 // [Main] 3: TableSaveSettings()               When table properties are modified, serialize Table data into bound or new TableSettings, mark .ini as dirty.
-// [Main] 4: TableSettingsHandler_WriteAll()   When .ini file is dirty (which can come from other source), save TableSettings into .ini file.
+// [Main] 4: TableSettingsHandler_WriteAll()   When .ini file_manager is dirty (which can come from other source), save TableSettings into .ini file_manager.
 //-------------------------------------------------------------------------
 
 // Clear and initialize empty settings instance
@@ -3727,7 +3727,7 @@ void ImGui::TableSaveSettings(ImGuiTable* table)
         if ((column->Flags & ImGuiTableColumnFlags_WidthStretch) == 0)
             save_ref_scale = true;
 
-        // We skip saving some data in the .ini file when they are unnecessary to restore our state.
+        // We skip saving some data in the .ini file_manager when they are unnecessary to restore our state.
         // Note that fixed width where initial width was derived from auto-fit will always be saved as InitStretchWeightOrWidth will be 0.0f.
         // FIXME-TABLE: We don't have logic to easily compare SortOrder to DefaultSortOrder yet so it's always saved when present.
         if (width_or_weight != column->InitStretchWeightOrWidth)

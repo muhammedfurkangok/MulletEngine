@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements cardinalities.
+// This file_manager implements cardinalities.
 
 #include "gmock/gmock-cardinalities.h"
 

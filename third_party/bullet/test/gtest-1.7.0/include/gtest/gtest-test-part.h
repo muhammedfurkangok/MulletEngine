@@ -74,14 +74,14 @@ public:
 	// Gets the outcome of the test part.
 	Type type() const { return type_; }
 
-	// Gets the name of the source file where the test part took place, or
+	// Gets the name of the source file_manager where the test part took place, or
 	// NULL if it's unknown.
 	const char* file_name() const
 	{
 		return file_name_.empty() ? NULL : file_name_.c_str();
 	}
 
-	// Gets the line in the source file where the test part took place,
+	// Gets the line in the source file_manager where the test part took place,
 	// or -1 if it's unknown.
 	int line_number() const { return line_number_; }
 
@@ -110,10 +110,10 @@ private:
 	// trace in it.
 	static std::string ExtractSummary(const char* message);
 
-	// The name of the source file where the test part took place, or
-	// "" if the source file is unknown.
+	// The name of the source file_manager where the test part took place, or
+	// "" if the source file_manager is unknown.
 	std::string file_name_;
-	// The line in the source file where the test part took place, or -1
+	// The line in the source file_manager where the test part took place, or -1
 	// if the line number is unknown.
 	int line_number_;
 	std::string summary_;  // The test failure summary.

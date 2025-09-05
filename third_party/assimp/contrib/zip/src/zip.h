@@ -78,10 +78,10 @@ typedef long ssize_t; /* byte count or error */
 #define ZIP_ECRTHDR -13     // cannot create entry header
 #define ZIP_EWRTHDR -14     // cannot write entry header
 #define ZIP_EWRTDIR -15     // cannot write to central dir
-#define ZIP_EOPNFILE -16    // cannot open file
+#define ZIP_EOPNFILE -16    // cannot open file_manager
 #define ZIP_EINVENTTYPE -17 // invalid entry type
 #define ZIP_EMEMNOALLOC -18 // extracting data using no memory allocation
-#define ZIP_ENOFILE -19     // file not found
+#define ZIP_ENOFILE -19     // file_manager not found
 #define ZIP_ENOPERM -20     // no permission
 #define ZIP_EOOMEM -21      // out of memory
 #define ZIP_EINVZIPNAME -22 // invalid zip archive name
@@ -115,11 +115,11 @@ struct zip_t;
 /**
  * Opens zip archive with compression level using the given mode.
  *
- * @param zipname zip archive file name.
+ * @param zipname zip archive file_manager name.
  * @param level compression level (0-9 are the standard zlib-style levels).
- * @param mode file access mode.
- *        - 'r': opens a file for reading/extracting (the file must exists).
- *        - 'w': creates an empty file for writing.
+ * @param mode file_manager access mode.
+ *        - 'r': opens a file_manager for reading/extracting (the file_manager must exists).
+ *        - 'w': creates an empty file_manager for writing.
  *        - 'a': appends to an existing archive.
  *
  * @return the zip archive handler or NULL on error
@@ -131,11 +131,11 @@ extern ZIP_EXPORT struct zip_t *zip_open(const char *zipname, int level,
  * Opens zip archive with compression level using the given mode.
  * The function additionally returns @param errnum -
  *
- * @param zipname zip archive file name.
+ * @param zipname zip archive file_manager name.
  * @param level compression level (0-9 are the standard zlib-style levels).
- * @param mode file access mode.
- *        - 'r': opens a file for reading/extracting (the file must exists).
- *        - 'w': creates an empty file for writing.
+ * @param mode file_manager access mode.
+ *        - 'r': opens a file_manager for reading/extracting (the file_manager must exists).
+ *        - 'w': creates an empty file_manager for writing.
  *        - 'a': appends to an existing archive.
  * @param errnum 0 on success, negative number (< 0) on error.
  *
@@ -219,7 +219,7 @@ extern ZIP_EXPORT int zip_entry_close(struct zip_t *zip);
  * Following .ZIP File Format Specification - the path stored MUST not contain
  * a drive or device letter, or a leading slash.
  * All slashes MUST be forward slashes '/' as opposed to backwards slashes '\'
- * for compatibility with Amiga and UNIX file systems etc.
+ * for compatibility with Amiga and UNIX file_manager systems etc.
  *
  * @param zip: zip archive handler.
  *
@@ -294,11 +294,11 @@ extern ZIP_EXPORT unsigned int zip_entry_crc32(struct zip_t *zip);
 extern ZIP_EXPORT unsigned long long zip_entry_dir_offset(struct zip_t *zip);
 
 /**
- * Returns the current zip entry's local header file offset in bytes.
+ * Returns the current zip entry's local header file_manager offset in bytes.
  *
  * @param zip zip archive handler.
  *
- * @return the entry's local header file offset in bytes.
+ * @return the entry's local header file_manager offset in bytes.
  */
 extern ZIP_EXPORT unsigned long long zip_entry_header_offset(struct zip_t *zip);
 
@@ -315,10 +315,10 @@ extern ZIP_EXPORT int zip_entry_write(struct zip_t *zip, const void *buf,
                                       size_t bufsize);
 
 /**
- * Compresses a file for the current zip entry.
+ * Compresses a file_manager for the current zip entry.
  *
  * @param zip zip archive handler.
- * @param filename input file.
+ * @param filename input file_manager.
  *
  * @return the return code - 0 on success, negative number (< 0) on error.
  */
@@ -363,10 +363,10 @@ extern ZIP_EXPORT ssize_t zip_entry_noallocread(struct zip_t *zip, void *buf,
                                                 size_t bufsize);
 
 /**
- * Extracts the current zip entry into output file.
+ * Extracts the current zip entry into output file_manager.
  *
  * @param zip zip archive handler.
- * @param filename output file.
+ * @param filename output file_manager.
  *
  * @return the return code - 0 on success, negative number (< 0) on error.
  */
@@ -449,9 +449,9 @@ zip_stream_extract(const char *stream, size_t size, const char *dir,
  * @param stream zip archive stream.
  * @param size stream size.
  * @param level compression level (0-9 are the standard zlib-style levels).
- * @param mode file access mode.
- *        - 'r': opens a file for reading/extracting (the file must exists).
- *        - 'w': creates an empty file for writing.
+ * @param mode file_manager access mode.
+ *        - 'r': opens a file_manager for reading/extracting (the file_manager must exists).
+ *        - 'w': creates an empty file_manager for writing.
  *        - 'a': appends to an existing archive.
  *
  * @return the zip archive handler or NULL on error
@@ -466,9 +466,9 @@ extern ZIP_EXPORT struct zip_t *zip_stream_open(const char *stream, size_t size,
  * @param stream zip archive stream.
  * @param size stream size.*
  * @param level compression level (0-9 are the standard zlib-style levels).
- * @param mode file access mode.
- *        - 'r': opens a file for reading/extracting (the file must exists).
- *        - 'w': creates an empty file for writing.
+ * @param mode file_manager access mode.
+ *        - 'r': opens a file_manager for reading/extracting (the file_manager must exists).
+ *        - 'w': creates an empty file_manager for writing.
  *        - 'a': appends to an existing archive.
  * @param errnum 0 on success, negative number (< 0) on error.
  *
@@ -503,7 +503,7 @@ extern ZIP_EXPORT void zip_stream_close(struct zip_t *zip);
 /**
  * Creates a new archive and puts files into a single zip archive.
  *
- * @param zipname zip archive file.
+ * @param zipname zip archive file_manager.
  * @param filenames input files.
  * @param len: number of input files.
  *
@@ -513,7 +513,7 @@ extern ZIP_EXPORT int zip_create(const char *zipname, const char *filenames[],
                                  size_t len);
 
 /**
- * Extracts a zip archive file into directory.
+ * Extracts a zip archive file_manager into directory.
  *
  * If on_extract_entry is not NULL, the callback will be called after
  * successfully extracted each zip entry.
@@ -521,7 +521,7 @@ extern ZIP_EXPORT int zip_create(const char *zipname, const char *filenames[],
  * error. The last argument (void *arg) is optional, which you can use to pass
  * data to the on_extract_entry callback.
  *
- * @param zipname zip archive file.
+ * @param zipname zip archive file_manager.
  * @param dir output directory.
  * @param on_extract_entry on extract callback.
  * @param arg opaque pointer.

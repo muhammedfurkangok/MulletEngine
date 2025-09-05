@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -249,7 +249,7 @@ TEST_F(ObjDecoderTest, OctagonPreservedOBJ) {
 }
 
 TEST_F(ObjDecoderTest, EmptyNameOBJ) {
-  // Tests that we load an obj file that has an sub-object defined with an empty
+  // Tests that we load an obj file_manager that has an sub-object defined with an empty
   // name.
   const std::string file_name = "empty_name.obj";
   const std::unique_ptr<Mesh> mesh(DecodeObj<Mesh>(file_name));
@@ -260,7 +260,7 @@ TEST_F(ObjDecoderTest, EmptyNameOBJ) {
 }
 
 TEST_F(ObjDecoderTest, PointCloudOBJ) {
-  // Tests that we load an obj file that does not contain any faces.
+  // Tests that we load an obj file_manager that does not contain any faces.
   const std::string file_name = "test_lines.obj";
   const std::unique_ptr<Mesh> mesh(DecodeObj<Mesh>(file_name, false));
   ASSERT_NE(mesh, nullptr);
@@ -270,7 +270,7 @@ TEST_F(ObjDecoderTest, PointCloudOBJ) {
 }
 
 TEST_F(ObjDecoderTest, WrongAttributeMapping) {
-  // Tests that we load an obj file that contains invalid mapping between
+  // Tests that we load an obj file_manager that contains invalid mapping between
   // attribute indices and values. In such case the invalid indices should be
   // ignored.
   const std::string file_name = "test_wrong_attribute_mapping.obj";

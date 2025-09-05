@@ -85,7 +85,7 @@ MS3DImporter::MS3DImporter()
 {}
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MS3DImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler, bool /*checkSig*/) const
 {
     static const char* tokens[] = { "MS3D000000" };
@@ -193,7 +193,7 @@ void MS3DImporter :: CollectChildJoints(const std::vector<TempJoint>& joints, ai
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MS3DImporter::InternReadFile( const std::string& pFile,
     aiScene* pScene, IOSystem* pIOHandler)
 {
@@ -211,16 +211,16 @@ void MS3DImporter::InternReadFile( const std::string& pFile,
     mScene = pScene;
 
 
-    // 1 ------------ read into temporary data structures mirroring the original file
+    // 1 ------------ read into temporary data structures mirroring the original file_manager
 
     stream.CopyAndAdvance(head,10);
     stream >> version;
     if (strncmp(head,"MS3D000000",10)) {
-        throw DeadlyImportError("Not a MS3D file, magic string MS3D000000 not found: ", pFile);
+        throw DeadlyImportError("Not a MS3D file_manager, magic string MS3D000000 not found: ", pFile);
     }
 
     if (version != 4) {
-        throw DeadlyImportError("MS3D: Unsupported file format version, 4 was expected");
+        throw DeadlyImportError("MS3D: Unsupported file_manager format version, 4 was expected");
     }
 
     uint16_t verts;
@@ -453,7 +453,7 @@ void MS3DImporter::InternReadFile( const std::string& pFile,
 
     // convert groups to meshes
     if (groups.empty()) {
-        throw DeadlyImportError("MS3D: Didn't get any group records, file is malformed");
+        throw DeadlyImportError("MS3D: Didn't get any group records, file_manager is malformed");
     }
 
     pScene->mMeshes = new aiMesh*[pScene->mNumMeshes=static_cast<unsigned int>(groups.size())]();
@@ -463,7 +463,7 @@ void MS3DImporter::InternReadFile( const std::string& pFile,
         const TempGroup& g = groups[i];
 
         if (pScene->mNumMaterials && g.mat > pScene->mNumMaterials) {
-            throw DeadlyImportError("MS3D: Encountered invalid material index, file is malformed");
+            throw DeadlyImportError("MS3D: Encountered invalid material index, file_manager is malformed");
         } // no error if no materials at all - scenepreprocessor adds one then
 
         m->mMaterialIndex  = g.mat;
@@ -484,7 +484,7 @@ void MS3DImporter::InternReadFile( const std::string& pFile,
         for (unsigned int j = 0,n = 0; j < m->mNumFaces; ++j) {
             aiFace& f = m->mFaces[j];
             if (g.triangles[j] >= triangles.size()) {
-                throw DeadlyImportError("MS3D: Encountered invalid triangle index, file is malformed");
+                throw DeadlyImportError("MS3D: Encountered invalid triangle index, file_manager is malformed");
             }
 
             TempTriangle& t = triangles[g.triangles[j]];
@@ -492,14 +492,14 @@ void MS3DImporter::InternReadFile( const std::string& pFile,
 
             for (unsigned int k = 0; k < 3; ++k,++n) {
                 if (t.indices[k] >= vertices.size()) {
-                    throw DeadlyImportError("MS3D: Encountered invalid vertex index, file is malformed");
+                    throw DeadlyImportError("MS3D: Encountered invalid vertex index, file_manager is malformed");
                 }
 
                 const TempVertex& v = vertices[t.indices[k]];
                 for(unsigned int a = 0; a < 4; ++a) {
                     if (v.bone_id[a] != UINT_MAX) {
                         if (v.bone_id[a] >= joints.size()) {
-                            throw DeadlyImportError("MS3D: Encountered invalid bone index, file is malformed");
+                            throw DeadlyImportError("MS3D: Encountered invalid bone index, file_manager is malformed");
                         }
                         if (mybones.find(v.bone_id[a]) == mybones.end()) {
                              mybones[v.bone_id[a]] = 1;

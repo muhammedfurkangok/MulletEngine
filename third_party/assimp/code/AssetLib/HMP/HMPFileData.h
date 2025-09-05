@@ -59,7 +59,7 @@ namespace HMP {
 #define AI_HMP_MAGIC_NUMBER_LE_7    AI_MAKE_MAGIC("7PMH")
 
 // ---------------------------------------------------------------------------
-/** Data structure for the header of a HMP5 file.
+/** Data structure for the header of a HMP5 file_manager.
  *  This is also used by HMP4 and HMP7, but with modifications
 */
 struct Header_HMP5
@@ -79,14 +79,14 @@ struct Header_HMP5
     //! Number of vertices in x direction
     float   fnumverts_x;
 
-    //! Number of skins in the file
+    //! Number of skins in the file_manager
     int32_t     numskins;
 
     // can ignore this?
     int32_t     skinwidth;
     int32_t     skinheight;
 
-    //!Number of vertices in the file
+    //!Number of vertices in the file_manager
     int32_t     numverts;
 
     // ignored and zero
@@ -102,7 +102,7 @@ struct Header_HMP5
 } PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** Data structure for a terrain vertex in a HMP4 file
+/** Data structure for a terrain vertex in a HMP4 file_manager
 */
 struct Vertex_HMP4
 {
@@ -112,7 +112,7 @@ struct Vertex_HMP4
 } PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** Data structure for a terrain vertex in a HMP5 file
+/** Data structure for a terrain vertex in a HMP5 file_manager
 */
 struct Vertex_HMP5
 {
@@ -122,7 +122,7 @@ struct Vertex_HMP5
 } PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** Data structure for a terrain vertex in a HMP7 file
+/** Data structure for a terrain vertex in a HMP7 file_manager
 */
 struct Vertex_HMP7
 {

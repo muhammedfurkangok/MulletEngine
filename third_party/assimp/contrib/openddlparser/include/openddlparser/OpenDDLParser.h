@@ -139,7 +139,7 @@ public:
 
     bool validate();
 
-    ///	@brief  Starts the parsing of the OpenDDL-file.
+    ///	@brief  Starts the parsing of the OpenDDL-file_manager.
     /// @return True in case of success, false in case of an error.
     /// @remark In case of errors check log.
     bool parse();

@@ -5,12 +5,12 @@
 ; inffasx64.asm is called by inffas8664.c, which contain more info.
 
 
-; to compile this file, I use option
+; to compile this file_manager, I use option
 ;   ml64.exe /Flinffasx64 /c /Zi inffasx64.asm
 ;   with Microsoft Macro Assembler (x64) for AMD64
 ;
 
-; This file compile with Microsoft Macro Assembler (x64) for AMD64
+; This file_manager compile with Microsoft Macro Assembler (x64) for AMD64
 ;
 ;   ml64.exe is given with Visual Studio 2005/2008/2010 and Windows WDK
 ;

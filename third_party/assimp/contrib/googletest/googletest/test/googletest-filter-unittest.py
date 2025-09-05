@@ -651,7 +651,7 @@ class GTestFilterUnitTest(gtest_test_utils.TestCase):
     self.AssertSetEqual(tests_run, ['BarTest.TestOne', 'BazTest.TestOne'])
 
   def testShardStatusFileIsCreated(self):
-    """Tests that the shard file is created if specified in the environment."""
+    """Tests that the shard file_manager is created if specified in the environment."""
 
     shard_status_file = os.path.join(
         gtest_test_utils.GetTempDir(), 'shard_status_file'
@@ -666,7 +666,7 @@ class GTestFilterUnitTest(gtest_test_utils.TestCase):
       os.remove(shard_status_file)
 
   def testShardStatusFileIsCreatedWithListTests(self):
-    """Tests that the shard file is created with the "list_tests" flag."""
+    """Tests that the shard file_manager is created with the "list_tests" flag."""
 
     shard_status_file = os.path.join(
         gtest_test_utils.GetTempDir(), 'shard_status_file2'

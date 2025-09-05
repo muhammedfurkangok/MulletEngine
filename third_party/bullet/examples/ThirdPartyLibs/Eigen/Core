@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008 Gael Guennebaud <gael.guennebaud@inria.fr>
@@ -6,7 +6,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_CORE_H
 #define EIGEN_CORE_H
@@ -14,7 +14,7 @@
 // first thing Eigen does: stop the compiler from reporting useless warnings.
 #include "src/Core/util/DisableStupidWarnings.h"
 
-// then include this file where all our macros are defined. It's really important to do it first because
+// then include this file_manager where all our macros are defined. It's really important to do it first because
 // it's where we do all the compiler/OS/arch detections and define most defaults.
 #include "src/Core/util/Macros.h"
 
@@ -49,7 +49,7 @@
 #endif
 #include <complex>
 
-// this include file manages BLAS and MKL related macros
+// this include file_manager manages BLAS and MKL related macros
 // and inclusion of their respective header files
 #include "src/Core/util/MKL_support.h"
 
@@ -70,7 +70,7 @@
 #include <omp.h>
 #endif
 
-// MSVC for windows mobile does not have the errno.h file
+// MSVC for windows mobile does not have the errno.h file_manager
 #if !(EIGEN_COMP_MSVC && EIGEN_OS_WINCE) && !EIGEN_COMP_ARM
 #define EIGEN_HAS_ERRNO
 #endif
@@ -247,7 +247,7 @@ using std::ptrdiff_t;
 #endif
 
 #include "src/Core/arch/Default/Settings.h"
-// This file provides generic implementations valid for scalar as well
+// This file_manager provides generic implementations valid for scalar as well
 #include "src/Core/arch/Default/GenericPacketMathFunctions.h"
 
 #include "src/Core/functors/TernaryFunctors.h"

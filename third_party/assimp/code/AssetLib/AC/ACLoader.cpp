@@ -145,7 +145,7 @@ AC3DImporter::AC3DImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool AC3DImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = { AI_MAKE_MAGIC("AC3D") };
     return CheckMagicToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -158,14 +158,14 @@ const aiImporterDesc *AC3DImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a pointer to the next line from the file
+// Get a pointer to the next line from the file_manager
 bool AC3DImporter::GetNextLine() {
     SkipLine(&mBuffer.data, mBuffer.end);
     return SkipSpaces(&mBuffer.data, mBuffer.end);
 }
 
 // ------------------------------------------------------------------------------------------------
-// Parse an object section in an AC file
+// Parse an object section in an AC file_manager
 bool AC3DImporter::LoadObjectSection(std::vector<Object> &objects) {
     if (!TokenMatch(mBuffer.data, "OBJECT", 6)) {
         return false;
@@ -427,7 +427,7 @@ aiNode *AC3DImporter::ConvertObjectSection(Object &object,
             }
 
             // use the primary material in this case. this should be the
-            // default material if all objects of the file contain points
+            // default material if all objects of the file_manager contain points
             // and no faces.
             mesh->mMaterialIndex = 0;
             outMaterials.push_back(new aiMaterial());
@@ -740,17 +740,17 @@ void AC3DImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void AC3DImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open AC3D file ", pFile, ".");
+        throw DeadlyImportError("Failed to open AC3D file_manager ", pFile, ".");
     }
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> mBuffer2;
     TextFileToBuffer(file.get(), mBuffer2);
 
@@ -761,14 +761,14 @@ void AC3DImporter::InternReadFile(const std::string &pFile,
     mLightsCounter = mPolysCounter = mWorldsCounter = mGroupsCounter = 0;
 
     if (::strncmp(mBuffer.data, "AC3D", 4)) {
-        throw DeadlyImportError("AC3D: No valid AC3D file, magic sequence not found");
+        throw DeadlyImportError("AC3D: No valid AC3D file_manager, magic sequence not found");
     }
 
-    // print the file format version to the console
+    // print the file_manager format version to the console
     unsigned int version = HexDigitToDecimal(mBuffer.data[4]);
     char msg[3];
     ASSIMP_itoa10(msg, 3, version);
-    ASSIMP_LOG_INFO("AC3D file format version: ", msg);
+    ASSIMP_LOG_INFO("AC3D file_manager format version: ", msg);
 
     std::vector<Material> materials;
     materials.reserve(5);

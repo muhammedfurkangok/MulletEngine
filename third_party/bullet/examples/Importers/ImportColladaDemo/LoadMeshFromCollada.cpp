@@ -1,6 +1,6 @@
 /*
 Bullet Collision Detection and Physics Library http://bulletphysics.org
-This file is Copyright (c) 2014 Google Inc. 
+This file_manager is Copyright (c) 2014 Google Inc.
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -723,19 +723,19 @@ void LoadMeshFromColladaAssimp(const char* relativeFileName, btAlignedObjectArra
 
 	GLInstanceGraphicsShape* shape = 0;
 
-	FILE* file = fopen(relativeFileName, "rb");
-	if (file)
+	FILE* file_manager = fopen(relativeFileName, "rb");
+	if (file_manager)
 	{
 		int size = 0;
-		if (fseek(file, 0, SEEK_END) || (size = ftell(file)) == EOF || fseek(file, 0, SEEK_SET))
+		if (fseek(file_manager, 0, SEEK_END) || (size = ftell(file_manager)) == EOF || fseek(file_manager, 0, SEEK_SET))
 		{
-			b3Warning("Error: Cannot access file to determine size of %s\n", relativeFileName);
+			b3Warning("Error: Cannot access file_manager to determine size of %s\n", relativeFileName);
 		}
 		else
 		{
 			if (size)
 			{
-				//printf("Open DAE file of %d bytes\n",size);
+				//printf("Open DAE file_manager of %d bytes\n",size);
 
 				Assimp::Importer importer;
 				//importer.SetPropertyInteger(AI_CONFIG_PP_RVC_FLAGS, aiComponent_NORMALS | aiComponent_COLORS);

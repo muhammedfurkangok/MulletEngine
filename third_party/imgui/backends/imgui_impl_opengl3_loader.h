@@ -4,7 +4,7 @@
 // We embed our own OpenGL loader to not require user to provide their own or to have to use ours,
 // which proved to be endless problems for users.
 // Our loader is custom-generated, based on gl3w but automatically filtered to only include
-// enums/functions that we use in our imgui_impl_opengl3.cpp source file in order to be small.
+// enums/functions that we use in our imgui_impl_opengl3.cpp source file_manager in order to be small.
 //
 // YOU SHOULD NOT NEED TO INCLUDE/USE THIS DIRECTLY. THIS IS USED BY imgui_impl_opengl3.cpp ONLY.
 // THE REST OF YOUR APP SHOULD USE A DIFFERENT GL LOADER: ANY GL LOADER OF YOUR CHOICE.
@@ -26,7 +26,7 @@
 //-----------------------------------------------------------------------------
 
 /*
- * This file was generated with gl3w_gen.py, part of imgl3w
+ * This file_manager was generated with gl3w_gen.py, part of imgl3w
  * (hosted at https://github.com/dearimgui/gl3w_stripped)
  *
  * This is free and unencumbered software released into the public domain.
@@ -56,7 +56,7 @@
 #ifndef __gl3w_h_
 #define __gl3w_h_
 
-// Adapted from KHR/khrplatform.h to avoid including entire file.
+// Adapted from KHR/khrplatform.h to avoid including entire file_manager.
 #ifndef __khrplatform_h_
 typedef          float         khronos_float_t;
 typedef signed   char          khronos_int8_t;
@@ -124,7 +124,7 @@ extern "C" {
 ** fixed-function vertex and fragment processing.
 **
 ** Do not #include both <GL/glcorearb.h> and either of <GL/gl.h> or
-** <GL/glext.h> in the same source file.
+** <GL/glext.h> in the same source file_manager.
 */
 /* Generated C header for:
  * API: gl

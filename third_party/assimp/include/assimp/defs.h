@@ -56,11 +56,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //////////////////////////////////////////////////////////////////////////
 /**
- * @brief Define ASSIMP_BUILD_NO_XX_IMPORTER to disable a specific file format loader.
+ * @brief Define ASSIMP_BUILD_NO_XX_IMPORTER to disable a specific file_manager format loader.
  *
  * The loader is be excluded from the
- * build in this case. 'XX' stands for the most common file
- * extension of the file format. E.g.:
+ * build in this case. 'XX' stands for the most common file_manager
+ * extension of the file_manager format. E.g.:
  * ASSIMP_BUILD_NO_X_IMPORTER disables the X loader.
  *
  * If you're unsure about that, take a look at the implementation of the

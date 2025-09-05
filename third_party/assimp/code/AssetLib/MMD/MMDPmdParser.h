@@ -493,7 +493,7 @@ struct PmdModel {
         char magic[3];
         stream->read(magic, 3);
         if (magic[0] != 'P' || magic[1] != 'm' || magic[2] != 'd') {
-            std::cerr << "invalid file" << std::endl;
+            std::cerr << "invalid file_manager" << std::endl;
             return nullptr;
         }
 

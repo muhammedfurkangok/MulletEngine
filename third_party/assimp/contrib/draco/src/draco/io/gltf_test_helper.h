@@ -1,7 +1,7 @@
 // Copyright 2022 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -33,7 +33,7 @@ class GltfTestHelper {
 
   // Adds various mesh feature ID sets (via attributes and via textures),
   // structural metadata schema, property table, and property attributes to the
-  // box |scene| loaded from the test file testdata/Box/glTF/Box.gltf.
+  // box |scene| loaded from the test file_manager testdata/Box/glTF/Box.gltf.
   static void AddBoxMetaMeshFeatures(Scene *scene);
   static void AddBoxMetaStructuralMetadata(Scene *scene);
 
@@ -47,7 +47,7 @@ class GltfTestHelper {
 
   // Checks the box |geometry| (draco::Mesh or draco::Scene) with structural
   // metadata that includes schema, property table, and property attributes
-  // loaded from test file testdata/BoxMeta/glTF/BoxMeta.gltf.
+  // loaded from test file_manager testdata/BoxMeta/glTF/BoxMeta.gltf.
   template <typename GeometryT>
   static void CheckBoxMetaStructuralMetadata(const GeometryT &geometry,
                                              const UseCase &use_case) {

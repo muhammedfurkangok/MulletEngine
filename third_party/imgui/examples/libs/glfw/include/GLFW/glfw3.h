@@ -41,10 +41,10 @@ extern "C" {
 /*! @file glfw3.h
  *  @brief The header of the GLFW 3 API.
  *
- *  This is the header file of the GLFW 3 API.  It defines all its types and
+ *  This is the header file_manager of the GLFW 3 API.  It defines all its types and
  *  declares all its functions.
  *
- *  For more information about how to use this file, see @ref build_include.
+ *  For more information about how to use this file_manager, see @ref build_include.
  */
 /*! @defgroup context Context reference
  *
@@ -1064,13 +1064,13 @@ typedef void (* GLFWcharfun)(GLFWwindow*,unsigned int);
  */
 typedef void (* GLFWcharmodsfun)(GLFWwindow*,unsigned int,int);
 
-/*! @brief The function signature for file drop callbacks.
+/*! @brief The function signature for file_manager drop callbacks.
  *
- *  This is the function signature for file drop callbacks.
+ *  This is the function signature for file_manager drop callbacks.
  *
  *  @param[in] window The window that received the event.
  *  @param[in] count The number of dropped files.
- *  @param[in] paths The UTF-8 encoded file and/or directory path names.
+ *  @param[in] paths The UTF-8 encoded file_manager and/or directory path names.
  *
  *  @sa @ref path_drop
  *  @sa glfwSetDropCallback
@@ -3468,9 +3468,9 @@ GLFWAPI GLFWcursorenterfun glfwSetCursorEnterCallback(GLFWwindow* window, GLFWcu
  */
 GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun cbfun);
 
-/*! @brief Sets the file drop callback.
+/*! @brief Sets the file_manager drop callback.
  *
- *  This function sets the file drop callback of the specified window, which is
+ *  This function sets the file_manager drop callback of the specified window, which is
  *  called when one or more dragged files are dropped on the window.
  *
  *  Because the path array and its strings may have been generated specifically
@@ -3479,7 +3479,7 @@ GLFWAPI GLFWscrollfun glfwSetScrollCallback(GLFWwindow* window, GLFWscrollfun cb
  *  make a deep copy.
  *
  *  @param[in] window The window whose callback to set.
- *  @param[in] cbfun The new file drop callback, or `NULL` to remove the
+ *  @param[in] cbfun The new file_manager drop callback, or `NULL` to remove the
  *  currently set callback.
  *  @return The previously set callback, or `NULL` if no callback was set or the
  *  library had not been [initialized](@ref intro_init).

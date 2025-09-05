@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
+// Microsoft Visual C++ generated include file_manager.
 // Used by assimp_view.rc
 //
 #define IDC_MYICON                      2

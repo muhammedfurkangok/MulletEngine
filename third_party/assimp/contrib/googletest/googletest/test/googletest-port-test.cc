@@ -27,7 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// This file tests the internal cross-platform support utilities.
+// This file_manager tests the internal cross-platform support utilities.
 #include <stdio.h>
 
 #include "gtest/internal/gtest-port.h"
@@ -250,7 +250,7 @@ TEST(FormatFileLocationTest, FormatsFileLocation) {
 }
 
 TEST(FormatFileLocationTest, FormatsUnknownFile) {
-  EXPECT_PRED_FORMAT2(IsSubstring, "unknown file",
+  EXPECT_PRED_FORMAT2(IsSubstring, "unknown file_manager",
                       FormatFileLocation(nullptr, 42));
   EXPECT_PRED_FORMAT2(IsSubstring, "42", FormatFileLocation(nullptr, 42));
 }
@@ -260,7 +260,7 @@ TEST(FormatFileLocationTest, FormatsUknownLine) {
 }
 
 TEST(FormatFileLocationTest, FormatsUknownFileAndLine) {
-  EXPECT_EQ("unknown file:", FormatFileLocation(nullptr, -1));
+  EXPECT_EQ("unknown file_manager:", FormatFileLocation(nullptr, -1));
 }
 
 // Verifies behavior of FormatCompilerIndependentFileLocation.
@@ -269,7 +269,7 @@ TEST(FormatCompilerIndependentFileLocationTest, FormatsFileLocation) {
 }
 
 TEST(FormatCompilerIndependentFileLocationTest, FormatsUknownFile) {
-  EXPECT_EQ("unknown file:42",
+  EXPECT_EQ("unknown file_manager:42",
             FormatCompilerIndependentFileLocation(nullptr, 42));
 }
 
@@ -278,7 +278,7 @@ TEST(FormatCompilerIndependentFileLocationTest, FormatsUknownLine) {
 }
 
 TEST(FormatCompilerIndependentFileLocationTest, FormatsUknownFileAndLine) {
-  EXPECT_EQ("unknown file", FormatCompilerIndependentFileLocation(nullptr, -1));
+  EXPECT_EQ("unknown file_manager", FormatCompilerIndependentFileLocation(nullptr, -1));
 }
 
 #if defined(GTEST_OS_LINUX) || defined(GTEST_OS_MAC) ||           \

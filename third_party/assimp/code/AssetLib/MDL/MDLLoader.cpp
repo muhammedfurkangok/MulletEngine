@@ -97,7 +97,7 @@ MDLImporter::MDLImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MDLImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = {
         AI_MDL_MAGIC_NUMBER_LE_HL2a,
@@ -124,7 +124,7 @@ void MDLImporter::SetupProperties(const Importer *pImp) {
         configFrameID = pImp->GetPropertyInteger(AI_CONFIG_IMPORT_GLOBAL_KEYFRAME, 0);
     }
 
-    // AI_CONFIG_IMPORT_MDL_COLORMAP - palette file
+    // AI_CONFIG_IMPORT_MDL_COLORMAP - palette file_manager
     configPalette = pImp->GetPropertyString(AI_CONFIG_IMPORT_MDL_COLORMAP, "colormap.lmp");
 
     // Read configuration specific to MDL (Half-Life 1).
@@ -162,16 +162,16 @@ static void transformCoordinateSystem(const aiScene *pScene) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MDLImporter::InternReadFile(const std::string &pFile,
         aiScene *_pScene, IOSystem *pIOHandler) {
     pScene = _pScene;
     mIOHandler = pIOHandler;
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open MDL file ", pFile, ".");
+        throw DeadlyImportError("Failed to open MDL file_manager ", pFile, ".");
     }
 
     // This should work for all other types of MDL files, too ...
@@ -181,7 +181,7 @@ void MDLImporter::InternReadFile(const std::string &pFile,
         throw DeadlyImportError("MDL File is too small.");
     }
 
-    // delete the file buffer and cleanup.
+    // delete the file_manager buffer and cleanup.
     auto DeleteBufferAndCleanup = [&]() {
         if (mBuffer) {
             delete[] mBuffer;
@@ -192,7 +192,7 @@ void MDLImporter::InternReadFile(const std::string &pFile,
     };
 
     try {
-        // Allocate storage and copy the contents of the file to a memory buffer
+        // Allocate storage and copy the contents of the file_manager to a memory buffer
         mBuffer = new unsigned char[iFileSize + 1];
         file->Read((void *)mBuffer, 1, iFileSize);
 
@@ -202,7 +202,7 @@ void MDLImporter::InternReadFile(const std::string &pFile,
         mBuffer[iFileSize] = '\0';
         const uint32_t iMagicWord = *((uint32_t *)mBuffer);
 
-        // Determine the file subtype and call the appropriate member function
+        // Determine the file_manager subtype and call the appropriate member function
         bool is_half_life = false;
 
         // Original Quake1 format
@@ -256,7 +256,7 @@ void MDLImporter::InternReadFile(const std::string &pFile,
                 InternReadFile_HL2();
             }
         } else {
-            // print the magic word to the log file
+            // print the magic word to the log file_manager
             throw DeadlyImportError("Unknown MDL subformat ", pFile,
                                     ". Magic word (", ai_str_toprintable((const char *)&iMagicWord, sizeof(iMagicWord)), ") is not known");
         }
@@ -281,16 +281,16 @@ void MDLImporter::InternReadFile(const std::string &pFile,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Check whether we're still inside the valid file range
+// Check whether we're still inside the valid file_manager range
 bool MDLImporter::IsPosValid(const void *szPos) const {
     return szPos && (const unsigned char *)szPos <= this->mBuffer + this->iFileSize && szPos >= this->mBuffer;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Check whether we're still inside the valid file range
+// Check whether we're still inside the valid file_manager range
 void MDLImporter::SizeCheck(const void *szPos) {
     if (!IsPosValid(szPos)) {
-        throw DeadlyImportError("Invalid MDL file. The file is too small "
+        throw DeadlyImportError("Invalid MDL file_manager. The file_manager is too small "
                                 "or contains invalid data.");
     }
 }
@@ -313,7 +313,7 @@ void MDLImporter::SizeCheck(const void *szPos, const char *szFile, unsigned int 
         }
 
         char szBuffer[1024];
-        ::snprintf(szBuffer, sizeof(szBuffer), "Invalid MDL file. The file is too small "
+        ::snprintf(szBuffer, sizeof(szBuffer), "Invalid MDL file_manager. The file_manager is too small "
                             "or contains invalid data (File: %s Line: %u)",
                 szFilePtr, iLine);
 
@@ -322,17 +322,17 @@ void MDLImporter::SizeCheck(const void *szPos, const char *szFile, unsigned int 
 }
 
 // ------------------------------------------------------------------------------------------------
-// Validate a quake file header
+// Validate a quake file_manager header
 void MDLImporter::ValidateHeader_Quake1(const MDL::Header *pcHeader) {
     // some values may not be nullptr
     if (pcHeader->num_frames <= 0)
-        throw DeadlyImportError("[Quake 1 MDL] There are no frames in the file");
+        throw DeadlyImportError("[Quake 1 MDL] There are no frames in the file_manager");
 
     if (pcHeader->num_verts <= 0)
-        throw DeadlyImportError("[Quake 1 MDL] There are no vertices in the file");
+        throw DeadlyImportError("[Quake 1 MDL] There are no vertices in the file_manager");
 
     if (pcHeader->num_tris <= 0)
-        throw DeadlyImportError("[Quake 1 MDL] There are no triangles in the file");
+        throw DeadlyImportError("[Quake 1 MDL] There are no triangles in the file_manager");
 
     // check whether the maxima are exceeded ...however, this applies for Quake 1 MDLs only
     if (!this->iGSFileVersion) {
@@ -348,7 +348,7 @@ void MDLImporter::ValidateHeader_Quake1(const MDL::Header *pcHeader) {
         // (this does not apply for 3DGS MDLs)
         if (!this->iGSFileVersion && pcHeader->version != AI_MDL_VERSION)
             ASSIMP_LOG_WARN("Quake 1 MDL model has an unknown version: AI_MDL_VERSION (=6) is "
-                            "the expected file format version");
+                            "the expected file_manager format version");
         if (pcHeader->num_skins && (!pcHeader->skinwidth || !pcHeader->skinheight))
             ASSIMP_LOG_WARN("Skin width or height are 0");
     }
@@ -377,7 +377,7 @@ void FlipQuakeHeader(BE_NCONST MDL::Header *pcHeader) {
 #endif
 
 // ------------------------------------------------------------------------------------------------
-// Read a Quake 1 file
+// Read a Quake 1 file_manager
 void MDLImporter::InternReadFile_Quake1() {
     ai_assert(nullptr != pScene);
 
@@ -389,7 +389,7 @@ void MDLImporter::InternReadFile_Quake1() {
 
     ValidateHeader_Quake1(pcHeader);
 
-    // current cursor position in the file
+    // current cursor position in the file_manager
     const unsigned char *szCurrent = (const unsigned char *)(pcHeader + 1);
 
     // need to read all textures
@@ -445,7 +445,7 @@ void MDLImporter::InternReadFile_Quake1() {
     szCurrent += sizeof(MDL::Triangle) * pcHeader->num_tris;
     VALIDATE_FILE_SIZE(szCurrent);
 
-    // now get a pointer to the first frame in the file
+    // now get a pointer to the first frame in the file_manager
     BE_NCONST MDL::Frame *pcFrames = (BE_NCONST MDL::Frame *)szCurrent;
     MDL::SimpleFrame *pcFirstFrame;
 
@@ -491,7 +491,7 @@ void MDLImporter::InternReadFile_Quake1() {
     pcMesh->mNormals = new aiVector3D[pcMesh->mNumVertices];
     pcMesh->mNumUVComponents[0] = 2;
 
-    // there won't be more than one mesh inside the file
+    // there won't be more than one mesh inside the file_manager
     pScene->mRootNode = new aiNode();
     pScene->mRootNode->mNumMeshes = 1;
     pScene->mRootNode->mMeshes = new unsigned int[1];
@@ -598,7 +598,7 @@ void MDLImporter::SetupMaterialProperties_3DGS_MDL5_Quake1() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read a MDL 3,4,5 file
+// Read a MDL 3,4,5 file_manager
 void MDLImporter::InternReadFile_3DGS_MDL345() {
     ai_assert(nullptr != pScene);
 
@@ -609,14 +609,14 @@ void MDLImporter::InternReadFile_3DGS_MDL345() {
 #endif
     ValidateHeader_Quake1(pcHeader);
 
-    // current cursor position in the file
+    // current cursor position in the file_manager
     const unsigned char *szCurrent = (const unsigned char *)(pcHeader + 1);
     const unsigned char *szEnd = mBuffer + iFileSize;
 
     // need to read all textures
     for (unsigned int i = 0; i < (unsigned int)pcHeader->num_skins; ++i) {
         if (szCurrent + sizeof(uint32_t) > szEnd) {
-            throw DeadlyImportError("Texture data past end of file.");
+            throw DeadlyImportError("Texture data past end of file_manager.");
         }
         BE_NCONST MDL::Skin *pcSkin;
         pcSkin = (BE_NCONST MDL::Skin *)szCurrent;
@@ -675,7 +675,7 @@ void MDLImporter::InternReadFile_3DGS_MDL345() {
     pcMesh->mNumFaces = pcHeader->num_tris;
     pcMesh->mFaces = new aiFace[pcMesh->mNumFaces];
 
-    // there won't be more than one mesh inside the file
+    // there won't be more than one mesh inside the file_manager
     pScene->mRootNode = new aiNode();
     pScene->mRootNode->mNumMeshes = 1;
     pScene->mRootNode->mMeshes = new unsigned int[1];
@@ -694,7 +694,7 @@ void MDLImporter::InternReadFile_3DGS_MDL345() {
         pcMesh->mNumUVComponents[0] = 2;
     }
 
-    // now get a pointer to the first frame in the file
+    // now get a pointer to the first frame in the file_manager
     BE_NCONST MDL::Frame *pcFrames = (BE_NCONST MDL::Frame *)szCurrent;
     AI_SWAP4(pcFrames->type);
 
@@ -754,7 +754,7 @@ void MDLImporter::InternReadFile_3DGS_MDL345() {
     // short packed vertices
     /////////////////////////////////////////////////////////////////////////////////////
     else {
-        // now get a pointer to the first frame in the file
+        // now get a pointer to the first frame in the file_manager
         const MDL::SimpleFrame_MDLn_SP *pcFirstFrame = (const MDL::SimpleFrame_MDLn_SP *)(szCurrent + sizeof(uint32_t));
 
         // get a pointer to the vertices
@@ -807,7 +807,7 @@ void MDLImporter::InternReadFile_3DGS_MDL345() {
     }
 
     // For MDL5 we will need to build valid texture coordinates
-    // basing upon the file loaded (only support one file as skin)
+    // basing upon the file_manager loaded (only support one file_manager as skin)
     if (0x5 == iGSFileVersion)
         CalculateUVCoordinates_MDL5();
     return;
@@ -843,14 +843,14 @@ void MDLImporter::ImportUVCoordinate_3DGS_MDL345(
 }
 
 // ------------------------------------------------------------------------------------------------
-// Compute UV coordinates for a MDL5 file
+// Compute UV coordinates for a MDL5 file_manager
 void MDLImporter::CalculateUVCoordinates_MDL5() {
     const MDL::Header *const pcHeader = (const MDL::Header *)this->mBuffer;
     if (pcHeader->num_skins && this->pScene->mNumTextures) {
         const aiTexture *pcTex = this->pScene->mTextures[0];
 
-        // if the file is loaded in DDS format: get the size of the
-        // texture from the header of the DDS file
+        // if the file_manager is loaded in DDS format: get the size of the
+        // texture from the header of the DDS file_manager
         // skip three DWORDs and read first height, then the width
         unsigned int iWidth, iHeight;
         if (!pcTex->mHeight) {
@@ -889,7 +889,7 @@ void MDLImporter::CalculateUVCoordinates_MDL5() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Validate the header of a MDL7 file
+// Validate the header of a MDL7 file_manager
 void MDLImporter::ValidateHeader_3DGS_MDL7(const MDL::Header_MDL7 *pcHeader) {
     ai_assert(nullptr != pcHeader);
 
@@ -907,7 +907,7 @@ void MDLImporter::ValidateHeader_3DGS_MDL7(const MDL::Header_MDL7 *pcHeader) {
                 "sizeof(MDL::Skin_MDL7) != pcHeader->skin_stc_size");
     }
 
-    // if there are no groups ... how should we load such a file?
+    // if there are no groups ... how should we load such a file_manager?
     if (!pcHeader->groups_num) {
         throw DeadlyImportError("[3DGS MDL7] No frames found");
     }
@@ -1001,11 +1001,11 @@ void MDLImporter::CalcAbsBoneMatrices_3DGS_MDL7(MDL::IntBone_MDL7 **apcOutBones)
 }
 
 // ------------------------------------------------------------------------------------------------
-// read bones from a MDL7 file
+// read bones from a MDL7 file_manager
 MDL::IntBone_MDL7 **MDLImporter::LoadBones_3DGS_MDL7() {
     const MDL::Header_MDL7 *pcHeader = (const MDL::Header_MDL7 *)this->mBuffer;
     if (pcHeader->bones_num) {
-        // validate the size of the bone data structure in the file
+        // validate the size of the bone data structure in the file_manager
         if (AI_MDL7_BONE_STRUCT_SIZE__NAME_IS_20_CHARS != pcHeader->bone_stc_size &&
                 AI_MDL7_BONE_STRUCT_SIZE__NAME_IS_32_CHARS != pcHeader->bone_stc_size &&
                 AI_MDL7_BONE_STRUCT_SIZE__NAME_IS_NOT_THERE != pcHeader->bone_stc_size) {
@@ -1025,7 +1025,7 @@ MDL::IntBone_MDL7 **MDLImporter::LoadBones_3DGS_MDL7() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// read faces from a MDL7 file
+// read faces from a MDL7 file_manager
 void MDLImporter::ReadFaces_3DGS_MDL7(const MDL::IntGroupInfo_MDL7 &groupInfo,
         MDL::IntGroupData_MDL7 &groupData) {
     const MDL::Header_MDL7 *pcHeader = (const MDL::Header_MDL7 *)this->mBuffer;
@@ -1149,7 +1149,7 @@ void MDLImporter::ReadFaces_3DGS_MDL7(const MDL::IntGroupInfo_MDL7 &groupInfo,
 }
 
 // ------------------------------------------------------------------------------------------------
-// handle frames in a MDL7 file
+// handle frames in a MDL7 file_manager
 bool MDLImporter::ProcessFrames_3DGS_MDL7(const MDL::IntGroupInfo_MDL7 &groupInfo,
         MDL::IntGroupData_MDL7 &groupData,
         MDL::IntSharedData_MDL7 &shared,
@@ -1338,7 +1338,7 @@ void MDLImporter::SortByMaterials_3DGS_MDL7(
                     avMats.push_back(sHelper);
                     iNum = (unsigned int)avMats.size() - 1;
                 }
-                // adjust the size of the file array
+                // adjust the size of the file_manager array
                 if (iNum == aiTempSplit.size()) {
                     aiTempSplit.push_back(new std::vector<unsigned int>());
                 }
@@ -1366,13 +1366,13 @@ void MDLImporter::SortByMaterials_3DGS_MDL7(
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read a MDL7 file
+// Read a MDL7 file_manager
 void MDLImporter::InternReadFile_3DGS_MDL7() {
     ai_assert(nullptr != pScene);
 
     MDL::IntSharedData_MDL7 sharedData;
 
-    // current cursor position in the file
+    // current cursor position in the file_manager
     BE_NCONST MDL::Header_MDL7 *pcHeader = (BE_NCONST MDL::Header_MDL7 *)this->mBuffer;
     const unsigned char *szCurrent = (const unsigned char *)(pcHeader + 1);
 
@@ -1393,7 +1393,7 @@ void MDLImporter::InternReadFile_3DGS_MDL7() {
     AI_SWAP2(pcHeader->bonetrans_stc_size);
     AI_SWAP2(pcHeader->frame_stc_size);
 
-    // validate the header of the file. There are some structure
+    // validate the header of the file_manager. There are some structure
     // sizes that are expected by the loader to be constant
     this->ValidateHeader_3DGS_MDL7(pcHeader);
 
@@ -1411,7 +1411,7 @@ void MDLImporter::InternReadFile_3DGS_MDL7() {
     for (uint32_t i = 0; i < pcHeader->groups_num; ++i)
         avOutList[i].reserve(3);
 
-    // buffer to held the names of all groups in the file
+    // buffer to held the names of all groups in the file_manager
     const size_t buffersize(AI_MDL7_MAX_GROUPNAMESIZE * pcHeader->groups_num);
     char *aszGroupNameBuffer = new char[buffersize];
 
@@ -1976,11 +1976,11 @@ void MDLImporter::JoinSkins_3DGS_MDL7(
 // ------------------------------------------------------------------------------------------------
 // Read a Half-life 1 MDL
 void MDLImporter::InternReadFile_HL1(const std::string &pFile, const uint32_t iMagicWord) {
-    // We can't correctly load an MDL from a MDL "sequence" file.
+    // We can't correctly load an MDL from a MDL "sequence" file_manager.
     if (iMagicWord == AI_MDL_MAGIC_NUMBER_BE_HL2b || iMagicWord == AI_MDL_MAGIC_NUMBER_LE_HL2b)
-        throw DeadlyImportError("Impossible to properly load a model from an MDL sequence file.");
+        throw DeadlyImportError("Impossible to properly load a model from an MDL sequence file_manager.");
 
-    // Read the MDL file.
+    // Read the MDL file_manager.
     HalfLife::HL1MDLLoader loader(
             pScene,
             mIOHandler,

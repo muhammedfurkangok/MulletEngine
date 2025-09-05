@@ -49,7 +49,7 @@ bool TGAImage::read_tga_file(const char *filename)
 	in.open(filename, std::ios::binary);
 	if (!in.is_open())
 	{
-		std::cerr << "can't open file " << filename << "\n";
+		std::cerr << "can't open file_manager " << filename << "\n";
 		in.close();
 		return false;
 	}
@@ -94,7 +94,7 @@ bool TGAImage::read_tga_file(const char *filename)
 	else
 	{
 		in.close();
-		std::cerr << "unknown file format " << (int)header.datatypecode << "\n";
+		std::cerr << "unknown file_manager format " << (int)header.datatypecode << "\n";
 		return false;
 	}
 	if (!(header.imagedescriptor & 0x20))
@@ -180,7 +180,7 @@ bool TGAImage::write_tga_file(const char *filename, bool rle) const
 	out.open(filename, std::ios::binary);
 	if (!out.is_open())
 	{
-		std::cerr << "can't open file " << filename << "\n";
+		std::cerr << "can't open file_manager " << filename << "\n";
 		out.close();
 		return false;
 	}
@@ -195,7 +195,7 @@ bool TGAImage::write_tga_file(const char *filename, bool rle) const
 	if (!out.good())
 	{
 		out.close();
-		std::cerr << "can't dump the tga file\n";
+		std::cerr << "can't dump the tga file_manager\n";
 		return false;
 	}
 	if (!rle)
@@ -220,21 +220,21 @@ bool TGAImage::write_tga_file(const char *filename, bool rle) const
 	out.write((char *)developer_area_ref, sizeof(developer_area_ref));
 	if (!out.good())
 	{
-		std::cerr << "can't dump the tga file\n";
+		std::cerr << "can't dump the tga file_manager\n";
 		out.close();
 		return false;
 	}
 	out.write((char *)extension_area_ref, sizeof(extension_area_ref));
 	if (!out.good())
 	{
-		std::cerr << "can't dump the tga file\n";
+		std::cerr << "can't dump the tga file_manager\n";
 		out.close();
 		return false;
 	}
 	out.write((char *)footer, sizeof(footer));
 	if (!out.good())
 	{
-		std::cerr << "can't dump the tga file\n";
+		std::cerr << "can't dump the tga file_manager\n";
 		out.close();
 		return false;
 	}
@@ -281,13 +281,13 @@ bool TGAImage::unload_rle_data(std::ofstream &out) const
 		out.put(raw ? run_length - 1 : run_length + 127);
 		if (!out.good())
 		{
-			std::cerr << "can't dump the tga file\n";
+			std::cerr << "can't dump the tga file_manager\n";
 			return false;
 		}
 		out.write((char *)(data + chunkstart), (raw ? run_length * bytespp : bytespp));
 		if (!out.good())
 		{
-			std::cerr << "can't dump the tga file\n";
+			std::cerr << "can't dump the tga file_manager\n";
 			return false;
 		}
 	}

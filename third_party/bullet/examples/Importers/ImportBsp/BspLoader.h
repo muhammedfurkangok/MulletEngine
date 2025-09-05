@@ -2,7 +2,7 @@
 ===========================================================================
 Copyright (C) 1999-2005 Id Software, Inc.
 
-This file is part of Quake III Arena source code.
+This file_manager is part of Quake III Arena source code.
 
 Quake III Arena source code is free software; you can redistribute it
 and/or modify it under the terms of the GNU bteral Public License as
@@ -168,7 +168,7 @@ typedef struct
 	int patchHeight;
 } BSPSurface;
 
-///GPL code from IdSofware to parse a Quake 3 BSP file
+///GPL code from IdSofware to parse a Quake 3 BSP file_manager
 ///check that your platform define __BIG_ENDIAN__ correctly (in BspLoader.cpp)
 class BspLoader
 {

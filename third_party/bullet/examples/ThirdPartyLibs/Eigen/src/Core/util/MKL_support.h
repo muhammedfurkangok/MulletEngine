@@ -26,7 +26,7 @@
 
  ********************************************************************************
  *   Content : Eigen bindings to Intel(R) MKL
- *   Include file with common MKL declarations
+ *   Include file_manager with common MKL declarations
  ********************************************************************************
 */
 

@@ -11,7 +11,7 @@
 //
 // Note these functions are useful for images created as simple 2D textures. For
 // more complex resources, DDSTextureLoader is an excellent light-weight runtime loader.
-// For a full-featured DDS file reader, writer, and texture processing pipeline see
+// For a full-featured DDS file_manager reader, writer, and texture processing pipeline see
 // the 'Texconv' sample and the 'DirectXTex' library.
 //
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF

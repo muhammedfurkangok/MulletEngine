@@ -67,21 +67,21 @@
 //                     fixed an assert() bug in the new rasterizer
 //                     replace assert() with STBTT_assert() in new rasterizer
 //
-//   Full history can be found at the end of this file.
+//   Full history can be found at the end of this file_manager.
 //
 // LICENSE
 //
-//   See end of file for license information.
+//   See end of file_manager for license information.
 //
 // USAGE
 //
-//   Include this file in whatever places neeed to refer to it. In ONE C/C++
-//   file, write:
+//   Include this file_manager in whatever places neeed to refer to it. In ONE C/C++
+//   file_manager, write:
 //      #define STB_TRUETYPE_IMPLEMENTATION
-//   before the #include of this file. This expands out the actual
-//   implementation into that C/C++ file.
+//   before the #include of this file_manager. This expands out the actual
+//   implementation into that C/C++ file_manager.
 //
-//   To make the implementation private to the file that generates the implementation,
+//   To make the implementation private to the file_manager that generates the implementation,
 //      #define STBTT_STATIC
 //
 //   Simple 3D API (don't ship this, but it's fine for tools and quick start)
@@ -96,7 +96,7 @@
 //           stbtt_PackEnd()
 //           stbtt_GetPackedQuad()
 //
-//   "Load" a font file from a memory buffer (you have to keep the buffer loaded)
+//   "Load" a font file_manager from a memory buffer (you have to keep the buffer loaded)
 //           stbtt_InitFont()
 //           stbtt_GetFontOffsetForIndex()        -- indexing for TTC font collections
 //           stbtt_GetNumberOfFonts()             -- number of fonts for TTC font collections
@@ -125,7 +125,7 @@
 //
 //   Immediately after this block comment are a series of sample programs.
 //
-//   After the sample programs is the "header file" section. This section
+//   After the sample programs is the "header file_manager" section. This section
 //   includes documentation for each API function.
 //
 //   Some important concepts to understand to use this library:
@@ -232,19 +232,19 @@
 //
 // NOTES
 //
-//   The system uses the raw data found in the .ttf file without changing it
+//   The system uses the raw data found in the .ttf file_manager without changing it
 //   and without building auxiliary data structures. This is a bit inefficient
 //   on little-endian systems (the data is big-endian), but assuming you're
 //   caching the bitmaps or glyph shapes this shouldn't be a big deal.
 //
 //   It appears to be very hard to programmatically determine what font a
-//   given file is in a general way. I provide an API for this, but I don't
+//   given file_manager is in a general way. I provide an API for this, but I don't
 //   recommend it.
 //
 //
 // SOURCE STATISTICS (based on v0.6c, 2050 LOC)
 //
-//   Documentation & header file        520 LOC  \___ 660 LOC documentation
+//   Documentation & header file_manager        520 LOC  \___ 660 LOC documentation
 //   Sample code                        140 LOC  /
 //   Truetype parsing                   620 LOC  ---- 620 LOC TrueType
 //   Software rasterization             240 LOC  \                           .
@@ -680,17 +680,17 @@ extern "C"
 	//
 
 	STBTT_DEF int stbtt_GetNumberOfFonts(const unsigned char *data);
-	// This function will determine the number of fonts in a font file.  TrueType
+	// This function will determine the number of fonts in a font file_manager.  TrueType
 	// collection (.ttc) files may contain multiple fonts, while TrueType font
 	// (.ttf) files only contain one font. The number of fonts can be used for
 	// indexing with the previous function where the index is between zero and one
 	// less than the total fonts. If an error occurs, -1 is returned.
 
 	STBTT_DEF int stbtt_GetFontOffsetForIndex(const unsigned char *data, int index);
-	// Each .ttf/.ttc file may have more than one font. Each font has a sequential
+	// Each .ttf/.ttc file_manager may have more than one font. Each font has a sequential
 	// index number starting from 0. Call this function to get the font offset for
 	// a given index; it returns -1 if the index is out of range. A regular .ttf
-	// file will only define one font and it always be at offset 0, so it will
+	// file_manager will only define one font and it always be at offset 0, so it will
 	// return '0' for index 0, and -1 for all other indices.
 
 	// The following structure is defined publically so you can declare one on
@@ -698,7 +698,7 @@ extern "C"
 	struct stbtt_fontinfo
 	{
 		void *userdata;
-		unsigned char *data;  // pointer to .ttf file
+		unsigned char *data;  // pointer to .ttf file_manager
 		int fontstart;        // offset of start of font
 
 		int numGlyphs;  // number of glyphs, needed for range checking
@@ -716,7 +716,7 @@ extern "C"
 	};
 
 	STBTT_DEF int stbtt_InitFont(stbtt_fontinfo *info, const unsigned char *data, int offset);
-	// Given an offset into the file that defines a font, this function builds
+	// Given an offset into the file_manager that defines a font, this function builds
 	// the necessary cached info for the rest of the system. You must allocate
 	// the stbtt_fontinfo yourself, and stbtt_InitFont will fill it out. You don't
 	// need to do anything special to free it, because the contents are pure
@@ -801,7 +801,7 @@ extern "C"
 
 #ifndef stbtt_vertex             // you can predefine this to use different values \
 								 // (we share this with other code at RAD)
-#define stbtt_vertex_type short  // can't use stbtt_int16 because that's not visible in the header file
+#define stbtt_vertex_type short  // can't use stbtt_int16 because that's not visible in the header file_manager
 	typedef struct
 	{
 		stbtt_vertex_type x, y, cx, cy, cx1, cy1;
@@ -962,9 +962,9 @@ extern "C"
 	// Finding the right font...
 	//
 	// You should really just solve this offline, keep your own tables
-	// of what font is what, and don't try to get it out of the .ttf file.
-	// That's because getting it out of the .ttf file is really hard, because
-	// the names in the file can appear in many possible encodings, in many
+	// of what font is what, and don't try to get it out of the .ttf file_manager.
+	// That's because getting it out of the .ttf file_manager is really hard, because
+	// the names in the file_manager can appear in many possible encodings, in many
 	// possible languages, and e.g. if you need a case-insensitive comparison,
 	// the details of that depend on the encoding & language in a complex way
 	// (actually underspecified in truetype, but also gigantic).
@@ -975,7 +975,7 @@ extern "C"
 	//             you can run this before calling stbtt_InitFont()
 	//
 	//     stbtt_GetFontNameString() lets you get any of the various strings
-	//             from the file yourself and do your own comparisons on them.
+	//             from the file_manager yourself and do your own comparisons on them.
 	//             You have to have called stbtt_InitFont() first.
 
 	STBTT_DEF int stbtt_FindMatchingFont(const unsigned char *fontdata, const char *name, int flags);
@@ -1110,7 +1110,7 @@ typedef int stbtt__test_oversample_pow2[(STBTT_MAX_OVERSAMPLE & (STBTT_MAX_OVERS
 
 //////////////////////////////////////////////////////////////////////////
 //
-// stbtt__buf helpers to parse data from file
+// stbtt__buf helpers to parse data from file_manager
 //
 
 static stbtt_uint8 stbtt__buf_get8(stbtt__buf *b)
@@ -1268,7 +1268,7 @@ static stbtt__buf stbtt__cff_index_get(stbtt__buf b, int i)
 
 //////////////////////////////////////////////////////////////////////////
 //
-// accessors to parse data from file
+// accessors to parse data from file_manager
 //
 
 // on platforms that don't allow misaligned reads, if we want to allow

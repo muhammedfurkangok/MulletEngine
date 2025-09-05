@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file XFileExporter.h
- * Declares the exporter class to write a scene to a Collada file
+ * Declares the exporter class to write a scene to a Collada file_manager
  */
 #ifndef AI_XFILEEXPORTER_H_INC
 #define AI_XFILEEXPORTER_H_INC
@@ -62,7 +62,7 @@ namespace Assimp {
 class IOSystem;
 
 
-/// Helper class to export a given scene to a X-file.
+/// Helper class to export a given scene to a X-file_manager.
 /// Note: an xFile uses a left hand system. Assimp used a right hand system (OpenGL), therefore we have to transform everything
 class XFileExporter
 {
@@ -119,7 +119,7 @@ protected:
     /// Path of the directory where the scene will be exported
     const std::string mPath;
 
-    /// Name of the file (without extension) where the scene will be exported
+    /// Name of the file_manager (without extension) where the scene will be exported
     const std::string mFile;
 
     /// The scene to be written

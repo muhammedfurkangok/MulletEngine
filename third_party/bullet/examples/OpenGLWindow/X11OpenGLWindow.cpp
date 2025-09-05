@@ -1173,7 +1173,7 @@ int X11OpenGLWindow::getHeight() const
 int X11OpenGLWindow::fileOpenDialog(char* filename, int maxNameLength)
 {
 	int len = 0;
-	FILE* output = popen("zenity --file-selection --file-filter=\"*.urdf\" --file-filter=\"*.sdf\"  --file-filter=\"*.obj\"  --file-filter=\"*.*\"", "r");
+	FILE* output = popen("zenity --file_manager-selection --file_manager-filter=\"*.urdf\" --file_manager-filter=\"*.sdf\"  --file_manager-filter=\"*.obj\"  --file_manager-filter=\"*.*\"", "r");
 	if (output)
 	{
 		while (fgets(filename, maxNameLength - 1, output) != NULL)
@@ -1182,7 +1182,7 @@ int X11OpenGLWindow::fileOpenDialog(char* filename, int maxNameLength)
 			if (len > 0)
 			{
 				filename[len - 1] = 0;
-				printf("file open (length=%d) = %s\n", len, filename);
+				printf("file_manager open (length=%d) = %s\n", len, filename);
 			}
 		}
 		pclose(output);

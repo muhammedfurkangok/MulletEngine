@@ -64,41 +64,41 @@ void ExportSceneObj(const char* pFile,IOSystem* pIOSystem, const aiScene* pScene
     ObjExporter exporter(pFile, pScene, false, props);
 
     if (exporter.mOutput.fail() || exporter.mOutputMat.fail()) {
-        throw DeadlyExportError("output data creation failed. Most likely the file became too large: " + std::string(pFile));
+        throw DeadlyExportError("output data creation failed. Most likely the file_manager became too large: " + std::string(pFile));
     }
 
-    // we're still here - export successfully completed. Write both the main OBJ file and the material script
+    // we're still here - export successfully completed. Write both the main OBJ file_manager and the material script
     {
         std::unique_ptr<IOStream> outfile (pIOSystem->Open(pFile,"wt"));
         if (outfile == nullptr) {
-            throw DeadlyExportError("could not open output .obj file: " + std::string(pFile));
+            throw DeadlyExportError("could not open output .obj file_manager: " + std::string(pFile));
         }
         outfile->Write( exporter.mOutput.str().c_str(), static_cast<size_t>(exporter.mOutput.tellp()),1);
     }
     {
         std::unique_ptr<IOStream> outfile (pIOSystem->Open(exporter.GetMaterialLibFileName(),"wt"));
         if (outfile == nullptr) {
-            throw DeadlyExportError("could not open output .mtl file: " + std::string(exporter.GetMaterialLibFileName()));
+            throw DeadlyExportError("could not open output .mtl file_manager: " + std::string(exporter.GetMaterialLibFileName()));
         }
         outfile->Write( exporter.mOutputMat.str().c_str(), static_cast<size_t>(exporter.mOutputMat.tellp()),1);
     }
 }
 
 // ------------------------------------------------------------------------------------------------
-// Worker function for exporting a scene to Wavefront OBJ without the material file. Prototyped and registered in Exporter.cpp
+// Worker function for exporting a scene to Wavefront OBJ without the material file_manager. Prototyped and registered in Exporter.cpp
 void ExportSceneObjNoMtl(const char* pFile,IOSystem* pIOSystem, const aiScene* pScene, const ExportProperties* props) {
     // invoke the exporter
     ObjExporter exporter(pFile, pScene, true, props);
 
     if (exporter.mOutput.fail() || exporter.mOutputMat.fail()) {
-        throw DeadlyExportError("output data creation failed. Most likely the file became too large: " + std::string(pFile));
+        throw DeadlyExportError("output data creation failed. Most likely the file_manager became too large: " + std::string(pFile));
     }
 
-    // we're still here - export successfully completed. Write both the main OBJ file and the material script
+    // we're still here - export successfully completed. Write both the main OBJ file_manager and the material script
     {
         std::unique_ptr<IOStream> outfile (pIOSystem->Open(pFile,"wt"));
         if (outfile == nullptr) {
-            throw DeadlyExportError("could not open output .obj file: " + std::string(pFile));
+            throw DeadlyExportError("could not open output .obj file_manager: " + std::string(pFile));
         }
         outfile->Write( exporter.mOutput.str().c_str(), static_cast<size_t>(exporter.mOutput.tellp()),1);
     }
@@ -144,7 +144,7 @@ ObjExporter::~ObjExporter() = default;
 
 // ------------------------------------------------------------------------------------------------
 std::string ObjExporter::GetMaterialLibName() {
-    // within the Obj file, we use just the relative file name with the path stripped
+    // within the Obj file_manager, we use just the relative file_manager name with the path stripped
     const std::string& s = GetMaterialLibFileName();
     std::string::size_type il = s.find_last_of("/\\");
     if (il != std::string::npos) {
@@ -156,7 +156,7 @@ std::string ObjExporter::GetMaterialLibName() {
 
 // ------------------------------------------------------------------------------------------------
 std::string ObjExporter::GetMaterialLibFileName() {
-    // Remove existing .obj file extension so that the final material file name will be fileName.mtl and not fileName.obj.mtl
+    // Remove existing .obj file_manager extension so that the final material file_manager name will be fileName.mtl and not fileName.obj.mtl
     size_t lastdot = filename.find_last_of('.');
     if ( lastdot != std::string::npos ) {
         return filename.substr( 0, lastdot ) + MaterialExt;

@@ -55,7 +55,7 @@ namespace Assimp {
  *  A very rudimentary loader for the moment. No support for the hierarchy,
  *  every marker is returned as child of root.
  *
- *  Link to file format specification:
+ *  Link to file_manager format specification:
  *  <max_8_dvd>\samples\Motion\Docs\CSM.rtf
 */
 class CSMImporter : public BaseImporter {

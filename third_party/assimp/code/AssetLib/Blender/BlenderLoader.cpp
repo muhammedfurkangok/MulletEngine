@@ -111,7 +111,7 @@ BlenderImporter::~BlenderImporter() {
 static constexpr char Token[] = "BLENDER";
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool BlenderImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     return ParseMagicToken(pFile, pIOHandler).error.empty();
 }
@@ -129,7 +129,7 @@ void BlenderImporter::SetupProperties(const Importer * /*pImp*/) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void BlenderImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     FileDatabase file;
@@ -166,15 +166,15 @@ void BlenderImporter::ParseBlendFile(FileDatabase &out, std::shared_ptr<IOStream
     const DNA *dna = nullptr;
 
     out.entries.reserve(128);
-    { // even small BLEND files tend to consist of many file blocks
+    { // even small BLEND files tend to consist of many file_manager blocks
         SectionParser parser(*out.reader, out.i64bit);
 
-        // first parse the file in search for the DNA and insert all other sections into the database
+        // first parse the file_manager in search for the DNA and insert all other sections into the database
         while ((parser.Next(), 1)) {
             const FileBlockHead &head = parser.GetCurrent();
 
             if (head.id == "ENDB") {
-                break; // only valid end of the file
+                break; // only valid end of the file_manager
             } else if (head.id == "DNA1") {
                 dna_reader.Parse();
                 dna = &dna_reader.GetDNA();
@@ -354,7 +354,7 @@ void BlenderImporter::ResolveImage(aiMaterial *out, const Material *mat, const M
     (void)conv_data;
     aiString name;
 
-    // check if the file contents are bundled with the BLEND file
+    // check if the file_manager contents are bundled with the BLEND file_manager
     if (img->packedfile) {
         name.data[0] = '*';
         name.length = 1 + ASSIMP_itoa10(name.data + 1, static_cast<unsigned int>(AI_MAXLEN - 1), static_cast<int32_t>(conv_data.textures->size()));
@@ -362,8 +362,8 @@ void BlenderImporter::ResolveImage(aiMaterial *out, const Material *mat, const M
         conv_data.textures->push_back(new aiTexture());
         aiTexture *curTex = conv_data.textures->back();
 
-        // usually 'img->name' will be the original file name of the embedded textures,
-        // so we can extract the file extension from it.
+        // usually 'img->name' will be the original file_manager name of the embedded textures,
+        // so we can extract the file_manager extension from it.
         const size_t nlen = strlen(img->name);
         const char *s = img->name + nlen, *e = s;
         while (s >= img->name && *s != '.') {
@@ -384,7 +384,7 @@ void BlenderImporter::ResolveImage(aiMaterial *out, const Material *mat, const M
 
         curTex->pcData = reinterpret_cast<aiTexel *>(ch);
 
-        LogInfo("Reading embedded texture, original file was ", img->name);
+        LogInfo("Reading embedded texture, original file_manager was ", img->name);
     } else {
         name = aiString(img->name);
     }
@@ -811,7 +811,7 @@ void BlenderImporter::ConvertMesh(const Scene & /*in*/, const Object * /*obj*/, 
         aiVector3D *vn = out->mNormals + out->mNumVertices;
 
         // XXX we can't fold this easily, because we are restricted
-        // to the member names from the BLEND file (v1,v2,v3,v4)
+        // to the member names from the BLEND file_manager (v1,v2,v3,v4)
         // which are assigned by the genblenddna.py script and
         // cannot be changed without breaking the entire
         // import process.
@@ -897,7 +897,7 @@ void BlenderImporter::ConvertMesh(const Scene & /*in*/, const Object * /*obj*/, 
         aiVector3D *vn = out->mNormals + out->mNumVertices;
 
         // XXX we can't fold this easily, because we are restricted
-        // to the member names from the BLEND file (v1,v2,v3,v4)
+        // to the member names from the BLEND file_manager (v1,v2,v3,v4)
         // which are assigned by the genblenddna.py script and
         // cannot be changed without breaking the entire
         // import process.
@@ -1290,7 +1290,7 @@ aiNode *BlenderImporter::ConvertNode(const Scene &in, const Object *obj, Convers
 BlenderImporter::StreamOrError BlenderImporter::ParseMagicToken(const std::string &pFile, IOSystem *pIOHandler) const {
     std::shared_ptr<IOStream> stream(pIOHandler->Open(pFile, "rb"));
     if (stream == nullptr) {
-        return {{}, {}, "Could not open file for reading"};
+        return {{}, {}, "Could not open file_manager for reading"};
     }
 
     char magic[8] = { 0 };
@@ -1300,16 +1300,16 @@ BlenderImporter::StreamOrError BlenderImporter::ParseMagicToken(const std::strin
     }
 
     // Check for presence of the gzip header. If yes, assume it is a
-    // compressed blend file and try uncompressing it, else fail. This is to
+    // compressed blend file_manager and try uncompressing it, else fail. This is to
     // avoid uncompressing random files which our loader might end up with.
 #ifdef ASSIMP_BUILD_NO_COMPRESSED_BLEND
-    return {{}, {}, "BLENDER magic bytes are missing, is this file compressed (Assimp was built without decompression support)?"};
+    return {{}, {}, "BLENDER magic bytes are missing, is this file_manager compressed (Assimp was built without decompression support)?"};
 #else
     if (magic[0] != 0x1f || static_cast<uint8_t>(magic[1]) != 0x8b) {
         return {{}, {}, "BLENDER magic bytes are missing, couldn't find GZIP header either"};
     }
 
-    LogDebug("Found no BLENDER magic word but a GZIP header, might be a compressed file");
+    LogDebug("Found no BLENDER magic word but a GZIP header, might be a compressed file_manager");
     if (magic[2] != 8) {
         return {{}, {}, "Unsupported GZIP compression method"};
     }
@@ -1334,7 +1334,7 @@ BlenderImporter::StreamOrError BlenderImporter::ParseMagicToken(const std::strin
     if (strcmp(magic, Token) == 0) {
         return {stream, uncompressed, {}};
     }
-    return {{}, {}, "Found no BLENDER magic word in decompressed GZIP file"};
+    return {{}, {}, "Found no BLENDER magic word in decompressed GZIP file_manager"};
 #endif
 }
 

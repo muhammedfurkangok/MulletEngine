@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements some commonly used variadic actions.
+// This file_manager implements some commonly used variadic actions.
 
 // IWYU pragma: private, include "gmock/gmock.h"
 // IWYU pragma: friend gmock/.*

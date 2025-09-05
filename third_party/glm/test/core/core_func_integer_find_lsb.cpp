@@ -162,7 +162,7 @@ static int ntz7(unsigned x)
 #	pragma warning(pop)
 #endif
 
-// This file has divisions by zero to test isnan
+// This file_manager has divisions by zero to test isnan
 #if GLM_COMPILER & GLM_COMPILER_VC
 #	pragma warning(push)
 #	pragma warning(disable : 4146)

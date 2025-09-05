@@ -67,7 +67,7 @@ private:
         const aiScene *scene = importer->ReadFile(MDL_HL1_FILE_MAN, 0);
         EXPECT_NE(nullptr, scene);
 
-        // Test that the importer can directly load an HL1 MDL external texture file.
+        // Test that the importer can directly load an HL1 MDL external texture file_manager.
         scene = importer->ReadFile(ASSIMP_TEST_MDL_HL1_MODELS_DIR "manT.mdl", aiProcess_ValidateDataStructure);
         EXPECT_NE(nullptr, scene);
         EXPECT_NE(0u, scene->mNumTextures);

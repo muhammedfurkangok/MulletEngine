@@ -555,7 +555,7 @@ static void convertURDFToVisualShape(const UrdfShape* visual, const char* urdfPa
 		{
 			if (visual->m_geometry.m_meshFileType != UrdfGeometry::MEMORY_VERTICES)
 			{
-				b3Warning("issue extracting mesh from COLLADA/STL file %s\n", visual->m_geometry.m_meshFileName.c_str());
+				b3Warning("issue extracting mesh from COLLADA/STL file_manager %s\n", visual->m_geometry.m_meshFileName.c_str());
 			}
 		}
 		break;

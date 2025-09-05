@@ -137,7 +137,7 @@ public:
     /// @return The Material indices Array.
     const MatIndexArray& GetMaterialIndices() const;
 
-    /// @brief Convert from a fbx file vertex index (for example from a #Cluster weight) or nullptr if the vertex index is not valid.
+    /// @brief Convert from a fbx file_manager vertex index (for example from a #Cluster weight) or nullptr if the vertex index is not valid.
     /// @param in_index   The requested input index.
     /// @param count      The number of indices.
     /// @return The indices.

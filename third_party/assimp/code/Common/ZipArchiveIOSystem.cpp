@@ -60,7 +60,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 // ----------------------------------------------------------------
-// A read-only file inside a ZIP
+// A read-only file_manager inside a ZIP
 
 class ZipFile final : public IOStream {
     friend class ZipFileInfo;
@@ -223,7 +223,7 @@ zlib_filefunc_def IOSystem2Unzip::get(IOSystem *pIOHandler) {
 }
 
 // ----------------------------------------------------------------
-// Info about a read-only file inside a ZIP
+// Info about a read-only file_manager inside a ZIP
 class ZipFileInfo final {
 public:
     explicit ZipFileInfo(unzFile zip_handle, size_t size);
@@ -302,7 +302,7 @@ size_t ZipFile::Read(void *pvBuffer, size_t pSize, size_t pCount) {
     ai_assert(0 != pSize);
     ai_assert(0 != pCount);
 
-    // Clip down to file size
+    // Clip down to file_manager size
     size_t byteSize = pSize * pCount;
     if ((byteSize + m_SeekPtr) > m_Size) {
         pCount = (m_Size - m_SeekPtr) / pSize;
@@ -409,7 +409,7 @@ void ZipArchiveIOSystem::Implement::MapArchive() {
     if (!m_ArchiveMap.empty())
         return;
 
-    //  At first ensure file is already open
+    //  At first ensure file_manager is already open
     if (unzGoToFirstFile(m_ZipFileHandle) != UNZ_OK)
         return;
 
@@ -504,7 +504,7 @@ void ZipArchiveIOSystem::Implement::SimplifyFilename(std::string &filename) {
     if (pos != 0)
         filename.erase(0, pos);
 
-    // Simplify "my/folder/../file.png" constructions, if any
+    // Simplify "my/folder/../file_manager.png" constructions, if any
     static const std::string relative("/../");
     const size_t relsize = relative.size() - 1;
     pos = filename.find(relative);

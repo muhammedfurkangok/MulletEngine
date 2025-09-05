@@ -31,11 +31,11 @@
 //
 // The Google C++ Testing Framework (Google Test)
 //
-// This header file declares the String class and functions used internally by
+// This header file_manager declares the String class and functions used internally by
 // Google Test.  They are subject to change without notice. They should not used
 // by code external to Google Test.
 //
-// This header file is #included by <gtest/internal/gtest-internal.h>.
+// This header file_manager is #included by <gtest/internal/gtest-internal.h>.
 // It should not be #included by other files.
 
 #ifndef GTEST_INCLUDE_GTEST_INTERNAL_GTEST_STRING_H_

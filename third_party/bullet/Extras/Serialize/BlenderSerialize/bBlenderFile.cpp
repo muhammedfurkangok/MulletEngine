@@ -200,7 +200,7 @@ int bBlenderFile::write(const char *fileName, bool fixupPointers)
 	}
 	else
 	{
-		printf("Error: cannot open file %s for writing\n", fileName);
+		printf("Error: cannot open file_manager %s for writing\n", fileName);
 		return 0;
 	}
 	return 1;

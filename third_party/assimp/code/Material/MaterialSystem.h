@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file MaterialSystem.h
- *  Now that #MaterialHelper is gone, this file only contains some
+ *  Now that #MaterialHelper is gone, this file_manager only contains some
  *  internal material utility functions.
  */
 #ifndef AI_MATERIALSYSTEM_H_INC

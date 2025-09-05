@@ -33,7 +33,7 @@
 
 SYNOPSIS
        gtest_help_test.py --build_dir=BUILD/DIR
-         # where BUILD/DIR contains the built gtest_help_test_ file.
+         # where BUILD/DIR contains the built gtest_help_test_ file_manager.
        gtest_help_test.py
 """
 

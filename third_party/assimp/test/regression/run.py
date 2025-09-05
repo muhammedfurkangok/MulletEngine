@@ -85,7 +85,7 @@ messages = collections.defaultdict(lambda: "<unknown", {
 \tReturn code was {0}""",
 
         FILE_NOT_READABLE:
-"""Unexpected failure reading file""",
+"""Unexpected failure reading file_manager""",
 
         COMPARE_SUCCESS:
 """Results match archived reference dump in database\n\

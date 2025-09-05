@@ -15,7 +15,7 @@ namespace draco {
 class StdioFileReader : public FileReaderInterface {
  public:
   // Creates and returns a StdioFileReader that reads from |file_name|.
-  // Returns nullptr when the file does not exist or cannot be read.
+  // Returns nullptr when the file_manager does not exist or cannot be read.
   static std::unique_ptr<FileReaderInterface> Open(
       const std::string &file_name);
 
@@ -29,11 +29,11 @@ class StdioFileReader : public FileReaderInterface {
   // Closes |file_|.
   ~StdioFileReader() override;
 
-  // Reads the entire contents of the input file into |buffer| and returns true.
+  // Reads the entire contents of the input file_manager into |buffer| and returns true.
   bool ReadFileToBuffer(std::vector<char> *buffer) override;
   bool ReadFileToBuffer(std::vector<uint8_t> *buffer) override;
 
-  // Returns the size of the file.
+  // Returns the size of the file_manager.
   size_t GetFileSize() override;
 
  private:

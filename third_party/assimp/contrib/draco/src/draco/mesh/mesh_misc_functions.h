@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// This file contains misc functions that are needed by several mesh related
+// This file_manager contains misc functions that are needed by several mesh related
 // algorithms.
 
 #ifndef DRACO_MESH_MESH_MISC_FUNCTIONS_H_
@@ -25,7 +25,7 @@
 #include "draco/mesh/corner_table.h"
 #include "draco/mesh/mesh.h"
 
-// The file contains functions that use both Mesh and CornerTable as inputs.
+// The file_manager contains functions that use both Mesh and CornerTable as inputs.
 namespace draco {
 
 // Creates a CornerTable from the position attribute of |mesh|. Returns nullptr

@@ -2,7 +2,7 @@
 // 
 // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.
 //
-// Licensed under the MIT License (the "License"); you may not use this file except
+// Licensed under the MIT License (the "License"); you may not use this file_manager except
 // in compliance with the License. You may obtain a copy of the License at
 //
 // http://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ RAPIDJSON_DIAG_OFF(unreachable-code)
 
 RAPIDJSON_NAMESPACE_BEGIN
 
-//! Wrapper of C file stream for output using fwrite().
+//! Wrapper of C file_manager stream for output using fwrite().
 /*!
     \note implements Stream concept
 */

@@ -219,10 +219,10 @@ aiReturn Importer::RegisterLoader(BaseImporter* pImp) {
     ASSIMP_BEGIN_EXCEPTION_REGION();
 
     // --------------------------------------------------------------------
-    // Check whether we would have two loaders for the same file extension
+    // Check whether we would have two loaders for the same file_manager extension
     // This is absolutely OK, but we should warn the developer of the new
     // loader that his code will probably never be called if the first
-    // loader is a bit too lazy in his file checking.
+    // loader is a bit too lazy in his file_manager checking.
     // --------------------------------------------------------------------
     std::set<std::string> st;
     std::string baked;
@@ -232,7 +232,7 @@ aiReturn Importer::RegisterLoader(BaseImporter* pImp) {
 
 #ifdef ASSIMP_BUILD_DEBUG
         if (IsExtensionSupported(*it)) {
-            ASSIMP_LOG_WARN("The file extension ", *it, " is already in use");
+            ASSIMP_LOG_WARN("The file_manager extension ", *it, " is already in use");
         }
 #endif
         baked += *it;
@@ -240,7 +240,7 @@ aiReturn Importer::RegisterLoader(BaseImporter* pImp) {
 
     // add the loader
     pimpl->mImporter.push_back(pImp);
-    ASSIMP_LOG_INFO("Registering custom importer for these file extensions: ", baked);
+    ASSIMP_LOG_INFO("Registering custom importer for these file_manager extensions: ", baked);
     ASSIMP_END_EXCEPTION_REGION(aiReturn);
 
     return AI_SUCCESS;
@@ -499,7 +499,7 @@ const aiScene* Importer::ReadFileFromMemory(const void* pBuffer, size_t pLength,
 
         SetIOHandler(new MemoryIOSystem((const uint8_t*)pBuffer,pLength,io));
 
-        // read the file and recover the previous IOSystem
+        // read the file_manager and recover the previous IOSystem
         static const size_t BufSize(Importer::MaxLenHint + 28);
         char fbuff[BufSize];
         ai_snprintf(fbuff, BufSize, "%s.%s",AI_MEMORYIO_MAGIC_FILENAME,pHint);
@@ -583,7 +583,7 @@ void WriteLogOpening(const std::string& file) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads the given file and returns its contents if successful.
+// Reads the given file_manager and returns its contents if successful.
 const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
     ai_assert(nullptr != pimpl);
 
@@ -610,10 +610,10 @@ const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
             FreeScene();
         }
 
-        // First check if the file is accessible at all
+        // First check if the file_manager is accessible at all
         if( !pimpl->mIOHandler->Exists( pFile)) {
 
-            pimpl->mErrorString = "Unable to open file \"" + pFile + "\".";
+            pimpl->mErrorString = "Unable to open file_manager \"" + pFile + "\".";
             ASSIMP_LOG_ERROR(pimpl->mErrorString);
             return nullptr;
         }
@@ -623,7 +623,7 @@ const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
             profiler->BeginRegion("total");
         }
 
-        // Find an worker class which can handle the file extension.
+        // Find an worker class which can handle the file_manager extension.
         // Multiple importers may be able to handle the same extension (.xml!); gather them all.
         SetPropertyInteger("importerIndex", -1);
         struct ImporterAndIndex {
@@ -649,7 +649,7 @@ const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
             imp = possibleImporters[0].importer;
             SetPropertyInteger("importerIndex", possibleImporters[0].index);
         }
-        // If multiple importers claim this file extension, ask them to look at the actual file data to decide.
+        // If multiple importers claim this file_manager extension, ask them to look at the actual file_manager data to decide.
         // This can happen e.g. with XML (COLLADA vs. Irrlicht).
         else {
             for (std::vector<ImporterAndIndex>::const_iterator it = possibleImporters.begin(); it < possibleImporters.end(); ++it) {
@@ -678,13 +678,13 @@ const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
             }
             // Put a proper error message if no suitable importer was found
             if( !imp)   {
-                pimpl->mErrorString = "No suitable reader found for the file format of file \"" + pFile + "\".";
+                pimpl->mErrorString = "No suitable reader found for the file_manager format of file_manager \"" + pFile + "\".";
                 ASSIMP_LOG_ERROR(pimpl->mErrorString);
                 return nullptr;
             }
         }
 
-        // Get file size for progress handler
+        // Get file_manager size for progress handler
         IOStream * fileIO = pimpl->mIOHandler->Open( pFile );
         uint32_t fileSize = 0;
         if (fileIO)
@@ -699,7 +699,7 @@ const aiScene* Importer::ReadFile( const char* _pFile, unsigned int pFlags) {
         if ( nullptr != desc ) {
             ext = desc->mName;
         }
-        ASSIMP_LOG_INFO("Found a matching importer for this file format: ", ext, "." );
+        ASSIMP_LOG_INFO("Found a matching importer for this file_manager format: ", ext, "." );
         pimpl->mProgressHandler->UpdateFileRead( 0, fileSize );
 
         if (profiler) {
@@ -994,7 +994,7 @@ BaseImporter* Importer::GetImporter (size_t index) const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Find a loader plugin for a given file extension
+// Find a loader plugin for a given file_manager extension
 BaseImporter* Importer::GetImporter (const char* szExtension) const {
     ai_assert(nullptr != pimpl);
 
@@ -1002,7 +1002,7 @@ BaseImporter* Importer::GetImporter (const char* szExtension) const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Find a loader plugin for a given file extension
+// Find a loader plugin for a given file_manager extension
 size_t Importer::GetImporterIndex (const char* szExtension) const {
     ai_assert(nullptr != pimpl);
     ai_assert(nullptr != szExtension);
@@ -1033,7 +1033,7 @@ size_t Importer::GetImporterIndex (const char* szExtension) const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Helper function to build a list of all file extensions supported by ASSIMP
+// Helper function to build a list of all file_manager extensions supported by ASSIMP
 void Importer::GetExtensionList(aiString& szOut) const {
     ai_assert(nullptr != pimpl);
 

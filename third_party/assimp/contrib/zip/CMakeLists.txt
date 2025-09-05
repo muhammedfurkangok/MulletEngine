@@ -22,7 +22,7 @@ if(ZIP_ENABLE_SHARABLE_FILE_OPEN)
 endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-	# large file support
+	# large file_manager support
 	add_definitions(-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64)
 endif()
 

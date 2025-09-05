@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008-2010 Gael Guennebaud <gael.guennebaud@inria.fr>
@@ -6,7 +6,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_QUATERNION_H
 #define EIGEN_QUATERNION_H
@@ -15,7 +15,7 @@ namespace Eigen {
 
 /***************************************************************************
 * Definition of QuaternionBase<Derived>
-* The implementation is at the end of the file
+* The implementation is at the end of the file_manager
 ***************************************************************************/
 
 namespace internal {

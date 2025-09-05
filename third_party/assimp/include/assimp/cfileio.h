@@ -78,15 +78,15 @@ typedef char* aiUserData;
  *
  *  Provided are functions to open and close files. Supply a custom structure to
  *  the import function. If you don't, a default implementation is used. Use custom
- *  file systems to enable reading from other sources, such as ZIPs
+ *  file_manager systems to enable reading from other sources, such as ZIPs
  *  or memory locations. */
 struct aiFileIO
 {
-    /** Function used to open a new file
+    /** Function used to open a new file_manager
      */
     aiFileOpenProc OpenProc;
 
-    /** Function used to close an existing file
+    /** Function used to close an existing file_manager
      */
     aiFileCloseProc CloseProc;
 
@@ -105,28 +105,28 @@ struct aiFileIO
  *  delivering a custom aiFileIO. Use this to enable reading from other sources,
  *  such as ZIP archives or memory locations. */
 struct aiFile {
-    /** Callback to read from a file */
+    /** Callback to read from a file_manager */
     aiFileReadProc ReadProc;
 
-    /** Callback to write to a file */
+    /** Callback to write to a file_manager */
     aiFileWriteProc WriteProc;
 
     /** Callback to retrieve the current position of
-     *  the file cursor (ftell())
+     *  the file_manager cursor (ftell())
      */
     aiFileTellProc TellProc;
 
-    /** Callback to retrieve the size of the file,
+    /** Callback to retrieve the size of the file_manager,
      *  in bytes
      */
     aiFileTellProc FileSizeProc;
 
     /** Callback to set the current position
-     * of the file cursor (fseek())
+     * of the file_manager cursor (fseek())
      */
     aiFileSeek SeekProc;
 
-    /** Callback to flush the file contents
+    /** Callback to flush the file_manager contents
      */
     aiFileFlushProc FlushProc;
 

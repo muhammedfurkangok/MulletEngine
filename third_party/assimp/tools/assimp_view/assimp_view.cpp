@@ -157,7 +157,7 @@ DWORD WINAPI LoadThreadProc(LPVOID) {
     aiSetImportPropertyInteger(props, AI_CONFIG_GLOB_MEASURE_TIME, 1);
     //aiSetImportPropertyInteger(props,AI_CONFIG_PP_PTV_KEEP_HIERARCHY,1);
 
-    // Call ASSIMPs C-API to load the file
+    // Call ASSIMPs C-API to load the file_manager
     g_pcAsset->pcScene = (aiScene *)aiImportFileExWithProperties(g_szFileName,
             ppsteps | /* configurable pp steps */
                     aiProcess_GenSmoothNormals | // generate smooth normal vectors if not existing

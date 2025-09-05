@@ -60,7 +60,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 // ----------------------------------------------------------------------------------
-/** @brief CPP-API: Class to handle file I/O for C++
+/** @brief CPP-API: Class to handle file_manager I/O for C++
  *
  *  Derive an own implementation from this interface to provide custom IO handling
  *  to the Importer. If you implement this interface, be sure to also provide an
@@ -77,13 +77,13 @@ protected:
 
 public:
     // -------------------------------------------------------------------
-    /** @brief Destructor. Deleting the object closes the underlying file,
-     * alternatively you may use IOSystem::Close() to release the file.
+    /** @brief Destructor. Deleting the object closes the underlying file_manager,
+     * alternatively you may use IOSystem::Close() to release the file_manager.
      */
     virtual ~IOStream() = default;
 
     // -------------------------------------------------------------------
-    /** @brief Read from the file
+    /** @brief Read from the file_manager
      *
      * See fread() for more details
      * This fails for write-only files */
@@ -92,7 +92,7 @@ public:
         size_t pCount) = 0;
 
     // -------------------------------------------------------------------
-    /** @brief Write to the file
+    /** @brief Write to the file_manager
     *
     * See fwrite() for more details
     * This fails for read-only files */
@@ -101,7 +101,7 @@ public:
         size_t pCount) = 0;
 
     // -------------------------------------------------------------------
-    /** @brief Set the read/write cursor of the file
+    /** @brief Set the read/write cursor of the file_manager
      *
      * Note that the offset is _negative_ for aiOrigin_END.
      * See fseek() for more details */
@@ -120,7 +120,7 @@ public:
     virtual size_t FileSize() const = 0;
 
     // -------------------------------------------------------------------
-    /** @brief Flush the contents of the file buffer (for writers)
+    /** @brief Flush the contents of the file_manager buffer (for writers)
      *  See fflush() for more details.
      */
     virtual void Flush() = 0;

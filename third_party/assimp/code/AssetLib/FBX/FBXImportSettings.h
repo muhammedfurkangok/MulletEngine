@@ -73,7 +73,7 @@ struct ImportSettings {
      *   - only accept fbx 2012, 2013 files
      *   - on the slightest error, give up.
      *
-     *  Basically, strict mode means that the fbx file will actually
+     *  Basically, strict mode means that the fbx file_manager will actually
      *  be validated. Strict mode is off by default. */
     bool strictMode;
 
@@ -157,7 +157,7 @@ struct ImportSettings {
     */
     bool convertToMeters;
 
-    // Set to true to ignore the axis configuration in the file
+    // Set to true to ignore the axis configuration in the file_manager
     bool ignoreUpDirection = false;
 };
 

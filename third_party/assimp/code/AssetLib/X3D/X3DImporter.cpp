@@ -217,7 +217,7 @@ void X3DImporter::ParseFile(const std::string &file, IOSystem *pIOHandler) {
     static const std::string mode = "rb";
     std::unique_ptr<IOStream> fileStream(pIOHandler->Open(file, mode));
     if (!fileStream) {
-        throw DeadlyImportError("Failed to open file " + file + ".");
+        throw DeadlyImportError("Failed to open file_manager " + file + ".");
     }
 
     XmlParser theParser;
@@ -272,7 +272,7 @@ void X3DImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     if (!isReadFromMem) {
         std::shared_ptr<IOStream> stream(pIOHandler->Open(pFile, "rb"));
         if (!stream) {
-            throw DeadlyImportError("Could not open file for reading");
+            throw DeadlyImportError("Could not open file_manager for reading");
         }
     }
     std::string::size_type slashPos = pFile.find_last_of("\\/");

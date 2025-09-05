@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
 
-/** @file Android extension of DefaultIOSystem using the standard C file functions */
+/** @file Android extension of DefaultIOSystem using the standard C file_manager functions */
 
 #include <assimp/ai_assert.h>
 #include <android/asset_manager.h>
@@ -51,7 +51,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using namespace Assimp;
 
-/** Tests for the existence of a file at the given path. */
+/** Tests for the existence of a file_manager at the given path. */
 bool BundledAssetIOSystem::Exists(const char* pFile) const {
     ai_assert(NULL != mApkAssetManager);
     AAsset *  asset = AAssetManager_open(mApkAssetManager, pFile, AASSET_MODE_UNKNOWN);
@@ -61,7 +61,7 @@ bool BundledAssetIOSystem::Exists(const char* pFile) const {
 }
 
 // -------------------------------------------------------------------
-/** Open a new file with a given path. */
+/** Open a new file_manager with a given path. */
 Assimp::IOStream* BundledAssetIOSystem::Open(const char* pFile, const char* pMode) {
     ai_assert(NULL != mApkAssetManager);
     AAsset *  asset = AAssetManager_open(mApkAssetManager, pFile, AASSET_MODE_UNKNOWN);
@@ -71,7 +71,7 @@ Assimp::IOStream* BundledAssetIOSystem::Open(const char* pFile, const char* pMod
 }
 
 // -------------------------------------------------------------------
-/** Closes the given file and releases all resources associated with it. */
+/** Closes the given file_manager and releases all resources associated with it. */
 void BundledAssetIOSystem::Close(Assimp::IOStream* pFile) {
     delete reinterpret_cast<AssetIOStream *>(pFile);
 }

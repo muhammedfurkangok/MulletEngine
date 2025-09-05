@@ -92,7 +92,7 @@ public:
     virtual bool Update(float percentage = -1.f) = 0;
 
     // -------------------------------------------------------------------
-    /** @brief Progress callback for file loading steps
+    /** @brief Progress callback for file_manager loading steps
      *  @param numberOfSteps The number of total post-processing
      *   steps
      *  @param currentStep The index of the current post-processing
@@ -101,7 +101,7 @@ public:
      *   increasing, although not necessarily linearly.
      *
      *  @note This is currently only used at the start and the end
-     *   of the file parsing.
+     *   of the file_manager parsing.
      *   */
     virtual void UpdateFileRead(int currentStep /*= 0*/, int numberOfSteps /*= 0*/) {
         float f = numberOfSteps ? currentStep / (float)numberOfSteps : 1.0f;

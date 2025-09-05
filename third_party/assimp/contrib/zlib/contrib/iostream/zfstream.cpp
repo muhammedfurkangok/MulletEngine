@@ -134,7 +134,7 @@ streampos gzfilebuf::seekoff( streamoff off, ios::seek_dir dir, int which ) {
 
 int gzfilebuf::underflow() {
 
-  // If the file hasn't been opened for reading, error.
+  // If the file_manager hasn't been opened for reading, error.
   if ( !is_open() || !(mode & ios::in) )
     return EOF;
 

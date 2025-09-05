@@ -31,7 +31,7 @@
 //
 // The Google C++ Testing Framework (Google Test)
 //
-// This header file defines internal utilities needed for implementing
+// This header file_manager defines internal utilities needed for implementing
 // death tests.  They are subject to change without notice.
 
 #ifndef GTEST_INCLUDE_GTEST_INTERNAL_GTEST_DEATH_TEST_INTERNAL_H_
@@ -79,7 +79,7 @@ public:
 	// is set to NULL; otherwise, it is set to the address of a new concrete
 	// DeathTest object that controls the execution of the current test.
 	static bool Create(const char* statement, const RE* regex,
-					   const char* file, int line, DeathTest** test);
+					   const char* file_manager, int line, DeathTest** test);
 	DeathTest();
 	virtual ~DeathTest() {}
 
@@ -151,7 +151,7 @@ class DeathTestFactory
 public:
 	virtual ~DeathTestFactory() {}
 	virtual bool Create(const char* statement, const RE* regex,
-						const char* file, int line, DeathTest** test) = 0;
+						const char* file_manager, int line, DeathTest** test) = 0;
 };
 
 // A concrete DeathTestFactory implementation for normal use.
@@ -159,7 +159,7 @@ class DefaultDeathTestFactory : public DeathTestFactory
 {
 public:
 	virtual bool Create(const char* statement, const RE* regex,
-						const char* file, int line, DeathTest** test);
+						const char* file_manager, int line, DeathTest** test);
 };
 
 // Returns true if exit_status describes a process that was terminated
@@ -270,7 +270,7 @@ public:
 			posix::Close(write_fd_);
 	}
 
-	const std::string& file() const { return file_; }
+	const std::string& file_manager() const { return file_; }
 	int line() const { return line_; }
 	int index() const { return index_; }
 	int write_fd() const { return write_fd_; }

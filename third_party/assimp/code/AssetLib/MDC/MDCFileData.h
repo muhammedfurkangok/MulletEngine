@@ -75,7 +75,7 @@ namespace MDC {
 
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a MDC file's main header
+/** \brief Data structure for a MDC file_manager's main header
  */
 struct Header {
     uint32_t ulIdent ;
@@ -95,7 +95,7 @@ struct Header {
 
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a MDC file's surface header
+/** \brief Data structure for a MDC file_manager's surface header
  */
 struct Surface {
     uint32_t ulIdent ;

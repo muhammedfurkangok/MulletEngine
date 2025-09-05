@@ -283,7 +283,7 @@ bool b3RobotSimulatorClientAPI_NoDirect::loadMJCF(const std::string& fileName, b
 	statusType = b3GetStatusType(statusHandle);
 	if (statusType != CMD_MJCF_LOADING_COMPLETED)
 	{
-		b3Warning("Couldn't load .mjcf file.");
+		b3Warning("Couldn't load .mjcf file_manager.");
 		return false;
 	}
 	int numBodies = b3GetStatusBodyIndices(statusHandle, 0, 0);

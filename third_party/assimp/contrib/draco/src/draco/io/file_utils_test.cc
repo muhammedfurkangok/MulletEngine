@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -24,17 +24,17 @@ namespace {
 TEST(FileUtilsTest, SplitsPath) {
   // Tests that the function SplitPath correctly splits a set of test paths.
   std::string folder_path, file_name;
-  draco::SplitPath("file.x", &folder_path, &file_name);
+  draco::SplitPath("file_manager.x", &folder_path, &file_name);
   ASSERT_EQ(folder_path, ".");
-  ASSERT_EQ(file_name, "file.x");
+  ASSERT_EQ(file_name, "file_manager.x");
 
-  draco::SplitPath("a/b/file.y", &folder_path, &file_name);
+  draco::SplitPath("a/b/file_manager.y", &folder_path, &file_name);
   ASSERT_EQ(folder_path, "a/b");
-  ASSERT_EQ(file_name, "file.y");
+  ASSERT_EQ(file_name, "file_manager.y");
 
-  draco::SplitPath("//a/b/c/d/file.z", &folder_path, &file_name);
+  draco::SplitPath("//a/b/c/d/file_manager.z", &folder_path, &file_name);
   ASSERT_EQ(folder_path, "//a/b/c/d");
-  ASSERT_EQ(file_name, "file.z");
+  ASSERT_EQ(file_name, "file_manager.z");
 }
 
 TEST(FileUtilsTest, ReplaceExtension) {
@@ -51,20 +51,20 @@ TEST(FileUtilsTest, LowercaseFileExtension) {
   ASSERT_EQ(draco::LowercaseFileExtension("image.png"), "png");
   ASSERT_EQ(draco::LowercaseFileExtension("image.pNg"), "png");
   ASSERT_EQ(draco::LowercaseFileExtension("FILE.glb"), "glb");
-  ASSERT_EQ(draco::LowercaseFileExtension(".file.gltf"), "gltf");
-  ASSERT_EQ(draco::LowercaseFileExtension("the.file.gltf"), "gltf");
+  ASSERT_EQ(draco::LowercaseFileExtension(".file_manager.gltf"), "gltf");
+  ASSERT_EQ(draco::LowercaseFileExtension("the.file_manager.gltf"), "gltf");
   ASSERT_EQ(draco::LowercaseFileExtension("FILE_glb"), "");
   ASSERT_EQ(draco::LowercaseFileExtension(""), "");
   ASSERT_EQ(draco::LowercaseFileExtension("image."), "");
 }
 
 TEST(FileUtilsTest, GetFullPath) {
-  // Tests that full path is returned when a sibling file has full path.
+  // Tests that full path is returned when a sibling file_manager has full path.
   ASSERT_EQ(draco::GetFullPath("xo.png", "/d/i/r/xo.gltf"), "/d/i/r/xo.png");
   ASSERT_EQ(draco::GetFullPath("buf/01.bin", "dir/xo.gltf"), "dir/buf/01.bin");
   ASSERT_EQ(draco::GetFullPath("xo.mtl", "/xo.obj"), "/xo.mtl");
 
-  // Tests that only file name is returned when a sibling file has no full path.
+  // Tests that only file_manager name is returned when a sibling file_manager has no full path.
   ASSERT_EQ(draco::GetFullPath("xo.mtl", "xo.obj"), "xo.mtl");
 }
 

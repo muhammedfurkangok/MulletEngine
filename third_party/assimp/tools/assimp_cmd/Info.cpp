@@ -49,7 +49,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 
 constexpr char AICMD_MSG_INFO_HELP_E[] =
-        "assimp info <file> [-r] [-v]\n"
+        "assimp info <file_manager> [-r] [-v]\n"
         "\tPrint basic structure of a 3D model\n"
         "\t-r,--raw: No postprocessing, do a raw import\n"
         "\t-v,--verbose: Print verbose info such as node transform data\n"
@@ -290,9 +290,9 @@ void PrintHierarchy(
 }
 
 // -----------------------------------------------------------------------------------
-// Implementation of the assimp info utility to print basic file info
+// Implementation of the assimp info utility to print basic file_manager info
 int Assimp_Info(const char *const *params, unsigned int num) {
-    // asssimp info <file> [-r]
+    // asssimp info <file_manager> [-r]
     if (num < 1) {
         printf("assimp info: Invalid number of arguments. "
                "See \'assimp info --help\'\n");
@@ -343,7 +343,7 @@ int Assimp_Info(const char *const *params, unsigned int num) {
     // import the main model
     const aiScene *scene = ImportModel(import, in);
     if (!scene) {
-        printf("assimp info: Unable to load input file %s\n",
+        printf("assimp info: Unable to load input file_manager %s\n",
                 in.c_str());
         return AssimpCmdError::FailedToLoadInputFile;
     }

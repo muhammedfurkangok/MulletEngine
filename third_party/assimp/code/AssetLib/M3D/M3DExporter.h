@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file M3DExporter.h
-*   @brief Declares the exporter class to write a scene to a Model 3D file
+*   @brief Declares the exporter class to write a scene to a Model 3D file_manager
 */
 #ifndef AI_M3DEXPORTER_H_INC
 #define AI_M3DEXPORTER_H_INC
@@ -68,7 +68,7 @@ namespace Assimp {
     class M3DWrapper;
 
     // ---------------------------------------------------------------------
-    /** Helper class to export a given scene to an M3D file. */
+    /** Helper class to export a given scene to an M3D file_manager. */
     // ---------------------------------------------------------------------
     class M3DExporter {
     public:
@@ -80,7 +80,7 @@ namespace Assimp {
     private:
         const aiScene* mScene; // the scene to export
         const ExportProperties* mProperties; // currently unused
-        std::shared_ptr<IOStream> outfile; // file to write to
+        std::shared_ptr<IOStream> outfile; // file_manager to write to
 
         // helper to do the recursive walking
         void NodeWalk(const M3DWrapper &m3d, const aiNode* pNode, aiMatrix4x4 m);

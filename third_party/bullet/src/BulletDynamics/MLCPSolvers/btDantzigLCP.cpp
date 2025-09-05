@@ -9,9 +9,9 @@
 *       Software Foundation; either version 2.1 of the License, or (at  *
 *       your option) any later version. The text of the GNU Lesser      *
 *       General Public License is included with this library in the     *
-*       file LICENSE.TXT.                                               *
+*       file_manager LICENSE.TXT.                                               *
 *   (2) The BSD-style license that is included with this library in     *
-*       the file LICENSE-BSD.TXT.                                       *
+*       the file_manager LICENSE-BSD.TXT.                                       *
 *                                                                       *
 * This library is distributed in the hope that it will be useful,       *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
@@ -138,7 +138,7 @@ bool s_error = false;
  * B is stored by columns and its leading dimension is also lskip.
  * B is overwritten with X.
  * this processes blocks of 2*2.
- * if this is in the factorizer source file, n must be a multiple of 2.
+ * if this is in the factorizer source file_manager, n must be a multiple of 2.
  */
 
 static void btSolveL1_1(const btScalar *L, btScalar *B, int n, int lskip1)
@@ -213,7 +213,7 @@ static void btSolveL1_1(const btScalar *L, btScalar *B, int n, int lskip1)
  * B is stored by columns and its leading dimension is also lskip.
  * B is overwritten with X.
  * this processes blocks of 2*2.
- * if this is in the factorizer source file, n must be a multiple of 2.
+ * if this is in the factorizer source file_manager, n must be a multiple of 2.
  */
 
 static void btSolveL1_2(const btScalar *L, btScalar *B, int n, int lskip1)
@@ -527,7 +527,7 @@ void btFactorLDLT(btScalar *A, btScalar *d, int n, int nskip1)
  * B is stored by columns and its leading dimension is also lskip.
  * B is overwritten with X.
  * this processes blocks of 4*4.
- * if this is in the factorizer source file, n must be a multiple of 4.
+ * if this is in the factorizer source file_manager, n must be a multiple of 4.
  */
 
 void btSolveL1(const btScalar *L, btScalar *B, int n, int lskip1)

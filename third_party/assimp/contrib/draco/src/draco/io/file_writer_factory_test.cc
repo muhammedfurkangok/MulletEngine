@@ -61,7 +61,7 @@ TEST(FileWriterFactoryTest, RegistrationFail) {
 }
 
 TEST(FileWriterFactoryTest, OpenWriter) {
-  auto writer = FileWriterFactory::OpenWriter("fake file");
+  auto writer = FileWriterFactory::OpenWriter("fake file_manager");
   EXPECT_NE(writer, nullptr);
   EXPECT_TRUE(writer->Write(nullptr, 0u));
 }

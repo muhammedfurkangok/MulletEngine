@@ -21,7 +21,7 @@ struct b3FileUtils
 		f = fopen(orgFileName, "rb");
 		if (f)
 		{
-			//printf("original file found: [%s]\n", orgFileName);
+			//printf("original file_manager found: [%s]\n", orgFileName);
 			sprintf(relativeFileName, "%s", orgFileName);
 			fclose(f);
 			return true;

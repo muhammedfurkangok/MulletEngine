@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -34,34 +34,34 @@
 
 namespace draco {
 
-// Class for encoding draco::Mesh into the glTF file format.
+// Class for encoding draco::Mesh into the glTF file_manager format.
 class GltfEncoder {
  public:
   // Types of output modes for the glTF data encoder. |COMPACT| will output
   // required and non-default glTF data. |VERBOSE| will output required and
   // default glTF data as well as readable JSON even when the output is saved in
-  // a glTF-Binary file.
+  // a glTF-Binary file_manager.
   enum OutputType { COMPACT, VERBOSE };
 
   GltfEncoder();
 
-  // Encodes the geometry and saves it into a file. Returns false when either
-  // the encoding failed or when the file couldn't be opened.
+  // Encodes the geometry and saves it into a file_manager. Returns false when either
+  // the encoding failed or when the file_manager couldn't be opened.
   template <typename T>
   bool EncodeToFile(const T &geometry, const std::string &file_name,
                     const std::string &base_dir);
 
   // Saves |geometry| into glTF 2.0 format. |filename| is the name of the
-  // glTF file. The glTF bin file (if needed) will be named stem(|filename|) +
+  // glTF file_manager. The glTF bin file_manager (if needed) will be named stem(|filename|) +
   // “.bin”. The other files (if needed) will be saved to basedir(|filename|).
   // If |filename| has the extension "glb" then |filename| will be written as a
-  // glTF-Binary file. Otherwise |filename| will be written as non-binary glTF
-  // file.
+  // glTF-Binary file_manager. Otherwise |filename| will be written as non-binary glTF
+  // file_manager.
   template <typename T>
   Status EncodeFile(const T &geometry, const std::string &filename);
 
   // Saves |geometry| into glTF 2.0 format. |filename| is the name of the
-  // glTF file. |bin_filename| is the name of the glTF bin file. The other
+  // glTF file_manager. |bin_filename| is the name of the glTF bin file_manager. The other
   // files (if needed) will be saved to basedir(|filename|). |bin_filename| will
   // be ignored if output is glTF-Binary.
   template <typename T>
@@ -69,7 +69,7 @@ class GltfEncoder {
                     const std::string &bin_filename);
 
   // Saves |geometry| into glTF 2.0 format. |filename| is the name of the
-  // glTF file. |bin_filename| is the name of the glTF bin file. The other
+  // glTF file_manager. |bin_filename| is the name of the glTF bin file_manager. The other
   // files will be saved to |resource_dir|. |bin_filename| and |resource_dir|
   // will be ignored if output is glTF-Binary.
   template <typename T>
@@ -106,7 +106,7 @@ class GltfEncoder {
 
   // Writes the ".gltf" and associted files. |gltf_asset| holds the glTF data.
   // |buffer| is the encoded glTF json data. |filename| is the name of the
-  // ".gltf" file. |bin_filename| is the name of the glTF bin file. The other
+  // ".gltf" file_manager. |bin_filename| is the name of the glTF bin file_manager. The other
   // files will be saved to |resource_dir|.
   Status WriteGltfFiles(const class GltfAsset &gltf_asset,
                         const EncoderBuffer &buffer,
@@ -114,13 +114,13 @@ class GltfEncoder {
                         const std::string &bin_filename,
                         const std::string &resource_dir);
 
-  // Writes the ".glb" file. |gltf_asset| holds the glTF data. |json_data| is
-  // the encoded glTF json data. |filename| is the name of the ".glb" file.
+  // Writes the ".glb" file_manager. |gltf_asset| holds the glTF data. |json_data| is
+  // the encoded glTF json data. |filename| is the name of the ".glb" file_manager.
   Status WriteGlbFile(const class GltfAsset &gltf_asset,
                       const EncoderBuffer &json_data,
                       const std::string &filename);
 
-  // Creates GLB file chunks and passes them to |process_chunk| function for
+  // Creates GLB file_manager chunks and passes them to |process_chunk| function for
   // processing. |gltf_asset| holds the glTF data. |json_data| is the encoded
   // glTF json data.
   Status ProcessGlbFileChunks(

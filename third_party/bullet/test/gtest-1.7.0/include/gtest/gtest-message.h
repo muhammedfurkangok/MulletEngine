@@ -31,10 +31,10 @@
 //
 // The Google C++ Testing Framework (Google Test)
 //
-// This header file defines the Message class.
+// This header file_manager defines the Message class.
 //
 // IMPORTANT NOTE: Due to limitation of the C++ language, we have to
-// leave some internal implementation details in this header file.
+// leave some internal implementation details in this header file_manager.
 // They are clearly marked by comments like this:
 //
 //   // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.

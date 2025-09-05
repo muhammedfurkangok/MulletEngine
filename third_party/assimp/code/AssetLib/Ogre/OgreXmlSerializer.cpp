@@ -404,7 +404,7 @@ void OgreXmlSerializer::ReadSubMesh(XmlNode &node, MeshXml *mesh) {
             }
         } else if (currentName == nnGeometry) {
             if (submesh->usesSharedVertexData) {
-                throw DeadlyImportError("Found <geometry> in <submesh> when use shared geometry is true. Invalid mesh file.");
+                throw DeadlyImportError("Found <geometry> in <submesh> when use shared geometry is true. Invalid mesh file_manager.");
             }
 
             submesh->vertexData = new VertexDataXml();
@@ -469,13 +469,13 @@ bool OgreXmlSerializer::ImportSkeleton(Assimp::IOSystem *pIOHandler, MeshXml *me
         return false;
 
     // Highly unusual to see in read world cases but support
-    // XML mesh referencing a binary skeleton file.
+    // XML mesh referencing a binary skeleton file_manager.
     if (EndsWith(mesh->skeletonRef, ".skeleton", false)) {
         if (OgreBinarySerializer::ImportSkeleton(pIOHandler, mesh))
             return true;
 
         /** Last fallback if .skeleton failed to be read. Try reading from
-            .skeleton.xml even if the XML file referenced a binary skeleton.
+            .skeleton.xml even if the XML file_manager referenced a binary skeleton.
             @note This logic was in the previous version and I don't want to break
             old code that might depends on it. */
         mesh->skeletonRef = mesh->skeletonRef + ".xml";
@@ -524,23 +524,23 @@ bool OgreXmlSerializer::ImportSkeleton(Assimp::IOSystem *pIOHandler, Mesh *mesh)
 
 XmlParserPtr OgreXmlSerializer::OpenXmlParser(Assimp::IOSystem *pIOHandler, const std::string &filename) {
     if (!EndsWith(filename, ".skeleton.xml", false)) {
-        ASSIMP_LOG_ERROR("Imported Mesh is referencing to unsupported '", filename, "' skeleton file.");
+        ASSIMP_LOG_ERROR("Imported Mesh is referencing to unsupported '", filename, "' skeleton file_manager.");
         return XmlParserPtr();
     }
 
     if (!pIOHandler->Exists(filename)) {
-        ASSIMP_LOG_ERROR("Failed to find skeleton file '", filename, "' that is referenced by imported Mesh.");
+        ASSIMP_LOG_ERROR("Failed to find skeleton file_manager '", filename, "' that is referenced by imported Mesh.");
         return XmlParserPtr();
     }
 
     std::unique_ptr<IOStream> file(pIOHandler->Open(filename));
     if (!file) {
-        throw DeadlyImportError("Failed to open skeleton file ", filename);
+        throw DeadlyImportError("Failed to open skeleton file_manager ", filename);
     }
 
     XmlParserPtr xmlParser = std::make_shared<XmlParser>();
     if (!xmlParser->parse(file.get())) {
-        throw DeadlyImportError("Failed to create XML reader for skeleton file " + filename);
+        throw DeadlyImportError("Failed to create XML reader for skeleton file_manager " + filename);
     }
     return xmlParser;
 }

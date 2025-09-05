@@ -98,13 +98,13 @@ private:
     AI_WONT_RETURN static void ThrowException(const std::string &msg) AI_WONT_RETURN_SUFFIX;
 
     // -------------------------------------------------------------------
-    /** @brief Read from an ascii scene/object file
+    /** @brief Read from an ascii scene/object file_manager
      *  @param out Receives output data.
      *  @param stream Stream to read from. */
     void ReadAsciiFile(COB::Scene &out, StreamReaderLE *stream);
 
     // -------------------------------------------------------------------
-    /** @brief Read from a binary scene/object file
+    /** @brief Read from a binary scene/object file_manager
      *  @param out Receives output data.
      *  @param stream Stream to read from.  */
     void ReadBinaryFile(COB::Scene &out, StreamReaderLE *stream);
@@ -113,7 +113,7 @@ private:
     aiNode *BuildNodes(const COB::Node &root, const COB::Scene &scin, aiScene *fill);
 
 private:
-    // ASCII file support
+    // ASCII file_manager support
 
     void UnsupportedChunk_Ascii(LineSplitter &splitter, const COB::ChunkInfo &nfo, const char *name);
     void ReadChunkInfo_Ascii(COB::ChunkInfo &out, const LineSplitter &splitter);
@@ -131,7 +131,7 @@ private:
     void ReadUnit_Ascii(COB::Scene &out, LineSplitter &splitter, const COB::ChunkInfo &nfo);
     void ReadChan_Ascii(COB::Scene &out, LineSplitter &splitter, const COB::ChunkInfo &nfo);
 
-    // Binary file support
+    // Binary file_manager support
 
     void UnsupportedChunk_Binary(StreamReaderLE &reader, const COB::ChunkInfo &nfo, const char *name);
     void ReadString_Binary(std::string &out, StreamReaderLE &reader);

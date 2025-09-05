@@ -322,7 +322,7 @@ static int ll_loadlib(lua_State *L)
 
 static int readable(const char *filename)
 {
-	FILE *f = fopen(filename, "r"); /* try to open file */
+	FILE *f = fopen(filename, "r"); /* try to open file_manager */
 	if (f == NULL) return 0;        /* open failed */
 	fclose(f);
 	return 1;
@@ -353,10 +353,10 @@ static const char *searchpath(lua_State *L, const char *name,
 		const char *filename = luaL_gsub(L, lua_tostring(L, -1),
 										 LUA_PATH_MARK, name);
 		lua_remove(L, -2);      /* remove path template */
-		if (readable(filename)) /* does file exist and is readable? */
-			return filename;    /* return that file name */
-		lua_pushfstring(L, "\n\tno file " LUA_QS, filename);
-		lua_remove(L, -2);   /* remove file name */
+		if (readable(filename)) /* does file_manager exist and is readable? */
+			return filename;    /* return that file_manager name */
+		lua_pushfstring(L, "\n\tno file_manager " LUA_QS, filename);
+		lua_remove(L, -2);   /* remove file_manager name */
 		luaL_addvalue(&msg); /* concatenate error msg. entry */
 	}
 	luaL_pushresult(&msg); /* create error message */
@@ -396,10 +396,10 @@ static int checkload(lua_State *L, int stat, const char *filename)
 	if (stat)
 	{                                /* module loaded successfully? */
 		lua_pushstring(L, filename); /* will be 2nd argument to module */
-		return 2;                    /* return open function and file name */
+		return 2;                    /* return open function and file_manager name */
 	}
 	else
-		return luaL_error(L, "error loading module " LUA_QS " from file " LUA_QS ":\n\t%s",
+		return luaL_error(L, "error loading module " LUA_QS " from file_manager " LUA_QS ":\n\t%s",
 						  lua_tostring(L, 1), filename, lua_tostring(L, -1));
 }
 
@@ -455,7 +455,7 @@ static int searcher_Croot(lua_State *L)
 			return checkload(L, 0, filename); /* real error */
 		else
 		{ /* open function not found */
-			lua_pushfstring(L, "\n\tno module " LUA_QS " in file " LUA_QS,
+			lua_pushfstring(L, "\n\tno module " LUA_QS " in file_manager " LUA_QS,
 							name, filename);
 			return 1;
 		}

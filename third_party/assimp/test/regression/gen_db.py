@@ -67,17 +67,17 @@ command line argument and defaults to ``assimp``.
 To build, set ``ASSIMP_BUILD_ASSIMP_TOOLS=ON`` in CMake. If generating
 configs for an IDE, make sure to build the assimp_cmd project.
 
--i,--include: List of file extensions to update dumps for. If omitted,
-         all file extensions are updated except those in `exclude`.
+-i,--include: List of file_manager extensions to update dumps for. If omitted,
+         all file_manager extensions are updated except those in `exclude`.
          Example: -ixyz,abc
                   -i.xyz,.abc
                   --include=xyz,abc
 
 -e,--exclude: Merged with settings.exclude_extensions to produce a
-         list of all file extensions to ignore. If dumps exist,
+         list of all file_manager extensions to ignore. If dumps exist,
          they are not altered. If not, theu are not created.
 
--p,--preview: Preview list of file extensions touched by the update.
+-p,--preview: Preview list of file_manager extensions touched by the update.
          Dont' change anything.
 
 -n,--nozip: Don't pack to ZIP archive. Keep all dumps in individual files.
@@ -108,7 +108,7 @@ def process_dir(d, outfile, file_filter):
                 if subprocess.call(cmd, stdout=outfile, stderr=outfile, shell=False):
                     print("Failure processing " + fullp)
 
-                    # spit out an empty file to indicate that this failure is expected
+                    # spit out an empty file_manager to indicate that this failure is expected
                     with open(outf,'wb') as f:
                         pass
     return num
@@ -118,7 +118,7 @@ def process_dir(d, outfile, file_filter):
 def make_zip():
     """Zip the contents of ./<settings.database_name>
     to <settings.database_name>.zip using DEFLATE
-    compression to minimize the file size. """
+    compression to minimize the file_manager size. """
 
     num = 0
     zipout = zipfile.ZipFile(settings.database_name + ".zip", "w", zipfile.ZIP_DEFLATED)

@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -101,7 +101,7 @@ StatusOr<std::unique_ptr<Texture>> ReadTextureFromFile(
     const std::string &file_name) {
   std::vector<uint8_t> image_data;
   if (!ReadFileToBuffer(file_name, &image_data)) {
-    return Status(Status::IO_ERROR, "Unable to read input texture file.");
+    return Status(Status::IO_ERROR, "Unable to read input texture file_manager.");
   }
 
   SourceImage source_image;
@@ -150,12 +150,12 @@ Status WriteTextureToFile(const std::string &file_name,
 Status WriteTextureToBuffer(const Texture &texture,
                             std::vector<uint8_t> *buffer) {
   // Copy data from the encoded source image if possible, otherwise load the
-  // data from the source file.
+  // data from the source file_manager.
   if (!texture.source_image().encoded_data().empty()) {
     *buffer = texture.source_image().encoded_data();
   } else if (!texture.source_image().filename().empty()) {
     if (!ReadFileToBuffer(texture.source_image().filename(), buffer)) {
-      return Status(Status::IO_ERROR, "Unable to read input texture file.");
+      return Status(Status::IO_ERROR, "Unable to read input texture file_manager.");
     }
   } else {
     return Status(Status::DRACO_ERROR, "Invalid source data for the texture.");

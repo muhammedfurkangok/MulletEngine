@@ -71,7 +71,7 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Aborts the file reading with an exception
+// Aborts the file_manager reading with an exception
 template <typename... T>
 AI_WONT_RETURN void BVHLoader::ThrowException(T &&...args) {
     throw DeadlyImportError(mFileName, ":", mLine, " - ", args...);
@@ -88,7 +88,7 @@ BVHLoader::BVHLoader() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool BVHLoader::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "HIERARCHY" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -106,14 +106,14 @@ const aiImporterDesc *BVHLoader::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void BVHLoader::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     mFileName = pFile;
 
-    // read file into memory
+    // read file_manager into memory
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open file ", pFile, ".");
+        throw DeadlyImportError("Failed to open file_manager ", pFile, ".");
     }
 
     size_t fileSize = file->FileSize();
@@ -139,7 +139,7 @@ void BVHLoader::InternReadFile(const std::string &pFile, aiScene *pScene, IOSyst
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads the file
+// Reads the file_manager
 void BVHLoader::ReadStructure(aiScene *pScene) {
     // first comes hierarchy
     std::string header = GetNextToken();
@@ -371,7 +371,7 @@ std::string BVHLoader::GetNextToken() {
             break;
     }
 
-    // empty token means end of file, which is just fine
+    // empty token means end of file_manager, which is just fine
     return token;
 }
 
@@ -380,7 +380,7 @@ std::string BVHLoader::GetNextToken() {
 float BVHLoader::GetNextTokenAsFloat() {
     std::string token = GetNextToken();
     if (token.empty())
-        ThrowException("Unexpected end of file while trying to read a float");
+        ThrowException("Unexpected end of file_manager while trying to read a float");
 
     // check if the float is valid by testing if the atof() function consumed every char of the token
     const char *ctoken = token.c_str();

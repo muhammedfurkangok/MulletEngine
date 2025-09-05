@@ -788,7 +788,7 @@ struct b3VisualShapeData
 	double m_dimensions[3];    //meaning depends on m_visualGeometryType
 	char m_meshAssetFileName[VISUAL_SHAPE_MAX_PATH_LEN];
 	double m_localVisualFrame[7];  //pos[3], orn[4]
-								   //todo: add more data if necessary (material color etc, although material can be in asset file .obj file)
+								   //todo: add more data if necessary (material color etc, although material can be in asset file_manager .obj file_manager)
 	double m_rgbaColor[4];
 	int m_tinyRendererTextureId;
 	int m_textureUniqueId;

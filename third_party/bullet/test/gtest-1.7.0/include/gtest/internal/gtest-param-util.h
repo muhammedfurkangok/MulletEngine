@@ -59,7 +59,7 @@ namespace internal
 // TEST_P macro is used to define two tests with the same name
 // but in different namespaces.
 GTEST_API_ void ReportInvalidTestCaseType(const char* test_case_name,
-										  const char* file, int line);
+										  const char* file_manager, int line);
 
 template <typename>
 class ParamGeneratorInterface;
@@ -516,7 +516,7 @@ public:
 	// about a generator.
 	int AddTestCaseInstantiation(const string& instantiation_name,
 								 GeneratorCreationFunc* func,
-								 const char* /* file */,
+								 const char* /* file_manager */,
 								 int /* line */)
 	{
 		instantiations_.push_back(::std::make_pair(instantiation_name, func));
@@ -619,7 +619,7 @@ public:
 	template <class TestCase>
 	ParameterizedTestCaseInfo<TestCase>* GetTestCasePatternHolder(
 		const char* test_case_name,
-		const char* file,
+		const char* file_manager,
 		int line)
 	{
 		ParameterizedTestCaseInfo<TestCase>* typed_test_info = NULL;
@@ -633,7 +633,7 @@ public:
 					// Complain about incorrect usage of Google Test facilities
 					// and terminate the program since we cannot guaranty correct
 					// test case setup and tear-down in this case.
-					ReportInvalidTestCaseType(test_case_name, file, line);
+					ReportInvalidTestCaseType(test_case_name, file_manager, line);
 					posix::Abort();
 				}
 				else

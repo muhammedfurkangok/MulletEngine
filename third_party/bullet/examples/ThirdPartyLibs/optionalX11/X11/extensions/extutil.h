@@ -155,7 +155,7 @@ extern XExtDisplayInfo* XextFindDisplay(
 
 /*
  * helper macros to generate code that is common to all extensions; caller
- * should prefix it with static if extension source is in one file; this
+ * should prefix it with static if extension source is in one file_manager; this
  * could be a utility function, but have to stack 6 unused arguments for
  * something that is called many, many times would be bad.
  */

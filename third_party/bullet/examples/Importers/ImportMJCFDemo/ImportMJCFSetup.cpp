@@ -89,7 +89,7 @@ ImportMJCFSetup::ImportMJCFSetup(struct GUIHelperInterface* helper, int option, 
 	{
 		gMCFJFileNameArray.clear();
 
-		//load additional MJCF file names from file
+		//load additional MJCF file_manager names from file_manager
 
 		FILE* f = fopen("mjcf_files.txt", "r");
 		if (f)

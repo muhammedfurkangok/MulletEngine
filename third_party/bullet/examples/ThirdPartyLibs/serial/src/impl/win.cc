@@ -96,8 +96,8 @@ void Serial::SerialImpl::reconfigurePort()
 {
 	if (fd_ == INVALID_HANDLE_VALUE)
 	{
-		// Can only operate on a valid file descriptor
-		THROW(IOException, "Invalid file descriptor, is the serial port open?");
+		// Can only operate on a valid file_manager descriptor
+		THROW(IOException, "Invalid file_manager descriptor, is the serial port open?");
 	}
 
 	DCB dcbSerialParams = {0};

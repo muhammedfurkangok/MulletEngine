@@ -32,7 +32,7 @@
 // Unit test for Google Test's --gtest_list_tests and --gtest_output flag.
 //
 // A user can ask Google Test to list all tests that will run,
-// and have the output saved in a Json/Xml file.
+// and have the output saved in a Json/Xml file_manager.
 // The tests will not be run after listing.
 //
 // This program will be invoked from a Python unit test.

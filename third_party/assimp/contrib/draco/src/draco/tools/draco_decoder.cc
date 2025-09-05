@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -38,11 +38,11 @@ void Usage() {
   printf("\n");
   printf("Main options:\n");
   printf("  -h | -?               show help.\n");
-  printf("  -o <output>           output file name.\n");
+  printf("  -o <output>           output file_manager name.\n");
 }
 
 int ReturnError(const draco::Status &status) {
-  printf("Failed to decode the input file %s\n", status.error_msg());
+  printf("Failed to decode the input file_manager %s\n", status.error_msg());
   return -1;
 }
 
@@ -69,12 +69,12 @@ int main(int argc, char **argv) {
 
   std::vector<char> data;
   if (!draco::ReadFileToBuffer(options.input, &data)) {
-    printf("Failed opening the input file.\n");
+    printf("Failed opening the input file_manager.\n");
     return -1;
   }
 
   if (data.empty()) {
-    printf("Empty input file.\n");
+    printf("Empty input file_manager.\n");
     return -1;
   }
 
@@ -117,16 +117,16 @@ int main(int argc, char **argv) {
   }
 
   if (pc == nullptr) {
-    printf("Failed to decode the input file.\n");
+    printf("Failed to decode the input file_manager.\n");
     return -1;
   }
 
   if (options.output.empty()) {
-    // Save the output model into a ply file.
+    // Save the output model into a ply file_manager.
     options.output = options.input + ".ply";
   }
 
-  // Save the decoded geometry into a file.
+  // Save the decoded geometry into a file_manager.
   const std::string extension = draco::parser::ToLower(
       options.output.size() >= 4
           ? options.output.substr(options.output.size() - 4)
@@ -171,7 +171,7 @@ int main(int argc, char **argv) {
       return -1;
     }
   } else {
-    printf("Invalid output file extension. Use .obj .ply or .stl.\n");
+    printf("Invalid output file_manager extension. Use .obj .ply or .stl.\n");
     return -1;
   }
   printf("Decoded geometry saved to %s (%" PRId64 " ms to decode)\n",

@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /**
  * @file  MDLFileData.h
- * @brief Definition of in-memory structures for the MDL file format.
+ * @brief Definition of in-memory structures for the MDL file_manager format.
  *
  * The specification has been taken from various sources on the internet.
  * - http://tfc.duke.free.fr/coding/mdl-specs-en.html
@@ -146,13 +146,13 @@ struct Header {
     //! Texture height in pixels
     int32_t skinheight;
 
-    //! Number of vertices contained in the file
+    //! Number of vertices contained in the file_manager
     int32_t num_verts;
 
-    //! Number of triangles contained in the file
+    //! Number of triangles contained in the file_manager
     int32_t num_tris;
 
-    //! Number of frames contained in the file
+    //! Number of frames contained in the file_manager
     int32_t num_frames;
 
     //! 0 = synchron, 1 = random . Ignored
@@ -162,7 +162,7 @@ struct Header {
     //! State flag
     int32_t flags;
 
-    //! Could be the total size of the file (and not a float)
+    //! Could be the total size of the file_manager (and not a float)
     float size;
 } PACK_STRUCT;
 
@@ -178,13 +178,13 @@ struct Header_MDL7 {
     //! Version number. Ignored
     int32_t version;
 
-    //! Number of bones in file
+    //! Number of bones in file_manager
     uint32_t    bones_num;
 
-    //! Number of groups in file
+    //! Number of groups in file_manager
     uint32_t    groups_num;
 
-    //! Size of data in the file
+    //! Size of data in the file_manager
     uint32_t    data_size;
 
     //! Ignored. Used to store entity specific information
@@ -193,42 +193,42 @@ struct Header_MDL7 {
     //! Ignored. Used to store MED related data
     int32_t medlump_size;
 
-    //! Size of the Bone_MDL7 data structure used in the file
+    //! Size of the Bone_MDL7 data structure used in the file_manager
     uint16_t bone_stc_size;
 
-    //! Size of the Skin_MDL 7 data structure used in the file
+    //! Size of the Skin_MDL 7 data structure used in the file_manager
     uint16_t skin_stc_size;
 
     //! Size of a single color (e.g. in a material)
     uint16_t colorvalue_stc_size;
 
-    //! Size of the Material_MDL7 data structure used in the file
+    //! Size of the Material_MDL7 data structure used in the file_manager
     uint16_t material_stc_size;
 
-    //! Size of a texture coordinate set in the file
+    //! Size of a texture coordinate set in the file_manager
     uint16_t skinpoint_stc_size;
 
-    //! Size of a triangle in the file
+    //! Size of a triangle in the file_manager
     uint16_t triangle_stc_size;
 
-    //! Size of a normal vertex in the file
+    //! Size of a normal vertex in the file_manager
     uint16_t mainvertex_stc_size;
 
-    //! Size of a per-frame animated vertex in the file
+    //! Size of a per-frame animated vertex in the file_manager
     //! (this is not supported)
     uint16_t framevertex_stc_size;
 
     //! Size of a bone animation matrix
     uint16_t bonetrans_stc_size;
 
-    //! Size of the Frame_MDL7 data structure used in the file
+    //! Size of the Frame_MDL7 data structure used in the file_manager
     uint16_t frame_stc_size;
 } PACK_STRUCT;
 
 
 // -------------------------------------------------------------------------------------
 /** \struct Bone_MDL7
- *  \brief Data structure for a bone in a MDL7 file
+ *  \brief Data structure for a bone in a MDL7 file_manager
  */
 struct Bone_MDL7 {
     //! Index of the parent bone of *this* bone. 0xffff means:
@@ -262,7 +262,7 @@ struct Bone_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct Group_MDL7
- *  \brief Group in a MDL7 file
+ *  \brief Group in a MDL7 file_manager
  */
 struct Group_MDL7 {
     //! = '1' -> triangle based Mesh
@@ -303,7 +303,7 @@ struct Group_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct Deformer_MDL7
- *  \brief Deformer in a MDL7 file
+ *  \brief Deformer in a MDL7 file_manager
  */
 struct Deformer_MDL7 {
     int8_t  deformer_version;       // 0
@@ -317,7 +317,7 @@ struct Deformer_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct DeformerElement_MDL7
- *  \brief Deformer element in a MDL7 file
+ *  \brief Deformer element in a MDL7 file_manager
  */
 struct DeformerElement_MDL7 {
     //! bei deformer_typ==0 (==bones) element_index == bone index
@@ -328,7 +328,7 @@ struct DeformerElement_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct DeformerWeight_MDL7
- *  \brief Deformer weight in a MDL7 file
+ *  \brief Deformer weight in a MDL7 file_manager
  */
 struct DeformerWeight_MDL7 {
     //! for deformer_typ==0 (==bones) index == vertex index
@@ -341,7 +341,7 @@ typedef int32_t MD7_MATERIAL_ASCDEFSIZE;
 
 // -------------------------------------------------------------------------------------
 /** \struct ColorValue_MDL7
- *  \brief Data structure for a color value in a MDL7 file
+ *  \brief Data structure for a color value in a MDL7 file_manager
  */
 struct ColorValue_MDL7 {
     float r,g,b,a;
@@ -349,7 +349,7 @@ struct ColorValue_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct Material_MDL7
- *  \brief Data structure for a Material in a MDL7 file
+ *  \brief Data structure for a Material in a MDL7 file_manager
  */
 struct Material_MDL7 {
     //! Diffuse base color of the material
@@ -401,7 +401,7 @@ struct Skin_MDL5 {
     uint8_t *data;
 } PACK_STRUCT;
 
-// maximum length of texture file name
+// maximum length of texture file_manager name
 #if (!defined AI_MDL7_MAX_TEXNAMESIZE)
 #   define AI_MDL7_MAX_TEXNAMESIZE      0x10
 #endif
@@ -752,7 +752,7 @@ struct IntMaterial_MDL7 {
 
 // -------------------------------------------------------------------------------------
 /** \struct IntBone_MDL7
- *  \brief Internal data structure to represent a bone in a MDL7 file with
+ *  \brief Internal data structure to represent a bone in a MDL7 file_manager with
  *  all of its animation channels assigned to it.
  */
 struct IntBone_MDL7 : aiBone
@@ -868,7 +868,7 @@ struct IntGroupData_MDL7
 };
 
 // -------------------------------------------------------------------------------------
-//! Holds data from an MDL7 file that is shared by all mesh groups
+//! Holds data from an MDL7 file_manager that is shared by all mesh groups
 struct IntSharedData_MDL7 {
     //! Default constructor
     IntSharedData_MDL7() AI_NO_EXCEPT

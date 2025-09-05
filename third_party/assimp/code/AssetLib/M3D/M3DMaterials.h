@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file M3DMaterials.h
-*   @brief Declares the Assimp and Model 3D file material type relations
+*   @brief Declares the Assimp and Model 3D file_manager material type relations
 */
 #ifndef AI_M3DMATERIALS_H_INC
 #define AI_M3DMATERIALS_H_INC

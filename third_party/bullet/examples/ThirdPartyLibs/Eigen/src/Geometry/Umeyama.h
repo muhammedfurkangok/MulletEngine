@@ -1,16 +1,16 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2009 Hauke Heibel <hauke.heibel@gmail.com>
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_UMEYAMA_H
 #define EIGEN_UMEYAMA_H
 
-// This file requires the user to include 
+// This file_manager requires the user to include
 // * Eigen/Core
 // * Eigen/LU 
 // * Eigen/SVD

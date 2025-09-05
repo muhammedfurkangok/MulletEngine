@@ -295,7 +295,7 @@ bool ValidateRegex(const char* regex)
 {
 	if (regex == NULL)
 	{
-		// TODO(wan@google.com): fix the source file location in the
+		// TODO(wan@google.com): fix the source file_manager location in the
 		// assertion failures to match where the regex is used in user
 		// code.
 		ADD_FAILURE() << "NULL is not a valid simple regular expression.";
@@ -515,9 +515,9 @@ void RE::Init(const char* regex)
 
 #endif  // GTEST_USES_POSIX_RE
 
-const char kUnknownFile[] = "unknown file";
+const char kUnknownFile[] = "unknown file_manager";
 
-// Formats a source file path and a line number as they would appear
+// Formats a source file_manager path and a line number as they would appear
 // in an error message from the compiler used to compile this code.
 GTEST_API_ ::std::string FormatFileLocation(const char* file, int line)
 {
@@ -534,11 +534,11 @@ GTEST_API_ ::std::string FormatFileLocation(const char* file, int line)
 #endif  // _MSC_VER
 }
 
-// Formats a file location for compiler-independent XML output.
+// Formats a file_manager location for compiler-independent XML output.
 // Although this function is not platform dependent, we put it next to
 // FormatFileLocation in order to contrast the two functions.
 // Note that FormatCompilerIndependentFileLocation() does NOT append colon
-// to the file location it produces, unlike FormatFileLocation().
+// to the file_manager location it produces, unlike FormatFileLocation().
 GTEST_API_ ::std::string FormatCompilerIndependentFileLocation(
 	const char* file, int line)
 {
@@ -583,7 +583,7 @@ GTestLog::~GTestLog()
 class CapturedStream
 {
 public:
-	// The ctor redirects the stream to a temporary file.
+	// The ctor redirects the stream to a temporary file_manager.
 	explicit CapturedStream(int fd) : fd_(fd), uncaptured_fd_(dup(fd))
 	{
 #if GTEST_OS_WINDOWS
@@ -593,17 +593,17 @@ public:
 		::GetTempPathA(sizeof(temp_dir_path), temp_dir_path);
 		const UINT success = ::GetTempFileNameA(temp_dir_path,
 												"gtest_redir",
-												0,  // Generate unique file name.
+												0,  // Generate unique file_manager name.
 												temp_file_path);
 		GTEST_CHECK_(success != 0)
-			<< "Unable to create a temporary file in " << temp_dir_path;
+			<< "Unable to create a temporary file_manager in " << temp_dir_path;
 		const int captured_fd = creat(temp_file_path, _S_IREAD | _S_IWRITE);
-		GTEST_CHECK_(captured_fd != -1) << "Unable to open temporary file "
+		GTEST_CHECK_(captured_fd != -1) << "Unable to open temporary file_manager "
 										<< temp_file_path;
 		filename_ = temp_file_path;
 #else
 		// There's no guarantee that a test has write access to the current
-		// directory, so we create the temporary file in the /tmp directory
+		// directory, so we create the temporary file_manager in the /tmp directory
 		// instead. We use /tmp on most systems, and /sdcard on Android.
 		// That's because Android doesn't have /tmp.
 #if GTEST_OS_LINUX_ANDROID
@@ -649,50 +649,50 @@ public:
 			uncaptured_fd_ = -1;
 		}
 
-		FILE* const file = posix::FOpen(filename_.c_str(), "r");
-		const std::string content = ReadEntireFile(file);
-		posix::FClose(file);
+		FILE* const file_manager = posix::FOpen(filename_.c_str(), "r");
+		const std::string content = ReadEntireFile(file_manager);
+		posix::FClose(file_manager);
 		return content;
 	}
 
 private:
-	// Reads the entire content of a file as an std::string.
-	static std::string ReadEntireFile(FILE* file);
+	// Reads the entire content of a file_manager as an std::string.
+	static std::string ReadEntireFile(FILE* file_manager);
 
-	// Returns the size (in bytes) of a file.
-	static size_t GetFileSize(FILE* file);
+	// Returns the size (in bytes) of a file_manager.
+	static size_t GetFileSize(FILE* file_manager);
 
 	const int fd_;  // A stream to capture.
 	int uncaptured_fd_;
-	// Name of the temporary file holding the stderr output.
+	// Name of the temporary file_manager holding the stderr output.
 	::std::string filename_;
 
 	GTEST_DISALLOW_COPY_AND_ASSIGN_(CapturedStream);
 };
 
-// Returns the size (in bytes) of a file.
-size_t CapturedStream::GetFileSize(FILE* file)
+// Returns the size (in bytes) of a file_manager.
+size_t CapturedStream::GetFileSize(FILE* file_manager)
 {
-	fseek(file, 0, SEEK_END);
-	return static_cast<size_t>(ftell(file));
+	fseek(file_manager, 0, SEEK_END);
+	return static_cast<size_t>(ftell(file_manager));
 }
 
-// Reads the entire content of a file as a string.
-std::string CapturedStream::ReadEntireFile(FILE* file)
+// Reads the entire content of a file_manager as a string.
+std::string CapturedStream::ReadEntireFile(FILE* file_manager)
 {
-	const size_t file_size = GetFileSize(file);
+	const size_t file_size = GetFileSize(file_manager);
 	char* const buffer = new char[file_size];
 
 	size_t bytes_last_read = 0;  // # of bytes read in the last fread()
 	size_t bytes_read = 0;       // # of bytes read so far
 
-	fseek(file, 0, SEEK_SET);
+	fseek(file_manager, 0, SEEK_SET);
 
-	// Keeps reading the file until we cannot read further or the
-	// pre-determined file size is reached.
+	// Keeps reading the file_manager until we cannot read further or the
+	// pre-determined file_manager size is reached.
 	do
 	{
-		bytes_last_read = fread(buffer + bytes_read, 1, file_size - bytes_read, file);
+		bytes_last_read = fread(buffer + bytes_read, 1, file_size - bytes_read, file_manager);
 		bytes_read += bytes_last_read;
 	} while (bytes_last_read > 0 && bytes_read < file_size);
 

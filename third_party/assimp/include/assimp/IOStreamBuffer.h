@@ -77,8 +77,8 @@ public:
     /// @return true if successful.
     bool close();
 
-    /// @brief  Returns the file-size.
-    /// @return The file-size.
+    /// @brief  Returns the file_manager-size.
+    /// @return The file_manager-size.
     size_t size() const;
 
     /// @brief  Returns the cache size.
@@ -97,8 +97,8 @@ public:
     /// @return The current block index.
     size_t getCurrentBlockIndex() const;
 
-    /// @brief  Returns the current file pos.
-    /// @return The current file pos.
+    /// @brief  Returns the current file_manager pos.
+    /// @return The current file_manager pos.
     size_t getFilePos() const;
 
     /// @brief  Will read the next line.
@@ -142,7 +142,7 @@ AI_FORCE_INLINE IOStreamBuffer<T>::IOStreamBuffer(size_t cache) :
 
 template <class T>
 AI_FORCE_INLINE bool IOStreamBuffer<T>::open(IOStream *stream) {
-    //  file still opened!
+    //  file_manager still opened!
     if (nullptr != m_stream) {
         return false;
     }

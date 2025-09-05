@@ -21,7 +21,7 @@ typedef struct _ENetSymbol
 	enet_uint16 parent;
 } ENetSymbol;
 
-/* adaptation constants tuned aggressively for small packet sizes rather than large file compression */
+/* adaptation constants tuned aggressively for small packet sizes rather than large file_manager compression */
 enum
 {
 	ENET_RANGE_CODER_TOP = 1 << 24,
@@ -41,7 +41,7 @@ enum
 
 typedef struct _ENetRangeCoder
 {
-	/* only allocate enough symbols for reasonable MTUs, would need to be larger for large file compression */
+	/* only allocate enough symbols for reasonable MTUs, would need to be larger for large file_manager compression */
 	ENetSymbol symbols[4096];
 } ENetRangeCoder;
 

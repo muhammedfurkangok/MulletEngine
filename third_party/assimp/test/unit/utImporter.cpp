@@ -149,7 +149,7 @@ public:
     virtual bool CanRead(
             const std::string &pFile, IOSystem * /*pIOHandler*/, bool /*test*/) const {
         std::string::size_type pos = pFile.find_last_of('.');
-        // no file extension - can't read
+        // no file_manager extension - can't read
         if (pos == std::string::npos)
             return false;
         std::string extension = pFile.substr(pos);

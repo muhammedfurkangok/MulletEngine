@@ -143,7 +143,7 @@ struct TexCoord
  */
 struct Skin
 {
-    char name[AI_MD2_MAXQPATH];              /* texture file name */
+    char name[AI_MD2_MAXQPATH];              /* texture file_manager name */
 } PACK_STRUCT;
 
 #include <assimp/Compiler/poppack1.h>

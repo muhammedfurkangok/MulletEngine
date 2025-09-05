@@ -352,29 +352,29 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool DXFImporter::CanRead( const std::string& filename, IOSystem* pIOHandler, bool /*checkSig*/ ) const {
     static const char *tokens[] = { "SECTION", "HEADER", "ENDSEC", "BLOCKS" };
     return SearchFileHeaderForToken(pIOHandler, filename, tokens, AI_COUNT_OF(tokens), 32);
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a list of all supported file extensions
+// Get a list of all supported file_manager extensions
 const aiImporterDesc* DXFImporter::GetInfo () const {
     return &desc;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void DXFImporter::InternReadFile( const std::string& filename, aiScene* pScene, IOSystem* pIOHandler) {
     std::shared_ptr<IOStream> file = std::shared_ptr<IOStream>( pIOHandler->Open( filename) );
 
-    // Check whether we can read the file
+    // Check whether we can read the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError( "Failed to open DXF file ", filename, "");
+        throw DeadlyImportError( "Failed to open DXF file_manager ", filename, "");
     }
 
-    // Check whether this is a binary DXF file - we can't read binary DXF files :-(
+    // Check whether this is a binary DXF file_manager - we can't read binary DXF files :-(
     char buff[AI_DXF_BINARY_IDENT_LEN] = {0};
     file->Read(buff,AI_DXF_BINARY_IDENT_LEN,1);
 
@@ -390,7 +390,7 @@ void DXFImporter::InternReadFile( const std::string& filename, aiScene* pScene, 
     DXF::LineReader reader (stream);
     DXF::FileData output;
 
-    // now get all lines of the file and process top-level sections
+    // now get all lines of the file_manager and process top-level sections
     bool eof = false;
     while(!reader.End()) {
 
@@ -513,7 +513,7 @@ void DXFImporter::ConvertMeshes(aiScene* pScene, DXF::FileData& output) {
     }
 
     if ( 0 == pScene->mNumMeshes) {
-        throw DeadlyImportError("DXF: this file contains no 3d data");
+        throw DeadlyImportError("DXF: this file_manager contains no 3d data");
     }
 
     pScene->mMeshes = new aiMesh*[ pScene->mNumMeshes ] ();

@@ -44,7 +44,7 @@
 /*
 ** {======================================================
 ** lua_popen spawns a new process connected to the current
-** one through the file streams.
+** one through the file_manager streams.
 ** =======================================================
 */
 
@@ -53,12 +53,12 @@
 #if defined(LUA_USE_POPEN) /* { */
 
 #define lua_popen(L, c, m) ((void)L, fflush(NULL), popen(c, m))
-#define lua_pclose(L, file) ((void)L, pclose(file))
+#define lua_pclose(L, file_manager) ((void)L, pclose(file_manager))
 
 #elif defined(LUA_WIN) /* }{ */
 
 #define lua_popen(L, c, m) ((void)L, _popen(c, m))
-#define lua_pclose(L, file) ((void)L, _pclose(file))
+#define lua_pclose(L, file_manager) ((void)L, _pclose(file_manager))
 
 #else /* }{ */
 
@@ -121,11 +121,11 @@ static int io_type(lua_State *L)
 	luaL_checkany(L, 1);
 	p = (LStream *)luaL_testudata(L, 1, LUA_FILEHANDLE);
 	if (p == NULL)
-		lua_pushnil(L); /* not a file */
+		lua_pushnil(L); /* not a file_manager */
 	else if (isclosed(p))
-		lua_pushliteral(L, "closed file");
+		lua_pushliteral(L, "closed file_manager");
 	else
-		lua_pushliteral(L, "file");
+		lua_pushliteral(L, "file_manager");
 	return 1;
 }
 
@@ -133,9 +133,9 @@ static int f_tostring(lua_State *L)
 {
 	LStream *p = tolstream(L);
 	if (isclosed(p))
-		lua_pushliteral(L, "file (closed)");
+		lua_pushliteral(L, "file_manager (closed)");
 	else
-		lua_pushfstring(L, "file (%p)", p->f);
+		lua_pushfstring(L, "file_manager (%p)", p->f);
 	return 1;
 }
 
@@ -143,20 +143,20 @@ static FILE *tofile(lua_State *L)
 {
 	LStream *p = tolstream(L);
 	if (isclosed(p))
-		luaL_error(L, "attempt to use a closed file");
+		luaL_error(L, "attempt to use a closed file_manager");
 	lua_assert(p->f);
 	return p->f;
 }
 
 /*
-** When creating file handles, always creates a `closed' file handle
-** before opening the actual file; so, if there is a memory error, the
-** file is not left opened.
+** When creating file_manager handles, always creates a `closed' file_manager handle
+** before opening the actual file_manager; so, if there is a memory error, the
+** file_manager is not left opened.
 */
 static LStream *newprefile(lua_State *L)
 {
 	LStream *p = (LStream *)lua_newuserdata(L, sizeof(LStream));
-	p->closef = NULL; /* mark file handle as 'closed' */
+	p->closef = NULL; /* mark file_manager handle as 'closed' */
 	luaL_setmetatable(L, LUA_FILEHANDLE);
 	return p;
 }
@@ -208,7 +208,7 @@ static void opencheck(lua_State *L, const char *fname, const char *mode)
 	LStream *p = newfile(L);
 	p->f = fopen(fname, mode);
 	if (p->f == NULL)
-		luaL_error(L, "cannot open file " LUA_QS " (%s)", fname, strerror(errno));
+		luaL_error(L, "cannot open file_manager " LUA_QS " (%s)", fname, strerror(errno));
 }
 
 static int io_open(lua_State *L)
@@ -254,7 +254,7 @@ static FILE *getiofile(lua_State *L, const char *findex)
 	lua_getfield(L, LUA_REGISTRYINDEX, findex);
 	p = (LStream *)lua_touserdata(L, -1);
 	if (isclosed(p))
-		luaL_error(L, "standard %s file is closed", findex + strlen(IO_PREFIX));
+		luaL_error(L, "standard %s file_manager is closed", findex + strlen(IO_PREFIX));
 	return p->f;
 }
 
@@ -267,7 +267,7 @@ static int g_iofile(lua_State *L, const char *f, const char *mode)
 			opencheck(L, filename, mode);
 		else
 		{
-			tofile(L); /* check that it's a valid file handle */
+			tofile(L); /* check that it's a valid file_manager handle */
 			lua_pushvalue(L, 1);
 		}
 		lua_setfield(L, LUA_REGISTRYINDEX, f);
@@ -295,16 +295,16 @@ static void aux_lines(lua_State *L, int toclose)
 	int n = lua_gettop(L) - 1; /* number of arguments to read */
 	/* ensure that arguments will fit here and into 'io_readline' stack */
 	luaL_argcheck(L, n <= LUA_MINSTACK - 3, LUA_MINSTACK - 3, "too many options");
-	lua_pushvalue(L, 1);                              /* file handle */
+	lua_pushvalue(L, 1);                              /* file_manager handle */
 	lua_pushinteger(L, n);                            /* number of arguments to read */
-	lua_pushboolean(L, toclose);                      /* close/not close file when finished */
+	lua_pushboolean(L, toclose);                      /* close/not close file_manager when finished */
 	for (i = 1; i <= n; i++) lua_pushvalue(L, i + 1); /* copy arguments */
 	lua_pushcclosure(L, io_readline, 3 + n);
 }
 
 static int f_lines(lua_State *L)
 {
-	tofile(L); /* check that it's a valid file handle */
+	tofile(L); /* check that it's a valid file_manager handle */
 	aux_lines(L, 0);
 	return 1;
 }
@@ -314,17 +314,17 @@ static int io_lines(lua_State *L)
 	int toclose;
 	if (lua_isnone(L, 1)) lua_pushnil(L); /* at least one argument */
 	if (lua_isnil(L, 1))
-	{                                                 /* no file name? */
+	{                                                 /* no file_manager name? */
 		lua_getfield(L, LUA_REGISTRYINDEX, IO_INPUT); /* get default input */
 		lua_replace(L, 1);                            /* put it at index 1 */
-		tofile(L);                                    /* check that it's a valid file handle */
+		tofile(L);                                    /* check that it's a valid file_manager handle */
 		toclose = 0;                                  /* do not close it after iteration */
 	}
 	else
-	{ /* open a new file */
+	{ /* open a new file_manager */
 		const char *filename = luaL_checkstring(L, 1);
 		opencheck(L, filename, "r");
-		lua_replace(L, 1); /* put file at index 1 */
+		lua_replace(L, 1); /* put file_manager at index 1 */
 		toclose = 1;       /* close it after iteration */
 	}
 	aux_lines(L, toclose);
@@ -455,8 +455,8 @@ static int g_read(lua_State *L, FILE *f, int first)
 					case 'L': /* line with end-of-line */
 						success = read_line(L, f, 0);
 						break;
-					case 'a':           /* file */
-						read_all(L, f); /* read entire file */
+					case 'a':           /* file_manager */
+						read_all(L, f); /* read entire file_manager */
 						success = 1;    /* always success */
 						break;
 					default:
@@ -490,8 +490,8 @@ static int io_readline(lua_State *L)
 	LStream *p = (LStream *)lua_touserdata(L, lua_upvalueindex(1));
 	int i;
 	int n = (int)lua_tointeger(L, lua_upvalueindex(2));
-	if (isclosed(p)) /* file is already closed? */
-		return luaL_error(L, "file is already closed");
+	if (isclosed(p)) /* file_manager is already closed? */
+		return luaL_error(L, "file_manager is already closed");
 	lua_settop(L, 1);
 	for (i = 1; i <= n; i++) /* push arguments to 'g_read' */
 		lua_pushvalue(L, lua_upvalueindex(3 + i));
@@ -507,7 +507,7 @@ static int io_readline(lua_State *L)
 			return luaL_error(L, "%s", lua_tostring(L, -n + 1));
 		}
 		if (lua_toboolean(L, lua_upvalueindex(3)))
-		{ /* generator created file? */
+		{ /* generator created file_manager? */
 			lua_settop(L, 0);
 			lua_pushvalue(L, lua_upvalueindex(1));
 			aux_close(L); /* close it */
@@ -538,7 +538,7 @@ static int g_write(lua_State *L, FILE *f, int arg)
 		}
 	}
 	if (status)
-		return 1; /* file handle already on stack top */
+		return 1; /* file_manager handle already on stack top */
 	else
 		return luaL_fileresult(L, status, NULL);
 }
@@ -551,7 +551,7 @@ static int io_write(lua_State *L)
 static int f_write(lua_State *L)
 {
 	FILE *f = tofile(L);
-	lua_pushvalue(L, 1); /* push file at the stack top (to be returned) */
+	lua_pushvalue(L, 1); /* push file_manager at the stack top (to be returned) */
 	return g_write(L, f, 2);
 }
 
@@ -614,7 +614,7 @@ static const luaL_Reg iolib[] = {
 	{NULL, NULL}};
 
 /*
-** methods for file handles
+** methods for file_manager handles
 */
 static const luaL_Reg flib[] = {
 	{"close", io_close},
@@ -630,10 +630,10 @@ static const luaL_Reg flib[] = {
 
 static void createmeta(lua_State *L)
 {
-	luaL_newmetatable(L, LUA_FILEHANDLE); /* create metatable for file handles */
+	luaL_newmetatable(L, LUA_FILEHANDLE); /* create metatable for file_manager handles */
 	lua_pushvalue(L, -1);                 /* push metatable */
 	lua_setfield(L, -2, "__index");       /* metatable.__index = metatable */
-	luaL_setfuncs(L, flib, 0);            /* add file methods to new metatable */
+	luaL_setfuncs(L, flib, 0);            /* add file_manager methods to new metatable */
 	lua_pop(L, 1);                        /* pop new metatable */
 }
 
@@ -643,9 +643,9 @@ static void createmeta(lua_State *L)
 static int io_noclose(lua_State *L)
 {
 	LStream *p = tolstream(L);
-	p->closef = &io_noclose; /* keep file opened */
+	p->closef = &io_noclose; /* keep file_manager opened */
 	lua_pushnil(L);
-	lua_pushliteral(L, "cannot close standard file");
+	lua_pushliteral(L, "cannot close standard file_manager");
 	return 2;
 }
 
@@ -658,9 +658,9 @@ static void createstdfile(lua_State *L, FILE *f, const char *k,
 	if (k != NULL)
 	{
 		lua_pushvalue(L, -1);
-		lua_setfield(L, LUA_REGISTRYINDEX, k); /* add file to registry */
+		lua_setfield(L, LUA_REGISTRYINDEX, k); /* add file_manager to registry */
 	}
-	lua_setfield(L, -2, fname); /* add file to module */
+	lua_setfield(L, -2, fname); /* add file_manager to module */
 }
 
 LUAMOD_API int luaopen_io(lua_State *L)

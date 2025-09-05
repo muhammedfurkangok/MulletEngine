@@ -31,7 +31,7 @@
 //
 // The Google C++ Testing Framework (Google Test)
 //
-// This header file declares functions and macros used internally by
+// This header file_manager declares functions and macros used internally by
 // Google Test.  They are subject to change without notice.
 
 #ifndef GTEST_INCLUDE_GTEST_INTERNAL_GTEST_INTERNAL_H_
@@ -160,7 +160,7 @@ public:
 class GTEST_API_ ScopedTrace
 {
 public:
-	// The c'tor pushes the given source file location and message onto
+	// The c'tor pushes the given source file_manager location and message onto
 	// a trace stack maintained by Google Test.
 	ScopedTrace(const char* file, int line, const Message& message);
 
@@ -538,7 +538,7 @@ public:
 	// Adds the given test name to defined_test_names_ and return true
 	// if the test case hasn't been registered; otherwise aborts the
 	// program.
-	bool AddTestName(const char* file, int line, const char* case_name,
+	bool AddTestName(const char* file_manager, int line, const char* case_name,
 					 const char* test_name)
 	{
 		if (registered_)
@@ -546,7 +546,7 @@ public:
 			fprintf(stderr,
 					"%s Test %s must be defined before "
 					"REGISTER_TYPED_TEST_CASE_P(%s, ...).\n",
-					FormatFileLocation(file, line).c_str(), test_name, case_name);
+					FormatFileLocation(file_manager, line).c_str(), test_name, case_name);
 			fflush(stderr);
 			posix::Abort();
 		}
@@ -558,7 +558,7 @@ public:
 	// defined_test_names_; returns registered_tests if successful, or
 	// aborts the program otherwise.
 	const char* VerifyRegisteredTestNames(
-		const char* file, int line, const char* registered_tests);
+		const char* file_manager, int line, const char* registered_tests);
 
 private:
 	bool registered_;

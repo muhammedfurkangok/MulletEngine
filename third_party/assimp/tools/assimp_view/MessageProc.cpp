@@ -80,10 +80,10 @@ void UpdateHistory();
 void SaveHistory();
 
 //-------------------------------------------------------------------------------
-// Setup file associations for all formats supported by the library
+// Setup file_manager associations for all formats supported by the library
 //
 // File associations are registered in HKCU\Software\Classes. They might
-// be overwritten by global file associations.
+// be overwritten by global file_manager associations.
 //-------------------------------------------------------------------------------
 void MakeFileAssociations() {
     char szTemp2[MAX_PATH];
@@ -398,7 +398,7 @@ void LoadBGTexture() {
         // Key was not found. Use C:
         strcpy(szFileName,"");
     } else {
-        // need to remove the file name
+        // need to remove the file_manager name
         char* sz = strrchr(szFileName,'\\');
         if (!sz)
             sz = strrchr(szFileName,'/');
@@ -417,7 +417,7 @@ void LoadBGTexture() {
     };
     if(GetOpenFileName(&sFilename1) == 0) return;
 
-    // Now store the file in the registry
+    // Now store the file_manager in the registry
     RegSetValueExA(g_hRegistry,"TextureSrc",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
     RegSetValueExA(g_hRegistry,"LastTextureSrc",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
     RegSetValueExA(g_hRegistry,"LastSkyBoxSrc",0,REG_SZ,(const BYTE*)"",MAX_PATH);
@@ -512,7 +512,7 @@ void LoadSkybox() {
     }
     else
     {
-        // need to remove the file name
+        // need to remove the file_manager name
         char* sz = strrchr(szFileName,'\\');
         if (!sz)
             sz = strrchr(szFileName,'/');
@@ -530,7 +530,7 @@ void LoadSkybox() {
     };
     if(GetOpenFileName(&sFilename1) == 0) return;
 
-    // Now store the file in the registry
+    // Now store the file_manager in the registry
     RegSetValueExA(g_hRegistry,"SkyBoxSrc",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
     RegSetValueExA(g_hRegistry,"LastSkyBoxSrc",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
     RegSetValueExA(g_hRegistry,"LastTextureSrc",0,REG_SZ,(const BYTE*)"",MAX_PATH);
@@ -549,7 +549,7 @@ void SaveRelease(T **iface ) {
 }
 
 //-------------------------------------------------------------------------------
-// Save a screenshot to an user-defined file
+// Save a screenshot to an user-defined file_manager
 //-------------------------------------------------------------------------------
 void SaveScreenshot() {
     char szFileName[MAX_PATH];
@@ -559,7 +559,7 @@ void SaveScreenshot() {
         // Key was not found. Use C:
         strcpy(szFileName,"");
     } else {
-        // need to remove the file name
+        // need to remove the file_manager name
         char* sz = strrchr(szFileName,'\\');
         if (!sz)
             sz = strrchr(szFileName,'/');
@@ -571,13 +571,13 @@ void SaveScreenshot() {
         g_hDlg,GetModuleHandle(nullptr),
         "PNG Images\0*.png", nullptr, 0, 1,
         szFileName, MAX_PATH, nullptr, 0, nullptr,
-        "Save Screenshot to file",
+        "Save Screenshot to file_manager",
         OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_NOCHANGEDIR,
         0, 1, ".png", 0, nullptr, nullptr
     };
     if(GetSaveFileName(&sFilename1) == 0) return;
 
-    // Now store the file in the registry
+    // Now store the file_manager in the registry
     RegSetValueExA(g_hRegistry,"ScreenShot",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
 
     IDirect3DSurface9* pi = nullptr;
@@ -737,7 +737,7 @@ void SaveHistory() {
 }
 
 //-------------------------------------------------------------------------------
-// Recover the file history
+// Recover the file_manager history
 //-------------------------------------------------------------------------------
 void LoadHistory() {
     g_aPreviousFiles.resize(AI_VIEW_NUM_RECENT_FILES);
@@ -774,7 +774,7 @@ void LoadHistory() {
 }
 
 //-------------------------------------------------------------------------------
-// Clear the file history
+// Clear the file_manager history
 //-------------------------------------------------------------------------------
 void ClearHistory() {
     for (unsigned int i = 0; i < AI_VIEW_NUM_RECENT_FILES; ++i) {
@@ -790,7 +790,7 @@ void ClearHistory() {
 }
 
 //-------------------------------------------------------------------------------
-// Update the file history
+// Update the file_manager history
 //-------------------------------------------------------------------------------
 void UpdateHistory() {
     if (!g_hHistoryMenu) {
@@ -830,7 +830,7 @@ void OpenAsset() {
         // Key was not found. Use C:
         strcpy(szFileName,"");
     } else {
-        // need to remove the file name
+        // need to remove the file_manager name
         char* sz = strrchr(szFileName,'\\');
         if (!sz)
             sz = strrchr(szFileName,'/');
@@ -838,7 +838,7 @@ void OpenAsset() {
             *sz = 0;
     }
 
-    // get a list of all file extensions supported by ASSIMP
+    // get a list of all file_manager extensions supported by ASSIMP
     aiString sz;
     aiGetExtensionList(&sz);
 
@@ -870,7 +870,7 @@ void OpenAsset() {
         return;
     }
 
-    // Now store the file in the registry
+    // Now store the file_manager in the registry
     RegSetValueExA(g_hRegistry,"CurrentApp",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
 
     if (0 != strcmp(g_szFileName,szFileName)) {
@@ -946,7 +946,7 @@ void DoExport(size_t formatId) {
     if(ERROR_SUCCESS == RegQueryValueEx(g_hRegistry,"ModelExportDest",nullptr,nullptr,(BYTE*)szFileName, &dwTemp)) {
         ai_assert(strlen(szFileName) <= MAX_PATH);
 
-        // invent a nice default file name
+        // invent a nice default file_manager name
         char* sz = std::max(strrchr(szFileName,'\\'),strrchr(szFileName,'/'));
         if (sz) {
             strncpy(sz,std::max(strrchr(g_szFileName,'\\'),strrchr(g_szFileName,'/')),MAX_PATH);
@@ -957,7 +957,7 @@ void DoExport(size_t formatId) {
         strncpy(szFileName,g_szFileName,MAX_PATH);
     }
 
-    // fix file extension
+    // fix file_manager extension
     {   char * const sz = strrchr(szFileName,'.');
         if(sz) {
             ai_assert((sz - &szFileName[0]) + strlen(e->fileExtension) + 1 <= MAX_PATH);
@@ -987,13 +987,13 @@ void DoExport(size_t formatId) {
         return;
     }
 
-    // Now store the file in the registry unless the user decided to stay in the model directory
+    // Now store the file_manager in the registry unless the user decided to stay in the model directory
     const std::string sFinal = szFileName, sub = sFinal.substr(0,sFinal.find_last_of("\\/"));
     if (strncmp(sub.c_str(),g_szFileName,sub.length())) {
         RegSetValueExA(g_hRegistry,"ModelExportDest",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
     }
 
-    // export the file
+    // export the file_manager
     const aiReturn res = exp.Export(g_pcAsset->pcScene,e->id,sFinal.c_str(),
         ppsteps | /* configurable pp steps */
         aiProcess_GenSmoothNormals         | // generate smooth normal vectors if not existing
@@ -1004,10 +1004,10 @@ void DoExport(size_t formatId) {
         0
     );
     if (res == aiReturn_SUCCESS) {
-        CLogDisplay::Instance().AddEntry("[INFO] Exported file " + sFinal,D3DCOLOR_ARGB(0xFF,0x00,0xFF,0x00));
+        CLogDisplay::Instance().AddEntry("[INFO] Exported file_manager " + sFinal,D3DCOLOR_ARGB(0xFF,0x00,0xFF,0x00));
         return;
     }
-    CLogDisplay::Instance().AddEntry("[INFO] Failure exporting file " +
+    CLogDisplay::Instance().AddEntry("[INFO] Failure exporting file_manager " +
         sFinal,D3DCOLOR_ARGB(0xFF,0xFF,0x00,0x00));
 }
 #endif
@@ -1263,7 +1263,7 @@ INT_PTR CALLBACK MessageProc(HWND hwndDlg,UINT uMsg, WPARAM wParam,LPARAM lParam
             // load the state of the user interface
             InitUI();
 
-            // load the file history
+            // load the file_manager history
             LoadHistory();
 
             // load the current color of the lights
@@ -1618,7 +1618,7 @@ INT_PTR CALLBACK MessageProc(HWND hwndDlg,UINT uMsg, WPARAM wParam,LPARAM lParam
                     // replace the selected texture with the new one ...
                     CDisplay::Instance().ReplaceCurrentTexture(szFile);
                 } else {
-                    // check whether it is a typical texture file format ...
+                    // check whether it is a typical texture file_manager format ...
                     ++sz;
                     if (0 == ASSIMP_stricmp(sz,"png") ||
                         0 == ASSIMP_stricmp(sz,"bmp") ||
@@ -1635,12 +1635,12 @@ INT_PTR CALLBACK MessageProc(HWND hwndDlg,UINT uMsg, WPARAM wParam,LPARAM lParam
                     {
                         // DDS files could contain skyboxes, but they could also
                         // contain normal 2D textures. The easiest way to find this
-                        // out is to open the file and check the header ...
+                        // out is to open the file_manager and check the header ...
                         FILE* pFile = fopen(szFile,"rb");
                         if (!pFile)
                             return TRUE;
 
-                        // header of a dds file (begin)
+                        // header of a dds file_manager (begin)
                         /*
                         DWORD dwMagic
                         DWORD dwSize
@@ -1661,7 +1661,7 @@ INT_PTR CALLBACK MessageProc(HWND hwndDlg,UINT uMsg, WPARAM wParam,LPARAM lParam
 
                         if (dwCaps & 0x00000400L /* DDSCAPS2_CUBEMAP_POSITIVEX */) {
                             CLogDisplay::Instance().AddEntry(
-                                "[INFO] Assuming this dds file is a skybox ...",
+                                "[INFO] Assuming this dds file_manager is a skybox ...",
                                 D3DCOLOR_ARGB(0xFF,0xFF,0xFF,0));
 
                             CBackgroundPainter::Instance().SetCubeMapBG(szFile);
@@ -2044,7 +2044,7 @@ INT_PTR CALLBACK MessageProc(HWND hwndDlg,UINT uMsg, WPARAM wParam,LPARAM lParam
                         else EnableWindow(GetDlgItem(g_hDlg,IDC_SLIDERANIM),TRUE);
                     }
                 }
-            // check the file history
+            // check the file_manager history
             for (unsigned int i = 0; i < AI_VIEW_NUM_RECENT_FILES;++i)
             {
                 if (AI_VIEW_RECENT_FILE_ID(i) == LOWORD(wParam))

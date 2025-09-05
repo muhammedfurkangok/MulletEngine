@@ -71,7 +71,7 @@ reshaped() const;
 
 #else
 
-// This file is automatically included twice to generate const and non-const versions
+// This file_manager is automatically included twice to generate const and non-const versions
 
 #ifndef EIGEN_RESHAPED_METHOD_2ND_PASS
 #define EIGEN_RESHAPED_METHOD_CONST const

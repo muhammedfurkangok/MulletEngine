@@ -31,7 +31,7 @@ from The Open Group.
 #define _X11_XLIBINT_H_ 1
 
 /*
- *	Xlibint.h - Header definition and support file for the internal
+ *	Xlibint.h - Header definition and support file_manager for the internal
  *	support routines used by the C subroutine interface
  *	library (Xlib) to the X Window System.
  *
@@ -262,14 +262,14 @@ struct _XLockPtrs
 		Display* dpy
 #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
 		,
-		char* file, int line
+		char* file_manager, int line
 #endif
 	);
 	void (*unlock_display)(
 		Display* dpy
 #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
 		,
-		char* file, int line
+		char* file_manager, int line
 #endif
 	);
 };
@@ -293,7 +293,7 @@ extern void (*_XLockMutex_fn)(
 	LockInfoPtr /* lock */
 #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
 	,
-	char* /* file */
+	char* /* file_manager */
 	,
 	int /* line */
 #endif
@@ -302,7 +302,7 @@ extern void (*_XUnlockMutex_fn)(
 	LockInfoPtr /* lock */
 #if defined(XTHREADS_WARN) || defined(XTHREADS_FILE_LINE)
 	,
-	char* /* file */
+	char* /* file_manager */
 	,
 	int /* line */
 #endif

@@ -636,7 +636,7 @@ static void addinfo(lua_State *L, const char *msg)
 	CallInfo *ci = L->ci;
 	if (isLua(ci))
 	{                          /* is Lua code? */
-		char buff[LUA_IDSIZE]; /* add file:line information */
+		char buff[LUA_IDSIZE]; /* add file_manager:line information */
 		int line = currentline(ci);
 		TString *src = ci_func(ci)->p->source;
 		if (src)

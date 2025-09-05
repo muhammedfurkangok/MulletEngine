@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** @file Bitmap.cpp
  *  @brief Defines bitmap format helper for textures
  *
- * Used for file formats which embed their textures into the model file.
+ * Used for file_manager formats which embed their textures into the model file_manager.
  */
 
 #include <assimp/Bitmap.h>

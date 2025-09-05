@@ -15,7 +15,7 @@
 ///
 /// The best documentation for GLM Core is the current GLSL specification,
 /// <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.clean.pdf">version 4.2
-/// (pdf file)</a>.
+/// (pdf file_manager)</a>.
 ///
 /// GLM core functionalities require <glm/glm.hpp> to be included to be used.
 ///
@@ -74,7 +74,7 @@
 /// EXT extensions are fully tested and documented.
 ///
 /// Even if it's highly unrecommended, it's possible to include all the extensions at once by
-/// including <glm/ext.hpp>. Otherwise, each extension needs to be included  a specific file.
+/// including <glm/ext.hpp>. Otherwise, each extension needs to be included  a specific file_manager.
 ///
 ///
 /// @defgroup gtc Recommended extensions
@@ -84,7 +84,7 @@
 /// GTC extensions aim to be stable with tests and documentation.
 ///
 /// Even if it's highly unrecommended, it's possible to include all the extensions at once by
-/// including <glm/ext.hpp>. Otherwise, each extension needs to be included  a specific file.
+/// including <glm/ext.hpp>. Otherwise, each extension needs to be included  a specific file_manager.
 ///
 ///
 /// @defgroup gtx Experimental extensions
@@ -98,7 +98,7 @@
 ///
 /// Even if it's highly unrecommended, it's possible to include all the extensions
 /// at once by including <glm/ext.hpp>. Otherwise, each extension needs to be
-/// included  a specific file.
+/// included  a specific file_manager.
 ///
 
 #include "detail/_fixes.hpp"

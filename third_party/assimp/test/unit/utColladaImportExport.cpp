@@ -279,7 +279,7 @@ TEST_F(utColladaImportExport, exportRootNodeMeshTest) {
         delete[] meshNode->mMeshes;
         meshNode->mMeshes = nullptr;
 
-        ASSERT_EQ(AI_SUCCESS, exporter.Export(clone.sceneCopy, "collada", outFile)) << "Fatal: Could not export file";
+        ASSERT_EQ(AI_SUCCESS, exporter.Export(clone.sceneCopy, "collada", outFile)) << "Fatal: Could not export file_manager";
     }
 
     // Reimport and look for meshes
@@ -300,7 +300,7 @@ TEST_F(utColladaImportExport, exporterUniqueIdsTest) {
     const char *outFileEmpty = "exportMeshIdTest_empty_out.dae";
     const char *outFileNamed = "exportMeshIdTest_named_out.dae";
 
-    // Load a sample file containing multiple meshes
+    // Load a sample file_manager containing multiple meshes
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/Collada/teapots.DAE", aiProcess_ValidateDataStructure);
 
     ASSERT_TRUE(scene != nullptr) << "Fatal: could not import teapots.DAE!";
@@ -326,7 +326,7 @@ TEST_F(utColladaImportExport, exporterUniqueIdsTest) {
 
     SetAllNodeNames(aiString(), scene->mRootNode);
 
-    ASSERT_EQ(AI_SUCCESS, exporter.Export(scene, "collada", outFileEmpty)) << "Fatal: Could not export un-named meshes file";
+    ASSERT_EQ(AI_SUCCESS, exporter.Export(scene, "collada", outFileEmpty)) << "Fatal: Could not export un-named meshes file_manager";
 
     ImportAndCheckIds(outFileEmpty, scene);
 
@@ -351,13 +351,13 @@ TEST_F(utColladaImportExport, exporterUniqueIdsTest) {
 
     SetAllNodeNames(testName, scene->mRootNode);
 
-    ASSERT_EQ(AI_SUCCESS, exporter.Export(scene, "collada", outFileNamed)) << "Fatal: Could not export named meshes file";
+    ASSERT_EQ(AI_SUCCESS, exporter.Export(scene, "collada", outFileNamed)) << "Fatal: Could not export named meshes file_manager";
 
     ImportAndCheckIds(outFileNamed, scene);
     ImportAsNames(outFileNamed, scene);
 }
 
-// This file is invalid, we just want to ensure that the importer is not crashing
+// This file_manager is invalid, we just want to ensure that the importer is not crashing
 // This was reported as GH#4286. The "count" parameter in "Cube-mesh-positions-array" is too small.
 TEST_F(utColladaImportExport, parseInvalid4286) {
     Assimp::Importer importer;

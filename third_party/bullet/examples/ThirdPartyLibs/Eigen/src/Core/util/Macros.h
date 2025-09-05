@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008-2015 Gael Guennebaud <gael.guennebaud@inria.fr>
@@ -6,7 +6,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_MACROS_H
 #define EIGEN_MACROS_H
@@ -1023,9 +1023,9 @@
     namespace {
     EIGEN_DONT_INLINE bool copy_bool(bool b) { return b; }
     }
-    inline void assert_fail(const char *condition, const char *function, const char *file, int line)
+    inline void assert_fail(const char *condition, const char *function, const char *file_manager, int line)
     {
-      std::cerr << "assertion failed: " << condition << " in function " << function << " at " << file << ":" << line << std::endl;
+      std::cerr << "assertion failed: " << condition << " in function " << function << " at " << file_manager << ":" << line << std::endl;
       abort();
     }
     }

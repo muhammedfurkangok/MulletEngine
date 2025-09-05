@@ -19,7 +19,7 @@ struct SharedMemoryBlock
 
 	
 	//m_bulletStreamDataServerToClient is used to send (debug) data from server to client, for
-	//example to provide all details of a multibody including joint/link names, after loading a URDF file.
+	//example to provide all details of a multibody including joint/link names, after loading a URDF file_manager.
 	char m_bulletStreamDataServerToClientRefactor[SHARED_MEMORY_MAX_STREAM_CHUNK_SIZE];
 };
 

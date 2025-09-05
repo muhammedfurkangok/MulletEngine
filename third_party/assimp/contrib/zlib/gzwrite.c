@@ -11,7 +11,7 @@ local int gz_comp OF((gz_statep, int));
 local int gz_zero OF((gz_statep, z_off64_t));
 local z_size_t gz_write OF((gz_statep, voidpc, z_size_t));
 
-/* Initialize state for writing a gzip file.  Mark initialization by setting
+/* Initialize state for writing a gzip file_manager.  Mark initialization by setting
    state->size to non-zero.  Return -1 on a memory allocation failure, or 0 on
    success. */
 local int gz_init(state)
@@ -64,12 +64,12 @@ local int gz_init(state)
     return 0;
 }
 
-/* Compress whatever is at avail_in and next_in and write to the output file.
-   Return -1 if there is an error writing to the output file or if gz_init()
+/* Compress whatever is at avail_in and next_in and write to the output file_manager.
+   Return -1 if there is an error writing to the output file_manager or if gz_init()
    fails to allocate memory, otherwise 0.  flush is assumed to be a valid
    deflate() flush value.  If flush is Z_FINISH, then the deflate() state is
    reset to start a new gzip stream.  If gz->direct is true, then simply write
-   to the output file without compressing, and ignore flush. */
+   to the output file_manager without compressing, and ignore flush. */
 local int gz_comp(state, flush)
     gz_statep state;
     int flush;
@@ -182,7 +182,7 @@ local int gz_zero(state, len)
     return 0;
 }
 
-/* Write len bytes from buf to file.  Return the number of bytes written.  If
+/* Write len bytes from buf to file_manager.  Return the number of bytes written.  If
    the returned value is less than len, then there was an error. */
 local z_size_t gz_write(state, buf, len)
     gz_statep state;
@@ -233,7 +233,7 @@ local z_size_t gz_write(state, buf, len)
         if (state->strm.avail_in && gz_comp(state, Z_NO_FLUSH) == -1)
             return 0;
 
-        /* directly compress user buffer to file */
+        /* directly compress user buffer to file_manager */
         state->strm.next_in = (z_const Bytef *)buf;
         do {
             unsigned n = (unsigned)-1;
@@ -388,7 +388,7 @@ int ZEXPORT gzputs(file, s)
 #include <stdarg.h>
 
 /* -- see zlib.h -- */
-int ZEXPORTVA gzvprintf(gzFile file, const char *format, va_list va)
+int ZEXPORTVA gzvprintf(gzFile file_manager, const char *format, va_list va)
 {
     int len;
     unsigned left;
@@ -397,9 +397,9 @@ int ZEXPORTVA gzvprintf(gzFile file, const char *format, va_list va)
     z_streamp strm;
 
     /* get internal structure */
-    if (file == NULL)
+    if (file_manager == NULL)
         return Z_STREAM_ERROR;
-    state = (gz_statep)file;
+    state = (gz_statep)file_manager;
     strm = &(state->strm);
 
     /* check that we're writing and that there's no error */
@@ -460,13 +460,13 @@ int ZEXPORTVA gzvprintf(gzFile file, const char *format, va_list va)
     return len;
 }
 
-int ZEXPORTVA gzprintf(gzFile file, const char *format, ...)
+int ZEXPORTVA gzprintf(gzFile file_manager, const char *format, ...)
 {
     va_list va;
     int ret;
 
     va_start(va, format);
-    ret = gzvprintf(file, format, va);
+    ret = gzvprintf(file_manager, format, va);
     va_end(va);
     return ret;
 }
@@ -658,7 +658,7 @@ int ZEXPORT gzclose_w(file)
             ret = state->err;
     }
 
-    /* flush, free memory, and close file */
+    /* flush, free memory, and close file_manager */
     if (gz_comp(state, Z_FINISH) == -1)
         ret = state->err;
     if (state->size) {

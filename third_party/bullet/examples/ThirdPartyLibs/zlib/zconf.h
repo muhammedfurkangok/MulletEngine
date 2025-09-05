@@ -472,9 +472,9 @@ typedef unsigned long z_crc_t;
 #endif
 
 #if !defined(SEEK_SET) && !defined(Z_SOLO)
-#define SEEK_SET 0 /* Seek from beginning of file.  */
+#define SEEK_SET 0 /* Seek from beginning of file_manager.  */
 #define SEEK_CUR 1 /* Seek from current position.  */
-#define SEEK_END 2 /* Set file pointer to EOF plus "offset" */
+#define SEEK_END 2 /* Set file_manager pointer to EOF plus "offset" */
 #endif
 
 #ifndef z_off_t

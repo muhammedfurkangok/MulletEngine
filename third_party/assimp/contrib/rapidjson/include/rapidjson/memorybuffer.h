@@ -2,7 +2,7 @@
 // 
 // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.
 //
-// Licensed under the MIT License (the "License"); you may not use this file except
+// Licensed under the MIT License (the "License"); you may not use this file_manager except
 // in compliance with the License. You may obtain a copy of the License at
 //
 // http://opensource.org/licenses/MIT
@@ -24,7 +24,7 @@ RAPIDJSON_NAMESPACE_BEGIN
 /*!
     This class is mainly for being wrapped by EncodedOutputStream or AutoUTFOutputStream.
 
-    It is similar to FileWriteBuffer but the destination is an in-memory buffer instead of a file.
+    It is similar to FileWriteBuffer but the destination is an in-memory buffer instead of a file_manager.
 
     Differences between MemoryBuffer and StringBuffer:
     1. StringBuffer has Encoding but MemoryBuffer is only a byte buffer. 

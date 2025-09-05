@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file STLExporter.h
- * Declares the exporter class to write a scene to a Stereolithography (STL) file
+ * Declares the exporter class to write a scene to a Stereolithography (STL) file_manager
  */
 #pragma once
 #ifndef AI_STLEXPORTER_H_INC
@@ -55,7 +55,7 @@ struct aiMesh;
 namespace Assimp {
 
 // ------------------------------------------------------------------------------------------------
-/** Helper class to export a given scene to a STL file. */
+/** Helper class to export a given scene to a STL file_manager. */
 // ------------------------------------------------------------------------------------------------
 class STLExporter {
 public:

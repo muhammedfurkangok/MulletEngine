@@ -229,7 +229,7 @@ bool VHACD::OCLInit(void* const oclDevice, IUserLogger* const logger)
 
 #ifdef OCL_SOURCE_FROM_FILE
 	std::string cl_files = OPENCL_CL_FILES;
-// read kernal from file
+// read kernal from file_manager
 #ifdef _WIN32
 	std::replace(cl_files.begin(), cl_files.end(), '/', '\\');
 #endif  // _WIN32

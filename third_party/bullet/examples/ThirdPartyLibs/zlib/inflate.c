@@ -50,7 +50,7 @@
  * - Add FAR to lcode and dcode declarations in inflate_fast()
  * - Simplified bad distance check in inflate_fast()
  * - Added inflateBackInit(), inflateBack(), and inflateBackEnd() in new
- *   source file infback.c to provide a call-back interface to inflate for
+ *   source file_manager infback.c to provide a call-back interface to inflate for
  *   programs like gzip and unzip -- uses window as output buffer to avoid
  *   window copying
  *
@@ -338,7 +338,7 @@ void makefixed()
 	puts("     * Generated automatically by makefixed().");
 	puts("     */");
 	puts("");
-	puts("    /* WARNING: this file should *not* be used by applications.");
+	puts("    /* WARNING: this file_manager should *not* be used by applications.");
 	puts("       It is part of the implementation of this library and is");
 	puts("       subject to change. Applications should only use zlib.h.");
 	puts("     */");

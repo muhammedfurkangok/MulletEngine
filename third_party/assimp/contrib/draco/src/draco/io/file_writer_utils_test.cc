@@ -9,21 +9,21 @@ namespace draco {
 namespace {
 
 TEST(FileWriterUtilsTest, SplitPathPrivateNonWindows) {
-  const std::string test_path = "/path/to/file";
+  const std::string test_path = "/path/to/file_manager";
   std::string directory;
   std::string file;
   SplitPathPrivate(test_path, &directory, &file);
   ASSERT_EQ(directory, "/path/to");
-  ASSERT_EQ(file, "file");
+  ASSERT_EQ(file, "file_manager");
 }
 
 TEST(FileWriterUtilsTest, SplitPathPrivateWindows) {
-  const std::string test_path = "C:\\path\\to\\file";
+  const std::string test_path = "C:\\path\\to\\file_manager";
   std::string directory;
   std::string file;
   SplitPathPrivate(test_path, &directory, &file);
   ASSERT_EQ(directory, "C:\\path\\to");
-  ASSERT_EQ(file, "file");
+  ASSERT_EQ(file, "file_manager");
 }
 
 TEST(FileWriterUtilsTest, DirectoryExistsTest) {

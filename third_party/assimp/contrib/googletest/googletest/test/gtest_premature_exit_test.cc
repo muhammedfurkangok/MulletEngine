@@ -29,7 +29,7 @@
 
 //
 // Tests that Google Test manipulates the premature-exit-detection
-// file correctly.
+// file_manager correctly.
 
 #include <stdio.h>
 
@@ -45,7 +45,7 @@ namespace {
 
 class PrematureExitTest : public Test {
  public:
-  // Returns true if and only if the given file exists.
+  // Returns true if and only if the given file_manager exists.
   static bool FileExists(const char* filepath) {
     StatStruct stat;
     return Stat(filepath, &stat) == 0;
@@ -61,7 +61,7 @@ class PrematureExitTest : public Test {
     }
   }
 
-  // Returns true if and only if the premature-exit file exists.
+  // Returns true if and only if the premature-exit file_manager exists.
   bool PrematureExitFileExists() const {
     return FileExists(premature_exit_file_path_);
   }
@@ -72,10 +72,10 @@ class PrematureExitTest : public Test {
 typedef PrematureExitTest PrematureExitDeathTest;
 
 // Tests that:
-//   - the premature-exit file exists during the execution of a
+//   - the premature-exit file_manager exists during the execution of a
 //     death test (EXPECT_DEATH*), and
 //   - a death test doesn't interfere with the main test process's
-//     handling of the premature-exit file.
+//     handling of the premature-exit file_manager.
 TEST_F(PrematureExitDeathTest, FileExistsDuringExecutionOfDeathTest) {
   if (*premature_exit_file_path_ == '\0') {
     return;
@@ -83,7 +83,7 @@ TEST_F(PrematureExitDeathTest, FileExistsDuringExecutionOfDeathTest) {
 
   EXPECT_DEATH_IF_SUPPORTED(
       {
-        // If the file exists, crash the process such that the main test
+        // If the file_manager exists, crash the process such that the main test
         // process will catch the (expected) crash and report a success;
         // otherwise don't crash, which will cause the main test process
         // to report that the death test has failed.
@@ -94,7 +94,7 @@ TEST_F(PrematureExitDeathTest, FileExistsDuringExecutionOfDeathTest) {
       "");
 }
 
-// Tests that the premature-exit file exists during the execution of a
+// Tests that the premature-exit file_manager exists during the execution of a
 // normal (non-death) test.
 TEST_F(PrematureExitTest, PrematureExitFileExistsDuringTestExecution) {
   if (*premature_exit_file_path_ == '\0') {
@@ -102,7 +102,7 @@ TEST_F(PrematureExitTest, PrematureExitFileExistsDuringTestExecution) {
   }
 
   EXPECT_TRUE(PrematureExitFileExists())
-      << " file " << premature_exit_file_path_
+      << " file_manager " << premature_exit_file_path_
       << " should exist during test execution, but doesn't.";
 }
 
@@ -112,7 +112,7 @@ int main(int argc, char** argv) {
   InitGoogleTest(&argc, argv);
   const int exit_code = RUN_ALL_TESTS();
 
-  // Test that the premature-exit file is deleted upon return from
+  // Test that the premature-exit file_manager is deleted upon return from
   // RUN_ALL_TESTS().
   const char* const filepath = GetEnv("TEST_PREMATURE_EXIT_FILE");
   if (filepath != nullptr && *filepath != '\0') {

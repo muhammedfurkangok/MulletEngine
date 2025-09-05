@@ -41,7 +41,7 @@ struct DataArrayList;
 
 ///
 /// @ingroup    OpenDDLParser
-///	@brief      This class represents one single instance in the object tree of the parsed OpenDDL-file.
+///	@brief      This class represents one single instance in the object tree of the parsed OpenDDL-file_manager.
 ///
 /// A DDLNode represents one leaf in the OpenDDL-node tree. It can have one parent node and multiple children.
 /// You can assign special properties to a single DDLNode instance.

@@ -51,7 +51,7 @@ Material improvements:
 
 Other:
 - use aiProcess_GenUVCoords if needed to handle spherical/planar uv mapping?
-- don't build up a big string in memory but write directly to a file
+- don't build up a big string in memory but write directly to a file_manager
 - aiProcess_Triangulate meshes to get triangles only?
 - animation (allow specifying a time)
 
@@ -144,7 +144,7 @@ PbrtExporter::PbrtExporter(
 
         std::unique_ptr<IOStream> outfile(mIOSystem->Open(fn, "wb"));
         if (!outfile) {
-            throw DeadlyExportError("could not open output texture file: " + fn);
+            throw DeadlyExportError("could not open output texture file_manager: " + fn);
         }
         if (tex->mHeight == 0) {
             // It's binary data
@@ -173,7 +173,7 @@ PbrtExporter::PbrtExporter(
     WriteCameras();
     WriteWorldDefinition();
 
-    // And write the file to disk...
+    // And write the file_manager to disk...
     std::string outputFilePath = mPath;
     if (!outputFilePath.empty()) {
         outputFilePath = outputFilePath + mIOSystem->getOsSeparator();
@@ -182,7 +182,7 @@ PbrtExporter::PbrtExporter(
 
     std::unique_ptr<IOStream> outfile(mIOSystem->Open(outputFilePath,"wt"));
     if (!outfile) {
-        throw DeadlyExportError("could not open output .pbrt file: " + std::string(mFile));
+        throw DeadlyExportError("could not open output .pbrt file_manager: " + std::string(mFile));
     }
     outfile->Write(mOutput.str().c_str(), mOutput.str().length(), 1);
 }
@@ -257,12 +257,12 @@ void PbrtExporter::WriteCameras() {
     mOutput << "# Cameras (" << mScene->mNumCameras << ") total\n\n";
 
     if (mScene->mNumCameras == 0) {
-        std::cerr << "Warning: No cameras found in scene file.\n";
+        std::cerr << "Warning: No cameras found in scene file_manager.\n";
         return;
     }
 
     if (mScene->mNumCameras > 1) {
-        std::cerr << "Multiple cameras found in scene file; defaulting to first one specified.\n";
+        std::cerr << "Multiple cameras found in scene file_manager; defaulting to first one specified.\n";
     }
 
     for (unsigned int i = 0; i < mScene->mNumCameras; i++) {
@@ -686,7 +686,7 @@ std::string PbrtExporter::CleanTextureFilename(const aiString &f, bool rewriteEx
     // Expect all textures in textures
     fn = std::string("textures") + mIOSystem->getOsSeparator() + fn;
 
-    // Rewrite extension for unsupported file formats.
+    // Rewrite extension for unsupported file_manager formats.
     if (rewriteExtension) {
         offset = fn.rfind('.');
         if (offset != std::string::npos) {

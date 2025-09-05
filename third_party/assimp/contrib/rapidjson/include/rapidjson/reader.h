@@ -2,7 +2,7 @@
 //
 // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.
 //
-// Licensed under the MIT License (the "License"); you may not use this file except
+// Licensed under the MIT License (the "License"); you may not use this file_manager except
 // in compliance with the License. You may obtain a copy of the License at
 //
 // http://opensource.org/licenses/MIT
@@ -660,7 +660,7 @@ public:
                 return true;
         }
 
-        // We reached the end of file.
+        // We reached the end of file_manager.
         stack_.Clear();
 
         if (state_ != IterativeParsingFinishState) {
@@ -2216,7 +2216,7 @@ private:
             RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
         }
 
-        // Handle the end of file.
+        // Handle the end of file_manager.
         if (state != IterativeParsingFinishState)
             HandleError(state, is);
 

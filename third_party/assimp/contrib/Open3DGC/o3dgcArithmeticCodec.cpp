@@ -564,14 +564,14 @@ namespace o3dgc
                           // read variable-length header with number of code bytes
       do {
         if ((file_byte = getc(code_file)) == EOF)
-          AC_Error("cannot read code from file");
+          AC_Error("cannot read code from file_manager");
         code_bytes |= unsigned(file_byte & 0x7F) << shift;
         shift += 7;
       } while (file_byte & 0x80);
                                                            // read compressed data
       if (code_bytes > buffer_size) AC_Error("code buffer overflow");
       if (fread(code_buffer, 1, code_bytes, code_file) != code_bytes)
-        AC_Error("cannot read code from file");
+        AC_Error("cannot read code from file_manager");
 
       start_decoder();                                       // initialize decoder
     }
@@ -615,12 +615,12 @@ namespace o3dgc
         int file_byte = int(nb & 0x7FU);
         if ((nb >>= 7) > 0) file_byte |= 0x80;
         if (putc(file_byte, code_file) == EOF)
-          AC_Error("cannot write compressed data to file");
+          AC_Error("cannot write compressed data to file_manager");
         header_bytes++;
       } while (nb);
                                                           // write compressed data
       if (fwrite(code_buffer, 1, code_bytes, code_file) != code_bytes)
-        AC_Error("cannot write compressed data to file");
+        AC_Error("cannot write compressed data to file_manager");
 
       return code_bytes + header_bytes;                              // bytes used
     }

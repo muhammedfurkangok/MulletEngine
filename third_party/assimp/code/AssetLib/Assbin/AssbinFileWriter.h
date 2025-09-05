@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file AssbinFileWriter.h
- *  @brief Declaration of Assbin file writer.
+ *  @brief Declaration of Assbin file_manager writer.
  */
 
 #ifndef AI_ASSBINFILEWRITER_H_INC

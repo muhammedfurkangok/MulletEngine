@@ -60,7 +60,7 @@ namespace Assimp {
 
 // ------------------------------------------------------------------------------------------------
 /**
- *  @brief  Helper class to export a given scene to a 3DS file.
+ *  @brief  Helper class to export a given scene to a 3DS file_manager.
  */
 // ------------------------------------------------------------------------------------------------
 class Discreet3DSExporter final {

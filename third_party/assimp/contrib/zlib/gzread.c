@@ -48,11 +48,11 @@ local int gz_load(state, buf, len, have)
 
 /* Load up input buffer and set eof flag if last data loaded -- return -1 on
    error, 0 otherwise.  Note that the eof flag is set when the end of the input
-   file is reached, even though there may be unused data in the buffer.  Once
-   that data has been used, no more attempts will be made to read the file.
+   file_manager is reached, even though there may be unused data in the buffer.  Once
+   that data has been used, no more attempts will be made to read the file_manager.
    If strm->avail_in != 0, then the current data is moved to the beginning of
    the input buffer, and then the remainder of the buffer is loaded with the
-   available data from the input file. */
+   available data from the input file_manager. */
 local int gz_avail(state)
     gz_statep state;
 {
@@ -85,7 +85,7 @@ local int gz_avail(state)
    if there is no gzip header and direct copying will be performed, or it will
    be set to GZIP for decompression.  If direct copying, then leftover input
    data from the input buffer will be copied to the output buffer.  In that
-   case, all further file reads will be directly to either the output buffer or
+   case, all further file_manager reads will be directly to either the output buffer or
    a user buffer.  If decompressing, the inflate state will be initialized.
    gz_look() will return 0 on success or -1 on failure. */
 local int gz_look(state)
@@ -131,11 +131,11 @@ local int gz_look(state)
 
     /* look for gzip magic bytes -- if there, do gzip decoding (note: there is
        a logical dilemma here when considering the case of a partially written
-       gzip file, to wit, if a single 31 byte is written, then we cannot tell
-       whether this is a single-byte file, or just a partially written gzip
-       file -- for here we assume that if a gzip file is being written, then
+       gzip file_manager, to wit, if a single 31 byte is written, then we cannot tell
+       whether this is a single-byte file_manager, or just a partially written gzip
+       file_manager -- for here we assume that if a gzip file_manager is being written, then
        the header will be written in a single operation, so that reading a
-       single byte is sufficient indication that it is not a gzip file) */
+       single byte is sufficient indication that it is not a gzip file_manager) */
     if (strm->avail_in > 1 &&
             strm->next_in[0] == 31 && strm->next_in[1] == 139) {
         inflateReset(strm);
@@ -184,7 +184,7 @@ local int gz_decomp(state)
         if (strm->avail_in == 0 && gz_avail(state) == -1)
             return -1;
         if (strm->avail_in == 0) {
-            gz_error(state, Z_BUF_ERROR, "unexpected end of file");
+            gz_error(state, Z_BUF_ERROR, "unexpected end of file_manager");
             break;
         }
 
@@ -219,11 +219,11 @@ local int gz_decomp(state)
 }
 
 /* Fetch data and put it in the output buffer.  Assumes state->x.have is 0.
-   Data is either copied from the input file or decompressed from the input
-   file depending on state->how.  If state->how is LOOK, then a gzip header is
+   Data is either copied from the input file_manager or decompressed from the input
+   file_manager depending on state->how.  If state->how is LOOK, then a gzip header is
    looked for to determine whether to copy or decompress.  Returns -1 on error,
    otherwise 0.  gz_fetch() will leave state->how as COPY or GZIP unless the
-   end of the input file has been reached and all data has been processed.  */
+   end of the input file_manager has been reached and all data has been processed.  */
 local int gz_fetch(state)
     gz_statep state;
 {
@@ -260,7 +260,7 @@ local int gz_skip(state, len)
 {
     unsigned n;
 
-    /* skip over len bytes or reach end-of-file, whichever comes first */
+    /* skip over len bytes or reach end-of-file_manager, whichever comes first */
     while (len)
         /* skip over whatever is in output buffer */
         if (state->x.have) {
@@ -285,9 +285,9 @@ local int gz_skip(state, len)
     return 0;
 }
 
-/* Read len bytes into buf from file, or less than len up to the end of the
+/* Read len bytes into buf from file_manager, or less than len up to the end of the
    input.  Return the number of bytes read.  If zero is returned, either the
-   end of file was reached, or there was an error.  state->err must be
+   end of file_manager was reached, or there was an error.  state->err must be
    consulted in that case to determine which. */
 local z_size_t gz_read(state, buf, len)
     gz_statep state;
@@ -572,7 +572,7 @@ char * ZEXPORT gzgets(file, buf, len)
         /* assure that something is in the output buffer */
         if (state->x.have == 0 && gz_fetch(state) == -1)
             return NULL;                /* error */
-        if (state->x.have == 0) {       /* end of file */
+        if (state->x.have == 0) {       /* end of file_manager */
             state->past = 1;            /* read past end */
             break;                      /* return what we have */
         }
@@ -592,7 +592,7 @@ char * ZEXPORT gzgets(file, buf, len)
         buf += n;
     } while (left && eol == NULL);
 
-    /* return terminated string, or if nothing, end of file */
+    /* return terminated string, or if nothing, end of file_manager */
     if (buf == str)
         return NULL;
     buf[0] = 0;
@@ -635,7 +635,7 @@ int ZEXPORT gzclose_r(file)
     if (state->mode != GZ_READ)
         return Z_STREAM_ERROR;
 
-    /* free memory and close file */
+    /* free memory and close file_manager */
     if (state->size) {
         inflateEnd(&(state->strm));
         free(state->out);

@@ -188,7 +188,7 @@ void HL1MDLLoader::load_file() {
         read_global_info();
 
         if (!header_->numbodyparts) {
-            // This could be an MDL external texture file. In this case,
+            // This could be an MDL external texture file_manager. In this case,
             // add this flag to allow the scene to be loaded even if it
             // has no meshes.
             scene_->mFlags |= AI_SCENE_FLAGS_INCOMPLETE;
@@ -218,7 +218,7 @@ void HL1MDLLoader::validate_header(const Header_HL1 *header, bool is_texture_hea
     if (is_texture_header) {
         // Every single Half-Life model is assumed to have at least one texture.
         if (!header->numtextures) {
-            throw DeadlyImportError(MDL_HALFLIFE_LOG_HEADER "There are no textures in the file");
+            throw DeadlyImportError(MDL_HALFLIFE_LOG_HEADER "There are no textures in the file_manager");
         }
 
         if (header->numtextures > AI_MDL_HL1_MAX_TEXTURES) {
@@ -263,21 +263,21 @@ void HL1MDLLoader::validate_header(const Header_HL1 *header, bool is_texture_hea
 
     There are two ways for textures to be stored in a Half-Life model:
 
-    1. Directly in the MDL file (filePath) or
-    2. In an external MDL file.
+    1. Directly in the MDL file_manager (filePath) or
+    2. In an external MDL file_manager.
 
     Due to the way StudioMDL works (tool used to compile SMDs into MDLs),
-    it is assumed that an external texture file follows the naming
+    it is assumed that an external texture file_manager follows the naming
     convention: <YourModelName>T.mdl. Note the extra (T) at the end of the
     model name.
 
     .e.g For a given model named MyModel.mdl
 
-    The external texture file name would be MyModelT.mdl
+    The external texture file_manager name would be MyModelT.mdl
 */
 void HL1MDLLoader::load_texture_file() {
     if (header_->numtextures == 0) {
-        // Load an external MDL texture file.
+        // Load an external MDL texture file_manager.
         std::string texture_file_path =
                 DefaultIOSystem::absolutePath(file_path_) + io_->getOsSeparator() +
                 DefaultIOSystem::completeBaseName(file_path_) + "T." +
@@ -285,7 +285,7 @@ void HL1MDLLoader::load_texture_file() {
 
         load_file_into_buffer<Header_HL1>(texture_file_path, texture_buffer_);
     } else {
-        // Model has no external texture file. This means the texture is stored inside the main MDL file.
+        // Model has no external texture file_manager. This means the texture is stored inside the main MDL file_manager.
         texture_buffer_ = const_cast<unsigned char *>(buffer_);
     }
 
@@ -300,7 +300,7 @@ void HL1MDLLoader::load_texture_file() {
     Load sequence group files if any.
 
     Due to the way StudioMDL works (tool used to compile SMDs into MDLs),
-    it is assumed that a sequence group file follows the naming
+    it is assumed that a sequence group file_manager follows the naming
     convention: <YourModelName>0X.mdl. Note the extra (0X) at the end of
     the model name, where (X) is the sequence group.
 
@@ -1091,7 +1091,7 @@ void HL1MDLLoader::read_sequence_groups_info() {
 
         aiMetadata *md = sequence_group_node->mMetaData = aiMetadata::Alloc(1);
         if (i == 0) {
-            /* StudioMDL does not write the file name for the default sequence group,
+            /* StudioMDL does not write the file_manager name for the default sequence group,
                so we will write it. */
             md->Set(0, "File", aiString(file_path_));
         } else {
@@ -1335,11 +1335,11 @@ void HL1MDLLoader::read_global_info() {
 *
 *   source:
 *       HL1 source code.
-*           file: studio_render.cpp
+*           file_manager: studio_render.cpp
 *           function(s): CalcBoneQuaternion and CalcBonePosition
 *
 *       HL2 source code.
-*           file: bone_setup.cpp
+*           file_manager: bone_setup.cpp
 *           function(s): ExtractAnimValue
 */
 void HL1MDLLoader::extract_anim_value(

@@ -115,12 +115,12 @@ const aiImporterDesc *B3DImporter::GetInfo() const {
 void B3DImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open B3D file ", pFile, ".");
+        throw DeadlyImportError("Failed to open B3D file_manager ", pFile, ".");
     }
 
-    // check whether the .b3d file is large enough to contain
+    // check whether the .b3d file_manager is large enough to contain
     // at least one chunk.
     size_t fileSize = file->FileSize();
     if (fileSize < 8) {
@@ -143,9 +143,9 @@ AI_WONT_RETURN void B3DImporter::Oops() {
 // ------------------------------------------------------------------------------------------------
 AI_WONT_RETURN void B3DImporter::Fail(const string &str) {
 #ifdef DEBUG_B3D
-    ASSIMP_LOG_ERROR("Error in B3D file data: ", str);
+    ASSIMP_LOG_ERROR("Error in B3D file_manager data: ", str);
 #endif
-    throw DeadlyImportError("B3D Importer - error in B3D file data: ", str);
+    throw DeadlyImportError("B3D Importer - error in B3D file_manager data: ", str);
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -605,7 +605,7 @@ void B3DImporter::ReadBB3D(aiScene *scene) {
 
         if (!DefaultLogger::isNullLogger()) {
             char dmp[128];
-            ai_snprintf(dmp, 128, "B3D file format version: %i", version);
+            ai_snprintf(dmp, 128, "B3D file_manager format version: %i", version);
             ASSIMP_LOG_INFO(dmp);
         }
 

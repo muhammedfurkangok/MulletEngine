@@ -42,10 +42,10 @@ public:
 		delete m_collisionConfiguration;
 		delete m_multibody;
 	}
-	/// @param name path to urdf file
+	/// @param name path to urdf file_manager
 	void setFileName(const std::string name) { m_filename = name; }
         void setFlag(int flag) { m_flag = flag; }
-	/// load urdf file and build btMultiBody model
+	/// load urdf file_manager and build btMultiBody model
 	void init()
 	{
 		this->createEmptyDynamicsWorld();

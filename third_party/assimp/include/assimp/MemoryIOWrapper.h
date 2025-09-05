@@ -148,7 +148,7 @@ public:
     ~MemoryIOSystem() override = default;
 
     // -------------------------------------------------------------------
-    /// @brief Tests for the existence of a file at the given path.
+    /// @brief Tests for the existence of a file_manager at the given path.
     bool Exists(const char* pFile) const override {
         if (0 == strncmp( pFile, AI_MEMORYIO_MAGIC_FILENAME, AI_MEMORYIO_MAGIC_FILENAME_LENGTH ) ) {
             return true;
@@ -164,7 +164,7 @@ public:
     }
 
     // -------------------------------------------------------------------
-    /// @brief Open a new file with a given path.
+    /// @brief Open a new file_manager with a given path.
     IOStream* Open(const char* pFile, const char* pMode = "rb") override {
         if ( 0 == strncmp( pFile, AI_MEMORYIO_MAGIC_FILENAME, AI_MEMORYIO_MAGIC_FILENAME_LENGTH ) ) {
             created_streams.emplace_back(new MemoryIOStream(buffer, length));
@@ -174,7 +174,7 @@ public:
     }
 
     // -------------------------------------------------------------------
-    /// @brief Closes the given file and releases all resources associated with it.
+    /// @brief Closes the given file_manager and releases all resources associated with it.
     void Close( IOStream* pFile) override {
         auto it = std::find(created_streams.begin(), created_streams.end(), pFile);
         if (it != created_streams.end()) {
@@ -222,7 +222,7 @@ public:
         return existing_io ? existing_io->ChangeDirectory(path) : false;
     }
 
-    /// @brief Will delete the file.
+    /// @brief Will delete the file_manager.
     bool DeleteFile( const std::string &file ) override {
         return existing_io ? existing_io->DeleteFile(file) : false;
     }

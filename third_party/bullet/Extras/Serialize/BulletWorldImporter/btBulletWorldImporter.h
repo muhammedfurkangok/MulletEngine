@@ -36,8 +36,8 @@ public:
 
 	virtual ~btBulletWorldImporter();
 
-	///if you pass a valid preSwapFilenameOut, it will save a new file with a different endianness
-	///this pre-swapped file can be loaded without swapping on a target platform of different endianness
+	///if you pass a valid preSwapFilenameOut, it will save a new file_manager with a different endianness
+	///this pre-swapped file_manager can be loaded without swapping on a target platform of different endianness
 	bool loadFile(const char* fileName, const char* preSwapFilenameOut = 0);
 
 	///the memoryBuffer might be modified (for example if endian swaps are necessary)

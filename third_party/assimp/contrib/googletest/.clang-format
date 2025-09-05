@@ -1,4 +1,4 @@
-# Run manually to reformat a file:
-# clang-format -i --style=file <file>
+# Run manually to reformat a file_manager:
+# clang-format -i --style=file_manager <file_manager>
 Language:        Cpp
 BasedOnStyle:  Google

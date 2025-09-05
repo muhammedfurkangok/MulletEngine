@@ -24,7 +24,7 @@ int readMinitaurLogFile(const char* fileName, btAlignedObjectArray<std::string>&
 	{
 		if (verbose)
 		{
-			printf("Opened file %s\n", fileName);
+			printf("Opened file_manager %s\n", fileName);
 		}
 		btAlignedObjectArray<char> line0Buf;
 		bool eof = readLine(f, line0Buf);
@@ -187,7 +187,7 @@ int readMinitaurLogFile(const char* fileName, btAlignedObjectArray<std::string>&
 	{
 		if (verbose)
 		{
-			printf("Could not open file %s", fileName);
+			printf("Could not open file_manager %s", fileName);
 		}
 		retVal = eMinitaurFileNotFound;
 	}

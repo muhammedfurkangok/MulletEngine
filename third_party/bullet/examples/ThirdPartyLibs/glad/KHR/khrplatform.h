@@ -28,9 +28,9 @@
  *
  * $Revision: 32517 $ on $Date: 2016-03-11 02:41:19 -0800 (Fri, 11 Mar 2016) $
  *
- * Adopters may modify this file to suit their platform. Adopters are
+ * Adopters may modify this file_manager to suit their platform. Adopters are
  * encouraged to submit platform specific modifications to the Khronos
- * group so that they can be included in future versions of this file.
+ * group so that they can be included in future versions of this file_manager.
  * Please submit changes by sending them to the public Khronos Bugzilla
  * (http://khronos.org/bugzilla) by filing a bug against product
  * "Khronos (general)" component "Registry".
@@ -40,11 +40,11 @@
  * must create a Bugzilla login first.
  *
  *
- * See the Implementer's Guidelines for information about where this file
+ * See the Implementer's Guidelines for information about where this file_manager
  * should be located on your system and for more details of its use:
  *    http://www.khronos.org/registry/implementers_guide.pdf
  *
- * This file should be included as
+ * This file_manager should be included as
  *        #include <KHR/khrplatform.h>
  * by Khronos client API header files that use its types and defines.
  *
@@ -80,7 +80,7 @@
  *    KHRONOS_SUPPORT_INT64 is 1 if 64 bit integers are supported; otherwise 0.
  *    KHRONOS_SUPPORT_FLOAT is 1 if floats are supported; otherwise 0.
  *
- * Calling convention macros defined in this file:
+ * Calling convention macros defined in this file_manager:
  *    KHRONOS_APICALL
  *    KHRONOS_APIENTRY
  *    KHRONOS_APIATTRIBUTES

@@ -528,7 +528,7 @@ int main(int argc, char* argv[])
 					dx = sx;
 					if (once != 1)
 					{
-						//need to save this file as UTF-8 without signature, codepage 650001 in Visual Studio
+						//need to save this file_manager as UTF-8 without signature, codepage 650001 in Visual Studio
 						err = glGetError();
 						b3Assert(err == GL_NO_ERROR);
 

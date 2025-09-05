@@ -70,11 +70,11 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool IRRMeshImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
-    /* NOTE: A simple check for the file extension is not enough
+    /* NOTE: A simple check for the file_manager extension is not enough
      * here. Irrmesh and irr are easy, but xml is too generic
-     * and could be collada, too. So we need to open the file and
+     * and could be collada, too. So we need to open the file_manager and
      * search for typical tokens.
      */
     static const char *tokens[] = { "irrmesh" };
@@ -82,7 +82,7 @@ bool IRRMeshImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bo
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a list of all file extensions which are handled by this class
+// Get a list of all file_manager extensions which are handled by this class
 const aiImporterDesc *IRRMeshImporter::GetInfo() const {
     return &desc;
 }
@@ -102,20 +102,20 @@ static void releaseMesh(aiMesh **mesh) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void IRRMeshImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open IRRMESH file ", pFile);
+        throw DeadlyImportError("Failed to open IRRMESH file_manager ", pFile);
     }
 
     // Construct the irrXML parser
     XmlParser parser;
     if (!parser.parse(file.get())) {
-        throw DeadlyImportError("XML parse error while loading IRRMESH file ", pFile);
+        throw DeadlyImportError("XML parse error while loading IRRMESH file_manager ", pFile);
     }
     XmlNode root = parser.getRootNode();
 
@@ -147,7 +147,7 @@ void IRRMeshImporter::InternReadFile(const std::string &pFile,
     // <vertices> are a vertex per line, contains position, UV1 coords, maybe UV2, normal, tangent, bitangent
     // <boundingbox> is ignored, I think assimp recalculates those?
 
-    // Parse the XML file
+    // Parse the XML file_manager
     pugi::xml_node const &meshNode = root.child("mesh");
     for (pugi::xml_node bufferNode : meshNode.children()) {
         if (ASSIMP_stricmp(bufferNode.name(), "buffer")) {
@@ -201,7 +201,7 @@ void IRRMeshImporter::InternReadFile(const std::string &pFile,
             curUVs.reserve(vertexCount);
 
             VertexFormat vertexFormat;
-            // Determine the file format
+            // Determine the file_manager format
             pugi::xml_attribute typeAttrib = verticesNode.attribute("type");
             if (!ASSIMP_stricmp("2tcoords", typeAttrib.value())) {
                 curUV2s.reserve(vertexCount);
@@ -394,7 +394,7 @@ void IRRMeshImporter::InternReadFile(const std::string &pFile,
 
     // If one is empty then so is the other
     if (materials.empty() || meshes.empty()) {
-        throw DeadlyImportError("IRRMESH: Unable to read a mesh from this file");
+        throw DeadlyImportError("IRRMESH: Unable to read a mesh from this file_manager");
     }
 
     // now generate the output scene

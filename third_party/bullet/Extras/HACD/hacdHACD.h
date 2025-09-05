@@ -192,8 +192,8 @@ public:
 	//! @param exportDistPoints specifies wheter distance points should ne exported or not (used only for debugging).
 	//! @return true if sucess
 	bool Compute(bool fullCH = false, bool exportDistPoints = false);
-	//! Saves the generated convex-hulls in a VRML 2.0 file.
-	//! @param fileName the output file name
+	//! Saves the generated convex-hulls in a VRML 2.0 file_manager.
+	//! @param fileName the output file_manager name
 	//! @param uniColor specifies whether the different convex-hulls should have the same color or not
 	//! @param numCluster specifies the cluster to be saved, if numCluster < 0 export all clusters
 	//! @return true if sucess

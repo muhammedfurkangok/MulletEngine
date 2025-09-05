@@ -4,7 +4,7 @@
 
 // Important note to dawn and/or wgpu users: when targeting native platforms (i.e. NOT emscripten),
 // one of IMGUI_IMPL_WEBGPU_BACKEND_DAWN or IMGUI_IMPL_WEBGPU_BACKEND_WGPU must be provided.
-// Add #define to your imconfig.h file, or as a compilation flag in your build system.
+// Add #define to your imconfig.h file_manager, or as a compilation flag in your build system.
 // This requirement will be removed once WebGPU stabilizes and backends converge on a unified interface.
 //#define IMGUI_IMPL_WEBGPU_BACKEND_DAWN
 //#define IMGUI_IMPL_WEBGPU_BACKEND_WGPU

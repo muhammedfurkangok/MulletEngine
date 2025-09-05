@@ -1,7 +1,7 @@
 
 //b3ReadWavFile is implemented based on code from the STK toolkit
 //See https://github.com/thestk/stk
-//Some improvement: the ticking data (b3WavTicker) is separate from wav file,
+//Some improvement: the ticking data (b3WavTicker) is separate from wav file_manager,
 //This makes it possoble to play a single wav multiple times at the same time
 
 #include "b3ReadWavFile.h"
@@ -186,7 +186,7 @@ bool b3ReadWavFile::getWavInfo(const char *fileName)
 	}
 	channels_ = (unsigned int)temp;
 
-	// Get file sample rate from the header.
+	// Get file_manager sample rate from the header.
 	int srate;
 	if (fread(&srate, 4, 1, fd_) != 1)
 		return false;
@@ -276,10 +276,10 @@ bool b3ReadWavFile::getWavInfo(const char *fileName)
 
 bool b3ReadWavFile::read(unsigned long startFrame, bool doNormalize)
 {
-	// Make sure we have an open file.
+	// Make sure we have an open file_manager.
 	if (fd_ == 0)
 	{
-		//    oStream_ << "FileRead::read: a file is not open!";
+		//    oStream_ << "FileRead::read: a file_manager is not open!";
 		//    Stk::handleError( StkError::WARNING ); return;
 		return false;
 	}
@@ -296,11 +296,11 @@ bool b3ReadWavFile::read(unsigned long startFrame, bool doNormalize)
 	if (startFrame >= m_numFrames)
 	{
 		return false;
-		//oStream_ << "FileRead::read: startFrame argument is greater than or equal to the file size!";
+		//oStream_ << "FileRead::read: startFrame argument is greater than or equal to the file_manager size!";
 		//Stk::handleError( StkError::FUNCTION_ARGUMENT );
 	}
 
-	// Check for file end.
+	// Check for file_manager end.
 	if (startFrame + nFrames > m_numFrames)
 		nFrames = m_numFrames - startFrame;
 
@@ -487,6 +487,6 @@ bool b3ReadWavFile::read(unsigned long startFrame, bool doNormalize)
 	return true;
 
 	// error:
-	//  oStream_ << "FileRead: Error reading file data.";
+	//  oStream_ << "FileRead: Error reading file_manager data.";
 	//  handleError( StkError::FILE_ERROR);
 }

@@ -163,8 +163,8 @@ void bDNA::initRecurseCmpFlags(int iter)
 // ----------------------------------------------------- //
 void bDNA::initCmpFlags(bDNA *memDNA)
 {
-	// compare the file to memory
-	// this ptr should be the file data
+	// compare the file_manager to memory
+	// this ptr should be the file_manager data
 
 	assert(!(m_Names.size() == 0));  // && "SDNA empty!");
 	mCMPFlags.resize(mStructs.size(), FDF_NONE);
@@ -193,7 +193,7 @@ void bDNA::initCmpFlags(bDNA *memDNA)
 		}
 		short *curStruct = memDNA->mStructs[newLookup];
 #else
-		// memory for file
+		// memory for file_manager
 
 		if (oldLookup < memDNA->mStructs.size())
 		{

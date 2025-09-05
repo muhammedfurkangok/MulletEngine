@@ -148,9 +148,9 @@ public:
     /// Default destructor.
     ~AMFImporter() override;
 
-    /// Parse AMF file and fill scene graph. The function has no return value. Result can be found by analyzing the generated graph.
+    /// Parse AMF file_manager and fill scene graph. The function has no return value. Result can be found by analyzing the generated graph.
     /// Also exception can be thrown if trouble will found.
-    /// \param [in] pFile - name of file to be parsed.
+    /// \param [in] pFile - name of file_manager to be parsed.
     /// \param [in] pIOHandler - pointer to IO helper object.
     void ParseFile(const std::string &pFile, IOSystem *pIOHandler);
     void ParseHelper_Node_Enter(AMFNodeElementBase *child);
@@ -242,52 +242,52 @@ private:
     /// \param [out] pOutputData - reference to output array for decoded data.
     void ParseHelper_Decode_Base64(const std::string &pInputBase64, std::vector<uint8_t> &pOutputData) const;
 
-    /// Parse <AMF> node of the file.
+    /// Parse <AMF> node of the file_manager.
     void ParseNode_Root();
 
-    /// Parse <constellation> node of the file.
+    /// Parse <constellation> node of the file_manager.
     void ParseNode_Constellation(XmlNode &node);
 
-    /// Parse <instance> node of the file.
+    /// Parse <instance> node of the file_manager.
     void ParseNode_Instance(XmlNode &node);
 
-    /// Parse <material> node of the file.
+    /// Parse <material> node of the file_manager.
     void ParseNode_Material(XmlNode &node);
 
     /// Parse <metadata> node.
     void ParseNode_Metadata(XmlNode &node);
 
-    /// Parse <object> node of the file.
+    /// Parse <object> node of the file_manager.
     void ParseNode_Object(XmlNode &node);
 
-    /// Parse <texture> node of the file.
+    /// Parse <texture> node of the file_manager.
     void ParseNode_Texture(XmlNode &node);
 
-    /// Parse <coordinates> node of the file.
+    /// Parse <coordinates> node of the file_manager.
     void ParseNode_Coordinates(XmlNode &node);
 
-    /// Parse <edge> node of the file.
+    /// Parse <edge> node of the file_manager.
     void ParseNode_Edge(XmlNode &node);
 
-    /// Parse <mesh> node of the file.
+    /// Parse <mesh> node of the file_manager.
     void ParseNode_Mesh(XmlNode &node);
 
-    /// Parse <triangle> node of the file.
+    /// Parse <triangle> node of the file_manager.
     void ParseNode_Triangle(XmlNode &node);
 
-    /// Parse <vertex> node of the file.
+    /// Parse <vertex> node of the file_manager.
     void ParseNode_Vertex(XmlNode &node);
 
-    /// Parse <vertices> node of the file.
+    /// Parse <vertices> node of the file_manager.
     void ParseNode_Vertices(XmlNode &node);
 
-    /// Parse <volume> node of the file.
+    /// Parse <volume> node of the file_manager.
     void ParseNode_Volume(XmlNode &node);
 
-    /// Parse <color> node of the file.
+    /// Parse <color> node of the file_manager.
     void ParseNode_Color(XmlNode &node);
 
-    /// Parse <texmap> of <map> node of the file.
+    /// Parse <texmap> of <map> node of the file_manager.
     /// \param [in] pUseOldName - if true then use old name of node(and children) - <map>, instead of new name - <texmap>.
     void ParseNode_TexMap(XmlNode &node, const bool pUseOldName = false);
 

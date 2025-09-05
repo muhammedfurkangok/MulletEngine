@@ -87,10 +87,10 @@ std::string Path_ReadTextFile(const std::string &strFilename);
 bool Path_WriteStringToTextFile(const std::string &strFilename, const char *pchData);
 bool Path_WriteStringToTextFileAtomic(const std::string &strFilename, const char *pchData);
 
-/** Returns a file:// url for paths, or an http or https url if that's what was provided */
+/** Returns a file_manager:// url for paths, or an http or https url if that's what was provided */
 std::string Path_FilePathToUrl(const std::string &sRelativePath, const std::string &sBasePath);
 
-/** Strips off file:// off a URL and returns the path. For other kinds of URLs an empty string is returned */
+/** Strips off file_manager:// off a URL and returns the path. For other kinds of URLs an empty string is returned */
 std::string Path_UrlToFilePath(const std::string &sFileUrl);
 
 /** Returns the root of the directory the system wants us to store user documents in */

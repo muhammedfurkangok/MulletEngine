@@ -83,13 +83,13 @@ void ExportSceneXFile(const char* pFile,IOSystem* pIOSystem, const aiScene* pSce
     XFileExporter iDoTheExportThing( pScene, pIOSystem, path, file, &props);
 
     if (iDoTheExportThing.mOutput.fail()) {
-        throw DeadlyExportError("output data creation failed. Most likely the file became too large: " + std::string(pFile));
+        throw DeadlyExportError("output data creation failed. Most likely the file_manager became too large: " + std::string(pFile));
     }
 
     // we're still here - export successfully completed. Write result to the given IOSYstem
     std::unique_ptr<IOStream> outfile (pIOSystem->Open(pFile,"wt"));
     if (outfile == nullptr) {
-        throw DeadlyExportError("could not open output .x file: " + std::string(pFile));
+        throw DeadlyExportError("could not open output .x file_manager: " + std::string(pFile));
     }
 
     // XXX maybe use a small wrapper around IOStream that behaves like std::stringstream in order to avoid the extra copy.
@@ -135,7 +135,7 @@ void XFileExporter::WriteFile()
     mOutput.setf(std::ios::fixed);
     mOutput.precision(ASSIMP_AI_REAL_TEXT_PRECISION); // precision for ai_real
 
-    // entry of writing the file
+    // entry of writing the file_manager
     WriteHeader();
 
     mOutput << startstr << "Frame DXCC_ROOT {" << endstr;

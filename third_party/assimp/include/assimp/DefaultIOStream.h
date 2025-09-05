@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /**
  *  @file
- *  @brief Default file I/O using fXXX()-family of functions
+ *  @brief Default file_manager I/O using fXXX()-family of functions
  */
 #pragma once
 #ifndef AI_DEFAULTIOSTREAM_H_INC
@@ -60,7 +60,7 @@ namespace Assimp {
 // ----------------------------------------------------------------------------------
 //! @class  DefaultIOStream
 //! @brief  Default IO implementation, use standard IO operations
-//! @note   An instance of this class can exist without a valid file handle
+//! @note   An instance of this class can exist without a valid file_manager handle
 //!         attached to it. All calls fail, but the instance can nevertheless be
 //!         used with no restrictions.
 class ASSIMP_API DefaultIOStream : public IOStream {
@@ -77,13 +77,13 @@ protected:
     /// @brief
     DefaultIOStream() AI_NO_EXCEPT;
 
-    /// @brief The class constructor with the file name and the stream.
-    /// @param pFile        The file-streaam
-    /// @param strFilename  The file name
+    /// @brief The class constructor with the file_manager name and the stream.
+    /// @param pFile        The file_manager-streaam
+    /// @param strFilename  The file_manager name
     DefaultIOStream(FILE* pFile, const std::string &strFilename);
 
 public:
-    /** Destructor public to allow simple deletion to close the file. */
+    /** Destructor public to allow simple deletion to close the file_manager. */
     ~DefaultIOStream () override;
 
     // -------------------------------------------------------------------
@@ -103,11 +103,11 @@ public:
     size_t Tell() const override;
 
     // -------------------------------------------------------------------
-    /// Get size of file
+    /// Get size of file_manager
     size_t FileSize() const override;
 
     // -------------------------------------------------------------------
-    /// Flush file contents
+    /// Flush file_manager contents
     void Flush() override;
 
 private:

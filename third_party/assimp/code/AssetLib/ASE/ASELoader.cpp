@@ -87,7 +87,7 @@ ASEImporter::ASEImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool ASEImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "*3dsmax_asciiexport" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -111,17 +111,17 @@ void ASEImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void ASEImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open ASE file ", pFile, ".");
+        throw DeadlyImportError("Failed to open ASE file_manager ", pFile, ".");
     }
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> mBuffer2;
     TextFileToBuffer(file.get(), mBuffer2);
     const size_t fileSize = mBuffer2.size();
@@ -129,7 +129,7 @@ void ASEImporter::InternReadFile(const std::string &pFile,
     this->pcScene = pScene;
 
     // ------------------------------------------------------------------
-    // Guess the file format by looking at the extension
+    // Guess the file_manager format by looking at the extension
     // ASC is considered to be the older format 110,
     // ASE is the actual version 200 (that is currently written by max)
     // ------------------------------------------------------------------
@@ -145,7 +145,7 @@ void ASEImporter::InternReadFile(const std::string &pFile,
         defaultFormat = AI_ASE_NEW_FILE_FORMAT;
     };
 
-    // Construct an ASE parser and parse the file
+    // Construct an ASE parser and parse the file_manager
     ASE::Parser parser(mBuffer, fileSize, defaultFormat);
     mParser = &parser;
     mParser->Parse();
@@ -156,7 +156,7 @@ void ASEImporter::InternReadFile(const std::string &pFile,
     // ------------------------------------------------------------------
     if (!mParser->m_vMeshes.empty()) {
 
-        // If absolutely no material has been loaded from the file
+        // If absolutely no material has been loaded from the file_manager
         // we need to generate a default material
         GenerateDefaultMaterial();
 
@@ -179,7 +179,7 @@ void ASEImporter::InternReadFile(const std::string &pFile,
             ConvertMeshes(*i, avOutMeshes);
         }
         if (tookNormals) {
-            ASSIMP_LOG_DEBUG("ASE: Taking normals from the file. Use "
+            ASSIMP_LOG_DEBUG("ASE: Taking normals from the file_manager. Use "
                              "the AI_CONFIG_IMPORT_ASE_RECONSTRUCT_NORMALS setting if you "
                              "experience problems");
         }
@@ -684,9 +684,9 @@ void ASEImporter::BuildNodes(std::vector<BaseNode *> &nodes) {
     for (unsigned int i = 0; i < pcScene->mNumMeshes; ++i)
         pcScene->mMeshes[i]->mColors[2] = nullptr;
 
-    // The root node should not have at least one child or the file is valid
+    // The root node should not have at least one child or the file_manager is valid
     if (!pcScene->mRootNode->mNumChildren) {
-        throw DeadlyImportError("ASE: No nodes loaded. The file is either empty or corrupt");
+        throw DeadlyImportError("ASE: No nodes loaded. The file_manager is either empty or corrupt");
     }
 
     // Now rotate the whole scene 90 degrees around the x axis to convert to internal coordinate system
@@ -1255,7 +1255,7 @@ bool ASEImporter::GenerateNormals(ASE::Mesh &mesh) {
 
     if (!mesh.mNormals.empty() && !configRecomputeNormals) {
         // Check whether there are only uninitialized normals. If there are
-        // some, skip all normals from the file and compute them on our own
+        // some, skip all normals from the file_manager and compute them on our own
         for (std::vector<aiVector3D>::const_iterator qq = mesh.mNormals.begin(); qq != mesh.mNormals.end(); ++qq) {
             if ((*qq).x || (*qq).y || (*qq).z) {
                 return true;

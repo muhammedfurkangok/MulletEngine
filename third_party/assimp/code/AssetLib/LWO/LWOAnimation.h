@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** @file  LWOAnimation.h
  *  @brief LWOAnimationResolver utility class
  *
- *  This is for all lightwave-related file format, not only LWO.
+ *  This is for all lightwave-related file_manager format, not only LWO.
  *  LWS isthe main purpose.
 */
 #ifndef AI_LWO_ANIMATION_INCLUDED

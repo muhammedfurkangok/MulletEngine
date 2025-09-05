@@ -87,19 +87,19 @@ struct Header
     //! magic number
     int32_t magic;
 
-    //! file format version
+    //! file_manager format version
     int32_t version;
 
     //! original name in .pak archive
     unsigned char name[ AI_MD4_MAXQPATH ];
 
-    //! number of frames in the file
+    //! number of frames in the file_manager
     int32_t NUM_FRAMES;
 
-    //! number of bones in the file
+    //! number of bones in the file_manager
     int32_t NUM_BONES;
 
-    //! number of surfaces in the file
+    //! number of surfaces in the file_manager
     int32_t NUM_SURFACES;
 
     //! offset of the first frame
@@ -111,7 +111,7 @@ struct Header
     //! offset of the first surface
     int32_t OFS_SURFACES;
 
-    //! end of file
+    //! end of file_manager
     int32_t OFS_EOF;
 } PACK_STRUCT;
 
@@ -136,7 +136,7 @@ struct  BoneName
 }  PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a surface in a MD4 file
+/** \brief Data structure for a surface in a MD4 file_manager
  */
 // ---------------------------------------------------------------------------
 struct Surface
@@ -171,7 +171,7 @@ struct Weight
 } PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a vertex in a MD4 file
+/** \brief Data structure for a vertex in a MD4 file_manager
  */
 // ---------------------------------------------------------------------------
 struct Vertex
@@ -184,7 +184,7 @@ struct Vertex
 } PACK_STRUCT;
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a triangle in a MD4 file
+/** \brief Data structure for a triangle in a MD4 file_manager
  */
 // ---------------------------------------------------------------------------
 struct Triangle

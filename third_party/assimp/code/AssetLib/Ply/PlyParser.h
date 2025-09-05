@@ -201,7 +201,7 @@ enum EElementSemantic {
 };
 
 // ---------------------------------------------------------------------------------
-/** \brief Helper class for a property in a PLY file.
+/** \brief Helper class for a property in a PLY file_manager.
  *
  * This can e.g. be a part of the vertex declaration
  */
@@ -223,7 +223,7 @@ public:
     ESemantic Semantic;
 
     //! Of the semantic of the property could not be parsed:
-    //! Contains the semantic specified in the file
+    //! Contains the semantic specified in the file_manager
     std::string szName;
 
     //! Specifies whether the data type is a list where
@@ -248,7 +248,7 @@ public:
 };
 
 // ---------------------------------------------------------------------------------
-/** \brief Helper class for an element in a PLY file.
+/** \brief Helper class for an element in a PLY file_manager.
  *
  * This can e.g. be the vertex declaration. Elements contain a
  * well-defined number of properties.
@@ -270,7 +270,7 @@ public:
     EElementSemantic eSemantic;
 
     //! Of the semantic of the element could not be parsed:
-    //! Contains the semantic specified in the file
+    //! Contains the semantic specified in the file_manager
     std::string szName;
 
     //! How many times will the element occur?
@@ -289,7 +289,7 @@ public:
 };
 
 // ---------------------------------------------------------------------------------
-/** \brief Instance of a property in a PLY file
+/** \brief Instance of a property in a PLY file_manager
  */
 class PropertyInstance
 {
@@ -352,7 +352,7 @@ public:
 };
 
 // ---------------------------------------------------------------------------------
-/** \brief Class for an element instance in a PLY file
+/** \brief Class for an element instance in a PLY file_manager
  */
 class ElementInstance {
 public:
@@ -374,7 +374,7 @@ public:
 };
 
 // ---------------------------------------------------------------------------------
-/** \brief Class for an element instance list in a PLY file
+/** \brief Class for an element instance list in a PLY file_manager
  */
 class ElementInstanceList
 {
@@ -398,7 +398,7 @@ public:
 };
 // ---------------------------------------------------------------------------------
 /** \brief Class to represent the document object model of an ASCII or binary
- * (both little and big-endian) PLY file
+ * (both little and big-endian) PLY file_manager
  */
 class DOM
 {
@@ -408,12 +408,12 @@ public:
     DOM() AI_NO_EXCEPT = default;
 
 
-    //! Contains all elements of the file format
+    //! Contains all elements of the file_manager format
     std::vector<Element> alElements;
     //! Contains the real data of each element's instance list
     std::vector<ElementInstanceList> alElementData;
 
-    //! Parse the DOM for a PLY file. The input string is assumed
+    //! Parse the DOM for a PLY file_manager. The input string is assumed
     //! to be terminated with zero
     static bool ParseInstance(IOStreamBuffer<char> &streamBuffer, DOM* p_pcOut, PLYImporter* loader);
     static bool ParseInstanceBinary(IOStreamBuffer<char> &streamBuffer, DOM* p_pcOut, PLYImporter* loader, bool p_bBE);
@@ -432,7 +432,7 @@ public:
 private:
 
     // -------------------------------------------------------------------
-    //! Handle the file header and read all element descriptions
+    //! Handle the file_manager header and read all element descriptions
     bool ParseHeader(IOStreamBuffer<char> &streamBuffer, std::vector<char> &buffer, bool p_bBE);
 
     // -------------------------------------------------------------------
@@ -440,7 +440,7 @@ private:
     bool ParseElementInstanceLists(IOStreamBuffer<char> &streamBuffer, std::vector<char> &buffer, PLYImporter* loader);
 
     // -------------------------------------------------------------------
-    //! Read in all element instance lists for a binary file format
+    //! Read in all element instance lists for a binary file_manager format
     bool ParseElementInstanceListsBinary(IOStreamBuffer<char> &streamBuffer, std::vector<char> &buffer, const char* &pCur, unsigned int &bufferSize, PLYImporter* loader, bool p_bBE);
 };
 

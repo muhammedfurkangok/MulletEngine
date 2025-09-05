@@ -79,13 +79,13 @@ const char* TokenTypeString(TokenType t);
 
 
 
-/** Format log/error messages using a given offset in the source binary file
+/** Format log/error messages using a given offset in the source binary file_manager
  *
- *  @param offset offset within the file
+ *  @param offset offset within the file_manager
  *  @return A string of the following format: " (offset 0x{offset}) "*/
 std::string GetOffsetText(size_t offset);
 
-/** Format log/error messages using a given line location in the source file.
+/** Format log/error messages using a given line location in the source file_manager.
  *
  *  @param line Line index, 1-based
  *  @param column Column index, 1-based

@@ -11,7 +11,7 @@
 
          Changes
    Oct-2009 - Mathias Svensson - Remove old C style function prototypes
-   Oct-2009 - Mathias Svensson - Added Zip64 Support when creating new file archives
+   Oct-2009 - Mathias Svensson - Added Zip64 Support when creating new file_manager archives
    Oct-2009 - Mathias Svensson - Did some code cleanup and refactoring to get better overview of some functions.
    Oct-2009 - Mathias Svensson - Added zipRemoveExtraInfoBlock to strip extra field data from its ZIP64 data
                                  It is used when recreting zip archive with RAW when deleting items from a zip.
@@ -135,15 +135,15 @@ typedef struct
 	int stream_initialised;    /* 1 is stream is initialised */
 	uInt pos_in_buffered_data; /* last written byte in buffered_data */
 
-	ZPOS64_T pos_local_header; /* offset of the local header of the file
+	ZPOS64_T pos_local_header; /* offset of the local header of the file_manager
                                      currenty writing */
-	char* central_header;      /* central header data for the current file */
+	char* central_header;      /* central header data for the current file_manager */
 	uLong size_centralExtra;
-	uLong size_centralheader;    /* size of the central header for cur file */
+	uLong size_centralheader;    /* size of the central header for cur file_manager */
 	uLong size_centralExtraFree; /* Extra bytes allocated to the centralheader but that are not used */
-	uLong flag;                  /* flag of the file currently writing */
+	uLong flag;                  /* flag of the file_manager currently writing */
 
-	int method;                    /* compression method of file currenty wr.*/
+	int method;                    /* compression method of file_manager currenty wr.*/
 	int raw;                       /* 1 for directly writing raw data */
 	Byte buffered_data[Z_BUFSIZE]; /* buffer contain compressed data to be writ*/
 	uLong dosDate;
@@ -165,8 +165,8 @@ typedef struct
 	zlib_filefunc64_32_def z_filefunc;
 	voidpf filestream;           /* io structore of the zipfile */
 	linkedlist_data central_dir; /* datablock with central dir in construction*/
-	int in_opened_file_inzip;    /* 1 if a file in the zip is currently writ.*/
-	curfile64_info ci;           /* info on the file curretly writing */
+	int in_opened_file_inzip;    /* 1 if a file_manager in the zip is currently writ.*/
+	curfile64_info ci;           /* info on the file_manager curretly writing */
 
 	ZPOS64_T begin_pos; /* position of the beginning of the zipfile */
 	ZPOS64_T add_position_when_writting_offset;
@@ -273,7 +273,7 @@ local int add_data_in_datablock(linkedlist_data* ll, const void* buf, uLong len)
 
 #ifndef NO_ADDFILEINEXISTINGZIP
 /* ===========================================================================
-   Inputs a long in LSB order to the given file
+   Inputs a long in LSB order to the given file_manager
    nbByte == 1, 2 ,4 or 8 (byte, short or long, ZPOS64_T)
 */
 
@@ -867,7 +867,7 @@ extern zipFile ZEXPORT zipOpen3(const void* pathname, int append, zipcharpc* glo
 		return NULL;
 	}
 
-	/* now we add file in a zipfile */
+	/* now we add file_manager in a zipfile */
 #ifndef NO_ADDFILEINEXISTINGZIP
 	ziinit.globalcomment = NULL;
 	if (append == APPEND_STATUS_ADDINZIP)
@@ -1008,7 +1008,7 @@ int Write_LocalFileHeader(zip64_internal* zi, const char* filename, uInt size_ex
 		ZPOS64_T CompressedSize = 0;
 		ZPOS64_T UncompressedSize = 0;
 
-		// Remember position of Zip64 extended info for the local file header. (needed when we update size after done with file)
+		// Remember position of Zip64 extended info for the local file_manager header. (needed when we update size after done with file_manager)
 		zi->ci.pos_zip64extrainfo = ZTELL64(zi->z_filefunc, zi->filestream);
 
 		err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (short)HeaderID, 2);
@@ -1596,7 +1596,7 @@ extern int ZEXPORT zipCloseFileInZipRaw64(zipFile file, ZPOS64_T uncompressed_si
 	else
 		zip64local_putValue_inmemory(zi->ci.central_header + 20, compressed_size, 4); /*compr size*/
 
-	/// set internal file attributes field
+	/// set internal file_manager attributes field
 	if (zi->ci.stream.data_type == Z_ASCII)
 		zip64local_putValue_inmemory(zi->ci.central_header + 36, (uLong)Z_ASCII, 2);
 
@@ -1613,7 +1613,7 @@ extern int ZEXPORT zipCloseFileInZipRaw64(zipFile file, ZPOS64_T uncompressed_si
 	if (compressed_size >= 0xffffffff)
 		datasize += 8;
 
-	// Add ZIP64 extra info field for relative offset to local file header of current file
+	// Add ZIP64 extra info field for relative offset to local file_manager header of current file_manager
 	if (zi->ci.pos_local_header >= 0xffffffff)
 		datasize += 8;
 

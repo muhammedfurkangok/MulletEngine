@@ -29,7 +29,7 @@
 //
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This header file provides classes and functions used internally
+// This header file_manager provides classes and functions used internally
 // for testing Google Test itself.
 
 #ifndef GOOGLETEST_TEST_GOOGLETEST_PARAM_TEST_TEST_H_

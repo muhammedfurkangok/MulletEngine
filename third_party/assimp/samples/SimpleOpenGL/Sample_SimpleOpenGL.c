@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------
 // Simple sample to prove that Assimp is easy to use with OpenGL.
-// It takes a file name as command line parameter, loads it using standard
+// It takes a file_manager name as command line parameter, loads it using standard
 // settings and displays it.
 //
 // If you intend to _use_ this code sample in your app, do yourself a favour
@@ -46,14 +46,14 @@ inline static void print_usage() {
 	static const char* usage_format =
 		"Usage: "
 		PROJECT_NAME
-		" <file>"	 DOUBLE_NEW_LINE
+		" <file_manager>"	 DOUBLE_NEW_LINE
 		"where:"	 DOUBLE_NEW_LINE
 		"  %-10s %s" DOUBLE_NEW_LINE
 		"options:"	 DOUBLE_NEW_LINE
 		"  %-10s %s" DOUBLE_NEW_LINE;
 	printf(usage_format,
 		// where
-		"file", "The input model file to load.",
+		"file_manager", "The input model file_manager to load.",
 		// options
 		COMMAND_USAGE, "Display usage.");
 }
@@ -361,7 +361,7 @@ int main(int argc, char **argv)
 	C_STRUCT aiLogStream stream;
 
 	if (argc < 2) {
-		print_error("No input model file specified.");
+		print_error("No input model file_manager specified.");
 		print_run_command(COMMAND_USAGE);
 		return EXIT_FAILURE;
 	}
@@ -374,16 +374,16 @@ int main(int argc, char **argv)
 		}
 	}
 
-	// Check and validate the specified model file extension.
+	// Check and validate the specified model file_manager extension.
 	model_file = argv[1];
 	const char* extension = strrchr(model_file, '.');
 	if (!extension) {
-		print_error("Please provide a file with a valid extension.");
+		print_error("Please provide a file_manager with a valid extension.");
 		return EXIT_FAILURE;
 	}
 
 	if (AI_FALSE == aiIsExtensionSupported(extension)) {
-		print_error("The specified model file extension is currently "
+		print_error("The specified model file_manager extension is currently "
 			"unsupported in Assimp " ASSIMP_VERSION ".");
 		return EXIT_FAILURE;
 	}
@@ -409,9 +409,9 @@ int main(int argc, char **argv)
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_FILE,"assimp_log.txt");
 	aiAttachLogStream(&stream);
 
-	// Load the model file.
+	// Load the model file_manager.
 	if(0 != loadasset(model_file)) {
-		print_error("Failed to load model. Please ensure that the specified file exists.");
+		print_error("Failed to load model. Please ensure that the specified file_manager exists.");
 		aiDetachAllLogStreams();
 		return EXIT_FAILURE;
 	}

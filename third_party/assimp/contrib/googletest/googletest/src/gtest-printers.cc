@@ -29,7 +29,7 @@
 
 // Google Test - The Google C++ Testing and Mocking Framework
 //
-// This file implements a universal value printer that can print a
+// This file_manager implements a universal value printer that can print a
 // value of any type T:
 //
 //   void ::testing::internal::UniversalPrinter<T>::Print(value, ostream_ptr);

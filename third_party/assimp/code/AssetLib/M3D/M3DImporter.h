@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file M3DImporter.h
-*   @brief Declares the importer class to read a scene from a Model 3D file
+*   @brief Declares the importer class to read a scene from a Model 3D file_manager
 */
 #ifndef AI_M3DIMPORTER_H_INC
 #define AI_M3DIMPORTER_H_INC
@@ -67,7 +67,7 @@ public:
 	M3DImporter();
     ~M3DImporter() override = default;
 
-	/// \brief  Returns whether the class can handle the format of the given file.
+	/// \brief  Returns whether the class can handle the format of the given file_manager.
 	/// \remark See BaseImporter::CanRead() for details.
 	bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 

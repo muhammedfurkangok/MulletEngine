@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include "o3dgcCommon.h"
 
 #ifdef _WIN32
-/* Thank you, Microsoft, for file WinDef.h with min/max redefinition. */
+/* Thank you, Microsoft, for file_manager WinDef.h with min/max redefinition. */
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif

@@ -41,8 +41,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /**
  * @file  STEPFileReader.cpp
- *  @brief Implementation of the STEP file parser, which fills a
- *         STEP::DB with data read from a file.
+ *  @brief Implementation of the STEP file_manager parser, which fills a
+ *         STEP::DB with data read from a file_manager.
  */
 
 #include "STEPFileReader.h"
@@ -108,7 +108,7 @@ STEP::DB* STEP::ReadFileHeader(std::shared_ptr<IOStream> stream) {
             SkipSpaces(sz,&sz, end);
             std::shared_ptr< const EXPRESS::DataType > schema = EXPRESS::DataType::Parse(sz, end);
 
-            // the file schema should be a regular list entity, although it usually contains exactly one entry
+            // the file_manager schema should be a regular list entity, although it usually contains exactly one entry
             // since the list itself is contained in a regular parameter list, we actually have
             // two nested lists.
             const EXPRESS::LIST* list = dynamic_cast<const EXPRESS::LIST*>(schema.get());

@@ -1,7 +1,7 @@
 // Copyright 2021 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -78,10 +78,10 @@ class DracoTranscoder {
   Status Transcode(const FileOptions &file_options);
 
  private:
-  // Read scene from file.
+  // Read scene from file_manager.
   Status ReadScene(const FileOptions &file_options);
 
-  // Write scene to file.
+  // Write scene to file_manager.
   Status WriteScene(const FileOptions &file_options);
 
   // Apply compression settings to the scene.

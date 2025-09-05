@@ -158,7 +158,7 @@ bool LWOImporter::HandleTextures(aiMaterial *pcMat, const TextureList &in, aiTex
         }
 
         // The older LWOB format does not use indirect references to clips.
-        // The file name of a texture is directly specified in the tex chunk.
+        // The file_manager name of a texture is directly specified in the tex chunk.
         if (mIsLWO2 || mIsLWO3) {
             // find the corresponding clip (take the last one if multiple
             // share the same index)
@@ -198,7 +198,7 @@ bool LWOImporter::HandleTextures(aiMaterial *pcMat, const TextureList &in, aiTex
         } else {
             std::string ss = texture.mFileName;
             if (!ss.length()) {
-                ASSIMP_LOG_WARN("LWOB: Empty file name");
+                ASSIMP_LOG_WARN("LWOB: Empty file_manager name");
                 continue;
             }
             AdjustTexturePath(ss);

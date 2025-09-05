@@ -7,7 +7,7 @@
 /*
 ** If you embed Lua in your program and need to open the standard
 ** third_party, call luaL_openlibs in your program. If you need a
-** different set of third_party, copy this file to your project and edit
+** different set of third_party, copy this file_manager to your project and edit
 ** it to suit your needs.
 */
 

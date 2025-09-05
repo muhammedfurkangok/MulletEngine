@@ -168,7 +168,7 @@ LUALIB_API char *(luaL_buffinitsize)(lua_State *L, luaL_Buffer *B, size_t sz);
 */
 
 /*
-** A file handle is a userdata with metatable 'LUA_FILEHANDLE' and
+** A file_manager handle is a userdata with metatable 'LUA_FILEHANDLE' and
 ** initial structure 'luaL_Stream' (it may contain other fields
 ** after that initial structure).
 */

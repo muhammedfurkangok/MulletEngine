@@ -50,14 +50,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 namespace Blender {
 
-// Minor parts of this file are extracts from blender data structures,
+// Minor parts of this file_manager are extracts from blender data structures,
 // declared in the ./source/blender/makesdna directory.
 // Stuff that is not used by Assimp is commented.
 
 // NOTE
-// this file serves as input data to the `./scripts/genblenddna.py`
+// this file_manager serves as input data to the `./scripts/genblenddna.py`
 // script. This script generates the actual binding code to read a
-// blender file with a possibly different DNA into our structures.
+// blender file_manager with a possibly different DNA into our structures.
 // Only `struct` declarations are considered and the following
 // rules must be obeyed in order for the script to work properly:
 //

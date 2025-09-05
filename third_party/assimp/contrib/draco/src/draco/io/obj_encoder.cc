@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -50,7 +50,7 @@ bool ObjEncoder::EncodeToFile(const PointCloud &pc,
   if (!EncodeToBuffer(pc, &buffer)) {
     return false;
   }
-  // Write the buffer into the file.
+  // Write the buffer into the file_manager.
   file->Write(buffer.data(), buffer.size());
   return true;
 }
@@ -198,7 +198,7 @@ bool ObjEncoder::EncodeMaterialFileName() {
   for (const auto &entry : material_metadata->entries()) {
     // Material id must be int.
     int value = 0;
-    // Found entry that are not material id, e.g. file name as a string.
+    // Found entry that are not material id, e.g. file_manager name as a string.
     if (!entry.second.GetValue(&value)) {
       continue;
     }

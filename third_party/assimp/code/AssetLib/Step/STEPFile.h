@@ -101,7 +101,7 @@ class LIST; /*: public DataType */
 
 // a conversion schema is not exactly an EXPRESS schema, rather it
 // is a list of pointers to conversion functions to build up the
-// object tree from an input file.
+// object tree from an input file_manager.
 class ConversionSchema;
 } // namespace EXPRESS
 
@@ -311,7 +311,7 @@ public:
 
 // -------------------------------------------------------------------------------
 /* Not exactly a full EXPRESS schema but rather a list of conversion functions
- * to extract valid C++ objects out of a STEP file. Those conversion functions
+ * to extract valid C++ objects out of a STEP file_manager. Those conversion functions
  * may, however, perform further schema validations.
  */
 // -------------------------------------------------------------------------------
@@ -739,7 +739,7 @@ inline void GenericConvert(ListOf<T1, N1, N2> &a, const std::shared_ptr<const EX
 
 // ------------------------------------------------------------------------------
 /** Lightweight manager class that holds the map of all objects in a
- *  STEP file. DB's are exclusively maintained by the functions in
+ *  STEP file_manager. DB's are exclusively maintained by the functions in
  *  STEPFileReader.h
  */
 // -------------------------------------------------------------------------------
@@ -850,7 +850,7 @@ public:
 
 #ifdef ASSIMP_IFC_TEST
 
-    // evaluate *all* entities in the file. this is a power test for the loader
+    // evaluate *all* entities in the file_manager. this is a power test for the loader
     void EvaluateAll() {
         for (ObjectMap::value_type &e : objects) {
             **e.second;

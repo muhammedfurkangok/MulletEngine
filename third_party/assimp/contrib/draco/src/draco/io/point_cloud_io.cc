@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -24,12 +24,12 @@ namespace draco {
 StatusOr<std::unique_ptr<PointCloud>> ReadPointCloudFromFile(
     const std::string &file_name) {
   std::unique_ptr<PointCloud> pc(new PointCloud());
-  // Analyze file extension.
+  // Analyze file_manager extension.
   const std::string extension = parser::ToLower(
       file_name.size() >= 4 ? file_name.substr(file_name.size() - 4)
                             : file_name);
   if (extension == ".obj") {
-    // Wavefront OBJ file format.
+    // Wavefront OBJ file_manager format.
     ObjDecoder obj_decoder;
     const Status obj_status = obj_decoder.DecodeFromFile(file_name, pc.get());
     if (!obj_status.ok()) {
@@ -38,7 +38,7 @@ StatusOr<std::unique_ptr<PointCloud>> ReadPointCloudFromFile(
     return std::move(pc);
   }
   if (extension == ".ply") {
-    // Wavefront PLY file format.
+    // Wavefront PLY file_manager format.
     PlyDecoder ply_decoder;
     DRACO_RETURN_IF_ERROR(ply_decoder.DecodeFromFile(file_name, pc.get()));
     return std::move(pc);
@@ -46,7 +46,7 @@ StatusOr<std::unique_ptr<PointCloud>> ReadPointCloudFromFile(
 
   std::vector<char> buffer;
   if (!ReadFileToBuffer(file_name, &buffer)) {
-    return Status(Status::DRACO_ERROR, "Unable to read input file.");
+    return Status(Status::DRACO_ERROR, "Unable to read input file_manager.");
   }
   DecoderBuffer decoder_buffer;
   decoder_buffer.Init(buffer.data(), buffer.size());

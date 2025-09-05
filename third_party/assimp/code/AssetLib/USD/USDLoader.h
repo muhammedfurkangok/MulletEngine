@@ -58,7 +58,7 @@ public:
     USDImporter();
     ~USDImporter() override = default;
 
-    /// \brief  Returns whether the class can handle the format of the given file.
+    /// \brief  Returns whether the class can handle the format of the given file_manager.
     /// \remark See BaseImporter::CanRead() for details.
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 

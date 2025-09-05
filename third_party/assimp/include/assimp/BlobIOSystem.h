@@ -241,7 +241,7 @@ public:
         }
 
         if (!master) {
-            ASSIMP_LOG_ERROR("BlobIOSystem: no data written or master file was not closed properly.");
+            ASSIMP_LOG_ERROR("BlobIOSystem: no data written or master file_manager was not closed properly.");
             return nullptr;
         }
 
@@ -258,7 +258,7 @@ public:
             if (hasBaseName) {
                 cur->name.Set(blobby.first);
             } else {
-                // extract the file extension from the file written
+                // extract the file_manager extension from the file_manager written
                 const std::string::size_type s = blobby.first.find_first_of('.');
                 cur->name.Set(s == std::string::npos ? blobby.first : blobby.first.substr(s + 1));
             }
@@ -300,7 +300,7 @@ private:
     void OnDestruct(const std::string &filename, BlobIOStream *child) {
         // we don't know in which the files are closed, so we
         // can't reliably say that the first must be the master
-        // file ...
+        // file_manager ...
         blobs.emplace_back(filename, child->GetBlob());
     }
 

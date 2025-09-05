@@ -173,7 +173,7 @@ int JoinVerticesProcess::ProcessMesh( aiMesh* pMesh, unsigned int meshIndex) {
     }
 
     // We should care only about used vertices, not all of them
-    // (this can happen due to original file vertices buffer being used by
+    // (this can happen due to original file_manager vertices buffer being used by
     // multiple meshes)
     std::vector<bool> usedVertexIndicesMask;
     usedVertexIndicesMask.resize(pMesh->mNumVertices, false);

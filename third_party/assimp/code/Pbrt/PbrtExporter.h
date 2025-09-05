@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file PbrtExporter.h
-* Declares the exporter class to write a scene to a pbrt file
+* Declares the exporter class to write a scene to a pbrt file_manager
 */
 #ifndef AI_PBRTEXPORTER_H_INC
 #define AI_PBRTEXPORTER_H_INC
@@ -68,7 +68,7 @@ class IOStream;
 class ExportProperties;
 
 // ---------------------------------------------------------------------
-/** Helper class to export a given scene to a Pbrt file. */
+/** Helper class to export a given scene to a Pbrt file_manager. */
 // ---------------------------------------------------------------------
 class PbrtExporter {
 public:
@@ -111,7 +111,7 @@ private:
     /// Path of the directory where the scene will be exported
     const std::string mPath;
 
-    /// Name of the file (without extension) where the scene will be exported
+    /// Name of the file_manager (without extension) where the scene will be exported
     const std::string mFile;
 
     //  A private set to keep track of which textures have been declared

@@ -44,7 +44,7 @@ def GetSourceDir():
 def GetTestExecutablePath(executable_name):
   """Returns the absolute path of the test binary given its name.
 
-  The function will print a message and abort the program if the resulting file
+  The function will print a message and abort the program if the resulting file_manager
   doesn't exist.
 
   Args:

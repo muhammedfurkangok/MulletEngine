@@ -73,11 +73,11 @@ struct attrib_t
 	std::vector<float> texcoords;  // 'vt'(uv)
 	attrib_t() {}
 };
-/// Loads .obj from a file.
+/// Loads .obj from a file_manager.
 /// 'shapes' will be filled with parsed shape data
 /// The function returns error string.
 /// Returns empty string when loading .obj success.
-/// 'mtl_basepath' is optional, and used for base path for .mtl file.
+/// 'mtl_basepath' is optional, and used for base path for .mtl file_manager.
 #ifdef USE_STREAM
 std::string LoadObj(
 	attrib_t& attrib,

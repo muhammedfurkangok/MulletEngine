@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* This file uses only the official API of Lua.
+/* This file_manager uses only the official API of Lua.
 ** Any function declared here could be written as an application function.
 */
 
@@ -592,8 +592,8 @@ LUALIB_API void luaL_unref(lua_State *L, int t, int ref)
 typedef struct LoadF
 {
 	int n;                      /* number of pre-read characters */
-	FILE *f;                    /* file being read */
-	char buff[LUAL_BUFFERSIZE]; /* area for reading file */
+	FILE *f;                    /* file_manager being read */
+	char buff[LUAL_BUFFERSIZE]; /* area for reading file_manager */
 } LoadF;
 
 static const char *getF(lua_State *L, void *ud, size_t *size)
@@ -606,7 +606,7 @@ static const char *getF(lua_State *L, void *ud, size_t *size)
 		lf->n = 0;     /* no more pre-read characters */
 	}
 	else
-	{ /* read a block from file */
+	{ /* read a block from file_manager */
 		/* 'fread' can return > 0 *and* set the EOF flag. If next call to
        'getF' called 'fread', it might still wait for user input.
        The next check avoids this problem. */
@@ -641,17 +641,17 @@ static int skipBOM(LoadF *lf)
 }
 
 /*
-** reads the first character of file 'f' and skips an optional BOM mark
+** reads the first character of file_manager 'f' and skips an optional BOM mark
 ** in its beginning plus its first line if it starts with '#'. Returns
 ** true if it skipped the first line.  In any case, '*cp' has the
-** first "valid" character of the file (after the optional BOM and
+** first "valid" character of the file_manager (after the optional BOM and
 ** a first-line comment).
 */
 static int skipcomment(LoadF *lf, int *cp)
 {
 	int c = *cp = skipBOM(lf);
 	if (c == '#')
-	{ /* first line is a comment (Unix exec. file)? */
+	{ /* first line is a comment (Unix exec. file_manager)? */
 		do
 		{ /* skip first line */
 			c = getc(lf->f);
@@ -684,7 +684,7 @@ LUALIB_API int luaL_loadfilex(lua_State *L, const char *filename,
 	if (skipcomment(&lf, &c))   /* read initial portion */
 		lf.buff[lf.n++] = '\n'; /* add line to correct line numbers */
 	if (c == LUA_SIGNATURE[0] && filename)
-	{                                         /* binary file? */
+	{                                         /* binary file_manager? */
 		lf.f = freopen(filename, "rb", lf.f); /* reopen in binary mode */
 		if (lf.f == NULL) return errfile(L, "reopen", fnameindex);
 		skipcomment(&lf, &c); /* re-read initial portion */
@@ -693,7 +693,7 @@ LUALIB_API int luaL_loadfilex(lua_State *L, const char *filename,
 		lf.buff[lf.n++] = c; /* 'c' is the first character of the stream */
 	status = lua_load(L, getF, &lf, lua_tostring(L, -1), mode);
 	readstatus = ferror(lf.f);
-	if (filename) fclose(lf.f); /* close file (even in case of errors) */
+	if (filename) fclose(lf.f); /* close file_manager (even in case of errors) */
 	if (readstatus)
 	{
 		lua_settop(L, fnameindex); /* ignore results from `lua_load' */

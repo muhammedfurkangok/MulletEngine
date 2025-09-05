@@ -38,7 +38,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ----------------------------------------------------------------------
 */
 
-/** @file Android implementation of IOSystem using the standard C file functions.
+/** @file Android implementation of IOSystem using the standard C file_manager functions.
  * Aimed to ease the access to android assets */
 
 #if __ANDROID__ and __ANDROID_API__ > 9 and defined(AI_CONFIG_ANDROID_JNI_ASSIMP_MANAGER_SUPPORT)
@@ -53,7 +53,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp	{
 
 // ---------------------------------------------------------------------------
-/** Android extension to DefaultIOSystem using the standard C file functions */
+/** Android extension to DefaultIOSystem using the standard C file_manager functions */
 class ASSIMP_API AndroidJNIIOSystem : public DefaultIOSystem {
 public:
 	/** Initialize android activity data */
@@ -69,10 +69,10 @@ public:
 	/// Destructor.
 	~AndroidJNIIOSystem();
 
-	/// Tests for the existence of a file at the given path.
+	/// Tests for the existence of a file_manager at the given path.
 	bool Exists( const char* pFile) const;
 
-	/// Opens a file at the given path, with given mode
+	/// Opens a file_manager at the given path, with given mode
 	IOStream* Open( const char* strFile, const char* strMode);
 
 	/// Inits Android extractor

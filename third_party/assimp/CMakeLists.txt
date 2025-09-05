@@ -60,7 +60,7 @@ option(ASSIMP_BUILD_M3D_EXPORTER "Enable M3D file export" off)
 option(ASSIMP_BUILD_USD_IMPORTER "Enable USD file import" off)
 option(ASSIMP_BUILD_USD_VERBOSE_LOGS "Enable verbose USD import debug logging" off)
 
-# VRML (.wrl/.x3dv) file import support by leveraging X3D importer and 3rd party file
+# VRML (.wrl/.x3dv) file_manager import support by leveraging X3D importer and 3rd party file_manager
 # format converter to convert .wrl/.x3dv files to X3D-compatible .xml
 # (Need to make this opt-in because 3rd party code triggers lots of CI code quality warnings)
 option(ASSIMP_BUILD_VRML_IMPORTER "Enable VRML (.wrl/.x3dv) file import" off)

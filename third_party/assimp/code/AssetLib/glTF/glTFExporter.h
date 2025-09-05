@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file GltfExporter.h
- * Declares the exporter class to write a scene to a gltf/glb file
+ * Declares the exporter class to write a scene to a gltf/glb file_manager
  */
 #pragma once
 #ifndef AI_GLTFEXPORTER_H_INC
@@ -78,7 +78,7 @@ class IOStream;
 class ExportProperties;
 
 // ------------------------------------------------------------------------------------------------
-/** Helper class to export a given scene to an glTF file. */
+/** Helper class to export a given scene to an glTF file_manager. */
 // ------------------------------------------------------------------------------------------------
 class glTFExporter {
 public:

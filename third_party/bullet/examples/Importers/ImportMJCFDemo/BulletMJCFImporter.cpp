@@ -284,14 +284,14 @@ struct BulletMJCFImporterInternalData
 
 	void parseAssets(XMLElement* root_xml, MJCFErrorLogger* logger)
 	{
-		//		<mesh name="index0" 	file="index0.stl"/>
+		//		<mesh name="index0" 	file_manager="index0.stl"/>
 		for (XMLElement* child_xml = root_xml->FirstChildElement(); child_xml; child_xml = child_xml->NextSiblingElement())
 		{
 			std::string n = child_xml->Value();
 			if (n == "mesh")
 			{
 				const char* assetNameStr = child_xml->Attribute("name");
-				const char* fileNameStr = child_xml->Attribute("file");
+				const char* fileNameStr = child_xml->Attribute("file_manager");
 				if (assetNameStr && fileNameStr)
 				{
 					btHashString assetName = assetNameStr;
@@ -1392,7 +1392,7 @@ struct BulletMJCFImporterInternalData
 
 		if (model.m_rootLinks.size() > 1)
 		{
-			logger->reportWarning("URDF file with multiple root links found");
+			logger->reportWarning("URDF file_manager with multiple root links found");
 		}
 
 		if (model.m_rootLinks.size() == 0)
@@ -1455,12 +1455,12 @@ bool BulletMJCFImporter::loadMJCF(const char* fileName, MJCFErrorLogger* logger,
 
 	if (!fileFound)
 	{
-		std::cerr << "MJCF file not found" << std::endl;
+		std::cerr << "MJCF file_manager not found" << std::endl;
 		return false;
 	}
 	else
 	{
-		//read file
+		//read file_manager
 		int fileId = m_data->m_fileIO->fileOpen(relativeFileName,"r");
 
 		char destBuffer[8192];
@@ -1731,7 +1731,7 @@ bool BulletMJCFImporter::getJointInfo2(int urdfLinkIndex, btTransform& parent2jo
 
 bool BulletMJCFImporter::getJointInfo(int urdfLinkIndex, btTransform& parent2joint, btTransform& linkTransformInWorld, btVector3& jointAxisInJointSpace, int& jointType, btScalar& jointLowerLimit, btScalar& jointUpperLimit, btScalar& jointDamping, btScalar& jointFriction) const
 {
-	//backwards compatibility for custom file importers
+	//backwards compatibility for custom file_manager importers
 	btScalar jointMaxForce = 0;
 	btScalar jointMaxVelocity = 0;
 	return getJointInfo2(urdfLinkIndex, parent2joint, linkTransformInWorld, jointAxisInJointSpace, jointType, jointLowerLimit, jointUpperLimit, jointDamping, jointFriction, jointMaxForce, jointMaxVelocity);
@@ -2078,7 +2078,7 @@ void BulletMJCFImporter::convertURDFToVisualShapeInternal(const UrdfVisual* visu
 
 					break;
 				}
-			}  // switch file type
+			}  // switch file_manager type
 
 			if (!glmesh || !glmesh->m_vertices || glmesh->m_numvertices <= 0)
 			{
@@ -2414,7 +2414,7 @@ class btCompoundShape* BulletMJCFImporter::convertLinkCollisionShapes(int linkIn
 							break;
 						}
 						default:
-							b3Warning("%s: Unsupported file type in Collision: %s (maybe .dae?)\n", col->m_sourceFileLocation.c_str(), col->m_geometry.m_meshFileType);
+							b3Warning("%s: Unsupported file_manager type in Collision: %s (maybe .dae?)\n", col->m_sourceFileLocation.c_str(), col->m_geometry.m_meshFileType);
 					}
 
 					if (childShape)
@@ -2427,7 +2427,7 @@ class btCompoundShape* BulletMJCFImporter::convertLinkCollisionShapes(int linkIn
 					}
 					else
 					{
-						//b3Printf("extracted %d verticed from STL file %s\n", glmesh->m_numvertices,fullPath);
+						//b3Printf("extracted %d verticed from STL file_manager %s\n", glmesh->m_numvertices,fullPath);
 						//int shapeId = m_glApp->m_instancingRenderer->registerShape(&gvertices[0].pos[0],gvertices.size(),&indices[0],indices.size());
 						//convex->setUserIndex(shapeId);
 						btAlignedObjectArray<btVector3> convertedVerts;

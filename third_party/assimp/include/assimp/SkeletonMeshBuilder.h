@@ -1,4 +1,4 @@
-/** Helper class to construct a dummy mesh for file formats containing only motion data */
+/** Helper class to construct a dummy mesh for file_manager formats containing only motion data */
 
 /*
 Open Asset Import Library (assimp)
@@ -66,7 +66,7 @@ namespace Assimp {
 // ---------------------------------------------------------------------------
 /**
  * This little helper class constructs a dummy mesh for a given scene
- * the resembles the node hierarchy. This is useful for file formats
+ * the resembles the node hierarchy. This is useful for file_manager formats
  * that don't carry any mesh data but only animation data.
  */
 class ASSIMP_API SkeletonMeshBuilder {

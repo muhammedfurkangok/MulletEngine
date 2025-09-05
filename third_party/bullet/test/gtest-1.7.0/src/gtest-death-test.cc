@@ -29,7 +29,7 @@
 //
 // Author: wan@google.com (Zhanyong Wan), vladl@google.com (Vlad Losev)
 //
-// This file implements death tests.
+// This file_manager implements death tests.
 
 #include "gtest/gtest-death-test.h"
 #include "gtest/internal/gtest-port.h"
@@ -107,8 +107,8 @@ namespace internal
 {
 GTEST_DEFINE_string_(
 	internal_run_death_test, "",
-	"Indicates the file, line number, temporal index of "
-	"the single death test to run, and a file descriptor to "
+	"Indicates the file_manager, line number, temporal index of "
+	"the single death test to run, and a file_manager descriptor to "
 	"which a success code may be sent, all separated by "
 	"the '|' characters.  This flag is specified if and only if the current "
 	"process is a sub-process launched for running a thread-safe "
@@ -334,7 +334,7 @@ std::string GetLastErrnoDescription()
 // This is called from a death test parent process to read a failure
 // message from the death test child process and log it with the FATAL
 // severity. On Windows, the message is read from a pipe handle. On other
-// platforms, it is read from a file descriptor.
+// platforms, it is read from a file_manager descriptor.
 static void FailFromInternalError(int fd)
 {
 	Message error;
@@ -378,10 +378,10 @@ DeathTest::DeathTest()
 // Creates and returns a death test by dispatching to the current
 // death test factory.
 bool DeathTest::Create(const char* statement, const RE* regex,
-					   const char* file, int line, DeathTest** test)
+					   const char* file_manager, int line, DeathTest** test)
 {
 	return GetUnitTestImpl()->death_test_factory()->Create(
-		statement, regex, file, line, test);
+		statement, regex, file_manager, line, test);
 }
 
 const char* DeathTest::LastMessage()
@@ -512,7 +512,7 @@ void DeathTestImpl::ReadAndInterpretStatusByte()
 
 // Signals that the death test code which should have exited, didn't.
 // Should be called only in a death test child process.
-// Writes a status byte to the child's status file descriptor, then
+// Writes a status byte to the child's status file_manager descriptor, then
 // calls _exit(1).
 void DeathTestImpl::Abort(AbortReason reason)
 {
@@ -673,16 +673,16 @@ class WindowsDeathTest : public DeathTestImpl
 public:
 	WindowsDeathTest(const char* a_statement,
 					 const RE* a_regex,
-					 const char* file,
+					 const char* file_manager,
 					 int line)
-		: DeathTestImpl(a_statement, a_regex), file_(file), line_(line) {}
+		: DeathTestImpl(a_statement, a_regex), file_(file_manager), line_(line) {}
 
 	// All of these virtual functions are inherited from DeathTest.
 	virtual int Wait();
 	virtual TestRole AssumeRole();
 
 private:
-	// The name of the file in which the death test is located.
+	// The name of the file_manager in which the death test is located.
 	const char* const file_;
 	// The line number on which the death test is located.
 	const int line_;
@@ -902,13 +902,13 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole()
 
 	DeathTest::set_last_death_test_message("");
 	CaptureStderr();
-	// When we fork the process below, the log file buffers are copied, but the
-	// file descriptors are shared.  We flush all log files here so that closing
-	// the file descriptors in the child process doesn't throw off the
+	// When we fork the process below, the log file_manager buffers are copied, but the
+	// file_manager descriptors are shared.  We flush all log files here so that closing
+	// the file_manager descriptors in the child process doesn't throw off the
 	// synchronization between descriptors and buffers in the parent process.
 	// This is as close to the fork as possible to avoid a race condition in case
 	// there are multiple threads running before the death test, and another
-	// thread writes to the log file.
+	// thread writes to the log file_manager.
 	FlushInfoLog();
 
 	const pid_t child_pid = fork();
@@ -944,7 +944,7 @@ class ExecDeathTest : public ForkingDeathTest
 {
 public:
 	ExecDeathTest(const char* a_statement, const RE* a_regex,
-				  const char* file, int line) : ForkingDeathTest(a_statement, a_regex), file_(file), line_(line) {}
+				  const char* file_manager, int line) : ForkingDeathTest(a_statement, a_regex), file_(file_manager), line_(line) {}
 	virtual TestRole AssumeRole();
 
 private:
@@ -954,7 +954,7 @@ private:
 		::std::vector<testing::internal::string> args = GetInjectableArgvs();
 		return args;
 	}
-	// The name of the file in which the death test is located.
+	// The name of the file_manager in which the death test is located.
 	const char* const file_;
 	// The line number on which the death test is located.
 	const int line_;
@@ -1244,7 +1244,7 @@ DeathTest::TestRole ExecDeathTest::AssumeRole()
 // skipped, sets that pointer to NULL.  Returns true, unless the
 // flag is set to an invalid value.
 bool DefaultDeathTestFactory::Create(const char* statement, const RE* regex,
-									 const char* file, int line,
+									 const char* file_manager, int line,
 									 DeathTest** test)
 {
 	UnitTestImpl* const impl = GetUnitTestImpl();
@@ -1262,7 +1262,7 @@ bool DefaultDeathTestFactory::Create(const char* statement, const RE* regex,
 			return false;
 		}
 
-		if (!(flag->file() == file && flag->line() == line &&
+		if (!(flag->file_manager() == file_manager && flag->line() == line &&
 			  flag->index() == death_test_index))
 		{
 			*test = NULL;
@@ -1275,14 +1275,14 @@ bool DefaultDeathTestFactory::Create(const char* statement, const RE* regex,
 	if (GTEST_FLAG(death_test_style) == "threadsafe" ||
 		GTEST_FLAG(death_test_style) == "fast")
 	{
-		*test = new WindowsDeathTest(statement, regex, file, line);
+		*test = new WindowsDeathTest(statement, regex, file_manager, line);
 	}
 
 #else
 
 	if (GTEST_FLAG(death_test_style) == "threadsafe")
 	{
-		*test = new ExecDeathTest(statement, regex, file, line);
+		*test = new ExecDeathTest(statement, regex, file_manager, line);
 	}
 	else if (GTEST_FLAG(death_test_style) == "fast")
 	{
@@ -1328,7 +1328,7 @@ static void SplitString(const ::std::string& str, char delimiter,
 
 #if GTEST_OS_WINDOWS
 // Recreates the pipe and event handles from the provided parameters,
-// signals the event, and returns a file descriptor wrapped around the pipe
+// signals the event, and returns a file_manager descriptor wrapped around the pipe
 // handle. This function is called in the child process only.
 int GetStatusFileDescriptor(unsigned int parent_process_id,
 							size_t write_handle_as_size_t,
@@ -1388,7 +1388,7 @@ int GetStatusFileDescriptor(unsigned int parent_process_id,
 	{
 		DeathTestAbort("Unable to convert pipe handle " +
 					   StreamableToString(write_handle_as_size_t) +
-					   " to a file descriptor");
+					   " to a file_manager descriptor");
 	}
 
 	// Signals the parent that the write end of the pipe has been acquired

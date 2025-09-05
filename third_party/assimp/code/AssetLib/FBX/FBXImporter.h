@@ -63,7 +63,7 @@ typedef class basic_formatter<char, std::char_traits<char>, std::allocator<char>
 } // namespace Formatter
 
 // -------------------------------------------------------------------------------------------
-/// Loads the Autodesk FBX file format.
+/// Loads the Autodesk FBX file_manager format.
 ///
 /// See http://en.wikipedia.org/wiki/FBX
 // -------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ public:
     ///	@brief The class destructor, default implementation.
     ~FBXImporter() override = default;
 
-    /// @brief Will check the file for readability.
+    /// @brief Will check the file_manager for readability.
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 
 protected:

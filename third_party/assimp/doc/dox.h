@@ -16,8 +16,8 @@ storing it in a engine-specific format for easy and fast every-day-loading. assi
 processing steps to the imported data such as conversion to indexed meshes, calculation of normals or tangents/bitangents
 or conversion from right-handed to left-handed coordinate systems.
 
-assimp currently supports the following file formats (note that some loaders lack some features of their formats because
-some file formats contain data not supported by assimp, some stuff would require so much conversion work
+assimp currently supports the following file_manager formats (note that some loaders lack some features of their formats because
+some file_manager formats contain data not supported by assimp, some stuff would require so much conversion work
 that it has not been implemented yet and some (most ...) formats lack proper specifications):
 <hr>
 <br><tt>
@@ -63,7 +63,7 @@ that it has not been implemented yet and some (most ...) formats lack proper spe
 See the @link importer_notes Importer Notes Page @endlink for information, what a specific importer can do and what not.
 Note that although this paper claims to be the official documentation,
 https://github.com/assimp/assimp/blob/master/Readme.md
-<br>is usually the most up-to-date list of file formats supported by the library. <br>
+<br>is usually the most up-to-date list of file_manager formats supported by the library. <br>
 
 <sup>1</sup>: Experimental loaders<br>
 <sup>2</sup>: Indicates very limited support - many of the format's features don't map to Assimp's data structures.<br>
@@ -82,10 +82,10 @@ formats handle the required endian conversion correctly, so large parts of the l
 The assimp linker library and viewer application are provided under the BSD 3-clause license. This basically means
 that you are free to use it in open- or closed-source projects, for commercial or non-commercial purposes as you like
 as long as you retain the license information and take own responsibility for what you do with it. For details see
-the LICENSE file.
+the LICENSE file_manager.
 
 You can find test models for almost all formats in the <assimp_root>/test/models directory. Beware, they're *free*,
-but not all of them are *open-source*. If there's an accompanying '<file>\source.txt' file don't forget to read it.
+but not all of them are *open-source*. If there's an accompanying '<file_manager>\source.txt' file_manager don't forget to read it.
 
 @section main_install Installation
 
@@ -111,13 +111,13 @@ there are no bindings for any other language provided. Have a look at the @link 
 @section main_data Data Structures
 
 When the importer successfully completed its job, the imported data is returned in an aiScene structure. This is the root
-point from where you can access all the various data types that a scene/model file can possibly contain. The
+point from where you can access all the various data types that a scene/model file_manager can possibly contain. The
 @link data Data Structures page @endlink describes how to interpret this data.
 
 @section ext Extending the library
 
-There are many 3d file formats in the world, and we're happy to support as many as possible. If you need support for
-a particular file format, why not implement it yourself and add it to the library? Writing importer plugins for
+There are many 3d file_manager formats in the world, and we're happy to support as many as possible. If you need support for
+a particular file_manager format, why not implement it yourself and add it to the library? Writing importer plugins for
 assimp is considerably easy, as the whole postprocessing infrastructure is available and does much of the work for you.
 See the @link extend Extending the library @endlink page for more information.
 
@@ -145,7 +145,7 @@ to your include paths (Menu-&gt;Extras-&gt;Options-&gt;Projects and Solutions-&g
 and the assimp/lib/&lt;Compiler&gt; path to your linker paths (Menu-&gt;Extras-&gt;Options-&gt;Projects and Solutions-&gt;VC++ Directories-&gt;Library files).
 This is necessary only once to setup all paths inside you IDE.
 
-To use the library in your C++ project you can simply generate a project file via cmake. One way is to add the assimp-folder
+To use the library in your C++ project you can simply generate a project file_manager via cmake. One way is to add the assimp-folder
 as a subdirectory via the cmake-command
 
 @code
@@ -170,7 +170,7 @@ to build the library just open a command-prompt / bash, navigate into the repo-f
 cmake CMakeLists.txt
 @endcode
 
-A project-file of your default make-system ( like gnu-make on linux or Visual-Studio on Windows ) will be generated.
+A project-file_manager of your default make-system ( like gnu-make on linux or Visual-Studio on Windows ) will be generated.
 Run the build and you are done. You can find the libs at assimp/lib and the dll's / so's at bin.
 
 @section assimp_dll Windows DLL Build
@@ -195,7 +195,7 @@ The assimp library can be accessed by both a class or flat function interface. T
 interface is the preferred way of interaction: you create an instance of class Assimp::Importer,
 maybe adjust some settings of it and then call Assimp::Importer::ReadFile(). The class will
 read the files and process its data, handing back the imported data as a pointer to an aiScene
-to you. You can now extract the data you need from the file. The importer manages all the resources
+to you. You can now extract the data you need from the file_manager. The importer manages all the resources
 for itsself. If the importer is destroyed, all the data that was created/read by it will be
 destroyed, too. So the easiest way to use the Importer is to create an instance locally, use its
 results and then simply let it go out of scope.
@@ -211,7 +211,7 @@ bool DoTheImportThing( const std::string& pFile)
   // Create an instance of the Importer class
   Assimp::Importer importer;
 
-  // And have it read the given file with some example postprocessing
+  // And have it read the given file_manager with some example postprocessing
   // Usually - if speed is not the most important aspect for you - you'll
   // probably to request more postprocessing than we do in this example.
   const aiScene* scene = importer.ReadFile( pFile,
@@ -227,7 +227,7 @@ bool DoTheImportThing( const std::string& pFile)
     return false;
   }
 
-  // Now we can access the file's contents.
+  // Now we can access the file_manager's contents.
   DoTheSceneProcessing( scene);
 
   // We're done. Everything will be cleaned up by the importer destructor
@@ -259,7 +259,7 @@ C example:
 
 bool DoTheImportThing( const char* pFile)
 {
-  // Start the import on the given file with some example postprocessing
+  // Start the import on the given file_manager with some example postprocessing
   // Usually - if speed is not the most important aspect for you - you'll t
   // probably to request more postprocessing than we do in this example.
   const aiScene* scene = aiImportFile( pFile,
@@ -275,7 +275,7 @@ bool DoTheImportThing( const char* pFile)
     return false;
   }
 
-  // Now we can access the file's contents
+  // Now we can access the file_manager's contents
   DoTheSceneProcessing( scene);
 
   // We're done. Release all resources associated with this import
@@ -286,8 +286,8 @@ bool DoTheImportThing( const char* pFile)
 
 @section custom_io Using custom IO logic with the C++ class interface
 
-The assimp library needs to access files internally. This of course applies to the file you want
-to read, but also to additional files in the same folder for certain file formats. By default,
+The assimp library needs to access files internally. This of course applies to the file_manager you want
+to read, but also to additional files in the same folder for certain file_manager formats. By default,
 standard C/C++ IO logic is used to access these files. If your application works in a special
 environment where custom logic is needed to access the specified files, you have to supply
 custom implementations of IOStream and IOSystem. A shortened example might look like this:
@@ -321,7 +321,7 @@ class MyIOSystem : public Assimp::IOSystem
   MyIOSystem() { ... }
   ~MyIOSystem() { ... }
 
-  // Check whether a specific file exists
+  // Check whether a specific file_manager exists
   bool Exists( const std::string& pFile) const {
     ..
   }
@@ -350,7 +350,7 @@ void DoTheImportThing( const std::string& pFile)
   // put my custom IO handling in place
   importer.SetIOHandler( new MyIOSystem());
 
-  // the import process will now use this implementation to access any file
+  // the import process will now use this implementation to access any file_manager
   importer.ReadFile( pFile, SomeFlag | SomeOtherFlag);
 }
 @endcode
@@ -358,12 +358,12 @@ void DoTheImportThing( const std::string& pFile)
 
 @section custom_io_c Using custom IO logic with the plain-c function interface
 
-The C interface also provides a way to override the file system. Control is not as fine-grained as for C++ although
+The C interface also provides a way to override the file_manager system. Control is not as fine-grained as for C++ although
 surely enough for almost any purpose. The process is simple:
 
 <ul>
 <li> Include cfileio.h
-<li> Fill an aiFileIO structure with custom file system callbacks (they're self-explanatory as they work similar to the CRT's fXXX functions)
+<li> Fill an aiFileIO structure with custom file_manager system callbacks (they're self-explanatory as they work similar to the CRT's fXXX functions)
 <li> .. and pass it as parameter to #aiImportFileEx
 </ul>
 
@@ -454,7 +454,7 @@ kind kind of logging might decrease import performance.
 
 The assimp library returns the imported data in a collection of structures. aiScene forms the root
 of the data, from here you gain access to all the nodes, meshes, materials, animations or textures
-that were read from the imported file. The aiScene is returned from a successful call to
+that were read from the imported file_manager. The aiScene is returned from a successful call to
 assimp::Importer::ReadFile(), aiImportFile() or aiImportFileEx() - see the @link usage Usage page @endlink
 for further information on how to use the library.
 
@@ -531,7 +531,7 @@ that multiple nodes can refer to the same mesh, which provides a simple form of 
 by this way lives in the node's local coordinate system. If you want the mesh's orientation in global
 space, you'd have to concatenate the transformations from the referring node and all of its parents.
 
-Most of the file formats don't really support complex scenes, though, but a single model only. But there are
+Most of the file_manager formats don't really support complex scenes, though, but a single model only. But there are
 more complex formats such as .3ds, .x or .collada scenes which may contain an arbitrary complex
 hierarchy of nodes and meshes. I for myself would suggest a recursive filter function such as the
 following pseudocode:
@@ -582,8 +582,8 @@ node refers to its meshes: materials are stored in an array inside aiScene, the 
 an index into this array.
 
 An aiMesh is defined by a series of data channels. The presence of these data channels is defined
-by the contents of the imported file: by default there are only those data channels present in the mesh
-that were also found in the file. The only channels guaranteed to be always present are aiMesh::mVertices
+by the contents of the imported file_manager: by default there are only those data channels present in the mesh
+that were also found in the file_manager. The only channels guaranteed to be always present are aiMesh::mVertices
 and aiMesh::mFaces. You can test for the presence of other data by testing the pointers against NULL
 or use the helper functions provided by aiMesh. You may also specify several post processing flags
 at Importer::ReadFile() to let assimp calculate or recalculate additional data channels for you.
@@ -621,7 +621,7 @@ c1) If the node is marked as necessary, copy it into the skeleton and check its 
 c2) If the node is marked as not necessary, skip it and do not iterate over its children. <br>
 
 Reasons: you need all the parent nodes to keep the transformation chain intact. For most
-file formats and modelling packages the node hierarchy of the skeleton is either a child
+file_manager formats and modelling packages the node hierarchy of the skeleton is either a child
 of the mesh node or a sibling of the mesh node but this is by no means a requirement so you shouldn't rely on it.
 The node closest to the root node is your skeleton root, from there you
 start copying the hierarchy. You can skip every branch without a node being a bone in the mesh -
@@ -638,8 +638,8 @@ a skinned mesh, but there are other uses as well.
 
 An aiAnimation has a duration. The duration as well as all time stamps are given in ticks. To get
 the correct timing, all time stamp thus have to be divided by aiAnimation::mTicksPerSecond. Beware,
-though, that certain combinations of file format and exporter don't always store this information
-in the exported file. In this case, mTicksPerSecond is set to 0 to indicate the lack of knowledge.
+though, that certain combinations of file_manager format and exporter don't always store this information
+in the exported file_manager. In this case, mTicksPerSecond is set to 0 to indicate the lack of knowledge.
 
 The aiAnimation consists of a series of aiNodeAnim's. Each bone animation affects a single node in
 the node hierarchy only, the name specifying which node is affected. For this node the structure
@@ -664,14 +664,14 @@ need them at all.
 @section textures Textures
 
 Normally textures used by assets are stored in separate files, however,
-there are file formats embedding their textures directly into the model file.
+there are file_manager formats embedding their textures directly into the model file_manager.
 Such textures are loaded into an aiTexture structure.
 
 In previous versions, the path from the query for `AI_MATKEY_TEXTURE(textureType, index)` would be
 `*<index>` where `<index>` is the index of the texture in aiScene::mTextures. Now this call will
-return a file path for embedded textures in FBX files. To test if it is an embedded texture use
+return a file_manager path for embedded textures in FBX files. To test if it is an embedded texture use
 aiScene::GetEmbeddedTexture. If the returned pointer is not null, it is embedded und can be loaded
-from the data structure. If it is null, search for a separate file. Other file types still use the
+from the data structure. If it is null, search for a separate file_manager. Other file_manager types still use the
 old behaviour.<br>
 If your rely on the old behaviour, you can use Assimp::Importer::SetPropertyBool with the key
 #AI_CONFIG_IMPORT_FBX_EMBEDDED_TEXTURES_LEGACY_NAMING to force the old behaviour.
@@ -685,12 +685,12 @@ There are two cases:
    and natively supported by nearly all graphics APIs.
 2. This applies if aiTexture::mHeight == 0 is fulfilled. Then, texture is stored in a "compressed"
    format such as DDS or PNG. The term "compressed" does not mean that the texture data must
-   actually be compressed, however the texture was found in the model file as if it was stored in a
-   separate file on the harddisk. Appropriate decoders (such as libjpeg, libpng, D3DX, DevIL) are
+   actually be compressed, however the texture was found in the model file_manager as if it was stored in a
+   separate file_manager on the harddisk. Appropriate decoders (such as libjpeg, libpng, D3DX, DevIL) are
    required to load these textures.  aiTexture::mWidth specifies the size of the texture data in
    bytes, aiTexture::pcData is a pointer to the raw image data and aiTexture::achFormatHint is
-   either zeroed or contains the most common file extension of the embedded texture's format. This
-   value is only set if assimp is able to determine the file format.
+   either zeroed or contains the most common file_manager extension of the embedded texture's format. This
+   value is only set if assimp is able to determine the file_manager format.
 */
 
 
@@ -704,7 +704,7 @@ Each aiMesh refers to one
 material by its index in the array. Due to the vastly diverging definitions and usages of material
 parameters there is no hard definition of a material structure. Instead a material is defined by
 a set of properties accessible by their names. Have a look at assimp/material.h to see what types of
-properties are defined. In this file there are also various functions defined to test for the
+properties are defined. In this file_manager there are also various functions defined to test for the
 presence of certain properties in a material and retrieve their values.
 
 @section mat_tex Textures
@@ -866,7 +866,7 @@ All material key constants start with 'AI_MATKEY' (it's an ugly macro for histor
     <td><tt>REFRACTI</tt></td>
     <td>float</td>
     <td>1.0</td>
-    <td>Defines the Index Of Refraction for the material. That's not supported by most file formats.</td>
+    <td>Defines the Index Of Refraction for the material. That's not supported by most file_manager formats.</td>
     <td>Might be of interest for raytracing.</td>
   </tr>
 
@@ -875,7 +875,7 @@ All material key constants start with 'AI_MATKEY' (it's an ugly macro for histor
     <td>aiString</td>
     <td>n/a</td>
     <td>Defines the path of the n'th texture on the stack 't', where 'n' is any value >= 0 and 't'
-    is one of the #aiTextureType enumerated values. A file path to an external file or an embedded
+    is one of the #aiTextureType enumerated values. A file_manager path to an external file_manager or an embedded
     texture. Use aiScene::GetEmbeddedTexture to test if it is embedded for FBX files, in other cases
     embedded textures start with '*' followed by an index into aiScene::mTextures.</td>
     <td>See the @ref mat_tex section above. Also see @ref textures for a more information about texture retrieval.</td>
@@ -901,7 +901,7 @@ All material key constants start with 'AI_MATKEY' (it's an ugly macro for histor
     <td><tt>MAPPING(t,n)</tt></td>
     <td>int</td>
     <td>n/a</td>
-    <td>Defines how the input mapping coordinates for sampling the n'th texture on the stack 't' are computed. Usually explicit UV coordinates are provided, but some model file formats might also be using basic shapes, such as spheres or cylinders, to project textures onto meshes.</td>
+    <td>Defines how the input mapping coordinates for sampling the n'th texture on the stack 't' are computed. Usually explicit UV coordinates are provided, but some model file_manager formats might also be using basic shapes, such as spheres or cylinders, to project textures onto meshes.</td>
     <td>See the 'Textures' section below. #aiProcess_GenUVCoords can be used to let Assimp compute proper UV coordinates from projective mappings.</td>
   </tr>
 
@@ -1200,7 +1200,7 @@ This page discusses general performance issues related to assimp.
 @section perf_profile Profiling
 
 assimp has built-in support for <i>very</i> basic profiling and time measurement. To turn it on, set the <tt>GLOB_MEASURE_TIME</tt>
-configuration switch to <tt>true</tt> (nonzero). Results are dumped to the log file, so you need to setup
+configuration switch to <tt>true</tt> (nonzero). Results are dumped to the log file_manager, so you need to setup
 an appropriate logger implementation with at least one output stream first (see the @link logging Logging Page @endlink
 for the details.).
 
@@ -1213,7 +1213,7 @@ A sample report looks like this (some unrelated log messages omitted, entries gr
 
 @verbatim
 Debug, T5488: START `total`
-Info,  T5488: Found a matching importer for this file format
+Info,  T5488: Found a matching importer for this file_manager format
 
 
 Debug, T5488: START `import`
@@ -1303,9 +1303,9 @@ following prerequisites are fulfilled:
 
 
 
-Multiple concurrent imports may or may not be beneficial, however. For certain file formats in conjunction with
+Multiple concurrent imports may or may not be beneficial, however. For certain file_manager formats in conjunction with
 little or no post processing IO times tend to be the performance bottleneck. Intense post processing together
-with 'slow' file formats like X or Collada might scale well with multiple concurrent imports.
+with 'slow' file_manager formats like X or Collada might scale well with multiple concurrent imports.
 
 
 @section automt Internal threading
@@ -1320,7 +1320,7 @@ This page lists some useful resources for assimp. Note that, even though the cor
 we cannot guarantee the accuracy of third-party information. If in doubt, it's best to ask either on the
 mailing list or on our forums on SF.net.
 
- - assimp comes with some sample applications, these can be found in the <i>./samples</i> folder. Don't forget to read the <i>README</i> file.
+ - assimp comes with some sample applications, these can be found in the <i>./samples</i> folder. Don't forget to read the <i>README</i> file_manager.
  - http://www.drivenbynostalgia.com/files/AssimpOpenGLDemo.rar - OpenGl animation sample using the library's animation import facilities.
  - http://nolimitsdesigns.com/game-design/open-asset-import-library-animation-loader/ is another utility to
    simplify animation playback.
@@ -1351,7 +1351,7 @@ The Blender loader does not support animations yet, but is apart from that consi
 
 @subsection bl_notes Notes
 
-When filing bugs on the Blender loader, always give the Blender version (or, even better, post the file caused the error).
+When filing bugs on the Blender loader, always give the Blender version (or, even better, post the file_manager caused the error).
 
 <hr>
 @section ifc IFC
@@ -1369,9 +1369,9 @@ IFC support is new and considered experimental. Please report any bugs you may e
 
 @subsection ifc_notes Notes
 
-- Only the STEP-based encoding is supported. IFCZIP and IFCXML are not (but IFCZIP can simply be unzipped to get a STEP file).
+- Only the STEP-based encoding is supported. IFCZIP and IFCXML are not (but IFCZIP can simply be unzipped to get a STEP file_manager).
 - The importer leaves vertex coordinates untouched, but applies a global scaling to the root transform to
-  convert from whichever unit the IFC file uses to <i>metres</i>.
+  convert from whichever unit the IFC file_manager uses to <i>metres</i>.
 - If multiple geometric representations are provided, the choice which one to load is based on how expensive a representation seems
  to be in terms of import time. The loader also avoids representation types for which it has known deficits.
 - Not supported are arbitrary binary operations (binary clipping is implemented, though).
@@ -1382,7 +1382,7 @@ IFC support is new and considered experimental. Please report any bugs you may e
 
 @subsection ifc_metadata Metadata
 
-IFC file properties (IfcPropertySet) are kept as per-node metadata, see aiNode::mMetaData.
+IFC file_manager properties (IfcPropertySet) are kept as per-node metadata, see aiNode::mMetaData.
 
 <hr>
 @section ogre Ogre
@@ -1396,7 +1396,7 @@ Ogre importer is currently optimized for the Blender Ogre exporter, because that
 
 Mesh: Faces, Positions, Normals and all TexCoords. The Materialname will be used to load the material.
 
-Material: The right material in the file will be searched, the importer should work with materials who
+Material: The right material in the file_manager will be searched, the importer should work with materials who
 have 1 technique and 1 pass in this technique. From there, the texturename (for 1 color- and 1 normalmap) and the
 materialcolors (but not in custom materials) will be loaded. Also, the materialname will be set.
 
@@ -1416,18 +1416,18 @@ There is a binary and a XML mesh Format from Ogre. This loader can only
 Handle xml files, but don't panic, there is a command line converter, which you can use
 to create XML files from Binary Files. Just look on the Ogre page for it.
 
-Currently you can only load meshes. So you will need to import the *.mesh.xml file, the loader will
-try to find the appendant material and skeleton file.
+Currently you can only load meshes. So you will need to import the *.mesh.xml file_manager, the loader will
+try to find the appendant material and skeleton file_manager.
 
-The skeleton file must have the same name as the mesh file, e.g. fish.mesh.xml and fish.skeleton.xml.
+The skeleton file_manager must have the same name as the mesh file_manager, e.g. fish.mesh.xml and fish.skeleton.xml.
 
 @subsection material Materials
-The material file can have the same name as the mesh file (if the file is model.mesh or model.mesh.xml the
+The material file_manager can have the same name as the mesh file_manager (if the file_manager is model.mesh or model.mesh.xml the
 loader will try to load model.material),
 or you can use Importer::Importer::SetPropertyString(AI_CONFIG_IMPORT_OGRE_MATERIAL_FILE, "materiafile.material")
-to specify the name of the material file. This is especially useful if multiply materials a stored in a single file.
+to specify the name of the material file_manager. This is especially useful if multiply materials a stored in a single file_manager.
 The importer will first try to load the material with the same name as the mesh and only if this can't be open try
-to load the alternate material file. The default material filename is "Scene.material".
+to load the alternate material file_manager. The default material filename is "Scene.material".
 
 We suggest that you use custom materials, because they support multiple textures (like colormap and normalmap). First of all you
 should read the custom material sektion in the Ogre Blender exporter Help File, and than use the assimp.tlp template, which you
@@ -1445,8 +1445,8 @@ Just look in OgreImporterMaterial.cpp
 	Property type: Bool. Default value: false.
 -	IMPORT_OGRE_MATERIAL_FILE: Ogre Meshes contain only the MaterialName, not the MaterialFile.
 	If there
-	is no material file with the same name as the material, Ogre Importer will
-	try to load this file and search the material in it.
+	is no material file_manager with the same name as the material, Ogre Importer will
+	try to load this file_manager and search the material in it.
 	<br>
 	Property type: String. Default value: guessed.
 
@@ -1473,7 +1473,7 @@ OK, that sounds too easy :-). The whole procedure for a new loader merely looks 
 <li>Create a header (<tt><i>FormatName</i>Importer.h</tt>) and a unit (<tt><i>FormatName</i>Importer.cpp</tt>) in the <tt>&lt;root&gt;/code/</tt> directory</li>
 <li>Add them to the following workspaces: vc8 and vc9 (the files are in the workspaces directory), CMAKE (code/CMakeLists.txt, create a new
 source group for your importer and put them also to ADD_LIBRARY( assimp SHARED))</li>
-<li>Include <i>AssimpPCH.h</i> - this is the PCH file, and it includes already most Assimp-internal stuff. </li>
+<li>Include <i>AssimpPCH.h</i> - this is the PCH file_manager, and it includes already most Assimp-internal stuff. </li>
 <li>Open Importer.cpp and include your header just below the <i>(include_new_importers_here)</i> line,
 guarded by a #define
 @code
@@ -1503,7 +1503,7 @@ like Windows and Linux ( 32 bit and 64 bit ).
 </li>
 <li>
 Provide some _free_ test models in <tt>&lt;root&gt;/test/models/&lt;FormatName&gt;/</tt> and credit their authors.
-Test files for a file format shouldn't be too large (<i>~500 KiB in total</i>), and not too repetitive. Try to cover all format features with test data.
+Test files for a file_manager format shouldn't be too large (<i>~500 KiB in total</i>), and not too repetitive. Try to cover all format features with test data.
 </li>
 <li>
 Done! Please, share your loader that everyone can profit from it!
@@ -1522,7 +1522,7 @@ store the properties as a member variable of your importer, they are thread safe
 
 <ul>
 <li>Try to make your parser as flexible as possible. Don't rely on particular layout, whitespace/tab style,
-except if the file format has a strict definition, in which case you should always warn about spec violations.
+except if the file_manager format has a strict definition, in which case you should always warn about spec violations.
 But the general rule of thumb is <i>be strict in what you write and tolerant in what you accept</i>.</li>
 <li>Call Assimp::BaseImporter::ConvertToUTF8() before you parse anything to convert foreign encodings to UTF-8.
  That's not necessary for XML importers, which must use the provided IrrXML for reading. </li>
@@ -1547,16 +1547,16 @@ Mixed stuff for internal use by loaders, mostly documented (most of them are alr
 <li><b>ByteSwapper</b> (<i>ByteSwapper.h</i>) - manual byte swapping stuff for binary loaders.</li>
 <li><b>StreamReader</b> (<i>StreamReader.h</i>) - safe, endianness-correct, binary reading.</li>
 <li><b>IrrXML</b> (<i>irrXMLWrapper.h</i>)  - for XML-parsing (SAX.</li>
-<li><b>CommentRemover</b> (<i>RemoveComments.h</i>) - remove single-line and multi-line comments from a text file.</li>
+<li><b>CommentRemover</b> (<i>RemoveComments.h</i>) - remove single-line and multi-line comments from a text file_manager.</li>
 <li>fast_atof, strtoul10, strtoul16, SkipSpaceAndLineEnd, SkipToNextToken .. large family of low-level
 parsing functions, mostly declared in <i>fast_atof.h</i>, <i>StringComparison.h</i> and <i>ParsingUtils.h</i> (a collection that grew
 historically, so don't expect perfect organization). </li>
 <li><b>ComputeNormalsWithSmoothingsGroups()</b> (<i>SmoothingGroups.h</i>) - Computes normal vectors from plain old smoothing groups. </li>
 <li><b>SkeletonMeshBuilder</b> (<i>SkeletonMeshBuilder.h</i>) - generate a dummy mesh from a given (animation) skeleton. </li>
 <li><b>StandardShapes</b> (<i>StandardShapes.h</i>) - generate meshes for standard solids, such as platonic primitives, cylinders or spheres. </li>
-<li><b>BatchLoader</b> (<i>BaseImporter.h</i>) - manage imports from external files. Useful for file formats
+<li><b>BatchLoader</b> (<i>BaseImporter.h</i>) - manage imports from external files. Useful for file_manager formats
 which spread their data across multiple files. </li>
-<li><b>SceneCombiner</b> (<i>SceneCombiner.h</i>) - exhaustive toolset to merge multiple scenes. Useful for file formats
+<li><b>SceneCombiner</b> (<i>SceneCombiner.h</i>) - exhaustive toolset to merge multiple scenes. Useful for file_manager formats
 which spread their data across multiple files. </li>
 </ul>
 
@@ -1582,7 +1582,7 @@ NewMaterial->AddProperty(&aiString(Texturename.c_str()), AI_MATKEY_TEXTURE(aiTex
 
 @code
 // -------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool xxxxImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler,
 	bool checkSig) const
 {
@@ -1593,18 +1593,18 @@ bool xxxxImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler,
 	if (!extension.length() || checkSig) {
 		// no extension given, or we're called a second time because no
 		// suitable loader was found yet. This means, we're trying to open
-		// the file and look for and hints to identify the file format.
+		// the file_manager and look for and hints to identify the file_manager format.
 		// #Assimp::BaseImporter provides some utilities:
 		//
 		// #Assimp::BaseImporter::SearchFileHeaderForToken - for text files.
-		// It reads the first lines of the file and does a substring check
+		// It reads the first lines of the file_manager and does a substring check
 		// against a given list of 'magic' strings.
 		//
 		// #Assimp::BaseImporter::CheckMagicToken - for binary files. It goes
-		// to a particular offset in the file and and compares the next words
+		// to a particular offset in the file_manager and and compares the next words
 		// against a given list of 'magic' tokens.
 
-		// These checks MUST be done (even if !checkSig) if the file extension
+		// These checks MUST be done (even if !checkSig) if the file_manager extension
 		// is not exclusive to your format. For example, .xml is very common
 		// and (co)used by many formats.
 	}
@@ -1612,7 +1612,7 @@ bool xxxxImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler,
 }
 
 // -------------------------------------------------------------------------------
-// Get list of file extensions handled by this loader
+// Get list of file_manager extensions handled by this loader
 void xxxxImporter::GetExtensionList(std::set<std::string>& extensions)
 {
 	extensions.insert("xxx");
@@ -1622,11 +1622,11 @@ void xxxxImporter::GetExtensionList(std::set<std::string>& extensions)
 void xxxxImporter::InternReadFile( const std::string& pFile,
 	aiScene* pScene, IOSystem* pIOHandler)
 {
-	std::unique_ptr<IOStream> file( pIOHandler->Open( pFile, "rb"));
+	std::unique_ptr<IOStream> file_manager( pIOHandler->Open( pFile, "rb"));
 
-	// Check whether we can read from the file
-	if( file.get() == NULL) {
-		throw DeadlyImportError( "Failed to open xxxx file ", pFile, ".");
+	// Check whether we can read from the file_manager
+	if( file_manager.get() == NULL) {
+		throw DeadlyImportError( "Failed to open xxxx file_manager ", pFile, ".");
 	}
 
 	// Your task: fill pScene

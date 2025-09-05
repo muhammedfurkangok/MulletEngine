@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file FBXExporter.h
-* Declares the exporter class to write a scene to an fbx file
+* Declares the exporter class to write a scene to an fbx file_manager
 */
 #ifndef AI_FBXEXPORTER_H_INC
 #define AI_FBXEXPORTER_H_INC
@@ -70,7 +70,7 @@ namespace Assimp {
     class ExportProperties;
 
     // ---------------------------------------------------------------------
-    /** Helper class to export a given scene to an FBX file. */
+    /** Helper class to export a given scene to an FBX file_manager. */
     // ---------------------------------------------------------------------
     class FBXExporter
     {
@@ -86,7 +86,7 @@ namespace Assimp {
         bool binary; // whether current export is in binary or ascii format
         const aiScene* mScene; // the scene to export
         const ExportProperties* mProperties; // currently unused
-        std::shared_ptr<IOStream> outfile; // file to write to
+        std::shared_ptr<IOStream> outfile; // file_manager to write to
 
         std::vector<FBX::Node> connections; // connection storage
 
@@ -113,7 +113,7 @@ namespace Assimp {
         void WriteAllNodes();
 
         // Methods to write individual sections.
-        // The order here matches the order inside an FBX file.
+        // The order here matches the order inside an FBX file_manager.
         // Each method corresponds to a top-level FBX section,
         // except WriteHeader which also includes some binary-only sections
         // and WriteFooter which is binary data only.

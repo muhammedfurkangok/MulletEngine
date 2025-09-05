@@ -108,7 +108,7 @@ public:
         ai_real glossiness = ai_real(0.5);
         if (spec) {
             EXPECT_EQ(aiReturn_SUCCESS, material->Get(AI_MATKEY_COLOR_SPECULAR, spec_color));
-            constexpr ai_real spec_val(0.20000000298023225); // From the file
+            constexpr ai_real spec_val(0.20000000298023225); // From the file_manager
             EXPECT_EQ(spec_val, spec_color.r);
             EXPECT_EQ(spec_val, spec_color.g);
             EXPECT_EQ(spec_val, spec_color.b);
@@ -699,7 +699,7 @@ TEST_F(utglTF2ImportExport, error_string_preserved) {
             aiProcess_ValidateDataStructure);
     ASSERT_EQ(nullptr, scene);
     std::string error = importer.GetErrorString();
-    ASSERT_NE(error.find("BoxTextured0.bin"), std::string::npos) << "Error string should contain an error about missing .bin file";
+    ASSERT_NE(error.find("BoxTextured0.bin"), std::string::npos) << "Error string should contain an error about missing .bin file_manager";
 }
 
 TEST_F(utglTF2ImportExport, export_bad_accessor_bounds) {
@@ -976,7 +976,7 @@ TEST_F(utglTF2ImportExport, wrongObject) {
 
 namespace {
     /// This class provides a fake schema to the GLTF importer.
-    /// It just checks that the file has a top-level "scene" property which is an integer.
+    /// It just checks that the file_manager has a top-level "scene" property which is an integer.
     class FakeSchemaProvider : public rapidjson::IRemoteSchemaDocumentProvider
     {
     public:

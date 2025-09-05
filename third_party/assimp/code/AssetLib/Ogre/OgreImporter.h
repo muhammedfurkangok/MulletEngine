@@ -55,8 +55,8 @@ namespace Ogre {
 
 /** Importer for Ogre mesh, skeleton and material formats.
     @todo Support vertex colors.
-    @todo Support poses/animations from the mesh file.
-    Currently only skeleton file animations are supported. */
+    @todo Support poses/animations from the mesh file_manager.
+    Currently only skeleton file_manager animations are supported. */
 class OgreImporter : public BaseImporter {
 public:
     /// BaseImporter override.
@@ -81,7 +81,7 @@ private:
     /// Reads material
     aiMaterial *ReadMaterial(const std::string &pFile, Assimp::IOSystem *pIOHandler, const std::string &MaterialName);
 
-    // These functions parse blocks from a material file from @c ss. Starting parsing from "{" and ending it to "}".
+    // These functions parse blocks from a material file_manager from @c ss. Starting parsing from "{" and ending it to "}".
     bool ReadTechnique(const std::string &techniqueName, std::stringstream &ss, aiMaterial *material);
     bool ReadPass(const std::string &passName, std::stringstream &ss, aiMaterial *material);
     bool ReadTextureUnit(const std::string &textureUnitName, std::stringstream &ss, aiMaterial *material);

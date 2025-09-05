@@ -92,7 +92,7 @@ extern "C" {
  * }
  * @endcode
  *
- * @note some file formats (such as 3DS, ASE) export a "target point" -
+ * @note some file_manager formats (such as 3DS, ASE) export a "target point" -
  * the point the camera is looking at (it can even be animated). Assimp
  * writes the target point as a subnode of the camera's main node,
  * called "<camName>.Target". However this is just additional information
@@ -164,7 +164,7 @@ struct aiCamera {
      *
      * This is the ration between the width and the height of the
      * screen. Typical values are 4/3, 1/2 or 1/1. This value is
-     * 0 if the aspect ratio is not defined in the source file.
+     * 0 if the aspect ratio is not defined in the source file_manager.
      * 0 is also the default value.
      */
     float mAspect;

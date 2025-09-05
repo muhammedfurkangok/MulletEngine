@@ -150,7 +150,7 @@ REGISTER_TYPED_TEST_SUITE_P(FooTest,
                             DoesBlah, HasPropertyA);
 
 // Finally, you are free to instantiate the pattern with the types you
-// want.  If you put the above code in a header file, you can #include
+// want.  If you put the above code in a header file_manager, you can #include
 // it in multiple C++ source files and instantiate it multiple times.
 //
 // To distinguish different instances of the pattern, the first
@@ -254,7 +254,7 @@ INSTANTIATE_TYPED_TEST_SUITE_P(My, FooTest, MyTypes);
   gtest_registered_test_names_##TestSuiteName##_
 
 // The variables defined in the type-parameterized test macros are
-// static as typically these macros are used in a .h file that can be
+// static as typically these macros are used in a .h file_manager that can be
 // #included in multiple translation units linked together.
 #define TYPED_TEST_SUITE_P(SuiteName)              \
   static ::testing::internal::TypedTestSuitePState \

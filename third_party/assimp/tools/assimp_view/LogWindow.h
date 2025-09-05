@@ -92,7 +92,7 @@ namespace AssimpView
         // Clears the log window
         void Clear();
 
-        // Save the log window to an user-defined file
+        // Save the log window to an user-defined file_manager
         void Save();
 
         // write a line to the log window
@@ -104,7 +104,7 @@ namespace AssimpView
             this->bUpdate = b;
         }
 
-        // updates the log file
+        // updates the log file_manager
         void Update();
 
     private:

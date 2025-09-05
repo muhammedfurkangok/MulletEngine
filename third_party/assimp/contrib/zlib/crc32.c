@@ -17,7 +17,7 @@
   one thread to use crc32().
 
   MAKECRCH can be #defined to write out crc32.h. A main() routine is also
-  produced, so that this one source file can be compiled to an executable.
+  produced, so that this one source file_manager can be compiled to an executable.
  */
 
 #ifdef MAKECRCH
@@ -309,7 +309,7 @@ local void make_crc_table()
 #ifdef MAKECRCH
     {
         /*
-          The crc32.h header file contains tables for both 32-bit and 64-bit
+          The crc32.h header file_manager contains tables for both 32-bit and 64-bit
           z_word_t's, and so requires a 64-bit type be available. In that case,
           z_word_t must be defined to be 64-bits. This code then also generates
           and writes out the tables for the case that z_word_t is 32 bits.

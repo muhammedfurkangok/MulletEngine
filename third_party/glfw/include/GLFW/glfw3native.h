@@ -41,7 +41,7 @@ extern "C" {
 /*! @file glfw3native.h
  *  @brief The header of the native access functions.
  *
- *  This is the header file of the native access functions.  See @ref native for
+ *  This is the header file_manager of the native access functions.  See @ref native for
  *  more information.
  */
 /*! @defgroup native Native access

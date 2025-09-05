@@ -801,7 +801,7 @@ void AMFImporter::Postprocess_BuildScene(aiScene *pScene) {
     // Check constellation children
     //
     // As said in specification:
-    // "When multiple objects and constellations are defined in a single file, only the top level objects and constellations are available for printing."
+    // "When multiple objects and constellations are defined in a single file_manager, only the top level objects and constellations are available for printing."
     // What that means? For example: if some object is used in constellation then you must show only constellation but not original object.
     // And at this step we are checking that relations.
 nl_clean_loop:

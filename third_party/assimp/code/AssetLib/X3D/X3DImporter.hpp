@@ -73,7 +73,7 @@ inline void Throw_ArgOutOfRange(const std::string &argument) {
 }
 
 inline void Throw_CloseNotFound(const std::string &node) {
-    throw DeadlyImportError("Close tag for node <" + node + "> not found. Seems file is corrupt.");
+    throw DeadlyImportError("Close tag for node <" + node + "> not found. Seems file_manager is corrupt.");
 }
 
 inline void Throw_ConvertFail_Str2ArrF(const std::string &nodeName, const std::string &pAttrValue) {
@@ -113,7 +113,7 @@ inline void Throw_MoreThanOnceDefined(const std::string &nodeName, const std::st
 }
 
 inline void Throw_TagCountIncorrect(const std::string &pNode) {
-    throw DeadlyImportError("Count of open and close tags for node <" + pNode + "> are not equivalent. Seems file is corrupt.");
+    throw DeadlyImportError("Count of open and close tags for node <" + pNode + "> are not equivalent. Seems file_manager is corrupt.");
 }
 
 inline void Throw_USE_NotFound(const std::string &nodeName, const std::string &pAttrValue) {
@@ -271,9 +271,9 @@ public:
     /******** Functions: parse set, public *********/
     /***********************************************/
 
-    /// Parse X3D file and fill scene graph. The function has no return value. Result can be found by analyzing the generated graph.
+    /// Parse X3D file_manager and fill scene graph. The function has no return value. Result can be found by analyzing the generated graph.
     /// Also exception can be thrown if trouble will found.
-    /// \param [in] pFile - name of file to be parsed.
+    /// \param [in] pFile - name of file_manager to be parsed.
     /// \param [in] pIOHandler - pointer to IO helper object.
     void ParseFile(const std::string &file, IOSystem *pIOHandler);
     void ParseFile(std::istream &myIstream);

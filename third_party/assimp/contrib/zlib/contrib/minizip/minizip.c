@@ -72,7 +72,7 @@
 
 #ifdef _WIN32
 static int filetime(f, tmzip, dt)
-    const char *f;          /* name of file to get info on */
+    const char *f;          /* name of file_manager to get info on */
     tm_zip *tmzip;             /* return value: access, modific. and creation times */
     uLong *dt;             /* dostime */
 {
@@ -96,7 +96,7 @@ static int filetime(f, tmzip, dt)
 #else
 #if defined(unix) || defined(__APPLE__)
 static int filetime(f, tmzip, dt)
-    const char *f;         /* name of file to get info on */
+    const char *f;         /* name of file_manager to get info on */
     tm_zip *tmzip;         /* return value: access, modific. and creation times */
     uLong *dt;             /* dostime */
 {
@@ -119,7 +119,7 @@ static int filetime(f, tmzip, dt)
 
     if (name[len - 1] == '/')
       name[len - 1] = '\0';
-    /* not all systems allow stat'ing a file with / appended */
+    /* not all systems allow stat'ing a file_manager with / appended */
     if (stat(name,&s)==0)
     {
       tm_t = s.st_mtime;
@@ -139,7 +139,7 @@ static int filetime(f, tmzip, dt)
 }
 #else
 uLong filetime(f, tmzip, dt)
-    const char *f;          /* name of file to get info on */
+    const char *f;          /* name of file_manager to get info on */
     tm_zip *tmzip;             /* return value: access, modific. and creation times */
     uLong *dt;             /* dostime */
 {
@@ -172,17 +172,17 @@ static void do_banner()
 
 static void do_help()
 {
-    printf("Usage : minizip [-o] [-a] [-0 to -9] [-p password] [-j] file.zip [files_to_add]\n\n" \
-           "  -o  Overwrite existing file.zip\n" \
-           "  -a  Append to existing file.zip\n" \
+    printf("Usage : minizip [-o] [-a] [-0 to -9] [-p password] [-j] file_manager.zip [files_to_add]\n\n" \
+           "  -o  Overwrite existing file_manager.zip\n" \
+           "  -a  Append to existing file_manager.zip\n" \
            "  -0  Store only\n" \
            "  -1  Compress faster\n" \
            "  -9  Compress better\n\n" \
-           "  -j  exclude path. store only the file name.\n\n");
+           "  -j  exclude path. store only the file_manager name.\n\n");
 }
 
-/* calculate the CRC32 of a file,
-   because to encrypt a file, we need known the CRC32 of the file before */
+/* calculate the CRC32 of a file_manager,
+   because to encrypt a file_manager, we need known the CRC32 of the file_manager before */
 static int getFileCrc(const char* filenameinzip,void*buf,unsigned long size_buf,unsigned long* result_crc)
 {
    unsigned long calculate_crc=0;
@@ -218,7 +218,7 @@ static int getFileCrc(const char* filenameinzip,void*buf,unsigned long size_buf,
         fclose(fin);
 
     *result_crc=calculate_crc;
-    printf("file %s crc %lx\n", filenameinzip, calculate_crc);
+    printf("file_manager %s crc %lx\n", filenameinzip, calculate_crc);
     return err;
 }
 
@@ -336,7 +336,7 @@ int main(argc,argv)
 
         if (opt_overwrite==2)
         {
-            /* if the file don't exist, we not append file */
+            /* if the file_manager don't exist, we not append file_manager */
             if (check_exist_file(filename_try)==0)
                 opt_overwrite=1;
         }
@@ -349,7 +349,7 @@ int main(argc,argv)
                 {
                     char answer[128];
                     int ret;
-                    printf("The file %s exists. Overwrite ? [y]es, [n]o, [a]ppend : ",filename_try);
+                    printf("The file_manager %s exists. Overwrite ? [y]es, [n]o, [a]ppend : ",filename_try);
                     ret = scanf("%1s",answer);
                     if (ret != 1)
                     {
@@ -423,14 +423,14 @@ int main(argc,argv)
                 zip64 = isLargeFile(filenameinzip);
 
                                                          /* The path name saved, should not include a leading slash. */
-               /*if it did, windows/xp and dynazip couldn't read the zip file. */
+               /*if it did, windows/xp and dynazip couldn't read the zip file_manager. */
                  savefilenameinzip = filenameinzip;
                  while( savefilenameinzip[0] == '\\' || savefilenameinzip[0] == '/' )
                  {
                      savefilenameinzip++;
                  }
 
-                 /*should the zip file contain any path at all?*/
+                 /*should the zip file_manager contain any path at all?*/
                  if( opt_exclude_path )
                  {
                      const char *tmpptr;

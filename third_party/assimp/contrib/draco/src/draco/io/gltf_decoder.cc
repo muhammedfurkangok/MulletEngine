@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -322,7 +322,7 @@ StatusOr<std::unique_ptr<SourceImage>> GetSourceImage(
     const tinygltf::Model &model, const tinygltf::Image &image,
     const Texture &texture) {
   std::unique_ptr<SourceImage> source_image(new SourceImage());
-  // If the image is in an external file then the buffer view is < 0.
+  // If the image is in an external file_manager then the buffer view is < 0.
   if (image.bufferView >= 0) {
     DRACO_RETURN_IF_ERROR(CopyDataFromBufferView(
         model, image.bufferView, &source_image->MutableEncodedData()));
@@ -504,15 +504,15 @@ Status GltfDecoder::LoadFile(const std::string &file_name,
   if (extension == "glb") {
     if (!loader.LoadBinaryFromFile(&gltf_model_, &err, &warn, file_name)) {
       return Status(Status::DRACO_ERROR,
-                    "TinyGLTF failed to load glb file: " + err);
+                    "TinyGLTF failed to load glb file_manager: " + err);
     }
   } else if (extension == "gltf") {
     if (!loader.LoadASCIIFromFile(&gltf_model_, &err, &warn, file_name)) {
       return Status(Status::DRACO_ERROR,
-                    "TinyGLTF failed to load glTF file: " + err);
+                    "TinyGLTF failed to load glTF file_manager: " + err);
     }
   } else {
-    return Status(Status::DRACO_ERROR, "Unknown input file extension.");
+    return Status(Status::DRACO_ERROR, "Unknown input file_manager extension.");
   }
   DRACO_RETURN_IF_ERROR(CheckUnsupportedFeatures());
   input_file_name_ = file_name;
@@ -1310,7 +1310,7 @@ Status GltfDecoder::CopyTextures(T *owner) {
                            GetSourceImage(gltf_model_, image, *draco_texture));
     if (source_image->encoded_data().empty() &&
         !source_image->filename().empty()) {
-      // Update filename of source image to be relative of the glTF file.
+      // Update filename of source image to be relative of the glTF file_manager.
       std::string dirname;
       std::string basename;
       SplitPath(input_file_name_, &dirname, &basename);

@@ -12,7 +12,7 @@
  */
 
 #include "LoadDeformed.h"
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btDeformableMultiBodyDynamicsWorld.h"
 #include "BulletSoftBody/btSoftBody.h"
@@ -73,14 +73,14 @@ std::string CustomSoftBodyHelper::loadDeformableState(btAlignedObjectArray<btVec
 		std::ifstream ifs(filename);
 		if (!ifs)
 		{
-			err << "Cannot open file [" << filename << "]" << std::endl;
+			err << "Cannot open file_manager [" << filename << "]" << std::endl;
 			return err.str();
 		}
 #else
 		int fileHandle = fileIO->fileOpen(filename, "r");
 		if (fileHandle < 0)
 		{
-			err << "Cannot open file [" << filename << "]" << std::endl;
+			err << "Cannot open file_manager [" << filename << "]" << std::endl;
 			return err.str();
 		}
 #endif

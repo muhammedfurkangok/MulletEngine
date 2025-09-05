@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ----------------------------------------------------------------------
 */
 
-// TODO: refactor entire file to get rid of the "flat-copy" first approach
+// TODO: refactor entire file_manager to get rid of the "flat-copy" first approach
 // to copying structures. This easily breaks in the most unintuitive way
 // possible as new fields are added to assimp structures.
 
@@ -404,11 +404,11 @@ void SceneCombiner::MergeScenes(aiScene **_dest, aiScene *master, std::vector<At
 
                 if ((*cur)->mNumTextures != dest->mNumTextures) {
                     // We need to update all texture indices of the mesh. So we need to search for
-                    // a material property called '$tex.file'
+                    // a material property called '$tex.file_manager'
 
                     for (unsigned int a = 0; a < (*pip)->mNumProperties; ++a) {
                         aiMaterialProperty *prop = (*pip)->mProperties[a];
-                        if (!strncmp(prop->mKey.data, "$tex.file", 9)) {
+                        if (!strncmp(prop->mKey.data, "$tex.file_manager", 9)) {
                             // Check whether this texture is an embedded texture.
                             // In this case the property looks like this: *<n>,
                             // where n is the index of the texture.

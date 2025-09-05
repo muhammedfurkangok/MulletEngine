@@ -75,25 +75,25 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool XFileImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t token[] = { AI_MAKE_MAGIC("xof ") };
     return CheckMagicToken(pIOHandler, pFile, token, AI_COUNT_OF(token));
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get file extension list
+// Get file_manager extension list
 const aiImporterDesc *XFileImporter::GetInfo() const {
     return &desc;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void XFileImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
-    // read file into memory
+    // read file_manager into memory
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open file ", pFile, ".");
+        throw DeadlyImportError("Failed to open file_manager ", pFile, ".");
     }
 
     static const size_t MinSize = 16;
@@ -107,7 +107,7 @@ void XFileImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IO
     file->Read(&mBuffer.front(), 1, fileSize);
     ConvertToUTF8(mBuffer);
 
-    // parse the file into a temporary representation
+    // parse the file_manager into a temporary representation
     XFileParser parser(mBuffer);
 
     // and create the proper return structures out of it
@@ -630,7 +630,7 @@ void XFileImporter::ConvertMaterials(aiScene *pScene, std::vector<XFile::Materia
             }
         } else {
             // Otherwise ... try to search for typical strings in the
-            // texture's file name like 'bump' or 'diffuse'
+            // texture's file_manager name like 'bump' or 'diffuse'
             unsigned int iHM = 0, iNM = 0, iDM = 0, iSM = 0, iAM = 0, iEM = 0;
             for (unsigned int b = 0; b < oldMat.mTextures.size(); ++b) {
                 const XFile::TexEntry &otex = oldMat.mTextures[b];
@@ -639,13 +639,13 @@ void XFileImporter::ConvertMaterials(aiScene *pScene, std::vector<XFile::Materia
                     continue;
                 }
 
-                // find the file name
+                // find the file_manager name
                 std::string::size_type s = sz.find_last_of("\\/");
                 if (std::string::npos == s) {
                     s = 0;
                 }
 
-                // cut off the file extension
+                // cut off the file_manager extension
                 std::string::size_type sExt = sz.find_last_of('.');
                 if (std::string::npos != sExt) {
                     sz[sExt] = '\0';

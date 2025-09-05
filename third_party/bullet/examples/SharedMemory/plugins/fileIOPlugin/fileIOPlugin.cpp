@@ -180,7 +180,7 @@ struct InMemoryFileIO : public CommonFileIOInterface
 				{
 					if (numBytes!=1)
 					{
-						printf("InMemoryFileIO::fileRead Attempt to read beyond end of file\n");
+						printf("InMemoryFileIO::fileRead Attempt to read beyond end of file_manager\n");
 					}
 				}
 				
@@ -407,7 +407,7 @@ struct WrapperFileIO : public CommonFileIOInterface
 												fileSize = readBytes;
 											} else
 											{
-												printf("WrapperFileIO error: reading more bytes (%d) then reported file size (%d) of file %s.\n", readBytes, fileSize, fileName);
+												printf("WrapperFileIO error: reading more bytes (%d) then reported file_manager size (%d) of file_manager %s.\n", readBytes, fileSize, fileName);
 											}
 										}
 									} else
@@ -416,7 +416,7 @@ struct WrapperFileIO : public CommonFileIOInterface
 									}
 								}
 
-								//potentially register a zero byte file, or files that only can be read partially
+								//potentially register a zero byte file_manager, or files that only can be read partially
 							
 								m_cachedFiles.registerFile(fileName, buffer, fileSize);
 							}
@@ -438,7 +438,7 @@ struct WrapperFileIO : public CommonFileIOInterface
 				} else
 				{
 					//figure out what wrapper interface to use
-					//use the first one that can open the file
+					//use the first one that can open the file_manager
 					for (int i=0;i<B3_MAX_FILEIO_INTERFACES;i++)
 					{
 						CommonFileIOInterface* childFileIO=m_availableFileIOInterfaces[i];

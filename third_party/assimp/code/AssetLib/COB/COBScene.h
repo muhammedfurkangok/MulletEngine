@@ -85,7 +85,7 @@ struct ChunkInfo
         ,   size      (NO_SIZE)
     {}
 
-    // Id of this chunk, unique within file
+    // Id of this chunk, unique within file_manager
     unsigned int id;
 
     // and the corresponding parent
@@ -260,7 +260,7 @@ typedef std::deque< std::shared_ptr<Node> > NodeList;
 typedef std::vector< Material > MaterialList;
 
 // ------------------
-/** Represents a master COB scene, even if we loaded just a single COB file */
+/** Represents a master COB scene, even if we loaded just a single COB file_manager */
 struct Scene
 {
     NodeList nodes;

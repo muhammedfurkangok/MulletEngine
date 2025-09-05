@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -36,13 +36,13 @@
 
 namespace draco {
 
-// Decodes a glTF file and returns a draco::Mesh. All of the |mesh|'s attributes
+// Decodes a glTF file_manager and returns a draco::Mesh. All of the |mesh|'s attributes
 // will be merged into one draco::Mesh
 class GltfDecoder {
  public:
   GltfDecoder();
 
-  // Decodes a glTF file stored in the input |file_name| or |buffer| to a Mesh.
+  // Decodes a glTF file_manager stored in the input |file_name| or |buffer| to a Mesh.
   // The second form returns a vector of files used as input to the mesh during
   // the decoding process. Returns nullptr when decode fails.
   StatusOr<std::unique_ptr<Mesh>> DecodeFromFile(const std::string &file_name);
@@ -50,7 +50,7 @@ class GltfDecoder {
       const std::string &file_name, std::vector<std::string> *mesh_files);
   StatusOr<std::unique_ptr<Mesh>> DecodeFromBuffer(DecoderBuffer *buffer);
 
-  // Decodes a glTF file stored in the input |file_name| or |buffer| to a Scene.
+  // Decodes a glTF file_manager stored in the input |file_name| or |buffer| to a Scene.
   // The second form returns a vector of files used as input to the scene during
   // the decoding process. Returns nullptr if the decode fails.
   StatusOr<std::unique_ptr<Scene>> DecodeFromFileToScene(
@@ -147,9 +147,9 @@ class GltfDecoder {
   // Accumulates the number of elements per attribute for |primitive|.
   Status AccumulatePrimitiveStats(const tinygltf::Primitive &primitive);
 
-  // Adds all of the attributes from the glTF file to a Draco mesh.
+  // Adds all of the attributes from the glTF file_manager to a Draco mesh.
   // GatherAttributeAndMaterialStats() must be called before this function. The
-  // GeometryAttribute::MATERIAL attribute will be created only if the glTF file
+  // GeometryAttribute::MATERIAL attribute will be created only if the glTF file_manager
   // contains more than one material.
   template <typename BuilderT>
   Status AddAttributesToDracoMesh(BuilderT *builder);
@@ -167,7 +167,7 @@ class GltfDecoder {
   // Copies the tangent attribute data from |accessor| and adds it to a Draco
   // mesh. This function will transform all of the data by |transform_matrix|
   // and then normalize before adding the data to the Draco mesh.
-  // |indices_data| is the indices data from the glTF file. |att_id| is the
+  // |indices_data| is the indices data from the glTF file_manager. |att_id| is the
   // attribute id of the tangent attribute in the Draco mesh.
   // |number_of_elements| is the number of faces or points this function will
   // process. |reverse_winding| if set will change the orientation of the data.
@@ -181,7 +181,7 @@ class GltfDecoder {
   // Copies the texture coordinate attribute data from |accessor| and adds it to
   // a Draco mesh. This function will flip the data on the horizontal axis as
   // Draco meshes store the texture coordinates differently than glTF.
-  // |indices_data| is the indices data from the glTF file. |att_id| is the
+  // |indices_data| is the indices data from the glTF file_manager. |att_id| is the
   // attribute id of the texture coordinate attribute in the Draco mesh.
   // |number_of_elements| is the number of faces or points this function will
   // process. |reverse_winding| if set will change the orientation of the data.
@@ -192,7 +192,7 @@ class GltfDecoder {
                               bool reverse_winding, BuilderT *builder);
 
   // Copies the mesh feature ID attribute data from |accessor| and adds it to a
-  // Draco mesh. |indices_data| is the indices data from the glTF file. |att_id|
+  // Draco mesh. |indices_data| is the indices data from the glTF file_manager. |att_id|
   // is the attribute ID of the mesh feature ID attribute in the Draco mesh.
   // |number_of_elements| is the number of faces or points this function will
   // process. |reverse_winding| if set will change the orientation of the data.
@@ -205,7 +205,7 @@ class GltfDecoder {
                                BuilderT *builder);
 
   // Copies the property attribute data from |accessor| and adds it to a
-  // Draco mesh. |indices_data| is the indices data from the glTF file. |att_id|
+  // Draco mesh. |indices_data| is the indices data from the glTF file_manager. |att_id|
   // is the attribute ID of the mesh feature ID attribute in the Draco mesh.
   // |number_of_elements| is the number of faces or points this function will
   // process. |reverse_winding| if set will change the orientation of the data.
@@ -219,7 +219,7 @@ class GltfDecoder {
   // Copies the attribute data from |accessor| and adds it to a Draco mesh.
   // This function will transform all of the data by |transform_matrix| before
   // adding the data to the Draco mesh. |indices_data| is the indices data
-  // from the glTF file. |att_id| is the attribute id of the attribute in the
+  // from the glTF file_manager. |att_id| is the attribute id of the attribute in the
   // Draco mesh. |number_of_elements| is the number of faces or points this
   // function will process. |normalize| if set will normalize all of the vector
   // data after transformation. |reverse_winding| if set will change the
@@ -299,18 +299,18 @@ class GltfDecoder {
                                           int number_of_points,
                                           PointCloudBuilder *builder);
 
-  // Checks if the glTF file contains a texture. If there is a texture, this
+  // Checks if the glTF file_manager contains a texture. If there is a texture, this
   // function will read the texture data and add it to the Draco |material|. If
   // there is no texture, this function will return OkStatus(). |texture_info|
   // is the data structure containing information about the texture in the glTF
-  // file. |type| is the type of texture defined by Draco. This is not the same
+  // file_manager. |type| is the type of texture defined by Draco. This is not the same
   // as the texture coordinate attribute id.
   Status CheckAndAddTextureToDracoMaterial(
       int texture_index, int tex_coord_attribute_index,
       const tinygltf::ExtensionMap &tex_info_ext, Material *material,
       TextureMap::Type type);
 
-  // Decode glTF file to scene.
+  // Decode glTF file_manager to scene.
   Status DecodeGltfToScene();
 
   // Decode glTF lights into a scene.
@@ -516,7 +516,7 @@ class GltfDecoder {
   // Data structure that stores the glTF data.
   tinygltf::Model gltf_model_;
 
-  // Path to the glTF file.
+  // Path to the glTF file_manager.
   std::string input_file_name_;
 
   // Class used to build the Draco mesh.

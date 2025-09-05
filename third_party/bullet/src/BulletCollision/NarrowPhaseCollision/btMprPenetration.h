@@ -3,7 +3,7 @@
  * ---------------------------------
  * Copyright (c)2012 Daniel Fiser <danfis@danfis.cz>
  *
- *  This file was ported from mpr.c file, part of libccd.
+ *  This file_manager was ported from mpr.c file_manager, part of libccd.
  *  The Minkoski Portal Refinement implementation was ported 
  *  to OpenCL by Erwin Coumans for the Bullet 3 Physics library.
  *  The original MPR idea and implementation is by Gary Snethen

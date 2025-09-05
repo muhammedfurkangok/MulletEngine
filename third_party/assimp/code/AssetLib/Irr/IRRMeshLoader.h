@@ -56,9 +56,9 @@ namespace Assimp {
 // ---------------------------------------------------------------------------
 /** IrrMesh importer class.
  *
- * IrrMesh is the native file format of the Irrlight engine and its editor
- * irrEdit. As IrrEdit itself is capable of importing quite many file formats,
- * it might be a good file format for data exchange.
+ * IrrMesh is the native file_manager format of the Irrlight engine and its editor
+ * irrEdit. As IrrEdit itself is capable of importing quite many file_manager formats,
+ * it might be a good file_manager format for data exchange.
  */
 class IRRMeshImporter : public BaseImporter, public IrrlichtBase {
 public:
@@ -69,7 +69,7 @@ public:
     ~IRRMeshImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      *  See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -83,7 +83,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile(const std::string &pFile, aiScene *pScene,

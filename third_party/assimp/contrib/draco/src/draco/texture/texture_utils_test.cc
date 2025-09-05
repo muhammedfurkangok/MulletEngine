@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,7 @@ namespace {
 
 TEST(TextureUtilsTest, TestGetTargetNameForTextureLoadedFromFile) {
   // Tests that correct target stem and format are returned by texture utils for
-  // texture loaded from image file (stem and format from source file).
+  // texture loaded from image file_manager (stem and format from source file_manager).
   std::unique_ptr<draco::Texture> texture =
       draco::ReadTextureFromFile(draco::GetTestFileFullPath("fast.jpg"))
           .value();
@@ -53,7 +53,7 @@ TEST(TextureUtilsTest, TestGetTargetNameForNewTexture) {
 
 TEST(TextureUtilsTest, TestGetSourceFormat) {
   // Tests that the source format is determined correctly for new textures and
-  // for textures loaded from file.
+  // for textures loaded from file_manager.
   std::unique_ptr<draco::Texture> new_texture(new draco::Texture());
   DRACO_ASSIGN_OR_ASSERT(
       std::unique_ptr<draco::Texture> png_texture,
@@ -106,7 +106,7 @@ TEST(TextureUtilsTest, TestGetTargetMimeType) {
   ASSERT_EQ(draco::TextureUtils::GetTargetMimeType(unknown_format),
             "image/custom");
 
-  // Test custom mime type from file name.
+  // Test custom mime type from file_manager name.
   draco::Texture unknown_format_file_name;
   unknown_format_file_name.source_image().set_filename("test.extension");
   ASSERT_EQ(draco::TextureUtils::GetTargetMimeType(unknown_format_file_name),

@@ -1,13 +1,13 @@
-// // This file is part of Eigen, a lightweight C++ template library
+// // This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2012 Desire Nuentsa Wakam <desire.nuentsa_wakam@inria.fr>
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// This file is modified from the colamd/symamd library. The copyright is below
+// This file_manager is modified from the colamd/symamd library. The copyright is below
 
 //   The authors of the code itself are Stefan I. Larimore and Timothy A.
 //   Davis (davis@cise.ufl.edu), University of Florida.  The algorithm was
@@ -483,7 +483,7 @@ static bool compute_ordering(IndexType n_row, IndexType n_col, IndexType Alen, I
 /* === NON-USER-CALLABLE ROUTINES: ========================================== */
 /* ========================================================================== */
 
-/* There are no user-callable routines beyond this point in the file */
+/* There are no user-callable routines beyond this point in the file_manager */
 
 /* ========================================================================== */
 /* === init_rows_cols ======================================================= */

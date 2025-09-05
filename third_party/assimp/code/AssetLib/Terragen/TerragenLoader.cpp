@@ -74,14 +74,14 @@ TerragenImporter::TerragenImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool TerragenImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "terragen" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
 }
 
 // ------------------------------------------------------------------------------------------------
-// Build a string of all file extensions supported
+// Build a string of all file_manager extensions supported
 const aiImporterDesc *TerragenImporter::GetInfo() const {
     return &desc;
 }
@@ -94,19 +94,19 @@ void TerragenImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void TerragenImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     IOStream *file = pIOHandler->Open(pFile, "rb");
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr)
-        throw DeadlyImportError("Failed to open TERRAGEN TERRAIN file ", pFile, ".");
+        throw DeadlyImportError("Failed to open TERRAGEN TERRAIN file_manager ", pFile, ".");
 
     // Construct a stream reader to read all data in the correct endianness
     StreamReaderLE reader(file);
     if (reader.GetRemainingSize() < 16)
-        throw DeadlyImportError("TER: file is too small");
+        throw DeadlyImportError("TER: file_manager is too small");
 
     // Check for the existence of the two magic strings 'TERRAGEN' and 'TERRAIN '
     if (::strncmp((const char *)reader.GetPtr(), AI_TERR_BASE_STRING, 8))

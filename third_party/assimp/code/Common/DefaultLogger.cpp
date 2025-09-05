@@ -154,7 +154,7 @@ Logger *DefaultLogger::create(const char *name /*= "AssimpLog.txt"*/,
         m_pLogger->attachStream(LogStream::createDefaultStream(aiDefaultLogStream_STDERR));
     }
 
-    // Stream the log to a file
+    // Stream the log to a file_manager
     if (defStreams & aiDefaultLogStream_FILE && name && *name) {
         m_pLogger->attachStream(LogStream::createDefaultStream(aiDefaultLogStream_FILE, name, io));
     }
@@ -166,7 +166,7 @@ Logger *DefaultLogger::create(const char *name /*= "AssimpLog.txt"*/,
 void Logger::debug(const char *message) {
 
     // SECURITY FIX: otherwise it's easy to produce overruns since
-    // sometimes importers will include data from the input file
+    // sometimes importers will include data from the input file_manager
     // (i.e. node names) in their messages.
     if (strlen(message) > MAX_LOG_MESSAGE_LENGTH) {
         return OnDebug("<fixme: long message discarded>");

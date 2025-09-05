@@ -1698,7 +1698,7 @@ void glTF2Importer::ImportCommonMetadata(glTF2::Asset &a) {
 }
 
 void glTF2Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
-    ASSIMP_LOG_DEBUG("Reading GLTF2 file");
+    ASSIMP_LOG_DEBUG("Reading GLTF2 file_manager");
 
     // clean all member arrays
     meshOffsets.clear();
@@ -1707,7 +1707,7 @@ void glTF2Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IO
 
     this->mScene = pScene;
 
-    // read the asset file
+    // read the asset file_manager
     glTF2::Asset asset(pIOHandler, static_cast<rapidjson::IRemoteSchemaDocumentProvider *>(mSchemaDocumentProvider));
     asset.Load(pFile,
                CheckMagicToken(

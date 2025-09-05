@@ -71,13 +71,13 @@
 /// - Can be easily modified to only update on user input instead of frame updates
 ///
 /// ## Usage
-/// This library is self contained in one single header file and can be used either
+/// This library is self contained in one single header file_manager and can be used either
 /// in header only mode or in implementation mode. The header only mode is used
 /// by default when included and allows including this header in other headers
 /// and does not contain the actual implementation. <br /><br />
 ///
 /// The implementation mode requires to define  the preprocessor macro
-/// NK_IMPLEMENTATION in *one* .c/.cpp file before #includeing this file, e.g.:
+/// NK_IMPLEMENTATION in *one* .c/.cpp file_manager before #includeing this file_manager, e.g.:
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~C
 ///     #define NK_IMPLEMENTATION
@@ -94,11 +94,11 @@
 /// ### Flags
 /// Flag                            | Description
 /// --------------------------------|------------------------------------------
-/// NK_PRIVATE                      | If defined declares all functions as static, so they can only be accessed inside the file that contains the implementation
+/// NK_PRIVATE                      | If defined declares all functions as static, so they can only be accessed inside the file_manager that contains the implementation
 /// NK_INCLUDE_FIXED_TYPES          | If defined it will include header `<stdint.h>` for fixed sized types otherwise nuklear tries to select the correct type. If that fails it will throw a compiler error and you have to select the correct types yourself.
 /// NK_INCLUDE_DEFAULT_ALLOCATOR    | If defined it will include header `<stdlib.h>` and provide additional functions to use this library without caring for memory allocation control and therefore ease memory management.
-/// NK_INCLUDE_STANDARD_IO          | If defined it will include header `<stdio.h>` and provide additional functions depending on file loading.
-/// NK_INCLUDE_STANDARD_VARARGS     | If defined it will include header <stdio.h> and provide additional functions depending on file loading.
+/// NK_INCLUDE_STANDARD_IO          | If defined it will include header `<stdio.h>` and provide additional functions depending on file_manager loading.
+/// NK_INCLUDE_STANDARD_VARARGS     | If defined it will include header <stdio.h> and provide additional functions depending on file_manager loading.
 /// NK_INCLUDE_VERTEX_BUFFER_OUTPUT | Defining this adds a vertex draw command list backend to this library, which allows you to convert queue commands into vertex draw commands. This is mainly if you need a hardware accessible format for OpenGL, DirectX, Vulkan, Metal,...
 /// NK_INCLUDE_FONT_BAKING          | Defining this adds `stb_truetype` and `stb_rect_pack` implementation to this library and provides font baking and rendering. If you already have font handling or do not want to use this font handler you don't have to define it.
 /// NK_INCLUDE_DEFAULT_FONT         | Defining this adds the default font: ProggyClean.ttf into this library which can be loaded into a font atlas and allows using this library without having a truetype font
@@ -3843,7 +3843,7 @@ NK_API const char* nk_utf_at(const char *buffer, int length, int index, nk_rune 
     is over or permanent you can call `nk_font_atlas_init`.
 
     After successfully initializing the font baker you can add Truetype(.ttf) fonts from
-    different sources like memory or from file by calling one of the `nk_font_atlas_add_xxx`.
+    different sources like memory or from file_manager by calling one of the `nk_font_atlas_add_xxx`.
     functions. Adding font will permanently store each font, font config and ttf memory block(!)
     inside the font atlas and allows to reuse the font atlas. If you don't want to reuse
     the font baker by for example adding additional fonts you can call
@@ -3951,10 +3951,10 @@ struct nk_font_config {
     struct nk_font_config *next;
     /* NOTE: only used internally */
     void *ttf_blob;
-    /* pointer to loaded TTF file memory block.
+    /* pointer to loaded TTF file_manager memory block.
      * NOTE: not needed for nk_font_atlas_add_from_memory and nk_font_atlas_add_from_file. */
     nk_size ttf_size;
-    /* size of the loaded TTF file memory block
+    /* size of the loaded TTF file_manager memory block
      * NOTE: not needed for nk_font_atlas_add_from_memory and nk_font_atlas_add_from_file. */
 
     unsigned char ttf_data_owned_by_atlas;
@@ -10971,7 +10971,7 @@ struct nk_tt_pack_context {
 };
 
 struct nk_tt_fontinfo {
-    const unsigned char* data; /* pointer to .ttf file */
+    const unsigned char* data; /* pointer to .ttf file_manager */
     int fontstart;/* offset of start of font */
     int numGlyphs;/* number of glyphs, needed for range checking */
     int loca,head,glyf,hhea,hmtx,kern; /* table locations as offset from start of .ttf */
@@ -25773,6 +25773,6 @@ nk_tooltipfv(struct nk_context *ctx, const char *fmt, va_list args)
 /// and his original immediate mode graphical user interface idea and Sean
 /// Barret for his amazing single header third_party which restored my faith
 /// in third_party and brought me to create some of my own. Finally Apoorva Joshi
-/// for his single header file packer.
+/// for his single header file_manager packer.
 */
 

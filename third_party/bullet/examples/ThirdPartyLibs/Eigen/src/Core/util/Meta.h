@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008-2015 Gael Guennebaud <gael.guennebaud@inria.fr>
@@ -6,7 +6,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_META_H
 #define EIGEN_META_H
@@ -45,7 +45,7 @@ typedef std::int64_t  int64_t;
 }
 #else
 // Without c++11, all compilers able to compile Eigen also
-// provide the C99 stdint.h header file.
+// provide the C99 stdint.h header file_manager.
 #include <stdint.h>
 namespace Eigen {
 namespace numext {
@@ -77,7 +77,7 @@ namespace internal {
 
 /** \internal
   * \file Meta.h
-  * This file contains generic metaprogramming classes which are not specifically related to Eigen.
+  * This file_manager contains generic metaprogramming classes which are not specifically related to Eigen.
   * \note In case you wonder, yes we're aware that Boost already provides all these features,
   * we however don't want to add a dependency to Boost.
   */

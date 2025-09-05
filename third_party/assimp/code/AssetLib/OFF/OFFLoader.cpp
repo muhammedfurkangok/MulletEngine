@@ -71,7 +71,7 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool OFFImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "off" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens), 3);
@@ -92,16 +92,16 @@ static void NextToken(const char **car, const char *end) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void OFFImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open OFF file ", pFile, ".");
+        throw DeadlyImportError("Failed to open OFF file_manager ", pFile, ".");
     }
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<char> mBuffer2;
     TextFileToBuffer(file.get(), mBuffer2);
     const char *buffer = &mBuffer2[0];

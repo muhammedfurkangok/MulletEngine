@@ -57,7 +57,7 @@ bool StdioFileReader::ReadFileToBuffer(std::vector<char> *buffer) {
 
   const size_t file_size = GetFileSize();
   if (file_size == 0) {
-    FILEREADER_LOG_ERROR("Unable to obtain file size or file empty");
+    FILEREADER_LOG_ERROR("Unable to obtain file_manager size or file_manager empty");
     return false;
   }
 
@@ -73,7 +73,7 @@ bool StdioFileReader::ReadFileToBuffer(std::vector<uint8_t> *buffer) {
 
   const size_t file_size = GetFileSize();
   if (file_size == 0) {
-    FILEREADER_LOG_ERROR("Unable to obtain file size or file empty");
+    FILEREADER_LOG_ERROR("Unable to obtain file_manager size or file_manager empty");
     return false;
   }
 

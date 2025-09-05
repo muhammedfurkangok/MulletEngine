@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -80,7 +80,7 @@ class FloatPointsTreeDecoder {
   uint32_t num_points_;
   uint32_t compression_level_;
 
-  // Member variable to check if the number of points from the file header
+  // Member variable to check if the number of points from the file_manager header
   // matches the number of points in the compression header. If
   // |num_points_from_header_| is 0, do not perform the check. Defaults to 0.
   uint32_t num_points_from_header_;

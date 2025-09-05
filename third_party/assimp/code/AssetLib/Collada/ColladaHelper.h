@@ -58,7 +58,7 @@ struct aiMaterial;
 namespace Assimp {
 namespace Collada {
 
-/// Collada file versions which evolved during the years ...
+/// Collada file_manager versions which evolved during the years ...
 enum FormatVersion {
     FV_1_5_n,
     FV_1_4_n,

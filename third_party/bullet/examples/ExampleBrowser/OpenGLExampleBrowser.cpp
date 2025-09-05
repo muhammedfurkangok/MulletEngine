@@ -45,7 +45,7 @@
 #include "Bullet3Common/b3FileUtils.h"
 
 #include "LinearMath/btIDebugDraw.h"
-//quick test for file import, @todo(erwincoumans) make it more general and add other file formats
+//quick test for file_manager import, @todo(erwincoumans) make it more general and add other file_manager formats
 #include "../Importers/ImportURDFDemo/ImportURDFSetup.h"
 #include "../Importers/ImportBullet/SerializeSetup.h"
 #include "Bullet3Common/b3HashMap.h"
@@ -705,7 +705,7 @@ void fileOpenCallback()
 	if (len)
 	{
 		//todo(erwincoumans) check if it is actually URDF
-		//printf("file open:%s\n", filename);
+		//printf("file_manager open:%s\n", filename);
 		openFileDemo(filename);
 	}
 }

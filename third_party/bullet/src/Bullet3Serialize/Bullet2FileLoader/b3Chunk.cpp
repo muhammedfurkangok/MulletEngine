@@ -48,9 +48,9 @@ b3Long64 ChunkUtils::swapLong64(b3Long64 lng)
 // ----------------------------------------------------- //
 int ChunkUtils::getOffset(int flags)
 {
-	// if the file is saved in a
+	// if the file_manager is saved in a
 	// different format, get the
-	// file's chunk size
+	// file_manager's chunk size
 	int res = CHUNK_HEADER_LEN;
 
 	if (VOID_IS_8)

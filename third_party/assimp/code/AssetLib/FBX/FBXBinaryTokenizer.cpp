@@ -268,7 +268,7 @@ void ReadData(const char*& sbegin_out, const char*& send_out, const char* input,
             };
             ai_assert(stride > 0);
             if(length * stride != comp_len) {
-                TokenizeError("cannot ReadData, calculated data stride differs from what the file claims",input, cursor);
+                TokenizeError("cannot ReadData, calculated data stride differs from what the file_manager claims",input, cursor);
             }
         }
         // zip/deflate algorithm (encoding==1)? take given length. anything else? die
@@ -304,7 +304,7 @@ bool ReadScope(TokenList &output_tokens, StackAllocator &token_allocator, const 
     // the first word contains the offset at which this block ends
 	const uint64_t end_offset = is64bits ? ReadDoubleWord(input, cursor, end) : ReadWord(input, cursor, end);
 
-    // we may get 0 if reading reached the end of the file -
+    // we may get 0 if reading reached the end of the file_manager -
     // fbx files have a mysterious extra footer which I don't know
     // how to extract any information from, but at least it always
     // starts with a 0.
@@ -391,10 +391,10 @@ bool ReadScope(TokenList &output_tokens, StackAllocator &token_allocator, const 
 // TODO: Test FBX Binary files newer than the 7500 version to check if the 64 bits address behaviour is consistent
 void TokenizeBinary(TokenList &output_tokens, const char *input, size_t length, StackAllocator &token_allocator) {
 	ai_assert(input);
-	ASSIMP_LOG_DEBUG("Tokenizing binary FBX file");
+	ASSIMP_LOG_DEBUG("Tokenizing binary FBX file_manager");
 
     if(length < 0x1b) {
-        TokenizeError("file is too short",0);
+        TokenizeError("file_manager is too short",0);
     }
 
     //uint32_t offset = 0x15;
@@ -430,7 +430,7 @@ void TokenizeBinary(TokenList &output_tokens, const char *input, size_t length, 
     catch (const DeadlyImportError& e)
     {
         if (!is64bits && (length > std::numeric_limits<uint32_t>::max())) {
-            throw DeadlyImportError("The FBX file is invalid. This may be because the content is too big for this older version (", ai_to_string(version), ") of the FBX format. (", e.what(), ")");
+            throw DeadlyImportError("The FBX file_manager is invalid. This may be because the content is too big for this older version (", ai_to_string(version), ") of the FBX format. (", e.what(), ")");
         }
         throw;
     }

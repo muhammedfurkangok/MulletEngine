@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -62,7 +62,7 @@ StatusOr<std::unique_ptr<Scene>> ReadSceneFromFile(
       return Status(Status::DRACO_ERROR, "USD is not supported yet.");
     }
     default: {
-      return Status(Status::DRACO_ERROR, "Unknown input file format.");
+      return Status(Status::DRACO_ERROR, "Unknown input file_manager format.");
     }
   }
 }
@@ -117,7 +117,7 @@ Status WriteSceneToFile(const std::string &file_name, const Scene &scene,
       return OkStatus();
     }
     default: {
-      return Status(Status::DRACO_ERROR, "Unknown output file format.");
+      return Status(Status::DRACO_ERROR, "Unknown output file_manager format.");
     }
   }
 }

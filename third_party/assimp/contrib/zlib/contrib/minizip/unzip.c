@@ -20,7 +20,7 @@
 
   Copyright (c) 1990-2000 Info-ZIP.  All rights reserved.
 
-  See the accompanying file LICENSE, version 2000-Apr-09 or later
+  See the accompanying file_manager LICENSE, version 2000-Apr-09 or later
   (the contents of which are also included in zip.h) for terms of use.
   If, for some reason, all these files are missing, the Info-ZIP license
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
@@ -33,8 +33,8 @@
   (Prior to January 2000, re-export from the US was a violation of US law.)
 
         This encryption code is a direct transcription of the algorithm from
-  Roger Schlafly, described by Phil Katz in the file appnote.txt.  This
-  file (appnote.txt) is distributed with the PKZIP program (even in the
+  Roger Schlafly, described by Phil Katz in the file_manager appnote.txt.  This
+  file_manager (appnote.txt) is distributed with the PKZIP program (even in the
   version without encryption capabilities).
 
         ------------------------------------------------------------------------------------
@@ -122,14 +122,14 @@
 const char unz_copyright[] =
    " unzip 1.01 Copyright 1998-2004 Gilles Vollant - http://www.winimage.com/zLibDll";
 
-/* unz_file_info_interntal contain internal info about a file in zipfile*/
+/* unz_file_info_interntal contain internal info about a file_manager in zipfile*/
 typedef struct unz_file_info64_internal_s
 {
     ZPOS64_T offset_curfile;/* relative offset of local header 8 bytes */
 } unz_file_info64_internal;
 
 
-/* file_in_zip_read_info_s contain internal information about a file in zipfile,
+/* file_in_zip_read_info_s contain internal information about a file_manager in zipfile,
     when reading and decompress it */
 typedef struct
 {
@@ -169,19 +169,19 @@ typedef struct
     voidpf filestream;        /* io structore of the zipfile */
     unz_global_info64 gi;       /* public global information */
     ZPOS64_T byte_before_the_zipfile;/* byte before the zipfile, (>0 for sfx)*/
-    ZPOS64_T num_file;             /* number of the current file in the zipfile*/
-    ZPOS64_T pos_in_central_dir;   /* pos of the current file in the central dir*/
-    ZPOS64_T current_file_ok;      /* flag about the usability of the current file*/
+    ZPOS64_T num_file;             /* number of the current file_manager in the zipfile*/
+    ZPOS64_T pos_in_central_dir;   /* pos of the current file_manager in the central dir*/
+    ZPOS64_T current_file_ok;      /* flag about the usability of the current file_manager*/
     ZPOS64_T central_pos;          /* position of the beginning of the central dir*/
 
     ZPOS64_T size_central_dir;     /* size of the central directory  */
     ZPOS64_T offset_central_dir;   /* offset of start of central directory with
                                    respect to the starting disk number */
 
-    unz_file_info64 cur_file_info; /* public info about the current file in zip*/
+    unz_file_info64 cur_file_info; /* public info about the current file_manager in zip*/
     unz_file_info64_internal cur_file_info_internal; /* private info about it*/
     file_in_zip64_read_info_s* pfile_in_zip_read; /* structure about the current
-                                        file if we are decompressing it */
+                                        file_manager if we are decompressing it */
     int encrypted;
 
     int isZip64;
@@ -199,7 +199,7 @@ typedef struct
 
 /* ===========================================================================
      Read a byte from a gz_stream; update next_in and avail_in. Return EOF
-   for end of file.
+   for end of file_manager.
    IN assertion: the stream s has been successfully opened for reading.
 */
 
@@ -573,10 +573,10 @@ local ZPOS64_T unz64local_SearchCentralDir64(const zlib_filefunc64_32_def* pzlib
 }
 
 /*
-  Open a Zip file. path contain the full pathname (by example,
+  Open a Zip file_manager. path contain the full pathname (by example,
      on a Windows NT computer "c:\\test\\zlib114.zip" or on an Unix computer
      "zlib/zlib114.zip".
-     If the zipfile cannot be opened (file doesn't exist or in not valid), the
+     If the zipfile cannot be opened (file_manager doesn't exist or in not valid), the
        return value is NULL.
      Else, the return value is a unzFile Handle, usable with other function
        of this unzip package.
@@ -863,7 +863,7 @@ local void unz64local_DosDateToTmuDate (ZPOS64_T ulDosDate, tm_unz* ptm)
 }
 
 /*
-  Get Info about the current file in the zipfile, with internal only info
+  Get Info about the current file_manager in the zipfile, with internal only info
 */
 local int unz64local_GetCurrentFileInfoInternal OF((unzFile file,
                                                   unz_file_info64 *pfile_info,
@@ -1172,7 +1172,7 @@ extern int ZEXPORT unzGetCurrentFileInfo (unzFile file,
     return err;
 }
 /*
-  Set the current file of the zipfile to the first file.
+  Set the current file_manager of the zipfile to the first file_manager.
   return UNZ_OK if there is no problem
 */
 extern int ZEXPORT unzGoToFirstFile (unzFile file)
@@ -1192,9 +1192,9 @@ extern int ZEXPORT unzGoToFirstFile (unzFile file)
 }
 
 /*
-  Set the current file of the zipfile to the next file.
+  Set the current file_manager of the zipfile to the next file_manager.
   return UNZ_OK if there is no problem
-  return UNZ_END_OF_LIST_OF_FILE if the actual file was the latest.
+  return UNZ_END_OF_LIST_OF_FILE if the actual file_manager was the latest.
 */
 extern int ZEXPORT unzGoToNextFile (unzFile  file)
 {
@@ -1222,19 +1222,19 @@ extern int ZEXPORT unzGoToNextFile (unzFile  file)
 
 
 /*
-  Try locate the file szFileName in the zipfile.
+  Try locate the file_manager szFileName in the zipfile.
   For the iCaseSensitivity signification, see unzStringFileNameCompare
 
   return value :
-  UNZ_OK if the file is found. It becomes the current file.
-  UNZ_END_OF_LIST_OF_FILE if the file is not found
+  UNZ_OK if the file_manager is found. It becomes the current file_manager.
+  UNZ_END_OF_LIST_OF_FILE if the file_manager is not found
 */
 extern int ZEXPORT unzLocateFile (unzFile file, const char *szFileName, int iCaseSensitivity)
 {
     unz64_s* s;
     int err;
 
-    /* We remember the 'current' position in the file so that we can jump
+    /* We remember the 'current' position in the file_manager so that we can jump
      * back there if we fail.
      */
     unz_file_info64 cur_file_infoSaved;
@@ -1276,7 +1276,7 @@ extern int ZEXPORT unzLocateFile (unzFile file, const char *szFileName, int iCas
         }
     }
 
-    /* We failed, so restore the state of the 'current file' to where we
+    /* We failed, so restore the state of the 'current file_manager' to where we
      * were.
      */
     s->num_file = num_fileSaved ;
@@ -1294,14 +1294,14 @@ extern int ZEXPORT unzLocateFile (unzFile file, const char *szFileName, int iCas
 //
 // Further optimization could be realized by adding an ability
 // to cache the directory in memory. The goal being a single
-// comprehensive file read to put the file I need in a memory.
+// comprehensive file_manager read to put the file_manager I need in a memory.
 */
 
 /*
 typedef struct unz_file_pos_s
 {
-    ZPOS64_T pos_in_zip_directory;   // offset in file
-    ZPOS64_T num_of_file;            // # of file
+    ZPOS64_T pos_in_zip_directory;   // offset in file_manager
+    ZPOS64_T num_of_file;            // # of file_manager
 } unz_file_pos;
 */
 
@@ -1348,7 +1348,7 @@ extern int ZEXPORT unzGoToFilePos64(unzFile file, const unz64_file_pos* file_pos
     s->pos_in_central_dir = file_pos->pos_in_zip_directory;
     s->num_file           = file_pos->num_of_file;
 
-    /* set the current file */
+    /* set the current file_manager */
     err = unz64local_GetCurrentFileInfoInternal(file,&s->cur_file_info,
                                                &s->cur_file_info_internal,
                                                NULL,0,NULL,0,NULL,0);
@@ -1378,7 +1378,7 @@ extern int ZEXPORT unzGoToFilePos(
 /*
   Read the local header of the current zipfile
   Check the coherency of the local header and info in the end of central
-        directory about this file
+        directory about this file_manager
   store in *piSizeVar the size of extra info in local header
         (filename and size of extra field data)
 */
@@ -1466,8 +1466,8 @@ local int unz64local_CheckCurrentFileCoherencyHeader (unz64_s* s, uInt* piSizeVa
 }
 
 /*
-  Open for reading data the current file in the zipfile.
-  If there is no error and the file is opened, the return value is UNZ_OK.
+  Open for reading data the current file_manager in the zipfile.
+  If there is no error and the file_manager is opened, the return value is UNZ_OK.
 */
 extern int ZEXPORT unzOpenCurrentFile3 (unzFile file, int* method,
                                             int* level, int raw, const char* password)
@@ -1674,12 +1674,12 @@ extern ZPOS64_T ZEXPORT unzGetCurrentFileZStreamPos64( unzFile file)
 /** Addition for GDAL : END */
 
 /*
-  Read bytes from the current file.
+  Read bytes from the current file_manager.
   buf contain buffer where data must be copied
   len the size of buf.
 
   return the number of byte copied if somes bytes are copied
-  return 0 if the end of file was reached
+  return 0 if the end of file_manager was reached
   return <0 with error code if there is an error
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
@@ -1924,7 +1924,7 @@ extern ZPOS64_T ZEXPORT unztell64 (unzFile file)
 
 
 /*
-  return 1 if the end of file was reached, 0 elsewhere
+  return 1 if the end of file_manager was reached, 0 elsewhere
 */
 extern int ZEXPORT unzeof (unzFile file)
 {
@@ -1947,7 +1947,7 @@ extern int ZEXPORT unzeof (unzFile file)
 
 
 /*
-Read extra field from the current file (opened by unzOpenCurrentFile)
+Read extra field from the current file_manager (opened by unzOpenCurrentFile)
 This is the local-header version of the extra field (sometimes, there is
 more info in the local-header version than in the central-header)
 
@@ -2003,8 +2003,8 @@ extern int ZEXPORT unzGetLocalExtrafield (unzFile file, voidp buf, unsigned len)
 }
 
 /*
-  Close the file in zip opened with unzOpenCurrentFile
-  Return UNZ_CRCERROR if all the file was read but the CRC is not good
+  Close the file_manager in zip opened with unzOpenCurrentFile
+  Return UNZ_CRCERROR if all the file_manager was read but the CRC is not good
 */
 extern int ZEXPORT unzCloseCurrentFile (unzFile file)
 {

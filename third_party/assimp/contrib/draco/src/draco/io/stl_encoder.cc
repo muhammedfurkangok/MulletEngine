@@ -1,7 +1,7 @@
 // Copyright 2022 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -38,7 +38,7 @@ Status StlEncoder::EncodeToFile(const Mesh &mesh,
   // Encode the mesh into a buffer.
   EncoderBuffer buffer;
   DRACO_RETURN_IF_ERROR(EncodeToBuffer(mesh, &buffer));
-  // Write the buffer into the file.
+  // Write the buffer into the file_manager.
   file->Write(buffer.data(), buffer.size());
   return OkStatus();
 }

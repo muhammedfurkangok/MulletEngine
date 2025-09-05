@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /*
- *  @file Slightly modified version of the anorms.h header file
+ *  @file_manager Slightly modified version of the anorms.h header file_manager
  *  released by ID software with the Quake 2 source code.
  *
  *  Table of normals used by MD2 models

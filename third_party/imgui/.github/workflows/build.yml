@@ -69,7 +69,7 @@ jobs:
           call "%VS_PATH%\VC\Auxiliary\Build\vcvars64.bat"
           .\build_win32.bat /W4
 
-      - name: Build example_null (single file build)
+      - name: Build example_null (single file_manager build)
         shell: bash
         run: |
           cat > example_single_file.cpp <<'EOF'
@@ -302,7 +302,7 @@ jobs:
         make -C examples/example_null clean
         make -C examples/example_null WITH_FREETYPE=1
 
-    - name: Build example_null (single file build)
+    - name: Build example_null (single file_manager build)
       run: |
         cat > example_single_file.cpp <<'EOF'
 
@@ -484,7 +484,7 @@ jobs:
     - name: Build example_null (extra warnings, clang 64-bit)
       run: make -C examples/example_null WITH_EXTRA_WARNINGS=1
 
-    - name: Build example_null (single file build)
+    - name: Build example_null (single file_manager build)
       run: |
         cat > example_single_file.cpp <<'EOF'
 
@@ -495,7 +495,7 @@ jobs:
         EOF
         clang++ -I. -std=c++11 -Wall -Wformat -o example_single_file example_single_file.cpp
 
-    - name: Build example_null (single file build, c++20)
+    - name: Build example_null (single file_manager build, c++20)
       run: |
         cat > example_single_file.cpp <<'EOF'
 

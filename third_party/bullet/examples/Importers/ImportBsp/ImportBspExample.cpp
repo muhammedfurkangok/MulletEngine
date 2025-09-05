@@ -32,7 +32,7 @@ subject to the following restrictions:
 
 #include "../CommonInterfaces/CommonRigidBodyBase.h"
 
-///BspDemo shows the convex collision detection, by converting a Quake BSP file into convex objects and allowing interaction with boxes.
+///BspDemo shows the convex collision detection, by converting a Quake BSP file_manager into convex objects and allowing interaction with boxes.
 class BspDemo : public CommonRigidBodyBase
 {
 public:
@@ -168,7 +168,7 @@ void BspDemo::initPhysics(const char* bspfilename)
 		}
 		else
 		{
-			//how to detect file size?
+			//how to detect file_manager size?
 			memoryBuffer = malloc(size + 1);
 			fread(memoryBuffer, 1, size, file);
 			bspLoader.loadBSPFile(memoryBuffer);

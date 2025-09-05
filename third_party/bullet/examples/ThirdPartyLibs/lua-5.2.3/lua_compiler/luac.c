@@ -23,13 +23,13 @@ static void PrintFunction(const Proto* f, int full);
 #define luaU_print PrintFunction
 
 #define PROGNAME "luac"        /* default program name */
-#define OUTPUT PROGNAME ".out" /* default output file */
+#define OUTPUT PROGNAME ".out" /* default output file_manager */
 
 static int listing = 0;                 /* list bytecodes? */
 static int dumping = 1;                 /* dump bytecodes? */
 static int stripping = 0;               /* strip debug information? */
-static char Output[] = {OUTPUT};        /* default output file name */
-static const char* output = Output;     /* actual output file name */
+static char Output[] = {OUTPUT};        /* default output file_manager name */
+static const char* output = Output;     /* actual output file_manager name */
 static const char* progname = PROGNAME; /* actual program name */
 
 static void fatal(const char* message)
@@ -54,7 +54,7 @@ static void usage(const char* message)
 			"usage: %s [options] [filenames]\n"
 			"Available options are:\n"
 			"  -l       list (use -l -l for full listing)\n"
-			"  -o name  output to file " LUA_QL("name")
+			"  -o name  output to file_manager " LUA_QL("name")
 				" (default is \"%s\")\n"
 				"  -p       parse only\n"
 				"  -s       strip debug information\n"
@@ -86,7 +86,7 @@ static int doargs(int argc, char* argv[])
 			break;
 		else if (IS("-l")) /* list */
 			++listing;
-		else if (IS("-o")) /* output file */
+		else if (IS("-o")) /* output file_manager */
 		{
 			output = argv[++i];
 			if (output == NULL || *output == 0 || (*output == '-' && output[1] != 0))

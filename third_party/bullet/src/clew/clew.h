@@ -11,7 +11,7 @@
 //! \file clew.h
 //! \brief OpenCL run-time loader header
 //!
-//! This file contains a copy of the contents of CL.H and CL_PLATFORM.H from the
+//! This file_manager contains a copy of the contents of CL.H and CL_PLATFORM.H from the
 //! official OpenCL spec. The purpose of this code is to load the OpenCL dynamic
 //! library at run-time and thus allow the executable to function on many
 //! platforms regardless of the vendor of the OpenCL driver actually installed.
@@ -1548,7 +1548,7 @@ float nanf(const char *);
  *   }                                               \n\
  *   ";
  *
- * This should correctly set up the line, (column) and file information for your source 
+ * This should correctly set up the line, (column) and file_manager information for your source
  * string so you can do source level debugging.
  */
 #define __CL_STRINGIFY(_x) #_x

@@ -42,12 +42,12 @@ inline int btIsDoublePrecision()
 }
 
 
-// The following macro "BT_NOT_EMPTY_FILE" can be put into a file
+// The following macro "BT_NOT_EMPTY_FILE" can be put into a file_manager
 // in order suppress the MS Visual C++ Linker warning 4221
 //
 // warning LNK4221: no public symbols found; archive member will be inaccessible
 //
-// This warning occurs on PC and XBOX when a file compiles out completely
+// This warning occurs on PC and XBOX when a file_manager compiles out completely
 // has no externally visible symbols which may be dependant on configuration
 // #defines and options.
 //
@@ -259,7 +259,7 @@ inline int btIsDoublePrecision()
 				{\
 				if(!(x))\
 				{\
-					printf("Assert %s in line %d, file %s\n",#x, __LINE__, __FILE__);\
+					printf("Assert %s in line %d, file_manager %s\n",#x, __LINE__, __FILE__);\
 					asm volatile ("int3");\
 				}\
 				}

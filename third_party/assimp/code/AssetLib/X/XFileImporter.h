@@ -64,7 +64,7 @@ namespace XFile {
 
 // ---------------------------------------------------------------------------
 /** The XFileImporter is a worker class capable of importing a scene from a
- *   DirectX file .x
+ *   DirectX file_manager .x
  */
 class XFileImporter : public BaseImporter {
 public:
@@ -72,7 +72,7 @@ public:
     ~XFileImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details. */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
         bool CheckSig) const override;
@@ -85,7 +85,7 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
@@ -139,7 +139,7 @@ protected:
     void ConvertMaterials( aiScene* pScene, std::vector<XFile::Material>& pMaterials);
 
 protected:
-    /// Buffer to hold the loaded file
+    /// Buffer to hold the loaded file_manager
     std::vector<char> mBuffer;
 };
 

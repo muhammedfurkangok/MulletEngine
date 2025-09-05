@@ -31,7 +31,7 @@
 //
 // A user can ask Google Test to seg-fault when an assertion fails, using
 // either the GTEST_BREAK_ON_FAILURE environment variable or the
-// --gtest_break_on_failure flag.  This file is used for testing such
+// --gtest_break_on_failure flag.  This file_manager is used for testing such
 // functionality.
 //
 // This program will be invoked from a Python unit test.  It is

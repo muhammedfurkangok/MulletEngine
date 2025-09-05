@@ -60,7 +60,7 @@ public:
     static Mesh *ImportMesh(MemoryStreamReader *reader);
 
     /// Imports skeleton to @c mesh into Mesh::skeleton.
-    /** If mesh does not have a skeleton reference or the skeleton file
+    /** If mesh does not have a skeleton reference or the skeleton file_manager
         cannot be found it is not a fatal DeadlyImportError.
         @return If skeleton import was successful. */
     static bool ImportSkeleton(Assimp::IOSystem *pIOHandler, Mesh *mesh);

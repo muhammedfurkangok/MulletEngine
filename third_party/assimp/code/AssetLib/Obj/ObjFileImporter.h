@@ -59,7 +59,7 @@ struct Model;
 
 // ------------------------------------------------------------------------------------------------
 /// \class  ObjFileImporter
-/// \brief  Imports a waveform obj file
+/// \brief  Imports a waveform obj file_manager
 // ------------------------------------------------------------------------------------------------
 class ObjFileImporter final : public BaseImporter {
 public:
@@ -69,7 +69,7 @@ public:
     /// \brief  Destructor
     ~ObjFileImporter() override;
 
-    /// \brief  Returns whether the class can handle the format of the given file.
+    /// \brief  Returns whether the class can handle the format of the given file_manager.
     /// \remark See BaseImporter::CanRead() for details.
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const override;
 
@@ -112,7 +112,7 @@ private:
     std::vector<char> m_Buffer;
     //! Pointer to root object instance
     ObjFile::Object *m_pRootObject;
-    //! Absolute pathname of model in file system
+    //! Absolute pathname of model in file_manager system
     std::string m_strAbsPath;
 };
 

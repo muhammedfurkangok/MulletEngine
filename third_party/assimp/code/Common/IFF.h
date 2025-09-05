@@ -56,7 +56,7 @@ struct FormHeader
 
 /////////////////////////////////////////////////////////////////////////////////
 //! Load a chunk header
-//! @param outFile Pointer to the file data - points to the chunk data afterwards
+//! @param outFile Pointer to the file_manager data - points to the chunk data afterwards
 //! @return Copy of the chunk header
 /////////////////////////////////////////////////////////////////////////////////
 inline ChunkHeader LoadChunk(uint8_t*& outFile)
@@ -73,7 +73,7 @@ inline ChunkHeader LoadChunk(uint8_t*& outFile)
 
 /////////////////////////////////////////////////////////////////////////////////
 //! Load a sub chunk header
-//! @param outFile Pointer to the file data - points to the chunk data afterwards
+//! @param outFile Pointer to the file_manager data - points to the chunk data afterwards
 //! @return Copy of the sub chunk header
 /////////////////////////////////////////////////////////////////////////////////
 inline SubChunkHeader LoadSubChunk(uint8_t*& outFile)
@@ -90,7 +90,7 @@ inline SubChunkHeader LoadSubChunk(uint8_t*& outFile)
 
 /////////////////////////////////////////////////////////////////////////////////
 //! Load a chunk header
-//! @param outFile Pointer to the file data - points to the chunk data afterwards
+//! @param outFile Pointer to the file_manager data - points to the chunk data afterwards
 //! @return Copy of the chunk header
 /////////////////////////////////////////////////////////////////////////////////
 inline ChunkHeader LoadForm(uint8_t*& outFile)
@@ -107,10 +107,10 @@ inline ChunkHeader LoadForm(uint8_t*& outFile)
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-//! Read the file header and return the type of the file and its size
-//! @param outFile Pointer to the file data. The buffer must at
+//! Read the file_manager header and return the type of the file_manager and its size
+//! @param outFile Pointer to the file_manager data. The buffer must at
 //!   least be 12 bytes large.
-//! @param fileType Receives the type of the file
+//! @param fileType Receives the type of the file_manager
 //! @return 0 if everything was OK, otherwise an error message
 /////////////////////////////////////////////////////////////////////////////////
 inline const char* ReadHeader(uint8_t* outFile, uint32_t& fileType)
@@ -118,7 +118,7 @@ inline const char* ReadHeader(uint8_t* outFile, uint32_t& fileType)
     ChunkHeader head = LoadChunk(outFile);
     if(AI_IFF_FOURCC_FORM != head.type)
     {
-        return "The file is not an IFF file: FORM chunk is missing";
+        return "The file_manager is not an IFF file_manager: FORM chunk is missing";
     }
     ::memcpy(&fileType, outFile, 4);
     AI_LSWAP4(fileType);

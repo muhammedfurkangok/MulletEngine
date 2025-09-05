@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //
-// Tests for Google Test itself. This file verifies that the parameter
+// Tests for Google Test itself. This file_manager verifies that the parameter
 // generators objects produce correct parameter sequences and that
 // Google Test runtime instantiates correct tests from those sequences.
 

@@ -107,7 +107,7 @@ public:
         static_assert(std::is_void<T>::value, "TRIED TO CREATE FBX PROPERTY WITH UNSUPPORTED TYPE, CHECK YOUR PROPERTY INSTANTIATION");
     } // note: no line wrap so it appears verbatim on the compiler error
 
-    // the size of this property node in a binary file, in bytes
+    // the size of this property node in a binary file_manager, in bytes
     size_t size();
 
     // write this property node as binary data to the given stream

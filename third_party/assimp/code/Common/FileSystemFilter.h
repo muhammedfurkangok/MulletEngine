@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** @file FileSystemFilter.h
  *  Implements a filter system to filter calls to Exists() and Open()
- *  in order to improve the success rate of file opening ...
+ *  in order to improve the success rate of file_manager opening ...
  */
 #pragma once
 #ifndef AI_FILESYSTEMFILTER_H_INC
@@ -96,7 +96,7 @@ public:
     ~FileSystemFilter() = default;
 
     // -------------------------------------------------------------------
-    /** Tests for the existence of a file at the given path. */
+    /** Tests for the existence of a file_manager at the given path. */
     bool Exists( const char* pFile) const {
         ai_assert( nullptr != mWrapped );
 
@@ -118,7 +118,7 @@ public:
     }
 
     // -------------------------------------------------------------------
-    /** Open a new file with a given path. */
+    /** Open a new file_manager with a given path. */
     IOStream* Open( const char* pFile, const char* pMode = "rb") {
         ai_assert( nullptr != mWrapped );
         if ( nullptr == pFile || nullptr == pMode ) {
@@ -153,7 +153,7 @@ public:
     }
 
     // -------------------------------------------------------------------
-    /** Closes the given file and releases all resources associated with it. */
+    /** Closes the given file_manager and releases all resources associated with it. */
     void Close( IOStream* pFile) {
         ai_assert( nullptr != mWrapped );
         return mWrapped->Close(pFile);
@@ -209,7 +209,7 @@ public:
     }
 
     // -------------------------------------------------------------------
-    /** Delete file. */
+    /** Delete file_manager. */
     bool DeleteFile(const std::string &file) {
         ai_assert( nullptr != mWrapped );
         return mWrapped->DeleteFile(file);
@@ -221,7 +221,7 @@ private:
      */
     void BuildPath (std::string& in) const {
         ai_assert( nullptr != mWrapped );
-        // if we can already access the file, great.
+        // if we can already access the file_manager, great.
         if (in.length() < 3 || mWrapped->Exists(in)) {
             return;
         }
@@ -237,7 +237,7 @@ private:
             }
         }
 
-        // Chop of the file name and look in the model directory, if
+        // Chop of the file_manager name and look in the model directory, if
         // this fails try all sub paths of the given path, i.e.
         // if the given path is foo/bar/something.lwo, try
         // <base>/something.lwo
@@ -276,7 +276,7 @@ private:
             }
         }
 
-        // hopefully the underlying file system has another few tricks to access this file ...
+        // hopefully the underlying file_manager system has another few tricks to access this file_manager ...
     }
 
     // -------------------------------------------------------------------
@@ -287,7 +287,7 @@ private:
             return;
         }
 
-        // Remove a very common issue when we're parsing file names: spaces at the
+        // Remove a very common issue when we're parsing file_manager names: spaces at the
         // beginning of the path.
         char last = 0;
         std::string::iterator it = in.begin();

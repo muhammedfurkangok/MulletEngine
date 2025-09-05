@@ -62,7 +62,7 @@ class IOSystem;
 namespace LWS {
 
 // ---------------------------------------------------------------------------
-/** Represents an element in a LWS file.
+/** Represents an element in a LWS file_manager.
  *
  *  This can either be a single data line - <name> <value> or a data
  *  group - { name <data_line0> ... n }
@@ -177,7 +177,7 @@ public:
     ~LWSImporter() override = default;
 
     // -------------------------------------------------------------------
-    // Check whether we can read a specific file
+    // Check whether we can read a specific file_manager
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
             bool checkSig) const override;
 
@@ -187,7 +187,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    // Import file into given scene data structure
+    // Import file_manager into given scene data structure
     void InternReadFile(const std::string &pFile, aiScene *pScene,
             IOSystem *pIOHandler) override;
 
@@ -201,7 +201,7 @@ private:
     void ReadEnvelope(const LWS::Element &dad, LWO::Envelope &out);
 
     // -------------------------------------------------------------------
-    // Read an envelope description for the older LW file format
+    // Read an envelope description for the older LW file_manager format
     void ReadEnvelope_Old(std::list<LWS::Element>::const_iterator &it,
             const std::list<LWS::Element>::const_iterator &end,
             LWS::NodeDesc &nodes,
@@ -222,7 +222,7 @@ private:
             std::vector<aiNodeAnim *> &animOut);
 
     // -------------------------------------------------------------------
-    // Try several dirs until we find the right location of a LWS file.
+    // Try several dirs until we find the right location of a LWS file_manager.
     std::string FindLWOFile(const std::string &in);
 
 private:

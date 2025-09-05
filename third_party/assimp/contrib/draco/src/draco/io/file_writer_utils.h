@@ -1,7 +1,7 @@
 // Copyright 2020 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -19,8 +19,8 @@
 
 namespace draco {
 
-// Splits full path to a file into a folder path + file name.
-// |out_folder_path| will contain the path to the folder containing the file
+// Splits full path to a file_manager into a folder path + file_manager name.
+// |out_folder_path| will contain the path to the folder containing the file_manager
 // excluding the final slash. If no folder is specified in the |full_path|, then
 // |out_folder_path| is set to "."
 void SplitPathPrivate(const std::string &full_path,
@@ -29,7 +29,7 @@ void SplitPathPrivate(const std::string &full_path,
 // Checks is |path| exists and if it is a directory.
 bool DirectoryExists(const std::string &path);
 
-// Checks if the path for file is valid. If not this function will try and
+// Checks if the path for file_manager is valid. If not this function will try and
 // create the path. Returns false on error.
 bool CheckAndCreatePathForFile(const std::string &filename);
 

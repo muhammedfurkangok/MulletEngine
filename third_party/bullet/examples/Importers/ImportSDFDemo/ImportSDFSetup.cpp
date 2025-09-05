@@ -95,7 +95,7 @@ ImportSDFSetup::ImportSDFSetup(struct GUIHelperInterface* helper, int option, co
 	{
 		gFileNameArray.clear();
 
-		//load additional urdf file names from file
+		//load additional urdf file_manager names from file_manager
 
 		FILE* f = fopen("sdf_files.txt", "r");
 		if (f)

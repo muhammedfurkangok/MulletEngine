@@ -542,7 +542,7 @@ void EGLRendererVisualShapeConverter::setLightSpecularCoeff(float specularCoeff)
 	m_data->m_hasLightSpecularCoeff = true;
 }
 
-///todo: merge into single file with TinyRendererVisualShapeConverter
+///todo: merge into single file_manager with TinyRendererVisualShapeConverter
 static void convertURDFToVisualShape2(const UrdfShape* visual, const char* urdfPathPrefix, const btTransform& visualTransform, btAlignedObjectArray<GLInstanceVertex>& verticesOut, btAlignedObjectArray<int>& indicesOut, btAlignedObjectArray<MyTexture3>& texturesOut, b3VisualShapeData& visualShapeOut, struct CommonFileIOInterface* fileIO, int flags)
 {
 	visualShapeOut.m_visualGeometryType = visual->m_geometry.m_type;
@@ -852,7 +852,7 @@ static void convertURDFToVisualShape2(const UrdfShape* visual, const char* urdfP
 			}
 			else
 			{
-				b3Warning("issue extracting mesh from COLLADA/STL file %s\n", visual->m_geometry.m_meshFileName.c_str());
+				b3Warning("issue extracting mesh from COLLADA/STL file_manager %s\n", visual->m_geometry.m_meshFileName.c_str());
 			}
 			break;
 		}  // case mesh

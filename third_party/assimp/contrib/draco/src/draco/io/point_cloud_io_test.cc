@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -95,7 +95,7 @@ TEST_F(IoPointCloudIoTest, ObjFileInput) {
   EXPECT_EQ(pc->num_points(), 97) << "Obj point cloud not loaded properly.";
 }
 
-// Test if we handle wrong input for all file extensions.
+// Test if we handle wrong input for all file_manager extensions.
 TEST_F(IoPointCloudIoTest, WrongFileObj) {
   const std::unique_ptr<PointCloud> pc =
       ReadPointCloudFromTestFile("wrong_file_name.obj");

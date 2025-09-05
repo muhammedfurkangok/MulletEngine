@@ -29,11 +29,11 @@
 //
 // Google Test filepath utilities
 //
-// This file tests classes and functions used internally by
+// This file_manager tests classes and functions used internally by
 // Google Test.  They are subject to change without notice.
 //
-// This file is #included from gtest-internal.h.
-// Do not #include this file anywhere else!
+// This file_manager is #included from gtest-internal.h.
+// Do not #include this file_manager anywhere else!
 
 #include <string>
 
@@ -514,9 +514,9 @@ class DirectoryCreationTest : public Test {
     fclose(f);
   }
 
-  // Strings representing a directory and a file, with identical paths
+  // Strings representing a directory and a file_manager, with identical paths
   // except for the trailing separator character that distinguishes
-  // a directory named 'test' from a file named 'test'. Example names:
+  // a directory named 'test' from a file_manager named 'test'. Example names:
   FilePath testdata_path_;  // "/tmp/directory_creation/test/"
   FilePath testdata_file_;  // "/tmp/directory_creation/test"
   FilePath unique_file0_;   // "/tmp/directory_creation/test/unique.txt"
@@ -540,23 +540,23 @@ TEST_F(DirectoryCreationTest, CreateDirectoriesAndUniqueFilename) {
   FilePath file_path(FilePath::GenerateUniqueFileName(
       testdata_path_, FilePath("unique"), "txt"));
   EXPECT_EQ(unique_file0_.string(), file_path.string());
-  EXPECT_FALSE(file_path.FileOrDirectoryExists());  // file not there
+  EXPECT_FALSE(file_path.FileOrDirectoryExists());  // file_manager not there
 
   testdata_path_.CreateDirectoriesRecursively();
-  EXPECT_FALSE(file_path.FileOrDirectoryExists());  // file still not there
+  EXPECT_FALSE(file_path.FileOrDirectoryExists());  // file_manager still not there
   CreateTextFile(file_path.c_str());
   EXPECT_TRUE(file_path.FileOrDirectoryExists());
 
   FilePath file_path2(FilePath::GenerateUniqueFileName(
       testdata_path_, FilePath("unique"), "txt"));
   EXPECT_EQ(unique_file1_.string(), file_path2.string());
-  EXPECT_FALSE(file_path2.FileOrDirectoryExists());  // file not there
+  EXPECT_FALSE(file_path2.FileOrDirectoryExists());  // file_manager not there
   CreateTextFile(file_path2.c_str());
   EXPECT_TRUE(file_path2.FileOrDirectoryExists());
 }
 
 TEST_F(DirectoryCreationTest, CreateDirectoriesFail) {
-  // force a failure by putting a file where we will try to create a directory.
+  // force a failure by putting a file_manager where we will try to create a directory.
   CreateTextFile(testdata_file_.c_str());
   EXPECT_TRUE(testdata_file_.FileOrDirectoryExists());
   EXPECT_FALSE(testdata_file_.DirectoryExists());

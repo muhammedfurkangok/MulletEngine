@@ -225,7 +225,7 @@ unsigned char *stbi_load(char const *filename, int *x, int *y, int *comp, int re
 {
 	FILE *f = fopen(filename, "rb");
 	unsigned char *result;
-	if (!f) return epuc("can't fopen", "Unable to open file");
+	if (!f) return epuc("can't fopen", "Unable to open file_manager");
 	result = stbi_load_from_file(f, x, y, comp, req_comp);
 	fclose(f);
 	return result;
@@ -287,7 +287,7 @@ float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp)
 {
 	FILE *f = fopen(filename, "rb");
 	float *result;
-	if (!f) return epf("can't fopen", "Unable to open file");
+	if (!f) return epf("can't fopen", "Unable to open file_manager");
 	result = stbi_loadf_from_file(f, x, y, comp, req_comp);
 	fclose(f);
 	return result;
@@ -384,7 +384,7 @@ static void refill_buffer(stbi *s)
 	int n = (s->io.read)(s->io_user_data, (char *)s->buffer_start, s->buflen);
 	if (n == 0)
 	{
-		// at end of file, treat same as if from memory
+		// at end of file_manager, treat same as if from memory
 		s->read_from_callbacks = 0;
 		s->img_buffer = s->img_buffer_end - 1;
 		*s->img_buffer = 0;
@@ -3367,7 +3367,7 @@ static stbi_uc *tga_load(stbi *s, int *x, int *y, int *comp, int req_comp)
 	*y = tga_height;
 	if ((req_comp < 1) || (req_comp > 4))
 	{
-		//   just use whatever the file was
+		//   just use whatever the file_manager was
 		req_comp = tga_bits_per_pixel / 8;
 		*comp = req_comp;
 	}
@@ -3576,7 +3576,7 @@ static stbi_uc *psd_load(stbi *s, int *x, int *y, int *comp, int req_comp)
 	if (get32(s) != 0x38425053)  // "8BPS"
 		return epuc("not PSD", "Corrupt PSD image");
 
-	// Check file type version.
+	// Check file_manager type version.
 	if (get16(s) != 1)
 		return epuc("wrong version", "Unsupported version of PSD image");
 
@@ -3792,7 +3792,7 @@ static stbi_uc *pic_readval(stbi *s, int channel, stbi_uc *dest)
 	{
 		if (channel & mask)
 		{
-			if (at_eof(s)) return epuc("bad file", "PIC file too short");
+			if (at_eof(s)) return epuc("bad file_manager", "PIC file_manager too short");
 			dest[i] = get8u(s);
 		}
 	}
@@ -3832,7 +3832,7 @@ static stbi_uc *pic_load2(stbi *s, int width, int height, int *comp, stbi_uc *re
 
 		act_comp |= packet->channel;
 
-		if (at_eof(s)) return epuc("bad file", "file too short (reading packets)");
+		if (at_eof(s)) return epuc("bad file_manager", "file_manager too short (reading packets)");
 		if (packet->size != 8) return epuc("bad format", "packet isn't 8bpp");
 	} while (chained);
 
@@ -3871,7 +3871,7 @@ static stbi_uc *pic_load2(stbi *s, int width, int height, int *comp, stbi_uc *re
 						stbi_uc count, value[4];
 
 						count = get8u(s);
-						if (at_eof(s)) return epuc("bad file", "file too short (pure read count)");
+						if (at_eof(s)) return epuc("bad file_manager", "file_manager too short (pure read count)");
 
 						if (count > left)
 							count = (uint8)left;
@@ -3891,7 +3891,7 @@ static stbi_uc *pic_load2(stbi *s, int width, int height, int *comp, stbi_uc *re
 					while (left > 0)
 					{
 						int count = get8(s), i;
-						if (at_eof(s)) return epuc("bad file", "file too short (mixed read count)");
+						if (at_eof(s)) return epuc("bad file_manager", "file_manager too short (mixed read count)");
 
 						if (count >= 128)
 						{  // Repeated
@@ -3903,7 +3903,7 @@ static stbi_uc *pic_load2(stbi *s, int width, int height, int *comp, stbi_uc *re
 							else
 								count -= 127;
 							if (count > left)
-								return epuc("bad file", "scanline overrun");
+								return epuc("bad file_manager", "scanline overrun");
 
 							if (!pic_readval(s, packet->channel, value))
 								return 0;
@@ -3914,7 +3914,7 @@ static stbi_uc *pic_load2(stbi *s, int width, int height, int *comp, stbi_uc *re
 						else
 						{  // Raw
 							++count;
-							if (count > left) return epuc("bad file", "scanline overrun");
+							if (count > left) return epuc("bad file_manager", "scanline overrun");
 
 							for (i = 0; i < count; ++i, dest += 4)
 								if (!pic_readval(s, packet->channel, dest))
@@ -3941,7 +3941,7 @@ static stbi_uc *pic_load(stbi *s, int *px, int *py, int *comp, int req_comp)
 
 	x = get16(s);
 	y = get16(s);
-	if (at_eof(s)) return epuc("bad file", "file too short (pic header)");
+	if (at_eof(s)) return epuc("bad file_manager", "file_manager too short (pic header)");
 	if ((1 << 28) / x < y) return epuc("too large", "Image too large to decode");
 
 	get32(s);  //skip `ratio'
@@ -4767,7 +4767,7 @@ int stbi_info(char const *filename, int *x, int *y, int *comp)
 {
 	FILE *f = fopen(filename, "rb");
 	int result;
-	if (!f) return e("can't fopen", "Unable to open file");
+	if (!f) return e("can't fopen", "Unable to open file_manager");
 	result = stbi_info_from_file(f, x, y, comp);
 	fclose(f);
 	return result;
@@ -4812,7 +4812,7 @@ int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int
       1.30 (2011-06-11)
              added ability to load files via callbacks to accomidate custom input streams (Ben Wenger)
              removed deprecated format-specific test/load functions
-             removed support for installable file formats (stbi_loader) -- would have been broken for IO callbacks anyway
+             removed support for installable file_manager formats (stbi_loader) -- would have been broken for IO callbacks anyway
              error cases in bmp and tga give messages and don't leak (Raymond Barbiero, grisha)
              fix inefficiency in decoding 32-bit BMP (David Woo)
       1.29 (2010-08-16)
@@ -4822,7 +4822,7 @@ int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int
       1.27 (2010-08-01)
              cast-to-uint8 to fix warnings
       1.26 (2010-07-24)
-             fix bug in file buffering for PNG reported by SpartanJ
+             fix bug in file_manager buffering for PNG reported by SpartanJ
       1.25 (2010-07-17)
              refix trans_data warning (Won Chun)
       1.24 (2010-07-12)
@@ -4846,7 +4846,7 @@ int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int
       1.16   major bugfix - convert_format converted one too many pixels
       1.15   initialize some fields for thread safety
       1.14   fix threadsafe conversion bug
-             header-file-only version (#define STBI_HEADER_FILE_ONLY before including)
+             header-file_manager-only version (#define STBI_HEADER_FILE_ONLY before including)
       1.13   threadsafe
       1.12   const qualifiers in the API
       1.11   Support installable IDCT, colorspace conversion routines
@@ -4865,7 +4865,7 @@ int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int
       1.00   interface to zlib that skips zlib header
       0.99   correct handling of alpha in palette
       0.98   TGA loader by lonesock; dynamically add loaders (untested)
-      0.97   jpeg errors on too large a file; also catch another malloc failure
+      0.97   jpeg errors on too large a file_manager; also catch another malloc failure
       0.96   fix detection of invalid v value - particleman@mollyrocket forum
       0.95   during header scan, seek to markers in case of padding
       0.94   STBI_NO_STDIO to disable stdio usage; rename all #defines the same

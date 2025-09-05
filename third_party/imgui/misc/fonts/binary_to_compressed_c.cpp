@@ -1,6 +1,6 @@
 // dear imgui
 // (binary_to_compressed_c.cpp)
-// Helper tool to turn a file into a C array, if you want to embed font data in your source code.
+// Helper tool to turn a file_manager into a C array, if you want to embed font data in your source code.
 
 // The data is first compressed with stb_compress() to reduce source code size.
 // Then stored in a C array:
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 
     bool ret = binary_to_compressed_c(argv[argn], argv[argn + 1], source_encoding, use_compression, use_static);
     if (!ret)
-        fprintf(stderr, "Error opening or reading file: '%s'\n", argv[argn]);
+        fprintf(stderr, "Error opening or reading file_manager: '%s'\n", argv[argn]);
     return ret ? 0 : 1;
 }
 
@@ -87,7 +87,7 @@ char Encode85Byte(unsigned int x)
 
 bool binary_to_compressed_c(const char* filename, const char* symbol, SourceEncoding source_encoding, bool use_compression, bool use_static)
 {
-    // Read file
+    // Read file_manager
     FILE* f = fopen(filename, "rb");
     if (!f) return false;
     int data_sz;

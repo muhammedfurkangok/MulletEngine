@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file LWOFileData.h
- *  @brief Defines chunk constants used by the LWO file format
+ *  @brief Defines chunk constants used by the LWO file_manager format
 
 The chunks are taken from the official LightWave SDK headers.
 
@@ -304,7 +304,7 @@ namespace LWO {
 #define AI_LWO_MODO_NORM AI_IFF_FOURCC('N', 'O', 'R', 'M')
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a face in a LWO file
+/** \brief Data structure for a face in a LWO file_manager
  *
  * \note We can't use the code in SmoothingGroups.inl here - the mesh
  *   structures of 3DS/ASE and LWO are too different.
@@ -417,7 +417,7 @@ struct NormalChannel : public VMapEntry {
 };
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a LWO file texture
+/** \brief Data structure for a LWO file_manager texture
  */
 struct Texture {
     // we write the enum values out here to make debugging easier ...
@@ -498,7 +498,7 @@ struct Texture {
 };
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a LWO file clip
+/** \brief Data structure for a LWO file_manager clip
  */
 struct Clip {
     enum Type {
@@ -525,7 +525,7 @@ struct Clip {
 };
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a LWO file shader
+/** \brief Data structure for a LWO file_manager shader
  *
  *  Later
  */
@@ -542,7 +542,7 @@ typedef std::list<Texture> TextureList;
 typedef std::list<Shader> ShaderList;
 
 // ---------------------------------------------------------------------------
-/** \brief Data structure for a LWO file surface (= material)
+/** \brief Data structure for a LWO file_manager surface (= material)
  */
 struct Surface {
     Surface() :
@@ -647,13 +647,13 @@ typedef std::vector<Envelope> EnvelopeList;
 typedef std::vector<unsigned int> SortedRep;
 
 // ---------------------------------------------------------------------------
-/** \brief Represents a layer in the file
+/** \brief Represents a layer in the file_manager
  */
 struct Layer {
     Layer() :
             mFaceIDXOfs(0), mPointIDXOfs(0), mParent(0x0), mIndex(0xffff), skip(false) {}
 
-    /** Temporary point list from the file */
+    /** Temporary point list from the file_manager */
     PointList mTempPoints;
 
     /** Lists for every point the index of another point
@@ -661,22 +661,22 @@ struct Layer {
         no copy of the point has been made */
     ReferrerList mPointReferrers;
 
-    /** Weight channel list from the file */
+    /** Weight channel list from the file_manager */
     WeightChannelList mWeightChannels;
 
-    /** Subdivision weight channel list from the file */
+    /** Subdivision weight channel list from the file_manager */
     WeightChannelList mSWeightChannels;
 
-    /** Vertex color list from the file */
+    /** Vertex color list from the file_manager */
     VColorChannelList mVColorChannels;
 
-    /** UV channel list from the file */
+    /** UV channel list from the file_manager */
     UVChannelList mUVChannels;
 
-    /** Normal vector channel from the file */
+    /** Normal vector channel from the file_manager */
     NormalChannel mNormals;
 
-    /** Temporary face list from the file*/
+    /** Temporary face list from the file_manager*/
     FaceList mFaces;
 
     /** Current face indexing offset from the beginning of the buffers*/

@@ -168,13 +168,13 @@ UnrealImporter::UnrealImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool UnrealImporter::CanRead(const std::string &filename, IOSystem * /*pIOHandler*/, bool /*checkSig*/) const {
     return SimpleExtensionCheck(filename, "3d", "uc");
 }
 
 // ------------------------------------------------------------------------------------------------
-// Build a string of all file extensions supported
+// Build a string of all file_manager extensions supported
 const aiImporterDesc *UnrealImporter::GetInfo() const {
     return &desc;
 }
@@ -195,11 +195,11 @@ void UnrealImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void UnrealImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     // For any of the 3 files being passed get the three correct paths
-    // First of all, determine file extension
+    // First of all, determine file_manager extension
     std::string::size_type pos = pFile.find_last_of('.');
     std::string extension = GetExtension(pFile);
 
@@ -221,14 +221,14 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
     a_path = extension + "_a.3d";
     uc_path = extension + ".uc";
 
-    ASSIMP_LOG_DEBUG("UNREAL: data file is ", d_path);
-    ASSIMP_LOG_DEBUG("UNREAL: aniv file is ", a_path);
-    ASSIMP_LOG_DEBUG("UNREAL: uc file is ", uc_path);
+    ASSIMP_LOG_DEBUG("UNREAL: data file_manager is ", d_path);
+    ASSIMP_LOG_DEBUG("UNREAL: aniv file_manager is ", a_path);
+    ASSIMP_LOG_DEBUG("UNREAL: uc file_manager is ", uc_path);
 
     // and open the files ... we can't live without them
     std::unique_ptr<IOStream> p(pIOHandler->Open(d_path));
     if (!p)
-        throw DeadlyImportError("UNREAL: Unable to open _d file");
+        throw DeadlyImportError("UNREAL: Unable to open _d file_manager");
     StreamReaderLE d_reader(pIOHandler->Open(d_path));
 
     const uint16_t numTris = d_reader.GetI2();
@@ -276,7 +276,7 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
 
     p.reset(pIOHandler->Open(a_path));
     if (!p) {
-        throw DeadlyImportError("UNREAL: Unable to open _a file");
+        throw DeadlyImportError("UNREAL: Unable to open _a file_manager");
     }
     StreamReaderLE a_reader(pIOHandler->Open(a_path));
 
@@ -286,9 +286,9 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
         throw DeadlyImportError("UNREAL: The requested frame does not exist");
     }
 
-    // read aniv file length
+    // read aniv file_manager length
     if (uint32_t st = a_reader.GetI2(); st != numVert * 4u) {
-        throw DeadlyImportError("UNREAL: Unexpected aniv file length");
+        throw DeadlyImportError("UNREAL: Unexpected aniv file_manager length");
     }
 
     // skip to our frame
@@ -308,7 +308,7 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
     aiNode *nd = pScene->mRootNode = new aiNode();
     nd->mName.Set("<UnrealRoot>");
 
-    // we can live without the uc file if necessary
+    // we can live without the uc file_manager if necessary
     std::unique_ptr<IOStream> pb(pIOHandler->Open(uc_path));
     if (pb) {
 
@@ -319,7 +319,7 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
 
         std::vector<std::pair<std::string, std::string>> tempTextures;
 
-        // do a quick search in the UC file for some known, usually texture-related, tags
+        // do a quick search in the UC file_manager for some known, usually texture-related, tags
         for (; *data; ++data) {
             if (TokenMatchI(data, "#exec", 5)) {
                 SkipSpacesAndLineEnd(&data, end);
@@ -395,7 +395,7 @@ void UnrealImporter::InternReadFile(const std::string &pFile,
             }
         }
     } else {
-        ASSIMP_LOG_ERROR("Unable to open .uc file");
+        ASSIMP_LOG_ERROR("Unable to open .uc file_manager");
     }
 
     std::vector<Unreal::TempMat> materials;

@@ -81,7 +81,7 @@ void SerializeSetup::initPhysics()
 		m_guiHelper->setUpAxis(1);
 	}
 
-	//example code to export the dynamics world to a .bullet file
+	//example code to export the dynamics world to a .bullet file_manager
 
 	btDefaultSerializer* serializer = new btDefaultSerializer();
 	m_dynamicsWorld->serialize(serializer);

@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file is for verifying that various Google Mock constructs do not
+// This file_manager is for verifying that various Google Mock constructs do not
 // produce linker errors when instantiated in different translation units.
 // Please see gmock_link_test.h for details.
 

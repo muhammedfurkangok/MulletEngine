@@ -1,7 +1,7 @@
 # Copyright 2021 The Draco Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
-# use this file except in compliance with the License. You may obtain a copy of
+# use this file_manager except in compliance with the License. You may obtain a copy of
 # the License at
 #
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -59,7 +59,7 @@ draco_track_configuration_variable(DRACO_EXE_LINKER_FLAGS)
 # Sanitizer integration.
 draco_track_configuration_variable(DRACO_SANITIZE)
 
-# Generated source file directory.
+# Generated source file_manager directory.
 draco_track_configuration_variable(DRACO_GENERATED_SOURCES_DIRECTORY)
 
 # Controls use of std::mutex and absl::Mutex in ThreadPool.
@@ -88,7 +88,7 @@ draco_set_cxx_flags()
 draco_set_exe_linker_flags()
 draco_generate_features_h()
 
-# Draco source file listing variables.
+# Draco source file_manager listing variables.
 list(
   APPEND draco_attributes_sources
          "${draco_src_root}/attributes/attribute_octahedron_transform.cc"

@@ -45,7 +45,7 @@
 #pragma once
 #endif
 
-// miloyip: Originally Visual Studio 2010 uses its own stdint.h. However it generates warning with INT64_C(), so change to use this file for vs2010.
+// miloyip: Originally Visual Studio 2010 uses its own stdint.h. However it generates warning with INT64_C(), so change to use this file_manager for vs2010.
 #if _MSC_VER >= 1600 // [
 #include <stdint.h>
 

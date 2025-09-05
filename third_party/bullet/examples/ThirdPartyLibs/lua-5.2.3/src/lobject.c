@@ -293,7 +293,7 @@ void luaO_chunkid(char *out, const char *source, size_t bufflen)
 		}
 	}
 	else if (*source == '@')
-	{                     /* file name */
+	{                     /* file_manager name */
 		if (l <= bufflen) /* small enough? */
 			memcpy(out, source + 1, l * sizeof(char));
 		else

@@ -8,7 +8,7 @@ struct btReducedDeformableBodyHelpers
 {
 	// create a reduced deformable object
 	static btReducedDeformableBody* createReducedDeformableObject(btSoftBodyWorldInfo& worldInfo, const std::string& file_path, const std::string& vtk_file, const int num_modes, bool rigid_only);
-	// read in geometry info from Vtk file
+	// read in geometry info from Vtk file_manager
   static btReducedDeformableBody* createFromVtkFile(btSoftBodyWorldInfo& worldInfo, const char* vtk_file);
 	// read in all reduced files
 	static void readReducedDeformableInfoFromFiles(btReducedDeformableBody* rsb, const char* file_path);

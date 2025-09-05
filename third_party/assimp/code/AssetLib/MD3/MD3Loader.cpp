@@ -108,11 +108,11 @@ Q3Shader::BlendFunc StringToBlendFunc(const std::string &m) {
 bool Q3Shader::LoadShader(ShaderData &fill, const std::string &pFile, IOSystem *io) {
     std::unique_ptr<IOStream> file(io->Open(pFile, "rt"));
     if (!file)
-        return false; // if we can't access the file, don't worry and return
+        return false; // if we can't access the file_manager, don't worry and return
 
-    ASSIMP_LOG_INFO("Loading Quake3 shader file ", pFile);
+    ASSIMP_LOG_INFO("Loading Quake3 shader file_manager ", pFile);
 
-    // read file in memory
+    // read file_manager in memory
     const size_t s = file->FileSize();
     std::vector<char> _buff(s + 1);
     file->Read(&_buff[0], s, 1);
@@ -134,7 +134,7 @@ bool Q3Shader::LoadShader(ShaderData &fill, const std::string &pFile, IOSystem *
             // append to last section, if any
             if (!curData) {
                 ASSIMP_LOG_ERROR("Q3Shader: Unexpected shader section token \'{\'");
-                return true; // still no failure, the file is there
+                return true; // still no failure, the file_manager is there
             }
 
             // read this data section
@@ -146,7 +146,7 @@ bool Q3Shader::LoadShader(ShaderData &fill, const std::string &pFile, IOSystem *
                     curMap = &curData->maps.back();
 
                     for (; SkipSpacesAndLineEnd(&buff, end); SkipLine(&buff, end)) {
-                        // 'map' - Specifies texture file name
+                        // 'map' - Specifies texture file_manager name
                         if (TokenMatchI(buff, "map", 3) || TokenMatchI(buff, "clampmap", 8)) {
                             curMap->name = GetNextToken(buff, end);
                         }
@@ -222,11 +222,11 @@ bool Q3Shader::LoadShader(ShaderData &fill, const std::string &pFile, IOSystem *
 bool Q3Shader::LoadSkin(SkinData &fill, const std::string &pFile, IOSystem *io) {
     std::unique_ptr<IOStream> file(io->Open(pFile, "rt"));
     if (!file)
-        return false; // if we can't access the file, don't worry and return
+        return false; // if we can't access the file_manager, don't worry and return
 
-    ASSIMP_LOG_INFO("Loading Quake3 skin file ", pFile);
+    ASSIMP_LOG_INFO("Loading Quake3 skin file_manager ", pFile);
 
-    // read file in memory
+    // read file_manager in memory
     const size_t s = file->FileSize();
     std::vector<char> _buff(s + 1);
     const char *buff = &_buff[0];
@@ -348,7 +348,7 @@ MD3Importer::MD3Importer() :
 MD3Importer::~MD3Importer() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MD3Importer::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = { AI_MD3_MAGIC_NUMBER_LE };
     return CheckMagicToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -359,19 +359,19 @@ void MD3Importer::ValidateHeaderOffsets() {
     // Check magic number
     if (pcHeader->IDENT != AI_MD3_MAGIC_NUMBER_BE &&
             pcHeader->IDENT != AI_MD3_MAGIC_NUMBER_LE)
-        throw DeadlyImportError("Invalid MD3 file: Magic bytes not found");
+        throw DeadlyImportError("Invalid MD3 file_manager: Magic bytes not found");
 
-    // Check file format version
+    // Check file_manager format version
     if (pcHeader->VERSION > 15)
-        ASSIMP_LOG_WARN("Unsupported MD3 file version. Continuing happily ...");
+        ASSIMP_LOG_WARN("Unsupported MD3 file_manager version. Continuing happily ...");
 
     // Check some offset values whether they are valid
     if (!pcHeader->NUM_SURFACES)
-        throw DeadlyImportError("Invalid md3 file: NUM_SURFACES is 0");
+        throw DeadlyImportError("Invalid md3 file_manager: NUM_SURFACES is 0");
 
     if (pcHeader->OFS_FRAMES >= fileSize || pcHeader->OFS_SURFACES >= fileSize ||
             pcHeader->OFS_EOF > fileSize) {
-        throw DeadlyImportError("Invalid MD3 header: some offsets are outside the file");
+        throw DeadlyImportError("Invalid MD3 header: some offsets are outside the file_manager");
     }
 
     if (pcHeader->NUM_SURFACES > AI_MAX_ALLOC(MD3::Surface)) {
@@ -379,11 +379,11 @@ void MD3Importer::ValidateHeaderOffsets() {
     }
 
     if (pcHeader->OFS_SURFACES + pcHeader->NUM_SURFACES * sizeof(MD3::Surface) >= fileSize) {
-        throw DeadlyImportError("Invalid MD3 header: some surfaces are outside the file");
+        throw DeadlyImportError("Invalid MD3 header: some surfaces are outside the file_manager");
     }
 
     if (pcHeader->NUM_FRAMES <= configFrameID)
-        throw DeadlyImportError("The requested frame is not existing the file");
+        throw DeadlyImportError("The requested frame is not existing the file_manager");
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -397,7 +397,7 @@ void MD3Importer::ValidateSurfaceHeaderOffsets(const MD3::Surface *pcSurf) {
             pcSurf->OFS_ST + ofs + pcSurf->NUM_VERTICES * sizeof(MD3::TexCoord) > fileSize ||
             pcSurf->OFS_XYZNORMAL + ofs + pcSurf->NUM_VERTICES * sizeof(MD3::Vertex) > fileSize) {
 
-        throw DeadlyImportError("Invalid MD3 surface header: some offsets are outside the file");
+        throw DeadlyImportError("Invalid MD3 surface header: some offsets are outside the file_manager");
     }
 
     // Check whether all requirements for Q3 files are met. We don't
@@ -452,7 +452,7 @@ void MD3Importer::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Try to read the skin for a MD3 file
+// Try to read the skin for a MD3 file_manager
 void MD3Importer::ReadSkin(Q3Shader::SkinData &fill) const {
     // skip any postfixes (e.g. lower_1.md3)
     std::string::size_type s = filename.find_last_of('_');
@@ -469,20 +469,20 @@ void MD3Importer::ReadSkin(Q3Shader::SkinData &fill) const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Try to read the shader for a MD3 file
+// Try to read the shader for a MD3 file_manager
 void MD3Importer::ReadShader(Q3Shader::ShaderData &fill) const {
     // Determine Q3 model name from given path
     const std::string::size_type s = path.find_last_of("\\/", path.length() - 2);
     const std::string model_file = path.substr(s + 1, path.length() - (s + 2));
 
-    // If no specific dir or file is given, use our default search behaviour
+    // If no specific dir or file_manager is given, use our default search behaviour
     if (!configShaderFile.length()) {
         const char sep = mIOHandler->getOsSeparator();
         if (!Q3Shader::LoadShader(fill, path + ".." + sep + ".." + sep + ".." + sep + "scripts" + sep + model_file + ".shader", mIOHandler)) {
              Q3Shader::LoadShader(fill, path + ".." + sep + ".." + sep + ".." + sep + "scripts" + sep + filename + ".shader", mIOHandler);
         }
     } else {
-        // If the given string specifies a file, load this file.
+        // If the given string specifies a file_manager, load this file_manager.
         // Otherwise it's a directory.
         const std::string::size_type st = configShaderFile.find_last_of('.');
         if (st == std::string::npos) {
@@ -516,7 +516,7 @@ void RemoveSingleNodeFromList(aiNode *nd) {
 // ------------------------------------------------------------------------------------------------
 // Read a multi-part Q3 player model
 bool MD3Importer::ReadMultipartFile() {
-    // check whether the file name contains a common postfix, e.g lower_2.md3
+    // check whether the file_manager name contains a common postfix, e.g lower_2.md3
     std::string::size_type s = filename.find_last_of('_'), t = filename.find_last_of('.');
 
     if (t == std::string::npos)
@@ -636,7 +636,7 @@ bool MD3Importer::ReadMultipartFile() {
         delete master;
 
         if (failure == mod_filename) {
-            throw DeadlyImportError("MD3: failure to read multipart host file");
+            throw DeadlyImportError("MD3: failure to read multipart host file_manager");
         }
     }
     return false;
@@ -664,14 +664,14 @@ void MD3Importer::ConvertPath(const char *texture_name, const char *header_name,
             len2 = 6; // ignore the seventh - could be slash or backslash
 
             if (!header_name[0]) {
-                // Use the file name only
+                // Use the file_manager name only
                 out = end2 + 1;
                 return;
             }
         } else
             len2 = std::min(len1, (size_t)(end2 - texture_name));
         if (!ASSIMP_strincmp(texture_name, header_name, static_cast<unsigned int>(len2))) {
-            // Use the file name only
+            // Use the file_manager name only
             out = end2 + 1;
             return;
         }
@@ -681,13 +681,13 @@ void MD3Importer::ConvertPath(const char *texture_name, const char *header_name,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     mFile = pFile;
     mScene = pScene;
     mIOHandler = pIOHandler;
 
-    // get base path and file name
+    // get base path and file_manager name
     // todo ... move to PathConverter
     std::string::size_type s = mFile.find_last_of("/\\");
     if (s == std::string::npos) {
@@ -700,7 +700,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         *it = static_cast<char>(tolower(static_cast<unsigned char>(*it)));
     }
 
-    // Load multi-part model file, if necessary
+    // Load multi-part model file_manager, if necessary
     if (configHandleMP) {
         if (ReadMultipartFile())
             return;
@@ -708,17 +708,17 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open MD3 file ", pFile, ".");
+        throw DeadlyImportError("Failed to open MD3 file_manager ", pFile, ".");
     }
 
-    // Check whether the md3 file is large enough to contain the header
+    // Check whether the md3 file_manager is large enough to contain the header
     fileSize = (unsigned int)file->FileSize();
     if (fileSize < sizeof(MD3::Header))
         throw DeadlyImportError("MD3 File is too small.");
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<unsigned char> mBuffer2(fileSize);
     file->Read(&mBuffer2[0], 1, fileSize);
     mBuffer = &mBuffer2[0];
@@ -743,19 +743,19 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 
 #endif
 
-    // Validate the file header
+    // Validate the file_manager header
     ValidateHeaderOffsets();
 
     // Navigate to the list of surfaces
     BE_NCONST MD3::Surface *pcSurfaces = (BE_NCONST MD3::Surface *)(mBuffer + pcHeader->OFS_SURFACES);
     if ((const unsigned char*)pcSurfaces + sizeof(MD3::Surface) * pcHeader->NUM_SURFACES > bufferEnd) {
-        throw DeadlyImportError("MD3 surface headers are outside the file");
+        throw DeadlyImportError("MD3 surface headers are outside the file_manager");
     }
 
     // Navigate to the list of tags
     BE_NCONST MD3::Tag *pcTags = (BE_NCONST MD3::Tag *)(mBuffer + pcHeader->OFS_TAGS);
     if ((const unsigned char*)pcTags + sizeof(MD3::Tag) * pcHeader->NUM_TAGS > bufferEnd) {
-        throw DeadlyImportError("MD3 tags are outside the file");
+        throw DeadlyImportError("MD3 tags are outside the file_manager");
     }
 
     // Allocate output storage
@@ -776,11 +776,11 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     ::memset(pScene->mMeshes, 0, pScene->mNumMeshes * sizeof(aiMesh *));
     ::memset(pScene->mMaterials, 0, pScene->mNumMaterials * sizeof(aiMaterial *));
 
-    // Now read possible skins from .skin file
+    // Now read possible skins from .skin file_manager
     Q3Shader::SkinData skins;
     ReadSkin(skins);
 
-    // And check whether we can locate a shader file for this model
+    // And check whether we can locate a shader file_manager for this model
     Q3Shader::ShaderData shaders;
     if (configLoadShaders){
         ReadShader(shaders);
@@ -798,7 +798,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         }
     }
 
-    // Read all surfaces from the file
+    // Read all surfaces from the file_manager
     unsigned int iNum = pcHeader->NUM_SURFACES;
     unsigned int iNumMaterials = 0;
     while (iNum-- > 0) {
@@ -849,7 +849,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         std::string _texture_name;
         const char *texture_name = nullptr;
 
-        // Check whether we have a texture record for this surface in the .skin file
+        // Check whether we have a texture record for this surface in the .skin file_manager
         std::list<Q3Shader::SkinData::TextureEntry>::iterator it = std::find(
                 skins.textures.begin(), skins.textures.end(), pcSurfaces->NAME);
 
@@ -877,7 +877,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         const Q3Shader::ShaderDataBlock *shader = nullptr;
 
         // Now search the current shader for a record with this name (
-        // excluding texture file extension)
+        // excluding texture file_manager extension)
         if (!shaders.blocks.empty()) {
             std::string::size_type sh = convertedPath.find_last_of('.');
             if (sh == std::string::npos) {
@@ -915,12 +915,12 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         pcHelper->AddProperty(&name, AI_MATKEY_NAME);
 
         if (!shader) {
-            // Setup dummy texture file name to ensure UV coordinates are kept during postprocessing
+            // Setup dummy texture file_manager name to ensure UV coordinates are kept during postprocessing
             aiString szString;
             if (convertedPath.length()) {
                 szString.Set(convertedPath);
             } else {
-                ASSIMP_LOG_WARN("Texture file name has zero length. Using default name");
+                ASSIMP_LOG_WARN("Texture file_manager name has zero length. Using default name");
                 szString.Set("dummy_texture.bmp");
             }
             pcHelper->AddProperty(&szString, AI_MATKEY_TEXTURE_DIFFUSE(0));
@@ -1005,7 +1005,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         pcSurfaces = (BE_NCONST MD3::Surface *)(((unsigned char *)pcSurfaces) + pcSurfaces->OFS_END);
     }
 
-    // For debugging purposes: check whether we found matches for all entries in the skins file
+    // For debugging purposes: check whether we found matches for all entries in the skins file_manager
     if (!DefaultLogger::isNullLogger()) {
         for (std::list<Q3Shader::SkinData::TextureEntry>::const_iterator it = skins.textures.begin(); it != skins.textures.end(); ++it) {
             if (!(*it).resolved) {
@@ -1032,7 +1032,7 @@ void MD3Importer::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         for (unsigned int i = 0; i < pcHeader->NUM_TAGS; ++i, ++pcTags) {
             aiNode *nd = pScene->mRootNode->mChildren[i] = new aiNode();
             if ((const unsigned char*)pcTags + sizeof(MD3::Tag) > bufferEnd) {
-                throw DeadlyImportError("MD3 tag is outside the file");
+                throw DeadlyImportError("MD3 tag is outside the file_manager");
             }
 
             nd->mName.Set((const char *)pcTags->NAME);

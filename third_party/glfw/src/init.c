@@ -154,12 +154,12 @@ size_t _glfwEncodeUTF8(char* s, uint32_t codepoint)
     return count;
 }
 
-// Splits and translates a text/uri-list into separate file paths
+// Splits and translates a text/uri-list into separate file_manager paths
 // NOTE: This function destroys the provided string
 //
 char** _glfwParseUriList(char* text, int* count)
 {
-    const char* prefix = "file://";
+    const char* prefix = "file_manager://";
     char** paths = NULL;
     char* line;
 

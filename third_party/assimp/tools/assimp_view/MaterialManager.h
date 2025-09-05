@@ -102,7 +102,7 @@ public:
     int UpdateSpecularMaterials();
 
     //------------------------------------------------------------------
-    // find a valid path to a texture file
+    // find a valid path to a texture file_manager
     //
     // Handle 8.3 syntax correctly, search the environment of the
     // executable and the asset for a texture with a name very similar
@@ -150,7 +150,7 @@ private:
     }
 
     //------------------------------------------------------------------
-    // find a valid path to a texture file
+    // find a valid path to a texture file_manager
     //
     // Handle 8.3 syntax correctly, search the environment of the
     // executable and the asset for a texture with a name very similar

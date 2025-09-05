@@ -77,7 +77,7 @@ public:
     const aiImporterDesc *GetInfo() const override;
 
 protected:
-    /// @brief Internal read function, performs the file parsing.
+    /// @brief Internal read function, performs the file_manager parsing.
     /// @param pFile        The filename
     /// @param pScene       The scene to load in.
     /// @param pIOHandler   The io-system

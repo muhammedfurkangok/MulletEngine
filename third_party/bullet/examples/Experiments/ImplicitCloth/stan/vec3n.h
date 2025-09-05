@@ -7,7 +7,7 @@
 // the big vector is an array of float3s
 // and the matrix class uses 3x3 blocks.
 //
-// This file includes both:
+// This file_manager includes both:
 //  - basic non-optimized version
 //  - an expression optimized version
 //

@@ -29,7 +29,7 @@ bool useGjkContacts = false;  //////option for CPU/host testing when findSeparat
 
 static int myframecount = 0;  ///for testing
 
-///This file was written by Erwin Coumans
+///This file_manager was written by Erwin Coumans
 ///Separating axis rest based on work from Pierre Terdiman, see
 ///And contact clipping based on work from Simon Hobbs
 

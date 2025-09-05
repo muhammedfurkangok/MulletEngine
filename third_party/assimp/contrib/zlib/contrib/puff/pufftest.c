@@ -7,10 +7,10 @@
 
 /* Example of how to use puff().
 
-   Usage: puff [-w] [-f] [-nnn] file
+   Usage: puff [-w] [-f] [-nnn] file_manager
           ... | puff [-w] [-f] [-nnn]
 
-   where file is the input file with deflate data, nnn is the number of bytes
+   where file_manager is the input file_manager with deflate data, nnn is the number of bytes
    of input to skip before inflating (e.g. to skip a zlib or gzip header), and
    -w is used to write the decompressed data to stdout.  -f is for coverage
    testing, and causes pufftest to fail with not enough output space (-f does
@@ -23,7 +23,7 @@
 #if defined(MSDOS) || defined(OS2) || defined(WIN32) || defined(__CYGWIN__)
 #  include <fcntl.h>
 #  include <io.h>
-#  define SET_BINARY_MODE(file) setmode(fileno(file), O_BINARY)
+#  define SET_BINARY_MODE(file_manager) setmode(fileno(file_manager), O_BINARY)
 #else
 #  define SET_BINARY_MODE(file)
 #endif
@@ -51,11 +51,11 @@ local size_t bythirds(size_t size)
     return m > size ? m : (size_t)(-1);
 }
 
-/* Read the input file *name, or stdin if name is NULL, into allocated memory.
-   Reallocate to larger buffers until the entire file is read in.  Return a
+/* Read the input file_manager *name, or stdin if name is NULL, into allocated memory.
+   Reallocate to larger buffers until the entire file_manager is read in.  Return a
    pointer to the allocated data, or NULL if there was a memory allocation
-   failure.  *len is the number of bytes of data read from the input file (even
-   if load() returns NULL).  If the input file was empty or could not be opened
+   failure.  *len is the number of bytes of data read from the input file_manager (even
+   if load() returns NULL).  If the input file_manager was empty or could not be opened
    or read, *len is zero. */
 local void *load(const char *name, size_t *len)
 {
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
             }
         }
         else if (name != NULL) {
-            fprintf(stderr, "only one file name allowed\n");
+            fprintf(stderr, "only one file_manager name allowed\n");
             return 3;
         }
         else

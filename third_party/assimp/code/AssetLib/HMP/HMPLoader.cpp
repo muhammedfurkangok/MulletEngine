@@ -79,7 +79,7 @@ HMPImporter::HMPImporter() = default;
 HMPImporter::~HMPImporter() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool HMPImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = {
         AI_HMP_MAGIC_NUMBER_LE_4,
@@ -90,38 +90,38 @@ bool HMPImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get list of all file extensions that are handled by this loader
+// Get list of all file_manager extensions that are handled by this loader
 const aiImporterDesc *HMPImporter::GetInfo() const {
     return &desc;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void HMPImporter::InternReadFile(const std::string &pFile,
         aiScene *_pScene, IOSystem *_pIOHandler) {
     pScene = _pScene;
     mIOHandler = _pIOHandler;
     std::unique_ptr<IOStream> file(mIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open HMP file ", pFile, ".");
+        throw DeadlyImportError("Failed to open HMP file_manager ", pFile, ".");
     }
 
-    // Check whether the HMP file is large enough to contain
-    // at least the file header
+    // Check whether the HMP file_manager is large enough to contain
+    // at least the file_manager header
     const size_t fileSize = file->FileSize();
     if (fileSize < 50)
         throw DeadlyImportError("HMP File is too small.");
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     auto deleter=[this](uint8_t* ptr){ delete[] ptr; mBuffer = nullptr; };
     std::unique_ptr<uint8_t[], decltype(deleter)> buffer(new uint8_t[fileSize], deleter);
     mBuffer = buffer.get();
     file->Read((void *)mBuffer, 1, fileSize);
     iFileSize = (unsigned int)fileSize;
 
-    // Determine the file subtype and call the appropriate member function
+    // Determine the file_manager subtype and call the appropriate member function
     const uint32_t iMagic = *((uint32_t *)this->mBuffer);
 
     // HMP4 format
@@ -145,7 +145,7 @@ void HMPImporter::InternReadFile(const std::string &pFile,
         // Print the magic word to the logger
         std::string szBuffer = ai_str_toprintable((const char *)&iMagic, sizeof(iMagic));
 
-        // We're definitely unable to load this file
+        // We're definitely unable to load this file_manager
         throw DeadlyImportError("Unknown HMP subformat ", pFile,
                                 ". Magic word (", szBuffer, ") is not known");
     }
@@ -159,8 +159,8 @@ void HMPImporter::ValidateHeader_HMP457() {
     const HMP::Header_HMP5 *const pcHeader = (const HMP::Header_HMP5 *)mBuffer;
 
     if (120 > iFileSize) {
-        throw DeadlyImportError("HMP file is too small (header size is "
-                                "120 bytes, this file is smaller)");
+        throw DeadlyImportError("HMP file_manager is too small (header size is "
+                                "120 bytes, this file_manager is smaller)");
     }
 
     if (!std::isfinite(pcHeader->ftrisize_x) || !std::isfinite(pcHeader->ftrisize_y))
@@ -186,7 +186,7 @@ void HMPImporter::InternReadFile_HMP4() {
 
 // ------------------------------------------------------------------------------------------------
 void HMPImporter::InternReadFile_HMP5() {
-    // read the file header and skip everything to byte 84
+    // read the file_manager header and skip everything to byte 84
     const HMP::Header_HMP5 *pcHeader = (const HMP::Header_HMP5 *)mBuffer;
     const unsigned char *szCurrent = (const unsigned char *)(mBuffer + 84);
     ValidateHeader_HMP457();
@@ -211,7 +211,7 @@ void HMPImporter::InternReadFile_HMP5() {
     szCurrent += 36;
     SizeCheck(szCurrent + sizeof(const HMP::Vertex_HMP7) * height * width);
 
-    // now load all vertices from the file
+    // now load all vertices from the file_manager
     aiVector3D *pcVertOut = pcMesh->mVertices;
     aiVector3D *pcNorOut = pcMesh->mNormals;
     const HMP::Vertex_HMP5 *src = (const HMP::Vertex_HMP5 *)szCurrent;
@@ -245,7 +245,7 @@ void HMPImporter::InternReadFile_HMP5() {
 
 // ------------------------------------------------------------------------------------------------
 void HMPImporter::InternReadFile_HMP7() {
-    // read the file header and skip everything to byte 84
+    // read the file_manager header and skip everything to byte 84
     const HMP::Header_HMP5 *const pcHeader = (const HMP::Header_HMP5 *)mBuffer;
     const unsigned char *szCurrent = (const unsigned char *)(mBuffer + 84);
     ValidateHeader_HMP457();
@@ -271,7 +271,7 @@ void HMPImporter::InternReadFile_HMP7() {
 
     SizeCheck(szCurrent + sizeof(const HMP::Vertex_HMP7) * height * width);
 
-    // now load all vertices from the file
+    // now load all vertices from the file_manager
     aiVector3D *pcVertOut = pcMesh->mVertices;
     ai_assert(pcVertOut != nullptr);
     aiVector3D *pcNorOut = pcMesh->mNormals;
@@ -320,7 +320,7 @@ void HMPImporter::CreateMaterial(const unsigned char *szCurrent,
     const HMP::Header_HMP5 *const pcHeader = (const HMP::Header_HMP5 *)mBuffer;
 
     // we don't need to generate texture coordinates if
-    // we have no textures in the file ...
+    // we have no textures in the file_manager ...
     if (pcHeader->numskins) {
         pcMesh->mTextureCoords[0] = new aiVector3D[pcHeader->numverts];
         pcMesh->mNumUVComponents[0] = 2;

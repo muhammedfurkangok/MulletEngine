@@ -29,7 +29,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 # ------------------------------------------------------------------------------
-#  Android CMake toolchain file, for use with the Android NDK r5-r10d
+#  Android CMake toolchain file_manager, for use with the Android NDK r5-r10d
 #  Requires cmake 2.6.3 or newer (2.8.9 or newer is recommended).
 #  See home page: https://github.com/taka-no-me/android-cmake
 #
@@ -1058,7 +1058,7 @@ endif()
 # case of shared STL linkage
 if( ANDROID_STL MATCHES "shared" AND DEFINED __libstl )
  string( REPLACE "_static.a" "_shared.so" __libstl "${__libstl}" )
- # TODO: check if .so file exists before the renaming
+ # TODO: check if .so file_manager exists before the renaming
 endif()
 
 

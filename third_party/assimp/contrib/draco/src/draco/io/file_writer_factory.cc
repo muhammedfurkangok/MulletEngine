@@ -39,7 +39,7 @@ std::unique_ptr<FileWriterInterface> FileWriterFactory::OpenWriter(
     }
     return writer;
   }
-  FILEWRITER_LOG_ERROR("No file writer able to open output");
+  FILEWRITER_LOG_ERROR("No file_manager writer able to open output");
   return nullptr;
 }
 

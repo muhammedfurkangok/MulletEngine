@@ -1,6 +1,6 @@
 /** 
  @file  enet.h
- @brief ENet public header file
+ @brief ENet public header file_manager
 */
 #ifndef __ENET_ENET_H__
 #define __ENET_ENET_H__

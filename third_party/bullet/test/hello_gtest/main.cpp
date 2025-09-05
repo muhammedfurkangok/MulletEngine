@@ -1,5 +1,5 @@
 /////////////////////////////
-// In the header file
+// In the header file_manager
 
 #include <sstream>
 using namespace std;
@@ -11,7 +11,7 @@ public:
 };
 
 ///////////////////////////////////////
-// In the class implementation file
+// In the class implementation file_manager
 
 string Salutation::greet(const string& name)
 {
@@ -21,7 +21,7 @@ string Salutation::greet(const string& name)
 }
 
 ///////////////////////////////////////////
-// In the test file
+// In the test file_manager
 #include <gtest/gtest.h>
 
 TEST(SalutationTest, Static)

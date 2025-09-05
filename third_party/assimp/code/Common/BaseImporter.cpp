@@ -74,7 +74,7 @@ bool IsGcsVersion(const std::string &s) {
 // https://github.com/GoogleCloudPlatform/gsutil/blob/c80f329bc3c4011236c78ce8910988773b2606cb/gslib/storage_url.py#L39.
 std::string StripVersionHash(const std::string &filename) {
     const std::string::size_type pos = filename.find_last_of('#');
-    // Only strip if the hash is behind a possible file extension and the part
+    // Only strip if the hash is behind a possible file_manager extension and the part
     // behind the hash is a version string.
     if (pos != std::string::npos && pos > filename.find_last_of('.') &&
         IsGcsVersion(filename.substr(pos + 1))) {
@@ -107,7 +107,7 @@ void BaseImporter::UpdateImporterScale(Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file and returns the imported data.
+// Imports the given file_manager and returns the imported data.
 aiScene *BaseImporter::ReadFile(Importer *pImp, const std::string &pFile, IOSystem *pIOHandler) {
 
     m_progress = pImp->GetProgressHandler();
@@ -120,7 +120,7 @@ aiScene *BaseImporter::ReadFile(Importer *pImp, const std::string &pFile, IOSyst
     // Gather configuration properties for this run
     SetupProperties(pImp);
 
-    // Construct a file system filter to improve our success ratio at reading external files
+    // Construct a file_manager system filter to improve our success ratio at reading external files
     FileSystemFilter filter(pFile, pIOHandler);
 
     // create a scene object to hold the data
@@ -190,7 +190,7 @@ void BaseImporter::GetExtensionList(std::set<std::string> &extensions) {
 
     std::unique_ptr<IOStream> pStream(pIOHandler->Open(pFile));
     if (pStream) {
-        // read 200 characters from the file
+        // read 200 characters from the file_manager
         std::unique_ptr<char[]> _buffer(new char[searchBytes + 1 /* for the '\0' */]);
         char *buffer(_buffer.get());
         const size_t read(pStream->Read(buffer, 1, searchBytes));
@@ -229,12 +229,12 @@ void BaseImporter::GetExtensionList(std::set<std::string> &extensions) {
             }
             // We need to make sure that we didn't accidentally identify the end of another token as our token,
             // e.g. in a previous version the "gltf " present in some gltf files was detected as "f ", or a
-            // Blender-exported glb file containing "Khronos glTF Blender I/O " was detected as "o "
+            // Blender-exported glb file_manager containing "Khronos glTF Blender I/O " was detected as "o "
             if (noGraphBeforeTokens && (r != buffer && isgraph(static_cast<unsigned char>(r[-1])))) {
                 continue;
             }
             // We got a match, either we don't care where it is, or it happens to
-            // be in the beginning of the file / line
+            // be in the beginning of the file_manager / line
             if (!tokensSol || r == buffer || r[-1] == '\r' || r[-1] == '\n') {
                 ASSIMP_LOG_DEBUG("Found positive match for header keyword: ", tokens[i]);
                 return true;
@@ -246,7 +246,7 @@ void BaseImporter::GetExtensionList(std::set<std::string> &extensions) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Simple check for file extension
+// Simple check for file_manager extension
 /*static*/ bool BaseImporter::SimpleExtensionCheck(const std::string &pFile,
         const char *ext0,
         const char *ext1,
@@ -261,7 +261,7 @@ void BaseImporter::GetExtensionList(std::set<std::string> &extensions) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Check for file extension
+// Check for file_manager extension
 /*static*/ bool BaseImporter::HasExtension(const std::string &pFile, const std::set<std::string> &extensions) {
     const std::string file = StripVersionHash(pFile);
     // CAUTION: Do not just search for the extension!
@@ -281,12 +281,12 @@ void BaseImporter::GetExtensionList(std::set<std::string> &extensions) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get file extension from path
+// Get file_manager extension from path
 std::string BaseImporter::GetExtension(const std::string &pFile) {
     const std::string file = StripVersionHash(pFile);
     std::string::size_type pos = file.find_last_of('.');
 
-    // no file extension at all
+    // no file_manager extension at all
     if (pos == std::string::npos) {
         return std::string();
     }
@@ -300,7 +300,7 @@ std::string BaseImporter::GetExtension(const std::string &pFile) {
 
 
 // ------------------------------------------------------------------------------------------------
-// Check for magic bytes at the beginning of the file.
+// Check for magic bytes at the beginning of the file_manager.
 /* static */ bool BaseImporter::CheckMagicToken(IOSystem *pIOHandler, const std::string &pFile,
         const void *_magic, std::size_t num, unsigned int offset, unsigned int size) {
     ai_assert(size <= 16);
@@ -316,7 +316,7 @@ std::string BaseImporter::GetExtension(const std::string &pFile) {
         // skip to offset
         pStream->Seek(offset, aiOrigin_SET);
 
-        // read 'size' characters from the file
+        // read 'size' characters from the file_manager
         union {
             char data[16];
             uint16_t data_u16[8];

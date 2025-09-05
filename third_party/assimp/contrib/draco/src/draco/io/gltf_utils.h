@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -55,7 +55,7 @@ class GltfValue {
   double value_double_;
 };
 
-// Utility class used to help with indentation of glTF file.
+// Utility class used to help with indentation of glTF file_manager.
 class Indent {
  public:
   Indent();
@@ -66,7 +66,7 @@ class Indent {
   friend std::ostream &operator<<(std::ostream &os, const Indent &indent);
 
  private:
-  // Variables used for spacing of the glTF file.
+  // Variables used for spacing of the glTF file_manager.
   std::string indent_;
   const int indent_space_count_;
 };

@@ -80,7 +80,7 @@ public:
     using MatrixPropertyMap = std::map<KeyType, aiMatrix4x4>;
     using PointerPropertyMap = std::map<KeyType, void*>;
 
-    /** IO handler to use for all file accesses. */
+    /** IO handler to use for all file_manager accesses. */
     IOSystem* mIOHandler;
     bool mIsDefaultHandler;
 
@@ -211,12 +211,12 @@ public:
     bool getValidation() const;
 
     // -------------------------------------------------------------------
-    /** Add a new file to the list of files to be loaded.
+    /** Add a new file_manager to the list of files to be loaded.
      *  @param file File to be loaded
-     *  @param steps Post-processing steps to be executed on the file
+     *  @param steps Post-processing steps to be executed on the file_manager
      *  @param map Optional configuration properties
      *  @return 'Load request channel' - an unique ID that can later
-     *    be used to access the imported file data.
+     *    be used to access the imported file_manager data.
      *  @see GetImport */
     unsigned int AddLoadRequest (
         const std::string& file,
@@ -231,7 +231,7 @@ public:
      *  can be called several times, too.
      *
      *  @param which LRWC returned by AddLoadRequest().
-     *  @return nullptr if there is no scene with this file name
+     *  @return nullptr if there is no scene with this file_manager name
      *  in the queue of the scene hasn't been loaded yet. */
     aiScene* GetImport(
         unsigned int which

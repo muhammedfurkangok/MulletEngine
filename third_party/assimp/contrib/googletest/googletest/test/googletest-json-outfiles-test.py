@@ -57,7 +57,7 @@ EXPECTED_1 = {
         'timestamp': '*',
         'testsuite': [{
             'name': 'TestSomeProperties',
-            'file': 'gtest_xml_outfile1_test_.cc',
+            'file_manager': 'gtest_xml_outfile1_test_.cc',
             'line': 41,
             'status': 'RUN',
             'result': 'COMPLETED',
@@ -89,7 +89,7 @@ EXPECTED_2 = {
         'timestamp': '*',
         'testsuite': [{
             'name': 'TestInt64ConvertibleProperties',
-            'file': 'gtest_xml_outfile2_test_.cc',
+            'file_manager': 'gtest_xml_outfile2_test_.cc',
             'line': 43,
             'status': 'RUN',
             'result': 'COMPLETED',
@@ -118,7 +118,7 @@ class GTestJsonOutFilesTest(gtest_test_utils.TestCase):
 
   def setUp(self):
     # We want the trailing '/' that the last "" provides in os.path.join, for
-    # telling Google Test to create an output directory instead of a single file
+    # telling Google Test to create an output directory instead of a single file_manager
     # for xml output.
     self.output_dir_ = os.path.join(
         gtest_test_utils.GetTempDir(), GTEST_OUTPUT_SUBDIR, ''

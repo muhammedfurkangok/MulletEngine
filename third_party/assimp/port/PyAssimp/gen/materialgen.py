@@ -93,4 +93,4 @@ file = open('material.py', 'w')
 file.write(text)
 file.close()
 
-print("Generation done. You can now review the file 'material.py' and merge it.")
+print("Generation done. You can now review the file_manager 'material.py' and merge it.")

@@ -924,7 +924,7 @@ void DARTPhysicsClient::postProcessStatus(const struct SharedMemoryStatus& serve
 		}
 		case CMD_BULLET_LOADING_FAILED:
 		{
-			b3Warning("Couldn't load .bullet file");
+			b3Warning("Couldn't load .bullet file_manager");
 			break;
 		}
 		case CMD_BULLET_LOADING_COMPLETED:

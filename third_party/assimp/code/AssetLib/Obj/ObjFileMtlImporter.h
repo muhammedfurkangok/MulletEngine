@@ -57,7 +57,7 @@ struct Material;
 
 /**
  *  @class  ObjFileMtlImporter
- *  @brief  Loads the material description from a mtl file.
+ *  @brief  Loads the material description from a mtl file_manager.
  */
 class ObjFileMtlImporter {
 public:
@@ -102,7 +102,7 @@ private:
     DataArrayIt m_DataItEnd;
     //! USed model instance
     ObjFile::Model *m_pModel;
-    //! Current line in file
+    //! Current line in file_manager
     unsigned int m_uiLine;
     //! Helper buffer
     std::vector<char> m_buffer;

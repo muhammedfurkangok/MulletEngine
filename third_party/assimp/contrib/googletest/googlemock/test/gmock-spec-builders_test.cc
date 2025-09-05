@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file tests the spec builder syntax.
+// This file_manager tests the spec builder syntax.
 
 #include "gmock/gmock-spec-builders.h"
 

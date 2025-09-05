@@ -1136,7 +1136,7 @@ void MidiOutCore ::sendMessage(std::vector<unsigned char> *message)
 #include <pthread.h>
 #include <sys/time.h>
 
-// ALSA header file.
+// ALSA header file_manager.
 #include <alsa/asoundlib.h>
 
 // Global sequencer instance created when first In/Out object is
@@ -2553,7 +2553,7 @@ void MidiOutWinMM ::sendMessage(std::vector<unsigned char> *message)
 //
 // Written by Sebastien Alaiwan, 2012.
 //
-// NOTE BY GARY: much of the KS-specific code below probably should go in a separate file.
+// NOTE BY GARY: much of the KS-specific code below probably should go in a separate file_manager.
 //
 // *********************************************************************//
 

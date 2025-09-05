@@ -17,12 +17,12 @@
 /*****************************************************************************/
 
 /**
- *  @brief  Gzipped file stream buffer class.
+ *  @brief  Gzipped file_manager stream buffer class.
  *
  *  This class implements basic_filebuf for gzipped files. It doesn't yet support
  *  seeking (allowed by zlib but slow/limited), putback and read/write access
  *  (tricky). Otherwise, it attempts to be a drop-in replacement for the standard
- *  file streambuf.
+ *  file_manager streambuf.
 */
 class gzfilebuf : public std::streambuf
 {
@@ -50,14 +50,14 @@ public:
                  int comp_strategy = Z_DEFAULT_STRATEGY);
 
   /**
-   *  @brief  Check if file is open.
-   *  @return  True if file is open.
+   *  @brief  Check if file_manager is open.
+   *  @return  True if file_manager is open.
   */
   bool
   is_open() const { return (file != NULL); }
 
   /**
-   *  @brief  Open gzipped file.
+   *  @brief  Open gzipped file_manager.
    *  @param  name  File name.
    *  @param  mode  Open mode flags.
    *  @return  @c this on success, NULL on failure.
@@ -67,7 +67,7 @@ public:
        std::ios_base::openmode mode);
 
   /**
-   *  @brief  Attach to already open gzipped file.
+   *  @brief  Attach to already open gzipped file_manager.
    *  @param  fd  File descriptor.
    *  @param  mode  Open mode flags.
    *  @return  @c this on success, NULL on failure.
@@ -77,7 +77,7 @@ public:
          std::ios_base::openmode mode);
 
   /**
-   *  @brief  Close gzipped file.
+   *  @brief  Close gzipped file_manager.
    *  @return  @c this on success, NULL on failure.
   */
   gzfilebuf*
@@ -97,28 +97,28 @@ protected:
    *  @return  Number of characters.
    *
    *  This indicates number of characters in get area of stream buffer.
-   *  These characters can be read without accessing the gzipped file.
+   *  These characters can be read without accessing the gzipped file_manager.
   */
   virtual std::streamsize
   showmanyc();
 
   /**
-   *  @brief  Fill get area from gzipped file.
+   *  @brief  Fill get area from gzipped file_manager.
    *  @return  First character in get area on success, EOF on error.
    *
-   *  This actually reads characters from gzipped file to stream
+   *  This actually reads characters from gzipped file_manager to stream
    *  buffer. Always buffered.
   */
   virtual int_type
   underflow();
 
   /**
-   *  @brief  Write put area to gzipped file.
+   *  @brief  Write put area to gzipped file_manager.
    *  @param  c  Extra character to add to buffer contents.
    *  @return  Non-EOF on success, EOF on error.
    *
    *  This actually writes characters in stream buffer to
-   *  gzipped file. With unbuffered output this is done one
+   *  gzipped file_manager. With unbuffered output this is done one
    *  character at a time.
   */
   virtual int_type
@@ -137,7 +137,7 @@ protected:
          std::streamsize n);
 
   /**
-   *  @brief  Flush stream buffer to file.
+   *  @brief  Flush stream buffer to file_manager.
    *  @return  0 on success, -1 on error.
    *
    *  This calls underflow(EOF) to do the job.
@@ -181,19 +181,19 @@ private:
   disable_buffer();
 
   /**
-   *  Underlying file pointer.
+   *  Underlying file_manager pointer.
   */
   gzFile file;
 
   /**
-   *  Mode in which file was opened.
+   *  Mode in which file_manager was opened.
   */
   std::ios_base::openmode io_mode;
 
   /**
-   *  @brief  True if this object owns file descriptor.
+   *  @brief  True if this object owns file_manager descriptor.
    *
-   *  This makes the class responsible for closing the file
+   *  This makes the class responsible for closing the file_manager
    *  upon destruction.
   */
   bool own_fd;
@@ -226,7 +226,7 @@ private:
 /*****************************************************************************/
 
 /**
- *  @brief  Gzipped file input stream class.
+ *  @brief  Gzipped file_manager input stream class.
  *
  *  This class implements ifstream for gzipped files. Seeking and putback
  *  is not supported yet.
@@ -238,7 +238,7 @@ public:
   gzifstream();
 
   /**
-   *  @brief  Construct stream on gzipped file to be opened.
+   *  @brief  Construct stream on gzipped file_manager to be opened.
    *  @param  name  File name.
    *  @param  mode  Open mode flags (forced to contain ios::in).
   */
@@ -247,7 +247,7 @@ public:
              std::ios_base::openmode mode = std::ios_base::in);
 
   /**
-   *  @brief  Construct stream on already open gzipped file.
+   *  @brief  Construct stream on already open gzipped file_manager.
    *  @param  fd    File descriptor.
    *  @param  mode  Open mode flags (forced to contain ios::in).
   */
@@ -263,21 +263,21 @@ public:
   { return const_cast<gzfilebuf*>(&sb); }
 
   /**
-   *  @brief  Check if file is open.
-   *  @return  True if file is open.
+   *  @brief  Check if file_manager is open.
+   *  @return  True if file_manager is open.
   */
   bool
   is_open() { return sb.is_open(); }
 
   /**
-   *  @brief  Open gzipped file.
+   *  @brief  Open gzipped file_manager.
    *  @param  name  File name.
    *  @param  mode  Open mode flags (forced to contain ios::in).
    *
-   *  Stream will be in state good() if file opens successfully;
+   *  Stream will be in state good() if file_manager opens successfully;
    *  otherwise in state fail(). This differs from the behavior of
    *  ifstream, which never sets the state to good() and therefore
-   *  won't allow you to reuse the stream for a second file unless
+   *  won't allow you to reuse the stream for a second file_manager unless
    *  you manually clear() the state. The choice is a matter of
    *  convenience.
   */
@@ -286,7 +286,7 @@ public:
        std::ios_base::openmode mode = std::ios_base::in);
 
   /**
-   *  @brief  Attach to already open gzipped file.
+   *  @brief  Attach to already open gzipped file_manager.
    *  @param  fd  File descriptor.
    *  @param  mode  Open mode flags (forced to contain ios::in).
    *
@@ -298,7 +298,7 @@ public:
          std::ios_base::openmode mode = std::ios_base::in);
 
   /**
-   *  @brief  Close gzipped file.
+   *  @brief  Close gzipped file_manager.
    *
    *  Stream will be in state fail() if close failed.
   */
@@ -315,7 +315,7 @@ private:
 /*****************************************************************************/
 
 /**
- *  @brief  Gzipped file output stream class.
+ *  @brief  Gzipped file_manager output stream class.
  *
  *  This class implements ofstream for gzipped files. Seeking and putback
  *  is not supported yet.
@@ -327,7 +327,7 @@ public:
   gzofstream();
 
   /**
-   *  @brief  Construct stream on gzipped file to be opened.
+   *  @brief  Construct stream on gzipped file_manager to be opened.
    *  @param  name  File name.
    *  @param  mode  Open mode flags (forced to contain ios::out).
   */
@@ -336,7 +336,7 @@ public:
              std::ios_base::openmode mode = std::ios_base::out);
 
   /**
-   *  @brief  Construct stream on already open gzipped file.
+   *  @brief  Construct stream on already open gzipped file_manager.
    *  @param  fd    File descriptor.
    *  @param  mode  Open mode flags (forced to contain ios::out).
   */
@@ -352,21 +352,21 @@ public:
   { return const_cast<gzfilebuf*>(&sb); }
 
   /**
-   *  @brief  Check if file is open.
-   *  @return  True if file is open.
+   *  @brief  Check if file_manager is open.
+   *  @return  True if file_manager is open.
   */
   bool
   is_open() { return sb.is_open(); }
 
   /**
-   *  @brief  Open gzipped file.
+   *  @brief  Open gzipped file_manager.
    *  @param  name  File name.
    *  @param  mode  Open mode flags (forced to contain ios::out).
    *
-   *  Stream will be in state good() if file opens successfully;
+   *  Stream will be in state good() if file_manager opens successfully;
    *  otherwise in state fail(). This differs from the behavior of
    *  ofstream, which never sets the state to good() and therefore
-   *  won't allow you to reuse the stream for a second file unless
+   *  won't allow you to reuse the stream for a second file_manager unless
    *  you manually clear() the state. The choice is a matter of
    *  convenience.
   */
@@ -375,7 +375,7 @@ public:
        std::ios_base::openmode mode = std::ios_base::out);
 
   /**
-   *  @brief  Attach to already open gzipped file.
+   *  @brief  Attach to already open gzipped file_manager.
    *  @param  fd  File descriptor.
    *  @param  mode  Open mode flags (forced to contain ios::out).
    *
@@ -387,7 +387,7 @@ public:
          std::ios_base::openmode mode = std::ios_base::out);
 
   /**
-   *  @brief  Close gzipped file.
+   *  @brief  Close gzipped file_manager.
    *
    *  Stream will be in state fail() if close failed.
   */
@@ -404,7 +404,7 @@ private:
 /*****************************************************************************/
 
 /**
- *  @brief  Gzipped file output stream manipulator class.
+ *  @brief  Gzipped file_manager output stream manipulator class.
  *
  *  This class defines a two-argument manipulator for gzofstream. It is used
  *  as base for the setcompression(int,int) manipulator.

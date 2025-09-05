@@ -38,7 +38,7 @@ namespace Eigen {
 namespace internal {
 
 /**********************************************************************
-* This file implements triangular matrix-vector multiplication using BLAS
+* This file_manager implements triangular matrix-vector multiplication using BLAS
 **********************************************************************/
 
 // trmv/hemv specialization

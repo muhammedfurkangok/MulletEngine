@@ -14,7 +14,7 @@ struct SDFAudioSource
 
 	int m_flags;  //repeat mode (0 = no repeat, 1 = loop forever)
 
-	std::string m_uri;  //media filename of the sound, .wav file
+	std::string m_uri;  //media filename of the sound, .wav file_manager
 	double m_pitch;     //1 = regular rate, -1 play in reverse
 	double m_gain;      //normalized volume in range [0..1] where 0 is silent, 1 is most loud
 

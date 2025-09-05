@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file ObjExporter.h
- * Declares the exporter class to write a scene to a Collada file
+ * Declares the exporter class to write a scene to a Collada file_manager
  */
 #ifndef AI_OBJEXPORTER_H_INC
 #define AI_OBJEXPORTER_H_INC
@@ -60,7 +60,7 @@ struct aiMesh;
 namespace Assimp {
 
 // ------------------------------------------------------------------------------------------------
-/** Helper class to export a given scene to an OBJ file. */
+/** Helper class to export a given scene to an OBJ file_manager. */
 // ------------------------------------------------------------------------------------------------
 class ObjExporter final {
 public:

@@ -48,7 +48,7 @@ IMGUI_IMPL_API void ImGui_ImplMetal_UpdateTexture(ImTextureData* tex);
 // C++ API
 //-----------------------------------------------------------------------------
 
-// Enable Metal C++ binding support with '#define IMGUI_IMPL_METAL_CPP' in your imconfig.h file
+// Enable Metal C++ binding support with '#define IMGUI_IMPL_METAL_CPP' in your imconfig.h file_manager
 // More info about using Metal from C++: https://developer.apple.com/metal/cpp/
 
 #ifdef IMGUI_IMPL_METAL_CPP

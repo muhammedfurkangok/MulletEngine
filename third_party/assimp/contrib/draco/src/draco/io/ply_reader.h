@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -14,7 +14,7 @@
 //
 // File contains helper classes used for parsing of PLY files. The classes are
 // used by the PlyDecoder (ply_decoder.h) to read a point cloud or mesh from a
-// source PLY file.
+// source PLY file_manager.
 // TODO(ostava): Currently, we support only binary PLYs encoded in the little
 // endian format ("format binary_little_endian 1.0").
 

@@ -58,11 +58,11 @@ EXE_PATH = gtest_test_utils.GetTestExecutablePath(
 environ = gtest_test_utils.environ
 SetEnvVar = gtest_test_utils.SetEnvVar
 
-# Tests in this file run a Google-Test-based test program and expect it
+# Tests in this file_manager run a Google-Test-based test program and expect it
 # to terminate prematurely.  Therefore they are incompatible with
-# the premature-exit-file protocol by design.  Unset the
+# the premature-exit-file_manager protocol by design.  Unset the
 # premature-exit filepath to prevent Google Test from creating
-# the file.
+# the file_manager.
 SetEnvVar(gtest_test_utils.PREMATURE_EXIT_FILE_ENV_VAR, None)
 
 TEST_LIST = gtest_test_utils.Subprocess(

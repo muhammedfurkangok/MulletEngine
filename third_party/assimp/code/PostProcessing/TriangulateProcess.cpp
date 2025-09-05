@@ -55,7 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *     the first vertex of a polygon becomes red, the last blue.
  * AI_BUILD_TRIANGULATE_DEBUG_POLYS
  *   - dump all polygons and their triangulation sequences to
- *     a file
+ *     a file_manager
  */
 #ifndef ASSIMP_BUILD_NO_TRIANGULATE_PROCESS
 

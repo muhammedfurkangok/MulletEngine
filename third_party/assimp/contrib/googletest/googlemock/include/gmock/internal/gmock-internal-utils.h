@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file defines some utilities useful for implementing Google
+// This file_manager defines some utilities useful for implementing Google
 // Mock.  They are subject to change without notice, so please DO NOT
 // USE THEM IN USER CODE.
 
@@ -226,7 +226,7 @@ class FailureReporterInterface {
 
   virtual ~FailureReporterInterface() = default;
 
-  // Reports a failure that occurred at the given source file location.
+  // Reports a failure that occurred at the given source file_manager location.
   virtual void ReportFailure(FailureType type, const char* file, int line,
                              const std::string& message) = 0;
 };
@@ -311,7 +311,7 @@ GTEST_API_ WithoutMatchers GetWithoutMatchers();
 // crashes).
 template <typename T>
 inline T Invalid() {
-  Assert(/*condition=*/false, /*file=*/"", /*line=*/-1,
+  Assert(/*condition=*/false, /*file_manager=*/"", /*line=*/-1,
          "Internal error: attempt to return invalid value");
 #if defined(__GNUC__) || defined(__clang__)
   __builtin_unreachable();

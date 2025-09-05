@@ -105,7 +105,7 @@ TEST(XmlQuotingTest, OutputsCData) {
 }
 
 // Helps to test that invalid characters produced by test code do not make
-// it into the XML file.
+// it into the XML file_manager.
 TEST(InvalidCharactersTest, InvalidCharactersInMessage) {
   FAIL() << "Invalid characters in brackets [\x1\x2]";
 }

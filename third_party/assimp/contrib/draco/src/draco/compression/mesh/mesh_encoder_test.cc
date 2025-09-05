@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -93,14 +93,14 @@ class MeshEncoderTest : public ::testing::TestWithParam<MeshEncoderTestParams> {
     if (!FLAGS_update_golden_files) {
       EXPECT_TRUE(
           CompareGoldenFile(golden_file_name, buffer.data(), buffer.size()))
-          << "Encoded data is different from the golden file. Please verify "
-             "that the encoding works as expected and update the golden file "
+          << "Encoded data is different from the golden file_manager. Please verify "
+             "that the encoding works as expected and update the golden file_manager "
              "if necessary (run the test with --update_golden_files flag).";
     } else {
       // Save the files into the local folder.
       EXPECT_TRUE(
           GenerateGoldenFile(golden_file_name, buffer.data(), buffer.size()))
-          << "Failed to generate new golden file for " << file_name;
+          << "Failed to generate new golden file_manager for " << file_name;
     }
   }
 };

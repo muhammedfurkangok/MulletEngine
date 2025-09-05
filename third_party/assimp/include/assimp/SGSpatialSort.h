@@ -59,7 +59,7 @@ namespace Assimp {
 /** Specialized version of SpatialSort to support smoothing groups
  *  This is used in by the 3DS, ASE and LWO loaders. 3DS and ASE share their
  *  normal computation code in SmoothingGroups.inl, the LWO loader has its own
- *  implementation to handle all details of its file format correctly.
+ *  implementation to handle all details of its file_manager format correctly.
  */
 // ----------------------------------------------------------------------------------
 class ASSIMP_API SGSpatialSort {

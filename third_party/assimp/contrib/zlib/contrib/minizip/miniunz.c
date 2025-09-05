@@ -70,15 +70,15 @@
   mini unzip, demo of unzip package
 
   usage :
-  Usage : miniunz [-exvlo] file.zip [file_to_extract] [-d extractdir]
+  Usage : miniunz [-exvlo] file_manager.zip [file_to_extract] [-d extractdir]
 
-  list the file in the zipfile, and print the content of FILE_ID.ZIP or README.TXT
+  list the file_manager in the zipfile, and print the content of FILE_ID.ZIP or README.TXT
     if it exists
 */
 
 
-/* change_file_date : change the date/time of a file
-    filename : the filename of the file where date/time must be modified
+/* change_file_date : change the date/time of a file_manager
+    filename : the filename of the file_manager where date/time must be modified
     dosdate : the new date at the MSDos format (4 bytes)
     tmu_date : the SAME new date at the tm_unz format */
 static void change_file_date(filename,dosdate,tmu_date)
@@ -195,14 +195,14 @@ static void do_banner()
 
 static void do_help()
 {
-    printf("Usage : miniunz [-e] [-x] [-v] [-l] [-o] [-p password] file.zip [file_to_extr.] [-d extractdir]\n\n" \
+    printf("Usage : miniunz [-e] [-x] [-v] [-l] [-o] [-p password] file_manager.zip [file_to_extr.] [-d extractdir]\n\n" \
            "  -e  Extract without pathname (junk paths)\n" \
            "  -x  Extract with pathname\n" \
            "  -v  list files\n" \
            "  -l  list files\n" \
            "  -d  directory to extract into\n" \
            "  -o  overwrite files without prompting\n" \
-           "  -p  extract crypted file using password\n\n");
+           "  -p  extract crypted file_manager using password\n\n");
 }
 
 static void Display64BitsSize(ZPOS64_T n, int size_char)
@@ -261,7 +261,7 @@ static int do_list(uf)
         if (file_info.uncompressed_size>0)
             ratio = (uLong)((file_info.compressed_size*100)/file_info.uncompressed_size);
 
-        /* display a '*' if the file is crypted */
+        /* display a '*' if the file_manager is crypted */
         if ((file_info.flag & 1) != 0)
             charCrypt='*';
 
@@ -387,7 +387,7 @@ static int do_extract_currentfile(uf,popt_extract_without_path,popt_overwrite,pa
                     char answer[128];
                     int ret;
 
-                    printf("The file %s exists. Overwrite ? [y]es, [n]o, [A]ll: ",write_filename);
+                    printf("The file_manager %s exists. Overwrite ? [y]es, [n]o, [A]ll: ",write_filename);
                     ret = scanf("%1s",answer);
                     if (ret != 1)
                     {
@@ -410,7 +410,7 @@ static int do_extract_currentfile(uf,popt_extract_without_path,popt_overwrite,pa
         if ((skip==0) && (err==UNZ_OK))
         {
             fout=FOPEN_FUNC(write_filename,"wb");
-            /* some zipfile don't contain directory alone before file */
+            /* some zipfile don't contain directory alone before file_manager */
             if ((fout==NULL) && ((*popt_extract_without_path)==0) &&
                                 (filename_withoutpath!=(char*)filename_inzip))
             {
@@ -442,7 +442,7 @@ static int do_extract_currentfile(uf,popt_extract_without_path,popt_overwrite,pa
                 if (err>0)
                     if (fwrite(buf,(unsigned)err,1,fout)!=1)
                     {
-                        printf("error in writing extracted file\n");
+                        printf("error in writing extracted file_manager\n");
                         err=UNZ_ERRNO;
                         break;
                     }
@@ -517,7 +517,7 @@ static int do_extract_onefile(uf,filename,opt_extract_without_path,opt_overwrite
 {
     if (unzLocateFile(uf,filename,CASESENSITIVITY)!=UNZ_OK)
     {
-        printf("file %s not found in the zipfile\n",filename);
+        printf("file_manager %s not found in the zipfile\n",filename);
         return 2;
     }
 

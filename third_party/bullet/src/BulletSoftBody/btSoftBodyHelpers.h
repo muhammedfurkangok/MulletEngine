@@ -123,7 +123,7 @@ struct btSoftBodyHelpers
 											int nvertices,
 											bool randomizeConstraints = true);
 
-	/* Export TetGen compatible .smesh file									*/
+	/* Export TetGen compatible .smesh file_manager									*/
 	//	static void				ExportAsSMeshFile(	btSoftBody* psb,
 	//												const char* filename);
 	/* Create from TetGen .ele, .face, .node files							*/

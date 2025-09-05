@@ -1,4 +1,4 @@
-# This file is part of the Spring engine (GPL v2 or later), see LICENSE.html
+# This file_manager is part of the Spring engine (GPL v2 or later), see LICENSE.html
 
 OPTION(ASSIMP_HEADERCHECK "adds the target headercheck which compiles every header file, default disabled because it adds many targets" OFF)
 if(ASSIMP_HEADERCHECK)
@@ -25,7 +25,7 @@ FOREACH( HEADER ${headers} )
 
   SET(TEST_FILE ${CMAKE_CURRENT_BINARY_DIR}/src-generated/${TEST_NAME}.cpp)
 
-  # create test file
+  # create test file_manager
   configure_file( headercheck.cpp.in ${TEST_FILE} )
   # add library
   add_library( ${TEST_NAME} EXCLUDE_FROM_ALL ${TEST_FILE} )

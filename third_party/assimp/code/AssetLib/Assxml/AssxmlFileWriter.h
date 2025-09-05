@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file AssxmlFileWriter.h
- *  @brief Declaration of Assxml file writer.
+ *  @brief Declaration of Assxml file_manager writer.
  */
 #pragma once
 #ifndef AI_ASSXMLFILEWRITER_H_INC

@@ -181,7 +181,7 @@ public:
 
 public:
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -194,7 +194,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details*/
     void InternReadFile(const std::string &pFile, aiScene *pScene,
             IOSystem *pIOHandler) override;
@@ -207,8 +207,8 @@ protected:
 
 private:
     // -------------------------------------------------------------------
-    /** Get the next line from the file.
-     *  @return false if the end of the file was reached*/
+    /** Get the next line from the file_manager.
+     *  @return false if the end of the file_manager was reached*/
     bool GetNextLine();
 
     // -------------------------------------------------------------------

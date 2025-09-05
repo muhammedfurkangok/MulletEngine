@@ -120,7 +120,7 @@ static ExampleEntryPhysicsServer gDefaultExamplesPhysicsServer[] =
 		ExampleEntryPhysicsServer(1, "Physics Server (RTC)", "Create a physics server that communicates with a physics client over shared memory. At each update, the Physics Server will continue calling 'stepSimulation' based on the real-time clock (RTC).",
 								  PhysicsServerCreateFuncBullet2, PHYSICS_SERVER_USE_RTC_CLOCK),
 
-		ExampleEntryPhysicsServer(1, "Physics Server (Logging)", "Create a physics server that communicates with a physics client over shared memory. It will log all commands to a file.",
+		ExampleEntryPhysicsServer(1, "Physics Server (Logging)", "Create a physics server that communicates with a physics client over shared memory. It will log all commands to a file_manager.",
 								  PhysicsServerCreateFuncBullet2, PHYSICS_SERVER_ENABLE_COMMAND_LOGGING),
 		ExampleEntryPhysicsServer(1, "Physics Server (Replay Log)", "Create a physics server that replay a command log from disk.",
 								  PhysicsServerCreateFuncBullet2, PHYSICS_SERVER_REPLAY_FROM_COMMAND_LOG),

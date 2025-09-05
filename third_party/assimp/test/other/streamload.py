@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Read all test files for a particular file format using a single
+"""Read all test files for a particular file_manager format using a single
 importer instance. Read them again in reversed order. This is used
 to verify that a loader does proper cleanup and can be called
 repeatedly."""
@@ -31,13 +31,13 @@ def process_dir(thisdir):
                 res += process_dir(fullpath) 
             continue
 
-        # import twice, importing the same file again introduces extra risk
+        # import twice, importing the same file_manager again introduces extra risk
         # to crash due to garbage data lying around in the importer.
         command.append(fullpath)
         command.append(fullpath)
 
     if len(command)>2:
-        # testbatchload returns always 0 if more than one file in the list worked.
+        # testbatchload returns always 0 if more than one file_manager in the list worked.
         # however, if it should segfault, the OS will return something not 0.
         command += reversed(command[2:])
         if subprocess.call(command, **shellparams):

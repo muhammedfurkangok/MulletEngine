@@ -12,14 +12,14 @@
 ;   ml.exe is distributed in
 ;  http://www.microsoft.com/downloads/details.aspx?FamilyID=7a1c9da0-0510-44a2-b042-7ef370530c64
 ;
-; this file contain two implementation of longest_match
+; this file_manager contain two implementation of longest_match
 ;
 ;  this longest_match was written by Brian raiter (1998), optimized for Pentium Pro
 ;   (and the faster known version of match_init on modern Core 2 Duo and AMD Phenom)
 ;
 ;  for using an assembly version of longest_match, you need define ASMV in project
 ;
-;    compile the asm file running
+;    compile the asm file_manager running
 ;           ml /coff /Zi /c /Flmatch686.lst match686.asm
 ;    and do not include match686.obj in your project
 ;
@@ -28,7 +28,7 @@
 ;  with autoselect (with cpu detection code)
 ;  if you want support the old pentium optimization, you can still use these version
 ;
-; this file is not optimized for old pentium, but it compatible with all x86 32 bits
+; this file_manager is not optimized for old pentium, but it compatible with all x86 32 bits
 ; processor (starting 80386)
 ;
 ;

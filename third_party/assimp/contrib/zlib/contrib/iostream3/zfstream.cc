@@ -29,7 +29,7 @@ gzfilebuf::gzfilebuf()
 // Destructor
 gzfilebuf::~gzfilebuf()
 {
-  // Sync output buffer and close only if responsible for file
+  // Sync output buffer and close only if responsible for file_manager
   // (i.e. attached streams should be left open at this stage)
   this->sync();
   if (own_fd)
@@ -46,12 +46,12 @@ gzfilebuf::setcompression(int comp_level,
   return gzsetparams(file, comp_level, comp_strategy);
 }
 
-// Open gzipped file
+// Open gzipped file_manager
 gzfilebuf*
 gzfilebuf::open(const char *name,
                 std::ios_base::openmode mode)
 {
-  // Fail if file already open
+  // Fail if file_manager already open
   if (this->is_open())
     return NULL;
   // Don't support simultaneous read/write access (yet)
@@ -63,7 +63,7 @@ gzfilebuf::open(const char *name,
   if (!this->open_mode(mode, char_mode))
     return NULL;
 
-  // Attempt to open file
+  // Attempt to open file_manager
   if ((file = gzopen(name, char_mode)) == NULL)
     return NULL;
 
@@ -74,12 +74,12 @@ gzfilebuf::open(const char *name,
   return this;
 }
 
-// Attach to gzipped file
+// Attach to gzipped file_manager
 gzfilebuf*
 gzfilebuf::attach(int fd,
                   std::ios_base::openmode mode)
 {
-  // Fail if file already open
+  // Fail if file_manager already open
   if (this->is_open())
     return NULL;
   // Don't support simultaneous read/write access (yet)
@@ -91,7 +91,7 @@ gzfilebuf::attach(int fd,
   if (!this->open_mode(mode, char_mode))
     return NULL;
 
-  // Attempt to attach to file
+  // Attempt to attach to file_manager
   if ((file = gzdopen(fd, char_mode)) == NULL)
     return NULL;
 
@@ -102,16 +102,16 @@ gzfilebuf::attach(int fd,
   return this;
 }
 
-// Close gzipped file
+// Close gzipped file_manager
 gzfilebuf*
 gzfilebuf::close()
 {
-  // Fail immediately if no file is open
+  // Fail immediately if no file_manager is open
   if (!this->is_open())
     return NULL;
   // Assume success
   gzfilebuf* retval = this;
-  // Attempt to sync and close gzipped file
+  // Attempt to sync and close gzipped file_manager
   if (this->sync() == -1)
     retval = NULL;
   if (gzclose(file) < 0)
@@ -168,7 +168,7 @@ gzfilebuf::open_mode(std::ios_base::openmode mode,
 std::streamsize
 gzfilebuf::showmanyc()
 {
-  // Calls to underflow will fail if file not opened for reading
+  // Calls to underflow will fail if file_manager not opened for reading
   if (!this->is_open() || !(io_mode & std::ios_base::in))
     return -1;
   // Make sure get area is in use
@@ -178,7 +178,7 @@ gzfilebuf::showmanyc()
     return 0;
 }
 
-// Fill get area from gzipped file
+// Fill get area from gzipped file_manager
 gzfilebuf::int_type
 gzfilebuf::underflow()
 {
@@ -188,11 +188,11 @@ gzfilebuf::underflow()
   if (this->gptr() && (this->gptr() < this->egptr()))
     return traits_type::to_int_type(*(this->gptr()));
 
-  // If the file hasn't been opened for reading, produce error
+  // If the file_manager hasn't been opened for reading, produce error
   if (!this->is_open() || !(io_mode & std::ios_base::in))
     return traits_type::eof();
 
-  // Attempt to fill internal buffer from gzipped file
+  // Attempt to fill internal buffer from gzipped file_manager
   // (buffer must be guaranteed to exist...)
   int bytes_read = gzread(file, buffer, buffer_size);
   // Indicates error or EOF
@@ -202,14 +202,14 @@ gzfilebuf::underflow()
     this->setg(buffer, buffer, buffer);
     return traits_type::eof();
   }
-  // Make all bytes read from file available as get area
+  // Make all bytes read from file_manager available as get area
   this->setg(buffer, buffer, buffer + bytes_read);
 
   // Return next character in get area
   return traits_type::to_int_type(*(this->gptr()));
 }
 
-// Write put area to gzipped file
+// Write put area to gzipped file_manager
 gzfilebuf::int_type
 gzfilebuf::overflow(int_type c)
 {
@@ -225,30 +225,30 @@ gzfilebuf::overflow(int_type c)
       *(this->pptr()) = traits_type::to_char_type(c);
       this->pbump(1);
     }
-    // Number of characters to write to file
+    // Number of characters to write to file_manager
     int bytes_to_write = this->pptr() - this->pbase();
     // Overflow doesn't fail if nothing is to be written
     if (bytes_to_write > 0)
     {
-      // If the file hasn't been opened for writing, produce error
+      // If the file_manager hasn't been opened for writing, produce error
       if (!this->is_open() || !(io_mode & std::ios_base::out))
         return traits_type::eof();
-      // If gzipped file won't accept all bytes written to it, fail
+      // If gzipped file_manager won't accept all bytes written to it, fail
       if (gzwrite(file, this->pbase(), bytes_to_write) != bytes_to_write)
         return traits_type::eof();
       // Reset next pointer to point to pbase on success
       this->pbump(-bytes_to_write);
     }
   }
-  // Write extra character to file if not EOF
+  // Write extra character to file_manager if not EOF
   else if (!traits_type::eq_int_type(c, traits_type::eof()))
   {
-    // If the file hasn't been opened for writing, produce error
+    // If the file_manager hasn't been opened for writing, produce error
     if (!this->is_open() || !(io_mode & std::ios_base::out))
       return traits_type::eof();
     // Impromptu char buffer (allows "unbuffered" output)
     char_type last_char = traits_type::to_char_type(c);
-    // If gzipped file won't accept this character, fail
+    // If gzipped file_manager won't accept this character, fail
     if (gzwrite(file, &last_char, 1) != 1)
       return traits_type::eof();
   }
@@ -294,7 +294,7 @@ gzfilebuf::setbuf(char_type* p,
   return this;
 }
 
-// Write put area to gzipped file (i.e. ensures that put area is empty)
+// Write put area to gzipped file_manager (i.e. ensures that put area is empty)
 int
 gzfilebuf::sync()
 {
@@ -375,7 +375,7 @@ gzifstream::gzifstream()
 : std::istream(NULL), sb()
 { this->init(&sb); }
 
-// Initialize stream buffer and open file
+// Initialize stream buffer and open file_manager
 gzifstream::gzifstream(const char* name,
                        std::ios_base::openmode mode)
 : std::istream(NULL), sb()
@@ -384,7 +384,7 @@ gzifstream::gzifstream(const char* name,
   this->open(name, mode);
 }
 
-// Initialize stream buffer and attach to file
+// Initialize stream buffer and attach to file_manager
 gzifstream::gzifstream(int fd,
                        std::ios_base::openmode mode)
 : std::istream(NULL), sb()
@@ -393,7 +393,7 @@ gzifstream::gzifstream(int fd,
   this->attach(fd, mode);
 }
 
-// Open file and go into fail() state if unsuccessful
+// Open file_manager and go into fail() state if unsuccessful
 void
 gzifstream::open(const char* name,
                  std::ios_base::openmode mode)
@@ -404,7 +404,7 @@ gzifstream::open(const char* name,
     this->clear();
 }
 
-// Attach to file and go into fail() state if unsuccessful
+// Attach to file_manager and go into fail() state if unsuccessful
 void
 gzifstream::attach(int fd,
                    std::ios_base::openmode mode)
@@ -415,7 +415,7 @@ gzifstream::attach(int fd,
     this->clear();
 }
 
-// Close file
+// Close file_manager
 void
 gzifstream::close()
 {
@@ -430,7 +430,7 @@ gzofstream::gzofstream()
 : std::ostream(NULL), sb()
 { this->init(&sb); }
 
-// Initialize stream buffer and open file
+// Initialize stream buffer and open file_manager
 gzofstream::gzofstream(const char* name,
                        std::ios_base::openmode mode)
 : std::ostream(NULL), sb()
@@ -439,7 +439,7 @@ gzofstream::gzofstream(const char* name,
   this->open(name, mode);
 }
 
-// Initialize stream buffer and attach to file
+// Initialize stream buffer and attach to file_manager
 gzofstream::gzofstream(int fd,
                        std::ios_base::openmode mode)
 : std::ostream(NULL), sb()
@@ -448,7 +448,7 @@ gzofstream::gzofstream(int fd,
   this->attach(fd, mode);
 }
 
-// Open file and go into fail() state if unsuccessful
+// Open file_manager and go into fail() state if unsuccessful
 void
 gzofstream::open(const char* name,
                  std::ios_base::openmode mode)
@@ -459,7 +459,7 @@ gzofstream::open(const char* name,
     this->clear();
 }
 
-// Attach to file and go into fail() state if unsuccessful
+// Attach to file_manager and go into fail() state if unsuccessful
 void
 gzofstream::attach(int fd,
                    std::ios_base::openmode mode)
@@ -470,7 +470,7 @@ gzofstream::attach(int fd,
     this->clear();
 }
 
-// Close file
+// Close file_manager
 void
 gzofstream::close()
 {

@@ -66,7 +66,7 @@ public:
     ~NFFImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -80,7 +80,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
@@ -174,12 +174,12 @@ private:
     };
 
     // -------------------------------------------------------------------
-    /** Loads the material table for the NFF2 file format from an
-     *  external file.
+    /** Loads the material table for the NFF2 file_manager format from an
+     *  external file_manager.
      *
      *  @param output Receives the list of output meshes
-     *  @param path Path to the file (abs. or rel.)
-     *  @param pIOHandler IOSystem to be used to open the file
+     *  @param path Path to the file_manager (abs. or rel.)
+     *  @param pIOHandler IOSystem to be used to open the file_manager
     */
     void LoadNFF2MaterialTable(std::vector<ShadingInfo> &output,
             const std::string &path, IOSystem *pIOHandler);

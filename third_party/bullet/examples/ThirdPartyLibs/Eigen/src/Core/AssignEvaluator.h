@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2011 Benoit Jacob <jacob.benoit.1@gmail.com>
@@ -7,7 +7,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_ASSIGN_EVALUATOR_H
 #define EIGEN_ASSIGN_EVALUATOR_H
@@ -810,7 +810,7 @@ EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE void call_dense_assignment_loop(DstXprType
 // AssignmentKind must define a Kind typedef.
 template<typename DstShape, typename SrcShape> struct AssignmentKind;
 
-// Assignment kind defined in this file:
+// Assignment kind defined in this file_manager:
 struct Dense2Dense {};
 struct EigenBase2EigenBase {};
 

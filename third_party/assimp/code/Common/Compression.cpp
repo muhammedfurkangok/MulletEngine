@@ -148,7 +148,7 @@ size_t Compression::decompress(const void *data, size_t in, std::vector<char> &u
         ret = inflate(&mImpl->mZSstream, Z_FINISH);
 
         if (ret != Z_STREAM_END && ret != Z_OK) {
-            throw DeadlyImportError("Compression", "Failure decompressing this file using gzip.");
+            throw DeadlyImportError("Compression", "Failure decompressing this file_manager using gzip.");
         }
         total = mImpl->mZSstream.avail_out;
     } else {
@@ -160,7 +160,7 @@ size_t Compression::decompress(const void *data, size_t in, std::vector<char> &u
             ret = inflate(&mImpl->mZSstream, flushMode);
 
             if (ret != Z_STREAM_END && ret != Z_OK) {
-                throw DeadlyImportError("Compression", "Failure decompressing this file using gzip.");
+                throw DeadlyImportError("Compression", "Failure decompressing this file_manager using gzip.");
             }
             const size_t have = MYBLOCK - mImpl->mZSstream.avail_out;
             total += have;

@@ -149,7 +149,7 @@ bool BulletURDFImporter::loadURDF(const char* fileName, bool forceFixedBase)
 
 	if (!fileFound)
 	{
-		b3Warning("URDF file '%s' not found\n", fileName);
+		b3Warning("URDF file_manager '%s' not found\n", fileName);
 		return false;
 	}
 	else
@@ -158,7 +158,7 @@ bool BulletURDFImporter::loadURDF(const char* fileName, bool forceFixedBase)
 		fu.extractPath(relativeFileName, path, sizeof(path));
 		m_data->setSourceFile(relativeFileName, path);
 
-		//read file
+		//read file_manager
 		int fileId = m_data->m_fileIO->fileOpen(relativeFileName,"r");
 
 
@@ -254,7 +254,7 @@ bool BulletURDFImporter::loadSDF(const char* fileName, bool forceFixedBase)
 
 	if (!fileFound)
 	{
-		b3Warning("SDF file '%s' not found\n", fileName);
+		b3Warning("SDF file_manager '%s' not found\n", fileName);
 		return false;
 	}
 	else
@@ -264,7 +264,7 @@ bool BulletURDFImporter::loadSDF(const char* fileName, bool forceFixedBase)
 		fu.extractPath(relativeFileName, path, sizeof(path));
 		m_data->setSourceFile(relativeFileName, path);
 
-		//read file
+		//read file_manager
 		int fileId = m_data->m_fileIO->fileOpen(relativeFileName,"r");
 
 		char destBuffer[8192];
@@ -1159,7 +1159,7 @@ void BulletURDFImporter::convertURDFToVisualShapeInternal(const UrdfVisual* visu
 
 					break;
 				}
-			}  // switch file type
+			}  // switch file_manager type
 
 			if (!glmesh || !glmesh->m_vertices || glmesh->m_numvertices <= 0)
 			{

@@ -128,7 +128,7 @@ struct Material : public D3DS::Material {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent an ASE file face */
+/** Helper structure to represent an ASE file_manager face */
 struct Face : public FaceWithSmoothingGroup {
     //! Default constructor. Initializes everything with 0
     Face() AI_NO_EXCEPT
@@ -152,13 +152,13 @@ struct Face : public FaceWithSmoothingGroup {
     unsigned int iMaterial;
 
     //! Index of the face. It is not specified whether it is
-    //! a requirement of the file format that all faces are
+    //! a requirement of the file_manager format that all faces are
     //! written in sequential order, so we have to expect this case
     unsigned int iFace;
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent an ASE file bone */
+/** Helper structure to represent an ASE file_manager bone */
 struct Bone {
     //! Constructor
     Bone() = delete;
@@ -174,7 +174,7 @@ struct Bone {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent an ASE file bone vertex */
+/** Helper structure to represent an ASE file_manager bone vertex */
 struct BoneVertex {
     //! Bone and corresponding vertex weight.
     //! -1 for unrequired bones ....
@@ -182,7 +182,7 @@ struct BoneVertex {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent an ASE file animation */
+/** Helper structure to represent an ASE file_manager animation */
 struct Animation {
     enum Type {
         TRACK = 0x0,
@@ -229,7 +229,7 @@ struct InheritanceInfo {
 };
 
 // ---------------------------------------------------------------------------
-/** Represents an ASE file node. Base class for mesh, light and cameras */
+/** Represents an ASE file_manager node. Base class for mesh, light and cameras */
 struct BaseNode {
     enum Type {
         Light,
@@ -274,7 +274,7 @@ struct BaseNode {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent an ASE file mesh */
+/** Helper structure to represent an ASE file_manager mesh */
 struct Mesh : public MeshWithSmoothingGroups<ASE::Face>, public BaseNode {
     //! Default constructor has been deleted
     Mesh() = delete;
@@ -389,33 +389,33 @@ public:
     Parser() = delete;
 
     // -------------------------------------------------------------------
-    //! Construct a parser from a given input file which is
+    //! Construct a parser from a given input file_manager which is
     //! guaranteed to be terminated with zero.
-    //! @param file              The name of the input file.
-    //! @param fileFormatDefault Assumed file format version. If the
-    //!   file format is specified in the file the new value replaces
+    //! @param file              The name of the input file_manager.
+    //! @param fileFormatDefault Assumed file_manager format version. If the
+    //!   file_manager format is specified in the file_manager the new value replaces
     //!   the default value.
     Parser(const char *file, size_t fileLen, unsigned int fileFormatDefault);
 
     // -------------------------------------------------------------------
-    //! Parses the file into the parsers internal representation
+    //! Parses the file_manager into the parsers internal representation
     void Parse();
 
 private:
     // -------------------------------------------------------------------
-    //! Parse the *SCENE block in a file
+    //! Parse the *SCENE block in a file_manager
     void ParseLV1SceneBlock();
 
     // -------------------------------------------------------------------
-    //! Parse the *MESH_SOFTSKINVERTS block in a file
+    //! Parse the *MESH_SOFTSKINVERTS block in a file_manager
     void ParseLV1SoftSkinBlock();
 
     // -------------------------------------------------------------------
-    //! Parse the *MATERIAL_LIST block in a file
+    //! Parse the *MATERIAL_LIST block in a file_manager
     void ParseLV1MaterialListBlock();
 
     // -------------------------------------------------------------------
-    //! Parse a *<xxx>OBJECT block in a file
+    //! Parse a *<xxx>OBJECT block in a file_manager
     //! \param mesh Node to be filled
     void ParseLV1ObjectBlock(BaseNode &mesh);
 
@@ -425,12 +425,12 @@ private:
     void ParseLV2MaterialBlock(Material &mat);
 
     // -------------------------------------------------------------------
-    //! Parse a *NODE_TM block in a file
+    //! Parse a *NODE_TM block in a file_manager
     //! \param mesh Node (!) object to be filled
     void ParseLV2NodeTransformBlock(BaseNode &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *TM_ANIMATION block in a file
+    //! Parse a *TM_ANIMATION block in a file_manager
     //! \param mesh Mesh object to be filled
     void ParseLV2AnimationBlock(BaseNode &mesh);
     void ParseLV3PosAnimationBlock(ASE::Animation &anim);
@@ -438,17 +438,17 @@ private:
     void ParseLV3RotAnimationBlock(ASE::Animation &anim);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH block in a file
+    //! Parse a *MESH block in a file_manager
     //! \param mesh Mesh object to be filled
     void ParseLV2MeshBlock(Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *LIGHT_SETTINGS block in a file
+    //! Parse a *LIGHT_SETTINGS block in a file_manager
     //! \param light Light object to be filled
     void ParseLV2LightSettingsBlock(Light &light);
 
     // -------------------------------------------------------------------
-    //! Parse a *CAMERA_SETTINGS block in a file
+    //! Parse a *CAMERA_SETTINGS block in a file_manager
     //! \param cam Camera object to be filled
     void ParseLV2CameraSettingsBlock(Camera &cam);
 
@@ -458,27 +458,27 @@ private:
     void ParseLV3MapBlock(Texture &map);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_VERTEX_LIST block in a file
+    //! Parse a *MESH_VERTEX_LIST block in a file_manager
     //! \param iNumVertices Value of *MESH_NUMVERTEX, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshVertexListBlock(
             unsigned int iNumVertices, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_FACE_LIST block in a file
+    //! Parse a *MESH_FACE_LIST block in a file_manager
     //! \param iNumFaces Value of *MESH_NUMFACES, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshFaceListBlock(
             unsigned int iNumFaces, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_TVERT_LIST block in a file
+    //! Parse a *MESH_TVERT_LIST block in a file_manager
     //! \param iNumVertices Value of *MESH_NUMTVERTEX, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     //! \param iChannel Output UVW channel
@@ -486,9 +486,9 @@ private:
             unsigned int iNumVertices, Mesh &mesh, unsigned int iChannel = 0);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_TFACELIST block in a file
+    //! Parse a *MESH_TFACELIST block in a file_manager
     //! \param iNumFaces Value of *MESH_NUMTVFACES, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     //! \param iChannel Output UVW channel
@@ -504,52 +504,52 @@ private:
             unsigned int iChannel, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_CVERTLIST block in a file
+    //! Parse a *MESH_CVERTLIST block in a file_manager
     //! \param iNumVertices Value of *MESH_NUMCVERTEX, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshCListBlock(
             unsigned int iNumVertices, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_CFACELIST block in a file
+    //! Parse a *MESH_CFACELIST block in a file_manager
     //! \param iNumFaces Value of *MESH_NUMCVFACES, if present.
-    //! Otherwise zero. This is used to check the consistency of the file.
+    //! Otherwise zero. This is used to check the consistency of the file_manager.
     //! A warning is sent to the logger if the validations fails.
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshCFaceListBlock(
             unsigned int iNumFaces, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_NORMALS block in a file
+    //! Parse a *MESH_NORMALS block in a file_manager
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshNormalListBlock(Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_WEIGHTSblock in a file
+    //! Parse a *MESH_WEIGHTSblock in a file_manager
     //! \param mesh Mesh object to be filled
     void ParseLV3MeshWeightsBlock(Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse the bone list of a file
+    //! Parse the bone list of a file_manager
     //! \param mesh Mesh object to be filled
     //! \param iNumBones Number of bones in the mesh
     void ParseLV4MeshBones(unsigned int iNumBones, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse the bone vertices list of a file
+    //! Parse the bone vertices list of a file_manager
     //! \param mesh Mesh object to be filled
     //! \param iNumVertices Number of vertices to be parsed
     void ParseLV4MeshBonesVertices(unsigned int iNumVertices, Mesh &mesh);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_FACE block in a file
+    //! Parse a *MESH_FACE block in a file_manager
     //! \param out receive the face data
     void ParseLV4MeshFace(ASE::Face &out);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_VERT block in a file
+    //! Parse a *MESH_VERT block in a file_manager
     //! (also works for MESH_TVERT, MESH_CFACE, MESH_VERTCOL  ...)
     //! \param apOut Output buffer (3 floats)
     //! \param rIndexOut Output index
@@ -557,21 +557,21 @@ private:
     void ParseLV4MeshFloatTriple(float *apOut, unsigned int &rIndexOut);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_VERT block in a file
+    //! Parse a *MESH_VERT block in a file_manager
     //! (also works for MESH_TVERT, MESH_CFACE, MESH_VERTCOL  ...)
     //! \param apOut Output buffer (3 floats)
     void ParseLV4MeshRealTriple(ai_real *apOut);
     void ParseLV4MeshFloatTriple(float *apOut);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_TFACE block in a file
+    //! Parse a *MESH_TFACE block in a file_manager
     //! (also works for MESH_CFACE)
     //! \param apOut Output buffer (3 ints)
     //! \param rIndexOut Output index
     void ParseLV4MeshLongTriple(unsigned int *apOut, unsigned int &rIndexOut);
 
     // -------------------------------------------------------------------
-    //! Parse a *MESH_TFACE block in a file
+    //! Parse a *MESH_TFACE block in a file_manager
     //! (also works for MESH_CFACE)
     //! \param apOut Output buffer (3 ints)
     void ParseLV4MeshLongTriple(unsigned int *apOut);
@@ -621,7 +621,7 @@ private:
 
 public:
     const char *mFilePtr; ////< Pointer to current data
-    const char *mEnd;     ///< The end pointer of the file data
+    const char *mEnd;     ///< The end pointer of the file_manager data
 
     //! background color to be passed to the viewer
     //! QNAN if none was found
@@ -631,22 +631,22 @@ public:
     //! QNAN if none was found
     aiColor3D m_clrAmbient;
 
-    //! List of all materials found in the file
+    //! List of all materials found in the file_manager
     std::vector<Material> m_vMaterials;
 
-    //! List of all meshes found in the file
+    //! List of all meshes found in the file_manager
     std::vector<Mesh> m_vMeshes;
 
-    //! List of all dummies found in the file
+    //! List of all dummies found in the file_manager
     std::vector<Dummy> m_vDummies;
 
-    //! List of all lights found in the file
+    //! List of all lights found in the file_manager
     std::vector<Light> m_vLights;
 
-    //! List of all cameras found in the file
+    //! List of all cameras found in the file_manager
     std::vector<Camera> m_vCameras;
 
-    //! Current line in the file
+    //! Current line in the file_manager
     unsigned int iLineNumber;
 
     //! First frame

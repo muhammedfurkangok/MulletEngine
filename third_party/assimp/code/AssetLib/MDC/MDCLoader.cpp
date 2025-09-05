@@ -104,7 +104,7 @@ MDCImporter::MDCImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool MDCImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = { AI_MDC_MAGIC_NUMBER_LE };
     return CheckMagicToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -116,7 +116,7 @@ const aiImporterDesc *MDCImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Validate the header of the given MDC file
+// Validate the header of the given MDC file_manager
 void MDCImporter::ValidateHeader() {
     AI_SWAP4(this->pcHeader->ulVersion);
     AI_SWAP4(this->pcHeader->ulFlags);
@@ -133,13 +133,13 @@ void MDCImporter::ValidateHeader() {
     }
 
     if (pcHeader->ulVersion != AI_MDC_VERSION) {
-        ASSIMP_LOG_WARN("Unsupported MDC file version (2 (AI_MDC_VERSION) was expected)");
+        ASSIMP_LOG_WARN("Unsupported MDC file_manager version (2 (AI_MDC_VERSION) was expected)");
     }
 
     if (pcHeader->ulOffsetBorderFrames + pcHeader->ulNumFrames * sizeof(MDC::Frame) > this->fileSize ||
             pcHeader->ulOffsetSurfaces + pcHeader->ulNumSurfaces * sizeof(MDC::Surface) > this->fileSize) {
         throw DeadlyImportError("Some of the offset values in the MDC header are invalid "
-                                "and point to something behind the file.");
+                                "and point to something behind the file_manager.");
     }
 
     if (this->configFrameID >= this->pcHeader->ulNumFrames) {
@@ -148,7 +148,7 @@ void MDCImporter::ValidateHeader() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Validate the header of a given MDC file surface
+// Validate the header of a given MDC file_manager surface
 void MDCImporter::ValidateSurfaceHeader(BE_NCONST MDC::Surface *pcSurf) {
     AI_SWAP4(pcSurf->ulFlags);
     AI_SWAP4(pcSurf->ulNumCompFrames);
@@ -174,7 +174,7 @@ void MDCImporter::ValidateSurfaceHeader(BE_NCONST MDC::Surface *pcSurf) {
             pcSurf->ulOffsetFrameBaseFrames + pcSurf->ulNumBaseFrames * 2 > iMax ||
             (pcSurf->ulNumCompFrames && pcSurf->ulOffsetFrameCompFrames + pcSurf->ulNumCompFrames * 2 > iMax)) {
         throw DeadlyImportError("Some of the offset values in the MDC surface header "
-                                "are invalid and point somewhere behind the file.");
+                                "are invalid and point somewhere behind the file_manager.");
     }
 }
 
@@ -189,17 +189,17 @@ void MDCImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void MDCImporter::InternReadFile(
         const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open MDC file ", pFile, ".");
+        throw DeadlyImportError("Failed to open MDC file_manager ", pFile, ".");
     }
 
-    // check whether the mdc file is large enough to contain the file header
+    // check whether the mdc file_manager is large enough to contain the file_manager header
     fileSize = static_cast<unsigned int>(file->FileSize());
     if (fileSize < sizeof(MDC::Header)) {
         throw DeadlyImportError("MDC File is too small.");
@@ -209,7 +209,7 @@ void MDCImporter::InternReadFile(
     file->Read(&mBuffer2[0], 1, fileSize);
     mBuffer = &mBuffer2[0];
 
-    // validate the file header
+    // validate the file_manager header
     this->pcHeader = (BE_NCONST MDC::Header *)this->mBuffer;
     this->ValidateHeader();
 
@@ -259,7 +259,7 @@ void MDCImporter::InternReadFile(
         // store the name of the surface for use as node name.
         pcMesh->mName.Set(std::string(pcSurface->ucName, strnlen(pcSurface->ucName, AI_MDC_MAXQPATH - 1)));
 
-        // go to the first shader in the file. ignore the others.
+        // go to the first shader in the file_manager. ignore the others.
         if (pcSurface->ulNumShaders) {
             const MDC::Shader *pcShader = (const MDC::Shader *)((int8_t *)pcSurface + pcSurface->ulOffsetShaders);
             pcMesh->mMaterialIndex = (unsigned int)aszShaders.size();
@@ -387,7 +387,7 @@ void MDCImporter::InternReadFile(
 
     // create a flat node graph with a root node and one child for each surface
     if (!pScene->mNumMeshes)
-        throw DeadlyImportError("Invalid MDC file: File contains no valid mesh");
+        throw DeadlyImportError("Invalid MDC file_manager: File contains no valid mesh");
     else if (1 == pScene->mNumMeshes) {
         pScene->mRootNode = new aiNode();
         if (nullptr != pScene->mMeshes[0]) {

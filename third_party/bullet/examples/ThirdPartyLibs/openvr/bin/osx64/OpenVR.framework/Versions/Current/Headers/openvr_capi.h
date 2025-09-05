@@ -1,7 +1,7 @@
 //======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Header for flatted SteamAPI. Use this for binding to other languages.
-// This file is auto-generated, do not edit it.
+// This file_manager is auto-generated, do not edit it.
 //
 //=============================================================================
 

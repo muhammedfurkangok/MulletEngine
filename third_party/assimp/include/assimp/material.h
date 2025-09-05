@@ -177,7 +177,7 @@ enum aiTextureMapping {
  *  kinds of textures. For very common texture types, such as bumpmaps, the
  *  rendering results depend on implementation details in the rendering
  *  pipelines of these applications. Assimp loads all texture references from
- *  the model file and tries to determine which of the predefined texture
+ *  the model file_manager and tries to determine which of the predefined texture
  *  types below is the best choice to match the original use of the texture
  *  as closely as possible.<br>
  *
@@ -824,7 +824,7 @@ public:
      *    per texture type.
      *  @param path Receives the path to the texture.
      *    Use aiScene::GetEmbeddedTexture() method to determine if returned path
-     *    is an image file to be opened or a string key of embedded texture stored in the corresponding scene
+     *    is an image file_manager to be opened or a string key of embedded texture stored in the corresponding scene
      *    (could be a '*' followed by the id of the texture in case of no name)
      *    NULL is a valid value.
      *  @param mapping The texture mapping.
@@ -1098,7 +1098,7 @@ extern "C" {
 // ---------------------------------------------------------------------------
 // Pure key names for all texture-related properties
 //! @cond MATS_DOC_FULL
-#define _AI_MATKEY_TEXTURE_BASE       "$tex.file"
+#define _AI_MATKEY_TEXTURE_BASE       "$tex.file_manager"
 #define _AI_MATKEY_UVWSRC_BASE        "$tex.uvwsrc"
 #define _AI_MATKEY_TEXOP_BASE         "$tex.op"
 #define _AI_MATKEY_MAPPING_BASE       "$tex.mapping"

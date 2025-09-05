@@ -559,7 +559,7 @@ void Win32Window::createWindow(const b3gWindowConstructionInfo& ci)
 	int colorBitsPerPixel = ci.m_colorBitsPerPixel;
 	void* windowHandle = ci.m_windowHandle;
 
-	// get handle to exe file
+	// get handle to exe file_manager
 	HINSTANCE hInstance = GetModuleHandle(0);
 
 	// create the window if we need to and we do not use the null device

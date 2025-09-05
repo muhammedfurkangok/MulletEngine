@@ -11,7 +11,7 @@
  3. This notice may not be removed or altered from any source distribution.
  */
 #include "PinchFriction.h"
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btDeformableMultiBodyDynamicsWorld.h"
 #include "BulletSoftBody/btSoftBody.h"

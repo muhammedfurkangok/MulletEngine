@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -51,7 +51,7 @@ TEST(TextureIoTest, TestLoadFromBuffer) {
   }
 }
 
-// Tests that we can set mime type correctly even when the source file had
+// Tests that we can set mime type correctly even when the source file_manager had
 // an incorrect extension.
 TEST(TextureIoTest, TestWrongExtension) {
   const std::string file_name = draco::GetTestFileFullPath("this_is_png.jpg");
@@ -60,7 +60,7 @@ TEST(TextureIoTest, TestWrongExtension) {
                          draco::ReadTextureFromFile(file_name));
   ASSERT_NE(texture, nullptr);
 
-  // Ensure the mime type was set to png even though the file extension was jpg.
+  // Ensure the mime type was set to png even though the file_manager extension was jpg.
   ASSERT_EQ(texture->source_image().mime_type(), "image/png");
 }
 

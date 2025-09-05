@@ -1512,18 +1512,18 @@ typedef void (*GLADpostcallback)(void *ret, const char *name, GLADapiproc apipro
  * The last semantic modification to khrplatform.h was at commit ID:
  *      67a3e0864c2d75ea5287b9f3d2eb74a745936692
  *
- * Adopters may modify this file to suit their platform. Adopters are
+ * Adopters may modify this file_manager to suit their platform. Adopters are
  * encouraged to submit platform specific modifications to the Khronos
- * group so that they can be included in future versions of this file.
+ * group so that they can be included in future versions of this file_manager.
  * Please submit changes by filing pull requests or issues on
  * the EGL Registry repository linked above.
  *
  *
- * See the Implementer's Guidelines for information about where this file
+ * See the Implementer's Guidelines for information about where this file_manager
  * should be located on your system and for more details of its use:
  *    http://www.khronos.org/registry/implementers_guide.pdf
  *
- * This file should be included as
+ * This file_manager should be included as
  *        #include <KHR/khrplatform.h>
  * by Khronos client API header files that use its types and defines.
  *
@@ -1559,7 +1559,7 @@ typedef void (*GLADpostcallback)(void *ret, const char *name, GLADapiproc apipro
  *    KHRONOS_SUPPORT_INT64 is 1 if 64 bit integers are supported; otherwise 0.
  *    KHRONOS_SUPPORT_FLOAT is 1 if floats are supported; otherwise 0.
  *
- * Calling convention macros defined in this file:
+ * Calling convention macros defined in this file_manager:
  *    KHRONOS_APICALL
  *    KHRONOS_GLAD_API_PTR
  *    KHRONOS_APIATTRIBUTES

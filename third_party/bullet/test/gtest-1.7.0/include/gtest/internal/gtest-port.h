@@ -33,7 +33,7 @@
 // platforms.  They are subject to change without notice.  DO NOT USE
 // THEM IN USER CODE.
 //
-// This file is fundamental to Google Test.  All other Google Test source
+// This file_manager is fundamental to Google Test.  All other Google Test source
 // files are expected to #include this.  Therefore, it cannot #include
 // any other Google Test header.
 
@@ -1017,11 +1017,11 @@ private:
 	GTEST_DISALLOW_ASSIGN_(RE);
 };
 
-// Formats a source file path and a line number as they would appear
+// Formats a source file_manager path and a line number as they would appear
 // in an error message from the compiler used to compile this code.
 GTEST_API_ ::std::string FormatFileLocation(const char* file, int line);
 
-// Formats a file location for compiler-independent XML output.
+// Formats a file_manager location for compiler-independent XML output.
 // Although this function is not platform dependent, we put it next to
 // FormatFileLocation in order to contrast the two functions.
 GTEST_API_ ::std::string FormatCompilerIndependentFileLocation(const char* file,
@@ -1818,9 +1818,9 @@ inline char* StrDup(const char* src) { return _strdup(src); }
 #endif  // __BORLANDC__
 
 #if GTEST_OS_WINDOWS_MOBILE
-inline int FileNo(FILE* file)
+inline int FileNo(FILE* file_manager)
 {
-	return reinterpret_cast<int>(_fileno(file));
+	return reinterpret_cast<int>(_fileno(file_manager));
 }
 // Stat(), RmDir(), and IsDir() are not needed on Windows CE at this
 // time and thus not defined there.
@@ -1841,7 +1841,7 @@ inline bool IsDir(const StatStruct& st)
 
 typedef struct stat StatStruct;
 
-inline int FileNo(FILE* file) { return fileno(file); }
+inline int FileNo(FILE* file_manager) { return fileno(file_manager); }
 inline int IsATTY(int fd) { return isatty(fd); }
 inline int Stat(const char* path, StatStruct* buf) { return stat(path, buf); }
 inline int StrCaseCmp(const char* s1, const char* s2)

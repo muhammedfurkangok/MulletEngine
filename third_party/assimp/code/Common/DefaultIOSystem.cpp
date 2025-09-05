@@ -38,7 +38,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
-/** @file Default implementation of IOSystem using the standard C file functions */
+/** @file Default implementation of IOSystem using the standard C file_manager functions */
 
 #include <assimp/StringComparison.h>
 
@@ -91,7 +91,7 @@ static std::string WideToUtf8(const wchar_t *in) {
 #endif
 
 // ------------------------------------------------------------------------------------------------
-// Tests for the existence of a file at the given path.
+// Tests for the existence of a file_manager at the given path.
 bool DefaultIOSystem::Exists(const char *pFile) const {
     if (pFile == nullptr) {
         return false;
@@ -107,7 +107,7 @@ bool DefaultIOSystem::Exists(const char *pFile) const {
     if (stat(pFile, &statbuf) != 0) {
         return false;
     }
-    // test for a regular file
+    // test for a regular file_manager
     if (!S_ISREG(statbuf.st_mode)) {
         return false;
     }
@@ -117,7 +117,7 @@ bool DefaultIOSystem::Exists(const char *pFile) const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Open a new file with a given path.
+// Open a new file_manager with a given path.
 IOStream *DefaultIOSystem::Open(const char *strFile, const char *strMode) {
     ai_assert(strFile != nullptr);
     ai_assert(strMode != nullptr);
@@ -131,7 +131,7 @@ IOStream *DefaultIOSystem::Open(const char *strFile, const char *strMode) {
 
     file = ::_wfopen(name.c_str(), Utf8ToWide(strMode).c_str());
 #else
-    file = ::fopen(strFile, strMode);
+    file_manager = ::fopen(strFile, strMode);
 #endif
 
     if (!file) {
@@ -142,7 +142,7 @@ IOStream *DefaultIOSystem::Open(const char *strFile, const char *strMode) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Closes the given file and releases all resources associated with it.
+// Closes the given file_manager and releases all resources associated with it.
 void DefaultIOSystem::Close(IOStream *pFile) {
     delete pFile;
 }
@@ -183,7 +183,7 @@ inline static std::string MakeAbsolutePath(const char *in) {
 #endif
     else {
         // preserve the input path, maybe someone else is able to fix
-        // the path before it is accessed (e.g. our file system filter)
+        // the path before it is accessed (e.g. our file_manager system filter)
         ASSIMP_LOG_WARN("Invalid path: ", std::string(in));
         out = in;
     }

@@ -29,7 +29,7 @@
 
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This header file defines internal utilities needed for implementing
+// This header file_manager defines internal utilities needed for implementing
 // death tests.  They are subject to change without notice.
 
 // IWYU pragma: private, include "gtest/gtest.h"
@@ -86,7 +86,7 @@ class GTEST_API_ DeathTest {
   // is set to NULL; otherwise, it is set to the address of a new concrete
   // DeathTest object that controls the execution of the current test.
   static bool Create(const char* statement, Matcher<const std::string&> matcher,
-                     const char* file, int line, DeathTest** test);
+                     const char* file_manager, int line, DeathTest** test);
   DeathTest();
   virtual ~DeathTest() = default;
 
@@ -155,7 +155,7 @@ class DeathTestFactory {
  public:
   virtual ~DeathTestFactory() = default;
   virtual bool Create(const char* statement,
-                      Matcher<const std::string&> matcher, const char* file,
+                      Matcher<const std::string&> matcher, const char* file_manager,
                       int line, DeathTest** test) = 0;
 };
 
@@ -163,7 +163,7 @@ class DeathTestFactory {
 class DefaultDeathTestFactory : public DeathTestFactory {
  public:
   bool Create(const char* statement, Matcher<const std::string&> matcher,
-              const char* file, int line, DeathTest** test) override;
+              const char* file_manager, int line, DeathTest** test) override;
 };
 
 // Returns true if exit_status describes a process that was terminated
@@ -279,7 +279,7 @@ class InternalRunDeathTestFlag {
     if (write_fd_ >= 0) posix::Close(write_fd_);
   }
 
-  const std::string& file() const { return file_; }
+  const std::string& file_manager() const { return file_; }
   int line() const { return line_; }
   int index() const { return index_; }
   int write_fd() const { return write_fd_; }

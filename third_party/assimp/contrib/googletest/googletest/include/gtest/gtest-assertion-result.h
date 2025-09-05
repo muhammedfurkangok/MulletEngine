@@ -29,7 +29,7 @@
 
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This file implements the AssertionResult type.
+// This file_manager implements the AssertionResult type.
 
 // IWYU pragma: private, include "gtest/gtest.h"
 // IWYU pragma: friend gtest/.*

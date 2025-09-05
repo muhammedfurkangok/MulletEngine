@@ -610,7 +610,7 @@ inline void Buffer::Read(Value &obj, Asset &r) {
             this->mData.reset(new uint8_t[dataURI.dataLength], std::default_delete<uint8_t[]>());
             memcpy(this->mData.get(), dataURI.data, dataURI.dataLength);
         }
-    } else { // Local file
+    } else { // Local file_manager
         if (byteLength > 0) {
             std::string dir = !r.mCurrentAssetDir.empty() ? (r.mCurrentAssetDir.back() == '/' ? r.mCurrentAssetDir : r.mCurrentAssetDir + '/') : "";
 
@@ -620,9 +620,9 @@ inline void Buffer::Read(Value &obj, Asset &r) {
                 delete file;
 
                 if (!ok)
-                    throw DeadlyImportError("GLTF: error while reading referenced file \"", uri, "\"");
+                    throw DeadlyImportError("GLTF: error while reading referenced file_manager \"", uri, "\"");
             } else {
-                throw DeadlyImportError("GLTF: could not open referenced file \"", uri, "\"");
+                throw DeadlyImportError("GLTF: could not open referenced file_manager \"", uri, "\"");
             }
         }
     }
@@ -1179,14 +1179,14 @@ inline uint8_t *Image::StealData() {
 // Never take over the ownership of data whenever binary or not
 inline void Image::SetData(uint8_t *data, size_t length, Asset &r) {
     Ref<Buffer> b = r.GetBodyBuffer();
-    if (b) { // binary file: append to body
+    if (b) { // binary file_manager: append to body
         std::string bvId = r.FindUniqueID(this->id, "imgdata");
         bufferView = r.bufferViews.Create(bvId);
 
         bufferView->buffer = b;
         bufferView->byteLength = length;
         bufferView->byteOffset = b->AppendData(data, length);
-    } else { // text file: will be stored as a data uri
+    } else { // text file_manager: will be stored as a data uri
         uint8_t *temp = new uint8_t[length];
         memcpy(temp, data, length);
         this->mData.reset(temp);
@@ -1912,11 +1912,11 @@ inline void Asset::ReadBinaryHeader(IOStream &stream, std::vector<char> &sceneDa
     ASSIMP_LOG_DEBUG("Reading GLTF2 binary");
     GLB_Header header;
     if (stream.Read(&header, sizeof(header), 1) != 1) {
-        throw DeadlyImportError("GLTF: Unable to read the file header");
+        throw DeadlyImportError("GLTF: Unable to read the file_manager header");
     }
 
     if (strncmp((char *)header.magic, AI_GLB_MAGIC_NUMBER, sizeof(header.magic)) != 0) {
-        throw DeadlyImportError("GLTF: Invalid binary glTF file");
+        throw DeadlyImportError("GLTF: Invalid binary glTF file_manager");
     }
 
     AI_SWAP4(header.version);
@@ -1944,7 +1944,7 @@ inline void Asset::ReadBinaryHeader(IOStream &stream, std::vector<char> &sceneDa
     sceneData[mSceneLength] = '\0';
 
     if (stream.Read(&sceneData[0], 1, mSceneLength) != mSceneLength) {
-        throw DeadlyImportError("GLTF: Could not read the file contents");
+        throw DeadlyImportError("GLTF: Could not read the file_manager contents");
     }
 
     uint32_t padding = ((chunk.chunkLength + 3) & ~3) - chunk.chunkLength;
@@ -1993,13 +1993,13 @@ inline rapidjson::Document Asset::ReadDocument(IOStream &stream, bool isBinary, 
         sceneData[mSceneLength] = '\0';
 
         if (stream.Read(&sceneData[0], 1, mSceneLength) != mSceneLength) {
-            throw DeadlyImportError("GLTF: Could not read the file contents");
+            throw DeadlyImportError("GLTF: Could not read the file_manager contents");
         }
     }
 
-    // Smallest legal JSON file is "{}" Smallest loadable glTF file is larger than that but catch it later
+    // Smallest legal JSON file_manager is "{}" Smallest loadable glTF file_manager is larger than that but catch it later
     if (mSceneLength < 2) {
-        throw DeadlyImportError("GLTF: No JSON file contents");
+        throw DeadlyImportError("GLTF: No JSON file_manager contents");
     }
 
     // parse the JSON document
@@ -2029,7 +2029,7 @@ inline void Asset::Load(const std::string &pFile, bool isBinary)
 
     shared_ptr<IOStream> stream(OpenFile(pFile.c_str(), "rb", true));
     if (!stream) {
-        throw DeadlyImportError("GLTF: Could not open file for reading");
+        throw DeadlyImportError("GLTF: Could not open file_manager for reading");
     }
 
     std::vector<char> sceneData;
@@ -2051,10 +2051,10 @@ inline void Asset::Load(const std::string &pFile, bool isBinary)
         }
     }
 
-    // Fill the buffer instance for the current file embedded contents
+    // Fill the buffer instance for the current file_manager embedded contents
     if (mBodyLength > 0) {
         if (!mBodyBuffer->LoadFromStream(*stream, mBodyLength, mBodyOffset)) {
-            throw DeadlyImportError("GLTF: Unable to read gltf file");
+            throw DeadlyImportError("GLTF: Unable to read gltf file_manager");
         }
     }
 

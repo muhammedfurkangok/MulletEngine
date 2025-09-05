@@ -63,7 +63,7 @@ using namespace Formatter;
 
 // ------------------------------------------------------------------------------------------------
 /** Simple wrapper around boost::timer to simplify reporting. Timings are automatically
- *  dumped to the log file.
+ *  dumped to the log file_manager.
  */
 class Profiler {
 public:

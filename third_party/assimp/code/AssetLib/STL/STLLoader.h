@@ -55,7 +55,7 @@ namespace Assimp {
 
 // ---------------------------------------------------------------------------
 /**
- * @brief   Importer class for the sterolithography STL file format.
+ * @brief   Importer class for the sterolithography STL file_manager format.
  */
 class STLImporter : public BaseImporter {
 public:
@@ -70,7 +70,7 @@ public:
     ~STLImporter() override;
 
     /**
-     * @brief   Returns whether the class can handle the format of the given file.
+     * @brief   Returns whether the class can handle the format of the given file_manager.
      *  See BaseImporter::CanRead() for details.
      */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler, bool checkSig) const override;
@@ -84,20 +84,20 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     /**
-     * @brief   Imports the given file into the given scene structure.
+     * @brief   Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
         IOSystem* pIOHandler) override;
 
     /**
-     * @brief   Loads a binary .stl file
+     * @brief   Loads a binary .stl file_manager
      * @return true if the default vertex color must be used as material color
      */
     bool LoadBinaryFile();
 
     /**
-     * @brief   Loads a ASCII text .stl file
+     * @brief   Loads a ASCII text .stl file_manager
      */
     void LoadASCIIFile( aiNode *root );
 
@@ -105,10 +105,10 @@ protected:
 
 protected:
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     const char* mBuffer;
 
-    /** Size of the file, in bytes */
+    /** Size of the file_manager, in bytes */
     size_t mFileSize;
 
     /** Output scene */

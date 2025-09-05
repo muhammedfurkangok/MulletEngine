@@ -101,7 +101,7 @@ static const char *ObjModel =
         "f 5 8 4 1\n"
         "f 6 7 8 5\n"
         "\n"
-        "# End of file\n";
+        "# End of file_manager\n";
 
 static const char *ObjModel_Issue1111 =
         "o 1\n"
@@ -115,7 +115,7 @@ static const char *ObjModel_Issue1111 =
         "usemtl\n"
         "f 1 2 3\n"
         "\n"
-        "# End of file\n";
+        "# End of file_manager\n";
 
 class utObjImportExport : public AbstractImportExportBase {
 protected:
@@ -536,6 +536,6 @@ TEST_F(utObjImportExport, issue2355_mtl_texture_prefix) {
 
     aiString texturePath;
     material->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
-    // The MTL file is in `folder`, the image path should have been prefixed with the folder
+    // The MTL file_manager is in `folder`, the image path should have been prefixed with the folder
     EXPECT_STREQ("folder/image.jpg", texturePath.C_Str());
 }

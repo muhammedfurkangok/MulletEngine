@@ -30,9 +30,9 @@
       1.28 (2010-08-01) fix bug in GIF palette transparency (SpartanJ)
       1.27 (2010-08-01) cast-to-uint8 to fix warnings (Laurent Gomila)
                         allow trailing 0s at end of image data (Laurent Gomila)
-      1.26 (2010-07-24) fix bug in file buffering for PNG reported by SpartanJ
+      1.26 (2010-07-24) fix bug in file_manager buffering for PNG reported by SpartanJ
 
-   See end of file for full revision history.
+   See end of file_manager for full revision history.
 
    TODO:
       stbi_info support for BMP,PSD,HDR,PIC
@@ -64,11 +64,11 @@
 #ifndef STBI_INCLUDE_STB_IMAGE_H
 #define STBI_INCLUDE_STB_IMAGE_H
 
-// To get a header file for this, either cut and paste the header,
+// To get a header file_manager for this, either cut and paste the header,
 // or create stb_image.h, #define STBI_HEADER_FILE_ONLY, and
 // then include stb_image.c from it.
 
-////   begin header file  ////////////////////////////////////////////////////
+////   begin header file_manager  ////////////////////////////////////////////////////
 //
 // Limitations:
 //    - no jpeg progressive support
@@ -89,7 +89,7 @@
 // Standard parameters:
 //    int *x       -- outputs image width in pixels
 //    int *y       -- outputs image height in pixels
-//    int *comp    -- outputs # of image components in image file
+//    int *comp    -- outputs # of image components in image file_manager
 //    int req_comp -- if non-zero, # of image components requested in result
 //
 // The return value from an image loader is an 'unsigned char *' which points
@@ -131,7 +131,7 @@
 // you will always just get the native iphone "format" through.
 //
 // Call stbi_set_unpremultiply_on_load(1) as well to force a divide per
-// pixel to remove any premultiplied alpha *only* if the image file explicitly
+// pixel to remove any premultiplied alpha *only* if the image file_manager explicitly
 // says there's premultiplied data (currently only happens in iPhone images,
 // and only if iPhone convert-to-rgb processing is on).
 //
@@ -140,9 +140,9 @@
 // HDR image support   (disable by defining STBI_NO_HDR)
 //
 // stb_image now supports loading HDR images in general, and currently
-// the Radiance .HDR file format, although the support is provided
-// generically. You can still load any file through the existing interface;
-// if you attempt to load an HDR file, it will be automatically remapped to
+// the Radiance .HDR file_manager format, although the support is provided
+// generically. You can still load any file_manager through the existing interface;
+// if you attempt to load an HDR file_manager, it will be automatically remapped to
 // LDR, assuming gamma 2.2 and an arbitrary scale factor defaulting to 1;
 // both of these constants can be reconfigured through this interface:
 //
@@ -164,8 +164,8 @@
 //     stbi_ldr_to_hdr_scale(1.0f);
 //     stbi_ldr_to_hdr_gamma(2.2f);
 //
-// Finally, given a filename (or an open file or memory block--see header
-// file for details) containing image data, you can query for the "most
+// Finally, given a filename (or an open file_manager or memory block--see header
+// file_manager for details) containing image data, you can query for the "most
 // appropriate" interface to use (that is, whether the image is HDR or
 // not), using:
 //
@@ -217,7 +217,7 @@ extern "C"
 	//
 
 	//
-	// load image by filename, open file, or memory buffer
+	// load image by filename, open file_manager, or memory buffer
 	//
 
 	extern stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp);
@@ -225,14 +225,14 @@ extern "C"
 #ifndef STBI_NO_STDIO
 	extern stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp);
 	extern stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp);
-// for stbi_load_from_file, file pointer is left pointing immediately after image
+// for stbi_load_from_file, file_manager pointer is left pointing immediately after image
 #endif
 
 	typedef struct
 	{
 		int (*read)(void *user, char *data, int size);  // fill 'data' with 'size' bytes.  return number of bytes actually read
 		void (*skip)(void *user, unsigned n);           // skip the next 'n' bytes
-		int (*eof)(void *user);                         // returns nonzero if we are at end of file/data
+		int (*eof)(void *user);                         // returns nonzero if we are at end of file_manager/data
 	} stbi_io_callbacks;
 
 	extern stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp);
@@ -280,7 +280,7 @@ extern "C"
 #endif
 
 	// for image formats that explicitly notate that they have premultiplied alpha,
-	// we just return the colors as stored in the file. set this flag to force
+	// we just return the colors as stored in the file_manager. set this flag to force
 	// unpremultiplication. results are undefined if the unpremultiply overflow.
 	extern void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply);
 
@@ -322,5 +322,5 @@ extern "C"
 
 //
 //
-////   end header file   /////////////////////////////////////////////////////
+////   end header file_manager   /////////////////////////////////////////////////////
 #endif  // STBI_INCLUDE_STB_IMAGE_H

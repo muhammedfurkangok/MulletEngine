@@ -29,7 +29,7 @@
 
 //
 // This test verifies that it's possible to use Google Test by including
-// the gtest.h header file alone.
+// the gtest.h header file_manager alone.
 
 #include "gtest/gtest.h"
 

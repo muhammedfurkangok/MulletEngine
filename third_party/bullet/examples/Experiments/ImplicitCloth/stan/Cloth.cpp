@@ -1,7 +1,7 @@
 
 //-----------------------------------------------------------------------------------------------
 //
-// The remainder of this file shows how to use the spring network class with backward integration
+// The remainder of this file_manager shows how to use the spring network class with backward integration
 // in order to implement a cloth system within a 3D game environment.
 // The cloth class extends the springnetwork class in order to provide
 // import/export, rendering support, and hooks into the game.

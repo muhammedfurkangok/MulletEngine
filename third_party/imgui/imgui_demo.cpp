@@ -18,13 +18,13 @@
 //---------------------------------------------------
 // PLEASE DO NOT REMOVE THIS FILE FROM YOUR PROJECT!
 //---------------------------------------------------
-// Message to the person tempted to delete this file when integrating Dear ImGui into their codebase:
+// Message to the person tempted to delete this file_manager when integrating Dear ImGui into their codebase:
 // Think again! It is the most useful reference code that you and other coders will want to refer to and call.
 // Have the ImGui::ShowDemoWindow() function wired in an always-available debug menu of your game/app!
 // Also include Metrics! ItemPicker! DebugLog! and other debug features.
-// Removing this file from your project is hindering access to documentation for everyone in your team,
+// Removing this file_manager from your project is hindering access to documentation for everyone in your team,
 // likely leading you to poorer usage of the library.
-// Everything in this file will be stripped out by the linker if you don't call ImGui::ShowDemoWindow().
+// Everything in this file_manager will be stripped out by the linker if you don't call ImGui::ShowDemoWindow().
 // If you want to link core Dear ImGui in your shipped builds but want a thorough guarantee that the demo will not be
 // linked, you can setup your imconfig.h with #define IMGUI_DISABLE_DEMO_WINDOWS and those functions will be empty.
 // In another situation, whenever you have Dear ImGui available you probably want this to be available for reference.
@@ -48,17 +48,17 @@
 //-----------------------------------------
 // ABOUT THE CODING STYLE OF OUR DEMO CODE
 //-----------------------------------------
-// The Demo code in this file is designed to be easy to copy-and-paste into your application!
+// The Demo code in this file_manager is designed to be easy to copy-and-paste into your application!
 // Because of this:
 // - We never omit the ImGui:: prefix when calling functions, even though most code here is in the same namespace.
 // - We try to declare static variables in the local scope, as close as possible to the code using them.
 // - We never use any of the helpers/facilities used internally by Dear ImGui, unless available in the public API.
 // - We never use maths operators on ImVec2/ImVec4. For our other sources files we use them, and they are provided
-//   by imgui.h using the IMGUI_DEFINE_MATH_OPERATORS define. For your own sources file they are optional
+//   by imgui.h using the IMGUI_DEFINE_MATH_OPERATORS define. For your own sources file_manager they are optional
 //   and require you either enable those, either provide your own via IM_VEC2_CLASS_EXTRA in imconfig.h.
 //   Because we can't assume anything about your support of maths operators, we cannot use them in imgui_demo.cpp.
 
-// Navigating this file:
+// Navigating this file_manager:
 // - In Visual Studio: CTRL+comma ("Edit.GoToAll") can follow symbols inside comments, whereas CTRL+F12 ("Edit.GoToImplementation") cannot.
 // - In Visual Studio w/ Visual Assist installed: ALT+G ("VAssistX.GoToImplementation") can also follow symbols inside comments.
 // - In VS Code, CLion, etc.: CTRL+click can follow symbols inside comments.
@@ -66,7 +66,7 @@
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 // [SECTION] Forward Declarations
 // [SECTION] Helpers
@@ -396,7 +396,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
     if (unsaved_document)   window_flags |= ImGuiWindowFlags_UnsavedDocument;
     if (no_close)           p_open = NULL; // Don't pass our bool* to Begin
 
-    // We specify a default position/size in case there's no data in the .ini file.
+    // We specify a default position/size in case there's no data in the .ini file_manager.
     // We only do it to make the demo applications a little more welcoming, but typically this isn't required.
     const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
     ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + 650, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
@@ -888,7 +888,7 @@ static void DemoWindowWidgetsBasic()
 
         {
             // To wire InputText() with std::string or any other custom string type,
-            // see the "Text Input > Resize Callback" section of this demo, and the misc/cpp/imgui_stdlib.h file.
+            // see the "Text Input > Resize Callback" section of this demo, and the misc/cpp/imgui_stdlib.h file_manager.
             IMGUI_DEMO_MARKER("Widgets/Basic/InputText");
             static char str0[128] = "Hello, world!";
             ImGui::InputText("input text", str0, IM_ARRAYSIZE(str0));
@@ -1771,7 +1771,7 @@ static void DemoWindowWidgetsImages()
         // Below we are displaying the font texture because it is the only texture we have access to inside the demo!
         // Read description about ImTextureID/ImTextureRef and FAQ for details about texture identifiers.
         // If you use one of the default imgui_impl_XXXX.cpp rendering backend, they all have comments at the top
-        // of their respective source file to specify what they are using as texture identifier, for example:
+        // of their respective source file_manager to specify what they are using as texture identifier, for example:
         // - The imgui_impl_dx11.cpp renderer expect a 'ID3D11ShaderResourceView*' pointer.
         // - The imgui_impl_opengl3.cpp renderer expect a GLuint OpenGL texture identifier, etc.
         // So with the DirectX11 backend, you call ImGui::Image() with a 'ID3D11ShaderResourceView*' cast to ImTextureID.
@@ -3684,7 +3684,7 @@ static void DemoWindowWidgetsTextFilter()
 static void DemoWindowWidgetsTextInput()
 {
     // To wire InputText() with std::string or any other custom string type,
-    // see the "Text Input > Resize Callback" section of this demo, and the misc/cpp/imgui_stdlib.h file.
+    // see the "Text Input > Resize Callback" section of this demo, and the misc/cpp/imgui_stdlib.h file_manager.
     IMGUI_DEMO_MARKER("Widgets/Text Input");
     if (ImGui::TreeNode("Text Input"))
     {
@@ -6735,7 +6735,7 @@ static void DemoWindowTables()
             ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 18.0f);
             ImGui::TableHeadersRow();
 
-            // Simple storage to output a dummy file-system.
+            // Simple storage to output a dummy file_manager-system.
             struct MyTreeNode
             {
                 const char*     Name;
@@ -6785,12 +6785,12 @@ static void DemoWindowTables()
                 { "Root with Long Name",          "Folder",       -1,       1, 3    }, // 0
                 { "Music",                        "Folder",       -1,       4, 2    }, // 1
                 { "Textures",                     "Folder",       -1,       6, 3    }, // 2
-                { "desktop.ini",                  "System file",  1024,    -1,-1    }, // 3
-                { "File1_a.wav",                  "Audio file",   123000,  -1,-1    }, // 4
-                { "File1_b.wav",                  "Audio file",   456000,  -1,-1    }, // 5
-                { "Image001.png",                 "Image file",   203128,  -1,-1    }, // 6
-                { "Copy of Image001.png",         "Image file",   203256,  -1,-1    }, // 7
-                { "Copy of Image001 (Final2).png","Image file",   203512,  -1,-1    }, // 8
+                { "desktop.ini",                  "System file_manager",  1024,    -1,-1    }, // 3
+                { "File1_a.wav",                  "Audio file_manager",   123000,  -1,-1    }, // 4
+                { "File1_b.wav",                  "Audio file_manager",   456000,  -1,-1    }, // 5
+                { "Image001.png",                 "Image file_manager",   203128,  -1,-1    }, // 6
+                { "Copy of Image001.png",         "Image file_manager",   203256,  -1,-1    }, // 7
+                { "Copy of Image001 (Final2).png","Image file_manager",   203512,  -1,-1    }, // 8
             };
 
             MyTreeNode::DisplayNode(&nodes[0], nodes);

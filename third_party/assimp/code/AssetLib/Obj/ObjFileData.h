@@ -86,7 +86,7 @@ struct Face {
 
 // ------------------------------------------------------------------------------------------------
 //! \struct Object
-//! \brief  Stores all objects of an obj-file object definition
+//! \brief  Stores all objects of an obj-file_manager object definition
 // ------------------------------------------------------------------------------------------------
 struct Object {
     enum ObjectType {

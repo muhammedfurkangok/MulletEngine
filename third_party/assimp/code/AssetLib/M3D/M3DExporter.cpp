@@ -323,10 +323,10 @@ void M3DExporter::doExport(
     // TODO: convert mProperties into M3D_EXP_* flags
     (void)mProperties;
 
-    // open the indicated file for writing (in binary / ASCII mode)
+    // open the indicated file_manager for writing (in binary / ASCII mode)
     outfile.reset(pIOSystem->Open(pFile, toAscii ? "wt" : "wb"));
     if (!outfile) {
-        throw DeadlyExportError("could not open output .m3d file: " + std::string(pFile));
+        throw DeadlyExportError("could not open output .m3d file_manager: " + std::string(pFile));
     }
 
     M3DWrapper m3d;
@@ -350,7 +350,7 @@ void M3DExporter::doExport(
     // Write out serialized model
     outfile->Write(output, size, 1);
 
-    // explicitly release file pointer,
+    // explicitly release file_manager pointer,
     // so we don't have to rely on class destruction.
     outfile.reset();
 

@@ -3,7 +3,7 @@
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
-/* WARNING: this file should *not* be used by applications. It is
+/* WARNING: this file_manager should *not* be used by applications. It is
    part of the implementation of the compression library and is
    subject to change. Applications should only use zlib.h.
  */
@@ -24,7 +24,7 @@ typedef enum {
     OS,         /* i: waiting for extra flags and operating system (gzip) */
     EXLEN,      /* i: waiting for extra length (gzip) */
     EXTRA,      /* i: waiting for extra bytes (gzip) */
-    NAME,       /* i: waiting for end of file name (gzip) */
+    NAME,       /* i: waiting for end of file_manager name (gzip) */
     COMMENT,    /* i: waiting for end of comment (gzip) */
     HCRC,       /* i: waiting for header crc (gzip) */
     DICTID,     /* i: waiting for dictionary check value */

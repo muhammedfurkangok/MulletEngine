@@ -66,7 +66,7 @@ namespace Assimp {
 class IOStream;
 struct LogStreamInfo;
 
-/** default name of log-file */
+/** default name of log-file_manager */
 #define ASSIMP_DEFAULT_LOG_NAME "AssimpLog.txt"
 
 // ------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ struct LogStreamInfo;
  *  just a #NullLogger which rejects all log messages. By calling #create(), logging
  *  is turned on. To capture the log output multiple log streams (#LogStream) can be
  *  attach to the logger. Some default streams for common streaming locations (such as
- *  a file, std::cout, OutputDebugString()) are also provided.
+ *  a file_manager, std::cout, OutputDebugString()) are also provided.
  *
  *  If you wish to customize the logging at an even deeper level supply your own
  *  implementation of #Logger to #set().
@@ -86,15 +86,15 @@ class ASSIMP_API DefaultLogger : public Logger {
 public:
     // ----------------------------------------------------------------------
     /** @brief Creates a logging instance.
-     *  @param name Name for log file. Only valid in combination
+     *  @param name Name for log file_manager. Only valid in combination
      *    with the aiDefaultLogStream_FILE flag.
      *  @param severity Log severity, DEBUG turns on debug messages and VERBOSE turns on all messages.
      *  @param defStreams  Default log streams to be attached. Any bitwise
      *    combination of the aiDefaultLogStream enumerated values.
      *    If #aiDefaultLogStream_FILE is specified but an empty string is
-     *    passed for 'name', no log file is created at all.
+     *    passed for 'name', no log file_manager is created at all.
      *  @param  io IOSystem to be used to open external files (such as the
-     *   log file). Pass nullptr to rely on the default implementation.
+     *   log file_manager). Pass nullptr to rely on the default implementation.
      *  This replaces the default #NullLogger with a #DefaultLogger instance. */
     static Logger *create(const char *name = ASSIMP_DEFAULT_LOG_NAME,
             LogSeverity severity = NORMAL,

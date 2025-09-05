@@ -110,7 +110,7 @@ InverseDynamicsExample::~InverseDynamicsExample()
 	delete m_timeSeriesCanvas;
 }
 
-//todo(erwincoumans) Quick hack, reference to InvertedPendulumPDControl implementation. Will create a separate header/source file for this.
+//todo(erwincoumans) Quick hack, reference to InvertedPendulumPDControl implementation. Will create a separate header/source file_manager for this.
 btMultiBody* createInvertedPendulumMultiBody(btMultiBodyDynamicsWorld* world, GUIHelperInterface* guiHelper, const btTransform& baseWorldTrans, bool fixedBase);
 
 void InverseDynamicsExample::initPhysics()

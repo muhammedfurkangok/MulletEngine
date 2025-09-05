@@ -101,7 +101,7 @@ class BlenderModifier;
 } // namespace Blender
 
 // -------------------------------------------------------------------------------------------
-/** Load blenders official binary format. The actual file structure (the `DNA` how they
+/** Load blenders official binary format. The actual file_manager structure (the `DNA` how they
  *  call it is outsourced to BlenderDNA.cpp/BlenderDNA.h. This class only performs the
  *  conversion from intermediate format to aiScene. */
 // -------------------------------------------------------------------------------------------

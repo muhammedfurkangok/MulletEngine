@@ -442,16 +442,16 @@ ColladaParser::ColladaParser(IOSystem *pIOHandler, const std::string &pFile) :
             throw DeadlyImportError("Invalid ZAE manifest: '", dae_filename, "' is missing");
         }
     } else {
-        // attempt to open the file directly
+        // attempt to open the file_manager directly
         daeFile.reset(pIOHandler->Open(pFile));
         if (daeFile == nullptr) {
-            throw DeadlyImportError("Failed to open file '", pFile, "'.");
+            throw DeadlyImportError("Failed to open file_manager '", pFile, "'.");
         }
     }
 
     // generate a XML reader for it
     if (!mXmlParser.parse(daeFile.get())) {
-        throw DeadlyImportError("Unable to read file, malformed XML");
+        throw DeadlyImportError("Unable to read file_manager, malformed XML");
     }
     // start reading
     const XmlNode node = mXmlParser.getRootNode();
@@ -517,19 +517,19 @@ std::string ColladaParser::ReadZaeManifest(ZipArchiveIOSystem &zip_archive) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Convert a path read from a collada file to the usual representation
+// Convert a path read from a collada file_manager to the usual representation
 void ColladaParser::UriDecodePath(aiString &ss) {
     // TODO: collada spec, p 22. Handle URI correctly.
-    // For the moment we're just stripping the file:// away to make it work.
+    // For the moment we're just stripping the file_manager:// away to make it work.
     // Windows doesn't seem to be able to find stuff like
-    // 'file://..\LWO\LWO2\MappingModes\earthSpherical.jpg'
-    if (0 == strncmp(ss.data, "file://", 7)) {
+    // 'file_manager://..\LWO\LWO2\MappingModes\earthSpherical.jpg'
+    if (0 == strncmp(ss.data, "file_manager://", 7)) {
         ss.length -= 7;
         memmove(ss.data, ss.data + 7, ss.length);
         ss.data[ss.length] = '\0';
     }
 
-    // Maxon Cinema Collada Export writes "file:///C:\andsoon" with three slashes...
+    // Maxon Cinema Collada Export writes "file_manager:///C:\andsoon" with three slashes...
     // I need to filter it without destroying linux paths starting with "/somewhere"
     if (ss.data[0] == '/' && isalpha((unsigned char)ss.data[1]) && ss.data[2] == ':') {
         --ss.length;
@@ -558,7 +558,7 @@ void ColladaParser::UriDecodePath(aiString &ss) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads the contents of the file
+// Reads the contents of the file_manager
 void ColladaParser::ReadContents(XmlNode &node) {
     if (const std::string name = node.name(); name == "COLLADA") {
         std::string version;
@@ -582,7 +582,7 @@ void ColladaParser::ReadContents(XmlNode &node) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads the structure of the file
+// Reads the structure of the file_manager
 void ColladaParser::ReadStructure(XmlNode &node) {
     for (XmlNode &currentNode : node.children()) {
         if (const std::string &currentName = currentNode.name(); currentName == "asset") {
@@ -969,7 +969,7 @@ void ColladaParser::ReadImage(const XmlNode &node, Collada::Image &pImage) const
                     // embedded image. get format
                     pImage.mEmbeddedFormat = hexChild.attribute("format").as_string();
                     if (pImage.mEmbeddedFormat.empty()) {
-                        ASSIMP_LOG_WARN("Collada: Unknown image file format");
+                        ASSIMP_LOG_WARN("Collada: Unknown image file_manager format");
                     }
 
                     XmlParser::getValueAsString(hexChild, value);

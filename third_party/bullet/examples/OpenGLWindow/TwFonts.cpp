@@ -1,8 +1,8 @@
 //  ---------------------------------------------------------------------------
 //
-//  @file       TwFonts.cpp
+//  @file_manager       TwFonts.cpp
 //  @author     Philippe Decaudin - http://www.antisphere.com
-//  @license    This file is part of the AntTweakBar library.
+//  @license    This file_manager is part of the AntTweakBar library.
 //              For conditions of distribution and use, see License.txt
 //
 //  ---------------------------------------------------------------------------

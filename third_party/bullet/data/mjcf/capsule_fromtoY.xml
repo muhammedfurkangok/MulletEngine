@@ -1,5 +1,5 @@
  <!--
- MuJoCo MJCF test file. See http://mujoco.org/book/index.html
+ MuJoCo MJCF test file_manager. See http://mujoco.org/book/index.html
   -->
 <mujoco>
    <worldbody>

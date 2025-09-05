@@ -100,7 +100,7 @@ void USDImporterImplTinyusdz::InternReadFile(
         };
         std::unique_ptr<IOStream, decltype(stream_closer)> file_stream(pIOHandler->Open(pFile, "rb"), stream_closer);
         if (!file_stream) {
-            throw DeadlyImportError("Failed to open file ", pFile, ".");
+            throw DeadlyImportError("Failed to open file_manager ", pFile, ".");
         }
         size_t file_size{ file_stream->FileSize() };
         in_mem_data.resize(file_size);
@@ -695,7 +695,7 @@ void USDImporterImplTinyusdz::textures(
  *
  * @param render_scene  renderScene object
  * @param image         textureImage object
- * @param nameWExt      filename w/ext (use to extract file type hint)
+ * @param nameWExt      filename w/ext (use to extract file_manager type hint)
  * @return              aiTexture ptr
  */
 static aiTexture *ownedEmbeddedTextureFor(

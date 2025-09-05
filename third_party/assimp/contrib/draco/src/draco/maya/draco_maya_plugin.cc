@@ -1,5 +1,5 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -248,9 +248,9 @@ EncodeResult drc2py_encode(Drc2PyMesh *in_mesh, char *file_path) {
     return EncodeResult::KO_MESH_ENCODING;
   }
 
-  // Save to file
-  std::string file = file_path;
-  std::ofstream out_file(file, std::ios::binary);
+  // Save to file_manager
+  std::string file_manager = file_path;
+  std::ofstream out_file(file_manager, std::ios::binary);
   if (!out_file) {
     return EncodeResult::KO_FILE_CREATION;
   }

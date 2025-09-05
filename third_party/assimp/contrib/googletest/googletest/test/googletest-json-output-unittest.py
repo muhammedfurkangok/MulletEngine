@@ -76,7 +76,7 @@ EXPECTED_NON_EMPTY = {
             'timestamp': '*',
             'testsuite': [{
                 'name': 'Succeeds',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 53,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -95,7 +95,7 @@ EXPECTED_NON_EMPTY = {
             'timestamp': '*',
             'testsuite': [{
                 'name': 'Fails',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 61,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -123,7 +123,7 @@ EXPECTED_NON_EMPTY = {
             'timestamp': '*',
             'testsuite': [{
                 'name': 'DISABLED_test_not_run',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 68,
                 'status': 'NOTRUN',
                 'result': 'SUPPRESSED',
@@ -143,7 +143,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [
                 {
                     'name': 'Skipped',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 75,
                     'status': 'RUN',
                     'result': 'SKIPPED',
@@ -153,7 +153,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'SkippedWithMessage',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 79,
                     'status': 'RUN',
                     'result': 'SKIPPED',
@@ -163,7 +163,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'SkippedAfterFailure',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 83,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -193,7 +193,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [
                 {
                     'name': 'Succeeds',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 88,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -203,7 +203,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'Fails',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 93,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -233,7 +233,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'DISABLED_test',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 98,
                     'status': 'NOTRUN',
                     'result': 'SUPPRESSED',
@@ -253,7 +253,7 @@ EXPECTED_NON_EMPTY = {
             'timestamp': '*',
             'testsuite': [{
                 'name': 'OutputsCData',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 102,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -281,7 +281,7 @@ EXPECTED_NON_EMPTY = {
             'timestamp': '*',
             'testsuite': [{
                 'name': 'InvalidCharactersInMessage',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 109,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -312,7 +312,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [
                 {
                     'name': 'OneProperty',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 121,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -323,7 +323,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'IntValuedProperty',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 125,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -334,7 +334,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'ThreeProperties',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 129,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -347,7 +347,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'TwoValuesForOneKeyUsesLastValue',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 135,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -369,7 +369,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [
                 {
                     'name': 'RecordProperty',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 140,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -380,7 +380,7 @@ EXPECTED_NON_EMPTY = {
                 },
                 {
                     'name': 'ExternalUtilityThatCallsRecordIntValuedProperty',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 153,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -393,7 +393,7 @@ EXPECTED_NON_EMPTY = {
                     'name': (
                         'ExternalUtilityThatCallsRecordStringValuedProperty'
                     ),
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 157,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -415,7 +415,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [{
                 'name': 'HasTypeParamAttribute',
                 'type_param': 'int',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 173,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -435,7 +435,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [{
                 'name': 'HasTypeParamAttribute',
                 'type_param': 'long',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 173,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -455,7 +455,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [{
                 'name': 'HasTypeParamAttribute',
                 'type_param': 'int',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 180,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -475,7 +475,7 @@ EXPECTED_NON_EMPTY = {
             'testsuite': [{
                 'name': 'HasTypeParamAttribute',
                 'type_param': 'long',
-                'file': 'gtest_xml_output_unittest_.cc',
+                'file_manager': 'gtest_xml_output_unittest_.cc',
                 'line': 180,
                 'status': 'RUN',
                 'result': 'COMPLETED',
@@ -496,7 +496,7 @@ EXPECTED_NON_EMPTY = {
                 {
                     'name': 'HasValueParamAttribute/0',
                     'value_param': '33',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 164,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -507,7 +507,7 @@ EXPECTED_NON_EMPTY = {
                 {
                     'name': 'HasValueParamAttribute/1',
                     'value_param': '42',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 164,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -518,7 +518,7 @@ EXPECTED_NON_EMPTY = {
                 {
                     'name': 'AnotherTestThatHasValueParamAttribute/0',
                     'value_param': '33',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 165,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -529,7 +529,7 @@ EXPECTED_NON_EMPTY = {
                 {
                     'name': 'AnotherTestThatHasValueParamAttribute/1',
                     'value_param': '42',
-                    'file': 'gtest_xml_output_unittest_.cc',
+                    'file_manager': 'gtest_xml_output_unittest_.cc',
                     'line': 165,
                     'status': 'RUN',
                     'result': 'COMPLETED',
@@ -561,7 +561,7 @@ EXPECTED_FILTERED = {
         'timestamp': '*',
         'testsuite': [{
             'name': 'Succeeds',
-            'file': 'gtest_xml_output_unittest_.cc',
+            'file_manager': 'gtest_xml_output_unittest_.cc',
             'line': 53,
             'status': 'RUN',
             'result': 'COMPLETED',
@@ -675,9 +675,9 @@ class GTestJsonOutputUnitTest(gtest_test_utils.TestCase):
     )
 
   def testDefaultOutputFile(self):
-    """Verifies the default output file name.
+    """Verifies the default output file_manager name.
 
-    Confirms that Google Test produces an JSON output file with the expected
+    Confirms that Google Test produces an JSON output file_manager with the expected
     default name if no name is explicitly specified.
     """
     output_file = os.path.join(
@@ -704,7 +704,7 @@ class GTestJsonOutputUnitTest(gtest_test_utils.TestCase):
   def testSuppressedJsonOutput(self):
     """Verifies that no JSON output is generated.
 
-    Tests that no JSON file is generated if the default JSON listener is
+    Tests that no JSON file_manager is generated if the default JSON listener is
     shut down before RUN_ALL_TESTS is invoked.
     """
 

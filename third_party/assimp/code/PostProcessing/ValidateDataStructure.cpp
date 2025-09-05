@@ -502,7 +502,7 @@ void ValidateDSProcess::SearchForInvalidTextures(const aiMaterial *pMaterial,
     for (unsigned int i = 0; i < pMaterial->mNumProperties; ++i) {
         aiMaterialProperty *prop = pMaterial->mProperties[i];
         ai_assert(nullptr != prop);
-        if (!::strcmp(prop->mKey.data, "$tex.file") && prop->mSemantic == static_cast<unsigned int>(type)) {
+        if (!::strcmp(prop->mKey.data, "$tex.file_manager") && prop->mSemantic == static_cast<unsigned int>(type)) {
             iIndex = std::max(iIndex, (int)prop->mIndex);
             ++iNumIndices;
 
@@ -699,7 +699,7 @@ void ValidateDSProcess::Validate(const aiTexture *pTexture) {
         if ('\0' != pTexture->achFormatHint[HINTMAXTEXTURELEN - 1]) {
             ReportWarning("aiTexture::achFormatHint must be zero-terminated");
         } else if ('.' == pTexture->achFormatHint[0]) {
-            ReportWarning("aiTexture::achFormatHint should contain a file extension "
+            ReportWarning("aiTexture::achFormatHint should contain a file_manager extension "
                           "without a leading dot (format hint: %s).",
                     pTexture->achFormatHint);
         }

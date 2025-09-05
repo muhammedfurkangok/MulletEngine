@@ -40,7 +40,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # ---------------------------------------------------------------------------
 
-"""Parse an EXPRESS file and extract basic information on all
+"""Parse an EXPRESS file_manager and extract basic information on all
 entities and data types contained"""
 
 import sys
@@ -97,7 +97,7 @@ class Type:
 
 def read(filename, silent=False):
     schema = Schema()
-    print( "Try to read EXPRESS schema file" + filename)
+    print( "Try to read EXPRESS schema file_manager" + filename)
     with open(filename,'rt') as inp: 
         contents = inp.read()
         types = re.findall(re_match_type,contents)

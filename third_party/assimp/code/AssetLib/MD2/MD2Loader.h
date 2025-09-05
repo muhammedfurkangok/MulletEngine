@@ -66,7 +66,7 @@ public:
     ~MD2Importer() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
     * See BaseImporter::CanRead() for details.  */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
             bool checkSig) const override;
@@ -86,14 +86,14 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile(const std::string &pFile, aiScene *pScene,
             IOSystem *pIOHandler) override;
 
     // -------------------------------------------------------------------
-    /** Validate the header of the file
+    /** Validate the header of the file_manager
     */
     void ValidateHeader();
 
@@ -101,13 +101,13 @@ protected:
     /** Configuration option: frame to be loaded */
     unsigned int configFrameID;
 
-    /** Header of the MD2 file */
+    /** Header of the MD2 file_manager */
     BE_NCONST MD2::Header *m_pcHeader;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     BE_NCONST uint8_t *mBuffer;
 
-    /** Size of the file, in bytes */
+    /** Size of the file_manager, in bytes */
     unsigned int fileSize;
 };
 

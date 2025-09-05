@@ -93,7 +93,7 @@ ObjFileParser::ObjFileParser(IOStreamBuffer<char> &streamBuffer, const std::stri
     m_pModel->mMaterialLib.emplace_back(DEFAULT_MATERIAL);
     m_pModel->mMaterialMap[DEFAULT_MATERIAL] = m_pModel->mDefaultMaterial;
 
-    // Start parsing the file
+    // Start parsing the file_manager
     parseFile(streamBuffer);
 }
 
@@ -627,7 +627,7 @@ void ObjFileParser::getComment() {
 }
 
 // -------------------------------------------------------------------
-//  Get material library from file.
+//  Get material library from file_manager.
 void ObjFileParser::getMaterialLib() {
     // Translate tuple
     m_DataIt = getNextToken<DataArrayIt>(m_DataIt, m_DataItEnd);
@@ -663,18 +663,18 @@ void ObjFileParser::getMaterialLib() {
 	
 	std::unique_ptr<IOStream> pFile(m_pIO->Open(absName));
     if (nullptr == pFile) {
-        ASSIMP_LOG_ERROR("OBJ: Unable to locate material file ", strMatName);
+        ASSIMP_LOG_ERROR("OBJ: Unable to locate material file_manager ", strMatName);
         std::string strMatFallbackName = m_originalObjFileName.substr(0, m_originalObjFileName.length() - 3) + "mtl";
-        ASSIMP_LOG_INFO("OBJ: Opening fallback material file ", strMatFallbackName);
+        ASSIMP_LOG_INFO("OBJ: Opening fallback material file_manager ", strMatFallbackName);
         pFile.reset(m_pIO->Open(strMatFallbackName));
         if (!pFile) {
-            ASSIMP_LOG_ERROR("OBJ: Unable to locate fallback material file ", strMatFallbackName);
+            ASSIMP_LOG_ERROR("OBJ: Unable to locate fallback material file_manager ", strMatFallbackName);
             m_DataIt = skipLine<DataArrayIt>(m_DataIt, m_DataItEnd, m_uiLine);
             return;
         }
     }
 
-    // Import material library data from file.
+    // Import material library data from file_manager.
     // Some exporters (e.g. Silo) will happily write out empty
     // material files if the model doesn't use any materials, so we
     // allow that.

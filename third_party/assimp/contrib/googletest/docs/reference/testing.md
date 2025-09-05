@@ -453,7 +453,7 @@ ScopedTrace(const char* file, int line, const T& message)
 Example usage:
 
 ```cpp
-testing::ScopedTrace trace("file.cc", 123, "message");
+testing::ScopedTrace trace("file_manager.cc", 123, "message");
 ```
 
 The resulting trace includes the given source file path and line number, and the

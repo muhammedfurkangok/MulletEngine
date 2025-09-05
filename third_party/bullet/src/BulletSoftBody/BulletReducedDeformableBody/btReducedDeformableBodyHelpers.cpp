@@ -78,7 +78,7 @@ btReducedDeformableBody* btReducedDeformableBodyHelpers::createFromVtkFile(btSof
 			ss >> d;
 			if (d != 4)
 			{
-				printf("Load deformable failed: Only Tetrahedra are supported in VTK file.\n");
+				printf("Load deformable failed: Only Tetrahedra are supported in VTK file_manager.\n");
 				fs.close();
 				return 0;
 			}
@@ -152,7 +152,7 @@ void btReducedDeformableBodyHelpers::readReducedDeformableInfoFromFiles(btReduce
 	rsb->internalInitialization();
 }
 
-// read in a vector from the binary file
+// read in a vector from the binary file_manager
 void btReducedDeformableBodyHelpers::readBinaryVec(btReducedDeformableBody::tDenseArray& vec, 
 																				  	 const unsigned int n_size, 				// #entries read
 																						 const char* file)
@@ -174,7 +174,7 @@ void btReducedDeformableBodyHelpers::readBinaryVec(btReducedDeformableBody::tDen
   f_in.close();
 }
 
-// read in a matrix from the binary file
+// read in a matrix from the binary file_manager
 void btReducedDeformableBodyHelpers::readBinaryMat(btReducedDeformableBody::tDenseMatrix& mat, 
 																						 const unsigned int n_modes, 		// #modes, outer array size
 																						 const unsigned int n_full, 		// inner array size

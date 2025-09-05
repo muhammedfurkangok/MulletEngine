@@ -64,7 +64,7 @@ namespace D3DS {
 */
 namespace Discreet3DS {
 
-    //! data structure for a single chunk in a .3ds file
+    //! data structure for a single chunk in a .3ds file_manager
     struct Chunk {
         uint16_t Flag;
         uint32_t Size;
@@ -107,7 +107,7 @@ namespace Discreet3DS {
     enum {
 
         // ********************************************************************
-        // Basic chunks which can be found everywhere in the file
+        // Basic chunks which can be found everywhere in the file_manager
         CHUNK_VERSION = 0x0002,
         CHUNK_RGBF = 0x0010, // float4 R; float4 G; float4 B
         CHUNK_RGBB = 0x0011, // int1 R; int1 G; int B
@@ -127,19 +127,19 @@ namespace Discreet3DS {
         // MDLI master chunk
         CHUNK_MLI = 0x3DAA,
 
-        // Primary main chunk of the .3ds file
+        // Primary main chunk of the .3ds file_manager
         CHUNK_MAIN = 0x4D4D,
 
         // Mesh main chunk
         CHUNK_OBJMESH = 0x3D3D,
 
-        // Specifies the background color of the .3ds file
+        // Specifies the background color of the .3ds file_manager
         // This is passed through the material system for
         // viewing purposes.
         CHUNK_BKGCOLOR = 0x1200,
 
         // Specifies the ambient base color of the scene.
-        // This is added to all materials in the file
+        // This is added to all materials in the file_manager
         CHUNK_AMBCOLOR = 0x2100,
 
         // Specifies the background image for the whole scene
@@ -255,7 +255,7 @@ namespace Discreet3DS {
         // Tiling flags for 3DS files
         CHUNK_MAT_MAP_TILING = 0xa351,
 
-        // Specifies the file name of a texture
+        // Specifies the file_manager name of a texture
         CHUNK_MAPFILE = 0xA300,
 
         // Specifies whether a material requires two-sided rendering
@@ -275,7 +275,7 @@ namespace Discreet3DS {
         CHUNK_TRACKSCALE = 0xB022,
 
         // ********************************************************************
-        // Keyframes for various other stuff in the file
+        // Keyframes for various other stuff in the file_manager
         // Partially ignored
         CHUNK_AMBIENTKEY = 0xB001,
         CHUNK_TRACKMORPH = 0xB026,
@@ -439,7 +439,7 @@ struct Material {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent a 3ds file mesh */
+/** Helper structure to represent a 3ds file_manager mesh */
 struct Mesh : public MeshWithSmoothingGroups<D3DS::Face> {
     //! Default constructor has been deleted
     Mesh() = delete;
@@ -486,7 +486,7 @@ struct aiFloatKey {
 };
 
 // ---------------------------------------------------------------------------
-/** Helper structure to represent a 3ds file node */
+/** Helper structure to represent a 3ds file_manager node */
 struct Node {
     Node() = delete;
 
@@ -528,13 +528,13 @@ struct Node {
     //! Index of the node
     int16_t mHierarchyIndex;
 
-    //! Rotation keys loaded from the file
+    //! Rotation keys loaded from the file_manager
     std::vector<aiQuatKey> aRotationKeys;
 
-    //! Position keys loaded from the file
+    //! Position keys loaded from the file_manager
     std::vector<aiVectorKey> aPositionKeys;
 
-    //! Scaling keys loaded from the file
+    //! Scaling keys loaded from the file_manager
     std::vector<aiVectorKey> aScalingKeys;
 
     // For target lights (spot lights and directional lights):
@@ -544,7 +544,7 @@ struct Node {
     // For cameras: the camera roll angle
     std::vector<aiFloatKey> aCameraRollKeys;
 
-    //! Pivot position loaded from the file
+    //! Pivot position loaded from the file_manager
     aiVector3D vPivot;
 
     //instance count, will be kept only for the first node

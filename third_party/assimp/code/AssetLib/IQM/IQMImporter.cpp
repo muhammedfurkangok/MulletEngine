@@ -89,7 +89,7 @@ IQMImporter::IQMImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Returns true, if file is a binary Inter-Quake Model file.
+//  Returns true, if file_manager is a binary Inter-Quake Model file_manager.
 bool IQMImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool checkSig) const {
     const std::string extension = GetExtension(pFile);
 
@@ -117,21 +117,21 @@ const aiImporterDesc *IQMImporter::GetInfo() const {
 // ------------------------------------------------------------------------------------------------
 //  Model 3D import implementation
 void IQMImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSystem *pIOHandler) {
-    // Read file into memory
+    // Read file_manager into memory
     std::unique_ptr<IOStream> pStream(pIOHandler->Open(file, "rb"));
     if (!pStream) {
-        throw DeadlyImportError("Failed to open file ", file, ".");
+        throw DeadlyImportError("Failed to open file_manager ", file, ".");
     }
 
-    // Get the file-size and validate it, throwing an exception when fails
+    // Get the file_manager-size and validate it, throwing an exception when fails
     const size_t fileSize = pStream->FileSize();
     if (fileSize < sizeof( iqmheader )) {
-        throw DeadlyImportError("IQM-file ", file, " is too small.");
+        throw DeadlyImportError("IQM-file_manager ", file, " is too small.");
     }
     std::vector<unsigned char> buffer(fileSize);
     unsigned char *data = buffer.data();
     if (fileSize != pStream->Read(data, 1, fileSize)) {
-        throw DeadlyImportError("Failed to read the file ", file, ".");
+        throw DeadlyImportError("Failed to read the file_manager ", file, ".");
     }
 
     // get header
@@ -142,7 +142,7 @@ void IQMImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
     if (memcmp(data, IQM_MAGIC, sizeof( IQM_MAGIC ) )
      || hdr.version != IQM_VERSION
      || hdr.filesize != fileSize) {
-        throw DeadlyImportError("Bad binary header in file ", file, ".");
+        throw DeadlyImportError("Bad binary header in file_manager ", file, ".");
     }
 
     ASSIMP_LOG_DEBUG("IQM: loading ", file);
@@ -174,7 +174,7 @@ void IQMImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
         swap_block( &array->type, sizeof( iqmvertexarray ) );
     }
 
-    // Read all surfaces from the file
+    // Read all surfaces from the file_manager
     for( auto imesh = reinterpret_cast<iqmmesh*>( data + hdr.ofs_meshes ), end_ = imesh + hdr.num_meshes; imesh != end_; ++imesh )
     {
         swap_block( &imesh->name, sizeof( iqmmesh ) );

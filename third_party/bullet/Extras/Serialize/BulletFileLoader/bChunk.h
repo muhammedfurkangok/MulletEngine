@@ -68,7 +68,7 @@ public:
 class ChunkUtils
 {
 public:
-	// file chunk offset
+	// file_manager chunk offset
 	static int getOffset(int flags);
 
 	// endian utils

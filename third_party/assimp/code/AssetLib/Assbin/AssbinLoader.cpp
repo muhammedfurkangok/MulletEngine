@@ -394,7 +394,7 @@ void AssbinImporter::ReadBinaryMesh(IOStream *stream, aiMesh *mesh) {
 
     // write faces. There are no floating-point calculations involved
     // in these, so we can write a simple hash over the face data
-    // to the dump file. We generate a single 32 Bit hash for 512 faces
+    // to the dump file_manager. We generate a single 32 Bit hash for 512 faces
     // using Assimp's standard hashing function.
     if (shortened) {
         Read<unsigned int>(stream);

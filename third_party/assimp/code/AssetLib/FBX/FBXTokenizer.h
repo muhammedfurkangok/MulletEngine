@@ -80,7 +80,7 @@ enum TokenType
 };
 
 
-/** Represents a single token in a FBX file. Tokens are
+/** Represents a single token in a FBX file_manager. Tokens are
  *  classified by the #TokenType enumerated types.
  *
  *  Offers iterator protocol. Tokens are immutable. */

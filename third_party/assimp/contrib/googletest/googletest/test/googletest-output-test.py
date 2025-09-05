@@ -31,9 +31,9 @@
 
 r"""Tests the text output of Google C++ Testing and Mocking Framework.
 
-To update the golden file:
+To update the golden file_manager:
 googletest_output_test.py --build_dir=BUILD/DIR --gengolden
-where BUILD/DIR contains the built googletest-output-test_ file.
+where BUILD/DIR contains the built googletest-output-test_ file_manager.
 googletest_output_test.py --gengolden
 googletest_output_test.py
 """
@@ -45,7 +45,7 @@ import sys
 from googletest.test import gtest_test_utils
 
 
-# The flag for generating the golden file
+# The flag for generating the golden file_manager
 GENGOLDEN_FLAG = '--gengolden'
 CATCH_EXCEPTIONS_ENV_VAR_NAME = 'GTEST_CATCH_EXCEPTIONS'
 
@@ -100,13 +100,13 @@ def ToUnixLineEnding(s):
 
 
 def RemoveLocations(test_output):
-  """Removes all file location info from a Google Test program's output.
+  """Removes all file_manager location info from a Google Test program's output.
 
   Args:
        test_output:  the output of a Google Test program.
 
   Returns:
-       output with all file location info (in the form of
+       output with all file_manager location info (in the form of
        'DIRECTORY/FILE_NAME:LINE_NUMBER: 'or
        'DIRECTORY\\FILE_NAME(LINE_NUMBER): ') replaced by
        'FILE_NAME:#: '.
@@ -163,7 +163,7 @@ def NormalizeToCurrentPlatform(test_output):
     test_output = re.sub('\x1b\\[(0;3\d)?m', '', test_output)
     # Changes failure message headers into the Windows format.
     test_output = re.sub(r': Failure\n', r': error: ', test_output)
-    # Changes file(line_number) to file:line_number.
+    # Changes file_manager(line_number) to file_manager:line_number.
     test_output = re.sub(r'((\w|\.)+)\((\d+)\):', r'\1:\3:', test_output)
 
   return test_output
@@ -227,7 +227,7 @@ def GetShellCommandOutput(env_cmd):
     A string with the command's combined standard and diagnostic output.
   """
 
-  # Spawns cmd in a sub-process, and gets its standard I/O file objects.
+  # Spawns cmd in a sub-process, and gets its standard I/O file_manager objects.
   # Set and save the environment properly.
   environ = os.environ.copy()
   environ.update(env_cmd[0])
@@ -237,7 +237,7 @@ def GetShellCommandOutput(env_cmd):
 
 
 def GetCommandOutput(env_cmd):
-  """Runs a command and returns output with all file location info stripped off.
+  """Runs a command and returns output with all file_manager location info stripped off.
 
   Args:
     env_cmd:  The shell command. A 2-tuple where element 0 is a dict of extra
@@ -308,7 +308,7 @@ class GTestOutputTest(gtest_test_utils.TestCase):
 
     golden_file = open(GOLDEN_PATH, 'rb')
     # A mis-configured source control system can cause \r appear in EOL
-    # sequences when we read the golden file irrespective of an operating
+    # sequences when we read the golden file_manager irrespective of an operating
     # system used. Therefore, we need to strip those \r's from newlines
     # unconditionally.
     golden = ToUnixLineEnding(golden_file.read().decode())
@@ -342,7 +342,7 @@ class GTestOutputTest(gtest_test_utils.TestCase):
           RemoveTestCounts(self.RemoveUnsupportedTests(normalized_golden))
       )
 
-      # This code is very handy when debugging golden file differences:
+      # This code is very handy when debugging golden file_manager differences:
       if os.getenv('DEBUG_GTEST_OUTPUT_TEST'):
         open(
             os.path.join(
@@ -374,10 +374,10 @@ if __name__ == '__main__':
       golden_file.write(output.encode())
       golden_file.close()
     else:
-      message = """Unable to write a golden file when compiled in an environment
+      message = """Unable to write a golden file_manager when compiled in an environment
 that does not support all the required features (death tests,
 typed tests, stack traces, and multiple threads).
-Please build this test and generate the golden file using Blaze on Linux."""
+Please build this test and generate the golden file_manager using Blaze on Linux."""
 
       sys.stderr.write(message)
       sys.exit(1)

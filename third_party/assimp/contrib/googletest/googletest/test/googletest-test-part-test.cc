@@ -68,7 +68,7 @@ TEST_F(TestPartResultTest, ConstructorWorks) {
 }
 
 TEST_F(TestPartResultTest, ResultAccessorsWork) {
-  const TestPartResult success(TestPartResult::kSuccess, "file.cc", 42,
+  const TestPartResult success(TestPartResult::kSuccess, "file_manager.cc", 42,
                                "message");
   EXPECT_TRUE(success.passed());
   EXPECT_FALSE(success.failed());
@@ -77,14 +77,14 @@ TEST_F(TestPartResultTest, ResultAccessorsWork) {
   EXPECT_FALSE(success.skipped());
 
   const TestPartResult nonfatal_failure(TestPartResult::kNonFatalFailure,
-                                        "file.cc", 42, "message");
+                                        "file_manager.cc", 42, "message");
   EXPECT_FALSE(nonfatal_failure.passed());
   EXPECT_TRUE(nonfatal_failure.failed());
   EXPECT_TRUE(nonfatal_failure.nonfatally_failed());
   EXPECT_FALSE(nonfatal_failure.fatally_failed());
   EXPECT_FALSE(nonfatal_failure.skipped());
 
-  const TestPartResult fatal_failure(TestPartResult::kFatalFailure, "file.cc",
+  const TestPartResult fatal_failure(TestPartResult::kFatalFailure, "file_manager.cc",
                                      42, "message");
   EXPECT_FALSE(fatal_failure.passed());
   EXPECT_TRUE(fatal_failure.failed());
@@ -92,7 +92,7 @@ TEST_F(TestPartResultTest, ResultAccessorsWork) {
   EXPECT_TRUE(fatal_failure.fatally_failed());
   EXPECT_FALSE(fatal_failure.skipped());
 
-  const TestPartResult skip(TestPartResult::kSkip, "file.cc", 42, "message");
+  const TestPartResult skip(TestPartResult::kSkip, "file_manager.cc", 42, "message");
   EXPECT_FALSE(skip.passed());
   EXPECT_FALSE(skip.failed());
   EXPECT_FALSE(skip.nonfatally_failed());

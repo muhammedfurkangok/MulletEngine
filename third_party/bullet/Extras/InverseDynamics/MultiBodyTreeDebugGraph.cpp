@@ -21,11 +21,11 @@ int writeGraphvizDotFile(const MultiBodyTree* tree, const MultiBodyNameMap* map,
 	FILE* fp = fopen(filename, "w");
 	if (NULL == fp)
 	{
-		bt_id_error_message("cannot open file %s for writing\n", filename);
+		bt_id_error_message("cannot open file_manager %s for writing\n", filename);
 		return -1;
 	}
 	fprintf(fp,
-			"// to generate postscript file, run dot -Tps %s -o %s.ps\n"
+			"// to generate postscript file_manager, run dot -Tps %s -o %s.ps\n"
 			"// details see graphviz documentation at http://graphviz.org\n"
 			"digraph tree {\n",
 			filename, filename);

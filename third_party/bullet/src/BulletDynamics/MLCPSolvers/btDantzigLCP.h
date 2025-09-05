@@ -6,7 +6,7 @@
  * This library is free software; you can redistribute it and/or         *
  * modify it under the terms of                                          * 
  *   The BSD-style license that is included with this library in         *
- *   the file LICENSE-BSD.TXT.                                           *
+ *   the file_manager LICENSE-BSD.TXT.                                           *
  *                                                                       *
  * This library is distributed in the hope that it will be useful,       *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of        *

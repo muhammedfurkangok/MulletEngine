@@ -102,7 +102,7 @@ LWOImporter::LWOImporter() :
 LWOImporter::~LWOImporter() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool LWOImporter::CanRead(const std::string &file, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint32_t tokens[] = {
         AI_LWO_FOURCC_LWOB,
@@ -121,33 +121,33 @@ void LWOImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get list of file extensions
+// Get list of file_manager extensions
 const aiImporterDesc *LWOImporter::GetInfo() const {
     return &desc;
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void LWOImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene,
         IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open LWO file ", pFile, ".");
+        throw DeadlyImportError("Failed to open LWO file_manager ", pFile, ".");
     }
 
     if ((this->fileSize = (unsigned int)file->FileSize()) < 12) {
-        throw DeadlyImportError("LWO: The file is too small to contain the IFF header");
+        throw DeadlyImportError("LWO: The file_manager is too small to contain the IFF header");
     }
 
-    // Allocate storage and copy the contents of the file to a memory buffer
+    // Allocate storage and copy the contents of the file_manager to a memory buffer
     std::vector<uint8_t> mBuffer(fileSize);
     file->Read(&mBuffer[0], 1, fileSize);
     mScene = pScene;
 
-    // Determine the type of the file
+    // Determine the type of the file_manager
     uint32_t fileType;
     const char *sz = IFF::ReadHeader(&mBuffer[0], fileType);
     if (sz) {
@@ -179,24 +179,24 @@ void LWOImporter::InternReadFile(const std::string &pFile,
     mCurLayer->mName = "<LWODefault>";
     mCurLayer->mIndex = 1;
 
-    // old lightwave file format (prior to v6)
+    // old lightwave file_manager format (prior to v6)
     mIsLWO2 = false;
     mIsLWO3 = false;
     mIsLXOB = false;
 
     if (AI_LWO_FOURCC_LWOB == fileType) {
-        ASSIMP_LOG_INFO("LWO file format: LWOB (<= LightWave 5.5)");
+        ASSIMP_LOG_INFO("LWO file_manager format: LWOB (<= LightWave 5.5)");
 
         LoadLWOBFile();
     } else if (AI_LWO_FOURCC_LWO2 == fileType) {
         // New lightwave format
-        ASSIMP_LOG_INFO("LWO file format: LWO2 (>= LightWave 6)");
+        ASSIMP_LOG_INFO("LWO file_manager format: LWO2 (>= LightWave 6)");
     } else if ( AI_LWO_FOURCC_LWO3 == fileType ) {
-        ASSIMP_LOG_INFO("LWO file format: LWO3 (>= LightWave 2018)");
+        ASSIMP_LOG_INFO("LWO file_manager format: LWO3 (>= LightWave 2018)");
     } else if (AI_LWO_FOURCC_LXOB == fileType) {
-        // MODO file format
+        // MODO file_manager format
         mIsLXOB = true;
-        ASSIMP_LOG_INFO("LWO file format: LXOB (Modo)");
+        ASSIMP_LOG_INFO("LWO file_manager format: LXOB (Modo)");
     }
     else {
         char szBuff[5];
@@ -725,7 +725,7 @@ void LWOImporter::AdjustTexturePath(std::string &out) {
         out = out.substr(0, out.length() - 10) + "000";
     }
 
-    // format: drive:path/file - we just need to insert a slash after the drive
+    // format: drive:path/file_manager - we just need to insert a slash after the drive
     std::string::size_type n = out.find_first_of(':');
     if (std::string::npos != n) {
         out.insert(n + 1, "/");
@@ -1465,7 +1465,7 @@ void LWOImporter::LoadLWO3Envelope(unsigned int length) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Load file - master function
+// Load file_manager - master function
 void LWOImporter::LoadLWO2File() {
     bool skip = false;
 
@@ -1485,7 +1485,7 @@ void LWOImporter::LoadLWO2File() {
         }
 
         if (mFileBuffer + head.length > end) {
-            throw DeadlyImportError("LWO2: Chunk length points behind the file");
+            throw DeadlyImportError("LWO2: Chunk length points behind the file_manager");
         }
         uint8_t *const next = mFileBuffer + head.length;
         mFileBuffer += bufOffset;

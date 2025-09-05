@@ -397,7 +397,7 @@ extern "C"
 	B3_SHARED_API b3SharedMemoryCommandHandle b3InitResetSimulationCommand(b3PhysicsClientHandle physClient);
 	B3_SHARED_API b3SharedMemoryCommandHandle b3InitResetSimulationCommand2(b3SharedMemoryCommandHandle commandHandle);
 	B3_SHARED_API int b3InitResetSimulationSetFlags(b3SharedMemoryCommandHandle commandHandle, int flags);
-	///Load a robot from a URDF file. Status type will CMD_URDF_LOADING_COMPLETED.
+	///Load a robot from a URDF file_manager. Status type will CMD_URDF_LOADING_COMPLETED.
 	///Access the robot from the unique body index, through b3GetStatusBodyIndex(statusHandle);
 	B3_SHARED_API b3SharedMemoryCommandHandle b3LoadUrdfCommandInit(b3PhysicsClientHandle physClient, const char* urdfFileName);
 	B3_SHARED_API b3SharedMemoryCommandHandle b3LoadUrdfCommandInit2(b3SharedMemoryCommandHandle commandHandle, const char* urdfFileName);
@@ -618,8 +618,8 @@ extern "C"
 	B3_SHARED_API int b3CreatePoseCommandSetJointVelocity(b3PhysicsClientHandle physClient, b3SharedMemoryCommandHandle commandHandle, int jointIndex, double jointVelocity);
 	B3_SHARED_API int b3CreatePoseCommandSetJointVelocityMultiDof(b3PhysicsClientHandle physClient, b3SharedMemoryCommandHandle commandHandle, int jointIndex, const double* jointVelocity, int velSize);
 	
-	///We are currently not reading the sensor information from the URDF file, and programmatically assign sensors.
-	///This is rather inconsistent, to mix programmatical creation with loading from file.
+	///We are currently not reading the sensor information from the URDF file_manager, and programmatically assign sensors.
+	///This is rather inconsistent, to mix programmatical creation with loading from file_manager.
 	B3_SHARED_API b3SharedMemoryCommandHandle b3CreateSensorCommandInit(b3PhysicsClientHandle physClient, int bodyUniqueId);
 	B3_SHARED_API int b3CreateSensorEnable6DofJointForceTorqueSensor(b3SharedMemoryCommandHandle commandHandle, int jointIndex, int enable);
 	///b3CreateSensorEnableIMUForLink is not implemented yet.

@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // Utility functions and classes used by the Google C++ testing framework.//
-// This file contains purely Google Test's internal implementation.  Please
+// This file_manager contains purely Google Test's internal implementation.  Please
 // DO NOT #INCLUDE IT IN A USER PROGRAM.
 
 #ifndef GOOGLETEST_SRC_GTEST_INTERNAL_INL_H_
@@ -239,9 +239,9 @@ GTEST_API_ std::string CodePointToUtf8(uint32_t code_point);
 // will be encoded as individual Unicode characters from Basic Normal Plane.
 GTEST_API_ std::string WideStringToUtf8(const wchar_t* str, int num_chars);
 
-// Reads the GTEST_SHARD_STATUS_FILE environment variable, and creates the file
-// if the variable is present. If a file already exists at this location, this
-// function will write over it. If the variable is present, but the file cannot
+// Reads the GTEST_SHARD_STATUS_FILE environment variable, and creates the file_manager
+// if the variable is present. If a file_manager already exists at this location, this
+// function will write over it. If the variable is present, but the file_manager cannot
 // be created, prints an error and exits.
 void WriteToShardStatusFileIfNeeded();
 
@@ -372,7 +372,7 @@ class GTEST_API_ UnitTestOptions {
   // Returns the output format, or "" for normal printed output.
   static std::string GetOutputFormat();
 
-  // Returns the absolute path of the requested output file, or the
+  // Returns the absolute path of the requested output file_manager, or the
   // default (test_detail.xml in the original working directory) if
   // none was explicitly specified.
   static std::string GetAbsolutePathToOutputFile();
@@ -1113,7 +1113,7 @@ class StreamingListener : public EmptyTestEventListener {
       sockfd_ = -1;
     }
 
-    int sockfd_;  // socket file descriptor
+    int sockfd_;  // socket file_manager descriptor
     const std::string host_name_;
     const std::string port_num_;
 
@@ -1187,7 +1187,7 @@ class StreamingListener : public EmptyTestEventListener {
   void OnTestPartResult(const TestPartResult& test_part_result) override {
     const char* file_name = test_part_result.file_name();
     if (file_name == nullptr) file_name = "";
-    SendLn("event=TestPartResult&file=" + UrlEncode(file_name) +
+    SendLn("event=TestPartResult&file_manager=" + UrlEncode(file_name) +
            "&line=" + StreamableToString(test_part_result.line_number()) +
            "&message=" + UrlEncode(test_part_result.message()));
   }

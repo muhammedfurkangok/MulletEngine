@@ -115,7 +115,7 @@ class comparer_context {
 
 public:
 
-    /* construct given two file handles to compare */
+    /* construct given two file_manager handles to compare */
     comparer_context(FILE* actual,FILE* expect)
         : actual(actual)
         , expect(expect)
@@ -186,12 +186,12 @@ public:
     }
 
 
-    /* get ACTUAL file desc. != NULL */
+    /* get ACTUAL file_manager desc. != NULL */
     FILE* get_actual() const {
         return actual;
     }
 
-    /* get EXPECT file desc. != NULL */
+    /* get EXPECT file_manager desc. != NULL */
     FILE* get_expect() const {
         return expect;
     }
@@ -895,7 +895,7 @@ int Assimp_CompareDump (const char* const* params, unsigned int num)
     }
 
     if(!strcmp(params[0],params[1])) {
-        std::cout << "assimp cmpdump: same file, same content." << std::endl;
+        std::cout << "assimp cmpdump: same file_manager, same content." << std::endl;
         return AssimpCmdError::Success;
     }
 

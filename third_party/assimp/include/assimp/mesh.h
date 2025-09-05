@@ -686,7 +686,7 @@ struct aiMesh {
      * @c fpclassify instead.
      * @note Normal vectors computed by Assimp are always unit-length.
      * However, this needn't apply for normals that have been taken
-     * directly from the model file.
+     * directly from the model file_manager.
      */
     C_STRUCT aiVector3D *mNormals;
 

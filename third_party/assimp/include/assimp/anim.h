@@ -430,7 +430,7 @@ struct aiAnimation {
     /** Duration of the animation in ticks.  */
     double mDuration;
 
-    /** Ticks per second. 0 if not specified in the imported file */
+    /** Ticks per second. 0 if not specified in the imported file_manager */
     double mTicksPerSecond;
 
     /** The number of bone animation channels. Each channel affects

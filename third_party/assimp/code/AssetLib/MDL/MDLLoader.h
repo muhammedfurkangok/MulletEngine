@@ -58,7 +58,7 @@ namespace Assimp {
 using namespace MDL;
 
 // --------------------------------------------------------------------------------------
-// Include file/line information in debug builds
+// Include file_manager/line information in debug builds
 #ifdef ASSIMP_BUILD_DEBUG
 #   define VALIDATE_FILE_SIZE(msg) SizeCheck(msg,__FILE__,__LINE__)
 #else
@@ -87,7 +87,7 @@ public:
     ~MDLImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
     * See BaseImporter::CanRead() for details.  */
     bool CanRead( const std::string& pFile, IOSystem* pIOHandler,
         bool checkSig) const override;
@@ -107,34 +107,34 @@ protected:
     const aiImporterDesc* GetInfo () const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile( const std::string& pFile, aiScene* pScene,
         IOSystem* pIOHandler) override;
 
     // -------------------------------------------------------------------
-    /** Import a quake 1 MDL file (IDPO)
+    /** Import a quake 1 MDL file_manager (IDPO)
     */
     void InternReadFile_Quake1( );
 
     // -------------------------------------------------------------------
-    /** Import a GameStudio A4/A5 file (MDL 3,4,5)
+    /** Import a GameStudio A4/A5 file_manager (MDL 3,4,5)
     */
     void InternReadFile_3DGS_MDL345( );
 
     // -------------------------------------------------------------------
-    /** Import a GameStudio A7 file (MDL 7)
+    /** Import a GameStudio A7 file_manager (MDL 7)
     */
     void InternReadFile_3DGS_MDL7( );
 
     // -------------------------------------------------------------------
-    /** Import a Half-Life 1 MDL file
+    /** Import a Half-Life 1 MDL file_manager
     */
     void InternReadFile_HL1(const std::string& pFile, const uint32_t iMagicWord);
 
     // -------------------------------------------------------------------
-    /** Import a CS:S/HL2 MDL file (not fully implemented)
+    /** Import a CS:S/HL2 MDL file_manager (not fully implemented)
     */
     AI_WONT_RETURN void InternReadFile_HL2( ) AI_WONT_RETURN_SUFFIX;
 
@@ -142,7 +142,7 @@ protected:
     /** Check whether a given position is inside the valid range
      *  Throw a DeadlyImportError if it is not
      * \param szPos Cursor position
-     * \param szFile Name of the source file from which the function was called
+     * \param szFile Name of the source file_manager from which the function was called
      * \param iLine Source code line from which the function was called
     */
     void SizeCheck(const void* szPos);
@@ -150,7 +150,7 @@ protected:
     bool IsPosValid(const void* szPos) const;
 
     // -------------------------------------------------------------------
-    /** Validate the header data structure of a game studio MDL7 file
+    /** Validate the header data structure of a game studio MDL7 file_manager
      * \param pcHeader Input header to be validated
      */
     void ValidateHeader_3DGS_MDL7(const MDL::Header_MDL7* pcHeader);
@@ -173,7 +173,7 @@ protected:
     void FreePalette(const unsigned char* pszColorMap);
 
     // -------------------------------------------------------------------
-    /** Load a palletized texture from the file and convert it to 32bpp
+    /** Load a palletized texture from the file_manager and convert it to 32bpp
     */
     void CreateTextureARGB8_3DGS_MDL3(const unsigned char* szData);
 
@@ -199,7 +199,7 @@ protected:
 
     // -------------------------------------------------------------------
     /** Checks whether a texture can be replaced with a single color
-     * This is useful for all file formats before MDL7 (all those
+     * This is useful for all file_manager formats before MDL7 (all those
      * that are not containing material colors separate from textures).
      * MED seems to write dummy 8x8 monochrome images instead.
      * \param pcTexture Input texture
@@ -215,7 +215,7 @@ protected:
     void CalculateUVCoordinates_MDL5();
 
     // -------------------------------------------------------------------
-    /** Read an UV coordinate from the file. If the file format is not
+    /** Read an UV coordinate from the file_manager. If the file_manager format is not
      * MDL5, the function calculates relative texture coordinates
      * \param vOut Receives the output UV coord
      * \param pcSrc UV coordinate buffer
@@ -234,7 +234,7 @@ protected:
     void SetupMaterialProperties_3DGS_MDL5_Quake1( );
 
     // -------------------------------------------------------------------
-    /** Parse a skin lump in a MDL7/HMP7 file with all of its features
+    /** Parse a skin lump in a MDL7/HMP7 file_manager with all of its features
      *  variant 1: Current cursor position is the beginning of the skin header
      * \param szCurrent Current data pointer
      * \param szCurrentOut Output data pointer
@@ -246,7 +246,7 @@ protected:
         std::vector<aiMaterial*>& pcMats);
 
     // -------------------------------------------------------------------
-    /** Parse a skin lump in a MDL7/HMP7 file with all of its features
+    /** Parse a skin lump in a MDL7/HMP7 file_manager with all of its features
      *  variant 2: Current cursor position is the beginning of the skin data
      * \param szCurrent Current data pointer
      * \param szCurrentOut Output data pointer
@@ -264,7 +264,7 @@ protected:
         unsigned int iHeight);
 
     // -------------------------------------------------------------------
-    /** Skip a skin lump in a MDL7/HMP7 file
+    /** Skip a skin lump in a MDL7/HMP7 file_manager
      * \param szCurrent Current data pointer
      * \param szCurrentOut Output data pointer. Points to the byte just
      * behind the last byte of the skin.
@@ -315,7 +315,7 @@ protected:
         MDL::IntBone_MDL7** apcBonesOut);
 
     // -------------------------------------------------------------------
-    /** Load the bone list of a MDL7 file
+    /** Load the bone list of a MDL7 file_manager
      * \return If the bones could be loaded successfully, a valid
      *   array containing pointers to a temporary bone
      *   representation. nullptr if the bones could not be loaded.
@@ -323,7 +323,7 @@ protected:
     MDL::IntBone_MDL7** LoadBones_3DGS_MDL7();
 
     // -------------------------------------------------------------------
-    /** Load bone transformation keyframes from a file chunk
+    /** Load bone transformation keyframes from a file_manager chunk
      * \param groupInfo -> doc of data structure
      * \param frame -> doc of data structure
      * \param shared -> doc of data structure
@@ -356,7 +356,7 @@ protected:
 
     // -------------------------------------------------------------------
     /** Handles materials that are just referencing another material
-     * There is no test file for this feature, but Conitec's doc
+     * There is no test file_manager for this feature, but Conitec's doc
      * say it is used.
      */
     void HandleMaterialReferences_3DGS_MDL7();
@@ -424,7 +424,7 @@ protected:
     /** Configuration option: palette to be used to decode palletized images*/
     std::string configPalette;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     unsigned char* mBuffer;
 
     /** For GameStudio MDL files: The number in the magic word, either 3,4 or 5
@@ -437,7 +437,7 @@ protected:
     /** Output scene to be filled */
     aiScene* pScene;
 
-    /** Size of the input file in bytes */
+    /** Size of the input file_manager in bytes */
     unsigned int iFileSize;
 
     /* Configuration for HL1 MDL */

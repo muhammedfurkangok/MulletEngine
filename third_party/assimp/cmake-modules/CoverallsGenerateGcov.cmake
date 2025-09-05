@@ -156,7 +156,7 @@ endif()
 #
 #    /path/to/project/root/build/#path#to#project#root#subdir#the_file.c.gcov
 #
-# to the original source file path the .gcov is for:
+# to the original source file_manager path the .gcov is for:
 #
 #   /path/to/project/root/subdir/the_file.c
 #
@@ -189,7 +189,7 @@ foreach(GCDA ${GCDA_FILES})
 
 	#
 	# The -p below refers to "Preserve path components",
-	# This means that the generated gcov filename of a source file will
+	# This means that the generated gcov filename of a source file_manager will
 	# keep the original files entire filepath, but / is replaced with #.
 	# Example:
 	#
@@ -199,7 +199,7 @@ foreach(GCDA ${GCDA_FILES})
 	# Lines executed:68.34% of 199
 	# /path/to/project/root/subdir/the_file.c:creating '#path#to#project#root#subdir#the_file.c.gcov'
 	#
-	# If -p is not specified then the file is named only "the_file.c.gcov"
+	# If -p is not specified then the file_manager is named only "the_file.c.gcov"
 	#
 	execute_process(
 		COMMAND ${GCOV_EXECUTABLE} -p -o ${GCDA_DIR} ${GCDA}
@@ -254,7 +254,7 @@ foreach (GCOV_FILE ${ALL_GCOV_FILES})
 	file(RELATIVE_PATH GCOV_SRC_REL_PATH "${PROJECT_ROOT}" "${GCOV_SRC_PATH}")
 
 	# Is this in the list of source files?
-	# TODO: We want to match against relative path filenames from the source file root...
+	# TODO: We want to match against relative path filenames from the source file_manager root...
 	list(FIND COVERAGE_SRCS ${GCOV_SRC_PATH} WAS_FOUND)
 
 	if (NOT WAS_FOUND EQUAL -1)
@@ -309,8 +309,8 @@ foreach (GCOV_FILE ${GCOV_FILES})
 	file(MD5 "${GCOV_SRC_PATH}" GCOV_CONTENTS_MD5)
 	message("MD5: ${GCOV_SRC_PATH} = ${GCOV_CONTENTS_MD5}")
 
-	# Loads the gcov file as a list of lines.
-	# (We first open the file and replace all occurrences of [] with _
+	# Loads the gcov file_manager as a list of lines.
+	# (We first open the file_manager and replace all occurrences of [] with _
 	#  because CMake will fail to parse a line containing unmatched brackets...
 	#  also the \ to escaped \n in macros screws up things.)
 	# https://public.kitware.com/Bug/view.php?id=15369
@@ -319,7 +319,7 @@ foreach (GCOV_FILE ${GCOV_FILES})
 	string(REPLACE "]" "_" GCOV_CONTENTS "${GCOV_CONTENTS}")
 	string(REPLACE "\\" "_" GCOV_CONTENTS "${GCOV_CONTENTS}")
 
-	# Remove file contents to avoid encoding issues (cmake 2.8 has no ENCODING option)
+	# Remove file_manager contents to avoid encoding issues (cmake 2.8 has no ENCODING option)
 	string(REGEX REPLACE "([^:]*):([^:]*):([^\n]*)\n" "\\1:\\2: \n" GCOV_CONTENTS "${GCOV_CONTENTS}")
 	file(WRITE ${GCOV_FILE}_tmp "${GCOV_CONTENTS}")
 
@@ -327,7 +327,7 @@ foreach (GCOV_FILE ${GCOV_FILES})
 	list(LENGTH GCOV_LINES LINE_COUNT)
 
 	# Instead of trying to parse the source from the
-	# gcov file, simply read the file contents from the source file.
+	# gcov file_manager, simply read the file_manager contents from the source file_manager.
 	# (Parsing it from the gcov is hard because C-code uses ; in many places
 	#  which also happens to be the same as the CMake list delimiter).
 	file(READ ${GCOV_SRC_PATH} GCOV_FILE_SOURCE)
@@ -425,7 +425,7 @@ foreach (GCOV_FILE ${GCOV_FILES})
 	# Append the trailing ] to complete the JSON array.
 	set(GCOV_FILE_COVERAGE "${GCOV_FILE_COVERAGE}]")
 
-	# Generate the final JSON for this file.
+	# Generate the final JSON for this file_manager.
 	message("Generate JSON for file: ${GCOV_SRC_REL_PATH}...")
 	string(CONFIGURE ${SRC_FILE_TEMPLATE} FILE_JSON)
 
@@ -441,7 +441,7 @@ foreach(NOT_COVERED_SRC ${COVERAGE_SRCS_REMAINING})
 	file(MD5 "${GCOV_SRC_PATH}" GCOV_CONTENTS_MD5)
 	file(RELATIVE_PATH GCOV_SRC_REL_PATH "${PROJECT_ROOT}" "${GCOV_SRC_PATH}")
 
-	# Loads the source file as a list of lines.
+	# Loads the source file_manager as a list of lines.
 	file(STRINGS ${NOT_COVERED_SRC} SRC_LINES)
 
 	set(GCOV_FILE_COVERAGE "[")
@@ -461,7 +461,7 @@ foreach(NOT_COVERED_SRC ${COVERAGE_SRCS_REMAINING})
 	string(REGEX REPLACE ",[ ]*$" "" GCOV_FILE_COVERAGE ${GCOV_FILE_COVERAGE})
 	set(GCOV_FILE_COVERAGE "${GCOV_FILE_COVERAGE}]")
 
-	# Generate the final JSON for this file.
+	# Generate the final JSON for this file_manager.
 	message("Generate JSON for non-gcov file: ${NOT_COVERED_SRC}...")
 	string(CONFIGURE ${SRC_FILE_TEMPLATE} FILE_JSON)
 	set(JSON_GCOV_FILES "${JSON_GCOV_FILES}${FILE_JSON}, ")

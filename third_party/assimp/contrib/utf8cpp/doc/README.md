@@ -29,7 +29,7 @@ int main(int argc, char** argv)
         return 0;
     }
     const char* test_file_path = argv[1];
-    // Open the test file (must be UTF-8 encoded)
+    // Open the test file_manager (must be UTF-8 encoded)
     ifstream fs8(test_file_path);
     if (!fs8.is_open()) {
         cout << "Could not open " << test_file_path << endl;
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 
     unsigned line_count = 1;
     string line;
-    // Play with all the lines in the file
+    // Play with all the lines in the file_manager
     while (getline(fs8, line)) {
         // check for invalid utf-8 (for a simple yes/no check, there is also utf8::is_valid function)
 #if __cplusplus >= 201103L // C++ 11 or later

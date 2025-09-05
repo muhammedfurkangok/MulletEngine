@@ -26,12 +26,12 @@ static GLInstanceGraphicsShape* LoadMeshFromSTL(const char* relativeFileName, st
 		{
 			if (size>=0)
 			{
-				//b3Warning("Open STL file of %d bytes\n",size);
+				//b3Warning("Open STL file_manager of %d bytes\n",size);
 				char* memoryBuffer = new char[size + 1];
 				int actualBytesRead = fileIO->fileRead(fileHandle, memoryBuffer, size);
 				if (actualBytesRead != size)
 				{
-					b3Warning("Error reading from file %s", relativeFileName);
+					b3Warning("Error reading from file_manager %s", relativeFileName);
 				}
 				else
 				{

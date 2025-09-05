@@ -1329,7 +1329,7 @@ int CDisplay::HandleTreeViewPopup2(WPARAM wParam,LPARAM /*lParam*/)
         }
         else
         {
-            // need to remove the file name
+            // need to remove the file_manager name
             char* sz = strrchr(szFileName,'\\');
             if (!sz)
                 sz = strrchr(szFileName,'/');
@@ -1348,7 +1348,7 @@ int CDisplay::HandleTreeViewPopup2(WPARAM wParam,LPARAM /*lParam*/)
         };
         if(GetOpenFileName(&sFilename1) == 0) return 0;
 
-        // Now store the file in the registry
+        // Now store the file_manager in the registry
         RegSetValueExA(g_hRegistry,"ReplaceTextureSrc",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
         this->ReplaceCurrentTexture(szFileName);
         }
@@ -1364,7 +1364,7 @@ int CDisplay::HandleTreeViewPopup2(WPARAM wParam,LPARAM /*lParam*/)
         }
         else
         {
-            // need to remove the file name
+            // need to remove the file_manager name
             char* sz = strrchr(szFileName,'\\');
             if (!sz)
                 sz = strrchr(szFileName,'/');
@@ -1376,16 +1376,16 @@ int CDisplay::HandleTreeViewPopup2(WPARAM wParam,LPARAM /*lParam*/)
             g_hDlg,GetModuleHandle(nullptr),
             "Textures\0*.png;*.dds;*.bmp;*.tif;*.pfm;*.jpg;*.jpeg;*.hdr\0*.*\0", nullptr, 0, 1,
             szFileName, MAX_PATH, nullptr, 0, nullptr,
-            "Export texture to file",
+            "Export texture to file_manager",
             OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_NOCHANGEDIR,
             0, 1, ".png", 0, nullptr, nullptr
         };
         if(GetSaveFileName(&sFilename1) == 0) return 0;
 
-        // Now store the file in the registry
+        // Now store the file_manager in the registry
         RegSetValueExA(g_hRegistry,"TextureExportDest",0,REG_SZ,(const BYTE*)szFileName,MAX_PATH);
 
-        // determine the file format ...
+        // determine the file_manager format ...
         D3DXIMAGE_FILEFORMAT eFormat = D3DXIFF_PNG;
         const char* sz = strrchr(szFileName,'.');
         if (sz)

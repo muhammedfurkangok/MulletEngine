@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -56,7 +56,7 @@ bool SequentialNormalAttributeDecoder::DecodeIntegerValues(
 bool SequentialNormalAttributeDecoder::DecodeDataNeededByPortableTransform(
     const std::vector<PointIndex> &point_ids, DecoderBuffer *in_buffer) {
   if (decoder()->bitstream_version() >= DRACO_BITSTREAM_VERSION(2, 0)) {
-    // For newer file version, decode attribute transform data here.
+    // For newer file_manager version, decode attribute transform data here.
     if (!octahedral_transform_.DecodeParameters(*GetPortableAttribute(),
                                                 in_buffer)) {
       return false;

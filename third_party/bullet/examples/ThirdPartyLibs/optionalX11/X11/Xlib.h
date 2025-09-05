@@ -25,7 +25,7 @@ in this Software without prior written authorization from The Open Group.
 */
 
 /*
- *	Xlib.h - Header definition and support file for the C subroutine
+ *	Xlib.h - Header definition and support file_manager for the C subroutine
  *	interface library (Xlib) to the X Window System Protocol (V11).
  *	Structures and symbols starting with "_" are private to the library.
  */
@@ -166,7 +166,7 @@ typedef struct _XExtData
 } XExtData;
 
 /*
- * This file contains structures used by the extension mechanism.
+ * This file_manager contains structures used by the extension mechanism.
  */
 typedef struct
 {                     /* public to extension, cannot be changed */

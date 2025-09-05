@@ -79,7 +79,7 @@
   } while (0)
 
 #define UNX_IFDIR 0040000  /* Unix directory */
-#define UNX_IFREG 0100000  /* Unix regular file */
+#define UNX_IFREG 0100000  /* Unix regular file_manager */
 #define UNX_IFSOCK 0140000 /* Unix socket (BSD, not SysV or Amiga) */
 #define UNX_IFLNK 0120000  /* Unix symbolic link (not SysV, Amiga) */
 #define UNX_IFBLK 0060000  /* Unix block special       (not Amiga) */
@@ -138,10 +138,10 @@ static const char *const zip_errlist[33] = {
     "cannot write entry header\0",
     "cannot create entry header\0",
     "cannot write to central dir\0",
-    "cannot open file\0",
+    "cannot open file_manager\0",
     "invalid entry type\0",
     "extracting data using no memory allocation\0",
-    "file not found\0",
+    "file_manager not found\0",
     "no permission\0",
     "out of memory\0",
     "invalid zip archive name\0",
@@ -345,7 +345,7 @@ static int zip_archive_extract(mz_zip_archive *zip_archive, const char *dir,
   if (filename_size > MZ_ZIP_MAX_ARCHIVE_FILENAME_SIZE - dirlen) {
     filename_size = MZ_ZIP_MAX_ARCHIVE_FILENAME_SIZE - dirlen;
   }
-  // Get and print information about each file in the archive.
+  // Get and print information about each file_manager in the archive.
   n = mz_zip_reader_get_num_files(zip_archive);
   for (i = 0; i < n; ++i) {
     if (!mz_zip_reader_file_stat(zip_archive, i, &info)) {
@@ -356,7 +356,7 @@ static int zip_archive_extract(mz_zip_archive *zip_archive, const char *dir,
 
     if (!zip_name_normalize(info.m_filename, info.m_filename,
                             strlen(info.m_filename))) {
-      // Cannot normalize file name;
+      // Cannot normalize file_manager name;
       err = ZIP_EINVENTNAME;
       goto out;
     }
@@ -377,7 +377,7 @@ static int zip_archive_extract(mz_zip_archive *zip_archive, const char *dir,
           19)) // if zip is produced on Unix or macOS (3 and 19 from
                // section 4.4.2.2 of zip standard)
         && info.m_external_attr &
-               (0x20 << 24)) { // and has sym link attribute (0x80 is file, 0x40
+               (0x20 << 24)) { // and has sym link attribute (0x80 is file_manager, 0x40
                                // is directory)
 #if defined(_WIN32) || defined(__WIN32__) || defined(_MSC_VER) ||              \
     defined(__MINGW32__)
@@ -398,7 +398,7 @@ static int zip_archive_extract(mz_zip_archive *zip_archive, const char *dir,
     } else {
       if (!mz_zip_reader_is_file_a_directory(zip_archive, i)) {
         if (!mz_zip_reader_extract_to_file(zip_archive, i, path, 0)) {
-          // Cannot extract zip archive to file
+          // Cannot extract zip archive to file_manager
           err = ZIP_ENOFILE;
           goto out;
         }
@@ -937,7 +937,7 @@ struct zip_t *zip_openwitherror(const char *zipname, int level, char mode,
     if (!mz_zip_reader_init_file_v2(
             &(zip->archive), zipname,
             zip->level | MZ_ZIP_FLAG_DO_NOT_SORT_CENTRAL_DIRECTORY, 0, 0)) {
-      // An archive file does not exist or cannot initialize
+      // An archive file_manager does not exist or cannot initialize
       // zip_archive reader
       *errnum = ZIP_ERINIT;
       goto cleanup;
@@ -949,7 +949,7 @@ struct zip_t *zip_openwitherror(const char *zipname, int level, char mode,
     if (!mz_zip_reader_init_file_v2_rpb(
             &(zip->archive), zipname,
             zip->level | MZ_ZIP_FLAG_DO_NOT_SORT_CENTRAL_DIRECTORY, 0, 0)) {
-      // An archive file does not exist or cannot initialize
+      // An archive file_manager does not exist or cannot initialize
       // zip_archive reader
       *errnum = ZIP_ERINIT;
       goto cleanup;
@@ -1037,13 +1037,13 @@ static int _zip_entry_open(struct zip_t *zip, const char *entryname,
   /*
     .ZIP File Format Specification Version: 6.3.3
 
-    4.4.17.1 The name of the file, with optional relative path.
+    4.4.17.1 The name of the file_manager, with optional relative path.
     The path stored MUST not contain a drive or
     device letter, or a leading slash.  All slashes
     MUST be forward slashes '/' as opposed to
     backwards slashes '\' for compatibility with Amiga
-    and UNIX file systems etc.  If input came from standard
-    input, there is no file name field.
+    and UNIX file_manager systems etc.  If input came from standard
+    input, there is no file_manager name field.
   */
   if (zip->entry.name) {
     CLEANUP(zip->entry.name);
@@ -1101,7 +1101,7 @@ static int _zip_entry_open(struct zip_t *zip, const char *entryname,
 
   // UNIX or APPLE
 #if MZ_PLATFORM == 3 || MZ_PLATFORM == 19
-  // regular file with rw-r--r-- permissions
+  // regular file_manager with rw-r--r-- permissions
   zip->entry.external_attr = (mz_uint32)(0100644) << 16;
 #else
   zip->entry.external_attr = 0;
@@ -1135,7 +1135,7 @@ static int _zip_entry_open(struct zip_t *zip, const char *entryname,
 #endif
 
   // ZIP64 header with NULL sizes (sizes will be in the data descriptor, just
-  // after file data)
+  // after file_manager data)
   extra_size = mz_zip_writer_create_zip64_extra_data(
       extra_data, NULL, NULL,
       (local_dir_header_ofs >= MZ_UINT32_MAX) ? &local_dir_header_ofs : NULL);
@@ -1254,13 +1254,13 @@ int zip_entry_openbyindex(struct zip_t *zip, size_t index) {
   /*
     .ZIP File Format Specification Version: 6.3.3
 
-    4.4.17.1 The name of the file, with optional relative path.
+    4.4.17.1 The name of the file_manager, with optional relative path.
     The path stored MUST not contain a drive or
     device letter, or a leading slash.  All slashes
     MUST be forward slashes '/' as opposed to
     backwards slashes '\' for compatibility with Amiga
-    and UNIX file systems etc.  If input came from standard
-    input, there is no file name field.
+    and UNIX file_manager systems etc.  If input came from standard
+    input, there is no file_manager name field.
   */
   if (zip->entry.name) {
     CLEANUP(zip->entry.name);
@@ -1923,7 +1923,7 @@ int zip_create(const char *zipname, const char *filenames[], size_t len) {
     if (!mz_zip_writer_add_file(&zip_archive, zip_basename(name), name, "", 0,
                                 ZIP_DEFAULT_COMPRESSION_LEVEL,
                                 ext_attributes)) {
-      // Cannot add file to zip_archive
+      // Cannot add file_manager to zip_archive
       err = ZIP_ENOFILE;
       break;
     }

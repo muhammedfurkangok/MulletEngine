@@ -103,13 +103,13 @@ void ExportSceneCollada(const char *pFile, IOSystem *pIOSystem, const aiScene *p
     ColladaExporter iDoTheExportThing(pScene, pIOSystem, path, file);
 
     if (iDoTheExportThing.mOutput.fail()) {
-        throw DeadlyExportError("output data creation failed. Most likely the file became too large: " + std::string(pFile));
+        throw DeadlyExportError("output data creation failed. Most likely the file_manager became too large: " + std::string(pFile));
     }
 
     // we're still here - export successfully completed. Write result to the given IOSYstem
     std::unique_ptr<IOStream> outfile(pIOSystem->Open(pFile, "wt"));
     if (outfile == nullptr) {
-        throw DeadlyExportError("could not open output .dae file: " + std::string(pFile));
+        throw DeadlyExportError("could not open output .dae file_manager: " + std::string(pFile));
     }
 
     // XXX maybe use a small wrapper around IOStream that behaves like std::stringstream in order to avoid the extra copy.
@@ -177,7 +177,7 @@ ColladaExporter::ColladaExporter(const aiScene *pScene, IOSystem *pIOSystem, con
     mOutput.imbue(std::locale("C"));
     mOutput.precision(ASSIMP_AI_REAL_TEXT_PRECISION);
 
-    // start writing the file
+    // start writing the file_manager
     WriteFile();
 }
 
@@ -378,7 +378,7 @@ void ColladaExporter::WriteTextures() {
 
         std::unique_ptr<IOStream> outfile(mIOSystem->Open(mPath + mIOSystem->getOsSeparator() + name, "wb"));
         if (outfile == nullptr) {
-            throw DeadlyExportError("could not open output texture file: " + mPath + name);
+            throw DeadlyExportError("could not open output texture file_manager: " + mPath + name);
         }
 
         if (texture->mHeight == 0) {
@@ -651,7 +651,7 @@ void ColladaExporter::WriteImageEntry(const Surface &pSurface, const std::string
     PushTag();
     mOutput << startstr << "<init_from>";
 
-    // URL encode image file name first, then XML encode on top
+    // URL encode image file_manager name first, then XML encode on top
     std::stringstream imageUrlEncoded;
     for (std::string::const_iterator it = pSurface.texture.begin(); it != pSurface.texture.end(); ++it) {
         if (isalnum_C((unsigned char)*it) || *it == ':' || *it == '_' || *it == '-' || *it == '.' || *it == '/' || *it == '\\')

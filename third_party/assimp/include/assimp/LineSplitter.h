@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** @file  LineSplitter.h
  *  @brief LineSplitter, a helper class to iterate through all lines
- *    of a file easily. Works with StreamReader.
+ *    of a file_manager easily. Works with StreamReader.
  */
 #pragma once
 #ifndef INCLUDED_LINE_SPLITTER_H
@@ -167,7 +167,7 @@ AI_FORCE_INLINE LineSplitter& LineSplitter::operator++() {
     }
 
     if (!*this) {
-        throw std::logic_error("End of file, no more lines to be retrieved.");
+        throw std::logic_error("End of file_manager, no more lines to be retrieved.");
     }
 
     char s;

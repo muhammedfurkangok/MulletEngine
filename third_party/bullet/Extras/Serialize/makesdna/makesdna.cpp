@@ -23,7 +23,7 @@
  * The Original Code is Copyright (C) 2001-2002 by NaN Holding BV.
  * All rights reserved.
  *
- * The Original Code is: all of this file.
+ * The Original Code is: all of this file_manager.
  *
  * Contributor(s): none yet.
  *
@@ -34,10 +34,10 @@
  * Originally by Ton, some mods by Frank, and some cleaning and
  * extension by Nzc.
  *
- * Makesdna creates a .c file with a long string of numbers that
- * encode the Blender file format. It is fast, because it is basically
+ * Makesdna creates a .c file_manager with a long string of numbers that
+ * encode the Blender file_manager format. It is fast, because it is basically
  * a binary dump. There are some details to mind when reconstructing
- * the file (endianness and byte-alignment).
+ * the file_manager (endianness and byte-alignment).
  *
  * This little program scans all structs that need to be serialized,
  * and determined the names and types of all members. It calculates
@@ -162,7 +162,7 @@ typedef intptr_t btintptr_t;
 char *includefiles[] = {
 
 	// if you add files here, please add them at the end
-	// of makesdna.c (this file) as well
+	// of makesdna.c (this file_manager) as well
 	"../makesdna/DNA_rigidbody.h",
 	"../../../src/LinearMath/btVector3.h",
 	"../../../src/LinearMath/btQuaternion.h",
@@ -260,7 +260,7 @@ short *add_struct(int namecode);
 int preprocess_include(char *maindata, int len);
 
 /**
- * Scan this file for serializable types.
+ * Scan this file_manager for serializable types.
  */
 int convert_include(char *filename);
 
@@ -275,7 +275,7 @@ int arraysize(char *astr, int len);
 static int calculate_structlens(int);
 
 /**
- * Construct the DNA.c file
+ * Construct the DNA.c file_manager
  */
 void dna_write(FILE *file, void *pntr, int size);
 
@@ -636,7 +636,7 @@ int skipStruct(const char *structType)
 
 int convert_include(char *filename)
 {
-	/* read include file, skip structs with a '#' before it.
+	/* read include file_manager, skip structs with a '#' before it.
 	   store all data in temporal arrays.
 	*/
 	int filelen, count, overslaan, slen, type, name, strct;
@@ -646,7 +646,7 @@ int convert_include(char *filename)
 	md = maindata = (char *)read_file_data(filename, &filelen);
 	if (filelen == -1)
 	{
-		printf("Can't read file %s\n", filename);
+		printf("Can't read file_manager %s\n", filename);
 		return 1;
 	}
 
@@ -1066,11 +1066,11 @@ int make_structDNA(char *baseDirectory, FILE *file)
 	add_type("double", 8);       /* 8 */
 	add_type("void", 0);         /* 9 */
 
-	// the defines above shouldn't be output in the padding file...
+	// the defines above shouldn't be output in the padding file_manager...
 	firststruct = nr_types;
 
 	/* add all include files defined in the global array                     */
-	/* Since the internal file+path name buffer has limited length, I do a   */
+	/* Since the internal file_manager+path name buffer has limited length, I do a   */
 	/* little test first...                                                  */
 	/* Mind the breaking condition here!                                     */
 	if (debugSDNA) printf("\tStart of header scan:\n");
@@ -1126,9 +1126,9 @@ int make_structDNA(char *baseDirectory, FILE *file)
 		}
 	}
 
-	/* file writing */
+	/* file_manager writing */
 
-	if (debugSDNA > -1) printf("Writing file ... ");
+	if (debugSDNA > -1) printf("Writing file_manager ... ");
 
 	if (nr_names == 0 || nr_structs == 0)
 		;
@@ -1240,7 +1240,7 @@ int make_structDNA(char *baseDirectory, FILE *file)
 static void make_bad_file(char *file)
 {
 	FILE *fp = fopen(file, "w");
-	fprintf(fp, "ERROR! Cannot make correct DNA.c file, STUPID!\n");
+	fprintf(fp, "ERROR! Cannot make correct DNA.c file_manager, STUPID!\n");
 	fclose(fp);
 }
 
@@ -1299,7 +1299,7 @@ int main(int argc, char **argv)
 		file = fopen(argv[1], "w");
 		if (!file)
 		{
-			printf("Unable to open file: %s\n", argv[1]);
+			printf("Unable to open file_manager: %s\n", argv[1]);
 			return_status = 1;
 		}
 		else

@@ -1,7 +1,7 @@
 // Copyright 2022 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,7 @@ StatusOr<std::unique_ptr<Mesh>> StlDecoder::DecodeFromFile(
     const std::string &file_name) {
   std::vector<char> data;
   if (!ReadFileToBuffer(file_name, &data)) {
-    return Status(Status::IO_ERROR, "Unable to read input file.");
+    return Status(Status::IO_ERROR, "Unable to read input file_manager.");
   }
   DecoderBuffer buffer;
   buffer.Init(data.data(), data.size());

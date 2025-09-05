@@ -135,7 +135,7 @@ D3MFOpcPackage::D3MFOpcPackage(IOSystem *pIOHandler, const std::string &rFile) :
         mZipArchive() {
     mZipArchive = new ZipArchiveIOSystem(pIOHandler, rFile);
     if (!mZipArchive->isOpen()) {
-        throw DeadlyImportError("Failed to open file ", rFile, ".");
+        throw DeadlyImportError("Failed to open file_manager ", rFile, ".");
     }
 
     std::vector<std::string> fileList;
@@ -169,16 +169,16 @@ D3MFOpcPackage::D3MFOpcPackage(IOSystem *pIOHandler, const std::string &rFile) :
             mRootStream = mZipArchive->Open(rootFile.c_str());
             ai_assert(mRootStream != nullptr);
             if (nullptr == mRootStream) {
-                throw DeadlyImportError("Cannot open root-file in archive : " + rootFile);
+                throw DeadlyImportError("Cannot open root-file_manager in archive : " + rootFile);
             }
         } else if (file == D3MF::XmlTag::CONTENT_TYPES_ARCHIVE) {
-            ASSIMP_LOG_WARN("Ignored file of unsupported type CONTENT_TYPES_ARCHIVES", file);
+            ASSIMP_LOG_WARN("Ignored file_manager of unsupported type CONTENT_TYPES_ARCHIVES", file);
         } else if (IsEmbeddedTexture(file)) {
             IOStream *fileStream = mZipArchive->Open(file.c_str());
             LoadEmbeddedTextures(fileStream, file);
             mZipArchive->Close(fileStream);
         } else {
-            ASSIMP_LOG_WARN("Ignored file of unknown type: ", file);
+            ASSIMP_LOG_WARN("Ignored file_manager of unknown type: ", file);
         }
     }
 }

@@ -13,7 +13,7 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-///This file was written by Erwin Coumans
+///This file_manager was written by Erwin Coumans
 
 #include "btMultiBodyPoint2Point.h"
 #include "btMultiBodyLinkCollider.h"

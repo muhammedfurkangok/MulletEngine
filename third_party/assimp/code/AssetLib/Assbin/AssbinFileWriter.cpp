@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ----------------------------------------------------------------------
 */
 /** @file  AssbinFileWriter.cpp
- *  @brief Implementation of Assbin file writer.
+ *  @brief Implementation of Assbin file_manager writer.
  */
 
 #include "AssbinFileWriter.h"
@@ -231,7 +231,7 @@ inline size_t WriteArray(IOStream *stream, const T *in, unsigned int size) {
 
 // ----------------------------------------------------------------------------------
 /** @class  AssbinChunkWriter
- *  @brief  Chunk writer mechanism for the .assbin file structure
+ *  @brief  Chunk writer mechanism for the .assbin file_manager structure
  *
  *  This is a standard in-memory IOStream (most of the code is based on BlobIOStream),
  *  the difference being that this takes another IOStream as a "container" in the
@@ -319,9 +319,9 @@ public:
 
 // ----------------------------------------------------------------------------------
 /** @class  AssbinFileWriter
- *  @brief  Assbin file writer class
+ *  @brief  Assbin file_manager writer class
  *
- *  This class writes an .assbin file, and is responsible for the file layout.
+ *  This class writes an .assbin file_manager, and is responsible for the file_manager layout.
  */
 class AssbinFileWriter {
 private:
@@ -509,7 +509,7 @@ protected:
 
         // write faces. There are no floating-point calculations involved
         // in these, so we can write a simple hash over the face data
-        // to the dump file. We generate a single 32 Bit hash for 512 faces
+        // to the dump file_manager. We generate a single 32 Bit hash for 512 faces
         // using Assimp's standard hashing function.
         if (shortened) {
             unsigned int processed = 0;
@@ -735,7 +735,7 @@ public:
     void WriteBinaryDump(const char *pFile, const char *cmd, IOSystem *pIOSystem, const aiScene *pScene) {
         IOStream *out = pIOSystem->Open(pFile, "wb");
         if (!out)
-            throw std::runtime_error("Unable to open output file " + std::string(pFile) + '\n');
+            throw std::runtime_error("Unable to open output file_manager " + std::string(pFile) + '\n');
 
         auto CloseIOStream = [&]() {
             if (out) {

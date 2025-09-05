@@ -117,11 +117,11 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool IFCImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     // note: this is the common identification for STEP-encoded files, so
     // it is only unambiguous as long as we don't support any further
-    // file formats with STEP as their encoding.
+    // file_manager formats with STEP as their encoding.
     static const char *tokens[] = { "ISO-10303-21" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
 }
@@ -143,19 +143,19 @@ void IFCImporter::SetupProperties(const Importer *pImp) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void IFCImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::shared_ptr<IOStream> stream(pIOHandler->Open(pFile));
     if (!stream) {
-        ThrowException("Could not open file for reading");
+        ThrowException("Could not open file_manager for reading");
     }
 
-    // if this is a ifczip file, decompress its contents first
+    // if this is a ifczip file_manager, decompress its contents first
     if (GetExtension(pFile) == "ifczip") {
 #ifndef ASSIMP_BUILD_NO_COMPRESSED_IFC
         unzFile zip = unzOpen(pFile.c_str());
         if (zip == nullptr) {
-            ThrowException("Could not open ifczip file for reading, unzip failed");
+            ThrowException("Could not open ifczip file_manager for reading, unzip failed");
         }
 
         // chop 'zip' postfix
@@ -169,10 +169,10 @@ void IFCImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             fileName = fileName.substr(s + 1);
         }
 
-        // search file (same name as the IFCZIP except for the file extension) and place file pointer there
+        // search file_manager (same name as the IFCZIP except for the file_manager extension) and place file_manager pointer there
         if (UNZ_OK == unzGoToFirstFile(zip)) {
             do {
-                // get file size, etc.
+                // get file_manager size, etc.
                 unz_file_info fileInfo;
                 char filename[256];
                 unzGetCurrentFileInfo(zip, &fileInfo, filename, sizeof(filename), nullptr, 0, nullptr, 0);
@@ -180,7 +180,7 @@ void IFCImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
                     continue;
                 }
                 uint8_t *buff = new uint8_t[fileInfo.uncompressed_size];
-                LogInfo("Decompressing IFCZIP file");
+                LogInfo("Decompressing IFCZIP file_manager");
                 unzOpenCurrentFile(zip);
                 size_t total = 0;
                 int read = 0;
@@ -197,23 +197,23 @@ void IFCImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
                 size_t filesize = fileInfo.uncompressed_size;
                 if (total == 0 || size_t(total) != filesize) {
                     delete[] buff;
-                    ThrowException("Failed to decompress IFC ZIP file");
+                    ThrowException("Failed to decompress IFC ZIP file_manager");
                 }
                 unzCloseCurrentFile(zip);
                 stream = std::make_shared<MemoryIOStream>(buff, fileInfo.uncompressed_size, true);
                 if (unzGoToNextFile(zip) == UNZ_END_OF_LIST_OF_FILE) {
-                    ThrowException("Found no IFC file member in IFCZIP file (1)");
+                    ThrowException("Found no IFC file_manager member in IFCZIP file_manager (1)");
                 }
                 break;
 
             } while (true);
         } else {
-            ThrowException("Found no IFC file member in IFCZIP file (2)");
+            ThrowException("Found no IFC file_manager member in IFCZIP file_manager (2)");
         }
 
         unzClose(zip);
 #else
-        ThrowException("Could not open ifczip file for reading, assimp was built without ifczip support");
+        ThrowException("Could not open ifczip file_manager for reading, assimp was built without ifczip support");
 #endif
     }
 
@@ -221,7 +221,7 @@ void IFCImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     const STEP::HeaderInfo &head = static_cast<const STEP::DB &>(*db).GetHeader();
 
     if (!head.fileSchema.size() || head.fileSchema.substr(0, 4) != "IFC2") {
-        ThrowException("Unrecognized file schema: " + head.fileSchema);
+        ThrowException("Unrecognized file_manager schema: " + head.fileSchema);
     }
 
     if (!DefaultLogger::isNullLogger()) {
@@ -825,8 +825,8 @@ aiNode *ProcessSpatialStructure(aiNode *parent, const Schema_2x3::IfcProduct &el
 void ProcessSpatialStructures(ConversionData &conv) {
     // XXX add support for multiple sites (i.e. IfcSpatialStructureElements with composition == COMPLEX)
 
-    // process all products in the file. it is reasonable to assume that a
-    // file that is relevant for us contains at least a site or a building.
+    // process all products in the file_manager. it is reasonable to assume that a
+    // file_manager that is relevant for us contains at least a site or a building.
     const STEP::DB::ObjectMapByType &map = conv.db.GetObjectsByType();
 
     ai_assert(map.find("ifcsite") != map.end());

@@ -112,7 +112,7 @@ std::string EmbedTexturesProcess::tryToFindValidPath(const std::string &imagePat
         return testPath;
     }
 
-    // In unix systems, '\' is a valid file name character, but some files may use \ as a directory separator.
+    // In unix systems, '\' is a valid file_manager name character, but some files may use \ as a directory separator.
     // Try replacing '\' by '/'.
     if (mIOHandler->getOsSeparator() != '\\' && imagePath.find('\\') != std::string::npos) {
         ASSIMP_LOG_WARN("EmbedTexturesProcess: Cannot find image '", imagePath, "' in root folder. Will try replacing directory separators.");

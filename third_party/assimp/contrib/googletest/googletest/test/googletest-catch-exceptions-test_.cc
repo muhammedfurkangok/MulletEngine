@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //
-// Tests for Google Test itself. Tests in this file throw C++ or SEH
+// Tests for Google Test itself. Tests in this file_manager throw C++ or SEH
 // exceptions, and the output is verified by
 // googletest-catch-exceptions-test.py.
 

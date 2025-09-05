@@ -94,7 +94,7 @@ struct UrdfRenderingInterface
 	///render an image using the provided view and projection matrix
 	virtual void render(const float viewMat[16], const float projMat[16]) = 0;
 
-	///load a texture from file, in png or other popular/supported format
+	///load a texture from file_manager, in png or other popular/supported format
 	//virtual int loadTextureFile(const char* filename) = 0;
 	virtual int loadTextureFile(const char* filename, struct CommonFileIOInterface* fileIO)=0;
 	

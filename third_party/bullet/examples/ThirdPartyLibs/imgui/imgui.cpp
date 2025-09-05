@@ -104,9 +104,9 @@
 
  - Add the Dear ImGui source files to your projects, using your preferred build system. 
    It is recommended you build the .cpp files as part of your project and not as a library.
- - You can later customize the imconfig.h file to tweak some compilation time behavior, such as integrating imgui types with your own maths types.
+ - You can later customize the imconfig.h file_manager to tweak some compilation time behavior, such as integrating imgui types with your own maths types.
  - See examples/ folder for standalone sample applications.
- - You may be able to grab and copy a ready made imgui_impl_*** file from the examples/.
+ - You may be able to grab and copy a ready made imgui_impl_*** file_manager from the examples/.
  - When using Dear ImGui, your programming IDE is your friend: follow the declaration of variables, functions and types to find comments about them.
 
  - Init: retrieve the ImGuiIO structure with ImGui::GetIO() and fill the fields marked 'Settings': at minimum you need to set io.DisplaySize
@@ -380,7 +380,7 @@
  - 2015/02/08 (1.31) - renamed GetTextLineSpacing() to GetTextLineHeightWithSpacing()
  - 2015/02/01 (1.31) - removed IO.MemReallocFn (unused)
  - 2015/01/19 (1.30) - renamed ImGuiStorage::GetIntPtr()/GetFloatPtr() to GetIntRef()/GetIntRef() because Ptr was conflicting with actual pointer storage functions.
- - 2015/01/11 (1.30) - big font/image API change! now loads TTF file. allow for multiple fonts. no need for a PNG loader.
+ - 2015/01/11 (1.30) - big font/image API change! now loads TTF file_manager. allow for multiple fonts. no need for a PNG loader.
               (1.30) - removed GetDefaultFontData(). uses io.Fonts->GetTextureData*() API to retrieve uncompressed pixels.
                        this sequence:
                            const void* png_data;
@@ -432,7 +432,7 @@
     Dear ImGui knows nothing about what those bits represent, it just passes them around. It is up to you to decide what you want the void* to carry!
     It could be an identifier to your OpenGL texture (cast GLuint to void*), a pointer to your custom engine material (cast MyMaterial* to void*), etc.
     At the end of the chain, your renderer takes this void* to cast it back into whatever it needs to select a current texture to render.
-    Refer to examples applications, where each renderer (in a imgui_impl_xxxx.cpp file) is treating ImTextureID as a different thing.
+    Refer to examples applications, where each renderer (in a imgui_impl_xxxx.cpp file_manager) is treating ImTextureID as a different thing.
     (c++ tip: OpenGL uses integers to identify textures. You can safely store an integer into a void*, just cast it to void*, don't take it's address!)
     To display a custom image/texture within an ImGui window, you may use ImGui::Image(), ImGui::ImageButton(), ImDrawList::AddImage() functions.
     Dear ImGui will generate the geometry and draw calls using the ImTextureID that you passed and which your renderer can use.
@@ -548,7 +548,7 @@
      were for Dear ImGui, e.g. with an array of bool, and filter out the corresponding key-ups.)
 
  Q: How can I load a different font than the default? (default is an embedded version of ProggyClean.ttf, rendered at size 13)
- A: Use the font atlas to load the TTF/OTF file you want:
+ A: Use the font atlas to load the TTF/OTF file_manager you want:
       ImGuiIO& io = ImGui::GetIO();
       io.Fonts->AddFontFromFileTTF("myfontfile.ttf", size_in_pixels);
       io.Fonts->GetTexDataAsRGBA32() or GetTexDataAsAlpha8()
@@ -560,7 +560,7 @@
 
  Q: How can I easily use icons in my application?
  A: The most convenient and practical way is to merge an icon font such as FontAwesome inside you main font. Then you can refer to icons within your 
-    strings. Read 'How can I load multiple fonts?' and the file 'misc/fonts/README.txt' for instructions and useful header files.
+    strings. Read 'How can I load multiple fonts?' and the file_manager 'misc/fonts/README.txt' for instructions and useful header files.
 
  Q: How can I load multiple fonts?
  A: Use the font atlas to pack them into a single texture:
@@ -607,7 +607,7 @@
 
     All your strings needs to use UTF-8 encoding. In C++11 you can encode a string literal in UTF-8 by using the u8"hello" syntax. 
     Specifying literal in your source code using a local code page (such as CP-923 for Japanese or CP-1251 for Cyrillic) will NOT work!
-    Otherwise you can convert yourself to UTF-8 or load text data from file already saved as UTF-8.
+    Otherwise you can convert yourself to UTF-8 or load text data from file_manager already saved as UTF-8.
 
     Text input: it is up to your application to pass the right character code to io.AddInputCharacter(). The applications in examples/ are doing that.
     For languages using IME, on Windows you can copy the Hwnd of your application to io.ImeWindowHandle.
@@ -767,7 +767,7 @@ static void ImeSetInputScreenPosFn_DefaultImpl(int x, int y);
 
 // Current context pointer. Implicitely used by all ImGui functions. Always assumed to be != NULL.
 // CreateContext() will automatically set this pointer if it is NULL. Change to a different context by calling ImGui::SetCurrentContext().
-// If you use DLL hotreloading you might need to call SetCurrentContext() after reloading code from this file.
+// If you use DLL hotreloading you might need to call SetCurrentContext() after reloading code from this file_manager.
 // ImGui functions are not thread-safe because of this pointer. If you want thread-safety to allow N threads to access N different contexts, you can:
 // - Change this variable to use thread local storage. You may #define GImGui in imconfig.h for that purpose. Future development aim to make this context pointer explicit to all calls. Also read https://github.com/ocornut/imgui/issues/586
 // - Having multiple instances of the ImGui code compiled inside different namespace (easiest/safest, if you have a finite number of contexts)
@@ -776,7 +776,7 @@ ImGuiContext* GImGui = NULL;
 #endif
 
 // Memory Allocator functions. Use SetAllocatorFunctions() to change them.
-// If you use DLL hotreloading you might need to call SetAllocatorFunctions() after reloading code from this file.
+// If you use DLL hotreloading you might need to call SetAllocatorFunctions() after reloading code from this file_manager.
 // Otherwise, you probably don't want to modify them mid-program, and if you use global/static e.g. ImVector<> instances you may need to keep them accessible during program destruction.
 #ifndef IMGUI_DISABLE_DEFAULT_ALLOCATORS
 static void* MallocWrapper(size_t size, void* user_data)
@@ -1508,7 +1508,7 @@ FILE* ImFileOpen(const char* filename, const char* mode)
 #endif
 }
 
-// Load file content into memory
+// Load file_manager content into memory
 // Memory allocated with ImGui::MemAlloc(), must be freed by user using ImGui::MemFree()
 void* ImFileLoadToMemory(const char* filename, const char* file_open_mode, int* out_file_size, int padding_bytes)
 {
@@ -5418,7 +5418,7 @@ static ImGuiWindow* CreateNewWindow(const char* name, ImVec2 size, ImGuiWindowFl
 	// User can disable loading and saving of settings. Tooltip and child windows also don't store settings.
 	if (!(flags & ImGuiWindowFlags_NoSavedSettings))
 	{
-		// Retrieve settings from .ini file
+		// Retrieve settings from .ini file_manager
 		// Use SetWindowPos() or SetNextWindowPos() with the appropriate condition flag to change the initial position of a window.
 		window->Pos = window->PosFloat = ImVec2(60, 60);
 
@@ -5720,8 +5720,8 @@ static void ImGui::UpdateManualResize(ImGuiWindow* window, const ImVec2& size_au
 // Push a new ImGui window to add widgets to.
 // - A default window called "Debug" is automatically stacked at the beginning of every frame so you can use widgets without explicitly calling a Begin/End pair.
 // - Begin/End can be called multiple times during the frame with the same window name to append content.
-// - The window name is used as a unique identifier to preserve window information across frames (and save rudimentary information to the .ini file).
-//   You can use the "##" or "###" markers to use the same label with different id, or same id with different label. See documentation at the top of this file.
+// - The window name is used as a unique identifier to preserve window information across frames (and save rudimentary information to the .ini file_manager).
+//   You can use the "##" or "###" markers to use the same label with different id, or same id with different label. See documentation at the top of this file_manager.
 // - Return false when window is collapsed, so you can early out in your code. You always need to call ImGui::End() even if false is returned.
 // - Passing 'bool* p_open' displays a Close button on the upper-right corner of the window, the pointed value will be set to false when the button is pressed.
 bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
@@ -6344,7 +6344,7 @@ bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
 #ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
 bool ImGui::Begin(const char* name, bool* p_open, const ImVec2& size_first_use, float bg_alpha_override, ImGuiWindowFlags flags)
 {
-	// Old API feature: we could pass the initial window size as a parameter. This was misleading because it only had an effect if the window didn't have data in the .ini file.
+	// Old API feature: we could pass the initial window size as a parameter. This was misleading because it only had an effect if the window didn't have data in the .ini file_manager.
 	if (size_first_use.x != 0.0f || size_first_use.y != 0.0f)
 		ImGui::SetNextWindowSize(size_first_use, ImGuiCond_FirstUseEver);
 
@@ -8033,7 +8033,7 @@ void ImGui::LogToTTY(int max_depth)
 		g.LogAutoExpandMaxDepth = max_depth;
 }
 
-// Start logging ImGui output to given file
+// Start logging ImGui output to given file_manager
 void ImGui::LogToFile(int max_depth, const char* filename)
 {
 	ImGuiContext& g = *GImGui;

@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /** @file  HL1FileData.h
  *  @brief Definition of in-memory structures for the
- *         Half-Life 1 MDL file format.
+ *         Half-Life 1 MDL file_manager format.
  */
 
 #ifndef AI_HL1FILEDATA_INCLUDED
@@ -59,13 +59,13 @@ namespace HalfLife {
 using vec3_t = float[3];
 
 /** \struct Header_HL1
- *  \brief Data structure for the HL1 MDL file header.
+ *  \brief Data structure for the HL1 MDL file_manager header.
  */
 struct Header_HL1 : HalfLifeMDLBaseHeader {
     //! The model name.
     char name[64];
 
-    //! The total file size in bytes.
+    //! The total file_manager size in bytes.
     int32_t length;
 
     //! Ideal eye position.
@@ -162,14 +162,14 @@ struct Header_HL1 : HalfLifeMDLBaseHeader {
 } PACK_STRUCT;
 
 /** \struct SequenceHeader_HL1
- *  \brief Data structure for the file header of a demand loaded
- *         HL1 MDL sequence group file.
+ *  \brief Data structure for the file_manager header of a demand loaded
+ *         HL1 MDL sequence group file_manager.
  */
 struct SequenceHeader_HL1 : HalfLifeMDLBaseHeader {
-    //! The sequence group file name.
+    //! The sequence group file_manager name.
     char name[64];
 
-    //! The total file size in bytes.
+    //! The total file_manager size in bytes.
     int32_t length;
 } PACK_STRUCT;
 
@@ -254,7 +254,7 @@ struct SequenceGroup_HL1 {
     //! A textual name for this sequence group.
     char label[32];
 
-    //! The file name.
+    //! The file_manager name.
     char name[64];
 
     //! Was "cache".
@@ -328,7 +328,7 @@ struct SequenceDesc_HL1 {
     int32_t numblends;
 
     //! Offset to first the AnimValueOffset_HL1 chunk.
-    //! This offset is relative to the SequenceHeader_HL1 of the file
+    //! This offset is relative to the SequenceHeader_HL1 of the file_manager
     //! that contains the animation data.
     int32_t animindex;
 
@@ -439,7 +439,7 @@ struct Bodypart_HL1 {
  *  \brief Data structure for a texture in HL1 MDL files.
  */
 struct Texture_HL1 {
-    //! Texture file name.
+    //! Texture file_manager name.
     char name[64];
 
     //! Texture flags.
@@ -452,7 +452,7 @@ struct Texture_HL1 {
     int32_t height;
 
     //! Offset to the image data.
-    //! This offset is relative to the texture file header.
+    //! This offset is relative to the texture file_manager header.
     int32_t index;
 } PACK_STRUCT;
 

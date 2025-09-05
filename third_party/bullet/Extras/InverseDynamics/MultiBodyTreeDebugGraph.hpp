@@ -6,10 +6,10 @@
 
 namespace btInverseDynamics
 {
-/// generate a dot-file of the multibody tree for generating a graph using graphviz' dot tool
+/// generate a dot-file_manager of the multibody tree for generating a graph using graphviz' dot tool
 /// @param tree the multibody tree
 /// @param map to add names of links (if 0x0, no names will be added)
-/// @param filename name for the output file
+/// @param filename name for the output file_manager
 /// @return 0 on success, -1 on error
 int writeGraphvizDotFile(const MultiBodyTree* tree, const MultiBodyNameMap* map,
 						 const char* filename);

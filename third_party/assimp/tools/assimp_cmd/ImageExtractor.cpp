@@ -52,7 +52,7 @@ static const char *AICMD_MSG_DUMP_HELP_E =
         "assimp extract <model> [<out>] [-t<n>] [-f<fmt>] [-ba] [-s] [common parameters]\n"
         "\t -ba   Writes BMP's with alpha channel\n"
         "\t -t<n> Zero-based index of the texture to be extracted \n"
-        "\t -f<f> Specify the file format if <out> is omitted  \n"
+        "\t -f<f> Specify the file_manager format if <out> is omitted  \n"
         "\t[See the assimp_cmd docs for a full list of all common parameters]  \n"
         "\t -cfast    Fast post processing preset, runs just a few important steps \n"
         "\t -cdefault Default post processing: runs all recommended steps\n"
@@ -270,7 +270,7 @@ int Assimp_Extract(const char *const *params, unsigned int num) {
     std::transform(extension.begin(), extension.end(), extension.begin(), ai_tolower<char>);
 
     if (out[0] == '-') {
-        // take file name from input file
+        // take file_manager name from input file_manager
         std::string::size_type s = in.find_last_of('.');
         if (s == std::string::npos)
             s = in.length();
@@ -278,7 +278,7 @@ int Assimp_Extract(const char *const *params, unsigned int num) {
         out = in.substr(0, s);
     }
 
-    // take file extension from file name, if given
+    // take file_manager extension from file_manager name, if given
     std::string::size_type s = out.find_last_of('.');
     if (s != std::string::npos) {
         extension = out.substr(s + 1, in.length() - (s + 1));
@@ -288,7 +288,7 @@ int Assimp_Extract(const char *const *params, unsigned int num) {
     // import the main model
     const aiScene *scene = ImportModel(import, in);
     if (!scene) {
-        printf("assimp extract: Unable to load input file %s\n", in.c_str());
+        printf("assimp extract: Unable to load input file_manager %s\n", in.c_str());
         return AssimpCmdError::FailedToLoadInputFile;
     }
 
@@ -324,20 +324,20 @@ int Assimp_Extract(const char *const *params, unsigned int num) {
         }
 
         // if the texture is a compressed one, we'll export
-        // it to its native file format
+        // it to its native file_manager format
         if (!tex->mHeight) {
-            printf("assimp extract: Texture %u is compressed (%s). Writing native file format.\n",
+            printf("assimp extract: Texture %u is compressed (%s). Writing native file_manager format.\n",
                     i, tex->achFormatHint);
 
-            // modify file extension
+            // modify file_manager extension
             out_ext = std::string(tex->achFormatHint);
         }
         out_cpy.append("." + out_ext);
 
-        // open output file
+        // open output file_manager
         FILE *p = ::fopen(out_cpy.c_str(), "wb");
         if (!p) {
-            printf("assimp extract: Unable to open output file %s\n", out_cpy.c_str());
+            printf("assimp extract: Unable to open output file_manager %s\n", out_cpy.c_str());
             return AssimpCmdError::FailedToOpenOutputFile;
         }
         int m;

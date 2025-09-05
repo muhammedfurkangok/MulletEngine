@@ -125,7 +125,7 @@ TEST_F(utPLYImportExport, importBinaryPLY) {
     EXPECT_EQ(12u, scene->mMeshes[0]->mNumFaces);
 }
 
-// Tests of a PLY file gets read with \r\n as newlines instead of just \n (i.e. solidwork exported ply files)
+// Tests of a PLY file_manager gets read with \r\n as newlines instead of just \n (i.e. solidwork exported ply files)
 TEST_F(utPLYImportExport, importBinaryPLYWithRNNewline) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/PLY/cube_binary_header_with_RN_newline.ply", aiProcess_ValidateDataStructure);
@@ -141,7 +141,7 @@ TEST_F(utPLYImportExport, importBinaryPLYWithRNNewline) {
     EXPECT_EQ(2u, scene->mMeshes[0]->mFaces[0].mIndices[2]);
 }
 
-// Tests of a PLY file gets read with \n as the fist character in the BINARY part
+// Tests of a PLY file_manager gets read with \n as the fist character in the BINARY part
 TEST_F(utPLYImportExport, importBinaryPLYWithNewlineInBinary) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/PLY/cube_binary_starts_with_nl.ply", aiProcess_ValidateDataStructure);
@@ -218,7 +218,7 @@ TEST_F(utPLYImportExport, parseErrorTest) {
     EXPECT_NE(nullptr, scene);
 }
 
-// This file is invalid, we just want to ensure that the importer is not crashing
+// This file_manager is invalid, we just want to ensure that the importer is not crashing
 TEST_F(utPLYImportExport, parseInvalid) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/invalid/crash-30d6d0f7c529b3b66b4131700b7a4580cd7082df.ply", 0);

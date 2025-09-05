@@ -24,7 +24,7 @@
 #ifndef _XLIBCONF_H_
 #define _XLIBCONF_H_
 /*
- * This header file exports defines necessary to correctly
+ * This header file_manager exports defines necessary to correctly
  * use Xlibint.h both inside Xlib and by external third_party
  * such as extensions.
  */

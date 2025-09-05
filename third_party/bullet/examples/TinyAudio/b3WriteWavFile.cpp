@@ -201,7 +201,7 @@ void b3WriteWavFile::closeWavFile()
 #ifndef __LITTLE_ENDIAN__
 	b3Swap32((unsigned char *)&bytes);
 #endif
-	fseek(m_data->m_file, 4, SEEK_SET);  // jump to file size
+	fseek(m_data->m_file, 4, SEEK_SET);  // jump to file_manager size
 	fwrite(&bytes, 4, 1, m_data->m_file);
 
 	if (useExtensible)

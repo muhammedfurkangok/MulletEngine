@@ -55,7 +55,7 @@ struct aiNode;
 namespace Assimp {
 
 // --------------------------------------------------------------------------------
-/** Loader class to read Motion Capturing data from a .bvh file.
+/** Loader class to read Motion Capturing data from a .bvh file_manager.
  *
  * This format only contains a hierarchy of joints and a series of keyframes for
  * the hierarchy. It contains no actual mesh data, but we generate a dummy mesh
@@ -87,7 +87,7 @@ public:
     BVHLoader();
     ~BVHLoader() override = default;
 
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details. */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler, bool cs) const override;
 
@@ -95,12 +95,12 @@ public:
     const aiImporterDesc *GetInfo() const override;
 
 protected:
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
      * See BaseImporter::InternReadFile() for details
      */
     void InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) override;
 
-    /** Reads the file */
+    /** Reads the file_manager */
     void ReadStructure(aiScene *pScene);
 
     /** Reads the hierarchy */
@@ -127,7 +127,7 @@ protected:
     /** Reads the next token as a float */
     float GetNextTokenAsFloat();
 
-    /** Aborts the file reading with an exception */
+    /** Aborts the file_manager reading with an exception */
     template<typename... T>
     AI_WONT_RETURN void ThrowException(T&&... args) AI_WONT_RETURN_SUFFIX;
 
@@ -138,7 +138,7 @@ protected:
     /** Filename, for a verbose error message */
     std::string mFileName;
 
-    /** Buffer to hold the loaded file */
+    /** Buffer to hold the loaded file_manager */
     std::vector<char> mBuffer;
 
     /** Next char to read from the buffer */

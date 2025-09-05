@@ -69,7 +69,7 @@ aiProcess_RemoveComponent = 0x10
 ## <hr>Generates normals for all faces of all meshes. 
 #
 # This is ignored if normals are already there at the time this flag 
-# is evaluated. Model importers try to load them from the source file, so
+# is evaluated. Model importers try to load them from the source file_manager, so
 # they're usually already there. Face normals are shared between all points
 # of a single face, so a single point can have multiple normals, which
 # forces the library to duplicate vertices in some cases.
@@ -82,7 +82,7 @@ aiProcess_GenNormals = 0x20
 ## <hr>Generates smooth normals for all vertices in the mesh.
 #
 # This is ignored if normals are already there at the time this flag 
-# is evaluated. Model importers try to load them from the source file, so
+# is evaluated. Model importers try to load them from the source file_manager, so
 # they're usually already there. 
 #
 # This flag may not be specified together with 
@@ -153,7 +153,7 @@ aiProcess_LimitBoneWeights = 0x200
 # bones are linked correctly, all material references are correct .. etc.
 #
 # It is recommended that you capture Assimp's log output if you use this flag,
-# so you can easily find out what's wrong if a file fails the
+# so you can easily find out what's wrong if a file_manager fails the
 # validation. The validator is quite strict and will find #all#
 # inconsistencies in the data structure... It is recommended that plugin 
 # developers use it to debug their loaders. There are two types of
@@ -166,7 +166,7 @@ aiProcess_LimitBoneWeights = 0x200
 # <li>Warning: There are some minor issues (e.g. 1000000 animation 
 #   keyframes with the same time), but further postprocessing and use
 #   of the data structure is still safe. Warning details are written
-#   to the log file, <tt>#AI_SCENE_FLAGS_VALIDATION_WARNING<tt> is set
+#   to the log file_manager, <tt>#AI_SCENE_FLAGS_VALIDATION_WARNING<tt> is set
 #   in #aiScene::mFlags<li>
 # <ul>
 #
@@ -275,7 +275,7 @@ aiProcess_SortByPType = 0x8000
 #   <li>
 # <ul>
 # @note Degenerate polygons are not necessarily evil and that's why
-# they're not removed by default. There are several file formats which 
+# they're not removed by default. There are several file_manager formats which
 # don't support lines or points, and some exporters bypass the
 # format specification and write them as degenerate triangles instead.
 #
@@ -332,7 +332,7 @@ aiProcess_TransformUVCoords = 0x80000
 #
 #  This step takes a while, so don't use it if speed is a concern.
 #  Its main purpose is to workaround the fact that many export
-#  file formats don't support instanced meshes, so exporters need to
+#  file_manager formats don't support instanced meshes, so exporters need to
 #  duplicate meshes. This step removes the duplicates again. Please 
 #  note that Assimp does not currently support per-node material
 #  assignment to meshes, which means that identical meshes with
@@ -373,7 +373,7 @@ aiProcess_OptimizeMeshes  = 0x200000
 #  results.
 #
 #  @note 'Crappy' scenes with thousands of extremely small meshes packed
-#  in deeply nested nodes exist for almost all file formats.
+#  in deeply nested nodes exist for almost all file_manager formats.
 #  #aiProcess_OptimizeMeshes in combination with #aiProcess_OptimizeGraph 
 #  usually fixes them all and makes them renderable. 
 #
@@ -445,9 +445,9 @@ aiProcess_GlobalScale = 0x8000000
 ## <hr>A postprocessing step to embed of textures.
 #
 #  This will remove external data dependencies for textures.
-#  If a texture's file does not exist at the specified path
+#  If a texture's file_manager does not exist at the specified path
 #  (due, for instance, to an absolute path generated on another system),
-#  it will check if a file with the same name exists at the root folder
+#  it will check if a file_manager with the same name exists at the root folder
 #  of the imported model. And if so, it uses that.
 #
 aiProcess_EmbedTextures  = 0x10000000

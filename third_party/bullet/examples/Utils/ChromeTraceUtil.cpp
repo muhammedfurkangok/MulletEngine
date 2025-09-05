@@ -245,7 +245,7 @@ void b3ChromeUtilsStopTimingsAndWriteJsonFile(const char* fileNamePrefix)
 	if (gTimingFile)
 	{
 		fprintf(gTimingFile, "{\"traceEvents\":[\n");
-		//dump the content to file
+		//dump the content to file_manager
 		for (int i = 0; i < BT_QUICKPROF_MAX_THREAD_COUNT; i++)
 		{
 			if (gTimings[i].m_numTimings)
@@ -259,7 +259,7 @@ void b3ChromeUtilsStopTimingsAndWriteJsonFile(const char* fileNamePrefix)
 	}
 	else
 	{
-		b3Printf("Error opening file");
+		b3Printf("Error opening file_manager");
 		b3Printf(fileName);
 	}
 	gTimingFile = 0;

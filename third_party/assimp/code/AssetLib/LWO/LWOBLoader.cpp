@@ -42,7 +42,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file Implementation of the LWO importer class for the older LWOB
-    file formats, including materials */
+    file_manager formats, including materials */
 
 
 #ifndef ASSIMP_BUILD_NO_LWO_IMPORTER
@@ -131,12 +131,12 @@ void LWOImporter::CountVertsAndFacesLWOB(unsigned int& verts, unsigned int& face
         uint16_t numIndices;
         // must have 2 shorts left for numIndices and surface
         if (end - cursor < 2) {
-            throw DeadlyImportError("LWOB: Unexpected end of file");
+            throw DeadlyImportError("LWOB: Unexpected end of file_manager");
         }
         ::memcpy(&numIndices, cursor++, 2);
         // must have enough left for indices and surface
         if (end - cursor < (1 + numIndices)) {
-            throw DeadlyImportError("LWOB: Unexpected end of file");
+            throw DeadlyImportError("LWOB: Unexpected end of file_manager");
         }
         verts += numIndices;
         faces++;
@@ -240,7 +240,7 @@ void LWOImporter::LoadLWOBSurface(unsigned int size) {
 
         IFF::SubChunkHeader head = IFF::LoadSubChunk(mFileBuffer);
 
-        /*  A single test file (sonycam.lwo) seems to have invalid surface chunks.
+        /*  A single test file_manager (sonycam.lwo) seems to have invalid surface chunks.
          *  I'm assuming it's the fault of a single, unknown exporter so there are
          *  probably THOUSANDS of them. Here's a dirty workaround:
          *

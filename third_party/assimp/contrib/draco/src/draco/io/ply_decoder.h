@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,7 @@
 
 namespace draco {
 
-// Decodes a PLY file into draco::Mesh (or draco::PointCloud if the
+// Decodes a PLY file_manager into draco::Mesh (or draco::PointCloud if the
 // connectivity data is not needed).
 // TODO(b/34330853): The current implementation assumes that the input vertices
 // are defined with x, y, z properties. The decoder also reads uint8 red, green,
@@ -35,7 +35,7 @@ class PlyDecoder {
  public:
   PlyDecoder();
 
-  // Decodes an obj file stored in the input file.
+  // Decodes an obj file_manager stored in the input file_manager.
   Status DecodeFromFile(const std::string &file_name, Mesh *out_mesh);
   Status DecodeFromFile(const std::string &file_name,
                         PointCloud *out_point_cloud);

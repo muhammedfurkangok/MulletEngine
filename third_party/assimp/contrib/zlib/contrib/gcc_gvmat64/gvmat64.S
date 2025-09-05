@@ -6,7 +6,7 @@
 ; gvmat64.S -- Asm portion of the optimized longest_match for 32 bits x86_64
 ;  (AMD64 on Athlon 64, Opteron, Phenom
 ;     and Intel EM64T on Pentium 4 with EM64T, Pentium D, Core 2 Duo, Core I5/I7)
-; this file is translation from gvmat64.asm to GCC 4.x (for Linux, Mac XCode)
+; this file_manager is translation from gvmat64.asm to GCC 4.x (for Linux, Mac XCode)
 ; Copyright (C) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.
 ;
 ; File written by Gilles Vollant, by converting to assembly the longest_match
@@ -34,7 +34,7 @@
 ;         http://www.winimage.com/zLibDll
 ;         http://www.muppetlabs.com/~breadbox/software/assembly.html
 ;
-; to compile this file for zLib, I use option:
+; to compile this file_manager for zLib, I use option:
 ;   gcc -c -arch x86_64 gvmat64.S
 
 

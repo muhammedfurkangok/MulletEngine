@@ -6,19 +6,19 @@
 
        #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-   in the file that you want to have the implementation.
+   in the file_manager that you want to have the implementation.
 
    Will probably not work correctly with strict-aliasing optimizations.
 
 ABOUT:
 
-   This header file is a library for writing images to C stdio or a callback.
+   This header file_manager is a library for writing images to C stdio or a callback.
 
-   The PNG output is not optimal; it is 20-50% larger than the file
+   The PNG output is not optimal; it is 20-50% larger than the file_manager
    written by a decent optimizing implementation; though providing a custom
    zlib compress function (see STBIW_ZLIB_COMPRESS) can mitigate that.
    This library is designed for source code compactness and simplicity,
-   not optimal image file size or run-time performance.
+   not optimal image file_manager size or run-time performance.
 
 BUILDING:
 
@@ -42,7 +42,7 @@ UNICODE:
 
 USAGE:
 
-   There are five functions, one for each image file format:
+   There are five functions, one for each image file_manager format:
 
      int stbi_write_png(char const *filename, int w, int h, int comp, const void *data, int stride_in_bytes);
      int stbi_write_bmp(char const *filename, int w, int h, int comp, const void *data);
@@ -53,7 +53,7 @@ USAGE:
      void stbi_flip_vertically_on_write(int flag); // flag is non-zero to flip data vertically
 
    There are also five equivalent functions that use an arbitrary write function. You are
-   expected to open/close your file-equivalent before and after calling these:
+   expected to open/close your file_manager-equivalent before and after calling these:
 
      int stbi_write_png_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const void  *data, int stride_in_bytes);
      int stbi_write_bmp_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const void  *data);
@@ -70,13 +70,13 @@ USAGE:
       int stbi_write_force_png_filter;         // defaults to -1; set to 0..5 to force a filter mode
 
 
-   You can define STBI_WRITE_NO_STDIO to disable the file variant of these
+   You can define STBI_WRITE_NO_STDIO to disable the file_manager variant of these
    functions, so the library will not use stdio.h at all. However, this will
    also disable HDR writing, because it requires stdio for formatted output.
 
    Each function returns 0 on failure and non-0 on success.
 
-   The functions create an image file defined by the parameters. The image
+   The functions create an image file_manager defined by the parameters. The image
    is a rectangle of pixels stored from left-to-right, top-to-bottom.
    Each pixel contains 'comp' channels of data stored interleaved with 8-bits
    per channel, in the following order: 1=Y, 2=YA, 3=RGB, 4=RGBA. (Y is
@@ -86,7 +86,7 @@ USAGE:
    a row of pixels to the first byte of the next row of pixels.
 
    PNG creates output files with the same number of components as the input.
-   The BMP format expands Y to RGB in the file format and does not
+   The BMP format expands Y to RGB in the file_manager format and does not
    output alpha.
 
    PNG supports writing rectangles of data even when the bytes storing rows of
@@ -118,7 +118,7 @@ CREDITS:
    Jean-Sebastien Guay    -    TGA monochrome
    Tim Kelsey             -    misc enhancements
    Alan Hickman           -    TGA RLE
-   Emmanuel Julien        -    initial file IO callback implementation
+   Emmanuel Julien        -    initial file_manager IO callback implementation
    Jon Olick              -    original jo_jpeg.cpp code
    Daniel Gibson          -    integrate JPEG, allow external zlib
    Aarni Koskela          -    allow choosing PNG filter
@@ -144,7 +144,7 @@ CREDITS:
 
 LICENSE
 
-  See end of file for license information.
+  See end of file_manager for license information.
 
 */
 
@@ -496,7 +496,7 @@ static int stbi_write_bmp_core(stbi__write_context *s, int x, int y, int comp, c
       int pad = (-x*3) & 3;
       return stbiw__outfile(s,-1,-1,x,y,comp,1,(void *) data,0,pad,
               "11 4 22 4" "4 44 22 444444",
-              'B', 'M', 14+40+(x*3+pad)*y, 0,0, 14+40,  // file header
+              'B', 'M', 14+40+(x*3+pad)*y, 0,0, 14+40,  // file_manager header
                40, x,y, 1,24, 0,0,0,0,0,0);             // bitmap header
    } else {
       // RGBA bitmaps need a v4 header
@@ -504,7 +504,7 @@ static int stbi_write_bmp_core(stbi__write_context *s, int x, int y, int comp, c
       // (straight BI_RGB with alpha mask doesn't work in most readers)
       return stbiw__outfile(s,-1,-1,x,y,comp,1,(void *)data,1,0,
          "11 4 22 4" "4 44 22 444444 4444 4 444 444 444 444",
-         'B', 'M', 14+108+x*y*4, 0, 0, 14+108, // file header
+         'B', 'M', 14+108+x*y*4, 0, 0, 14+108, // file_manager header
          108, x,y, 1,32, 3,0,0,0,0,0, 0xff0000,0xff00,0xff,0xff000000u, 0, 0,0,0, 0,0,0, 0,0,0, 0,0,0); // bitmap V4 header
    }
 }
@@ -1658,7 +1658,7 @@ STBIWDEF int stbi_write_jpg(char const *filename, int x, int y, int comp, const 
              avoid race-condition in crc initialization
              minor compile issues
       1.00 (2015-09-14)
-             installable file IO function
+             installable file_manager IO function
       0.99 (2015-09-13)
              warning fixes; TGA rle support
       0.98 (2015-04-08)

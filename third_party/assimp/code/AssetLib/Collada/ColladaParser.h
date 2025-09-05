@@ -70,7 +70,7 @@ public:
     /// Map for generic metadata as aiString.
     using StringMetaData = std::map<std::string, aiString>;
 
-    /// Constructor from XML file.
+    /// Constructor from XML file_manager.
     ColladaParser(IOSystem *pIOHandler, const std::string &pFile);
 
     /// Destructor
@@ -79,10 +79,10 @@ public:
     /// Attempts to read the ZAE manifest and returns the DAE to open
     static std::string ReadZaeManifest(ZipArchiveIOSystem &zip_archive);
 
-    /// Reads the contents of the file
+    /// Reads the contents of the file_manager
     void ReadContents(XmlNode &node);
 
-    /// Reads the structure of the file
+    /// Reads the structure of the file_manager
     void ReadStructure(XmlNode &node);
 
     /// Reads asset information such as coordinate system information and legal blah
@@ -213,7 +213,7 @@ public:
     void ReadEmbeddedTextures(ZipArchiveIOSystem &zip_archive);
 
 protected:
-    /// Converts a path read from a collada file to the usual representation
+    /// Converts a path read from a collada file_manager to the usual representation
     static void UriDecodePath(aiString &ss);
 
     /// Calculates the resulting transformation from all the given transform steps
@@ -233,7 +233,7 @@ private:
     /// XML reader, member for everyday use
     XmlParser mXmlParser;
 
-    /// All data arrays found in the file by ID. Might be referred to by actually
+    /// All data arrays found in the file_manager by ID. Might be referred to by actually
     ///     everyone. Collada, you are a steaming pile of indirection.
     using DataLibrary = std::map<std::string, Collada::Data> ;
     DataLibrary mDataLibrary;
@@ -299,7 +299,7 @@ private:
     /// Asset metadata (global for scene)
     StringMetaData mAssetMetaData;
 
-    /// Collada file format version
+    /// Collada file_manager format version
     Collada::FormatVersion mFormat;
 };
 

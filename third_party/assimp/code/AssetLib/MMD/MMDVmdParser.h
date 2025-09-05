@@ -234,7 +234,7 @@ namespace vmd
 			stream->read((char*) buffer, 30);
 			if (strncmp(buffer, "Vocaloid Motion Data", 20))
 			{
-				std::cerr << "invalid vmd file." << std::endl;
+				std::cerr << "invalid vmd file_manager." << std::endl;
 				return nullptr;
 			}
 			result->version = std::atoi(buffer + 20);

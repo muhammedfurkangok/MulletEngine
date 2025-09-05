@@ -75,7 +75,7 @@ TEST(FileReaderFactoryTest, RegistrationFail) {
 }
 
 TEST(FileReaderFactoryTest, OpenReader) {
-  auto reader = FileReaderFactory::OpenReader("fake file");
+  auto reader = FileReaderFactory::OpenReader("fake file_manager");
   EXPECT_NE(reader, nullptr);
   std::vector<char> *buffer = nullptr;
   EXPECT_TRUE(reader->ReadFileToBuffer(buffer));

@@ -288,10 +288,10 @@ bool OpenGEXImporter::CanRead(const std::string &file, IOSystem *pIOHandler, boo
 
 //------------------------------------------------------------------------------------------------
 void OpenGEXImporter::InternReadFile(const std::string &filename, aiScene *pScene, IOSystem *pIOHandler) {
-    // open source file
+    // open source file_manager
     std::unique_ptr<IOStream> file(pIOHandler->Open(filename, "rb"));
     if (!file) {
-        throw DeadlyImportError("Failed to open file ", filename);
+        throw DeadlyImportError("Failed to open file_manager ", filename);
     }
 
     std::vector<char> buffer;

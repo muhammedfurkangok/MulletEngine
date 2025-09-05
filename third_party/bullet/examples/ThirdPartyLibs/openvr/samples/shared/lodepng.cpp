@@ -24,8 +24,8 @@ freely, subject to the following restrictions:
 */
 
 /*
-The manual and changelog are in the header file "lodepng.h"
-Rename this file to lodepng.cpp to use it for C++, or to lodepng.c to use it for C.
+The manual and changelog are in the header file_manager "lodepng.h"
+Rename this file_manager to lodepng.cpp to use it for C++, or to lodepng.c to use it for C.
 */
 
 #include "lodepng.h"
@@ -45,11 +45,11 @@ Rename this file to lodepng.cpp to use it for C++, or to lodepng.c to use it for
 #endif                                      /*_MSC_VER */
 
 /*
-This source file is built up in the following large parts. The code sections
+This source file_manager is built up in the following large parts. The code sections
 with the "LODEPNG_COMPILE_" #defines divide this up further in an intermixed way.
 -Tools for C and common code for PNG and Zlib
 -C Code for Zlib (huffman, deflate, ...)
--C Code for PNG (file format chunks, adam7, PNG filters, color conversions, ...)
+-C Code for PNG (file_manager format chunks, adam7, PNG filters, color conversions, ...)
 -The C++ wrapper around all of the above
 */
 
@@ -124,8 +124,8 @@ About uivector, ucvector and string:
 -All of them wrap dynamic arrays or text strings in a similar way.
 -LodePNG was originally written in C++. The vectors replace the std::vectors that were used in the C++ version.
 -The string tools are made to avoid problems with compilers that declare things like strncat as deprecated.
--They're not used in the interface, only internally in this file as static functions.
--As with many other structs in this file, the init and cleanup functions serve as ctor and dtor.
+-They're not used in the interface, only internally in this file_manager as static functions.
+-As with many other structs in this file_manager, the init and cleanup functions serve as ctor and dtor.
 */
 
 #ifdef LODEPNG_COMPILE_ZLIB
@@ -381,7 +381,7 @@ unsigned lodepng_load_file(unsigned char** out, size_t* outsize, const char* fil
 	size = ftell(file);
 	rewind(file);
 
-	/*read contents of the file into the vector*/
+	/*read contents of the file_manager into the vector*/
 	*outsize = 0;
 	*out = (unsigned char*)lodepng_malloc((size_t)size);
 	if (size && (*out)) (*outsize) = fread(*out, 1, (size_t)size, file);
@@ -391,7 +391,7 @@ unsigned lodepng_load_file(unsigned char** out, size_t* outsize, const char* fil
 	return 0;
 }
 
-/*write given buffer to the file, overwriting the file, it doesn't append to it.*/
+/*write given buffer to the file_manager, overwriting the file_manager, it doesn't append to it.*/
 unsigned lodepng_save_file(const unsigned char* buffer, size_t buffersize, const char* filename)
 {
 	FILE* file;
@@ -639,7 +639,7 @@ static unsigned HuffmanTree_makeFromLengths2(HuffmanTree* tree)
 }
 
 /*
-given the code lengths (as stored in the PNG file), generate the tree as defined
+given the code lengths (as stored in the PNG file_manager), generate the tree as defined
 by Deflate. maxbitlen is the maximum bits that a code in the tree can have.
 return value is error.
 */
@@ -1756,7 +1756,7 @@ static unsigned deflateDynamic(ucvector* out, size_t* bp, Hash* hash,
 	uivector bitlen_lld;     /*lit,len,dist code lenghts (int bits), literally (without repeat codes).*/
 	uivector bitlen_lld_e;   /*bitlen_lld encoded with repeat codes (this is a rudemtary run length compression)*/
 	/*bitlen_cl is the code length code lengths ("clcl"). The bit lengths of codes to represent tree_cl
-  (these are written as is in the file, it would be crazy to compress these using yet another huffman
+  (these are written as is in the file_manager, it would be crazy to compress these using yet another huffman
   tree that needs to be represented by yet another set of code lengths)*/
 	uivector bitlen_cl;
 	size_t datasize = dataend - datapos;
@@ -5927,14 +5927,14 @@ const char* lodepng_error_text(unsigned code)
 		case 26:
 			return "FDICT encountered in zlib header while it's not used for PNG";
 		case 27:
-			return "PNG file is smaller than a PNG header";
-		/*Checks the magic file header, the first 8 bytes of the PNG file*/
+			return "PNG file_manager is smaller than a PNG header";
+		/*Checks the magic file_manager header, the first 8 bytes of the PNG file_manager*/
 		case 28:
 			return "incorrect PNG signature, it's no PNG or corrupted";
 		case 29:
 			return "first chunk is not the header chunk";
 		case 30:
-			return "chunk length too large, chunk broken off at end of file";
+			return "chunk length too large, chunk broken off at end of file_manager";
 		case 31:
 			return "illegal PNG color type or bpp";
 		case 32:
@@ -5965,9 +5965,9 @@ const char* lodepng_error_text(unsigned code)
 			return "bKGD chunk has wrong size for greyscale image";
 		case 45:
 			return "bKGD chunk has wrong size for RGB image";
-		/*the input data is empty, maybe a PNG file doesn't exist or is in the wrong path*/
+		/*the input data is empty, maybe a PNG file_manager doesn't exist or is in the wrong path*/
 		case 48:
-			return "empty input or file doesn't exist";
+			return "empty input or file_manager doesn't exist";
 		case 49:
 			return "jumped past memory while generating dynamic huffman tree";
 		case 50:
@@ -6029,9 +6029,9 @@ const char* lodepng_error_text(unsigned code)
 		case 77:
 			return "integer overflow in buffer size";
 		case 78:
-			return "failed to open file for reading"; /*file doesn't exist or couldn't be opened for reading*/
+			return "failed to open file_manager for reading"; /*file_manager doesn't exist or couldn't be opened for reading*/
 		case 79:
-			return "failed to open file for writing";
+			return "failed to open file_manager for writing";
 		case 80:
 			return "tried creating a tree of 0 symbols";
 		case 81:
@@ -6077,12 +6077,12 @@ void load_file(std::vector<unsigned char>& buffer, const std::string& filename)
 	if (file.seekg(0, std::ios::end).good()) size = file.tellg();
 	if (file.seekg(0, std::ios::beg).good()) size -= file.tellg();
 
-	/*read contents of the file into the vector*/
+	/*read contents of the file_manager into the vector*/
 	buffer.resize(size_t(size));
 	if (size > 0) file.read((char*)(&buffer[0]), size);
 }
 
-/*write given buffer to the file, overwriting the file, it doesn't append to it.*/
+/*write given buffer to the file_manager, overwriting the file_manager, it doesn't append to it.*/
 void save_file(const std::vector<unsigned char>& buffer, const std::string& filename)
 {
 	std::ofstream file(filename.c_str(), std::ios::out | std::ios::binary);

@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -25,7 +25,7 @@
 // in this case we flap the triangles of the diamond outward. Afterwards we
 // shift the resulting square such that all values are positive.
 //
-// Important values in this file:
+// Important values in this file_manager:
 // * q: number of quantization bits
 // * max_quantized_value: the max value representable with q bits (odd)
 // * max_value: max value of the diamond = max_quantized_value - 1  (even)

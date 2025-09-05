@@ -70,7 +70,7 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool NDOImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler, bool /*checkSig*/) const
 {
     static const char* tokens[] = {"nendo"};
@@ -78,7 +78,7 @@ bool NDOImporter::CanRead( const std::string& pFile, IOSystem* pIOHandler, bool 
 }
 
 // ------------------------------------------------------------------------------------------------
-// Build a string of all file extensions supported
+// Build a string of all file_manager extensions supported
 const aiImporterDesc* NDOImporter::GetInfo () const
 {
     return &desc;
@@ -122,7 +122,7 @@ void ProcessFaceEdgesAndVertices(const NDOImporter::Object& obj,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void NDOImporter::InternReadFile( const std::string& pFile,
     aiScene* pScene, IOSystem* pIOHandler)
 {
@@ -134,32 +134,32 @@ void NDOImporter::InternReadFile( const std::string& pFile,
 
     StreamReaderBE reader(file);
 
-    // first 9 bytes are nendo file format ("nendo 1.n")
+    // first 9 bytes are nendo file_manager format ("nendo 1.n")
     const char* head = (const char*)reader.GetPtr();
     reader.IncPtr(9);
 
     if (strncmp("nendo ",head,6)) {
-        throw DeadlyImportError("Not a Nendo file; magic signature missing");
+        throw DeadlyImportError("Not a Nendo file_manager; magic signature missing");
     }
     // check if this is a supported version. if not, continue, too -- users,
     // please don't complain if it doesn't work then ...
     unsigned int file_format = 12;
     if (!strncmp("1.0",head+6,3)) {
         file_format = 10;
-        ASSIMP_LOG_INFO("NDO file format is 1.0");
+        ASSIMP_LOG_INFO("NDO file_manager format is 1.0");
     }
     else if (!strncmp("1.1",head+6,3)) {
         file_format = 11;
-        ASSIMP_LOG_INFO("NDO file format is 1.1");
+        ASSIMP_LOG_INFO("NDO file_manager format is 1.1");
     }
     else if (!strncmp("1.2",head+6,3)) {
         file_format = 12;
-        ASSIMP_LOG_INFO("NDO file format is 1.2");
+        ASSIMP_LOG_INFO("NDO file_manager format is 1.2");
     }
     else {
         char buff[4] = {0};
         memcpy(buff, head+6, 3);
-        ASSIMP_LOG_WARN( "Unrecognized nendo file format version, continuing happily ... :", buff);
+        ASSIMP_LOG_WARN( "Unrecognized nendo file_manager format version, continuing happily ... :", buff);
     }
 
     reader.IncPtr(2); /* skip flags */

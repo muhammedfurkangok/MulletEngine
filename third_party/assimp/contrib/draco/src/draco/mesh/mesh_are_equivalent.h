@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -18,7 +18,7 @@
 #include "draco/core/vector_d.h"
 #include "draco/mesh/mesh.h"
 
-// This file defines a functor to compare two meshes for equivalency up
+// This file_manager defines a functor to compare two meshes for equivalency up
 // to permutation of the vertices.
 namespace draco {
 

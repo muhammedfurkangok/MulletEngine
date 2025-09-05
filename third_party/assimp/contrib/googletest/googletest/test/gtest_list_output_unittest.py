@@ -33,7 +33,7 @@
 A user can ask Google Test to list all tests by specifying the
 --gtest_list_tests flag. If output is requested, via --gtest_output=xml
 or --gtest_output=json, the tests are listed, with extra information in the
-output file.
+output file_manager.
 This script tests such functionality by invoking gtest_list_output_unittest_
  (a program written with Google Test) the command line flags.
 """
@@ -48,34 +48,34 @@ GTEST_OUTPUT_FLAG = '--gtest_output'
 EXPECTED_XML = """<\?xml version="1.0" encoding="UTF-8"\?>
 <testsuites tests="16" name="AllTests">
   <testsuite name="FooTest" tests="2">
-    <testcase name="Test1" file=".*gtest_list_output_unittest_.cc" line="43" />
-    <testcase name="Test2" file=".*gtest_list_output_unittest_.cc" line="45" />
+    <testcase name="Test1" file_manager=".*gtest_list_output_unittest_.cc" line="43" />
+    <testcase name="Test2" file_manager=".*gtest_list_output_unittest_.cc" line="45" />
   </testsuite>
   <testsuite name="FooTestFixture" tests="2">
-    <testcase name="Test3" file=".*gtest_list_output_unittest_.cc" line="48" />
-    <testcase name="Test4" file=".*gtest_list_output_unittest_.cc" line="49" />
+    <testcase name="Test3" file_manager=".*gtest_list_output_unittest_.cc" line="48" />
+    <testcase name="Test4" file_manager=".*gtest_list_output_unittest_.cc" line="49" />
   </testsuite>
   <testsuite name="TypedTest/0" tests="2">
-    <testcase name="Test7" type_param="int" file=".*gtest_list_output_unittest_.cc" line="60" />
-    <testcase name="Test8" type_param="int" file=".*gtest_list_output_unittest_.cc" line="61" />
+    <testcase name="Test7" type_param="int" file_manager=".*gtest_list_output_unittest_.cc" line="60" />
+    <testcase name="Test8" type_param="int" file_manager=".*gtest_list_output_unittest_.cc" line="61" />
   </testsuite>
   <testsuite name="TypedTest/1" tests="2">
-    <testcase name="Test7" type_param="bool" file=".*gtest_list_output_unittest_.cc" line="60" />
-    <testcase name="Test8" type_param="bool" file=".*gtest_list_output_unittest_.cc" line="61" />
+    <testcase name="Test7" type_param="bool" file_manager=".*gtest_list_output_unittest_.cc" line="60" />
+    <testcase name="Test8" type_param="bool" file_manager=".*gtest_list_output_unittest_.cc" line="61" />
   </testsuite>
   <testsuite name="Single/TypeParameterizedTestSuite/0" tests="2">
-    <testcase name="Test9" type_param="int" file=".*gtest_list_output_unittest_.cc" line="66" />
-    <testcase name="Test10" type_param="int" file=".*gtest_list_output_unittest_.cc" line="67" />
+    <testcase name="Test9" type_param="int" file_manager=".*gtest_list_output_unittest_.cc" line="66" />
+    <testcase name="Test10" type_param="int" file_manager=".*gtest_list_output_unittest_.cc" line="67" />
   </testsuite>
   <testsuite name="Single/TypeParameterizedTestSuite/1" tests="2">
-    <testcase name="Test9" type_param="bool" file=".*gtest_list_output_unittest_.cc" line="66" />
-    <testcase name="Test10" type_param="bool" file=".*gtest_list_output_unittest_.cc" line="67" />
+    <testcase name="Test9" type_param="bool" file_manager=".*gtest_list_output_unittest_.cc" line="66" />
+    <testcase name="Test10" type_param="bool" file_manager=".*gtest_list_output_unittest_.cc" line="67" />
   </testsuite>
   <testsuite name="ValueParam/ValueParamTest" tests="4">
-    <testcase name="Test5/0" value_param="33" file=".*gtest_list_output_unittest_.cc" line="52" />
-    <testcase name="Test5/1" value_param="42" file=".*gtest_list_output_unittest_.cc" line="52" />
-    <testcase name="Test6/0" value_param="33" file=".*gtest_list_output_unittest_.cc" line="53" />
-    <testcase name="Test6/1" value_param="42" file=".*gtest_list_output_unittest_.cc" line="53" />
+    <testcase name="Test5/0" value_param="33" file_manager=".*gtest_list_output_unittest_.cc" line="52" />
+    <testcase name="Test5/1" value_param="42" file_manager=".*gtest_list_output_unittest_.cc" line="52" />
+    <testcase name="Test6/0" value_param="33" file_manager=".*gtest_list_output_unittest_.cc" line="53" />
+    <testcase name="Test6/1" value_param="42" file_manager=".*gtest_list_output_unittest_.cc" line="53" />
   </testsuite>
 </testsuites>
 """
@@ -90,12 +90,12 @@ EXPECTED_JSON = """{
       "testsuite": \[
         {
           "name": "Test1",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 43
         },
         {
           "name": "Test2",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 45
         }
       \]
@@ -106,12 +106,12 @@ EXPECTED_JSON = """{
       "testsuite": \[
         {
           "name": "Test3",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 48
         },
         {
           "name": "Test4",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 49
         }
       \]
@@ -123,13 +123,13 @@ EXPECTED_JSON = """{
         {
           "name": "Test7",
           "type_param": "int",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 60
         },
         {
           "name": "Test8",
           "type_param": "int",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 61
         }
       \]
@@ -141,13 +141,13 @@ EXPECTED_JSON = """{
         {
           "name": "Test7",
           "type_param": "bool",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 60
         },
         {
           "name": "Test8",
           "type_param": "bool",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 61
         }
       \]
@@ -159,13 +159,13 @@ EXPECTED_JSON = """{
         {
           "name": "Test9",
           "type_param": "int",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 66
         },
         {
           "name": "Test10",
           "type_param": "int",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 67
         }
       \]
@@ -177,13 +177,13 @@ EXPECTED_JSON = """{
         {
           "name": "Test9",
           "type_param": "bool",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 66
         },
         {
           "name": "Test10",
           "type_param": "bool",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 67
         }
       \]
@@ -195,25 +195,25 @@ EXPECTED_JSON = """{
         {
           "name": "Test5\\\\/0",
           "value_param": "33",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 52
         },
         {
           "name": "Test5\\\\/1",
           "value_param": "42",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 52
         },
         {
           "name": "Test6\\\\/0",
           "value_param": "33",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 53
         },
         {
           "name": "Test6\\\\/1",
           "value_param": "42",
-          "file": ".*gtest_list_output_unittest_.cc",
+          "file_manager": ".*gtest_list_output_unittest_.cc",
           "line": 53
         }
       \]
@@ -224,7 +224,7 @@ EXPECTED_JSON = """{
 
 
 class GTestListTestsOutputUnitTest(gtest_test_utils.TestCase):
-  """Unit test for Google Test's list tests with output to file functionality."""
+  """Unit test for Google Test's list tests with output to file_manager functionality."""
 
   def testXml(self):
     """Verifies XML output for listing tests in a Google Test binary.

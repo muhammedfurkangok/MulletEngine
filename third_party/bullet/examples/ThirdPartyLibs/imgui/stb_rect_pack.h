@@ -46,7 +46,7 @@
 //
 // LICENSE
 //
-//   See end of file for license information.
+//   See end of file_manager for license information.
 
 //////////////////////////////////////////////////////////////////////////////
 //

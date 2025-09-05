@@ -89,9 +89,9 @@ public:
     // -------------------------------------------------------------------
     /** @brief Creates a default log stream
      *  @param streams Type of the default stream
-     *  @param name For aiDefaultLogStream_FILE: name of the output file
+     *  @param name For aiDefaultLogStream_FILE: name of the output file_manager
      *  @param io For aiDefaultLogStream_FILE: IOSystem to be used to open the output
-     *   file. Pass nullptr for the default implementation.
+     *   file_manager. Pass nullptr for the default implementation.
      *  @return New LogStream instance.  */
     static LogStream *createDefaultStream(aiDefaultLogStream stream,
             const char *name = "AssimpLog.txt",

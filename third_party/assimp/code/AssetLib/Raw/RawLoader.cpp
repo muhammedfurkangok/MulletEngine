@@ -71,7 +71,7 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool RAWImporter::CanRead(const std::string &filename, IOSystem * /*pIOHandler*/, bool /*checkSig*/) const {
     return SimpleExtensionCheck(filename, "raw");
 }
@@ -82,23 +82,23 @@ const aiImporterDesc *RAWImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void RAWImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open RAW file ", pFile, ".");
+        throw DeadlyImportError("Failed to open RAW file_manager ", pFile, ".");
     }
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     // (terminate it with zero)
     std::vector<char> mBuffer2;
     TextFileToBuffer(file.get(), mBuffer2);
     const char *buffer = &mBuffer2[0];
 
-    // list of groups loaded from the file
+    // list of groups loaded from the file_manager
     std::vector<GroupInformation> outGroups(1, GroupInformation("<default>"));
     std::vector<GroupInformation>::iterator curGroup = outGroups.begin();
 
@@ -131,7 +131,7 @@ void RAWImporter::InternReadFile(const std::string &pFile,
                 curGroup = outGroups.end() - 1;
             }
         } else {
-            // there can be maximally 12 floats plus an extra texture file name
+            // there can be maximally 12 floats plus an extra texture file_manager name
             float data[12];
             unsigned int num;
             for (num = 0; num < 12; ++num) {
@@ -201,7 +201,7 @@ void RAWImporter::InternReadFile(const std::string &pFile,
     }
 
     if (!pScene->mNumMeshes) {
-        throw DeadlyImportError("RAW: No meshes loaded. The file seems to be corrupt or empty.");
+        throw DeadlyImportError("RAW: No meshes loaded. The file_manager seems to be corrupt or empty.");
     }
 
     pScene->mMeshes = new aiMesh *[pScene->mNumMeshes];

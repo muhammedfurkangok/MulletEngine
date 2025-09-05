@@ -430,7 +430,7 @@ static int runargs(lua_State *L, char **argv, int n)
 				if (*filename == '\0') filename = argv[++i];
 				lua_assert(filename != NULL);
 				if (dolibrary(L, filename) != LUA_OK)
-					return 0; /* stop if file fails */
+					return 0; /* stop if file_manager fails */
 				break;
 			}
 			default:
@@ -498,7 +498,7 @@ static int pmain(lua_State *L)
 			dotty(L);
 		}
 		else
-			dofile(L, NULL); /* executes stdin as a file */
+			dofile(L, NULL); /* executes stdin as a file_manager */
 	}
 	lua_pushboolean(L, 1); /* signal no errors */
 	return 1;

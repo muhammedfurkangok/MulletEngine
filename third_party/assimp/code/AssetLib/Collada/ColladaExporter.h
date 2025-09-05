@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file ColladaExporter.h
- * Declares the exporter class to write a scene to a Collada file
+ * Declares the exporter class to write a scene to a Collada file_manager
  */
 #ifndef AI_COLLADAEXPORTER_H_INC
 #define AI_COLLADAEXPORTER_H_INC
@@ -63,7 +63,7 @@ namespace Assimp {
 
 class IOSystem;
 
-/// Helper class to export a given scene to a Collada file. Just for my personal
+/// Helper class to export a given scene to a Collada file_manager. Just for my personal
 /// comfort when implementing it.
 class ColladaExporter {
 public:
@@ -191,7 +191,7 @@ public:
     /// Path of the directory where the scene will be exported
     const std::string mPath;
 
-    /// Name of the file (without extension) where the scene will be exported
+    /// Name of the file_manager (without extension) where the scene will be exported
     const std::string mFile;
 
     /// The scene to be written

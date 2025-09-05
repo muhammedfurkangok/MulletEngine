@@ -1,6 +1,6 @@
-/// obj2sdf will load a Wavefront .obj file that may contain many parts/materials
+/// obj2sdf will load a Wavefront .obj file_manager that may contain many parts/materials
 /// it will split into separate obj files for each part/material and
-/// create an sdf file with visuals/collisions pointing to the new obj files
+/// create an sdf file_manager with visuals/collisions pointing to the new obj files
 /// this will make it easier to load complex obj files into pybullet
 /// see for example export in data/kitchens/fathirmutfak.sdf
 
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 	FILE* sdfFile = fopen(sdfFileName, "w");
 	if (sdfFile == 0)
 	{
-		printf("Fatal error: cannot create sdf file %s\n", sdfFileName);
+		printf("Fatal error: cannot create sdf file_manager %s\n", sdfFileName);
 		exit(0);
 	}
 
@@ -197,7 +197,7 @@ int main(int argc, char* argv[])
 			FILE* f = fopen(objFileName, "w");
 			if (f == 0)
 			{
-				printf("Fatal error: cannot create part obj file %s\n", objFileName);
+				printf("Fatal error: cannot create part obj file_manager %s\n", objFileName);
 				exit(0);
 			}
 			fprintf(f, "# Exported using automatic converter by Erwin Coumans\n");
@@ -336,7 +336,7 @@ int main(int argc, char* argv[])
 			FILE* f = fopen(objFileName, "w");
 			if (f == 0)
 			{
-				printf("Fatal error: cannot create part obj file %s\n", objFileName);
+				printf("Fatal error: cannot create part obj file_manager %s\n", objFileName);
 				exit(0);
 			}
 			fprintf(f, "# Exported using automatic converter by Erwin Coumans\n");

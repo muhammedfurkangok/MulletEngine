@@ -89,8 +89,8 @@ TEST_F(ExporterTest, ExporterIdTest) {
         EXPECT_STRNE("", desc->id) << "Empty exporter ID at index " << i;
         EXPECT_NE(nullptr, desc->description) << "Null exporter description at index " << i;
         EXPECT_STRNE("", desc->description) << "Empty exporter description at index " << i;
-        EXPECT_NE(nullptr, desc->fileExtension) << "Null exporter file extension at index " << i;
-        EXPECT_STRNE("", desc->fileExtension) << "Empty exporter file extension at index " << i;
+        EXPECT_NE(nullptr, desc->fileExtension) << "Null exporter file_manager extension at index " << i;
+        EXPECT_STRNE("", desc->fileExtension) << "Empty exporter file_manager extension at index " << i;
 
         // Check the ID is unique
         std::string key(desc->id);

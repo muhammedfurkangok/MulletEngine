@@ -29,7 +29,7 @@
 
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This header file declares functions and macros used internally by
+// This header file_manager declares functions and macros used internally by
 // Google Test.  They are subject to change without notice.
 
 // IWYU pragma: private, include "gtest/gtest.h"

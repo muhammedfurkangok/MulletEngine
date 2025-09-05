@@ -76,7 +76,7 @@ namespace {
     template <class T>
     inline const T &GetProperty(const std::vector<T> &props, int idx) {
         if (static_cast<size_t>(idx) >= props.size()) {
-            throw DeadlyImportError("Invalid .ply file: Property index is out of range.");
+            throw DeadlyImportError("Invalid .ply file_manager: Property index is out of range.");
         }
 
         return props[idx];
@@ -119,7 +119,7 @@ PLYImporter::~PLYImporter() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool PLYImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "ply" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -131,15 +131,15 @@ const aiImporterDesc *PLYImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     const std::string mode = "rb";
     std::unique_ptr<IOStream> fileStream(pIOHandler->Open(pFile, mode));
     if (!fileStream) {
-        throw DeadlyImportError("Failed to open file ", pFile, ".");
+        throw DeadlyImportError("Failed to open file_manager ", pFile, ".");
     }
 
-    // Get the file-size
+    // Get the file_manager-size
     const size_t fileSize = fileStream->FileSize();
     if (0 == fileSize) {
         throw DeadlyImportError("File ", pFile, " is empty.");
@@ -148,7 +148,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     IOStreamBuffer<char> streamedBuffer(1024 * 1024);
     streamedBuffer.open(fileStream.get());
 
-    // the beginning of the file must be PLY - magic, magic
+    // the beginning of the file_manager must be PLY - magic, magic
     std::vector<char> headerCheck;
     streamedBuffer.getNextLine(headerCheck);
 
@@ -157,7 +157,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             (headerCheck[1] != 'L' && headerCheck[1] != 'l') ||
             (headerCheck[2] != 'Y' && headerCheck[2] != 'y')) {
         streamedBuffer.close();
-        throw DeadlyImportError("Invalid .ply file: Incorrect magic number (expected 'ply' or 'PLY').");
+        throw DeadlyImportError("Invalid .ply file_manager: Incorrect magic number (expected 'ply' or 'PLY').");
     }
 
     std::vector<char> mBuffer2;
@@ -168,7 +168,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     const char *end = &mBuffer2[0] + mBuffer2.size();
     SkipSpacesAndLineEnd(szMe, (const char **)&szMe, end);
 
-    // determine the format of the file data and construct the aiMesh
+    // determine the format of the file_manager data and construct the aiMesh
     PLY::DOM sPlyDom;
     this->pcDOM = &sPlyDom;
 
@@ -182,7 +182,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
                 }
 
                 streamedBuffer.close();
-                throw DeadlyImportError("Invalid .ply file: Unable to build DOM (#1)");
+                throw DeadlyImportError("Invalid .ply file_manager: Unable to build DOM (#1)");
             }
         } else if (!::strncmp(szMe, "binary_", 7)) {
             szMe += 7;
@@ -196,7 +196,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
                 }
 
                 streamedBuffer.close();
-                throw DeadlyImportError("Invalid .ply file: Unable to build DOM (#2)");
+                throw DeadlyImportError("Invalid .ply file_manager: Unable to build DOM (#2)");
             }
         } else {
             if (mGeneratedMesh != nullptr) {
@@ -205,7 +205,7 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
             }
 
             streamedBuffer.close();
-            throw DeadlyImportError("Invalid .ply file: Unknown file format");
+            throw DeadlyImportError("Invalid .ply file_manager: Unknown file_manager format");
         }
     } else {
         AI_DEBUG_INVALIDATE_PTR(this->mBuffer);
@@ -215,14 +215,14 @@ void PLYImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
         }
 
         streamedBuffer.close();
-        throw DeadlyImportError("Invalid .ply file: Missing format specification");
+        throw DeadlyImportError("Invalid .ply file_manager: Missing format specification");
     }
 
-    // free the file buffer
+    // free the file_manager buffer
     streamedBuffer.close();
 
     if (mGeneratedMesh == nullptr) {
-        throw DeadlyImportError("Invalid .ply file: Unable to extract mesh data ");
+        throw DeadlyImportError("Invalid .ply file_manager: Unable to extract mesh data ");
     }
 
     // if no face list is existing we assume that the vertex
@@ -449,7 +449,7 @@ void PLYImporter::LoadVertex(const PLY::Element *pcElement, const PLY::ElementIn
             mGeneratedMesh->mVertices = new aiVector3D[mGeneratedMesh->mNumVertices];
         }
         if (pos >= mGeneratedMesh->mNumVertices) {
-            throw DeadlyImportError("Invalid .ply file: Too many vertices");
+            throw DeadlyImportError("Invalid .ply file_manager: Too many vertices");
         }
 
         mGeneratedMesh->mVertices[pos] = vOut;
@@ -511,7 +511,7 @@ void PLYImporter::LoadFace(const PLY::Element *pcElement, const PLY::ElementInst
     ai_assert(nullptr != instElement);
 
     if (mGeneratedMesh == nullptr) {
-        throw DeadlyImportError("Invalid .ply file: Vertices should be declared before faces");
+        throw DeadlyImportError("Invalid .ply file_manager: Vertices should be declared before faces");
     }
 
     bool bOne = false;
@@ -575,7 +575,7 @@ void PLYImporter::LoadFace(const PLY::Element *pcElement, const PLY::ElementInst
             mGeneratedMesh->mFaces = new aiFace[mGeneratedMesh->mNumFaces];
         } else {
             if (mGeneratedMesh->mNumFaces < pcElement->NumOccur) {
-                throw DeadlyImportError("Invalid .ply file: Too many faces");
+                throw DeadlyImportError("Invalid .ply file_manager: Too many faces");
             }
         }
 

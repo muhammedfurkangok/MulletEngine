@@ -54,7 +54,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 static constexpr aiImporterDesc Description = {
-    "Additive manufacturing file format(AMF) Importer",
+    "Additive manufacturing file_manager format(AMF) Importer",
     "smalcom",
     "",
     "See documentation in source code. Chapter: Limitations.",
@@ -145,7 +145,7 @@ bool AMFImporter::Find_ConvertedMaterial(const std::string &pID, const SPP_Mater
 /*********************************************************************************************************************************************/
 
 void AMFImporter::Throw_CloseNotFound(const std::string &nodeName) {
-    throw DeadlyImportError("Close tag for node <" + nodeName + "> not found. Seems file is corrupt.");
+    throw DeadlyImportError("Close tag for node <" + nodeName + "> not found. Seems file_manager is corrupt.");
 }
 
 void AMFImporter::Throw_IncorrectAttr(const std::string &nodeName, const std::string &attrName) {
@@ -237,16 +237,16 @@ void AMFImporter::ParseHelper_Decode_Base64(const std::string &pInputBase64, std
 void AMFImporter::ParseFile(const std::string &pFile, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open AMF file ", pFile, ".");
+        throw DeadlyImportError("Failed to open AMF file_manager ", pFile, ".");
     }
 
     mXmlParser = new XmlParser();
     if (!mXmlParser->parse(file.get())) {
         delete mXmlParser;
         mXmlParser = nullptr;
-        throw DeadlyImportError("Failed to create XML reader for file ", pFile, ".");
+        throw DeadlyImportError("Failed to create XML reader for file_manager ", pFile, ".");
     }
 
     // Start reading, search for root tag <amf>
@@ -267,7 +267,7 @@ void AMFImporter::ParseHelper_Node_Exit() {
 
 // <amf
 // unit="" - The units to be used. May be "inch", "millimeter", "meter", "feet", or "micron".
-// version="" - Version of file format.
+// version="" - Version of file_manager format.
 // >
 // </amf>
 // Root XML element.

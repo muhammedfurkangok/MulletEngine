@@ -146,7 +146,7 @@ bool PhysXURDFImporter::loadURDF(const char* fileName, bool forceFixedBase)
 
 	if (!fileFound)
 	{
-		b3Warning("URDF file '%s' not found\n", fileName);
+		b3Warning("URDF file_manager '%s' not found\n", fileName);
 		return false;
 	}
 	else
@@ -155,7 +155,7 @@ bool PhysXURDFImporter::loadURDF(const char* fileName, bool forceFixedBase)
 		fu.extractPath(relativeFileName, path, sizeof(path));
 		m_data->setSourceFile(relativeFileName, path);
 
-		//read file
+		//read file_manager
 		int fileId = m_data->m_fileIO->fileOpen(relativeFileName,"r");
 
 
@@ -220,7 +220,7 @@ bool PhysXURDFImporter::loadSDF(const char* fileName, bool forceFixedBase)
 
 	if (!fileFound)
 	{
-		b3Warning("SDF file '%s' not found\n", fileName);
+		b3Warning("SDF file_manager '%s' not found\n", fileName);
 		return false;
 	}
 	else
@@ -230,7 +230,7 @@ bool PhysXURDFImporter::loadSDF(const char* fileName, bool forceFixedBase)
 		fu.extractPath(relativeFileName, path, sizeof(path));
 		m_data->setSourceFile(relativeFileName, path);
 
-		//read file
+		//read file_manager
 		int fileId = m_data->m_fileIO->fileOpen(relativeFileName,"r");
 
 		char destBuffer[8192];
@@ -633,17 +633,17 @@ btCollisionShape* PhysXURDFImporter::convertURDFToCollisionShape(const UrdfColli
 				btAlignedObjectArray<char> sdfData;
 				{
 					std::streampos fsize = 0;
-					std::ifstream file(relativeFileName, std::ios::binary);
-					if (file.good())
+					std::ifstream file_manager(relativeFileName, std::ios::binary);
+					if (file_manager.good())
 					{
-						fsize = file.tellg();
-						file.seekg(0, std::ios::end);
-						fsize = file.tellg() - fsize;
-						file.seekg(0, std::ios::beg);
+						fsize = file_manager.tellg();
+						file_manager.seekg(0, std::ios::end);
+						fsize = file_manager.tellg() - fsize;
+						file_manager.seekg(0, std::ios::beg);
 						sdfData.resize(fsize);
-						int bytesRead = file.rdbuf()->sgetn(&sdfData[0], fsize);
+						int bytesRead = file_manager.rdbuf()->sgetn(&sdfData[0], fsize);
 						btAssert(bytesRead == fsize);
-						file.close();
+						file_manager.close();
 					}
 				}
 
@@ -1043,7 +1043,7 @@ void PhysXURDFImporter::convertURDFToVisualShapeInternal(const UrdfVisual* visua
 
 					break;
 				}
-			}  // switch file type
+			}  // switch file_manager type
 
 			if (!glmesh || !glmesh->m_vertices || glmesh->m_numvertices <= 0)
 			{

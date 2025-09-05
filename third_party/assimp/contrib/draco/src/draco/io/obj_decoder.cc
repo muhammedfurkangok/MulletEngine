@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -64,7 +64,7 @@ Status ObjDecoder::DecodeFromFile(const std::string &file_name,
                                   PointCloud *out_point_cloud) {
   std::vector<char> buffer;
   if (!ReadFileToBuffer(file_name, &buffer)) {
-    return Status(Status::DRACO_ERROR, "Unable to read input file.");
+    return Status(Status::DRACO_ERROR, "Unable to read input file_manager.");
   }
   buffer_.Init(buffer.data(), buffer.size());
 
@@ -293,7 +293,7 @@ bool ObjDecoder::ParseDefinition(Status *status) {
   char c;
   parser::SkipWhitespace(buffer());
   if (!buffer()->Peek(&c)) {
-    // End of file reached?.
+    // End of file_manager reached?.
     return false;
   }
   if (c == '#') {
@@ -491,7 +491,7 @@ bool ObjDecoder::ParseFace(Status *status) {
 }
 
 bool ObjDecoder::ParseMaterialLib(Status *status) {
-  // Allow only one material library per file for now.
+  // Allow only one material library per file_manager for now.
   if (!material_name_to_id_.empty()) {
     return false;
   }
@@ -507,7 +507,7 @@ bool ObjDecoder::ParseMaterialLib(Status *status) {
   parser::SkipWhitespace(&line_buffer);
   material_file_name_.clear();
   if (!parser::ParseString(&line_buffer, &material_file_name_)) {
-    *status = Status(Status::DRACO_ERROR, "Failed to parse material file name");
+    *status = Status(Status::DRACO_ERROR, "Failed to parse material file_manager name");
     return true;
   }
   parser::SkipLine(&line_buffer);
@@ -546,7 +546,7 @@ bool ObjDecoder::ParseMaterial(Status * /* status */) {
   }
   auto it = material_name_to_id_.find(mat_name);
   if (it == material_name_to_id_.end()) {
-    // In first pass, materials found in obj that's not in the .mtl file
+    // In first pass, materials found in obj that's not in the .mtl file_manager
     // will be added to the list.
     last_material_id_ = num_materials_;
     material_name_to_id_[mat_name] = num_materials_++;
@@ -719,7 +719,7 @@ bool ObjDecoder::ParseMaterialFileDefinition(Status * /* status */) {
   char c;
   parser::SkipWhitespace(buffer());
   if (!buffer()->Peek(&c)) {
-    // End of file reached?.
+    // End of file_manager reached?.
     return false;
   }
   if (c == '#') {

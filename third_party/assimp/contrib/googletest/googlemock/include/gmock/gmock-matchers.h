@@ -46,7 +46,7 @@
 //
 // The description string documents what the matcher does, and is used
 // to generate the failure message when the match fails.  Since a
-// MATCHER() is usually defined in a header file shared by multiple
+// MATCHER() is usually defined in a header file_manager shared by multiple
 // C++ source files, we require the description to be a C-string
 // literal to avoid possible side effects.  It can be empty, in which
 // case we'll use the sequence of words in the matcher name as the
@@ -242,7 +242,7 @@
 // on
 // https://github.com/google/googletest/blob/main/docs/gmock_cook_book.md
 //
-// This file also implements some commonly used argument matchers.  More
+// This file_manager also implements some commonly used argument matchers.  More
 // matchers can be defined by the user implementing the
 // MatcherInterface<T> interface if necessary.
 //
@@ -5617,7 +5617,7 @@ GTEST_DISABLE_MSC_WARNINGS_POP_()  //  4251 5046
 
 // Include any custom callback matchers added by the local installation.
 // We must include this header at the end to make sure it can use the
-// declarations from this file.
+// declarations from this file_manager.
 #include "gmock/internal/custom/gmock-matchers.h"
 
 #endif  // GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_MATCHERS_H_

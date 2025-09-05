@@ -116,7 +116,7 @@ struct b3BulletDefaultFileIO : public CommonFileIOInterface
 		f = fopen(orgFileName, "rb");
 		if (f)
 		{
-			//printf("original file found: [%s]\n", orgFileName);
+			//printf("original file_manager found: [%s]\n", orgFileName);
 			sprintf(relativeFileName, "%s", orgFileName);
 			fclose(f);
 			return true;
@@ -183,7 +183,7 @@ struct b3BulletDefaultFileIO : public CommonFileIOInterface
 				
 				if (fseek(f, 0, SEEK_END) || (size = ftell(f)) == EOF || fseek(f, 0, SEEK_SET))
 				{
-					printf("Error: Cannot access file to determine size\n");
+					printf("Error: Cannot access file_manager to determine size\n");
 				}
 			}
 		}

@@ -58,7 +58,7 @@ void ImportSTLSetup::initPhysics()
 	char relativeFileName[1024];
 	if (!b3ResourcePath::findResourcePath(m_fileName, relativeFileName, 1024,0))
 	{
-		b3Warning("Cannot find file %s\n", m_fileName);
+		b3Warning("Cannot find file_manager %s\n", m_fileName);
 		return;
 	}
 

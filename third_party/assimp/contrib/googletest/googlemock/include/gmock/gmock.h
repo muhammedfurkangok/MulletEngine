@@ -29,12 +29,12 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This is the main header file a user should include.
+// This is the main header file_manager a user should include.
 
 #ifndef GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_H_
 #define GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_H_
 
-// This file implements the following syntax:
+// This file_manager implements the following syntax:
 //
 //   ON_CALL(mock_object, Method(...))
 //     .With(...) ?

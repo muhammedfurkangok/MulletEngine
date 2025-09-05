@@ -7,7 +7,7 @@
 // Erwin Coumans: improved performance, especially in debug mode on Visual Studio (25sec -> 4sec)
 //
 // version 0.9.5: Parse multiple group name.
-//                Add support of specifying the base path to load material file.
+//                Add support of specifying the base path to load material file_manager.
 // version 0.9.4: Initial suupport of group tag(g)
 // version 0.9.3: Fix parsing triple 'x/y/z'
 // version 0.9.2: Add more .mtl load support
@@ -367,14 +367,14 @@ std::string LoadMtl(
 	std::ifstream ifs(filepath.c_str());
 	if (!ifs)
 	{
-		err << "Cannot open file [" << filepath << "]" << std::endl;
+		err << "Cannot open file_manager [" << filepath << "]" << std::endl;
 		return err.str();
 	}
 #else
 	int fileHandle = fileIO->fileOpen(filepath.c_str(), "r");
 	if (fileHandle < 0)
 	{
-		err << "Cannot open file [" << filepath << "]" << std::endl;
+		err << "Cannot open file_manager [" << filepath << "]" << std::endl;
 		return err.str();
 	}
 #endif
@@ -617,14 +617,14 @@ LoadObj(
 	std::ifstream ifs(filename);
 	if (!ifs)
 	{
-		err << "Cannot open file [" << filename << "]" << std::endl;
+		err << "Cannot open file_manager [" << filename << "]" << std::endl;
 		return err.str();
 	}
 #else
 	int fileHandle = fileIO->fileOpen(filename, "r");
 	if (fileHandle < 0)
 	{
-		err << "Cannot open file [" << filename << "]" << std::endl;
+		err << "Cannot open file_manager [" << filename << "]" << std::endl;
 		return err.str();
 	}
 #endif

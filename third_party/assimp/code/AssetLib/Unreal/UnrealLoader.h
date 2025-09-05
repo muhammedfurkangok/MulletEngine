@@ -66,7 +66,7 @@ public:
     ~UnrealImporter() override = default;
 
     // -------------------------------------------------------------------
-    /** @brief Returns whether we can handle the format of the given file
+    /** @brief Returns whether we can handle the format of the given file_manager
      *
      *  See BaseImporter::CanRead() for details.
      **/
@@ -88,7 +88,7 @@ protected:
     void SetupProperties(const Importer *pImp) override;
 
     // -------------------------------------------------------------------
-    /** @brief Imports the given file into the given scene structure.
+    /** @brief Imports the given file_manager into the given scene structure.
      *
      * See BaseImporter::InternReadFile() for details
      */

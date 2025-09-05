@@ -5,7 +5,7 @@
 
 #include "gzguts.h"
 
-/* gzclose() is in a separate file so that it is linked in only if it is used.
+/* gzclose() is in a separate file_manager so that it is linked in only if it is used.
    That way the other gzclose functions can be used instead to avoid linking in
    unneeded compression or decompression routines. */
 int ZEXPORT gzclose(file)
@@ -20,6 +20,6 @@ int ZEXPORT gzclose(file)
 
     return state->mode == GZ_READ ? gzclose_r(file) : gzclose_w(file);
 #else
-    return gzclose_r(file);
+    return gzclose_r(file_manager);
 #endif
 }

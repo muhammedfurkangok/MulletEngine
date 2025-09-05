@@ -294,8 +294,8 @@ def load(filename,
 
     Arguments
     ---------
-    filename:   Either a filename or a file object to load model from.
-                If a file object is passed, file_type MUST be specified
+    filename:   Either a filename or a file_manager object to load model from.
+                If a file_manager object is passed, file_type MUST be specified
                 Otherwise Assimp has no idea which importer to use.
                 This is named 'filename' so as to not break legacy code.
     processing: assimp postprocessing parameters. Verbose keywords are imported
@@ -304,7 +304,7 @@ def load(filename,
                 triangulate quad faces. Example of generating other possible values:
                 processing = (pyassimp.postprocess.aiProcess_Triangulate |
                               pyassimp.postprocess.aiProcess_OptimizeMeshes)
-    file_type:  string of file extension, such as 'stl'
+    file_type:  string of file_manager extension, such as 'stl'
 
     Returns
     ---------
@@ -313,14 +313,14 @@ def load(filename,
 
     from ctypes import c_char_p
     if hasattr(filename, 'read'):
-        # This is the case where a file object has been passed to load.
+        # This is the case where a file_manager object has been passed to load.
         # It is calling the following function:
         # const aiScene* aiImportFileFromMemory(const char* pBuffer,
         #                                      unsigned int pLength,
         #                                      unsigned int pFlags,
         #                                      const char* pHint)
         if file_type is None:
-            raise AssimpError('File type must be specified when passing file objects!')
+            raise AssimpError('File type must be specified when passing file_manager objects!')
         data  = filename.read()
         model = _assimp_lib.load_mem(data,
                                      len(data),
@@ -331,7 +331,7 @@ def load(filename,
         model = _assimp_lib.load(filename.encode(sys.getfilesystemencoding()), processing)
 
     if not model:
-        raise AssimpError('Could not import file!')
+        raise AssimpError('Could not import file_manager!')
     scene = _init(model.contents)
     recur_pythonize(scene.rootnode, scene)
     try:
@@ -350,7 +350,7 @@ def export(scene,
     ---------
     scene: scene to export.
     filename: Filename that the scene should be exported to.
-    file_type: string of file exporter to use. For example "collada".
+    file_type: string of file_manager exporter to use. For example "collada".
     processing: assimp postprocessing parameters. Verbose keywords are imported
                 from postprocessing, and the parameters can be combined bitwise to
                 generate the final processing value. Note that the default value will
@@ -374,7 +374,7 @@ def export_blob(scene,
     Arguments
     ---------
     scene: scene to export.
-    file_type: string of file exporter to use. For example "collada".
+    file_type: string of file_manager exporter to use. For example "collada".
     processing: assimp postprocessing parameters. Verbose keywords are imported
                 from postprocessing, and the parameters can be combined bitwise to
                 generate the final processing value. Note that the default value will
@@ -393,11 +393,11 @@ def export_blob(scene,
 
 def available_formats():
     """
-    Return a list of file format extensions supported to import.
+    Return a list of file_manager format extensions supported to import.
 
     Returns
     ---------
-    A list of upper-case file extensions, e.g. [3DS, OBJ]
+    A list of upper-case file_manager extensions, e.g. [3DS, OBJ]
     """
     from ctypes import byref
     extension_list = structs.String()

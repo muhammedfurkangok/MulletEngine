@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file AssxmlFileWriter.cpp
- *  @brief Implementation of Assxml file writer.
+ *  @brief Implementation of Assxml file_manager writer.
  */
 
 #include "AssxmlFileWriter.h"
@@ -651,7 +651,7 @@ void DumpSceneToAssxml(
         const aiScene *pScene, bool shortened) {
     std::unique_ptr<IOStream> file(pIOSystem->Open(pFile, "wt"));
     if (!file) {
-        throw std::runtime_error("Unable to open output file " + std::string(pFile) + '\n');
+        throw std::runtime_error("Unable to open output file_manager " + std::string(pFile) + '\n');
     }
 
     AssxmlFileWriter::WriteDump(pFile, cmd, pScene, file.get(), shortened);

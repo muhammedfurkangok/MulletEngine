@@ -81,7 +81,7 @@ AI_WONT_RETURN void XFileParser::ThrowException(T&&... args) {
 // Constructor. Creates a data structure out of the XFile given in the memory block.
 XFileParser::XFileParser(const std::vector<char> &pBuffer) :
         mMajorVersion(0), mMinorVersion(0), mIsBinaryFormat(false), mBinaryNumCount(0), mP(nullptr), mEnd(nullptr), mLineNumber(0), mScene(nullptr) {
-    // vector to store uncompressed file for INFLATE'd X files
+    // vector to store uncompressed file_manager for INFLATE'd X files
     std::vector<char> uncompressed;
 
     // set up memory pointers
@@ -90,7 +90,7 @@ XFileParser::XFileParser(const std::vector<char> &pBuffer) :
 
     // check header
     if (0 != strncmp(mP, "xof ", 4)) {
-        throw DeadlyImportError("Header mismatch, file is not an XFile.");
+        throw DeadlyImportError("Header mismatch, file_manager is not an XFile.");
     }
 
     // read version. It comes in a four byte format such as "0302"
@@ -117,20 +117,20 @@ XFileParser::XFileParser(const std::vector<char> &pBuffer) :
         mIsBinaryFormat = true;
         compressed = true;
     } else
-        ThrowException("Unsupported x-file format '", mP[8], mP[9], mP[10], mP[11], "'");
+        ThrowException("Unsupported x-file_manager format '", mP[8], mP[9], mP[10], mP[11], "'");
 
     // float size
     mBinaryFloatSize = (unsigned int)(mP[12] - 48) * 1000 + (unsigned int)(mP[13] - 48) * 100 + (unsigned int)(mP[14] - 48) * 10 + (unsigned int)(mP[15] - 48);
 
     if (mBinaryFloatSize != 32 && mBinaryFloatSize != 64)
-        ThrowException("Unknown float size ", mBinaryFloatSize, " specified in x-file header.");
+        ThrowException("Unknown float size ", mBinaryFloatSize, " specified in x-file_manager header.");
 
     // The x format specifies size in bits, but we work in bytes
     mBinaryFloatSize /= 8;
 
     mP += 16;
 
-    // If this is a compressed X file, apply the inflate algorithm to it
+    // If this is a compressed X file_manager, apply the inflate algorithm to it
     if (compressed) {
 #ifdef ASSIMP_BUILD_NO_COMPRESSED_X
         throw DeadlyImportError("Assimp was built without compressed X support");
@@ -204,13 +204,13 @@ XFileParser::XFileParser(const std::vector<char> &pBuffer) :
             compression.close();
         }
 
-        // ok, update pointers to point to the uncompressed file data
+        // ok, update pointers to point to the uncompressed file_manager data
         mP = &uncompressed[0];
         mEnd = out;
 
         // FIXME: we don't need the compressed data anymore, could release
         // it already for better memory usage. Consider breaking const-co.
-        ASSIMP_LOG_INFO("Successfully decompressed MSZIP-compressed file");
+        ASSIMP_LOG_INFO("Successfully decompressed MSZIP-compressed file_manager");
 #endif // !! ASSIMP_BUILD_NO_COMPRESSED_X
     } else {
         // start reading here
@@ -267,7 +267,7 @@ void XFileParser::ParseFile() {
             ASSIMP_LOG_WARN("} found in dataObject");
         } else {
             // unknown format
-            ASSIMP_LOG_WARN("Unknown data object in animation of .x file");
+            ASSIMP_LOG_WARN("Unknown data object in animation of .x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -292,7 +292,7 @@ void XFileParser::ParseDataObjectTemplate() {
         }
 
         if (s.length() == 0) {
-            ThrowException("Unexpected end of file reached while parsing template definition");
+            ThrowException("Unexpected end of file_manager reached while parsing template definition");
         }
     }
 }
@@ -338,7 +338,7 @@ void XFileParser::ParseDataObjectFrame(Node *pParent) {
     while (running) {
         std::string objectName = GetNextToken();
         if (objectName.size() == 0)
-            ThrowException("Unexpected end of file reached while parsing frame");
+            ThrowException("Unexpected end of file_manager reached while parsing frame");
 
         if (objectName == "}")
             break; // frame finished
@@ -351,7 +351,7 @@ void XFileParser::ParseDataObjectFrame(Node *pParent) {
             node->mMeshes.push_back(mesh);
             ParseDataObjectMesh(mesh);
         } else {
-            ASSIMP_LOG_WARN("Unknown data object in frame in x file");
+            ASSIMP_LOG_WARN("Unknown data object in frame in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -420,7 +420,7 @@ void XFileParser::ParseDataObjectMesh(Mesh *pMesh) {
         std::string objectName = GetNextToken();
 
         if (objectName.empty())
-            ThrowException("Unexpected end of file while parsing mesh structure");
+            ThrowException("Unexpected end of file_manager while parsing mesh structure");
         else if (objectName == "}")
             break; // mesh finished
         else if (objectName == "MeshNormals")
@@ -438,7 +438,7 @@ void XFileParser::ParseDataObjectMesh(Mesh *pMesh) {
         else if (objectName == "SkinWeights")
             ParseDataObjectSkinWeights(pMesh);
         else {
-            ASSIMP_LOG_WARN("Unknown data object in mesh in x file");
+            ASSIMP_LOG_WARN("Unknown data object in mesh in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -627,7 +627,7 @@ void XFileParser::ParseDataObjectMeshMaterialList(Mesh *pMesh) {
     while (running) {
         std::string objectName = GetNextToken();
         if (objectName.size() == 0)
-            ThrowException("Unexpected end of file while parsing mesh material list.");
+            ThrowException("Unexpected end of file_manager while parsing mesh material list.");
         else if (objectName == "}")
             break; // material list finished
         else if (objectName == "{") {
@@ -645,7 +645,7 @@ void XFileParser::ParseDataObjectMeshMaterialList(Mesh *pMesh) {
         } else if (objectName == ";") {
             // ignore
         } else {
-            ASSIMP_LOG_WARN("Unknown data object in material list in x file");
+            ASSIMP_LOG_WARN("Unknown data object in material list in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -671,7 +671,7 @@ void XFileParser::ParseDataObjectMaterial(Material *pMaterial) {
     while (running) {
         std::string objectName = GetNextToken();
         if (objectName.size() == 0)
-            ThrowException("Unexpected end of file while parsing mesh material");
+            ThrowException("Unexpected end of file_manager while parsing mesh material");
         else if (objectName == "}")
             break; // material finished
         else if (objectName == "TextureFilename" || objectName == "TextureFileName") {
@@ -685,7 +685,7 @@ void XFileParser::ParseDataObjectMaterial(Material *pMaterial) {
             ParseDataObjectTextureFilename(texname);
             pMaterial->mTextures.emplace_back(texname, true);
         } else {
-            ASSIMP_LOG_WARN("Unknown data object in material in x file");
+            ASSIMP_LOG_WARN("Unknown data object in material in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -711,13 +711,13 @@ void XFileParser::ParseDataObjectAnimationSet() {
     while (running) {
         std::string objectName = GetNextToken();
         if (objectName.length() == 0)
-            ThrowException("Unexpected end of file while parsing animation set.");
+            ThrowException("Unexpected end of file_manager while parsing animation set.");
         else if (objectName == "}")
             break; // animation set finished
         else if (objectName == "Animation")
             ParseDataObjectAnimation(anim);
         else {
-            ASSIMP_LOG_WARN("Unknown data object in animation set in x file");
+            ASSIMP_LOG_WARN("Unknown data object in animation set in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -734,7 +734,7 @@ void XFileParser::ParseDataObjectAnimation(Animation *pAnim) {
         std::string objectName = GetNextToken();
 
         if (objectName.length() == 0)
-            ThrowException("Unexpected end of file while parsing animation.");
+            ThrowException("Unexpected end of file_manager while parsing animation.");
         else if (objectName == "}")
             break; // animation finished
         else if (objectName == "AnimationKey")
@@ -746,7 +746,7 @@ void XFileParser::ParseDataObjectAnimation(Animation *pAnim) {
             banim->mBoneName = GetNextToken();
             CheckForClosingBrace();
         } else {
-            ASSIMP_LOG_WARN("Unknown data object in animation in x file");
+            ASSIMP_LOG_WARN("Unknown data object in animation in x file_manager");
             ParseUnknownDataObject();
         }
     }
@@ -854,9 +854,9 @@ void XFileParser::ParseDataObjectTextureFilename(std::string &pName) {
     GetNextTokenAsString(pName);
     CheckForClosingBrace();
 
-    // FIX: some files (e.g. AnimationTest.x) have "" as texture file name
+    // FIX: some files (e.g. AnimationTest.x) have "" as texture file_manager name
     if (!pName.length()) {
-        ASSIMP_LOG_WARN("Length of texture file name is zero. Skipping this texture.");
+        ASSIMP_LOG_WARN("Length of texture file_manager name is zero. Skipping this texture.");
     }
 
     // some exporters write double backslash paths out. We simply replace them if we find them
@@ -871,7 +871,7 @@ void XFileParser::ParseUnknownDataObject() {
     while (running) {
         std::string t = GetNextToken();
         if (t.length() == 0)
-            ThrowException("Unexpected end of file while parsing unknown segment.");
+            ThrowException("Unexpected end of file_manager while parsing unknown segment.");
 
         if (t == "{")
             break;
@@ -884,7 +884,7 @@ void XFileParser::ParseUnknownDataObject() {
         std::string t = GetNextToken();
 
         if (t.length() == 0)
-            ThrowException("Unexpected end of file while parsing unknown segment.");
+            ThrowException("Unexpected end of file_manager while parsing unknown segment.");
 
         if (t == "{")
             ++counter;
@@ -954,7 +954,7 @@ void XFileParser::readHeadOfDataObject(std::string *poName) {
 std::string XFileParser::GetNextToken() {
     std::string s;
 
-    // process binary-formatted file
+    // process binary-formatted file_manager
     if (mIsBinaryFormat) {
         // in binary mode it will only return NAME and STRING token
         // and (correctly) skip over other tokens.
@@ -1063,7 +1063,7 @@ std::string XFileParser::GetNextToken() {
             return "array";
         }
     }
-    // process text-formatted file
+    // process text-formatted file_manager
     else {
         FindNextNoneWhiteSpace();
         if (mP >= mEnd)
@@ -1116,7 +1116,7 @@ void XFileParser::GetNextTokenAsString(std::string &poString) {
     FindNextNoneWhiteSpace();
     if (mP >= mEnd) {
         delete mScene;
-        ThrowException("Unexpected end of file while parsing string");
+        ThrowException("Unexpected end of file_manager while parsing string");
     }
 
     if (*mP != '"') {
@@ -1130,7 +1130,7 @@ void XFileParser::GetNextTokenAsString(std::string &poString) {
 
     if (mP >= mEnd - 1) {
         delete mScene;
-        ThrowException("Unexpected end of file while parsing string");
+        ThrowException("Unexpected end of file_manager while parsing string");
     }
 
     if (mP[1] != ';' || mP[0] != '"') {

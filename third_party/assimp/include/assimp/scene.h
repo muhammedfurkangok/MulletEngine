@@ -75,7 +75,7 @@ extern "C" {
  *
  * Each node has name, a parent node (except for the root node),
  * a transformation relative to its parent and possibly several child nodes.
- * Simple file formats don't support hierarchical structures - for these formats
+ * Simple file_manager formats don't support hierarchical structures - for these formats
  * the imported scene does consist of only a single root node without children.
  */
 // -------------------------------------------------------------------------------
@@ -91,12 +91,12 @@ struct ASSIMP_API aiNode {
      * are multiple nodes with this name, they are assigned to each of them.
      * <br>
      * There are no limitations with regard to the characters contained in
-     * the name string as it is usually taken directly from the source file.
+     * the name string as it is usually taken directly from the source file_manager.
      *
      * Implementations should be able to handle tokens such as whitespace, tabs,
      * line feeds, quotation marks, ampersands etc.
      *
-     * Sometimes assimp introduces new nodes not present in the source file
+     * Sometimes assimp introduces new nodes not present in the source file_manager
      * into the hierarchy (usually out of necessity because sometimes the
      * source hierarchy format is simply not compatible). Their names are
      * surrounded by @verbatim <> @endverbatim e.g.
@@ -125,8 +125,8 @@ struct ASSIMP_API aiNode {
     unsigned int* mMeshes;
 
     /** Metadata associated with this node or nullptr if there is no metadata.
-      *  Whether any metadata is generated depends on the source file format. See the
-      * @link importer_notes @endlink page for more information on every source file
+      *  Whether any metadata is generated depends on the source file_manager format. See the
+      * @link importer_notes @endlink page for more information on every source file_manager
       * format. Importers that don't document any metadata don't write any.
       */
     C_STRUCT aiMetadata* mMetaData;
@@ -264,7 +264,7 @@ struct ASSIMP_API aiNode {
 // -------------------------------------------------------------------------------
 /** The root structure of the imported data.
  *
- *  Everything that was imported from the given file can be accessed from here.
+ *  Everything that was imported from the given file_manager can be accessed from here.
  *  Objects of this class are generally maintained and owned by Assimp, not
  *  by the caller. You shouldn't want to instance it, nor should you ever try to
  *  delete a given scene on your own.
@@ -283,7 +283,7 @@ struct ASSIMP_API aiScene {
     * There will always be at least the root node if the import
     * was successful (and no special flags have been set).
     * Presence of further nodes depends on the format and content
-    * of the imported file.
+    * of the imported file_manager.
     */
     C_STRUCT aiNode* mRootNode;
 
@@ -316,17 +316,17 @@ struct ASSIMP_API aiScene {
 
     /** The array of animations.
     *
-    * All animations imported from the given file are listed here.
+    * All animations imported from the given file_manager are listed here.
     * The array is mNumAnimations in size.
     */
     C_STRUCT aiAnimation** mAnimations;
 
-    /** The number of textures embedded into the file */
+    /** The number of textures embedded into the file_manager */
     unsigned int mNumTextures;
 
     /** The array of embedded textures.
     *
-    * Not many file formats embed their textures into the file.
+    * Not many file_manager formats embed their textures into the file_manager.
     * An example is Quake's MDL format (which is also used by
     * some GameStudio versions)
     */
@@ -339,7 +339,7 @@ struct ASSIMP_API aiScene {
 
     /** The array of light sources.
     *
-    * All light sources imported from the given file are
+    * All light sources imported from the given file_manager are
     * listed here. The array is mNumLights in size.
     */
     C_STRUCT aiLight** mLights;
@@ -351,7 +351,7 @@ struct ASSIMP_API aiScene {
 
     /** The array of cameras.
     *
-    * All cameras imported from the given file are listed here.
+    * All cameras imported from the given file_manager are listed here.
     * The array is mNumCameras in size. The first camera in the
     * array (if existing) is the default camera view into
     * the scene.

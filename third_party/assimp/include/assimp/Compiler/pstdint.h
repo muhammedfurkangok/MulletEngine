@@ -34,8 +34,8 @@
  *  Version 0.1.15.4
  *
  *  The ANSI C standard committee, for the C99 standard, specified the
- *  inclusion of a new standard include file called stdint.h.  This is
- *  a very useful and long desired include file which contains several
+ *  inclusion of a new standard include file_manager called stdint.h.  This is
+ *  a very useful and long desired include file_manager which contains several
  *  very precise definitions for integer scalar types that is
  *  critically important for making portable several classes of
  *  applications including cryptography, hashing, variable length
@@ -47,12 +47,12 @@
  *  Because of this situation, simply including stdint.h in your code
  *  makes it unportable.
  *
- *  So that's what this file is all about.  Its an attempt to build a
- *  single universal include file that works on as many platforms as
+ *  So that's what this file_manager is all about.  Its an attempt to build a
+ *  single universal include file_manager that works on as many platforms as
  *  possible to deliver what stdint.h is supposed to.  Even compilers
- *  that already come with stdint.h can use this file instead without
+ *  that already come with stdint.h can use this file_manager instead without
  *  any loss of functionality.  A few things that should be noted about
- *  this file:
+ *  this file_manager:
  *
  *    1) It is not guaranteed to be portable and/or present an identical
  *       interface on all platforms.  The extreme variability of the
@@ -67,7 +67,7 @@
  *
  *    3) Other standard include files are invoked.
  *
- *    4) This file may come in conflict with future platforms that do
+ *    4) This file_manager may come in conflict with future platforms that do
  *       include stdint.h.  The hope is that one or the other can be
  *       used with no real difference.
  *
@@ -80,12 +80,12 @@
  *       Note that this is different from the C99 specification which
  *       requires the existence of 64 bit support in the compiler.  If
  *       this is not defined for your platform, yet it is capable of
- *       dealing with 64 bits then it is because this file has not yet
+ *       dealing with 64 bits then it is because this file_manager has not yet
  *       been extended to cover all of your system's capabilities.
  *
  *    7) (u)intptr_t may or may not be defined.  Test for its presence
  *       with the test: #ifdef PTRDIFF_MAX.  If this is not defined
- *       for your platform, then it is because this file has not yet
+ *       for your platform, then it is because this file_manager has not yet
  *       been extended to cover all of your system's capabilities, not
  *       because its optional.
  *
@@ -106,7 +106,7 @@
  *
  *   10) The criteria for defining (u)int_least(*)_t isn't clear,
  *       except for systems which don't have a type that precisely
- *       defined 8, 16, or 32 bit types (which this include file does
+ *       defined 8, 16, or 32 bit types (which this include file_manager does
  *       not support anyways). Default definitions have been given.
  *
  *   11) The criteria for defining (u)int_fast(*)_t isn't something I
@@ -118,7 +118,7 @@
  *       system.  Default definitions have been given, but its strongly
  *       recommended that users never use these definitions for any
  *       reason (they do *NOT* deliver any serious guarantee of
- *       improved performance -- not in this file, nor any vendor's
+ *       improved performance -- not in this file_manager, nor any vendor's
  *       stdint.h).
  *
  *   12) The following macros:
@@ -169,14 +169,14 @@
  *  bits), Microsoft Visual C++ 6.0 (32 bit), Microsoft Visual Studio
  *  .net (VC7), Intel C++ 4.0, GNU gcc v3.3.3
  *
- *  This file should be considered a work in progress.  Suggestions for
+ *  This file_manager should be considered a work in progress.  Suggestions for
  *  improvements, especially those which increase coverage are strongly
  *  encouraged.
  *
  *  Acknowledgements
  *
  *  The following people have made significant contributions to the
- *  development and testing of this file:
+ *  development and testing of this file_manager:
  *
  *  Chris Howie
  *  John Steele Scott
@@ -288,7 +288,7 @@
 
 /*
  *  Something really weird is going on with Open Watcom.  Just pull some of
- *  these duplicated definitions from Open Watcom's stdint.h file for now.
+ *  these duplicated definitions from Open Watcom's stdint.h file_manager for now.
  */
 
 # if defined (__WATCOMC__) && __WATCOMC__ >= 1250
@@ -645,10 +645,10 @@
 #endif
 
 /*
- *  Because this file currently only supports platforms which have
+ *  Because this file_manager currently only supports platforms which have
  *  precise powers of 2 as bit sizes for the default integers, the
  *  least definitions are all trivial.  Its possible that a future
- *  version of this file could have different definitions.
+ *  version of this file_manager could have different definitions.
  */
 
 #ifndef stdint_least_defined
@@ -683,10 +683,10 @@
 /*
  *  The ANSI C committee pretending to know or specify anything about
  *  performance is the epitome of misguided arrogance.  The mandate of
- *  this file is to *ONLY* ever support that absolute minimum
+ *  this file_manager is to *ONLY* ever support that absolute minimum
  *  definition of the fast integer types, for compatibility purposes.
  *  No extensions, and no attempt to suggest what may or may not be a
- *  faster integer type will ever be made in this file.  Developers are
+ *  faster integer type will ever be made in this file_manager.  Developers are
  *  warned to stay away from these types when using this or any other
  *  stdint.h.
  */

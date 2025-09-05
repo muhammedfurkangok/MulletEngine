@@ -22,7 +22,7 @@
 # Copyright (C) 2014 Joakim Söderberg <joakim.soderberg@gmail.com>
 #
 
-# do not follow symlinks in file(GLOB_RECURSE ...)
+# do not follow symlinks in file_manager(GLOB_RECURSE ...)
 cmake_policy(SET CMP0009 NEW)
 
 file(GLOB_RECURSE GCDA_FILES "${PROJECT_BINARY_DIR}/*.gcda")

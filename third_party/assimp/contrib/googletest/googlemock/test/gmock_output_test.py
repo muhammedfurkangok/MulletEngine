@@ -31,9 +31,9 @@
 
 r"""Tests the text output of Google C++ Mocking Framework.
 
-To update the golden file:
+To update the golden file_manager:
 gmock_output_test.py --build_dir=BUILD/DIR --gengolden
-where BUILD/DIR contains the built gmock_output_test_ file.
+where BUILD/DIR contains the built gmock_output_test_ file_manager.
 gmock_output_test.py --gengolden
 gmock_output_test.py
 
@@ -46,7 +46,7 @@ import sys
 from googlemock.test import gmock_test_utils
 
 
-# The flag for generating the golden file
+# The flag for generating the golden file_manager
 GENGOLDEN_FLAG = '--gengolden'
 
 PROGRAM_PATH = gmock_test_utils.GetTestExecutablePath('gmock_output_test_')
@@ -73,13 +73,13 @@ def RemoveReportHeaderAndFooter(output):
 
 
 def RemoveLocations(output):
-  """Removes all file location info from a Google Test program's output.
+  """Removes all file_manager location info from a Google Test program's output.
 
   Args:
        output:  the output of a Google Test program.
 
   Returns:
-       output with all file location info (in the form of
+       output with all file_manager location info (in the form of
        'DIRECTORY/FILE_NAME:LINE_NUMBER: 'or
        'DIRECTORY\\FILE_NAME(LINE_NUMBER): ') replaced by
        'FILE:#: '.
@@ -163,7 +163,7 @@ class GMockOutputTest(gmock_test_utils.TestCase):
     # endings, so normalize it here.
     golden = ToUnixLineEnding(golden)
 
-    # The normalized output should match the golden file.
+    # The normalized output should match the golden file_manager.
     self.assertEqual(golden, output)
 
     # The raw output should contain 2 leaked mock object errors for

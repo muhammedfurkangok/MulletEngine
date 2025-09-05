@@ -1,11 +1,11 @@
 // dear imgui, v1.92.3 WIP
 // (internal structures/api)
 
-// You may use this file to debug, understand or extend Dear ImGui features but we don't provide any guarantee of forward compatibility.
+// You may use this file_manager to debug, understand or extend Dear ImGui features but we don't provide any guarantee of forward compatibility.
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 // [SECTION] Header mess
 // [SECTION] Forward declarations
@@ -168,7 +168,7 @@ struct ImGuiNextItemData;           // Storage for SetNextItem** functions
 struct ImGuiOldColumnData;          // Storage data for a single column for legacy Columns() api
 struct ImGuiOldColumns;             // Storage data for a columns set for legacy Columns() api
 struct ImGuiPopupData;              // Storage for current popup stack
-struct ImGuiSettingsHandler;        // Storage for one type registered in the .ini file
+struct ImGuiSettingsHandler;        // Storage for one type registered in the .ini file_manager
 struct ImGuiStyleMod;               // Stacked style modifier, backup of modified data so we can restore it
 struct ImGuiStyleVarInfo;           // Style variable information (e.g. to access style variables from an enum)
 struct ImGuiTabBar;                 // Storage for a tab bar
@@ -447,7 +447,7 @@ IMGUI_API ImU64             ImFileGetSize(ImFileHandle file);
 IMGUI_API ImU64             ImFileRead(void* data, ImU64 size, ImU64 count, ImFileHandle file);
 IMGUI_API ImU64             ImFileWrite(const void* data, ImU64 size, ImU64 count, ImFileHandle file);
 #else
-#define IMGUI_DISABLE_TTY_FUNCTIONS // Can't use stdout, fflush if we are not using default file functions
+#define IMGUI_DISABLE_TTY_FUNCTIONS // Can't use stdout, fflush if we are not using default file_manager functions
 #endif
 IMGUI_API void*             ImFileLoadToMemory(const char* filename, const char* mode, size_t* out_file_size = NULL, int padding_bytes = 0);
 
@@ -1956,7 +1956,7 @@ struct ImGuiViewportP : public ImGuiViewport
 // [SECTION] Settings support
 //-----------------------------------------------------------------------------
 
-// Windows data saved in imgui.ini file
+// Windows data saved in imgui.ini file_manager
 // Because we never destroy or rename ImGuiWindowSettings, we can store the names in a separate buffer easily.
 // (this is designed to be stored in a ImChunkStream buffer, with the variable-length Name following our structure)
 struct ImGuiWindowSettings
@@ -1975,7 +1975,7 @@ struct ImGuiWindowSettings
 
 struct ImGuiSettingsHandler
 {
-    const char* TypeName;       // Short description stored in .ini file. Disallowed characters: '[' ']'
+    const char* TypeName;       // Short description stored in .ini file_manager. Disallowed characters: '[' ']'
     ImGuiID     TypeHash;       // == ImHashStr(TypeName)
     void        (*ClearAllFn)(ImGuiContext* ctx, ImGuiSettingsHandler* handler);                                // Clear all settings data
     void        (*ReadInitFn)(ImGuiContext* ctx, ImGuiSettingsHandler* handler);                                // Read: Called before reading (in registration order)
@@ -2461,7 +2461,7 @@ struct ImGuiContext
     bool                    LogEnabled;                         // Currently capturing
     ImGuiLogFlags           LogFlags;                           // Capture flags/type
     ImGuiWindow*            LogWindow;
-    ImFileHandle            LogFile;                            // If != NULL log to stdout/ file
+    ImFileHandle            LogFile;                            // If != NULL log to stdout/ file_manager
     ImGuiTextBuffer         LogBuffer;                          // Accumulation buffer when log to clipboard. This is pointer so our GImGui static constructor doesn't call heap allocators.
     const char*             LogNextPrefix;
     const char*             LogNextSuffix;
@@ -2909,7 +2909,7 @@ struct IMGUI_API ImGuiTable
     ImBitArrayPtr               EnabledMaskByDisplayOrder;  // Column DisplayOrder -> IsEnabled map
     ImBitArrayPtr               EnabledMaskByIndex;         // Column Index -> IsEnabled map (== not hidden by user/api) in a format adequate for iterating column without touching cold data
     ImBitArrayPtr               VisibleMaskByIndex;         // Column Index -> IsVisibleX|IsVisibleY map (== not hidden by user/api && not hidden by scrolling/cliprect)
-    ImGuiTableFlags             SettingsLoadedFlags;        // Which data were loaded from the .ini file (e.g. when order is not altered we won't save order)
+    ImGuiTableFlags             SettingsLoadedFlags;        // Which data were loaded from the .ini file_manager (e.g. when order is not altered we won't save order)
     int                         SettingsOffset;             // Offset in g.SettingsTables
     int                         LastFrameActive;
     int                         ColumnsCount;               // Number of columns declared in BeginTable()
@@ -3053,7 +3053,7 @@ struct ImGuiTableColumnSettings
     ImGuiTableColumnIdx     DisplayOrder;
     ImGuiTableColumnIdx     SortOrder;
     ImU8                    SortDirection : 2;
-    ImS8                    IsEnabled : 2; // "Visible" in ini file
+    ImS8                    IsEnabled : 2; // "Visible" in ini file_manager
     ImU8                    IsStretch : 1;
 
     ImGuiTableColumnSettings()
@@ -3786,7 +3786,7 @@ struct stbrp_context_opaque { char data[80]; };
 // Internal storage for incrementally packing and building a ImFontAtlas
 struct ImFontAtlasBuilder
 {
-    stbrp_context_opaque        PackContext;            // Actually 'stbrp_context' but we don't want to define this in the header file.
+    stbrp_context_opaque        PackContext;            // Actually 'stbrp_context' but we don't want to define this in the header file_manager.
     ImVector<stbrp_node_im>     PackNodes;
     ImVector<ImTextureRect>     Rects;
     ImVector<ImFontAtlasRectEntry> RectsIndex;          // ImFontAtlasRectId -> index into Rects[]

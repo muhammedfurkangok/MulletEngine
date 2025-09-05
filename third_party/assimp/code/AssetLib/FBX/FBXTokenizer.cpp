@@ -133,7 +133,7 @@ void ProcessDataToken(TokenList &output_tokens, StackAllocator &token_allocator,
 // ------------------------------------------------------------------------------------------------
 void Tokenize(TokenList &output_tokens, const char *input, StackAllocator &token_allocator) {
 	ai_assert(input);
-	ASSIMP_LOG_DEBUG("Tokenizing ASCII FBX file");
+	ASSIMP_LOG_DEBUG("Tokenizing ASCII FBX file_manager");
 
     // line and column numbers numbers are one-based
     unsigned int line = 1;

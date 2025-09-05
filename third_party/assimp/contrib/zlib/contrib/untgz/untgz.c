@@ -1,5 +1,5 @@
 /*
- * untgz.c -- Display contents and extract files from a gzip'd TAR file
+ * untgz.c -- Display contents and extract files from a gzip'd TAR file_manager
  *
  * written by Pedro A. Aranda Gutierrez <paag@tid.es>
  * adaptation to Unix by Jean-loup Gailly <jloup@gzip.org>
@@ -39,8 +39,8 @@
 
 /* values used in typeflag field */
 
-#define REGTYPE  '0'            /* regular file */
-#define AREGTYPE '\0'           /* regular file */
+#define REGTYPE  '0'            /* regular file_manager */
+#define AREGTYPE '\0'           /* regular file_manager */
 #define LNKTYPE  '1'            /* link */
 #define SYMTYPE  '2'            /* reserved */
 #define CHRTYPE  '3'            /* character special */
@@ -51,12 +51,12 @@
 
 /* GNU tar extensions */
 
-#define GNUTYPE_DUMPDIR  'D'    /* file names from dumped directory */
+#define GNUTYPE_DUMPDIR  'D'    /* file_manager names from dumped directory */
 #define GNUTYPE_LONGLINK 'K'    /* long link name */
-#define GNUTYPE_LONGNAME 'L'    /* long file name */
-#define GNUTYPE_MULTIVOL 'M'    /* continuation of file from another volume */
-#define GNUTYPE_NAMES    'N'    /* file name that does not fit into main hdr */
-#define GNUTYPE_SPARSE   'S'    /* sparse file */
+#define GNUTYPE_LONGNAME 'L'    /* long file_manager name */
+#define GNUTYPE_MULTIVOL 'M'    /* continuation of file_manager from another volume */
+#define GNUTYPE_NAMES    'N'    /* file_manager name that does not fit into main hdr */
+#define GNUTYPE_SPARSE   'S'    /* sparse file_manager */
 #define GNUTYPE_VOLHDR   'V'    /* tape/volume header */
 
 
@@ -126,7 +126,7 @@ char *prog;
 
 const char *TGZsuffix[] = { "\0", ".tar", ".tar.gz", ".taz", ".tgz", NULL };
 
-/* return the file name of the TGZ archive */
+/* return the file_manager name of the TGZ archive */
 /* or NULL if it does not exist */
 
 char *TGZfname (const char *arcname)
@@ -201,7 +201,7 @@ char *strtime (time_t *t)
 }
 
 
-/* set file time */
+/* set file_manager time */
 
 int setfiletime (char *fname,time_t ftime)
 {
@@ -248,7 +248,7 @@ int setfiletime (char *fname,time_t ftime)
 }
 
 
-/* push file attributes */
+/* push file_manager attributes */
 
 void push_attr(struct attr_item **list,char *fname,int mode,time_t time)
 {
@@ -265,7 +265,7 @@ void push_attr(struct attr_item **list,char *fname,int mode,time_t time)
 }
 
 
-/* restore file attributes */
+/* restore file_manager attributes */
 
 void restore_attr(struct attr_item **list)
 {
@@ -381,7 +381,7 @@ int matchname (int arg,int argc,char **argv,char *fname)
 }
 
 
-/* tar file list or extract */
+/* tar file_manager list or extract */
 
 int tar (gzFile in,int action,int arg,int argc,char **argv)
 {
@@ -397,7 +397,7 @@ int tar (gzFile in,int action,int arg,int argc,char **argv)
   struct attr_item *attributes = NULL;
 
   if (action == TGZ_LIST)
-    printf("    date      time     size                       file\n"
+    printf("    date      time     size                       file_manager\n"
            " ---------- -------- --------- -------------------------------------\n");
   while (1)
     {
@@ -444,7 +444,7 @@ int tar (gzFile in,int action,int arg,int argc,char **argv)
           else
             {
               /*
-               * The file name is longer than SHORTNAMESIZE
+               * The file_manager name is longer than SHORTNAMESIZE
                */
               if (strncmp(fname,buffer.header.name,SHORTNAMESIZE-1) != 0)
                   error("bad long name");
@@ -565,7 +565,7 @@ int tar (gzFile in,int action,int arg,int argc,char **argv)
     }
 
   /*
-   * Restore file modes and time stamps
+   * Restore file_manager modes and time stamps
    */
   restore_attr(&attributes);
 
@@ -583,9 +583,9 @@ void help(int exitval)
   printf("untgz version 0.2.1\n"
          "  using zlib version %s\n\n",
          zlibVersion());
-  printf("Usage: untgz file.tgz            extract all files\n"
-         "       untgz file.tgz fname ...  extract selected files\n"
-         "       untgz -l file.tgz         list archive contents\n"
+  printf("Usage: untgz file_manager.tgz            extract all files\n"
+         "       untgz file_manager.tgz fname ...  extract selected files\n"
+         "       untgz -l file_manager.tgz         list archive contents\n"
          "       untgz -h                  display this help\n");
   exit(exitval);
 }
@@ -650,7 +650,7 @@ int main(int argc,char **argv)
       help(1);
 
 /*
- *  Process the TGZ file
+ *  Process the TGZ file_manager
  */
     switch(action)
       {

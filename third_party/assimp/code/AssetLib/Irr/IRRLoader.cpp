@@ -91,7 +91,7 @@ IRRImporter::IRRImporter() :
 IRRImporter::~IRRImporter() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool IRRImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "irr_scene" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -552,7 +552,7 @@ void SetupMapping(aiMaterial *mat, aiTextureMapping mode, const aiVector3D &axis
 
     for (unsigned int i = 0; i < mat->mNumProperties; ++i) {
         aiMaterialProperty *prop = mat->mProperties[i];
-        if (!::strcmp(prop->mKey.data, "$tex.file")) {
+        if (!::strcmp(prop->mKey.data, "$tex.file_manager")) {
             // Setup the mapping key
             aiMaterialProperty *m = new aiMaterialProperty();
             m->mKey.Set("$tex.mapping");
@@ -622,19 +622,19 @@ void IRRImporter::GenerateGraph(Node *root, aiNode *rootOut, aiScene *scene,
         // graph we're currently building
         aiScene *localScene = batch.GetImport(root->id);
         if (!localScene) {
-            ASSIMP_LOG_ERROR("IRR: Unable to load external file: ", root->meshPath);
+            ASSIMP_LOG_ERROR("IRR: Unable to load external file_manager: ", root->meshPath);
             break;
         }
         attach.emplace_back(localScene, rootOut);
 
         // Now combine the material we've loaded for this mesh
-        // with the real materials we got from the file. As we
-        // don't execute any pp-steps on the file, the numbers
+        // with the real materials we got from the file_manager. As we
+        // don't execute any pp-steps on the file_manager, the numbers
         // should be equal. If they are not, we can impossibly
         // do this  ...
         if (root->materials.size() != (unsigned int)localScene->mNumMaterials) {
             ASSIMP_LOG_WARN("IRR: Failed to match imported materials "
-                            "with the materials found in the IRR scene file");
+                            "with the materials found in the IRR scene file_manager");
 
             break;
         }
@@ -942,7 +942,7 @@ void IRRImporter::ParseNodeAttributes(pugi::xml_node &attributesNode, IRRImporte
                 }
             } else if ((prop.name == "Mesh" && Node::MESH == nd->type) ||
                        Node::ANIMMESH == nd->type) {
-                /*  This is the file name of the mesh - either
+                /*  This is the file_manager name of the mesh - either
                  *  animated or not. We need to make sure we setup
                  *  the correct post-processing settings here.
                  */
@@ -960,13 +960,13 @@ void IRRImporter::ParseNodeAttributes(pugi::xml_node &attributesNode, IRRImporte
                 /*  TODO: maybe implement the protection against recursive
                  *  loading calls directly in BatchLoader? The current
                  *  implementation is not absolutely safe. A LWS and an IRR
-                 *  file referencing each other *could* cause the system to
+                 *  file_manager referencing each other *could* cause the system to
                  *  recurse forever.
                  */
 
                 const std::string extension = GetExtension(prop.value);
                 if ("irr" == extension) {
-                    ASSIMP_LOG_ERROR("IRR: Can't load another IRR file recursively");
+                    ASSIMP_LOG_ERROR("IRR: Can't load another IRR file_manager recursively");
                 } else {
                     nd->id = batch.AddLoadRequest(prop.value, pp, &map);
                     nd->meshPath = prop.value;
@@ -1093,12 +1093,12 @@ IRRImporter::Node *IRRImporter::ParseNode(pugi::xml_node &node, BatchLoader &bat
     /*  What we're going to do with the node depends
      *  on its type:
      *
-     *  "mesh" - Load a mesh from an external file
+     *  "mesh" - Load a mesh from an external file_manager
      *  "cube" - Generate a cube
      *  "skybox" - Generate a skybox
      *  "light" - A light source
      *  "sphere" - Generate a sphere mesh
-     *  "animatedMesh" - Load an animated mesh from an external file
+     *  "animatedMesh" - Load an animated mesh from an external file_manager
      *    and join its animation channels with ours.
      *  "empty" - A dummy node
      *  "camera" - A camera
@@ -1200,18 +1200,18 @@ IRRImporter::Node *IRRImporter::ParseNode(pugi::xml_node &node, BatchLoader &bat
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void IRRImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile));
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open IRR file ", pFile);
+        throw DeadlyImportError("Failed to open IRR file_manager ", pFile);
     }
 
     // Construct the irrXML parser
     XmlParser st;
     if (!st.parse(file.get())) {
-        throw DeadlyImportError("XML parse error while loading IRR file ", pFile);
+        throw DeadlyImportError("XML parse error while loading IRR file_manager ", pFile);
     }
     pugi::xml_node documentRoot = st.getRootNode();
 
@@ -1236,7 +1236,7 @@ void IRRImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
     const pugi::xml_node &sceneRoot = documentRoot.child("irr_scene");
     if (!sceneRoot) {
         delete root;
-        throw new DeadlyImportError("IRR: <irr_scene> not found in file");
+        throw new DeadlyImportError("IRR: <irr_scene> not found in file_manager");
     }
     for (pugi::xml_node &child : sceneRoot.children()) {
         // XML elements are either nodes, animators, attributes, or materials

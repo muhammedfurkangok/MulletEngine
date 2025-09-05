@@ -60,7 +60,7 @@ using namespace Assimp;
 static aiTexel *const bad_texel = reinterpret_cast<aiTexel *>(SIZE_MAX);
 
 // ------------------------------------------------------------------------------------------------
-// Find a suitable palette file or take the default one
+// Find a suitable palette file_manager or take the default one
 void MDLImporter::SearchPalette(const unsigned char **pszColorMap) {
     // now try to find the color map in the current directory
     IOStream *pcStream = mIOHandler->Open(configPalette, "rb");
@@ -120,7 +120,7 @@ aiColor4D MDLImporter::ReplaceTextureWithColor(const aiTexture *pcTexture) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read a texture from a MDL3 file
+// Read a texture from a MDL3 file_manager
 void MDLImporter::CreateTextureARGB8_3DGS_MDL3(const unsigned char *szData) {
     const MDL::Header *pcHeader = (const MDL::Header *)mBuffer; //the endianness is already corrected in the InternReadFile_3DGS_MDL345 function
     const size_t len = pcHeader->skinwidth * pcHeader->skinheight;
@@ -132,7 +132,7 @@ void MDLImporter::CreateTextureARGB8_3DGS_MDL3(const unsigned char *szData) {
     pcNew->mHeight = pcHeader->skinheight;
 
     if(pcNew->mWidth != 0 && pcNew->mHeight > UINT_MAX/pcNew->mWidth) {
-        throw DeadlyImportError("Invalid MDL file. A texture is too big.");
+        throw DeadlyImportError("Invalid MDL file_manager. A texture is too big.");
     }
     pcNew->pcData = new aiTexel[pcNew->mWidth * pcNew->mHeight];
 
@@ -164,7 +164,7 @@ void MDLImporter::CreateTextureARGB8_3DGS_MDL3(const unsigned char *szData) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read a texture from a MDL4 file
+// Read a texture from a MDL4 file_manager
 void MDLImporter::CreateTexture_3DGS_MDL4(const unsigned char *szData,
         unsigned int iType,
         unsigned int *piSkip) {
@@ -173,7 +173,7 @@ void MDLImporter::CreateTexture_3DGS_MDL4(const unsigned char *szData,
     const MDL::Header *pcHeader = (const MDL::Header *)mBuffer; //the endianness is already corrected in the InternReadFile_3DGS_MDL345 function
 
     if (iType == 1 || iType > 3) {
-        ASSIMP_LOG_ERROR("Unsupported texture file format");
+        ASSIMP_LOG_ERROR("Unsupported texture file_manager format");
         return;
     }
 
@@ -223,11 +223,11 @@ void MDLImporter::ParseTextureColorData(const unsigned char *szData,
     if (do_read) {
         // check for max texture sizes
         if (pcNew->mWidth > MaxTextureSize || pcNew->mHeight > MaxTextureSize) {
-            throw DeadlyImportError("Invalid MDL file. A texture is too big.");
+            throw DeadlyImportError("Invalid MDL file_manager. A texture is too big.");
         }
 
         if(pcNew->mWidth != 0 && pcNew->mHeight > UINT_MAX/pcNew->mWidth) {
-            throw DeadlyImportError("Invalid MDL file. A texture is too big.");
+            throw DeadlyImportError("Invalid MDL file_manager. A texture is too big.");
         }
         pcNew->pcData = new aiTexel[pcNew->mWidth * pcNew->mHeight];
     }
@@ -371,7 +371,7 @@ void MDLImporter::ParseTextureColorData(const unsigned char *szData,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a texture from a MDL5 file
+// Get a texture from a MDL5 file_manager
 void MDLImporter::CreateTexture_3DGS_MDL5(const unsigned char *szData,
         unsigned int iType,
         unsigned int *piSkip) {
@@ -399,14 +399,14 @@ void MDLImporter::CreateTexture_3DGS_MDL5(const unsigned char *szData,
     // this should not occur - at least the docs say it shouldn't.
     // however, one can easily try out what MED does if you have
     // a model with a DDS texture and export it to MDL5 ...
-    // yeah, it embeds the DDS file.
+    // yeah, it embeds the DDS file_manager.
     if (6 == iType) {
         // this is a compressed texture in DDS format
         *piSkip = pcNew->mWidth;
         VALIDATE_FILE_SIZE(szData + *piSkip);
 
         if (!bNoRead) {
-            // place a hint and let the application know that this is a DDS file
+            // place a hint and let the application know that this is a DDS file_manager
             pcNew->mHeight = 0;
             pcNew->achFormatHint[0] = 'd';
             pcNew->achFormatHint[1] = 'd';
@@ -446,7 +446,7 @@ void MDLImporter::CreateTexture_3DGS_MDL5(const unsigned char *szData,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a skin from a MDL7 file - more complex than all other subformats
+// Get a skin from a MDL7 file_manager - more complex than all other subformats
 void MDLImporter::ParseSkinLump_3DGS_MDL7(
         const unsigned char *szCurrent,
         const unsigned char **szCurrentOut,
@@ -639,7 +639,7 @@ void MDLImporter::ParseSkinLump_3DGS_MDL7(
         pcNew.reset();
     }
 
-    // If an ASCII effect description (HLSL?) is contained in the file,
+    // If an ASCII effect description (HLSL?) is contained in the file_manager,
     // we can simply ignore it ...
     if (iType & AI_MDL7_SKINTYPE_MATERIAL_ASCDEF) {
         VALIDATE_FILE_SIZE(szCurrent);
@@ -734,7 +734,7 @@ void MDLImporter::SkipSkinLump_3DGS_MDL7(
         szCurrent = (unsigned char *)(pcMatIn + 1);
     }
 
-    // if an ASCII effect description (HLSL?) is contained in the file,
+    // if an ASCII effect description (HLSL?) is contained in the file_manager,
     // we can simply ignore it ...
     if (iType & AI_MDL7_SKINTYPE_MATERIAL_ASCDEF) {
         VALIDATE_FILE_SIZE(szCurrent + sizeof(int32_t));
@@ -765,7 +765,7 @@ void MDLImporter::ParseSkinLump_3DGS_MDL7(
     aiMaterial *pcMatOut = new aiMaterial();
     pcMats.push_back(pcMatOut);
 
-    // skip length of file name
+    // skip length of file_manager name
     szCurrent += AI_MDL7_MAX_TEXNAMESIZE;
 
     ParseSkinLump_3DGS_MDL7(szCurrent, szCurrentOut, pcMatOut,

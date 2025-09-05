@@ -160,14 +160,14 @@ static const char kDeathTestCaseFilter[] = "*DeathTest:*DeathTest/*";
 // A test filter that matches everything.
 static const char kUniversalFilter[] = "*";
 
-// The default output file for XML output.
+// The default output file_manager for XML output.
 static const char kDefaultOutputFile[] = "test_detail.xml";
 
 // The environment variable name for the test shard index.
 static const char kTestShardIndex[] = "GTEST_SHARD_INDEX";
 // The environment variable name for the total number of test shards.
 static const char kTestTotalShards[] = "GTEST_TOTAL_SHARDS";
-// The environment variable name for the test shard status file.
+// The environment variable name for the test shard status file_manager.
 static const char kTestShardStatusFile[] = "GTEST_SHARD_STATUS_FILE";
 
 namespace internal
@@ -227,11 +227,11 @@ GTEST_DEFINE_string_(
 	output,
 	internal::StringFromGTestEnv("output", ""),
 	"A format (currently must be \"xml\"), optionally followed "
-	"by a colon and an output file name or directory. A directory "
+	"by a colon and an output file_manager name or directory. A directory "
 	"is indicated by a trailing pathname separator. "
 	"Examples: \"xml:filename.xml\", \"xml::directoryname/\". "
 	"If a directory is specified, output files will be created "
-	"within that directory, with file-names based on the test "
+	"within that directory, with file_manager-names based on the test "
 	"executable's name and, if necessary, made unique by adding "
 	"digits.");
 
@@ -408,7 +408,7 @@ std::string UnitTestOptions::GetOutputFormat()
 	return (colon == NULL) ? std::string(gtest_output_flag) : std::string(gtest_output_flag, colon - gtest_output_flag);
 }
 
-// Returns the name of the requested output file, or the default if none
+// Returns the name of the requested output file_manager, or the default if none
 // was explicitly specified.
 std::string UnitTestOptions::GetAbsolutePathToOutputFile()
 {
@@ -2128,7 +2128,7 @@ void ReportFailureInUnknownLocation(TestPartResult::Type result_type,
 	// AddTestPartResult.
 	UnitTest::GetInstance()->AddTestPartResult(
 		result_type,
-		NULL,  // No info about the source file where the exception occurred.
+		NULL,  // No info about the source file_manager where the exception occurred.
 		-1,    // We have no info on which line caused the exception.
 		message,
 		"");  // No stack trace, either.
@@ -2458,7 +2458,7 @@ TestInfo* MakeAndRegisterTestInfo(
 
 #if GTEST_HAS_PARAM_TEST
 void ReportInvalidTestCaseType(const char* test_case_name,
-							   const char* file, int line)
+							   const char* file_manager, int line)
 {
 	Message errors;
 	errors
@@ -2471,7 +2471,7 @@ void ReportInvalidTestCaseType(const char* test_case_name,
 		<< "probably rename one of the classes to put the tests into different\n"
 		<< "test cases.";
 
-	fprintf(stderr, "%s %s", FormatFileLocation(file, line).c_str(),
+	fprintf(stderr, "%s %s", FormatFileLocation(file_manager, line).c_str(),
 			errors.GetString().c_str());
 }
 #endif  // GTEST_HAS_PARAM_TEST
@@ -3341,7 +3341,7 @@ void TestEventRepeater::OnTestIterationEnd(const UnitTest& unit_test,
 
 // End TestEventRepeater
 
-// This class generates an XML output file.
+// This class generates an XML output file_manager.
 class XmlUnitTestResultPrinter : public EmptyTestEventListener
 {
 public:
@@ -3413,7 +3413,7 @@ private:
 	// to delimit this attribute from prior attributes.
 	static std::string TestPropertiesAsXmlAttributes(const TestResult& result);
 
-	// The output file.
+	// The output file_manager.
 	const std::string output_file_;
 
 	GTEST_DISALLOW_COPY_AND_ASSIGN_(XmlUnitTestResultPrinter);
@@ -3425,7 +3425,7 @@ XmlUnitTestResultPrinter::XmlUnitTestResultPrinter(const char* output_file)
 {
 	if (output_file_.c_str() == NULL || output_file_.empty())
 	{
-		fprintf(stderr, "XML output file may not be null\n");
+		fprintf(stderr, "XML output file_manager may not be null\n");
 		fflush(stderr);
 		exit(EXIT_FAILURE);
 	}
@@ -3456,7 +3456,7 @@ void XmlUnitTestResultPrinter::OnTestIterationEnd(const UnitTest& unit_test,
 		//      we need the strerror_r() function, which is not available on
 		//      Windows.
 		fprintf(stderr,
-				"Unable to open file \"%s\"\n",
+				"Unable to open file_manager \"%s\"\n",
 				output_file_.c_str());
 		fflush(stderr);
 		exit(EXIT_FAILURE);
@@ -3859,7 +3859,7 @@ void StreamingListener::SocketWriter::MakeConnection()
 
 // Class ScopedTrace
 
-// Pushes the given source file location and message onto a per-thread
+// Pushes the given source file_manager location and message onto a per-thread
 // trace stack maintained by Google Test.
 ScopedTrace::ScopedTrace(const char* file, int line, const Message& message)
 	GTEST_LOCK_EXCLUDED_(&UnitTest::mutex_)
@@ -3904,18 +3904,18 @@ const char* const
 	OsStackTraceGetter::kElidedFramesMarker =
 		"... " GTEST_NAME_ " internal frames ...";
 
-// A helper class that creates the premature-exit file in its
-// constructor and deletes the file in its destructor.
+// A helper class that creates the premature-exit file_manager in its
+// constructor and deletes the file_manager in its destructor.
 class ScopedPrematureExitFile
 {
 public:
 	explicit ScopedPrematureExitFile(const char* premature_exit_filepath)
 		: premature_exit_filepath_(premature_exit_filepath)
 	{
-		// If a path to the premature-exit file is specified...
+		// If a path to the premature-exit file_manager is specified...
 		if (premature_exit_filepath != NULL && *premature_exit_filepath != '\0')
 		{
-			// create the file with a single "0" character in it.  I/O
+			// create the file_manager with a single "0" character in it.  I/O
 			// errors are ignored as there's nothing better we can do and we
 			// don't want to fail the test because of this.
 			FILE* pfile = posix::FOpen(premature_exit_filepath, "w");
@@ -4281,23 +4281,23 @@ int UnitTest::Run()
 	// Google Test implements this protocol for catching that a test
 	// program exits before returning control to Google Test:
 	//
-	//   1. Upon start, Google Test creates a file whose absolute path
+	//   1. Upon start, Google Test creates a file_manager whose absolute path
 	//      is specified by the environment variable
 	//      TEST_PREMATURE_EXIT_FILE.
-	//   2. When Google Test has finished its work, it deletes the file.
+	//   2. When Google Test has finished its work, it deletes the file_manager.
 	//
 	// This allows a test runner to set TEST_PREMATURE_EXIT_FILE before
 	// running a Google-Test-based test program and check the existence
-	// of the file at the end of the test execution to see if it has
+	// of the file_manager at the end of the test execution to see if it has
 	// exited prematurely.
 
 	// If we are in the child process of a death test, don't
-	// create/delete the premature exit file, as doing so is unnecessary
+	// create/delete the premature exit file_manager, as doing so is unnecessary
 	// and will confuse the parent process.  Otherwise, create/delete
-	// the file upon entering/leaving this function.  If the program
+	// the file_manager upon entering/leaving this function.  If the program
 	// somehow exits before this function has a chance to return, the
-	// premature-exit file will be left undeleted, causing a test runner
-	// that understands the premature-exit-file protocol to report the
+	// premature-exit file_manager will be left undeleted, causing a test runner
+	// that understands the premature-exit-file_manager protocol to report the
 	// test as having failed.
 	const internal::ScopedPrematureExitFile premature_exit_file(
 		in_death_test_child_process ? NULL : internal::posix::GetEnv("TEST_PREMATURE_EXIT_FILE"));
@@ -4820,9 +4820,9 @@ bool UnitTestImpl::RunAllTests()
 	return !failed;
 }
 
-// Reads the GTEST_SHARD_STATUS_FILE environment variable, and creates the file
-// if the variable is present. If a file already exists at this location, this
-// function will write over it. If the variable is present, but the file cannot
+// Reads the GTEST_SHARD_STATUS_FILE environment variable, and creates the file_manager
+// if the variable is present. If a file_manager already exists at this location, this
+// function will write over it. If the variable is present, but the file_manager cannot
 // be created, prints an error and exits.
 void WriteToShardStatusFileIfNeeded()
 {
@@ -4833,7 +4833,7 @@ void WriteToShardStatusFileIfNeeded()
 		if (file == NULL)
 		{
 			ColoredPrintf(COLOR_RED,
-						  "Could not write to the test shard status file \"%s\" "
+						  "Could not write to the test shard status file_manager \"%s\" "
 						  "specified by the %s environment variable.\n",
 						  test_shard_file, kTestShardStatusFile);
 			fflush(stdout);
@@ -5393,7 +5393,7 @@ static const char kColorEncodedHelpMessage[] =
 	"      Don't print the elapsed time of each test.\n"
 	"  @G--" GTEST_FLAG_PREFIX_ "output=xml@Y[@G:@YDIRECTORY_PATH@G" GTEST_PATH_SEP_
 	"@Y|@G:@YFILE_PATH]@D\n"
-	"      Generate an XML report in the given directory or with the given file\n"
+	"      Generate an XML report in the given directory or with the given file_manager\n"
 	"      name. @YFILE_PATH@D defaults to @Gtest_details.xml@D.\n"
 #if GTEST_CAN_STREAM_RESULTS_
 	"  @G--" GTEST_FLAG_PREFIX_

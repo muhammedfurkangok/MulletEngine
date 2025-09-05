@@ -1,7 +1,7 @@
 // Copyright 2022 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -23,13 +23,13 @@
 
 namespace draco {
 
-// Class for encoding draco::Mesh into the STL file format.
+// Class for encoding draco::Mesh into the STL file_manager format.
 class StlEncoder {
  public:
   StlEncoder();
 
-  // Encodes the mesh and saves it into a file.
-  // Returns false when either the encoding failed or when the file couldn't be
+  // Encodes the mesh and saves it into a file_manager.
+  // Returns false when either the encoding failed or when the file_manager couldn't be
   // opened.
   Status EncodeToFile(const Mesh &mesh, const std::string &file_name);
 

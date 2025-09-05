@@ -97,7 +97,7 @@ namespace Assimp {
 /** CPP-API: The Importer class forms an C++ interface to the functionality of the
 *   Open Asset Import Library.
 *
-* Create an object of this class and call ReadFile() to import a file.
+* Create an object of this class and call ReadFile() to import a file_manager.
 * If the import succeeds, the function returns a pointer to the imported data.
 * The data remains property of the object, it is intended to be accessed
 * read-only. The imported data will be destroyed along with the Importer
@@ -108,7 +108,7 @@ namespace Assimp {
 * allocations and may take some time, so it's better to reuse them as often as
 * possible.
 *
-* If you need the Importer to do custom file handling to access the files,
+* If you need the Importer to do custom file_manager handling to access the files,
 * implement IOSystem and IOStream and supply an instance of your custom
 * IOSystem implementation by calling SetIOHandler() before calling ReadFile().
 * If you do not assign a custom IO handler, a default handler using the
@@ -160,7 +160,7 @@ public:
      *   ownership of the pointer, so it will be automatically deleted
      *   with the Importer instance.
      * @return AI_SUCCESS if the loader has been added. The registration
-     *   fails if there is already a loader for a specific file extension.
+     *   fails if there is already a loader for a specific file_manager extension.
      */
     aiReturn RegisterLoader(BaseImporter *pImp);
 
@@ -322,7 +322,7 @@ public:
      * Pass nullptr to take again ownership of your IOSystem and reset Assimp
      * to use its default implementation.
      *
-     * @param pIOHandler The IO handler to be used in all file accesses
+     * @param pIOHandler The IO handler to be used in all file_manager accesses
      *   of the Importer.
      */
     void SetIOHandler(IOSystem *pIOHandler);
@@ -391,15 +391,15 @@ public:
     bool ValidateFlags(unsigned int pFlags) const;
 
     // -------------------------------------------------------------------
-    /** Reads the given file and returns its contents if successful.
+    /** Reads the given file_manager and returns its contents if successful.
      *
-     * If the call succeeds, the contents of the file are returned as a
+     * If the call succeeds, the contents of the file_manager are returned as a
      * pointer to an aiScene object. The returned data is intended to be
      * read-only, the importer object keeps ownership of the data and will
      * destroy it upon destruction. If the import fails, nullptr is returned.
      * A human-readable error description can be retrieved by calling
      * GetErrorString(). The previous scene will be deleted during this call.
-     * @param pFile Path and filename to the file to be imported.
+     * @param pFile Path and filename to the file_manager to be imported.
      * @param pFlags Optional post processing steps to be executed after
      *   a successful import. Provide a bitwise combination of the
      *   #aiPostProcessSteps flags. If you wish to inspect the imported
@@ -409,7 +409,7 @@ public:
      *   The pointer to the scene remains in possession of the Importer
      *   instance. Use GetOrphanedScene() to take ownership of it.
      *
-     * @note Assimp is able to determine the file format of a file
+     * @note Assimp is able to determine the file_manager format of a file_manager
      * automatically.
      */
     const aiScene *ReadFile(
@@ -417,17 +417,17 @@ public:
             unsigned int pFlags);
 
     // -------------------------------------------------------------------
-    /** Reads the given file from a memory buffer and returns its
+    /** Reads the given file_manager from a memory buffer and returns its
      *  contents if successful.
      *
-     * If the call succeeds, the contents of the file are returned as a
+     * If the call succeeds, the contents of the file_manager are returned as a
      * pointer to an aiScene object. The returned data is intended to be
      * read-only, the importer object keeps ownership of the data and will
      * destroy it upon destruction. If the import fails, nullptr is returned.
      * A human-readable error description can be retrieved by calling
      * GetErrorString(). The previous scene will be deleted during this call.
      * Calling this method doesn't affect the active IOSystem.
-     * @param pBuffer Pointer to the file data
+     * @param pBuffer Pointer to the file_manager data
      * @param pLength Length of pBuffer, in bytes
      * @param pFlags Optional post processing steps to be executed after
      *   a successful import. Provide a bitwise combination of the
@@ -436,10 +436,10 @@ public:
      *   consider to use #ApplyPostProcessing().
      * @param pHint An additional hint to the library. If this is a non
      *   empty string, the library looks for a loader to support
-     *   the file extension specified by pHint and passes the file to
+     *   the file_manager extension specified by pHint and passes the file_manager to
      *   the first matching loader. If this loader is unable to completely
      *   the request, the library continues and tries to determine the
-     *   file format on its own, a task that may or may not be successful.
+     *   file_manager format on its own, a task that may or may not be successful.
      *   Check the return value, and you'll know ...
      * @return A pointer to the imported data, nullptr if the import failed.
      *   The pointer to the scene remains in possession of the Importer
@@ -482,7 +482,7 @@ public:
     const aiScene *ApplyCustomizedPostProcessing(BaseProcess *rootProcess, bool requestValidation);
 
     // -------------------------------------------------------------------
-    /** @brief Reads the given file and returns its contents if successful.
+    /** @brief Reads the given file_manager and returns its contents if successful.
      *
      * This function is provided for backward compatibility.
      * See the const char* version for detailed docs.
@@ -547,7 +547,7 @@ public:
     aiScene *GetOrphanedScene();
 
     // -------------------------------------------------------------------
-    /** Returns whether a given file extension is supported by ASSIMP.
+    /** Returns whether a given file_manager extension is supported by ASSIMP.
      *
      * @param szExtension Extension to be checked.
      *   Must include a trailing dot '.'. Example: ".3ds", ".md3".
@@ -556,7 +556,7 @@ public:
     bool IsExtensionSupported(const char *szExtension) const;
 
     // -------------------------------------------------------------------
-    /** @brief Returns whether a given file extension is supported by ASSIMP.
+    /** @brief Returns whether a given file_manager extension is supported by ASSIMP.
      *
      * This function is provided for backward compatibility.
      * See the const char* version for detailed and up-to-date docs.
@@ -564,19 +564,19 @@ public:
     inline bool IsExtensionSupported(const std::string &szExtension) const;
 
     // -------------------------------------------------------------------
-    /** Get a full list of all file extensions supported by ASSIMP.
+    /** Get a full list of all file_manager extensions supported by ASSIMP.
      *
-     * If a file extension is contained in the list this does of course not
+     * If a file_manager extension is contained in the list this does of course not
      * mean that ASSIMP is able to load all files with this extension ---
      * it simply means there is an importer loaded which claims to handle
-     * files with this file extension.
+     * files with this file_manager extension.
      * @param szOut String to receive the extension list.
      *   Format of the list: "*.3ds;*.obj;*.dae". This is useful for
      *   use with the WinAPI call GetOpenFileName(Ex). */
     void GetExtensionList(aiString &szOut) const;
 
     // -------------------------------------------------------------------
-    /** @brief Get a full list of all file extensions supported by ASSIMP.
+    /** @brief Get a full list of all file_manager extensions supported by ASSIMP.
      *
      * This function is provided for backward compatibility.
      * See the aiString version for detailed and up-to-date docs.
@@ -606,22 +606,22 @@ public:
     BaseImporter *GetImporter(size_t index) const;
 
     // -------------------------------------------------------------------
-    /** Find the importer corresponding to a specific file extension.
+    /** Find the importer corresponding to a specific file_manager extension.
     *
     *  This is quite similar to #IsExtensionSupported except a
     *  BaseImporter instance is returned.
     *  @param szExtension Extension to check for. The following formats
-    *    are recognized (BAH being the file extension): "BAH" (comparison
+    *    are recognized (BAH being the file_manager extension): "BAH" (comparison
     *    is case-insensitive), ".bah", "*.bah" (wild card and dot
     *    characters at the beginning of the extension are skipped).
     *  @return nullptr if no importer is found*/
     BaseImporter *GetImporter(const char *szExtension) const;
 
     // -------------------------------------------------------------------
-    /** Find the importer index corresponding to a specific file extension.
+    /** Find the importer index corresponding to a specific file_manager extension.
     *
     *  @param szExtension Extension to check for. The following formats
-    *    are recognized (BAH being the file extension): "BAH" (comparison
+    *    are recognized (BAH being the file_manager extension): "BAH" (comparison
     *    is case-insensitive), ".bah", "*.bah" (wild card and dot
     *    characters at the beginning of the extension are skipped).
     *  @return (size_t)-1 if no importer is found */
@@ -631,7 +631,7 @@ public:
     /** Returns the storage allocated by ASSIMP to hold the scene data
      * in memory.
      *
-     * This refers to the currently loaded file, see #ReadFile().
+     * This refers to the currently loaded file_manager, see #ReadFile().
      * @param in Data structure to be filled.
      * @note The returned memory statistics refer to the actual
      *   size of the use data of the aiScene. Heap-related overhead

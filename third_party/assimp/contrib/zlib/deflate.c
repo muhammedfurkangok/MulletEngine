@@ -22,7 +22,7 @@
  *      is used to find longer strings when a small match has been found.
  *      A similar algorithm is used in comic (by Jan-Mark Wams) and freeze
  *      (by Leonid Broukhis).
- *         A previous version of this file used a more sophisticated algorithm
+ *         A previous version of this file_manager used a more sophisticated algorithm
  *      (by Fiala and Greene) which is guaranteed to run in linear amortized
  *      time, but has a larger average cost, uses more memory and is patented.
  *      However the F&G algorithm may be faster for some highly redundant
@@ -161,11 +161,11 @@ local const config configuration_table[10] = {
  * Insert string str in the dictionary and set match_head to the previous head
  * of the hash chain (the most recent string with same hash key). Return
  * the previous length of the hash chain.
- * If this file is compiled with -DFASTEST, the compression level is forced
+ * If this file_manager is compiled with -DFASTEST, the compression level is forced
  * to 1, and no hash chains are maintained.
  * IN  assertion: all calls to INSERT_STRING are made with consecutive input
  *    characters and the first MIN_MATCH bytes of str are valid (except for
- *    the last MIN_MATCH-1 bytes of the input file).
+ *    the last MIN_MATCH-1 bytes of the input file_manager).
  */
 #ifdef FASTEST
 #define INSERT_STRING(s, str, match_head) \
@@ -1646,7 +1646,7 @@ local void fill_window(s)
 }
 
 /* ===========================================================================
- * Flush the current block, with given end-of-file flag.
+ * Flush the current block, with given end-of-file_manager flag.
  * IN assertion: strstart is set to the end of the current match.
  */
 #define FLUSH_BLOCK_ONLY(s, last) { \
@@ -1883,7 +1883,7 @@ local block_state deflate_fast(s, flush)
 
     for (;;) {
         /* Make sure that we always have enough lookahead, except
-         * at the end of the input file. We need MAX_MATCH bytes
+         * at the end of the input file_manager. We need MAX_MATCH bytes
          * for the next match, plus MIN_MATCH bytes to insert the
          * string following the next match.
          */
@@ -1909,7 +1909,7 @@ local block_state deflate_fast(s, flush)
         if (hash_head != NIL && s->strstart - hash_head <= MAX_DIST(s)) {
             /* To simplify the code, we prevent matches with the string
              * of window index 0 (in particular we have to avoid a match
-             * of the string with itself at the start of the input file).
+             * of the string with itself at the start of the input file_manager).
              */
             s->match_length = longest_match (s, hash_head);
             /* longest_match() sets match_start */
@@ -1986,7 +1986,7 @@ local block_state deflate_slow(s, flush)
     /* Process the input block. */
     for (;;) {
         /* Make sure that we always have enough lookahead, except
-         * at the end of the input file. We need MAX_MATCH bytes
+         * at the end of the input file_manager. We need MAX_MATCH bytes
          * for the next match, plus MIN_MATCH bytes to insert the
          * string following the next match.
          */
@@ -2015,7 +2015,7 @@ local block_state deflate_slow(s, flush)
             s->strstart - hash_head <= MAX_DIST(s)) {
             /* To simplify the code, we prevent matches with the string
              * of window index 0 (in particular we have to avoid a match
-             * of the string with itself at the start of the input file).
+             * of the string with itself at the start of the input file_manager).
              */
             s->match_length = longest_match (s, hash_head);
             /* longest_match() sets match_start */
@@ -2117,7 +2117,7 @@ local block_state deflate_rle(s, flush)
 
     for (;;) {
         /* Make sure that we always have enough lookahead, except
-         * at the end of the input file. We need MAX_MATCH bytes
+         * at the end of the input file_manager. We need MAX_MATCH bytes
          * for the longest run, plus one for the unrolled loop.
          */
         if (s->lookahead <= MAX_MATCH) {

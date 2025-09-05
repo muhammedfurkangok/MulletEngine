@@ -480,7 +480,7 @@ static int llex(LexState *ls, SemInfo *seminfo)
 				}
 				/* else short comment */
 				while (!currIsNewline(ls) && ls->current != EOZ)
-					next(ls); /* skip until end of line (or end of file) */
+					next(ls); /* skip until end of line (or end of file_manager) */
 				break;
 			}
 			case '[':

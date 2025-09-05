@@ -35,13 +35,13 @@ int main(int argc, char** argv)
 		bulletFile2->parse(verboseDumpAllTypes);
 	else
 	{
-		printf("Error loading file %s.\n", fileName);
+		printf("Error loading file_manager %s.\n", fileName);
 		exit(0);
 	}
 	ok = (bulletFile2->getFlags() & bParse::FD_OK) != 0;
 	if (!ok)
 	{
-		printf("Error parsing file %s.\n", fileName);
+		printf("Error parsing file_manager %s.\n", fileName);
 		exit(0);
 	}
 

@@ -58,7 +58,7 @@ namespace Assimp {
 namespace MD5 {
 
 // ---------------------------------------------------------------------------
-/** Represents a single element in a MD5 file
+/** Represents a single element in a MD5 file_manager
  *
  *  Elements are always contained in sections.
 */
@@ -78,7 +78,7 @@ struct Element {
 using ElementArray = std::vector<Element>;
 
 // ---------------------------------------------------------------------------
-/** Represents a section of a MD5 file (such as the mesh or the joints section)
+/** Represents a section of a MD5 file_manager (such as the mesh or the joints section)
  *
  *  A section is always enclosed in { and } brackets.
 */
@@ -112,7 +112,7 @@ struct BaseJointDescription {
 };
 
 // ---------------------------------------------------------------------------
-/** Represents a bone (joint) descriptor in a MD5Mesh file
+/** Represents a bone (joint) descriptor in a MD5Mesh file_manager
 */
 struct BoneDesc : BaseJointDescription {
     //! Absolute position of the bone
@@ -137,7 +137,7 @@ struct BoneDesc : BaseJointDescription {
 using BoneArray = std::vector<BoneDesc>;
 
 // ---------------------------------------------------------------------------
-/** Represents a bone (joint) descriptor in a MD5Anim file
+/** Represents a bone (joint) descriptor in a MD5Anim file_manager
 */
 struct AnimBoneDesc : BaseJointDescription {
     //! Flags (AI_MD5_ANIMATION_FLAG_xxx)
@@ -150,7 +150,7 @@ struct AnimBoneDesc : BaseJointDescription {
 using AnimBoneArray = std::vector< AnimBoneDesc >;
 
 // ---------------------------------------------------------------------------
-/** Represents a base frame descriptor in a MD5Anim file
+/** Represents a base frame descriptor in a MD5Anim file_manager
 */
 struct BaseFrameDesc {
     aiVector3D vPositionXYZ;
@@ -160,7 +160,7 @@ struct BaseFrameDesc {
 using BaseFrameArray = std::vector<BaseFrameDesc>;
 
 // ---------------------------------------------------------------------------
-/** Represents a camera animation frame in a MDCamera file
+/** Represents a camera animation frame in a MDCamera file_manager
 */
 struct CameraAnimFrameDesc : BaseFrameDesc {
     float fFOV;
@@ -169,7 +169,7 @@ struct CameraAnimFrameDesc : BaseFrameDesc {
 using CameraFrameArray = std::vector<CameraAnimFrameDesc>;
 
 // ---------------------------------------------------------------------------
-/** Represents a frame descriptor in a MD5Anim file
+/** Represents a frame descriptor in a MD5Anim file_manager
 */
 struct FrameDesc {
     //! Index of the frame
@@ -182,7 +182,7 @@ struct FrameDesc {
 using FrameArray = std::vector<FrameDesc>;
 
 // ---------------------------------------------------------------------------
-/** Represents a vertex  descriptor in a MD5 file
+/** Represents a vertex  descriptor in a MD5 file_manager
 */
 struct VertexDesc {
     VertexDesc() AI_NO_EXCEPT
@@ -204,7 +204,7 @@ struct VertexDesc {
 using VertexArray = std::vector<VertexDesc>;
 
 // ---------------------------------------------------------------------------
-/** Represents a vertex weight descriptor in a MD5 file
+/** Represents a vertex weight descriptor in a MD5 file_manager
 */
 struct WeightDesc {
     //! Index of the bone to which this weight refers
@@ -222,7 +222,7 @@ using WeightArray = std::vector<WeightDesc>;
 using FaceArray   = std::vector<aiFace>;
 
 // ---------------------------------------------------------------------------
-/** Represents a mesh in a MD5 file
+/** Represents a mesh in a MD5 file_manager
 */
 struct MeshDesc {
     //! Weights of the mesh
@@ -261,15 +261,15 @@ inline void ConvertQuaternion (const aiVector3D& in, aiQuaternion& out) {
 }
 
 // ---------------------------------------------------------------------------
-/** Parses the data sections of a MD5 mesh file
+/** Parses the data sections of a MD5 mesh file_manager
 */
 class MD5MeshParser {
 public:
     // -------------------------------------------------------------------
     /** Constructs a new MD5MeshParser instance from an existing
-     *  preparsed list of file sections.
+     *  preparsed list of file_manager sections.
      *
-     *  @param mSections List of file sections (output of MD5Parser)
+     *  @param mSections List of file_manager sections (output of MD5Parser)
      */
     explicit MD5MeshParser(SectionArray& mSections);
 
@@ -284,15 +284,15 @@ public:
 #define AI_MD5_PARSE_NO_BOUNDS
 
 // ---------------------------------------------------------------------------
-/** Parses the data sections of a MD5 animation file
+/** Parses the data sections of a MD5 animation file_manager
 */
 class MD5AnimParser {
 public:
     // -------------------------------------------------------------------
     /** Constructs a new MD5AnimParser instance from an existing
-     *  preparsed list of file sections.
+     *  preparsed list of file_manager sections.
      *
-     *  @param mSections List of file sections (output of MD5Parser)
+     *  @param mSections List of file_manager sections (output of MD5Parser)
      */
     explicit MD5AnimParser(SectionArray& mSections);
 
@@ -314,15 +314,15 @@ public:
 };
 
 // ---------------------------------------------------------------------------
-/** Parses the data sections of a MD5 camera animation file
+/** Parses the data sections of a MD5 camera animation file_manager
 */
 class MD5CameraParser {
 public:
     // -------------------------------------------------------------------
     /** Constructs a new MD5CameraParser instance from an existing
-     *  preparsed list of file sections.
+     *  preparsed list of file_manager sections.
      *
-     *  @param mSections List of file sections (output of MD5Parser)
+     *  @param mSections List of file_manager sections (output of MD5Parser)
      */
     explicit MD5CameraParser(SectionArray& mSections);
 
@@ -346,7 +346,7 @@ public:
     /** Constructs a new MD5Parser instance from an existing buffer.
      *
      *  @param buffer File buffer
-     *  @param fileSize Length of the file in bytes (excluding a terminal 0)
+     *  @param fileSize Length of the file_manager in bytes (excluding a terminal 0)
      */
     MD5Parser(char* buffer, unsigned int fileSize);
 

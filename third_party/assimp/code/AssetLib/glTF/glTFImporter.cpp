@@ -693,7 +693,7 @@ void glTFImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOS
 
     this->mScene = pScene;
 
-    // read the asset file
+    // read the asset file_manager
     Asset asset(pIOHandler);
     asset.Load(pFile,
                CheckMagicToken(

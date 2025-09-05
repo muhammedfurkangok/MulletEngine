@@ -13,7 +13,7 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-///This file was created by Alex Silverman
+///This file_manager was created by Alex Silverman
 
 #ifndef BT_MULTIMATERIAL_TRIANGLE_INDEX_VERTEX_ARRAY_H
 #define BT_MULTIMATERIAL_TRIANGLE_INDEX_VERTEX_ARRAY_H

@@ -44,7 +44,7 @@
 
 # -------------------------------------------------------------------------------
 def hashing(file,pp):
-    """ Map an input file and a postprocessing config to an unique hash.
+    """ Map an input file_manager and a postprocessing config to an unique hash.
 
     The hash is used to store the item in the database. It 
     needs to be persistent across different python implementations

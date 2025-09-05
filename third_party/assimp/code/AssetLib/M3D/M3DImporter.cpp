@@ -110,7 +110,7 @@ M3DImporter::M3DImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Returns true, if file is a binary or ASCII Model 3D file.
+//  Returns true, if file_manager is a binary or ASCII Model 3D file_manager.
 bool M3DImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     // don't use CheckMagicToken because that checks with swapped bytes too, leading to false
     // positives. This magic is not uint32_t, but char[4], so memcmp is the best way
@@ -134,24 +134,24 @@ const aiImporterDesc *M3DImporter::GetInfo() const {
 // ------------------------------------------------------------------------------------------------
 //  Model 3D import implementation
 void M3DImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSystem *pIOHandler) {
-    // Read file into memory
+    // Read file_manager into memory
     std::unique_ptr<IOStream> pStream(pIOHandler->Open(file, "rb"));
     if (!pStream.get()) {
-        throw DeadlyImportError("Failed to open file ", file, ".");
+        throw DeadlyImportError("Failed to open file_manager ", file, ".");
     }
 
-    // Get the file-size and validate it, throwing an exception when fails
+    // Get the file_manager-size and validate it, throwing an exception when fails
     size_t fileSize = pStream->FileSize();
     if (fileSize < 8) {
-        throw DeadlyImportError("M3D-file ", file, " is too small.");
+        throw DeadlyImportError("M3D-file_manager ", file, " is too small.");
     }
     std::vector<unsigned char> buffer(fileSize);
     if (fileSize != pStream->Read(buffer.data(), 1, fileSize)) {
-        throw DeadlyImportError("Failed to read the file ", file, ".");
+        throw DeadlyImportError("Failed to read the file_manager ", file, ".");
     }
     // extra check for binary format's first 8 bytes. Not done for the ASCII variant
     if (!memcmp(buffer.data(), "3DMO", 4) && memcmp(buffer.data() + 4, &fileSize, 4)) {
-        throw DeadlyImportError("Bad binary header in file ", file, ".");
+        throw DeadlyImportError("Bad binary header in file_manager ", file, ".");
     }
     // make sure there's a terminator zero character, as input must be ASCIIZ
     if (!memcmp(buffer.data(), "3dmo", 4)) {

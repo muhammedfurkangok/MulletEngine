@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
 
-/** @file Android extension of DefaultIOSystem using the standard C file functions */
+/** @file Android extension of DefaultIOSystem using the standard C file_manager functions */
 
 
 #include <assimp/config.h>
@@ -80,19 +80,19 @@ AndroidJNIIOSystem::~AndroidJNIIOSystem() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Tests for the existence of a file at the given path.
+// Tests for the existence of a file_manager at the given path.
 bool AndroidJNIIOSystem::Exists( const char* pFile) const {
     AAsset* asset = AAssetManager_open(mApkAssetManager, pFile, AASSET_MODE_UNKNOWN);
-    FILE* file = ::fopen( (mApkWorkspacePath + getOsSeparator() + std::string(pFile)).c_str(), "rb");
+    FILE* file_manager = ::fopen( (mApkWorkspacePath + getOsSeparator() + std::string(pFile)).c_str(), "rb");
 
-    if (!asset && !file) {
+    if (!asset && !file_manager) {
         __android_log_print(ANDROID_LOG_ERROR, "Assimp", "Asset manager can not find: %s", pFile);
         return false;
     }
 
     __android_log_print(ANDROID_LOG_ERROR, "Assimp", "Asset exists");
-    if (file) {
-        ::fclose( file);
+    if (file_manager) {
+        ::fclose( file_manager);
     }
 
     return true;
@@ -141,7 +141,7 @@ bool AndroidJNIIOSystem::AndroidExtractAsset(std::string name) {
         return true;
     }
 
-    // Open file
+    // Open file_manager
     AAsset* asset = AAssetManager_open(mApkAssetManager, name.c_str(),
 			AASSET_MODE_UNKNOWN);
     std::vector<char> assetContent;
@@ -164,16 +164,16 @@ bool AndroidJNIIOSystem::AndroidExtractAsset(std::string name) {
         directoryNewPath = dirname(&directoryNewPath[0]);
 
         if (mkpath(directoryNewPath, S_IRUSR | S_IWUSR | S_IXUSR) == -1) {
-             __android_log_print(ANDROID_LOG_ERROR, "assimp", "Can not create the directory for the output file");
+             __android_log_print(ANDROID_LOG_ERROR, "assimp", "Can not create the directory for the output file_manager");
         }
 
         // Prepare output buffer
         std::ofstream assetExtracted(newPath.c_str(), std::ios::out | std::ios::binary);
         if (!assetExtracted) {
-            __android_log_print(ANDROID_LOG_ERROR, "assimp", "Can not open output file");
+            __android_log_print(ANDROID_LOG_ERROR, "assimp", "Can not open output file_manager");
         }
 
-        // Write output buffer into a file
+        // Write output buffer into a file_manager
         assetExtracted.write(&assetContent[0], assetContent.size());
         assetExtracted.close();
 
@@ -187,7 +187,7 @@ bool AndroidJNIIOSystem::AndroidExtractAsset(std::string name) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Open a new file with a given path.
+// Open a new file_manager with a given path.
 IOStream* AndroidJNIIOSystem::Open( const char* strFile, const char* strMode) {
     ai_assert(nullptr != strFile);
     ai_assert(nullptr != strMode);
@@ -197,13 +197,13 @@ IOStream* AndroidJNIIOSystem::Open( const char* strFile, const char* strMode) {
 	AndroidExtractAsset(std::string(strFile));
     }
 
-    FILE* file = ::fopen( fullPath.c_str(), strMode);
-    if (nullptr == file) {
+    FILE* file_manager = ::fopen( fullPath.c_str(), strMode);
+    if (nullptr == file_manager) {
         return nullptr;
     }
 
-    __android_log_print(ANDROID_LOG_ERROR, "assimp", "AndroidIOSystem: file %s opened", fullPath.c_str());
-    return new DefaultIOStream(file, fullPath);
+    __android_log_print(ANDROID_LOG_ERROR, "assimp", "AndroidIOSystem: file_manager %s opened", fullPath.c_str());
+    return new DefaultIOStream(file_manager, fullPath);
 }
 
 #undef PATHLIMIT

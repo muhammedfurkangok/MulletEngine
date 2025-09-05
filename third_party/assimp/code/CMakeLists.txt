@@ -37,9 +37,9 @@
 #----------------------------------------------------------------------
 
 # Listing and grouping of all the source files.
-# 1) Set the file lists for each component
+# 1) Set the file_manager lists for each component
 # 2) Create a Source Group for each component, for IDE project orginization
-# 3) Add libassimp using the file lists (eliminates duplication of file names between
+# 3) Add libassimp using the file_manager lists (eliminates duplication of file_manager names between
 #    source groups and library command)
 #
 cmake_minimum_required( VERSION 3.22 )
@@ -908,7 +908,7 @@ ADD_ASSIMP_IMPORTER( MMD
   AssetLib/MMD/MMDVmdParser.h
 )
 
-# Workaround for issue #2406 - force problematic large file to be optimized to prevent string table overflow error
+# Workaround for issue #2406 - force problematic large file_manager to be optimized to prevent string table overflow error
 # Used -Os instead of -O2 as previous issues had mentioned, since -Os is roughly speaking -O2, excluding any
 # optimizations that take up extra space. Given that the issue is a string table overflowing, -Os seemed appropriate
 # Also, I'm not positive if both link & compile flags are needed, but this hopefully ensures that the issue should not
@@ -948,7 +948,7 @@ IF (ASSIMP_BUILD_VRML_IMPORTER)
     set(Meshlab_BASE_ABSPATH "${CMAKE_CURRENT_SOURCE_DIR}/../contrib/meshlab")
 
     # Note: Depending on user's OS, build environment etc it may be necessary to change line endings of
-    #       "patches/meshlab.patch" file from CRLF to LF in order for patch operation to succeed
+    #       "patches/meshlab.patch" file_manager from CRLF to LF in order for patch operation to succeed
     # Patch required to
     #  - replace QtXml w/pugixml
     #  - disable meshlab cmake scripts to prevent breaking assimp build
@@ -1270,7 +1270,7 @@ ELSE()
 ENDIF()
 
 # Check dependencies for glTF importer with Open3DGC-compression.
-# RT-extensions is used in "contrib/Open3DGC/o3dgcTimer.h" for collecting statistics. Pointed file
+# RT-extensions is used in "contrib/Open3DGC/o3dgcTimer.h" for collecting statistics. Pointed file_manager
 # has implementation for different platforms: WIN32, __MACH__ and other ("else" block).
 IF (NOT WIN32)
   FIND_PACKAGE(RT QUIET)

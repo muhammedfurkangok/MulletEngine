@@ -35,16 +35,16 @@
 ;         http://www.winimage.com/zLibDll
 ;         http://www.muppetlabs.com/~breadbox/software/assembly.html
 ;
-; to compile this file for infozip Zip, I use option:
+; to compile this file_manager for infozip Zip, I use option:
 ;   ml64.exe /Flgvmat64 /c /Zi /DINFOZIP gvmat64.asm
 ;
-; to compile this file for zLib, I use option:
+; to compile this file_manager for zLib, I use option:
 ;   ml64.exe /Flgvmat64 /c /Zi gvmat64.asm
 ; Be carrefull to adapt zlib1222add below to your version of zLib
 ;   (if you use a version of zLib before 1.0.4 or after 1.2.2.2, change
 ;    value of zlib1222add later)
 ;
-; This file compile with Microsoft Macro Assembler (x64) for AMD64
+; This file_manager compile with Microsoft Macro Assembler (x64) for AMD64
 ;
 ;   ml64.exe is given with Visual Studio 2005/2008/2010 and Windows WDK
 ;

@@ -160,27 +160,27 @@ void FBXExporter::ExportBinary (
     // TODO: some of these might be relevant to export
     (void)mProperties;
 
-    // open the indicated file for writing (in binary mode)
+    // open the indicated file_manager for writing (in binary mode)
     outfile.reset(pIOSystem->Open(pFile,"wb"));
     if (!outfile) {
         throw DeadlyExportError(
-            "could not open output .fbx file: " + std::string(pFile)
+            "could not open output .fbx file_manager: " + std::string(pFile)
         );
     }
 
-    // first a binary-specific file header
+    // first a binary-specific file_manager header
     WriteBinaryHeader();
 
-    // the rest of the file is in node entries.
+    // the rest of the file_manager is in node entries.
     // we have to serialize each entry before we write to the output,
     // as the first thing we write is the byte offset of the _next_ entry.
     // Either that or we can skip back to write the offset when we finish.
     WriteAllNodes();
 
-    // finally we have a binary footer to the file
+    // finally we have a binary footer to the file_manager
     WriteBinaryFooter();
 
-    // explicitly release file pointer,
+    // explicitly release file_manager pointer,
     // so we don't have to rely on class destruction.
     outfile.reset();
 }
@@ -192,11 +192,11 @@ void FBXExporter::ExportAscii (
     // remember that we're exporting in ascii mode
     binary = false;
 
-    // open the indicated file for writing in text mode
+    // open the indicated file_manager for writing in text mode
     outfile.reset(pIOSystem->Open(pFile,"wt"));
     if (!outfile) {
         throw DeadlyExportError(
-            "could not open output .fbx file: " + std::string(pFile)
+            "could not open output .fbx file_manager: " + std::string(pFile)
         );
     }
 
@@ -206,21 +206,21 @@ void FBXExporter::ExportAscii (
     // write all the sections
     WriteAllNodes();
 
-    // make sure the file ends with a newline.
-    // note: if the file is opened in text mode,
+    // make sure the file_manager ends with a newline.
+    // note: if the file_manager is opened in text mode,
     // this should do the right cross-platform thing.
     outfile->Write("\n", 1, 1);
 
-    // explicitly release file pointer,
+    // explicitly release file_manager pointer,
     // so we don't have to rely on class destruction.
     outfile.reset();
 }
 
 void FBXExporter::WriteAsciiHeader()
 {
-    // basically just a comment at the top of the file
+    // basically just a comment at the top of the file_manager
     std::stringstream head;
-    head << "; FBX " << EXPORT_VERSION_STR << " project file\n";
+    head << "; FBX " << EXPORT_VERSION_STR << " project file_manager\n";
     head << "; Created by the Open Asset Import Library (Assimp)\n";
     head << "; http://assimp.org\n";
     head << "; -------------------------------------------------\n";
@@ -248,7 +248,7 @@ void FBXExporter::WriteBinaryHeader()
     {
         StreamWriterLE outstream(outfile);
         outstream.PutU4(EXPORT_VERSION_INT);
-    } // StreamWriter destructor writes the data to the file
+    } // StreamWriter destructor writes the data to the file_manager
 
     // after this the node data starts immediately
     // (probably with the FBXHEaderExtension node)
@@ -273,11 +273,11 @@ void FBXExporter::WriteBinaryFooter()
         outfile->Write("\x00", 1, 1);
     }
 
-    // now the file version again
+    // now the file_manager version again
     {
         StreamWriterLE outstream(outfile);
         outstream.PutU4(EXPORT_VERSION_INT);
-    } // StreamWriter destructor writes the data to the file
+    } // StreamWriter destructor writes the data to the file_manager
 
     // and finally some binary footer added to all files
     for (size_t i = 0; i < 120; ++i) {
@@ -885,7 +885,7 @@ void FBXExporter::WriteDefinitions () {
     }
 
     // Video / FbxVideo
-    // one for each image file.
+    // one for each image file_manager.
     count = int32_t(count_images(mScene));
     if (count) {
         n = FBX::Node("ObjectType", "Video");
@@ -1586,7 +1586,7 @@ void FBXExporter::WriteObjects () {
         // try get embedded texture
         const aiTexture* embedded_texture = mScene->GetEmbeddedTexture(it.first.c_str());
         if (embedded_texture != nullptr) {
-            // change the path (use original filename, if available. If name is empty, concatenate texture index with file extension)
+            // change the path (use original filename, if available. If name is empty, concatenate texture index with file_manager extension)
             std::stringstream newPath;
             if (embedded_texture->mFilename.length > 0) {
                 newPath << embedded_texture->mFilename.C_Str();
@@ -2112,7 +2112,7 @@ void FBXExporter::WriteObjects () {
             );
         }
 
-        // if we cannot create a valid FBX file, simply die.
+        // if we cannot create a valid FBX file_manager, simply die.
         // this will both prevent unnecessary bug reports,
         // and tell the user what they can do to fix the situation
         // (i.e. export their model in the bind pose).
@@ -2142,7 +2142,7 @@ void FBXExporter::WriteObjects () {
     //
     // This is a legacy system, which should be unnecessary.
     //
-    // Somehow including it slows file loading by the official FBX SDK,
+    // Somehow including it slows file_manager loading by the official FBX SDK,
     // and as it can reconstruct it from the deformers anyway,
     // this is not currently included.
     //

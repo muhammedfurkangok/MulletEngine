@@ -132,7 +132,7 @@ local const static_tree_desc  static_bl_desc =
 {(const ct_data *)0, extra_blbits, 0,   BL_CODES, MAX_BL_BITS};
 
 /* ===========================================================================
- * Local (static) routines in this file.
+ * Local (static) routines in this file_manager.
  */
 
 local void tr_static_init OF((void));
@@ -312,7 +312,7 @@ local void tr_static_init()
 }
 
 /* ===========================================================================
- * Generate the file trees.h describing the static trees.
+ * Generate the file_manager trees.h describing the static trees.
  */
 #ifdef GEN_TREES_H
 #  ifndef ZLIB_DEBUG
@@ -397,7 +397,7 @@ void ZLIB_INTERNAL _tr_init(s)
     s->bits_sent = 0L;
 #endif
 
-    /* Initialize the first block of the first file: */
+    /* Initialize the first block of the first file_manager: */
     init_block(s);
 }
 
@@ -864,7 +864,7 @@ void ZLIB_INTERNAL _tr_stored_block(s, buf, stored_len, last)
     deflate_state *s;
     charf *buf;       /* input block */
     ulg stored_len;   /* length of input block */
-    int last;         /* one if this is the last block for a file */
+    int last;         /* one if this is the last block for a file_manager */
 {
     send_bits(s, (STORED_BLOCK<<1) + last, 3);  /* send block type */
     bi_windup(s);        /* align on byte boundary */
@@ -913,7 +913,7 @@ void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)
     deflate_state *s;
     charf *buf;       /* input block, or NULL if too old */
     ulg stored_len;   /* length of input block */
-    int last;         /* one if this is the last block for a file */
+    int last;         /* one if this is the last block for a file_manager */
 {
     ulg opt_lenb, static_lenb; /* opt_len and static_len in bytes */
     int max_blindex = 0;  /* index of last bit length code of non zero freq */
@@ -921,7 +921,7 @@ void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)
     /* Build the Huffman trees unless a stored block is forced */
     if (s->level > 0) {
 
-        /* Check if the file is binary or text */
+        /* Check if the file_manager is binary or text */
         if (s->strm->data_type == Z_UNKNOWN)
             s->strm->data_type = detect_data_type(s);
 

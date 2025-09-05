@@ -12,7 +12,7 @@
 //
 //    #define STB_RECT_PACK_IMPLEMENTATION
 //
-// in the file that you want to have the implementation.
+// in the file_manager that you want to have the implementation.
 //
 // Not necessarily the awesomest packing method, but better than
 // the totally naive one in stb_truetype (which is primarily what
@@ -60,7 +60,7 @@
 //
 // LICENSE
 //
-//   See end of file for license information.
+//   See end of file_manager for license information.
 
 //////////////////////////////////////////////////////////////////////////////
 //

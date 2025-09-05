@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file ZipArchiveIOSystem.h
- *  @brief Implementation of IOSystem to read a ZIP file from another IOSystem
+ *  @brief Implementation of IOSystem to read a ZIP file_manager from another IOSystem
 */
 
 #pragma once
@@ -69,7 +69,7 @@ public:
     void Close(IOStream* pFile) override;
 
     // Specific to ZIP
-    //! The file was opened and is a ZIP
+    //! The file_manager was opened and is a ZIP
     bool isOpen() const;
 
     //! Get the list of all files with their simplified paths

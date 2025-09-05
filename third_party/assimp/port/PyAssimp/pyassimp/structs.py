@@ -290,7 +290,7 @@ Node._fields_ = [
             ("mMeshes", POINTER(c_uint)),
 
             # Metadata associated with this node or NULL if there is no metadata.
-            # Whether any metadata is generated depends on the source file format.
+            # Whether any metadata is generated depends on the source file_manager format.
             ("mMetadata", POINTER(Metadata)),
         ]
 
@@ -382,7 +382,7 @@ class Light(Structure):
             #  material color to obtain the final color that contributes
             #  to the ambient shading term. Most renderers will ignore
             #  this value it, is just a remaining of the fixed-function pipeline
-            #  that is still supported by quite many file formats.
+            #  that is still supported by quite many file_manager formats.
             ("mColorAmbient", Color3D),
 
             # Inner angle of a spot light's light cone.
@@ -436,9 +436,9 @@ class Texture(Structure):
             #    achFormatHint == "rgba5650";
             # 4. One color image with B channel and 1 bit for it, achFormatHint == "rgba0010";
             # If mHeight == 0 then achFormatHint is set set to '\\0\\0\\0\\0' if the loader has no additional
-            # information about the texture file format used OR the
-            # file extension of the format without a trailing dot. If there
-            # are multiple file extensions for a format, the shortest
+            # information about the texture file_manager format used OR the
+            # file_manager extension of the format without a trailing dot. If there
+            # are multiple file_manager extensions for a format, the shortest
             # extension is chosen (JPEG maps to 'jpg', not to 'jpeg').
             # E.g. 'dds\\0', 'pcx\\0', 'jpg\\0'.  All characters are lower-case.
             # The fourth character will always be '\\0'.
@@ -675,7 +675,7 @@ class Mesh(Structure):
             # @c fpclassify instead.
             # @note Normal vectors computed by Assimp are always unit-length.
             # However, this needn't apply for normals that have been taken
-            #   directly from the model file.
+            #   directly from the model file_manager.
             ("mNormals", POINTER(Vector3D)),
 
             # Vertex tangents.
@@ -836,7 +836,7 @@ class Camera(Structure):
             # Screen aspect ratio.
             # This is the ration between the width and the height of the
             # screen. Typical values are 4/3, 1/2 or 1/1. This value is
-            # 0 if the aspect ratio is not defined in the source file.
+            # 0 if the aspect ratio is not defined in the source file_manager.
             # 0 is also the default value.
             ("mAspect", c_float),
         ]
@@ -992,7 +992,7 @@ class Animation(Structure):
             # Duration of the animation in ticks.
             ("mDuration", c_double),
 
-            # Ticks per second. 0 if not specified in the imported file
+            # Ticks per second. 0 if not specified in the imported file_manager
             ("mTicksPerSecond", c_double),
 
             # The number of bone animation channels. Each channel affects
@@ -1086,13 +1086,13 @@ ExportDataBlob._fields_ = [
 
             # Name of the blob. An empty string always
             # indicates the first (and primary) blob,
-            # which contains the actual file data.
+            # which contains the actual file_manager data.
             # Any other blobs are auxiliary files produced
             # by exporters (i.e. material files). Existence
-            # of such files depends on the file format. Most
+            # of such files depends on the file_manager format. Most
             # formats don't split assets across multiple files.
             #
-            # If used, blob names usually contain the file
+            # If used, blob names usually contain the file_manager
             # extension that should be used when writing
             # the data to disc.
             ("name", String),
@@ -1125,7 +1125,7 @@ class Scene(Structure):
             # There will always be at least the root node if the import
             # was successful (and no special flags have been set).
             # Presence of further nodes depends on the format and content
-            # of the imported file.
+            # of the imported file_manager.
             ("mRootNode", POINTER(Node)),
 
             # The number of meshes in the scene.
@@ -1152,15 +1152,15 @@ class Scene(Structure):
             ("mNumAnimations", c_uint),
 
             # The array of animations.
-            # All animations imported from the given file are listed here.
+            # All animations imported from the given file_manager are listed here.
             # The array is mNumAnimations in size.
             ("mAnimations", POINTER(POINTER(Animation))),
 
-            # The number of textures embedded into the file
+            # The number of textures embedded into the file_manager
             ("mNumTextures", c_uint),
 
             # The array of embedded textures.
-            # Not many file formats embed their textures into the file.
+            # Not many file_manager formats embed their textures into the file_manager.
             # An example is Quake's MDL format (which is also used by
             # some GameStudio versions)
             ("mTextures", POINTER(POINTER(Texture))),
@@ -1170,7 +1170,7 @@ class Scene(Structure):
             ("mNumLights", c_uint),
 
             # The array of light sources.
-            # All light sources imported from the given file are
+            # All light sources imported from the given file_manager are
             # listed here. The array is mNumLights in size.
             ("mLights", POINTER(POINTER(Light))),
 
@@ -1179,7 +1179,7 @@ class Scene(Structure):
             ("mNumCameras", c_uint),
 
             # The array of cameras.
-            # All cameras imported from the given file are listed here.
+            # All cameras imported from the given file_manager are listed here.
             # The array is mNumCameras in size. The first camera in the
             # array (if existing) is the default camera view into
             # the scene.

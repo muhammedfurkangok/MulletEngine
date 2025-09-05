@@ -63,7 +63,7 @@ using namespace Assimp::ASE;
     int iDepth = 0;
 
 // ------------------------------------------------------------------------------------------------
-// Handle a "top-level" section in the file. EOF is no error in this case.
+// Handle a "top-level" section in the file_manager. EOF is no error in this case.
 
 #define AI_ASE_HANDLE_TOP_LEVEL_SECTION()          \
     else if ('{' == *mFilePtr)                     \
@@ -86,7 +86,7 @@ using namespace Assimp::ASE;
     ++mFilePtr;
 
 // ------------------------------------------------------------------------------------------------
-// Handle a nested section in the file. EOF is an error in this case
+// Handle a nested section in the file_manager. EOF is an error in this case
 // @param level "Depth" of the section
 // @param msg Full name of the section (including the asterisk)
 
@@ -129,7 +129,7 @@ Parser::Parser(const char *file, size_t fileLen, unsigned int fileFormatDefault)
     iLastFrame = 0;
     iFrameSpeed = 30; // use 30 as default value for this property
     iTicksPerFrame = 1; // use 1 as default value for this property
-    bLastWasEndLine = false; // need to handle \r\n seqs due to binary file mapping
+    bLastWasEndLine = false; // need to handle \r\n seqs due to binary file_manager mapping
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -240,14 +240,14 @@ void Parser::Parse() {
                 ParseLV4MeshLong(fmt);
 
                 if (fmt > 200) {
-                    LogWarning("Unknown file format version: *3DSMAX_ASCIIEXPORT should \
+                    LogWarning("Unknown file_manager format version: *3DSMAX_ASCIIEXPORT should \
                                be <= 200");
                 }
                 // *************************************************************
                 // - fmt will be 0 if we're unable to read the version number
                 // there are some faulty files without a version number ...
-                // in this case we'll guess the exact file format by looking
-                // at the file extension (ASE, ASK, ASC)
+                // in this case we'll guess the exact file_manager format by looking
+                // at the file_manager extension (ASE, ASK, ASC)
                 // *************************************************************
 
                 if (fmt) {
@@ -1321,7 +1321,7 @@ void Parser::ParseLV2MeshBlock(ASE::Mesh &mesh) {
             // mesh animation keyframe. Not supported
             if (TokenMatch(mFilePtr, "MESH_ANIMATION", 14)) {
 
-                LogWarning("Found *MESH_ANIMATION element in ASE/ASK file. "
+                LogWarning("Found *MESH_ANIMATION element in ASE/ASK file_manager. "
                            "Keyframe animation is not supported by Assimp, this element "
                            "will be ignored");
                 //SkipSection();

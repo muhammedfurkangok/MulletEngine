@@ -141,7 +141,7 @@ public:
 		mHard[10] = ST_SOFT;
 	}
 
-	void SetFile(const char *fname);  // use this file as source data to parse.
+	void SetFile(const char *fname);  // use this file_manager as source data to parse.
 
 	void SetSourceData(char *data, int len)
 	{
@@ -150,7 +150,7 @@ public:
 		mMyAlloc = false;
 	};
 
-	int Parse(InPlaceParserInterface *callback);  // returns true if entire file was parsed, false if it aborted for some reason
+	int Parse(InPlaceParserInterface *callback);  // returns true if entire file_manager was parsed, false if it aborted for some reason
 
 	int ProcessLine(int lineno, char *line, InPlaceParserInterface *callback);
 
@@ -237,7 +237,7 @@ void InPlaceParser::SetFile(const char *fname)
 			}
 			else
 			{
-				mData[mLen] = 0;  // zero byte terminate end of file marker.
+				mData[mLen] = 0;  // zero byte terminate end of file_manager marker.
 				mMyAlloc = true;
 			}
 		}
@@ -378,7 +378,7 @@ int InPlaceParser::ProcessLine(int lineno, char *line, InPlaceParserInterface *c
 	return ret;
 }
 
-int InPlaceParser::Parse(InPlaceParserInterface *callback)  // returns true if entire file was parsed, false if it aborted for some reason
+int InPlaceParser::Parse(InPlaceParserInterface *callback)  // returns true if entire file_manager was parsed, false if it aborted for some reason
 {
 	assert(callback);
 	if (!mData) return 0;

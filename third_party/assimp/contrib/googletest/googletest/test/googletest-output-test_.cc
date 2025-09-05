@@ -27,10 +27,10 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// The purpose of this file is to generate Google Test output under
+// The purpose of this file_manager is to generate Google Test output under
 // various conditions.  The output will then be verified by
 // googletest-output-test.py to ensure that Google Test generates the
-// desired messages.  Therefore, most tests in this file are MEANT TO
+// desired messages.  Therefore, most tests in this file_manager are MEANT TO
 // FAIL.
 
 #include <stdlib.h>
@@ -487,13 +487,13 @@ namespace bar {
 class MixedUpTestSuiteTest : public testing::Test {};
 
 // The following two tests are expected to fail.  We rely on the
-// golden file to check that Google Test generates the right error message.
+// golden file_manager to check that Google Test generates the right error message.
 TEST_F(MixedUpTestSuiteTest, ThisShouldFail) {}
 TEST_F(MixedUpTestSuiteTest, ThisShouldFailToo) {}
 
 class MixedUpTestSuiteWithSameTestNameTest : public testing::Test {};
 
-// Expected to fail.  We rely on the golden file to check that Google Test
+// Expected to fail.  We rely on the golden file_manager to check that Google Test
 // generates the right error message.
 TEST_F(MixedUpTestSuiteWithSameTestNameTest,
        TheSecondTestWithThisNameShouldFail) {}
@@ -509,7 +509,7 @@ class TEST_F_before_TEST_in_same_test_case : public testing::Test {};
 
 TEST_F(TEST_F_before_TEST_in_same_test_case, DefinedUsingTEST_F) {}
 
-// Expected to fail.  We rely on the golden file to check that Google Test
+// Expected to fail.  We rely on the golden file_manager to check that Google Test
 // generates the right error message.
 TEST(TEST_F_before_TEST_in_same_test_case, DefinedUsingTESTAndShouldFail) {}
 
@@ -517,7 +517,7 @@ class TEST_before_TEST_F_in_same_test_case : public testing::Test {};
 
 TEST(TEST_before_TEST_F_in_same_test_case, DefinedUsingTEST) {}
 
-// Expected to fail.  We rely on the golden file to check that Google Test
+// Expected to fail.  We rely on the golden file_manager to check that Google Test
 // generates the right error message.
 TEST_F(TEST_before_TEST_F_in_same_test_case, DefinedUsingTEST_FAndShouldFail) {}
 
@@ -778,12 +778,12 @@ REGISTER_TYPED_TEST_SUITE_P(DetectNotInstantiatedTypesTest, Used);
 
 #ifdef GTEST_HAS_DEATH_TEST
 
-// We rely on the golden file to verify that tests whose test case
+// We rely on the golden file_manager to verify that tests whose test case
 // name ends with DeathTest are run first.
 
 TEST(ADeathTest, ShouldRunFirst) {}
 
-// We rely on the golden file to verify that typed tests whose test
+// We rely on the golden file_manager to verify that typed tests whose test
 // case name ends with DeathTest are run first.
 
 template <typename T>
@@ -794,7 +794,7 @@ TYPED_TEST_SUITE(ATypedDeathTest, NumericTypes);
 
 TYPED_TEST(ATypedDeathTest, ShouldRunFirst) {}
 
-// We rely on the golden file to verify that type-parameterized tests
+// We rely on the golden file_manager to verify that type-parameterized tests
 // whose test case name ends with DeathTest are run first.
 
 template <typename T>
@@ -1017,13 +1017,13 @@ TEST_F(TestSuiteThatSkipsInSetUp, ShouldNotRun) { std::abort(); }
 //
 // The idea is to use Google Test to run all the tests we have defined (some
 // of them are intended to fail), and then compare the test results
-// with the "golden" file.
+// with the "golden" file_manager.
 int main(int argc, char** argv) {
   GTEST_FLAG_SET(print_time, false);
 
   // We just run the tests, knowing some of them are intended to fail.
   // We will use a separate Python script to compare the output of
-  // this program with the golden file.
+  // this program with the golden file_manager.
 
   // It's hard to test InitGoogleTest() directly, as it has many
   // global side effects.  The following line serves as a test
@@ -1049,7 +1049,7 @@ int main(int argc, char** argv) {
   if (internal_skip_environment_and_ad_hoc_tests) return RUN_ALL_TESTS();
 
   // Registers two global test environments.
-  // The golden file verifies that they are set up in the order they
+  // The golden file_manager verifies that they are set up in the order they
   // are registered, and torn down in the reverse order.
   testing::AddGlobalTestEnvironment(new FooEnvironment);
   testing::AddGlobalTestEnvironment(new BarEnvironment);

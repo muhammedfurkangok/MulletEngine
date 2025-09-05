@@ -160,7 +160,7 @@ static void setupExporterArray(std::vector<Exporter::ExportFormatEntry> &exporte
 
 #ifndef ASSIMP_BUILD_NO_OBJ_EXPORTER
 	exporters.emplace_back("obj", "Wavefront OBJ format", "obj", &ExportSceneObj);
-	exporters.emplace_back("objnomtl", "Wavefront OBJ format without material file", "obj", &ExportSceneObjNoMtl);
+	exporters.emplace_back("objnomtl", "Wavefront OBJ format without material file_manager", "obj", &ExportSceneObjNoMtl);
 #endif
 
 #ifndef ASSIMP_BUILD_NO_STL_EXPORTER
@@ -223,7 +223,7 @@ static void setupExporterArray(std::vector<Exporter::ExportFormatEntry> &exporte
 #endif
 
 #ifndef ASSIMP_BUILD_NO_PBRT_EXPORTER
-	exporters.emplace_back("pbrt", "pbrt-v4 scene description file", "pbrt", &ExportScenePbrt, aiProcess_ConvertToLeftHanded | aiProcess_Triangulate | aiProcess_SortByPType);
+	exporters.emplace_back("pbrt", "pbrt-v4 scene description file_manager", "pbrt", &ExportScenePbrt, aiProcess_ConvertToLeftHanded | aiProcess_Triangulate | aiProcess_SortByPType);
 #endif
 
 #ifndef ASSIMP_BUILD_NO_ASSJSON_EXPORTER
@@ -501,7 +501,7 @@ aiReturn Exporter::Export( const aiScene* pScene, const char* pFormatId, const c
         }
     }
 
-    pimpl->mError = std::string("Found no exporter to handle this file format: ") + pFormatId;
+    pimpl->mError = std::string("Found no exporter to handle this file_manager format: ") + pFormatId;
     ASSIMP_END_EXCEPTION_REGION(aiReturn);
 
     return AI_FAILURE;

@@ -60,7 +60,7 @@ public:
     static MeshXml *ImportMesh(XmlParser *parser);
 
     /// Imports skeleton to @c mesh.
-    /// If mesh does not have a skeleton reference or the skeleton file
+    /// If mesh does not have a skeleton reference or the skeleton file_manager
     /// cannot be found it is not a fatal DeadlyImportError.
     /// @return If skeleton import was successful.
     static bool ImportSkeleton(IOSystem *pIOHandler, MeshXml *mesh);

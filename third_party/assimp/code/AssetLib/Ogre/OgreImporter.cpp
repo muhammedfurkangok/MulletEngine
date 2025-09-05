@@ -84,10 +84,10 @@ bool OgreImporter::CanRead(const std::string &pFile, Assimp::IOSystem *pIOHandle
 }
 
 void OgreImporter::InternReadFile(const std::string &pFile, aiScene *pScene, Assimp::IOSystem *pIOHandler) {
-    // Open source file
+    // Open source file_manager
     IOStream *f = pIOHandler->Open(pFile, "rb");
     if (!f) {
-        throw DeadlyImportError("Failed to open file ", pFile);
+        throw DeadlyImportError("Failed to open file_manager ", pFile);
     }
 
     // Binary .mesh import

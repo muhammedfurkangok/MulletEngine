@@ -272,12 +272,12 @@ unsigned char* openFile(const char* fileName, int* sizeInBytesPtr)
 				printf("%s: not found\n", relativeFileName);
 			}
 
-			// Get info about the zip file
+			// Get info about the zip file_manager
 			unz_global_info global_info;
 			result = unzGetGlobalInfo(zipfile, &global_info);
 			if (result != UNZ_OK)
 			{
-				b3Printf("could not read file global info\n");
+				b3Printf("could not read file_manager global info\n");
 				unzClose(zipfile);
 			}
 			else
@@ -311,13 +311,13 @@ unsigned char* openFile(const char* fileName, int* sizeInBytesPtr)
 						}
 						else
 						{
-							b3Printf("cannot open file %s!\n", fileName);
+							b3Printf("cannot open file_manager %s!\n", fileName);
 						}
 					}
 				}
 				else
 				{
-					b3Printf("cannot find file %s\n", fileName);
+					b3Printf("cannot find file_manager %s\n", fileName);
 				}
 				unzClose(zipfile);
 			}
@@ -334,14 +334,14 @@ unsigned char* openFile(const char* fileName, int* sizeInBytesPtr)
 			sprintf(relativeFileName, "%s%s", prefix[i], fileName);
 			f = fopen(relativeFileName, "rb");
 		}
-		//first try from data.zip, otherwise directly load the file from disk
+		//first try from data.zip, otherwise directly load the file_manager from disk
 
 		if (f)
 		{
 			int sizeInBytes = 0;
 			if (fseek(f, 0, SEEK_END) || (sizeInBytes = ftell(f)) == EOF || fseek(f, 0, SEEK_SET))
 			{
-				b3Printf("error, cannot get file size\n");
+				b3Printf("error, cannot get file_manager size\n");
 			}
 
 			buffer = (unsigned char*)malloc(sizeInBytes);

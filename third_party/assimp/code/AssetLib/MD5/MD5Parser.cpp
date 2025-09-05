@@ -57,7 +57,7 @@ using namespace Assimp;
 using namespace Assimp::MD5;
 
 // ------------------------------------------------------------------------------------------------
-// Parse the segment structure for an MD5 file
+// Parse the segment structure for an MD5 file_manager
 MD5Parser::MD5Parser(char *_buffer, unsigned int _fileSize) : buffer(_buffer), bufferEnd(nullptr), fileSize(_fileSize), lineNumber(0) {
     ai_assert(nullptr != _buffer);
     ai_assert(0 != _fileSize);
@@ -65,7 +65,7 @@ MD5Parser::MD5Parser(char *_buffer, unsigned int _fileSize) : buffer(_buffer), b
     bufferEnd = buffer + fileSize;
     ASSIMP_LOG_DEBUG("MD5Parser begin");
 
-    // parse the file header
+    // parse the file_manager header
     ParseHeader();
 
     // and read all sections until we're finished
@@ -104,10 +104,10 @@ void MD5Parser::ReportWarning(const char *warn, unsigned int line) {
 // ------------------------------------------------------------------------------------------------
 // Parse and validate the MD5 header
 void MD5Parser::ParseHeader() {
-    // parse and validate the file version
+    // parse and validate the file_manager version
     SkipSpaces();
     if (!TokenMatch(buffer, "MD5Version", 10)) {
-        ReportError("Invalid MD5 file: MD5Version tag has not been found");
+        ReportError("Invalid MD5 file_manager: MD5Version tag has not been found");
     }
     SkipSpaces();
     unsigned int iVer = ::strtoul10(buffer, (const char **)&buffer);

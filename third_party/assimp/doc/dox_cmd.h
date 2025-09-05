@@ -80,12 +80,12 @@ Display a really helpful text.
 /**
 @page iinfo 'info'-Command
 
-Load a model file and print basic statistics. Full postprocessing is applied unless the <tt>-r</tt> switch is specified. Sample output (<tt>assimp info ./test/models/3DS/mar_rifle.3ds</tt>):
+Load a model file_manager and print basic statistics. Full postprocessing is applied unless the <tt>-r</tt> switch is specified. Sample output (<tt>assimp info ./test/models/3DS/mar_rifle.3ds</tt>):
 
 @verbatim
 Launching model import ...           OK
 Validating postprocessing flags ...  OK
-Importing file ...                   OK
+Importing file_manager ...                   OK
    import took approx. 0.02400 seconds
 
 Memory consumption: 69444 B
@@ -123,7 +123,7 @@ Node hierarchy:
 <h3>Syntax:</h3>
 
 @code
-assimp info file [-r]
+assimp info file_manager [-r]
 @endcode
 
 
@@ -131,8 +131,8 @@ assimp info file [-r]
 
 <p>
 <tt>
-file<br></tt><br>
-Required. Input file.
+file_manager<br></tt><br>
+Required. Input file_manager.
 </p>
 <p>
 <tt>
@@ -183,7 +183,7 @@ Required. Archived dump from some point in the past.
 Generate a text or binary dump of a model. This is the core component of Assimp's internal
 regression test suite but it could also be useful for other developers to quickly
 examine the contents of a model. Note that text dumps are not intended to be used as
-intermediate format, Assimp is not able to read them again, nor is the file format
+intermediate format, Assimp is not able to read them again, nor is the file_manager format
 stable or well-defined. It may change with every revision without notice.
 Binary dumps (*.assbin) are backwards- and forwards-compatible.
 
@@ -220,7 +220,7 @@ The long form of this parameter is <tt>--binary</tt>.
 </tt><br>
 Optional. If this switch is specified, the dump is shortened to include only
 min/max values for all vertex components and animation channels. The resulting
-file is much smaller, but the original model can't be reconstructed from it. This is
+file_manager is much smaller, but the original model can't be reconstructed from it. This is
 used by Assimp's regression test suite, comparing those minidumps provides
 a fast way to verify whether a loader works correctly or not.
 The long form of this parameter is <tt>--short</tt>.
@@ -252,7 +252,7 @@ assimp dump files\*.*
 @endcode
 
 Dumps all loadable model files in the 'files' subdir. The output dumps are named
-<tt><mode-file>-dump.txt</tt>. The log is not included.
+<tt><mode-file_manager>-dump.txt</tt>. The log is not included.
  */
 
 //----------------------------------------------------------------------------------------------
@@ -280,17 +280,17 @@ Required. Relative or absolute path to the input model.
 <p>
 <tt>
 out<br></tt><br>
-Optional. Relative or absolute path to write the output images to. If the file name is
+Optional. Relative or absolute path to write the output images to. If the file_manager name is
 omitted the output images are named <tt><model-filename></tt><br>
-The suffix <tt>_img&lt;n&gt;</tt> is appended to the file name if the -s switch is not specified
-(where <tt>&lt;n&gt;</tt> is the zero-based index of the texture in the model file).<br>
+The suffix <tt>_img&lt;n&gt;</tt> is appended to the file_manager name if the -s switch is not specified
+(where <tt>&lt;n&gt;</tt> is the zero-based index of the texture in the model file_manager).<br>
 
-The output file format is determined from the given file extension. Supported
-formats are BMP and TGA. If the file format can't be determined,
+The output file_manager format is determined from the given file_manager extension. Supported
+formats are BMP and TGA. If the file_manager format can't be determined,
 the value specified with the -f switch is taken.
 <br>
 Format settings are ignored for compressed embedded textures. They're always
-written in their native file format (e.g. jpg).
+written in their native file_manager format (e.g. jpg).
 </p>
 
 <p>
@@ -312,9 +312,9 @@ The long form of this parameter is <tt>--bmp-with-alpha=&lt;n&gt;</tt>.
 <p>
 <tt>-f&lt;n&gt;<br>
 </tt><br>
-Optional. Specifies the output file format. Supported
+Optional. Specifies the output file_manager format. Supported
 formats are BMP and TGA. The default value is BMP (if a full output filename is
-specified, the output file format is taken from its extension, not from here).
+specified, the output file_manager format is taken from its extension, not from here).
 The long form of this parameter is <tt>--format=&lt;n&gt;</tt>.
 </p>
 
@@ -353,7 +353,7 @@ assimp extract files\*.mdl *.bmp
 @endcode
 
 Extracts all embedded textures from all loadable .mdl files in the 'files' subdirectory
-and writes them to bitmaps which are named <tt><model-file>_img<image-index>.bmp</tt>
+and writes them to bitmaps which are named <tt><model-file_manager>_img<image-index>.bmp</tt>
  */
 
 //----------------------------------------------------------------------------------------------
@@ -550,11 +550,11 @@ There are also some common flags to customize Assimp's logging behaviour:
   </tr>
   <tr>
     <td><tt>-l</tt> or <tt>--show-log</tt></td>
-    <td>Show log file on console window (stderr)</td>
+    <td>Show log file_manager on console window (stderr)</td>
   </tr>
     <tr>
-    <td><tt>-lo&lt;file&gt;</tt> or <tt>--log-out=&lt;file&gt;</tt></td>
-    <td>Streams the log to &lt;file&gt;</td>
+    <td><tt>-lo&lt;file_manager&gt;</tt> or <tt>--log-out=&lt;file_manager&gt;</tt></td>
+    <td>Streams the log to &lt;file_manager&gt;</td>
   </tr>
     <tr>
     <td><tt>-v</tt> or <tt>--verbose</tt></td>

@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements MOCK_METHOD.
+// This file_manager implements MOCK_METHOD.
 
 // IWYU pragma: private, include "gmock/gmock.h"
 // IWYU pragma: friend gmock/.*
@@ -101,7 +101,7 @@ constexpr bool ValidateSpec(const char (&spec)[N]) {
 }  // namespace internal
 
 // The style guide prohibits "using" statements in a namespace scope
-// inside a header file.  However, the FunctionMocker class template
+// inside a header file_manager.  However, the FunctionMocker class template
 // is meant to be defined in the ::testing namespace.  The following
 // line is just a trick for working around a bug in MSVC 8.0, which
 // cannot handle it if we define FunctionMocker in ::testing.

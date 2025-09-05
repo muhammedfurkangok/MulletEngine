@@ -25,7 +25,7 @@ from .errors import AssimpError
 
 additional_dirs, ext_whitelist = [],[]
 
-# populate search directories and lists of allowed file extensions
+# populate search directories and lists of allowed file_manager extensions
 # depending on the platform we're running on.
 if os.name=='posix':
     additional_dirs.append('./')
@@ -229,7 +229,7 @@ def search_library():
         pass
 
     candidates = []
-    # test every file
+    # test every file_manager
     for curfolder in [folder]+additional_dirs:
         if os.path.isdir(curfolder):
             for filename in os.listdir(curfolder):

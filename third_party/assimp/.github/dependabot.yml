@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "gitsubmodule"
-    directory: "/"  # the .gitmodules file must be placed at the top-level directory of a git working tree
+    directory: "/"  # the .gitmodules file_manager must be placed at the top-level directory of a git working tree
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 15  # Assimp has 15 dependencies

@@ -3,7 +3,7 @@
 
 /*
 
-Index of this file:
+Index of this file_manager:
 
 // [SECTION] STB libraries implementation
 // [SECTION] Style functions
@@ -3134,7 +3134,7 @@ ImFont* ImFontAtlas::AddFontFromFileTTF(const char* filename, float size_pixels,
         if (font_cfg_template == NULL || (font_cfg_template->Flags & ImFontFlags_NoLoadError) == 0)
         {
             IMGUI_DEBUG_LOG("While loading '%s'\n", filename);
-            IM_ASSERT_USER_ERROR(0, "Could not load font file!");
+            IM_ASSERT_USER_ERROR(0, "Could not load font file_manager!");
         }
         return NULL;
     }
@@ -4537,7 +4537,7 @@ void ImFontAtlasDebugLogTextureRequests(ImFontAtlas* atlas)
 //-------------------------------------------------------------------------
 // [SECTION] ImFontAtlas: backend for stb_truetype
 //-------------------------------------------------------------------------
-// (imstb_truetype.h in included near the top of this file, when IMGUI_ENABLE_STB_TRUETYPE is set)
+// (imstb_truetype.h in included near the top of this file_manager, when IMGUI_ENABLE_STB_TRUETYPE is set)
 //-------------------------------------------------------------------------
 
 #ifdef IMGUI_ENABLE_STB_TRUETYPE
@@ -5998,7 +5998,7 @@ void ImGui::RenderColorRectWithAlphaCheckerboard(ImDrawList* draw_list, ImVec2 p
 // [SECTION] Decompression code
 //-----------------------------------------------------------------------------
 // Compressed with stb_compress() then converted to a C array and encoded as base85.
-// Use the program in misc/fonts/binary_to_compressed_c.cpp to create the array from a TTF file.
+// Use the program in misc/fonts/binary_to_compressed_c.cpp to create the array from a TTF file_manager.
 // The purpose of encoding as base85 instead of "0x00,0x01,..." style is only save on _source code_ size.
 // Decompression from stb.h (public domain) by Sean Barrett https://github.com/nothings/stb/blob/master/stb.h
 //-----------------------------------------------------------------------------

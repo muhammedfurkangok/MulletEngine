@@ -182,7 +182,7 @@ protected:
 	void reconfigurePort();
 
 private:
-	wstring port_;  // Path to the file descriptor
+	wstring port_;  // Path to the file_manager descriptor
 	HANDLE fd_;
 
 	bool is_open_;

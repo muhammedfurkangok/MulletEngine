@@ -72,13 +72,13 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool NFFImporter::CanRead(const std::string & pFile, IOSystem * /*pIOHandler*/, bool /*checkSig*/) const {
     return SimpleExtensionCheck(pFile, "nff", "enff");
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get the list of all supported file extensions
+// Get the list of all supported file_manager extensions
 const aiImporterDesc *NFFImporter::GetInfo() const {
     return &desc;
 }
@@ -115,30 +115,30 @@ const aiImporterDesc *NFFImporter::GetInfo() const {
     } while (IsLineEnd(*sz))
 
 // ------------------------------------------------------------------------------------------------
-// Loads the material table for the NFF2 file format from an external file
+// Loads the material table for the NFF2 file_manager format from an external file_manager
 void NFFImporter::LoadNFF2MaterialTable(std::vector<ShadingInfo> &output,
         const std::string &path, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(path, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (!file) {
         ASSIMP_LOG_ERROR("NFF2: Unable to open material library ", path, ".");
         return;
     }
 
-    // get the size of the file
+    // get the size of the file_manager
     const unsigned int m = (unsigned int)file->FileSize();
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     // (terminate it with zero)
     std::vector<char> mBuffer2(m + 1);
     TextFileToBuffer(file.get(), mBuffer2);
     const char *buffer = &mBuffer2[0];
 
-    // First of all: remove all comments from the file
+    // First of all: remove all comments from the file_manager
     CommentRemover::RemoveLineComments("//", &mBuffer2[0]);
 
-    // The file should start with the magic sequence "mat"
+    // The file_manager should start with the magic sequence "mat"
     if (!TokenMatch(buffer, "mat", 3)) {
         ASSIMP_LOG_ERROR("NFF2: Not a valid material library ", path, ".");
         return;
@@ -146,17 +146,17 @@ void NFFImporter::LoadNFF2MaterialTable(std::vector<ShadingInfo> &output,
 
     ShadingInfo *curShader = nullptr;
 
-    // No read the file line per line
+    // No read the file_manager line per line
     char line[4096];
     const char *sz, *lineEnd = &line[2095]+1;
     while (GetNextLine(buffer, line)) {
         SkipSpaces(line, &sz, lineEnd);
 
-        // 'version' defines the version of the file format
+        // 'version' defines the version of the file_manager format
         if (TokenMatch(sz, "version", 7)) {
-            ASSIMP_LOG_INFO("NFF (Sense8) material library file format: ", std::string(sz));
+            ASSIMP_LOG_INFO("NFF (Sense8) material library file_manager format: ", std::string(sz));
         }
-        // 'matdef' starts a new material in the file
+        // 'matdef' starts a new material in the file_manager
         else if (TokenMatch(sz, "matdef", 6)) {
             // add a new material to the list
             output.emplace_back();
@@ -197,14 +197,14 @@ void NFFImporter::LoadNFF2MaterialTable(std::vector<ShadingInfo> &output,
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> stream(pIOHandler->Open(file, "rb"));
     if (!stream) {
-        throw DeadlyImportError("Failed to open NFF file ", file, ".");
+        throw DeadlyImportError("Failed to open NFF file_manager ", file, ".");
     }
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     // (terminate it with zero)
     std::vector<char> mBuffer2;
     TextFileToBuffer(stream.get(), mBuffer2);
@@ -237,7 +237,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
     // degree of tessellation
     unsigned int iTesselation = 4;
 
-    // some temporary variables we need to parse the file
+    // some temporary variables we need to parse the file_manager
     unsigned int sphere = 0,
                  cylinder = 0,
                  cone = 0,
@@ -247,27 +247,27 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                  tetrahedron = 0,
                  hexahedron = 0;
 
-    // lights imported from the file
+    // lights imported from the file_manager
     std::vector<Light> lights;
 
-    // check whether this is the NFF2 file format
+    // check whether this is the NFF2 file_manager format
     if (TokenMatch(buffer, "nff", 3)) {
         const ai_real qnan = get_qnan();
         const aiColor4D cQNAN = aiColor4D(qnan, 0.f, 0.f, 1.f);
         const aiVector3D vQNAN = aiVector3D(qnan, 0.f, 0.f);
 
-        // another NFF file format ... just a raw parser has been implemented
+        // another NFF file_manager format ... just a raw parser has been implemented
         // no support for further details, I don't think it is worth the effort
         // http://ozviz.wasp.uwa.edu.au/~pbourke/dataformats/nff/nff2.html
         // http://www.netghost.narod.ru/gff/graphics/summary/sense8.htm
 
-        // First of all: remove all comments from the file
+        // First of all: remove all comments from the file_manager
         CommentRemover::RemoveLineComments("//", &mBuffer2[0]);
 
         while (GetNextLine(buffer, line)) {
             SkipSpaces(line, &sz, lineEnd);
             if (TokenMatch(sz, "version", 7)) {
-                ASSIMP_LOG_INFO("NFF (Sense8) file format: ", sz);
+                ASSIMP_LOG_INFO("NFF (Sense8) file_manager format: ", sz);
             } else if (TokenMatch(sz, "viewpos", 7)) {
                 AI_NFF_PARSE_TRIPLE(camPos);
                 hasCam = true;
@@ -288,12 +288,12 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
 
                 const unsigned int objStart = (unsigned int)meshes.size();
 
-                // There could be a material table in a separate file
+                // There could be a material table in a separate file_manager
                 std::vector<ShadingInfo> materialTable;
                 while (true) {
                     AI_NFF2_GET_NEXT_TOKEN();
 
-                    // material table - an external file
+                    // material table - an external file_manager
                     if (TokenMatch(sz, "mtable", 6)) {
                         SkipSpaces(&sz, lineEnd);
                         sz3 = sz;
@@ -303,7 +303,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                         if (!diff)
                             ASSIMP_LOG_WARN("NFF2: Found empty mtable token");
                         else {
-                            // The material table has the file extension .mat.
+                            // The material table has the file_manager extension .mat.
                             // If it is not there, we need to append it
                             std::string path = std::string(sz3, diff);
                             if (std::string::npos == path.find_last_of(".mat")) {
@@ -311,7 +311,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                             }
 
                             // Now extract the working directory from the path to
-                            // this file and append the material library filename
+                            // this file_manager and append the material library filename
                             // to it.
                             std::string::size_type sepPos;
                             if ((std::string::npos == (sepPos = path.find_last_of('\\')) || !sepPos) &&
@@ -472,7 +472,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                         }
 #endif
 
-                        // texture file name for this polygon + mapping information
+                        // texture file_manager name for this polygon + mapping information
                         else if ('_' == sz[0]) {
                             // get mapping information
                             switch (sz[1]) {
@@ -586,7 +586,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
             }
         }
         camLookAt = camLookAt + camPos;
-    } else // "Normal" Neutral file format that is quite more common
+    } else // "Normal" Neutral file_manager format that is quite more common
     {
         while (GetNextLine(buffer, line)) {
             sz = line;
@@ -673,7 +673,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                         out->normals[out->vertices.size() - n - 1] = v;
                     }
                     if (out == currentMeshWithUVCoords) {
-                        // FIX: in one test file this wraps over multiple lines
+                        // FIX: in one test file_manager this wraps over multiple lines
                         SkipSpaces(&sz, lineEnd);
                         if (IsLineEnd(*sz)) {
                             GetNextLine(buffer, line);
@@ -711,12 +711,12 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                 s.diffuse.g = s.diffuse.b = s.diffuse.r;
                 s.specular.g = s.specular.b = s.specular.r;
 
-                // if the next one is NOT a number we assume it is a texture file name
+                // if the next one is NOT a number we assume it is a texture file_manager name
                 // this feature is used by some NFF files on the internet and it has
                 // been implemented as it can be really useful
                 SkipSpaces(&sz, lineEnd);
                 if (!IsNumeric(*sz)) {
-                    // TODO: Support full file names with spaces and quotation marks ...
+                    // TODO: Support full file_manager names with spaces and quotation marks ...
                     const char *p = sz;
                     while (!IsSpaceOrNewLine(*sz))
                         ++sz;
@@ -835,7 +835,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                 curMesh.shader.mapping = aiTextureMapping_CYLINDER;
 
                 if (!GetNextLine(buffer, line)) {
-                    ASSIMP_LOG_ERROR("NFF: Unexpected end of file (cone definition not complete)");
+                    ASSIMP_LOG_ERROR("NFF: Unexpected end of file_manager (cone definition not complete)");
                     break;
                 }
                 sz = line;
@@ -847,7 +847,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
                 AI_NFF_PARSE_FLOAT(radius1);
 
                 if (!GetNextLine(buffer, line)) {
-                    ASSIMP_LOG_ERROR("NFF: Unexpected end of file (cone definition not complete)");
+                    ASSIMP_LOG_ERROR("NFF: Unexpected end of file_manager (cone definition not complete)");
                     break;
                 }
                 sz = line;
@@ -981,7 +981,7 @@ void NFFImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSys
         c->mPosition = camPos;
         c->mUp = camUp;
 
-        // If the resolution is not specified in the file, we
+        // If the resolution is not specified in the file_manager, we
         // need to set 1.0 as aspect.
         c->mAspect = (!resolution.y ? 0.f : resolution.x / resolution.y);
         ++ppcChildren;

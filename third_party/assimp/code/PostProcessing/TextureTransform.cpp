@@ -217,7 +217,7 @@ void TextureTransformStep::Execute( aiScene* pScene) {
         for (unsigned int a = 0; a < mat->mNumProperties;++a)   {
 
             aiMaterialProperty* prop = mat->mProperties[a];
-            if (!::strcmp( prop->mKey.data, "$tex.file"))   {
+            if (!::strcmp( prop->mKey.data, "$tex.file_manager"))   {
                 STransformVecInfo info;
 
                 // Setup a shortcut structure to allow for a fast updating

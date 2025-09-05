@@ -108,7 +108,7 @@ static bool IsAsciiSTL(const char *buffer, size_t fileSize) {
 
     bool isASCII(strncmp(buffer, "solid", 5) == 0);
     if (isASCII) {
-        // A lot of importers are write solid even if the file is binary. So we have to check for ASCII-characters.
+        // A lot of importers are write solid even if the file_manager is binary. So we have to check for ASCII-characters.
         if (fileSize >= BufferSize) {
             isASCII = true;
             for (unsigned int i = 0; i < BufferSize; i++) {
@@ -137,7 +137,7 @@ STLImporter::STLImporter() :
 STLImporter::~STLImporter() = default;
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool STLImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "STL", "solid" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -161,18 +161,18 @@ void addFacesToMesh(aiMesh *pMesh) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void STLImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     std::unique_ptr<IOStream> file(pIOHandler->Open(pFile, "rb"));
 
-    // Check whether we can read from the file
+    // Check whether we can read from the file_manager
     if (file == nullptr) {
-        throw DeadlyImportError("Failed to open STL file ", pFile, ".");
+        throw DeadlyImportError("Failed to open STL file_manager ", pFile, ".");
     }
 
     mFileSize = file->FileSize();
 
-    // allocate storage and copy the contents of the file to a memory buffer
+    // allocate storage and copy the contents of the file_manager to a memory buffer
     // (terminate it with zero)
     std::vector<char> buffer2;
     TextFileToBuffer(file.get(), buffer2);
@@ -220,7 +220,7 @@ void STLImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read an ASCII STL file
+// Read an ASCII STL file_manager
 void STLImporter::LoadASCIIFile(aiNode *root) {
     std::vector<aiMesh *> meshes;
     std::vector<aiNode *> nodes;
@@ -396,7 +396,7 @@ void STLImporter::LoadASCIIFile(aiNode *root) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read a binary STL file
+// Read a binary STL file_manager
 bool STLImporter::LoadBinaryFile() {
     // allocate one mesh
     mScene->mNumMeshes = 1;
@@ -406,7 +406,7 @@ bool STLImporter::LoadBinaryFile() {
 
     // skip the first 80 bytes
     if (mFileSize < 84) {
-        throw DeadlyImportError("STL: file is too small for the header");
+        throw DeadlyImportError("STL: file_manager is too small for the header");
     }
     bool bIsMaterialise = false;
 
@@ -438,11 +438,11 @@ bool STLImporter::LoadBinaryFile() {
     sz += 4;
 
     if (mFileSize < 84ull + pMesh->mNumFaces * 50ull) {
-        throw DeadlyImportError("STL: file is too small to hold all facets");
+        throw DeadlyImportError("STL: file_manager is too small to hold all facets");
     }
 
     if (!pMesh->mNumFaces) {
-        throw DeadlyImportError("STL: file is empty. There are no facets defined");
+        throw DeadlyImportError("STL: file_manager is empty. There are no facets defined");
     }
 
     pMesh->mNumVertices = pMesh->mNumFaces * 3;

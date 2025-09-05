@@ -50,7 +50,7 @@
  *                      - Provide a scanning mode for determining size of
  *                        uncompressed data
  * 1.3  20 Mar 2002     - Go back to lengths for puff() parameters [Gailly]
- *                      - Add a puff.h file for the interface
+ *                      - Add a puff.h file_manager for the interface
  *                      - Add braces in puff() for else do [Gailly]
  *                      - Use indexes instead of pointers for readability
  * 1.4  31 Mar 2002     - Simplify construct() code set check
@@ -72,7 +72,7 @@
  * 2.2  25 Apr 2010     - Fix bug in variable initializations [Oberhumer]
  *                      - Add const where appropriate [Oberhumer]
  *                      - Split if's and ?'s for coverage testing
- *                      - Break out test code to separate file
+ *                      - Break out test code to separate file_manager
  *                      - Move NIL to puff.h
  *                      - Allow incomplete code only if single code length is 1
  *                      - Add full code coverage test to Makefile

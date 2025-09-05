@@ -23,7 +23,7 @@
 
 /*
 Suggestions:
- - Move helper functions flipud and fliplr to another file: They may be helpful in more general circumstances.
+ - Move helper functions flipud and fliplr to another file_manager: They may be helpful in more general circumstances.
  - Implement other types of matrix factorisation, such as: QL and LQ, L(D)U, eigendecompositions, etc...
 */
 

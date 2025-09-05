@@ -865,11 +865,11 @@ void glTF2Exporter::ExportMaterials() {
         }
 
         if (mat.Get(AI_MATKEY_METALLIC_FACTOR, m->pbrMetallicRoughness.metallicFactor) != AI_SUCCESS) {
-            // if metallicFactor wasn't defined, then the source is likely not a PBR file, and the metallicFactor should be 0
+            // if metallicFactor wasn't defined, then the source is likely not a PBR file_manager, and the metallicFactor should be 0
             m->pbrMetallicRoughness.metallicFactor = 0;
         }
 
-        // get roughness if source is gltf2 file
+        // get roughness if source is gltf2 file_manager
         if (mat.Get(AI_MATKEY_ROUGHNESS_FACTOR, m->pbrMetallicRoughness.roughnessFactor) != AI_SUCCESS) {
             // otherwise, try to derive and convert from specular + shininess values
             aiColor4D specularColor;

@@ -1,7 +1,7 @@
 // Copyright 2021 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -104,7 +104,7 @@ Status TinyGltfUtils::AddSamplerToAnimation(
       new NodeAnimationData());
   // TODO(fgalligan): Add support to not copy the accessor data if it is
   // referenced more than once. Currently we duplicate all animation data so
-  // that it is referenced only once in the glTF file.
+  // that it is referenced only once in the glTF file_manager.
   const tinygltf::Accessor &input_accessor = model.accessors[sampler.input];
   DRACO_RETURN_IF_ERROR(AddAccessorToAnimationData(model, input_accessor,
                                                    node_animation_data.get()));

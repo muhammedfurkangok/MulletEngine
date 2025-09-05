@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /**
- *  @file Default implementation of IOSystem using the standard C file functions
+ *  @file Default implementation of IOSystem using the standard C file_manager functions
  */
 #pragma once
 #ifndef AI_DEFAULTIOSYSTEM_H_INC
@@ -55,11 +55,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 // ---------------------------------------------------------------------------
-/** Default implementation of IOSystem using the standard C file functions */
+/** Default implementation of IOSystem using the standard C file_manager functions */
 class ASSIMP_API DefaultIOSystem : public IOSystem {
 public:
     // -------------------------------------------------------------------
-    /** Tests for the existence of a file at the given path. */
+    /** Tests for the existence of a file_manager at the given path. */
     bool Exists( const char* pFile) const override;
 
     // -------------------------------------------------------------------
@@ -67,18 +67,18 @@ public:
     char getOsSeparator() const override;
 
     // -------------------------------------------------------------------
-    /** Open a new file with a given path. */
+    /** Open a new file_manager with a given path. */
     IOStream* Open( const char* pFile, const char* pMode = "rb") override;
 
     // -------------------------------------------------------------------
-    /** Closes the given file and releases all resources associated with it. */
+    /** Closes the given file_manager and releases all resources associated with it. */
     void Close( IOStream* pFile) override;
 
     // -------------------------------------------------------------------
     /** Compare two paths */
     bool ComparePaths (const char* one, const char* second) const override;
 
-    /** @brief get the file name of a full filepath
+    /** @brief get the file_manager name of a full filepath
      * example: /tmp/archive.tar.gz -> archive.tar.gz
      */
     static std::string fileName( const std::string &path );

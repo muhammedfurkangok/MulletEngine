@@ -1,7 +1,7 @@
 // Copyright 2018 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -406,7 +406,7 @@ class GltfAsset {
   // Adds a new glTF image to the asset and returns its index. |owned_texture|
   // is an optional argument that can be used when the added image is not
   // contained in the encoded MaterialLibrary (e.g. for images that are locally
-  // modified before they are encoded to disk). The image file name is generated
+  // modified before they are encoded to disk). The image file_manager name is generated
   // by combining |image_stem| and image mime type contained in the |texture|.
   StatusOr<int> AddImage(const std::string &image_stem, const Texture *texture,
                          int num_components);
@@ -778,7 +778,7 @@ bool GltfAsset::AddDracoMesh(const Mesh &mesh) {
       // used later in the encoding process.
       local_meshes_.push_back(std::move(split_meshes[i]));
 
-      // The material index in the glTF file corresponds to the index of the
+      // The material index in the glTF file_manager corresponds to the index of the
       // split mesh.
       if (!AddDracoMesh(*(local_meshes_.back().get()), mat_index, {},
                         Eigen::Matrix4d::Identity())) {
@@ -1000,7 +1000,7 @@ Status GltfAsset::CompressMeshWithDraco(const Mesh &mesh,
   // Change tangents, joints, and weights attribute types to generic. The
   // original mesh's attribute type is unchanged and the mapping of the glTF
   // attribute type to Draco compressed attribute id is written to the output
-  // glTF file.
+  // glTF file_manager.
   for (int i = 0; i < mesh_copy->num_attributes(); ++i) {
     PointAttribute *const att = mesh_copy->attribute(i);
     if (att->attribute_type() == GeometryAttribute::TANGENT ||
@@ -1506,7 +1506,7 @@ StatusOr<int> GltfAsset::AddImage(const std::string &image_stem,
   }
   std::string extension = TextureUtils::GetTargetExtension(*texture);
   if (extension.empty()) {
-    // Try to get extension from the source file name.
+    // Try to get extension from the source file_manager name.
     extension = LowercaseFileExtension(texture->source_image().filename());
   }
   GltfImage image;
@@ -2506,7 +2506,7 @@ Status GltfAsset::EncodeMaterialsProperty(EncoderBuffer *buf_out) {
          material->GetEmissiveFactor() != Vector3f(0.0, 0.0, 0.0))) {
       // If we find one material that is unlit and does not contain a fallback
       // we must set "KHR_materials_unlit" in extensions reqruied for the entire
-      // glTF file.
+      // glTF file_manager.
       extensions_required_.insert("KHR_materials_unlit");
     }
 
@@ -3608,7 +3608,7 @@ Status GltfEncoder::EncodeToBuffer(const T &geometry,
   EncoderBuffer buffer;
   DRACO_RETURN_IF_ERROR(EncodeToBuffer(geometry, &gltf_asset, &buffer));
 
-  // Define a function for concatenating GLB file chunks into a single buffer.
+  // Define a function for concatenating GLB file_manager chunks into a single buffer.
   const auto encode_chunk_to_buffer =
       [&out_buffer](const EncoderBuffer &chunk) -> Status {
     if (!out_buffer->Encode(chunk.data(), chunk.size())) {
@@ -3617,7 +3617,7 @@ Status GltfEncoder::EncodeToBuffer(const T &geometry,
     return OkStatus();
   };
 
-  // Create GLB file chunks and concatenate them to a single buffer.
+  // Create GLB file_manager chunks and concatenate them to a single buffer.
   return ProcessGlbFileChunks(gltf_asset, buffer, encode_chunk_to_buffer);
 }
 
@@ -3683,27 +3683,27 @@ Status GltfEncoder::WriteGltfFiles(const GltfAsset &gltf_asset,
                                    const std::string &filename,
                                    const std::string &bin_filename,
                                    const std::string &resource_dir) {
-  std::unique_ptr<FileWriterInterface> file =
+  std::unique_ptr<FileWriterInterface> file_manager =
       FileWriterFactory::OpenWriter(filename);
-  if (!file) {
-    return Status(Status::DRACO_ERROR, "Output glTF file could not be opened.");
+  if (!file_manager) {
+    return Status(Status::DRACO_ERROR, "Output glTF file_manager could not be opened.");
   }
   std::unique_ptr<FileWriterInterface> bin_file =
       FileWriterFactory::OpenWriter(bin_filename);
   if (!bin_file) {
     return Status(Status::DRACO_ERROR,
-                  "Output glTF bin file could not be opened.");
+                  "Output glTF bin file_manager could not be opened.");
   }
 
-  // Write the glTF data into the file.
-  if (!file->Write(buffer.data(), buffer.size())) {
-    return Status(Status::DRACO_ERROR, "Error writing to glTF file.");
+  // Write the glTF data into the file_manager.
+  if (!file_manager->Write(buffer.data(), buffer.size())) {
+    return Status(Status::DRACO_ERROR, "Error writing to glTF file_manager.");
   }
 
-  // Write the glTF buffer into the file.
+  // Write the glTF buffer into the file_manager.
   if (!bin_file->Write(gltf_asset.Buffer()->data(),
                        gltf_asset.Buffer()->size())) {
-    return Status(Status::DRACO_ERROR, "Error writing to glTF bin file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glTF bin file_manager.");
   }
 
   for (int i = 0; i < gltf_asset.NumImages(); ++i) {
@@ -3720,22 +3720,22 @@ Status GltfEncoder::WriteGltfFiles(const GltfAsset &gltf_asset,
 Status GltfEncoder::WriteGlbFile(const GltfAsset &gltf_asset,
                                  const EncoderBuffer &json_data,
                                  const std::string &filename) {
-  std::unique_ptr<FileWriterInterface> file =
+  std::unique_ptr<FileWriterInterface> file_manager =
       FileWriterFactory::OpenWriter(filename);
-  if (!file) {
-    return Status(Status::DRACO_ERROR, "Output glb file could not be opened.");
+  if (!file_manager) {
+    return Status(Status::DRACO_ERROR, "Output glb file_manager could not be opened.");
   }
 
-  // Define a function for writing GLB file chunks to |file|.
+  // Define a function for writing GLB file_manager chunks to |file_manager|.
   const auto write_chunk_to_file =
-      [&file](const EncoderBuffer &chunk) -> Status {
-    if (!file->Write(chunk.data(), chunk.size())) {
-      return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+      [&file_manager](const EncoderBuffer &chunk) -> Status {
+    if (!file_manager->Write(chunk.data(), chunk.size())) {
+      return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
     }
     return OkStatus();
   };
 
-  // Create GLB file chunks and write them to file.
+  // Create GLB file_manager chunks and write them to file_manager.
   return ProcessGlbFileChunks(gltf_asset, json_data, write_chunk_to_file);
 }
 
@@ -3750,25 +3750,25 @@ Status GltfEncoder::ProcessGlbFileChunks(
       12 + 8 + json_length + 8 + gltf_asset.Buffer()->size();
 
   EncoderBuffer header;
-  // Write the glb file header.
+  // Write the glb file_manager header.
   const uint32_t gltf_version = 2;
   if (!header.Encode("glTF", 4)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   if (!header.Encode(gltf_version)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   if (!header.Encode(total_length)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
 
   // Write the JSON chunk.
   const uint32_t json_chunk_type = 0x4E4F534A;
   if (!header.Encode(json_length)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   if (!header.Encode(json_chunk_type)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   DRACO_RETURN_IF_ERROR(process_chunk(header));
   DRACO_RETURN_IF_ERROR(process_chunk(json_data));
@@ -3777,7 +3777,7 @@ Status GltfEncoder::ProcessGlbFileChunks(
   header.Clear();
   if (json_pad_length > 0) {
     if (!header.Encode("   ", json_pad_length)) {
-      return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+      return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
     }
   }
 
@@ -3785,10 +3785,10 @@ Status GltfEncoder::ProcessGlbFileChunks(
   const uint32_t bin_chunk_type = 0x004E4942;
   const uint32_t gltf_bin_size = gltf_asset.Buffer()->size();
   if (!header.Encode(gltf_bin_size)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   if (!header.Encode(bin_chunk_type)) {
-    return Status(Status::DRACO_ERROR, "Error writing to glb file.");
+    return Status(Status::DRACO_ERROR, "Error writing to glb file_manager.");
   }
   DRACO_RETURN_IF_ERROR(process_chunk(header));
   DRACO_RETURN_IF_ERROR(process_chunk(*gltf_asset.Buffer()));

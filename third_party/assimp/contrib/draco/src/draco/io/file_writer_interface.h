@@ -14,10 +14,10 @@ class FileWriterInterface {
   FileWriterInterface(FileWriterInterface &&) = default;
   FileWriterInterface &operator=(FileWriterInterface &&) = default;
 
-  // Closes the file.
+  // Closes the file_manager.
   virtual ~FileWriterInterface() = default;
 
-  // Writes |size| bytes from |buffer| to file.
+  // Writes |size| bytes from |buffer| to file_manager.
   virtual bool Write(const char *buffer, size_t size) = 0;
 };
 

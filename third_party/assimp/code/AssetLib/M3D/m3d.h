@@ -112,8 +112,8 @@ typedef uint16_t M3D_INDEX;
 /*** File format structures ***/
 
 /**
- * M3D file format structure
- *  3DMO m3dchunk_t file header chunk, may followed by compressed data
+ * M3D file_manager format structure
+ *  3DMO m3dchunk_t file_manager header chunk, may followed by compressed data
  *  HEAD m3dhdr_t model header chunk
  *  n x m3dchunk_t more chunks follow
  *      PRVW preview chunk (optional)
@@ -526,8 +526,8 @@ typedef struct {
 #define M3D_ERR_ISFATAL(x) ((x) < 0 && (x) > -65)
 
 /* callbacks */
-typedef unsigned char *(*m3dread_t)(char *filename, unsigned int *size); /* read file contents into buffer */
-typedef void (*m3dfree_t)(void *buffer); /* free file contents buffer */
+typedef unsigned char *(*m3dread_t)(char *filename, unsigned int *size); /* read file_manager contents into buffer */
+typedef void (*m3dfree_t)(void *buffer); /* free file_manager contents buffer */
 typedef int (*m3dtxsc_t)(const char *name, const void *script, uint32_t len, m3dtx_t *output); /* interpret texture script */
 typedef int (*m3dprsc_t)(const char *name, const void *script, uint32_t len, m3d_t *model); /* interpret surface script */
 #endif /* ifndef M3D_APIVERSION */
@@ -4608,7 +4608,7 @@ unsigned char *m3d_save(m3d_t *model, int quality, int flags, unsigned int *size
                 h = (m3dhdr_t *)z;
             }
         }
-        /* add file header at the beginning */
+        /* add file_manager header at the beginning */
         len += 8;
         out = (unsigned char *)M3D_MALLOC(len);
         if (!out) goto memerr;

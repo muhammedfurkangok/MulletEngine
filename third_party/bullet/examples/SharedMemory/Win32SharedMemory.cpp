@@ -82,7 +82,7 @@ void* Win32SharedMemory::allocateSharedMemory(int key, int size, bool allowCreat
 		if (allowCreation)
 		{
 			seg.m_hMapFile = CreateFileMapping(
-				INVALID_HANDLE_VALUE,  // use paging file
+				INVALID_HANDLE_VALUE,  // use paging file_manager
 				NULL,                  // default security
 				PAGE_READWRITE,        // read/write access
 				0,                     // maximum object size (high-order DWORD)
@@ -91,7 +91,7 @@ void* Win32SharedMemory::allocateSharedMemory(int key, int size, bool allowCreat
 		}
 		else
 		{
-			//b3Warning("Could not create file mapping object (%d).\n", GetLastError());
+			//b3Warning("Could not create file_manager mapping object (%d).\n", GetLastError());
 			return 0;
 		}
 	}
@@ -104,7 +104,7 @@ void* Win32SharedMemory::allocateSharedMemory(int key, int size, bool allowCreat
 
 	if (seg.m_buf == NULL)
 	{
-		b3Warning("Could not map view of file (%d).\n", GetLastError());
+		b3Warning("Could not map view of file_manager (%d).\n", GetLastError());
 		CloseHandle(seg.m_hMapFile);
 		return 0;
 	}

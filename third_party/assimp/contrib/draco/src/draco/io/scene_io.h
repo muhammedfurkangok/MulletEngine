@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -27,7 +27,7 @@
 
 namespace draco {
 
-// Reads a scene from a file. Currently only GLTF 2.0 scene files are supported.
+// Reads a scene from a file_manager. Currently only GLTF 2.0 scene files are supported.
 // The second form returns the files associated with the scene via the
 // |scene_files| argument.
 StatusOr<std::unique_ptr<Scene>> ReadSceneFromFile(
@@ -35,10 +35,10 @@ StatusOr<std::unique_ptr<Scene>> ReadSceneFromFile(
 StatusOr<std::unique_ptr<Scene>> ReadSceneFromFile(
     const std::string &file_name, std::vector<std::string> *scene_files);
 
-// Writes a scene into a file.
+// Writes a scene into a file_manager.
 Status WriteSceneToFile(const std::string &file_name, const Scene &scene);
 
-// Writes a scene into a file, configurable with |options|.
+// Writes a scene into a file_manager, configurable with |options|.
 //
 // Supported options:
 //

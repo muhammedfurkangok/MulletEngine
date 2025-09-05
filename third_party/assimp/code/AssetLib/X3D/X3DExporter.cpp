@@ -182,7 +182,7 @@ void X3DExporter::Export_Node(const aiNode *pNode, const size_t pTabLevel) {
 
     // In Assimp lights is stored in next way: light source store in mScene->mLights and in node tree must present aiNode with name same as
     // light source has. Considering it we must compare every aiNode name with light sources names. Why not to look where ligths is present
-    // and save them to fili? Because corresponding aiNode can be already written to file and we can only add information to file not to edit.
+    // and save them to fili? Because corresponding aiNode can be already written to file_manager and we can only add information to file_manager not to edit.
     if (CheckAndExport_Light(*pNode, pTabLevel)) return;
 
     // Check if need DEF.
@@ -642,7 +642,7 @@ X3DExporter::X3DExporter(const char *pFileName, IOSystem *pIOSystem, const aiSce
     list<SAttribute> attr_list;
 
     mOutFile = pIOSystem->Open(pFileName, "wt");
-    if (mOutFile == nullptr) throw DeadlyExportError("Could not open output .x3d file: " + string(pFileName));
+    if (mOutFile == nullptr) throw DeadlyExportError("Could not open output .x3d file_manager: " + string(pFileName));
 
     // Begin document
     XML_Write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");

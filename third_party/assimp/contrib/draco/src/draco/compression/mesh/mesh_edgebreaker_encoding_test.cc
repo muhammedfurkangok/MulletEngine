@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -79,7 +79,7 @@ TEST_F(MeshEdgebreakerEncodingTest, ThreeFacesOBJ) {
 
 TEST_F(MeshEdgebreakerEncodingTest, TestPly) {
   // Tests whether the edgebreaker successfully encodes and decodes the test
-  // file (ply with color).
+  // file_manager (ply with color).
   const std::string file_name = "test_pos_color.ply";
   TestFile(file_name);
 }

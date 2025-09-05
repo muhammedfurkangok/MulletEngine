@@ -154,7 +154,7 @@ class XMLPrinter;
 
 /*
 	A class that wraps strings. Normally stores the start and end
-	pointers into the XML file itself, and will apply normalization
+	pointers into the XML file_manager itself, and will apply normalization
 	and entity translation if actually read. Can also store (and memory
 	manage) a traditional char[]
 */
@@ -485,7 +485,7 @@ public:
 	}
 
 	// This number is perf sensitive. 4k seems like a good tradeoff on my machine.
-	// The test file is large, 170k.
+	// The test file_manager is large, 170k.
 	// Release:		VS2010 gcc(no opt)
 	//		1k:		4000
 	//		2k:		4000
@@ -836,7 +836,7 @@ public:
     */
 	void SetValue(const char* val, bool staticMem = false);
 
-	/// Gets the line number the node is in, if the document was parsed from a file.
+	/// Gets the line number the node is in, if the document was parsed from a file_manager.
 	int GetLineNum() const { return _parseLineNum; }
 
 	/// Get the parent of this node on the DOM.
@@ -1087,7 +1087,7 @@ private:
 	@endverbatim
 
 	A text node can have 2 ways to output the next. "normal" output
-	and CDATA. It will default to the mode it was parsed from the XML file and
+	and CDATA. It will default to the mode it was parsed from the XML file_manager and
 	you generally want to leave it alone, but you can change the output mode with
 	SetCData() and query it with CData().
 */
@@ -1165,7 +1165,7 @@ private:
 	XMLComment& operator=(const XMLComment&);  // not supported
 };
 
-/** In correct XML the declaration is the first entry in the file.
+/** In correct XML the declaration is the first entry in the file_manager.
 	@verbatim
 		<?xml version="1.0" standalone="yes"?>
 	@endverbatim
@@ -1208,7 +1208,7 @@ private:
 
 /** Any tag that TinyXML-2 doesn't recognize is saved as an
 	unknown. It is a tag of text, but should not be modified.
-	It will be written back to the XML, unchanged, when the file
+	It will be written back to the XML, unchanged, when the file_manager
 	is saved.
 
 	DTD tags get thrown into XMLUnknowns.
@@ -1260,7 +1260,7 @@ public:
 	/// The value of the attribute.
 	const char* Value() const;
 
-	/// Gets the line number the attribute is in, if the document was parsed from a file.
+	/// Gets the line number the attribute is in, if the document was parsed from a file_manager.
 	int GetLineNum() const { return _parseLineNum; }
 
 	/// The next attribute in the list.
@@ -1847,7 +1847,7 @@ public:
 	}
 
 	/**
-    	Parse an XML file from a character string.
+    	Parse an XML file_manager from a character string.
     	Returns XML_SUCCESS (0) on success, or
     	an errorID.
 
@@ -1859,17 +1859,17 @@ public:
 	XMLError Parse(const char* xml, size_t nBytes = (size_t)(-1));
 
 	/**
-    	Load an XML file from disk.
+    	Load an XML file_manager from disk.
     	Returns XML_SUCCESS (0) on success, or
     	an errorID.
     */
 	XMLError LoadFile(const char* filename);
 
 	/**
-    	Load an XML file from disk. You are responsible
+    	Load an XML file_manager from disk. You are responsible
     	for providing and closing the FILE*. 
      
-        NOTE: The file should be opened as binary ("rb")
+        NOTE: The file_manager should be opened as binary ("rb")
         not text in order for TinyXML-2 to correctly
         do newline normalization.
 
@@ -1879,14 +1879,14 @@ public:
 	XMLError LoadFile(FILE*);
 
 	/**
-    	Save the XML file to disk.
+    	Save the XML file_manager to disk.
     	Returns XML_SUCCESS (0) on success, or
     	an errorID.
     */
 	XMLError SaveFile(const char* filename, bool compact = false);
 
 	/**
-    	Save the XML file to disk. You are responsible
+    	Save the XML file_manager to disk. You are responsible
     	for providing and closing the FILE*.
 
     	Returns XML_SUCCESS (0) on success, or
@@ -1910,7 +1910,7 @@ public:
 	{
 		return _writeBOM;
 	}
-	/** Sets whether to write the BOM when writing the file.
+	/** Sets whether to write the BOM when writing the file_manager.
     */
 	void SetBOM(bool useBOM)
 	{
@@ -1930,7 +1930,7 @@ public:
 	}
 
 	/** Print the Document. If the Printer is not provided, it will
-        print to stdout. If you provide Printer, this can print to a file:
+        print to stdout. If you provide Printer, this can print to a file_manager:
     	@verbatim
     	XMLPrinter printer( fp );
     	doc.Print( &printer );
@@ -2354,7 +2354,7 @@ private:
 
 	It can:
 	-# Print to memory.
-	-# Print to a file you provide.
+	-# Print to a file_manager you provide.
 	-# Print XML without a XMLDocument.
 
 	Print to Memory
@@ -2367,7 +2367,7 @@ private:
 
 	Print to a File
 
-	You provide the file pointer.
+	You provide the file_manager pointer.
 	@verbatim
 	XMLPrinter printer( fp );
 	doc.Print( &printer );
@@ -2380,7 +2380,7 @@ private:
 	for streaming, and constructing the DOM is just overhead.
 
 	The Printer supports the streaming case. The following code
-	prints out a trivially simple XML file without ever creating
+	prints out a trivially simple XML file_manager without ever creating
 	an XML document.
 
 	@verbatim
@@ -2455,7 +2455,7 @@ public:
 
 	/**
     	If in print to memory mode, return a pointer to
-    	the XML file in memory.
+    	the XML file_manager in memory.
     */
 	const char* CStr() const
 	{
@@ -2463,7 +2463,7 @@ public:
 	}
 	/**
     	If in print to memory mode, return the size
-    	of the XML file in memory. (Note the size returned
+    	of the XML file_manager in memory. (Note the size returned
     	includes the terminating null.)
     */
 	int CStrSize() const

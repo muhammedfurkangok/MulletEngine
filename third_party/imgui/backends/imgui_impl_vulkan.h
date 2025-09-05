@@ -33,10 +33,10 @@
 // (1) You'll need to disable default Vulkan function prototypes.
 //     We provide a '#define IMGUI_IMPL_VULKAN_NO_PROTOTYPES' convenience configuration flag.
 //     In order to make sure this is visible from the imgui_impl_vulkan.cpp compilation unit:
-//     - Add '#define IMGUI_IMPL_VULKAN_NO_PROTOTYPES' in your imconfig.h file
+//     - Add '#define IMGUI_IMPL_VULKAN_NO_PROTOTYPES' in your imconfig.h file_manager
 //     - Or as a compilation flag in your build system
 //     - Or uncomment here (not recommended because you'd be modifying imgui sources!)
-//     - Do not simply add it in a .cpp file!
+//     - Do not simply add it in a .cpp file_manager!
 // (2) Call ImGui_ImplVulkan_LoadFunctions() before ImGui_ImplVulkan_Init() with your custom function.
 // If you have no idea what this is, leave it alone!
 //#define IMGUI_IMPL_VULKAN_NO_PROTOTYPES

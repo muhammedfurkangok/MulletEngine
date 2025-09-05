@@ -180,13 +180,13 @@ Mesh *OgreBinarySerializer::ImportMesh(MemoryStreamReader *stream) {
 
     uint16_t id = serializer.ReadHeader(false);
     if (id != HEADER_CHUNK_ID) {
-        throw DeadlyImportError("Invalid Ogre Mesh file header.");
+        throw DeadlyImportError("Invalid Ogre Mesh file_manager header.");
     }
 
     /// @todo Check what we can actually support.
     std::string version = serializer.ReadLine();
     if (version != MESH_VERSION_1_8) {
-        throw DeadlyImportError("Mesh version ", version, " not supported by this importer. Run OgreMeshUpgrader tool on the file and try again.",
+        throw DeadlyImportError("Mesh version ", version, " not supported by this importer. Run OgreMeshUpgrader tool on the file_manager and try again.",
                                                     " Supported versions: ", MESH_VERSION_1_8);
     }
 
@@ -470,7 +470,7 @@ void OgreBinarySerializer::ReadSubMeshNames(Mesh *mesh) {
             uint16_t submeshIndex = Read<uint16_t>();
             SubMesh *submesh = mesh->GetSubMesh(submeshIndex);
             if (!submesh) {
-                throw DeadlyImportError("Ogre Mesh does not include submesh ", submeshIndex, " referenced in M_SUBMESH_NAME_TABLE_ELEMENT. Invalid mesh file.");
+                throw DeadlyImportError("Ogre Mesh does not include submesh ", submeshIndex, " referenced in M_SUBMESH_NAME_TABLE_ELEMENT. Invalid mesh file_manager.");
             }
 
             submesh->name = ReadLine();
@@ -742,7 +742,7 @@ bool OgreBinarySerializer::ImportSkeleton(Assimp::IOSystem *pIOHandler, Mesh *me
         return false;
 
     // Highly unusual to see in read world cases but support
-    // binary mesh referencing a XML skeleton file.
+    // binary mesh referencing a XML skeleton file_manager.
     if (EndsWith(mesh->skeletonRef, ".skeleton.xml", false)) {
         OgreXmlSerializer::ImportSkeleton(pIOHandler, mesh);
         return false;
@@ -776,18 +776,18 @@ bool OgreBinarySerializer::ImportSkeleton(Assimp::IOSystem *pIOHandler, MeshXml 
 
 MemoryStreamReaderPtr OgreBinarySerializer::OpenReader(Assimp::IOSystem *pIOHandler, const std::string &filename) {
     if (!EndsWith(filename, ".skeleton", false)) {
-        ASSIMP_LOG_ERROR("Imported Mesh is referencing to unsupported '", filename, "' skeleton file.");
+        ASSIMP_LOG_ERROR("Imported Mesh is referencing to unsupported '", filename, "' skeleton file_manager.");
         return MemoryStreamReaderPtr();
     }
 
     if (!pIOHandler->Exists(filename)) {
-        ASSIMP_LOG_ERROR("Failed to find skeleton file '", filename, "' that is referenced by imported Mesh.");
+        ASSIMP_LOG_ERROR("Failed to find skeleton file_manager '", filename, "' that is referenced by imported Mesh.");
         return MemoryStreamReaderPtr();
     }
 
     IOStream *f = pIOHandler->Open(filename, "rb");
     if (!f) {
-        throw DeadlyImportError("Failed to open skeleton file ", filename);
+        throw DeadlyImportError("Failed to open skeleton file_manager ", filename);
     }
 
     return MemoryStreamReaderPtr(new MemoryStreamReader(f));
@@ -796,7 +796,7 @@ MemoryStreamReaderPtr OgreBinarySerializer::OpenReader(Assimp::IOSystem *pIOHand
 void OgreBinarySerializer::ReadSkeleton(Skeleton *skeleton) {
     uint16_t id = ReadHeader(false);
     if (id != HEADER_CHUNK_ID) {
-        throw DeadlyImportError("Invalid Ogre Skeleton file header.");
+        throw DeadlyImportError("Invalid Ogre Skeleton file_manager header.");
     }
 
     // This deserialization supports both versions of the skeleton spec

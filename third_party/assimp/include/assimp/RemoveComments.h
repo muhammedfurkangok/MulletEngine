@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 /** @file Declares a helper class, "CommentRemover", which can be
- *  used to remove comments (single and multi line) from a text file.
+ *  used to remove comments (single and multi line) from a text file_manager.
  */
 #pragma once
 #ifndef AI_REMOVE_COMMENTS_H_INC
@@ -55,7 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace Assimp {
 
 // ---------------------------------------------------------------------------
-/** \brief Helper class to remove single and multi line comments from a file
+/** \brief Helper class to remove single and multi line comments from a file_manager
  *
  *  Some mesh formats like MD5 have comments that are quite similar
  *  to those in C or C++ so this code has been moved to a separate

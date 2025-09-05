@@ -90,7 +90,7 @@ static constexpr aiImporterDesc desc = {
 };
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool COBImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "Caligary" };
     return SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens));
@@ -114,7 +114,7 @@ void COBImporter::SetupProperties(const Importer * /*pImp*/) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void COBImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSystem *pIOHandler) {
     COB::Scene scene;
 
@@ -383,7 +383,7 @@ aiNode *COBImporter::BuildNodes(const Node &root, const Scene &scin, aiScene *fi
 }
 
 // ------------------------------------------------------------------------------------------------
-// Read an ASCII file into the given scene data structure
+// Read an ASCII file_manager into the given scene data structure
 void COBImporter::ReadAsciiFile(Scene &out, StreamReaderLE *stream) {
     ChunkInfo ci;
     for (LineSplitter splitter(*stream); splitter; ++splitter) {

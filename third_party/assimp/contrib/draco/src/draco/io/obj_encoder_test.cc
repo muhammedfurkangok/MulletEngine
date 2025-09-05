@@ -1,7 +1,7 @@
 // Copyright 2017 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -80,16 +80,16 @@ TEST_F(ObjEncoderTest, HasMaterial) {
   ASSERT_EQ(mesh0->num_attributes(), mesh1->num_attributes());
   // Position attribute should be the same.
   ASSERT_EQ(mesh0->attribute(0)->size(), mesh1->attribute(0)->size());
-  // Since |mesh1| is decoded from buffer, it has not material file. So the
+  // Since |mesh1| is decoded from buffer, it has not material file_manager. So the
   // size of material attribute is the number of materials used in the obj
-  // file which is 7. The size of material attribute of |mesh0| decoded from
-  // the obj file will be the number of materials defined in the .mtl file.
+  // file_manager which is 7. The size of material attribute of |mesh0| decoded from
+  // the obj file_manager will be the number of materials defined in the .mtl file_manager.
   ASSERT_EQ(mesh0->attribute(1)->size(), 29);
   ASSERT_EQ(mesh1->attribute(1)->size(), 7);
 }
 
 TEST_F(ObjEncoderTest, TestObjEncodingAll) {
-  // Test decoded mesh from encoded obj file stays the same.
+  // Test decoded mesh from encoded obj file_manager stays the same.
   test_encoding("bunny_norm.obj");
   test_encoding("cube_att.obj");
   test_encoding("cube_att_partial.obj");
@@ -123,12 +123,12 @@ TEST_F(ObjEncoderTest, TestObjOctagonPreserved) {
                 "name", "added_edges"),
             nullptr);
 
-  // Reconstruct octagon and encode it into an OBJ file.
+  // Reconstruct octagon and encode it into an OBJ file_manager.
   draco::ObjEncoder obj_encoder;
   ASSERT_TRUE(obj_encoder.EncodeToFile(
       *mesh, draco::GetTestTempFileFullPath("encoded.obj")));
 
-  // Read encoded OBJ file and golden OBJ file contents into buffers.
+  // Read encoded OBJ file_manager and golden OBJ file_manager contents into buffers.
   std::vector<char> data_encoded;
   std::vector<char> data_golden;
   ASSERT_TRUE(
@@ -136,7 +136,7 @@ TEST_F(ObjEncoderTest, TestObjOctagonPreserved) {
   ASSERT_TRUE(ReadFileToBuffer(GetTestFileFullPath("octagon_preserved.obj"),
                                &data_golden));
 
-  // Check that encoded OBJ file contents are correct.
+  // Check that encoded OBJ file_manager contents are correct.
   ASSERT_EQ(data_encoded.size(), data_golden.size());
   ASSERT_EQ(data_encoded, data_golden);
 }

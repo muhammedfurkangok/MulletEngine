@@ -1,7 +1,7 @@
 // Copyright 2021 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,7 @@ namespace draco {
 
 // This class is used to hold the encoded and decoded data and characteristics
 // for an image. In order for the image to contain "valid" encoded data, either
-// the |filename_| must point to a valid image file or the |mime_type_| and
+// the |filename_| must point to a valid image file_manager or the |mime_type_| and
 // |encoded_data_| must contain valid image data.
 class SourceImage {
  public:
@@ -43,7 +43,7 @@ class SourceImage {
 
   void Copy(const SourceImage &src);
 
-  // Sets the name of the source image file.
+  // Sets the name of the source image file_manager.
   void set_filename(const std::string &filename) { filename_ = filename; }
   const std::string &filename() const { return filename_; }
 

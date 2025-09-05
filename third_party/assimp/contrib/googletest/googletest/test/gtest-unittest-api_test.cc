@@ -29,7 +29,7 @@
 //
 // The Google C++ Testing and Mocking Framework (Google Test)
 //
-// This file contains tests verifying correctness of data provided via
+// This file_manager contains tests verifying correctness of data provided via
 // UnitTest's public methods.
 
 #include <string.h>  // For strcmp.

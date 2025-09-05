@@ -55,7 +55,7 @@ static bool UrdfFindMeshFile(
 		return false;
 	}
 
-	std::string drop_it_file = "file://";
+	std::string drop_it_file = "file_manager://";
 	std::string drop_it_pack = "package://";
 	std::string drop_it_model = "model://";
 	if (fn.substr(0, drop_it_file.length()) == drop_it_file)

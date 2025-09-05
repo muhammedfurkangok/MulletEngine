@@ -163,7 +163,7 @@ void ReportSceneNotFoundError() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads the given file and returns its content.
+// Reads the given file_manager and returns its content.
 const aiScene *aiImportFile(const char *pFile, unsigned int pFlags) {
     return aiImportFileEx(pFile, pFlags, nullptr);
 }
@@ -181,7 +181,7 @@ const aiScene *aiImportFileExWithProperties(const char *pFile, unsigned int pFla
     const aiScene *scene = nullptr;
     ASSIMP_BEGIN_EXCEPTION_REGION();
 
-    // create an Importer for this file
+    // create an Importer for this file_manager
     Assimp::Importer *imp = new Assimp::Importer();
 
     // copy properties
@@ -198,7 +198,7 @@ const aiScene *aiImportFileExWithProperties(const char *pFile, unsigned int pFla
         imp->SetIOHandler(new CIOSystemWrapper(pFS));
     }
 
-    // and have it read the file
+    // and have it read the file_manager
     scene = imp->ReadFile(pFile, pFlags);
 
     // if succeeded, store the importer in the scene and keep it alive
@@ -244,7 +244,7 @@ const aiScene *aiImportFileFromMemoryWithProperties(
     const aiScene *scene = nullptr;
     ASSIMP_BEGIN_EXCEPTION_REGION();
 
-    // create an Importer for this file
+    // create an Importer for this file_manager
     Assimp::Importer *imp = new Assimp::Importer();
 
     // copy properties
@@ -257,7 +257,7 @@ const aiScene *aiImportFileFromMemoryWithProperties(
         pimpl->mMatrixProperties = pp->matrices;
     }
 
-    // and have it read the file from the memory buffer
+    // and have it read the file_manager from the memory buffer
     scene = imp->ReadFileFromMemory(pBuffer, pLength, pFlags, pHint);
 
     // if succeeded, store the importer in the scene and keep it alive
@@ -493,7 +493,7 @@ aiBool aiIsExtensionSupported(const char *szExtension) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Get a list of all file extensions supported by ASSIMP
+// Get a list of all file_manager extensions supported by ASSIMP
 void aiGetExtensionList(aiString *szOut) {
     ai_assert(nullptr != szOut);
     ASSIMP_BEGIN_EXCEPTION_REGION();
@@ -1286,7 +1286,7 @@ ASSIMP_API void aiQuaternionInterpolate(
 // stb_image is a lightweight image loader. It is shared by:
 //  - M3D import
 //  - PBRT export
-// Since it's a header-only library, its implementation must be instantiated in some cpp file.
+// Since it's a header-only library, its implementation must be instantiated in some cpp file_manager.
 // Don't scatter this task over multiple importers/exporters. Maintain it in a central place (here!).
 
 #define ASSIMP_HAS_PBRT_EXPORT (!ASSIMP_BUILD_NO_EXPORT && !ASSIMP_BUILD_NO_PBRT_EXPORTER)

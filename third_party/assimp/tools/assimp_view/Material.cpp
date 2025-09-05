@@ -233,7 +233,7 @@ bool CMaterialManager::TryLongerPath(char* szTemp,aiString* p_szString)
     char szTempB[MAX_PATH];
     strcpy(szTempB,szTemp);
 
-    // go to the beginning of the file name
+    // go to the beginning of the file_manager name
     char* szFile = strrchr(szTempB,'\\');
     if (!szFile)szFile = strrchr(szTempB,'/');
 
@@ -315,11 +315,11 @@ int CMaterialManager::FindValidPath(aiString* p_szString)
     ai_assert(nullptr != p_szString);
     aiString pcpy = *p_szString;
     if ('*' ==  p_szString->data[0])    {
-        // '*' as first character indicates an embedded file
+        // '*' as first character indicates an embedded file_manager
         return 5;
     }
 
-    // first check whether we can directly load the file
+    // first check whether we can directly load the file_manager
     FILE* pFile = fopen(p_szString->data,"rb");
     if (pFile) {
         fclose(pFile);
@@ -427,14 +427,14 @@ int CMaterialManager::LoadTexture(IDirect3DTexture9** p_ppiOut,aiString* szPath)
     // first get a valid path to the texture
     if( 5 == FindValidPath(szPath))
     {
-        // embedded file. Find its index
+        // embedded file_manager. Find its index
         unsigned int iIndex = atoi(szPath->data+1);
         if (iIndex < g_pcAsset->pcScene->mNumTextures)
         {
             if (0 == g_pcAsset->pcScene->mTextures[iIndex]->mHeight)
             {
-                // it is an embedded file ... don't need the file format hint,
-                // simply let D3DX load the file
+                // it is an embedded file_manager ... don't need the file_manager format hint,
+                // simply let D3DX load the file_manager
                 D3DXIMAGE_INFO info;
                 if (FAILED(D3DXCreateTextureFromFileInMemoryEx(g_piDevice,
                     g_pcAsset->pcScene->mTextures[iIndex]->pcData,

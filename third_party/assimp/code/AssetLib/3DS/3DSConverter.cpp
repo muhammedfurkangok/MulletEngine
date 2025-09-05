@@ -101,7 +101,7 @@ void Discreet3DSImporter::ReplaceDefaultMaterial() {
                 ++cnt;
             } else if ((*a) >= mScene->mMaterials.size()) {
                 (*a) = idx;
-                ASSIMP_LOG_WARN("Material index overflow in 3DS file. Using default material");
+                ASSIMP_LOG_WARN("Material index overflow in 3DS file_manager. Using default material");
                 ++cnt;
             }
         }
@@ -681,7 +681,7 @@ void Discreet3DSImporter::GenerateNodeGraph(aiScene *pcOut) {
     pcOut->mRootNode = new aiNode();
     if (0 == mRootNode->mChildren.size()) {
         //////////////////////////////////////////////////////////////////////////////
-        // It seems the file is so messed up that it has not even a hierarchy.
+        // It seems the file_manager is so messed up that it has not even a hierarchy.
         // generate a flat hiearachy which looks like this:
         //
         //                ROOT_NODE
@@ -690,7 +690,7 @@ void Discreet3DSImporter::GenerateNodeGraph(aiScene *pcOut) {
         //   |       |       |            |         |
         // MESH_0  MESH_1  MESH_2  ...  MESH_N    CAMERA_0 ....
         //
-        ASSIMP_LOG_WARN("No hierarchy information has been found in the file. ");
+        ASSIMP_LOG_WARN("No hierarchy information has been found in the file_manager. ");
 
         pcOut->mRootNode->mNumChildren = pcOut->mNumMeshes +
                                          static_cast<unsigned int>(mScene->mCameras.size() + mScene->mLights.size());

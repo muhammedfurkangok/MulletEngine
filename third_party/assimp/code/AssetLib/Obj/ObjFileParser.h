@@ -62,7 +62,7 @@ class ProgressHandler;
 
 // ------------------------------------------------------------------------------------------------
 /// \class  ObjFileParser
-/// \brief  Parser for a obj waveform file
+/// \brief  Parser for a obj waveform file_manager
 // ------------------------------------------------------------------------------------------------
 class ASSIMP_API ObjFileParser {
 public:
@@ -86,7 +86,7 @@ public:
     ObjFileParser &operator=(const ObjFileParser& ) = delete;
 
 protected:
-    /// Parse the loaded file
+    /// Parse the loaded file_manager
     void parseFile(IOStreamBuffer<char> &streamBuffer);
     /// Method to copy the new delimited word in the current line.
     void copyNextWord(char *pBuffer, size_t length);
@@ -112,11 +112,11 @@ protected:
     void getMaterialLib();
     /// Creates a new material.
     void getNewMaterial();
-    /// Gets the group name from file.
+    /// Gets the group name from file_manager.
     void getGroupName();
-    /// Gets the group number from file.
+    /// Gets the group number from file_manager.
     void getGroupNumber();
-    /// Gets the group number and resolution from file.
+    /// Gets the group number and resolution from file_manager.
     void getGroupNumberAndResolution();
     /// Returns the index of the material. Is -1 if not material was found.
     int getMaterialIndex(const std::string &strMaterialName);
@@ -150,7 +150,7 @@ private:
     IOSystem *m_pIO;
     //! Pointer to progress handler
     ProgressHandler *m_progress;
-    /// Path to the current model, name of the obj file where the buffer comes from
+    /// Path to the current model, name of the obj file_manager where the buffer comes from
     const std::string m_originalObjFileName;
 };
 

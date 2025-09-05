@@ -108,7 +108,7 @@ TEST(utACImportExport, importSphereWithLightACC) {
 TEST(utACImportExport, importSphereWithLightUTF16) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(ASSIMP_TEST_MODELS_DIR "/AC/SphereWithLight_UTF16LE.ac", aiProcess_ValidateDataStructure);
-    // FIXME: this is probably wrong, loading the file should succeed
+    // FIXME: this is probably wrong, loading the file_manager should succeed
     ASSERT_EQ(nullptr, scene);
 }
 

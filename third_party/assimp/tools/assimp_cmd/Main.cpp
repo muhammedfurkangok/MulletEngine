@@ -74,17 +74,17 @@ constexpr char AICMD_MSG_ABOUT[] =
 constexpr char AICMD_MSG_HELP[] =
 "assimp <verb> <parameters>\n\n"
 " verbs:\n"
-" \tinfo       - Quick file stats\n"
-" \tlistext    - List all known file extensions available for import\n"
-" \tknowext    - Check whether a file extension is recognized by Assimp\n"
+" \tinfo       - Quick file_manager stats\n"
+" \tlistext    - List all known file_manager extensions available for import\n"
+" \tknowext    - Check whether a file_manager extension is recognized by Assimp\n"
 #ifndef ASSIMP_BUILD_NO_EXPORT
-" \texport     - Export a file to one of the supported output formats\n"
+" \texport     - Export a file_manager to one of the supported output formats\n"
 " \tlistexport - List all supported export formats\n"
 " \texportinfo - Show basic information on a specific export format\n"
 #endif
 " \textract    - Extract embedded texture images\n"
 " \tdump       - Convert models to a binary or textual dump (ASSBIN/ASSXML)\n"
-" \tcmpdump    - Compare dumps created using \'assimp dump <file> -s ...\'\n"
+" \tcmpdump    - Compare dumps created using \'assimp dump <file_manager> -s ...\'\n"
 " \tversion    - Display Assimp version\n"
 "\n Use \'assimp <verb> --help\' for detailed help on a command.\n"
 ;
@@ -146,7 +146,7 @@ int main (int argc, char* argv[]) {
 #endif
 
 	// assimp listext
-	// List all file extensions supported by Assimp
+	// List all file_manager extensions supported by Assimp
 	if (! strcmp(argv[1], "listext")) {
 		aiString s;
 		imp.GetExtensionList(s);
@@ -157,7 +157,7 @@ int main (int argc, char* argv[]) {
 
 #ifndef ASSIMP_BUILD_NO_EXPORT
 	// assimp listexport
-	// List all export file formats supported by Assimp (not the file extensions, just the format identifiers!)
+	// List all export file_manager formats supported by Assimp (not the file_manager extensions, just the format identifiers!)
 	if (! strcmp(argv[1], "listexport")) {
 		aiString s;
 
@@ -180,7 +180,7 @@ int main (int argc, char* argv[]) {
 		aiString s;
 
 		if (argc<3) {
-			printf("Expected file format id\n");
+			printf("Expected file_manager format id\n");
 			return AssimpCmdError::NoFileFormatSpecified;
 		}
 
@@ -192,12 +192,12 @@ int main (int argc, char* argv[]) {
 			}
 		}
 
-		printf("Unknown file format id: \'%s\'\n",argv[2]);
+		printf("Unknown file_manager format id: \'%s\'\n",argv[2]);
 		return AssimpCmdError::UnknownFileFormat;
 	}
 
 	// assimp export
-	// Export a model to a file
+	// Export a model to a file_manager
 	if (! strcmp(argv[1], "export")) {
 		return Assimp_Export (&argv[2],argc-2);
 	}
@@ -205,10 +205,10 @@ int main (int argc, char* argv[]) {
 #endif
 
 	// assimp knowext
-	// Check whether a particular file extension is known by us, return 0 on success
+	// Check whether a particular file_manager extension is known by us, return 0 on success
 	if (! strcmp(argv[1], "knowext")) {
 		if (argc<3) {
-			printf("Expected file extension");
+			printf("Expected file_manager extension");
 			return AssimpCmdError::NoFileExtensionSpecified;
 		}
 		const bool b = imp.IsExtensionSupported(argv[2]);
@@ -223,13 +223,13 @@ int main (int argc, char* argv[]) {
 	}
 
 	// assimp dump
-	// Dump a model to a file
+	// Dump a model to a file_manager
 	if (! strcmp(argv[1], "dump")) {
 		return Assimp_Dump (&argv[2],argc-2);
 	}
 
 	// assimp extract
-	// Extract an embedded texture from a file
+	// Extract an embedded texture from a file_manager
 	if (! strcmp(argv[1], "extract")) {
 		return Assimp_Extract (&argv[2],argc-2);
 	}
@@ -277,7 +277,7 @@ void PrintHorBar()
 }
 
 // ------------------------------------------------------------------------------
-// Import a specific file
+// Import a specific file_manager
 const aiScene* ImportModel(
 	const ImportData& imp,
 	const std::string& path)
@@ -310,14 +310,14 @@ const aiScene* ImportModel(
 		PrintHorBar();
 	}
 	if (!scene) {
-		printf("ERROR: Failed to load file: %s\n", globalImporter->GetErrorString());
+		printf("ERROR: Failed to load file_manager: %s\n", globalImporter->GetErrorString());
 		return nullptr;
 	}
 
 	const clock_t second = ::clock();
 	const double seconds = static_cast<double>(second-first) / CLOCKS_PER_SEC;
 
-	printf("Importing file ...                   OK \n   import took approx. %.5f seconds\n"
+	printf("Importing file_manager ...                   OK \n   import took approx. %.5f seconds\n"
 		"\n",seconds);
 
 	if (imp.log) {
@@ -362,7 +362,7 @@ bool ExportModel(const aiScene* pOut,
 		PrintHorBar();
 	}
 	if (res != AI_SUCCESS) {
-		printf("Failed to write file\n");
+		printf("Failed to write file_manager\n");
 		printf("ERROR: %s\n", globalExporter->GetErrorString());
 		return false;
 	}
@@ -370,7 +370,7 @@ bool ExportModel(const aiScene* pOut,
 	const clock_t second = ::clock();
 	const double seconds = static_cast<double>(second-first) / CLOCKS_PER_SEC;
 
-	printf("Exporting file ...                   OK \n   export took approx. %.5f seconds\n"
+	printf("Exporting file_manager ...                   OK \n   export took approx. %.5f seconds\n"
 		"\n",seconds);
 
 	if (imp.log) {
@@ -415,7 +415,7 @@ int ProcessStandardArguments(
 	// -sbc    --split-by-bone-count
 	// -gs	   --global-scale
 	//
-	// -c<file> --config-file=<file>
+	// -c<file_manager> --config-file_manager=<file_manager>
 
 	for (unsigned int i = 0; i < num;++i)
 	{

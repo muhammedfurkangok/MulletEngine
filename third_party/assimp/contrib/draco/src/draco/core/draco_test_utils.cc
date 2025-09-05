@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -66,7 +66,7 @@ bool CompareGoldenFile(const std::string &golden_file_name, const void *data,
     }
     for (uint32_t i = 0; i < size_to_check; ++i) {
       if (buffer[i] != data_c8[offset++]) {
-        LOG(INFO) << "Test output differed from golden file at byte "
+        LOG(INFO) << "Test output differed from golden file_manager at byte "
                   << offset - 1;
         return false;
       }
@@ -75,7 +75,7 @@ bool CompareGoldenFile(const std::string &golden_file_name, const void *data,
   }
   if (remaining_data_size != extracted_size) {
     // Both of these values should be 0 at the end.
-    LOG(INFO) << "Test output size differed from golden file size";
+    LOG(INFO) << "Test output size differed from golden file_manager size";
     return false;
   }
   return true;

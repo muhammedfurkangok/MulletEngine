@@ -89,7 +89,7 @@ ObjFileImporter::~ObjFileImporter() {
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Returns true if file is an obj file.
+//  Returns true if file_manager is an obj file_manager.
 bool ObjFileImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static const char *tokens[] = { "mtllib", "usemtl", "v ", "vt ", "vn ", "o ", "g ", "s ", "f " };
     return BaseImporter::SearchFileHeaderForToken(pIOHandler, pFile, tokens, AI_COUNT_OF(tokens), 200, false, true);
@@ -101,33 +101,33 @@ const aiImporterDesc *ObjFileImporter::GetInfo() const {
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Obj-file import implementation
+//  Obj-file_manager import implementation
 void ObjFileImporter::InternReadFile(const std::string &file, aiScene *pScene, IOSystem *pIOHandler) {
     if (m_pRootObject != nullptr) {
         delete m_pRootObject;
         m_pRootObject = nullptr;
     }
 
-    // Read file into memory
+    // Read file_manager into memory
     static constexpr char mode[] = "rb";
     auto streamCloser = [&](IOStream *pStream) {
         pIOHandler->Close(pStream);
     };
     std::unique_ptr<IOStream, decltype(streamCloser)> fileStream(pIOHandler->Open(file, mode), streamCloser);
     if (!fileStream) {
-        throw DeadlyImportError("Failed to open file ", file, ".");
+        throw DeadlyImportError("Failed to open file_manager ", file, ".");
     }
 
-    // Get the file-size and validate it, throwing an exception when fails
+    // Get the file_manager-size and validate it, throwing an exception when fails
     size_t fileSize = fileStream->FileSize();
     if (fileSize < ObjMinSize) {
-        throw DeadlyImportError("OBJ-file is too small.");
+        throw DeadlyImportError("OBJ-file_manager is too small.");
     }
 
     IOStreamBuffer<char> streamedBuffer;
     streamedBuffer.open(fileStream.get());
 
-    // Allocate buffer and read file into it
+    // Allocate buffer and read file_manager into it
     //TextFileToBuffer( fileStream.get(),m_Buffer);
 
     // Get the model name
@@ -143,7 +143,7 @@ void ObjFileImporter::InternReadFile(const std::string &file, aiScene *pScene, I
         modelName = file;
     }
 
-    // parse the file into a temporary representation
+    // parse the file_manager into a temporary representation
     ObjFileParser parser(streamedBuffer, modelName, pIOHandler, m_progress, file);
 
     // And create the proper return structures out of it
@@ -161,7 +161,7 @@ void ObjFileImporter::InternReadFile(const std::string &file, aiScene *pScene, I
 }
 
 // ------------------------------------------------------------------------------------------------
-//  Create the data from parsed obj-file
+//  Create the data from parsed obj-file_manager
 void ObjFileImporter::CreateDataFromImport(const ObjFile::Model *pModel, aiScene *pScene) {
     if (pModel == nullptr) {
         return;

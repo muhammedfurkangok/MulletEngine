@@ -184,7 +184,7 @@ void bFile::setFileDNA(int verboseMode, char *dnaBuffer, int dnaLen)
 {
 	mFileDNA = new bDNA();
 
-	///mFileDNA->init will convert part of DNA file endianness to current CPU endianness if necessary
+	///mFileDNA->init will convert part of DNA file_manager endianness to current CPU endianness if necessary
 	mFileDNA->init((char *)dnaBuffer, dnaLen, (mFlags & FD_ENDIAN_SWAP) != 0);
 
 	if (verboseMode & FD_VERBOSE_DUMP_DNA_TYPE_DEFINITIONS)
@@ -254,7 +254,7 @@ void bFile::parseInternal(int verboseMode, char *memDna, int memDnaLength)
 
 		mFileDNA = new bDNA();
 
-		///mFileDNA->init will convert part of DNA file endianness to current CPU endianness if necessary
+		///mFileDNA->init will convert part of DNA file_manager endianness to current CPU endianness if necessary
 		mFileDNA->init((char *)dna.oldPtr, dna.len, (mFlags & FD_ENDIAN_SWAP) != 0);
 
 		if (mVersion == 276)
@@ -286,13 +286,13 @@ void bFile::parseInternal(int verboseMode, char *memDna, int memDnaLength)
 	if (mMemoryDNA->getNumNames() != mFileDNA->getNumNames())
 	{
 		mFlags |= FD_VERSION_VARIES;
-		//printf ("Warning, file DNA is different than built in, performance is reduced. Best to re-export file with a matching version/platform");
+		//printf ("Warning, file_manager DNA is different than built in, performance is reduced. Best to re-export file_manager with a matching version/platform");
 	}
 
 	// as long as it kept up to date it will be ok!!
 	if (mMemoryDNA->lessThan(mFileDNA))
 	{
-		//printf ("Warning, file DNA is newer than built in.");
+		//printf ("Warning, file_manager DNA is newer than built in.");
 	}
 
 	mFileDNA->initCmpFlags(mMemoryDNA);
@@ -546,7 +546,7 @@ void bFile::preSwap()
 {
 	//const bool brokenDNA = (mFlags&FD_BROKEN_DNA)!=0;
 	//FD_ENDIAN_SWAP
-	//byte 8 determines the endianness of the file, little (v) versus big (V)
+	//byte 8 determines the endianness of the file_manager, little (v) versus big (V)
 	int littleEndian = 1;
 	littleEndian = ((char *)&littleEndian)[0];
 
@@ -941,8 +941,8 @@ void bFile::safeSwapPtr(char *dst, const char *src)
 void bFile::getMatchingFileDNA(short *dna_addr, const char *lookupName, const char *lookupType, char *strcData, char *data, bool fixupPointers)
 {
 	// find the matching memory dna data
-	// to the file being loaded. Fill the
-	// memory with the file data...
+	// to the file_manager being loaded. Fill the
+	// memory with the file_manager data...
 
 	int len = dna_addr[1];
 	dna_addr += 2;
@@ -1162,7 +1162,7 @@ void bFile::resolvePointersMismatch()
 	}
 }
 
-///this loop only works fine if the Blender DNA structure of the file matches the headerfiles
+///this loop only works fine if the Blender DNA structure of the file_manager matches the headerfiles
 void bFile::resolvePointersChunk(const bChunkInd &dataChunk, int verboseMode)
 {
 	bParse::bDNA *fileDna = mFileDNA ? mFileDNA : mMemoryDNA;

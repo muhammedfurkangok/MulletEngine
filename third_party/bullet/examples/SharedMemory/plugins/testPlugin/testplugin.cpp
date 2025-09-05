@@ -1,5 +1,5 @@
 
-//test plugin, can load a URDF file, example usage on a Windows machine:
+//test plugin, can load a URDF file_manager, example usage on a Windows machine:
 
 /*
 import pybullet as p

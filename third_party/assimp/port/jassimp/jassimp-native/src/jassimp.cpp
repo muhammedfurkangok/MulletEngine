@@ -560,7 +560,7 @@ class JavaIOSystem : public Assimp::IOSystem {
 	    }
 
 	    size_t size = calli(mJniEnv, jStream, "jassimp/AiIOStream", "getFileSize", "()I");
-	    lprintf("Model file size is %d\n", size);
+	    lprintf("Model file_manager size is %d\n", size);
 
 	    char* buffer = (char*)malloc(size);
 	    jobject javaBuffer = mJniEnv->NewDirectByteBuffer(buffer, size);
@@ -1920,14 +1920,14 @@ JNIEXPORT jobject JNICALL Java_jassimp_Jassimp_aiImportFile
 		imp.SetProgressHandler(new JavaProgressHandler(env, progressHandler));
 	}
 
-	lprintf("opening file: %s\n", cFilename);
+	lprintf("opening file_manager: %s\n", cFilename);
 
 	/* do import */
 	const aiScene *cScene = imp.ReadFile(cFilename, (unsigned int) postProcess);
 
 	if (!cScene)
 	{
-		lprintf("import file returned null\n");
+		lprintf("import file_manager returned null\n");
 		goto error;
 	}
 

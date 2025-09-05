@@ -87,7 +87,7 @@ struct Header
     //! magic number
     uint32_t IDENT;
 
-    //! file format version
+    //! file_manager format version
     uint32_t VERSION;
 
     //! original name in .pak archive
@@ -96,16 +96,16 @@ struct Header
     //! unknown
     int32_t FLAGS;
 
-    //! number of frames in the file
+    //! number of frames in the file_manager
     uint32_t NUM_FRAMES;
 
-    //! number of tags in the file
+    //! number of tags in the file_manager
     uint32_t NUM_TAGS;
 
-    //! number of surfaces in the file
+    //! number of surfaces in the file_manager
     uint32_t NUM_SURFACES;
 
-    //! number of skins in the file
+    //! number of skins in the file_manager
     uint32_t NUM_SKINS;
 
     //! offset of the first frame
@@ -117,7 +117,7 @@ struct Header
     //! offset of the first surface
     uint32_t OFS_SURFACES;
 
-    //! end of file
+    //! end of file_manager
     uint32_t OFS_EOF;
 } PACK_STRUCT;
 

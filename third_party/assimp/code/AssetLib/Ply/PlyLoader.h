@@ -60,7 +60,7 @@ namespace Assimp {
 using namespace PLY;
 
 // ---------------------------------------------------------------------------
-/** Importer class to load the stanford PLY file format
+/** Importer class to load the stanford PLY file_manager format
 */
 class PLYImporter final : public BaseImporter {
 public:
@@ -68,7 +68,7 @@ public:
     ~PLYImporter() override;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      * See BaseImporter::CanRead() for details.
      */
     bool CanRead(const std::string &pFile, IOSystem *pIOHandler,
@@ -92,7 +92,7 @@ protected:
     const aiImporterDesc *GetInfo() const override;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure.
+    /** Imports the given file_manager into the given scene structure.
     * See BaseImporter::InternReadFile() for details
     */
     void InternReadFile(const std::string &pFile, aiScene *pScene,

@@ -104,7 +104,7 @@ Discreet3DSImporter::Discreet3DSImporter() :
 }
 
 // ------------------------------------------------------------------------------------------------
-// Returns whether the class can handle the format of the given file.
+// Returns whether the class can handle the format of the given file_manager.
 bool Discreet3DSImporter::CanRead(const std::string &pFile, IOSystem *pIOHandler, bool /*checkSig*/) const {
     static constexpr uint16_t token[] = { 0x4d4d, 0x3dc2 /*, 0x3daa */ };
     return CheckMagicToken(pIOHandler, pFile, token, AI_COUNT_OF(token), 0, sizeof token[0]);
@@ -123,7 +123,7 @@ void Discreet3DSImporter::SetupProperties(const Importer * /*pImp*/) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Imports the given file into the given scene structure.
+// Imports the given file_manager into the given scene structure.
 void Discreet3DSImporter::InternReadFile(const std::string &pFile,
         aiScene *pScene, IOSystem *pIOHandler) {
 
@@ -136,7 +136,7 @@ void Discreet3DSImporter::InternReadFile(const std::string &pFile,
 
     // We should have at least one chunk
     if (theStream.GetRemainingSize() < 16) {
-        throw DeadlyImportError("3DS file is either empty or corrupt: ", pFile);
+        throw DeadlyImportError("3DS file_manager is either empty or corrupt: ", pFile);
     }
     this->stream = &theStream;
 
@@ -157,17 +157,17 @@ void Discreet3DSImporter::InternReadFile(const std::string &pFile,
     bHasBG = false;
     bIsPrj = false;
 
-    // Parse the file
+    // Parse the file_manager
     ParseMainChunk();
 
-    // Process all meshes in the file. First check whether all
+    // Process all meshes in the file_manager. First check whether all
     // face indices have valid values. The generate our
     // internal verbose representation. Finally compute normal
     // vectors from the smoothing groups we read from the
-    // file.
+    // file_manager.
     for (auto &mesh : mScene->mMeshes) {
         if (mesh.mFaces.size() > 0 && mesh.mPositions.size() == 0) {
-            throw DeadlyImportError("3DS file contains faces but no vertices: ", pFile);
+            throw DeadlyImportError("3DS file_manager contains faces but no vertices: ", pFile);
         }
         CheckIndices(mesh);
         MakeUnique(mesh);
@@ -176,7 +176,7 @@ void Discreet3DSImporter::InternReadFile(const std::string &pFile,
 
     // Replace all occurrences of the default material with a
     // valid material. Generate it if no material containing
-    // DEFAULT in its name has been found in the file
+    // DEFAULT in its name has been found in the file_manager
     ReplaceDefaultMaterial();
 
     // Convert the scene from our internal representation to an
@@ -219,7 +219,7 @@ void Discreet3DSImporter::ApplyMasterScale(aiScene *pScene) {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Reads a new chunk from the file
+// Reads a new chunk from the file_manager
 void Discreet3DSImporter::ReadChunk(Discreet3DS::Chunk *pcOut) {
     ai_assert(pcOut != nullptr);
 
@@ -246,7 +246,7 @@ void Discreet3DSImporter::SkipChunk() {
 }
 
 // ------------------------------------------------------------------------------------------------
-// Process the primary chunk of the file
+// Process the primary chunk of the file_manager
 void Discreet3DSImporter::ParseMainChunk() {
     ASSIMP_3DS_BEGIN_CHUNK();
 
@@ -295,7 +295,7 @@ void Discreet3DSImporter::ParseEditorChunk() {
         // print the version number
         char buff[10];
         ASSIMP_itoa10(buff, stream->GetI2());
-        ASSIMP_LOG_INFO("3DS file format version: ", buff);
+        ASSIMP_LOG_INFO("3DS file_manager format version: ", buff);
     } break;
     };
     ASSIMP_3DS_END_CHUNK();

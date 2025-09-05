@@ -149,7 +149,7 @@ void Serial::SerialImpl::open()
 				return;
 			case ENFILE:
 			case EMFILE:
-				THROW(IOException, "Too many file handles open.");
+				THROW(IOException, "Too many file_manager handles open.");
 			default:
 				THROW(IOException, errno);
 		}
@@ -163,11 +163,11 @@ void Serial::SerialImpl::reconfigurePort()
 {
 	if (fd_ == -1)
 	{
-		// Can only operate on a valid file descriptor
-		THROW(IOException, "Invalid file descriptor, is the serial port open?");
+		// Can only operate on a valid file_manager descriptor
+		THROW(IOException, "Invalid file_manager descriptor, is the serial port open?");
 	}
 
-	struct termios options;  // The options for the file descriptor
+	struct termios options;  // The options for the file_manager descriptor
 
 	if (tcgetattr(fd_, &options) == -1)
 	{
@@ -778,7 +778,7 @@ Serial::SerialImpl::write(const uint8_t *data, size_t length)
 		/** Port ready to write **/
 		if (r > 0)
 		{
-			// Make sure our file descriptor is in the ready to write list
+			// Make sure our file_manager descriptor is in the ready to write list
 			if (FD_ISSET(fd_, &writefds))
 			{
 				// This will write some

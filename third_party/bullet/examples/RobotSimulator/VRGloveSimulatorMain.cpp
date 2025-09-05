@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
 	}
 	if (handUid < 0)
 	{
-		printf("Cannot load MJCF file %s\n", mjcfFileName);
+		printf("Cannot load MJCF file_manager %s\n", mjcfFileName);
 	}
 
 #ifdef TOUCH

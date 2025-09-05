@@ -56,7 +56,7 @@ namespace Q3BSP
 }
 
 // -------------------------------------------------------------------
-///	@brief  This class implements th Q3DSP file parsing.
+///	@brief  This class implements th Q3DSP file_manager parsing.
 // -------------------------------------------------------------------
 class Q3BSPFileParser {
 public:

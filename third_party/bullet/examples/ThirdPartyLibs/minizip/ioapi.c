@@ -106,7 +106,7 @@ static voidpf ZCALLBACK fopen64_file_func(voidpf opaque, const void* filename, i
 		mode_fopen = "wb";
 
 	if ((filename != NULL) && (mode_fopen != NULL))
-		//       file = fopen64((const char*)filename, mode_fopen);
+		//       file_manager = fopen64((const char*)filename, mode_fopen);
 		file = fopen((const char*)filename, mode_fopen);
 
 	return file;
@@ -233,10 +233,10 @@ void fill_fopen64_filefunc(zlib_filefunc64_def* pzlib_filefunc_def)
 	pzlib_filefunc_def->opaque = NULL;
 }
 
-/* This file is from the proposed iomem_simple package found at
+/* This file_manager is from the proposed iomem_simple package found at
    http://code.trak.dk/
    Local modifications exist to fix various security bugs. See this
-   file's revision history.
+   file_manager's revision history.
 */
 
 /* ioapi_mem2.c -- IO base function header for compress/uncompress .zip
@@ -256,9 +256,9 @@ void fill_fopen64_filefunc(zlib_filefunc64_def* pzlib_filefunc_def)
              (C) 2003 Justin Fletcher
 
    Dynamically allocated memory version. Troels K 2004
-      mem_close deletes the data: file is single-session. No filenames.
+      mem_close deletes the data: file_manager is single-session. No filenames.
 
-   This file is under the same license as the Unzip tool it is distributed
+   This file_manager is under the same license as the Unzip tool it is distributed
    with.
 */
 

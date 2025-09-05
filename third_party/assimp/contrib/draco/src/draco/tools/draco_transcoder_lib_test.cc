@@ -1,7 +1,7 @@
 // Copyright 2021 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +20,7 @@
 #include "draco/core/draco_test_utils.h"
 #include "draco/io/file_utils.h"
 
-// Tests encoding a .gltf file with default Draco compression.
+// Tests encoding a .gltf file_manager with default Draco compression.
 TEST(DracoTranscoderTest, DefaultDracoCompression) {
   const std::string input_name = "sphere.gltf";
   const std::string input_filename = draco::GetTestFileFullPath(input_name);
@@ -142,7 +142,7 @@ TEST(DracoTranscoderTest, SimpleGlbInput) {
 }
 
 // Simple test to check glb input and setting smaller position quantizations
-// outputs a smaller file overall.
+// outputs a smaller file_manager overall.
 TEST(DracoTranscoderTest, TestPositionQuantization) {
   const std::string input_name =
       "KhronosSampleModels/Duck/glTF_Binary/Duck.glb";

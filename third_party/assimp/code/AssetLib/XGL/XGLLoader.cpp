@@ -102,15 +102,15 @@ void XGLImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 	m_scene = pScene;
 	std::shared_ptr<IOStream> stream(pIOHandler->Open(pFile, "rb"));
 
-	// check whether we can read from the file
+	// check whether we can read from the file_manager
     if (stream == nullptr) {
-        throw DeadlyImportError("Failed to open XGL/ZGL file " + pFile);
+        throw DeadlyImportError("Failed to open XGL/ZGL file_manager " + pFile);
     }
 
     // see if its compressed, if so uncompress it
 	if (GetExtension(pFile) == "zgl") {
 #ifdef ASSIMP_BUILD_NO_COMPRESSED_XGL
-		ThrowException("Cannot read ZGL file since Assimp was built without compression support");
+		ThrowException("Cannot read ZGL file_manager since Assimp was built without compression support");
 #else
 		std::unique_ptr<StreamReaderLE> raw_reader(new StreamReaderLE(stream));
 
@@ -127,10 +127,10 @@ void XGLImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 #endif
 	}
 
-	// parse the XML file
+	// parse the XML file_manager
     mXmlParser = new XmlParser;
     if (!mXmlParser->parse(stream.get())) {
-        throw DeadlyImportError("XML parse error while loading XGL file ", pFile);
+        throw DeadlyImportError("XML parse error while loading XGL file_manager ", pFile);
 	}
 
 	TempScope scope;
@@ -142,7 +142,7 @@ void XGLImporter::InternReadFile(const std::string &pFile, aiScene *pScene, IOSy
 	std::vector<aiMesh *> &meshes = scope.meshes_linear;
 	std::vector<aiMaterial *> &materials = scope.materials_linear;
 	if (meshes.empty() || materials.empty()) {
-		ThrowException("failed to extract data from XGL file, no meshes loaded");
+		ThrowException("failed to extract data from XGL file_manager, no meshes loaded");
 	}
 
 	// copy meshes

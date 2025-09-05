@@ -1,11 +1,11 @@
 // dear imgui, v1.60 WIP
 // (demo code)
 
-// Message to the person tempted to delete this file when integrating ImGui into their code base:
-// Don't do it! Do NOT remove this file from your project! It is useful reference code that you and other users will want to refer to.
-// Everything in this file will be stripped out by the linker if you don't call ImGui::ShowDemoWindow().
+// Message to the person tempted to delete this file_manager when integrating ImGui into their code base:
+// Don't do it! Do NOT remove this file_manager from your project! It is useful reference code that you and other users will want to refer to.
+// Everything in this file_manager will be stripped out by the linker if you don't call ImGui::ShowDemoWindow().
 // During development, you can call ImGui::ShowDemoWindow() in your code to learn about various features of ImGui. Have it wired in a debug menu!
-// Removing this file from your project is hindering access to documentation for everyone in your team, likely leading you to poorer usage of the library.
+// Removing this file_manager from your project is hindering access to documentation for everyone in your team, likely leading you to poorer usage of the library.
 // Note that you can #define IMGUI_DISABLE_DEMO_WINDOWS in imconfig.h for the same effect.
 // If you want to link core ImGui in your final builds but not those demo windows, #define IMGUI_DISABLE_DEMO_WINDOWS in imconfig.h and those functions will be empty.
 // In other situation, when you have ImGui available you probably want this to be available for reference and execution.
@@ -579,7 +579,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
 				// UTF-8 test with Japanese characters
 				// (needs a suitable font, try Arial Unicode or M+ fonts http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html)
 				// - From C++11 you can use the u8"my text" syntax to encode literal strings as UTF-8
-				// - For earlier compiler, you may be able to encode your sources as UTF-8 (e.g. Visual Studio save your file as 'UTF-8 without signature')
+				// - For earlier compiler, you may be able to encode your sources as UTF-8 (e.g. Visual Studio save your file_manager as 'UTF-8 without signature')
 				// - HOWEVER, FOR THIS DEMO FILE, BECAUSE WE WANT TO SUPPORT COMPILER, WE ARE *NOT* INCLUDING RAW UTF-8 CHARACTERS IN THIS SOURCE FILE.
 				//   Instead we are encoding a few string with hexadecimal constants. Don't do this in your application!
 				// Note that characters values are preserved even by InputText() if the font cannot be displayed, so you can safely copy & paste garbled characters into another application.
@@ -600,7 +600,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
 
 			// Here we are grabbing the font texture because that's the only one we have access to inside the demo code.
 			// Remember that ImTextureID is just storage for whatever you want it to be, it is essentially a value that will be passed to the render function inside the ImDrawCmd structure.
-			// If you use one of the default imgui_impl_XXXX.cpp renderer, they all have comments at the top of their file to specify what they expect to be stored in ImTextureID.
+			// If you use one of the default imgui_impl_XXXX.cpp renderer, they all have comments at the top of their file_manager to specify what they expect to be stored in ImTextureID.
 			// (for example, the imgui_impl_dx11.cpp renderer expect a 'ID3D11ShaderResourceView*' pointer. The imgui_impl_glfw_gl3.cpp renderer expect a GLuint OpenGL texture identifier etc.)
 			// If you decided that ImTextureID = MyEngineTexture*, then you can pass your MyEngineTexture* pointers to ImGui::Image(), and gather width/height through your own functions, etc.
 			// Using ShowMetricsWindow() as a "debugger" to inspect the draw data that are being passed to your render will help you debug issues if you are confused about this.

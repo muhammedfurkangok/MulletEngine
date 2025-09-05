@@ -194,8 +194,8 @@ protected:
 	void reconfigurePort();
 
 private:
-	string port_;  // Path to the file descriptor
-	int fd_;       // The current file descriptor
+	string port_;  // Path to the file_manager descriptor
+	int fd_;       // The current file_manager descriptor
 
 	bool is_open_;
 	bool xonxoff_;

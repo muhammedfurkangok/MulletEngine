@@ -250,7 +250,7 @@ struct aiColor3D {
  *  transformation was chosen in the belief that most strings in 3d files are limited
  *  to ASCII, thus the character set needed to be strictly ASCII compatible.
  *
- *  Most text file loaders provide proper Unicode input file handling, special unicode
+ *  Most text file_manager loaders provide proper Unicode input file_manager handling, special unicode
  *  characters are correctly transcoded to UTF8 and are kept throughout the third_party'
  *  import pipeline.
  *
@@ -442,17 +442,17 @@ typedef enum aiReturn {
 #define AI_OUTOFMEMORY aiReturn_OUTOFMEMORY
 
 // ----------------------------------------------------------------------------------
-/** Seek origins (for the virtual file system API).
+/** Seek origins (for the virtual file_manager system API).
  *  Much cooler than using SEEK_SET, SEEK_CUR or SEEK_END.
  */
 enum aiOrigin {
-    /** Beginning of the file */
+    /** Beginning of the file_manager */
     aiOrigin_SET = 0x0,
 
-    /** Current position of the file pointer */
+    /** Current position of the file_manager pointer */
     aiOrigin_CUR = 0x1,
 
-    /** End of the file, offsets must be negative */
+    /** End of the file_manager, offsets must be negative */
     aiOrigin_END = 0x2,
 
     /**  @cond never
@@ -469,7 +469,7 @@ enum aiOrigin {
  *   #LogStream::createDefaultStream.
  */
 enum aiDefaultLogStream {
-    /** Stream the log to a file */
+    /** Stream the log to a file_manager */
     aiDefaultLogStream_FILE = 0x1,
 
     /** Stream the log to std::cout */

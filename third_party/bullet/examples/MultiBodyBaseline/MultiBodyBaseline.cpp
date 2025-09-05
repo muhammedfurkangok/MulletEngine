@@ -28,7 +28,7 @@ subject to the following restrictions:
 #define START_POS_Z -3
 
 #include "MultiBodyBaseline.h"
-///btBulletDynamicsCommon.h is the main Bullet include file, contains most common include files.
+///btBulletDynamicsCommon.h is the main Bullet include file_manager, contains most common include files.
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btDeformableRigidDynamicsWorld.h"
 #include "BulletSoftBody/btSoftBody.h"

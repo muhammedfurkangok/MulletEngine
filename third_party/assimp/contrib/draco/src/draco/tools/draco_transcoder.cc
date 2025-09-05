@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -29,8 +29,8 @@ void Usage() {
   printf("Usage: draco_transcoder [options] -i input -o output\n\n");
   printf("Main options:\n");
   printf("  -h | -?         show help.\n");
-  printf("  -i <input>      input file name.\n");
-  printf("  -o <output>     output file name.\n");
+  printf("  -i <input>      input file_manager name.\n");
+  printf("  -o <output>     output file_manager name.\n");
   printf("  -qp <value>     quantization bits for the position attribute, ");
   printf("default=11.\n");
   printf("  -qt <value>     quantization bits for the texture coordinate ");

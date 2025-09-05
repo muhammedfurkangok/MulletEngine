@@ -299,9 +299,9 @@ extern "C"
 #define VK_API_VERSION_1_2 VK_MAKE_API_VERSION(0, 1, 2, 0)/* Patch version should always be set to 0 */
 /* Vulkan 1.3 version number */
 #define VK_API_VERSION_1_3 VK_MAKE_API_VERSION(0, 1, 3, 0)/* Patch version should always be set to 0 */
-/* Version of this file */
+/* Version of this file_manager */
 #define VK_HEADER_VERSION 220
-/* Complete version of this file */
+/* Complete version of this file_manager */
 #define VK_HEADER_VERSION_COMPLETE VK_MAKE_API_VERSION(0, 1, 3, VK_HEADER_VERSION)
 #define VK_DEFINE_HANDLE(object) typedef struct object##_T* object;
 #ifndef VK_USE_64_BIT_PTR_DEFINES

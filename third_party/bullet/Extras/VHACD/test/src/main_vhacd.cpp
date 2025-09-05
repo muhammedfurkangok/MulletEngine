@@ -297,9 +297,9 @@ void Usage(const Parameters& params)
 	msg << "Syntax: testVHACD [options] --input infile.obj --output outfile.obj --log logfile.txt" << endl
 		<< endl;
 	msg << "Options:" << endl;
-	msg << "       --input                     Wavefront .obj input file name" << endl;
-	msg << "       --output                    VRML 2.0 output file name" << endl;
-	msg << "       --log                       Log file name" << endl;
+	msg << "       --input                     Wavefront .obj input file_manager name" << endl;
+	msg << "       --output                    VRML 2.0 output file_manager name" << endl;
+	msg << "       --log                       Log file_manager name" << endl;
 	msg << "       --resolution                Maximum number of voxels generated during the voxelization stage (default=100,000, range=10,000-16,000,000)" << endl;
 	msg << "       --depth                     Maximum number of clipping stages. During each split stage, parts with a concavity higher than the user defined threshold are clipped according the \"best\" clipping plane (default=20, range=1-32)" << endl;
 	msg << "       --concavity                 Maximum allowed concavity (default=0.0025, range=0.0-1.0)" << endl;
@@ -519,7 +519,7 @@ bool LoadOFF(const string& fileName, vector<float>& points, vector<int>& triangl
 	}
 	else
 	{
-		logger.Log("Loading error: file not found \n");
+		logger.Log("Loading error: file_manager not found \n");
 		return false;
 	}
 	return true;
@@ -634,7 +634,7 @@ bool SaveOFF(const string& fileName, const float* const& points, const int* cons
 	}
 	else
 	{
-		logger.Log("Can't open file\n");
+		logger.Log("Can't open file_manager\n");
 		return false;
 	}
 }
@@ -673,7 +673,7 @@ bool SaveOBJ(ofstream& fout, const double* const& points, const int* const& tria
 	}
 	else
 	{
-		logger.Log("Can't open file\n");
+		logger.Log("Can't open file_manager\n");
 		return false;
 	}
 }
@@ -748,7 +748,7 @@ bool SaveVRML2(ofstream& fout, const double* const& points, const int* const& tr
 	}
 	else
 	{
-		logger.Log("Can't open file\n");
+		logger.Log("Can't open file_manager\n");
 		return false;
 	}
 }

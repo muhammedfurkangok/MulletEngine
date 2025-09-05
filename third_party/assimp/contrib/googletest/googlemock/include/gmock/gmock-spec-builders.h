@@ -29,7 +29,7 @@
 
 // Google Mock - a framework for writing C++ mock classes.
 //
-// This file implements the ON_CALL() and EXPECT_CALL() macros.
+// This file_manager implements the ON_CALL() and EXPECT_CALL() macros.
 //
 // A user can use the ON_CALL() macro to specify the default action of
 // a mock method.  The syntax is:
@@ -242,7 +242,7 @@ class UntypedOnCallSpecBase {
   UntypedOnCallSpecBase(const char* a_file, int a_line)
       : file_(a_file), line_(a_line), last_clause_(kNone) {}
 
-  // Where in the source file was the default action spec defined?
+  // Where in the source file_manager was the default action spec defined?
   const char* file() const { return file_; }
   int line() const { return line_; }
 
@@ -341,7 +341,7 @@ class OnCallSpec : public UntypedOnCallSpecBase {
   //
   // is recorded in the data members like this:
   //
-  //   source file that contains the statement => file_
+  //   source file_manager that contains the statement => file_
   //   line number of the statement            => line_
   //   matchers                                => matchers_
   //   multi-argument-matcher                  => extra_matcher_
@@ -689,14 +689,14 @@ class GTEST_API_ ExpectationBase {
 
   virtual ~ExpectationBase();
 
-  // Where in the source file was the expectation spec defined?
+  // Where in the source file_manager was the expectation spec defined?
   const char* file() const { return file_; }
   int line() const { return line_; }
   const char* source_text() const { return source_text_.c_str(); }
   // Returns the cardinality specified in the expectation spec.
   const Cardinality& cardinality() const { return cardinality_; }
 
-  // Describes the source file location of this expectation.
+  // Describes the source file_manager location of this expectation.
   void DescribeLocationTo(::std::ostream* os) const {
     *os << FormatFileLocation(file(), line()) << " ";
   }
@@ -842,7 +842,7 @@ class GTEST_API_ ExpectationBase {
 
   // This group of fields are part of the spec and won't change after
   // an EXPECT_CALL() statement finishes.
-  const char* file_;               // The file that contains the expectation.
+  const char* file_;               // The file_manager that contains the expectation.
   int line_;                       // The line number of the expectation.
   const std::string source_text_;  // The EXPECT_CALL(...) source text.
   std::string description_;        // User-readable name for the expectation.
@@ -1273,7 +1273,7 @@ class TypedExpectation<R(Args...)> : public ExpectationBase {
 // template.  To workaround this compiler bug, we define MockSpec in
 // ::testing::internal and import it into ::testing.
 
-// Logs a message including file and line number information.
+// Logs a message including file_manager and line number information.
 GTEST_API_ void LogWithLocation(testing::internal::LogSeverity severity,
                                 const char* file, int line,
                                 const std::string& message);
@@ -2038,7 +2038,7 @@ class MockFunction : public internal::MockFunction<internal::SignatureOfT<F>> {
 };
 
 // The style guide prohibits "using" statements in a namespace scope
-// inside a header file.  However, the MockSpec class template is
+// inside a header file_manager.  However, the MockSpec class template is
 // meant to be defined in the ::testing namespace.  The following line
 // is just a trick for working around a bug in MSVC 8.0, which cannot
 // handle it if we define MockSpec in ::testing.

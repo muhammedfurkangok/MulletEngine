@@ -3,7 +3,7 @@
 
    Do this:
       #define STB_IMAGE_IMPLEMENTATION
-   before you include this file in *one* C or C++ file to create the implementation.
+   before you include this file_manager in *one* C or C++ file_manager to create the implementation.
 
    // i.e. it should look like this:
    #include ...
@@ -44,7 +44,7 @@
 
 LICENSE
 
-  See end of file for license information.
+  See end of file_manager for license information.
 
 RECENT REVISION HISTORY:
 
@@ -73,7 +73,7 @@ RECENT REVISION HISTORY:
       2.10  (2016-01-22) avoid warning introduced in 2.09
       2.09  (2016-01-16) 16-bit TGA; comments in PNM files; STBI_REALLOC_SIZED
 
-   See end of file for full revision history.
+   See end of file_manager for full revision history.
 
 
  ============================    Contributors    =========================
@@ -147,7 +147,7 @@ RECENT REVISION HISTORY:
 // Standard parameters:
 //    int *x                 -- outputs image width in pixels
 //    int *y                 -- outputs image height in pixels
-//    int *channels_in_file  -- outputs # of image components in image file
+//    int *channels_in_file  -- outputs # of image components in image file_manager
 //    int desired_channels   -- if non-zero, # of image components requested in result
 //
 // The return value from an image loader is an 'unsigned char *' which points
@@ -182,7 +182,7 @@ RECENT REVISION HISTORY:
 // Paletted PNG, BMP, GIF, and PIC images are automatically depalettized.
 //
 // To query the width, height and component count of an image without having to
-// decode the full file, you can use the stbi_info family of functions:
+// decode the full file_manager, you can use the stbi_info family of functions:
 //
 //   int x,y,n,ok;
 //   ok = stbi_info(filename, &x, &y, &n);
@@ -278,8 +278,8 @@ RECENT REVISION HISTORY:
 // HDR image support   (disable by defining STBI_NO_HDR)
 //
 // stb_image supports loading HDR images in general, and currently the Radiance
-// .HDR file format specifically. You can still load any file through the existing
-// interface; if you attempt to load an HDR file, it will be automatically remapped
+// .HDR file_manager format specifically. You can still load any file_manager through the existing
+// interface; if you attempt to load an HDR file_manager, it will be automatically remapped
 // to LDR, assuming gamma 2.2 and an arbitrary scale factor defaulting to 1;
 // both of these constants can be reconfigured through this interface:
 //
@@ -301,8 +301,8 @@ RECENT REVISION HISTORY:
 //     stbi_ldr_to_hdr_scale(1.0f);
 //     stbi_ldr_to_hdr_gamma(2.2f);
 //
-// Finally, given a filename (or an open file or memory block--see header
-// file for details) containing image data, you can query for the "most
+// Finally, given a filename (or an open file_manager or memory block--see header
+// file_manager for details) containing image data, you can query for the "most
 // appropriate" interface to use (that is, whether the image is HDR or
 // not), using:
 //
@@ -318,7 +318,7 @@ RECENT REVISION HISTORY:
 // stbi_convert_iphone_png_to_rgb(1).
 //
 // Call stbi_set_unpremultiply_on_load(1) as well to force a divide per
-// pixel to remove any premultiplied alpha *only* if the image file explicitly
+// pixel to remove any premultiplied alpha *only* if the image file_manager explicitly
 // says there's premultiplied data (currently only happens in iPhone images,
 // and only if iPhone convert-to-rgb processing is on).
 //
@@ -404,14 +404,14 @@ extern "C" {
 //
 
 //
-// load image by filename, open file, or memory buffer
+// load image by filename, open file_manager, or memory buffer
 //
 
 typedef struct
 {
    int      (*read)  (void *user,char *data,int size);   // fill 'data' with 'size' bytes.  return number of bytes actually read
    void     (*skip)  (void *user,int n);                 // skip the next 'n' bytes, or 'unget' the last -n bytes if negative
-   int      (*eof)   (void *user);                       // returns nonzero if we are at end of file/data
+   int      (*eof)   (void *user);                       // returns nonzero if we are at end of file_manager/data
 } stbi_io_callbacks;
 
 ////////////////////////////////////
@@ -425,7 +425,7 @@ STBIDEF stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk  , void 
 #ifndef STBI_NO_STDIO
 STBIDEF stbi_uc *stbi_load            (char const *filename, int *x, int *y, int *channels_in_file, int desired_channels);
 STBIDEF stbi_uc *stbi_load_from_file  (FILE *f, int *x, int *y, int *channels_in_file, int desired_channels);
-// for stbi_load_from_file, file pointer is left pointing immediately after image
+// for stbi_load_from_file, file_manager pointer is left pointing immediately after image
 #endif
 
 #ifndef STBI_NO_GIF
@@ -505,7 +505,7 @@ STBIDEF int      stbi_is_16_bit_from_file(FILE *f);
 
 
 // for image formats that explicitly notate that they have premultiplied alpha,
-// we just return the colors as stored in the file. set this flag to force
+// we just return the colors as stored in the file_manager. set this flag to force
 // unpremultiplication. results are undefined if the unpremultiply overflow.
 STBIDEF void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply);
 
@@ -540,7 +540,7 @@ STBIDEF int   stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const ch
 
 //
 //
-////   end header file   /////////////////////////////////////////////////////
+////   end header file_manager   /////////////////////////////////////////////////////
 #endif // STBI_INCLUDE_STB_IMAGE_H
 
 #ifdef STB_IMAGE_IMPLEMENTATION
@@ -699,7 +699,7 @@ typedef unsigned char validate_uint32[sizeof(stbi__uint32)==4 ? 1 : -1];
 // which in turn means it gets to use SSE2 everywhere. This is unfortunate,
 // but previous attempts to provide the SSE2 functions with runtime
 // detection caused numerous issues. The way architecture extensions are
-// exposed in GCC/Clang is, sadly, not really suited for one-file libs.
+// exposed in GCC/Clang is, sadly, not really suited for one-file_manager libs.
 // New behavior: if compiled with -msse2, we use SSE2 without any
 // detection; if not, we don't use it at all.
 #define STBI_NO_SIMD
@@ -1366,7 +1366,7 @@ STBIDEF stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int 
 {
    FILE *f = stbi__fopen(filename, "rb");
    unsigned char *result;
-   if (!f) return stbi__errpuc("can't fopen", "Unable to open file");
+   if (!f) return stbi__errpuc("can't fopen", "Unable to open file_manager");
    result = stbi_load_from_file(f,x,y,comp,req_comp);
    fclose(f);
    return result;
@@ -1402,7 +1402,7 @@ STBIDEF stbi_us *stbi_load_16(char const *filename, int *x, int *y, int *comp, i
 {
    FILE *f = stbi__fopen(filename, "rb");
    stbi__uint16 *result;
-   if (!f) return (stbi_us *) stbi__errpuc("can't fopen", "Unable to open file");
+   if (!f) return (stbi_us *) stbi__errpuc("can't fopen", "Unable to open file_manager");
    result = stbi_load_from_file_16(f,x,y,comp,req_comp);
    fclose(f);
    return result;
@@ -1493,7 +1493,7 @@ STBIDEF float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int r
 {
    float *result;
    FILE *f = stbi__fopen(filename, "rb");
-   if (!f) return stbi__errpf("can't fopen", "Unable to open file");
+   if (!f) return stbi__errpf("can't fopen", "Unable to open file_manager");
    result = stbi_loadf_from_file(f,x,y,comp,req_comp);
    fclose(f);
    return result;
@@ -1598,8 +1598,8 @@ static void stbi__refill_buffer(stbi__context *s)
    int n = (s->io.read)(s->io_user_data,(char*)s->buffer_start,s->buflen);
    s->callback_already_read += (int) (s->img_buffer - s->img_buffer_original);
    if (n == 0) {
-      // at end of file, treat same as if from memory, but need to handle case
-      // where s->img_buffer isn't pointing to safe memory, e.g. 0-byte file
+      // at end of file_manager, treat same as if from memory, but need to handle case
+      // where s->img_buffer isn't pointing to safe memory, e.g. 0-byte file_manager
       s->read_from_callbacks = 0;
       s->img_buffer = s->buffer_start;
       s->img_buffer_end = s->buffer_start+1;
@@ -3302,7 +3302,7 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
    }
 
    // check that plane subsampling factors are integer ratios; our resamplers can't deal with fractional ratios
-   // and I've never seen a non-corrupted JPEG file actually use them
+   // and I've never seen a non-corrupted JPEG file_manager actually use them
    for (i=0; i < s->img_n; ++i) {
       if (h_max % z->img_comp[i].h != 0) return stbi__err("bad H","Corrupt JPEG");
       if (v_max % z->img_comp[i].v != 0) return stbi__err("bad V","Corrupt JPEG");
@@ -5560,7 +5560,7 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
    }
    if (psize == 0) {
       // accept some number of extra bytes after the header, but if the offset points either to before
-      // the header ends or implies a large amount of extra data, reject the file as malformed
+      // the header ends or implies a large amount of extra data, reject the file_manager as malformed
       int bytes_read_so_far = s->callback_already_read + (int)(s->img_buffer - s->img_buffer_original);
       int header_limit = 1024; // max we actually read is below 256 bytes currently.
       int extra_data_limit = 256*4; // what ordinarily goes here is a palette; 256 entries*4 bytes is its max size.
@@ -6134,7 +6134,7 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
    if (stbi__get32be(s) != 0x38425053)   // "8BPS"
       return stbi__errpuc("not PSD", "Corrupt PSD image");
 
-   // Check file type version.
+   // Check file_manager type version.
    if (stbi__get16be(s) != 1)
       return stbi__errpuc("wrong version", "Unsupported version of PSD image");
 
@@ -6367,7 +6367,7 @@ static stbi_uc *stbi__readval(stbi__context *s, int channel, stbi_uc *dest)
 
    for (i=0; i<4; ++i, mask>>=1) {
       if (channel & mask) {
-         if (stbi__at_eof(s)) return stbi__errpuc("bad file","PIC file too short");
+         if (stbi__at_eof(s)) return stbi__errpuc("bad file_manager","PIC file_manager too short");
          dest[i]=stbi__get8(s);
       }
    }
@@ -6406,7 +6406,7 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
 
       act_comp |= packet->channel;
 
-      if (stbi__at_eof(s))          return stbi__errpuc("bad file","file too short (reading packets)");
+      if (stbi__at_eof(s))          return stbi__errpuc("bad file_manager","file_manager too short (reading packets)");
       if (packet->size != 8)  return stbi__errpuc("bad format","packet isn't 8bpp");
    } while (chained);
 
@@ -6440,7 +6440,7 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                      stbi_uc count,value[4];
 
                      count=stbi__get8(s);
-                     if (stbi__at_eof(s))   return stbi__errpuc("bad file","file too short (pure read count)");
+                     if (stbi__at_eof(s))   return stbi__errpuc("bad file_manager","file_manager too short (pure read count)");
 
                      if (count > left)
                         count = (stbi_uc) left;
@@ -6458,7 +6458,7 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                int left=width;
                while (left>0) {
                   int count = stbi__get8(s), i;
-                  if (stbi__at_eof(s))  return stbi__errpuc("bad file","file too short (mixed read count)");
+                  if (stbi__at_eof(s))  return stbi__errpuc("bad file_manager","file_manager too short (mixed read count)");
 
                   if (count >= 128) { // Repeated
                      stbi_uc value[4];
@@ -6468,7 +6468,7 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                      else
                         count -= 127;
                      if (count > left)
-                        return stbi__errpuc("bad file","scanline overrun");
+                        return stbi__errpuc("bad file_manager","scanline overrun");
 
                      if (!stbi__readval(s,packet->channel,value))
                         return 0;
@@ -6477,7 +6477,7 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                         stbi__copyval(packet->channel,dest,value);
                   } else { // Raw
                      ++count;
-                     if (count>left) return stbi__errpuc("bad file","scanline overrun");
+                     if (count>left) return stbi__errpuc("bad file_manager","scanline overrun");
 
                      for(i=0;i<count;++i, dest+=4)
                         if (!stbi__readval(s,packet->channel,dest))
@@ -6511,7 +6511,7 @@ static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_c
    if (y > STBI_MAX_DIMENSIONS) return stbi__errpuc("too large","Very large image (corrupt?)");
    if (x > STBI_MAX_DIMENSIONS) return stbi__errpuc("too large","Very large image (corrupt?)");
 
-   if (stbi__at_eof(s))  return stbi__errpuc("bad file","file too short (pic header)");
+   if (stbi__at_eof(s))  return stbi__errpuc("bad file_manager","file_manager too short (pic header)");
    if (!stbi__mad3sizes_valid(x, y, 4, 0)) return stbi__errpuc("too large", "PIC image too large to decode");
 
    stbi__get32be(s); //skip `ratio'
@@ -7523,7 +7523,7 @@ static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req
    if (!out) return stbi__errpuc("outofmem", "Out of memory");
    if (!stbi__getn(s, out, s->img_n * s->img_x * s->img_y * (ri->bits_per_channel / 8))) {
       STBI_FREE(out);
-      return stbi__errpuc("bad PNM", "PNM file truncated");
+      return stbi__errpuc("bad PNM", "PNM file_manager truncated");
    }
 
    if (req_comp && req_comp != s->img_n) {
@@ -7689,7 +7689,7 @@ STBIDEF int stbi_info(char const *filename, int *x, int *y, int *comp)
 {
     FILE *f = stbi__fopen(filename, "rb");
     int result;
-    if (!f) return stbi__err("can't fopen", "Unable to open file");
+    if (!f) return stbi__err("can't fopen", "Unable to open file_manager");
     result = stbi_info_from_file(f, x, y, comp);
     fclose(f);
     return result;
@@ -7710,7 +7710,7 @@ STBIDEF int stbi_is_16_bit(char const *filename)
 {
     FILE *f = stbi__fopen(filename, "rb");
     int result;
-    if (!f) return stbi__err("can't fopen", "Unable to open file");
+    if (!f) return stbi__err("can't fopen", "Unable to open file_manager");
     result = stbi_is_16_bit_from_file(f);
     fclose(f);
     return result;
@@ -7845,12 +7845,12 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
       1.37  (2014-06-04)
               remove duplicate typedef
       1.36  (2014-06-03)
-              convert to header file single-file library
+              convert to header file_manager single-file_manager library
               if de-iphone isn't set, load iphone images color-swapped instead of returning NULL
       1.35  (2014-05-27)
               various warnings
               fix broken STBI_SIMD path
-              fix bug where stbi_load_from_file no longer left file pointer in correct place
+              fix bug where stbi_load_from_file no longer left file_manager pointer in correct place
               fix broken non-easy path for 32-bit BMP (possibly never used)
               TGA optimization by Arseny Kapoulkine
       1.34  (unknown)
@@ -7864,7 +7864,7 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
       1.30  (2011-06-11)
               added ability to load files via callbacks to accomidate custom input streams (Ben Wenger)
               removed deprecated format-specific test/load functions
-              removed support for installable file formats (stbi_loader) -- would have been broken for IO callbacks anyway
+              removed support for installable file_manager formats (stbi_loader) -- would have been broken for IO callbacks anyway
               error cases in bmp and tga give messages and don't leak (Raymond Barbiero, grisha)
               fix inefficiency in decoding 32-bit BMP (David Woo)
       1.29  (2010-08-16)
@@ -7874,7 +7874,7 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
       1.27  (2010-08-01)
               cast-to-stbi_uc to fix warnings
       1.26  (2010-07-24)
-              fix bug in file buffering for PNG reported by SpartanJ
+              fix bug in file_manager buffering for PNG reported by SpartanJ
       1.25  (2010-07-17)
               refix trans_data warning (Won Chun)
       1.24  (2010-07-12)
@@ -7898,7 +7898,7 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
       1.16    major bugfix - stbi__convert_format converted one too many pixels
       1.15    initialize some fields for thread safety
       1.14    fix threadsafe conversion bug
-              header-file-only version (#define STBI_HEADER_FILE_ONLY before including)
+              header-file_manager-only version (#define STBI_HEADER_FILE_ONLY before including)
       1.13    threadsafe
       1.12    const qualifiers in the API
       1.11    Support installable IDCT, colorspace conversion routines
@@ -7917,7 +7917,7 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user
       1.00    interface to zlib that skips zlib header
       0.99    correct handling of alpha in palette
       0.98    TGA loader by lonesock; dynamically add loaders (untested)
-      0.97    jpeg errors on too large a file; also catch another malloc failure
+      0.97    jpeg errors on too large a file_manager; also catch another malloc failure
       0.96    fix detection of invalid v value - particleman@mollyrocket forum
       0.95    during header scan, seek to markers in case of padding
       0.94    STBI_NO_STDIO to disable stdio usage; rename all #defines the same

@@ -72,7 +72,7 @@ namespace testing {
 // support for higher arities.
 
 // GTEST_ASSERT_ is the basic statement to which all of the assertions
-// in this file reduce.  Don't use this in your code.
+// in this file_manager reduce.  Don't use this in your code.
 
 #define GTEST_ASSERT_(expression, on_failure)                   \
   GTEST_AMBIGUOUS_ELSE_BLOCKER_                                 \

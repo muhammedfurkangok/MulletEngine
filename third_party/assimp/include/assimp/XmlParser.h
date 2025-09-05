@@ -111,7 +111,7 @@ public:
     ///	@brief  The class destructor.
     ~TXmlParser();
 
-    ///	@brief  Will clear the parsed xml-file.
+    ///	@brief  Will clear the parsed xml-file_manager.
     void clear();
 
     ///	@brief  Will search for a child-node by its name
@@ -124,12 +124,12 @@ public:
     /// @return true, if the node is a child-node or false if not.
     bool hasNode(const std::string &name);
 
-    /// @brief  Will parse an xml-file from a given stream.
+    /// @brief  Will parse an xml-file_manager from a given stream.
     /// @param[in] stream      The input stream.
     /// @return true, if the parsing was successful, false if not.
     bool parse(IOStream *stream);
 
-    /// @brief  Will parse an xml-file from a stringstream.
+    /// @brief  Will parse an xml-file_manager from a stringstream.
     /// @param[in] str      The input istream (note: not "const" to match pugixml param)
     /// @return true, if the parsing was successful, false if not.
     bool parse(std::istream &inStream);
@@ -138,7 +138,7 @@ public:
     /// @return true in case of an existing root.
     bool hasRoot() const;
 
-    /// @brief  Will return the document pointer, is nullptr if no xml-file was parsed.
+    /// @brief  Will return the document pointer, is nullptr if no xml-file_manager was parsed.
     /// @return The pointer showing to the document.
     pugi::xml_document *getDocument() const;
 

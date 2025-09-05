@@ -145,7 +145,7 @@ public:
         AddChild(n);
     }
 
-    // write the full node to the given file or stream
+    // write the full node to the given file_manager or stream
     void Dump(
             const std::shared_ptr<Assimp::IOStream> &outfile,
             bool binary, int indent);

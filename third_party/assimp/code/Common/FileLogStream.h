@@ -51,7 +51,7 @@ namespace Assimp {
 
 // ----------------------------------------------------------------------------------
 /** @class  FileLogStream
- *  @brief  Logstream to write into a file.
+ *  @brief  Logstream to write into a file_manager.
  */
 class FileLogStream : public LogStream {
 public:
@@ -81,7 +81,7 @@ inline FileLogStream::FileLogStream(const char *file, IOSystem *io) :
 // ----------------------------------------------------------------------------------
 //  Destructor
 inline FileLogStream::~FileLogStream() {
-    // The virtual d'tor should destroy the underlying file
+    // The virtual d'tor should destroy the underlying file_manager
     delete m_pStream;
 }
 

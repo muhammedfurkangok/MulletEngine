@@ -180,7 +180,7 @@ public:
 	/// the socket class (the readfds, writefds, and errorfds parameters) to
 	/// see whether some of their descriptors are ready for reading, are ready
 	/// for writing, or have an exceptional condition pending, respectively.
-	/// Block until an event happens on the specified file descriptors.
+	/// Block until an event happens on the specified file_manager descriptors.
 	/// @return true if socket has data ready, or false if not ready or timed out.
 	virtual bool Select(void)
 	{
@@ -245,7 +245,7 @@ public:
 	/// means that an error has occurred.
 	virtual int32 Send(const struct iovec *sendVector, int32 nNumItems);
 
-	/// Copies data between one file descriptor and another.
+	/// Copies data between one file_manager descriptor and another.
 	/// On some systems this copying is done within the kernel, and thus is
 	/// more efficient than the combination of CSimpleSocket::Send and
 	/// CSimpleSocket::Receive, which would require transferring data to and
@@ -254,8 +254,8 @@ public:
 	/// implementation is only available on Unix type systems.
 	/// @param nOutFd descriptor opened for writing.
 	/// @param nInFd descriptor opened for reading.
-	/// @param pOffset from which to start reading data from input file.
-	/// @param nCount number of bytes to copy between file descriptors.
+	/// @param pOffset from which to start reading data from input file_manager.
+	/// @param nCount number of bytes to copy between file_manager descriptors.
 	/// @return number of bytes written to the out socket descriptor.
 	virtual int32 SendFile(int32 nOutFd, int32 nInFd, off_t *pOffset, int32 nCount);
 
@@ -609,9 +609,9 @@ protected:
 #ifdef WIN32
 	WSADATA m_hWSAData;  /// Windows
 #endif
-	fd_set m_writeFds;  /// write file descriptor set
-	fd_set m_readFds;   /// read file descriptor set
-	fd_set m_errorFds;  /// error file descriptor set
+	fd_set m_writeFds;  /// write file_manager descriptor set
+	fd_set m_readFds;   /// read file_manager descriptor set
+	fd_set m_errorFds;  /// error file_manager descriptor set
 };
 
 #endif /*  __SOCKET_H__  */

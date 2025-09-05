@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -48,7 +48,7 @@ bool ParseUnsignedInt(DecoderBuffer *buffer, uint32_t *value);
 // Returns 0 otherwise.
 int GetSignValue(char c);
 
-// Parses a string until a whitespace or end of file is reached.
+// Parses a string until a whitespace or end of file_manager is reached.
 bool ParseString(DecoderBuffer *buffer, std::string *out_string);
 
 // Parses the entire line into the buffer (excluding the new line characters).

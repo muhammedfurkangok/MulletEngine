@@ -123,7 +123,7 @@ int Assimp_Dump(const char *const *params, unsigned int num) {
     }
 
     if (cur_out[0] == '-') {
-        // take file name from input file
+        // take file_manager name from input file_manager
         std::string::size_type pos = in.find_last_of('.');
         if (pos == std::string::npos) {
             pos = in.length();
@@ -139,7 +139,7 @@ int Assimp_Dump(const char *const *params, unsigned int num) {
     // import the main model
     const aiScene *scene = ImportModel(import, in);
     if (!scene) {
-        printf("assimp dump: Unable to load input file %s\n", in.c_str());
+        printf("assimp dump: Unable to load input file_manager %s\n", in.c_str());
         return AssimpCmdError::FailedToLoadInputFile;
     }
 

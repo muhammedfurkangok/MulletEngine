@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2008-2009 Gael Guennebaud <gael.guennebaud@inria.fr>
@@ -7,7 +7,7 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #ifndef EIGEN_PACKET_MATH_NEON_H
 #define EIGEN_PACKET_MATH_NEON_H
@@ -34,7 +34,7 @@ namespace internal {
 
 #if EIGEN_COMP_MSVC_STRICT
 
-// In MSVC's arm_neon.h header file, all NEON vector types
+// In MSVC's arm_neon.h header file_manager, all NEON vector types
 // are aliases to the same underlying type __n128.
 // We thus have to wrap them to make them different C++ types.
 // (See also bug 1428)

@@ -289,11 +289,11 @@ TinyRenderObjectData::TinyRenderObjectData(TGAImage& rgbColorBuffer, b3AlignedOb
 
 void TinyRenderObjectData::loadModel(const char* fileName, CommonFileIOInterface* fileIO)
 {
-	//todo(erwincoumans) move the file loading out of here
+	//todo(erwincoumans) move the file_manager loading out of here
 	char relativeFileName[1024];
 	if (!fileIO->findResourcePath(fileName, relativeFileName, 1024))
 	{
-		printf("Cannot find file %s\n", fileName);
+		printf("Cannot find file_manager %s\n", fileName);
 	}
 	else
 	{

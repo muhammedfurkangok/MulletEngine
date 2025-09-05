@@ -40,7 +40,7 @@ bool btBulletWorldImporter::loadFile(const char* fileName, const char* preSwapFi
 	bParse::btBulletFile* bulletFile2 = new bParse::btBulletFile(fileName);
 
 	bool result = loadFileFromMemory(bulletFile2);
-	//now you could save the file in 'native' format using
+	//now you could save the file_manager in 'native' format using
 	//bulletFile2->writeFile("native.bullet");
 	if (result)
 	{

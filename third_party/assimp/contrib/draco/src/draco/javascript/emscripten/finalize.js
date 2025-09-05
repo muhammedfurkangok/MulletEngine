@@ -1,7 +1,7 @@
 // Copyright 2017 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Calls the 'onModuleParsed' callback if provided. This file is included as the
+// Calls the 'onModuleParsed' callback if provided. This file_manager is included as the
 // last one in the generated javascript and it gives the caller a way to check
 // that all previous content was successfully processed.
 // Note: emscripten's |onRuntimeInitialized| is called before any --post-js

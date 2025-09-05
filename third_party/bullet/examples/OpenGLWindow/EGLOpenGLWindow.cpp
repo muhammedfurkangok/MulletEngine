@@ -1,5 +1,5 @@
 
-// portions of this file are copied from GLFW egl_context.c/egl_context.h
+// portions of this file_manager are copied from GLFW egl_context.c/egl_context.h
 
 //========================================================================
 // GLFW 3.3 EGL - www.glfw.org

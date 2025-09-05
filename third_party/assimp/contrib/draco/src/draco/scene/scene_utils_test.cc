@@ -1,7 +1,7 @@
 // Copyright 2019 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -678,7 +678,7 @@ TEST(SceneUtilsTest, TestDeduplicateMeshGroups) {
 }
 
 TEST(SceneUtilsTest, TestCleanupUnusedTexCoordsNoTextures) {
-  // The glTF file has two tex coords that are unused because the materials do
+  // The glTF file_manager has two tex coords that are unused because the materials do
   // not reference any textures.
   auto scene = draco::ReadSceneFromTestFile("UnusedTexCoords/NoTextures.gltf");
   ASSERT_NE(scene, nullptr);
@@ -791,8 +791,8 @@ TEST(SceneUtilsTest, TestComputeGlobalNodeTransform) {
 TEST(SceneUtilsTest, TestIsDracoCompressionEnabled) {
   // Tests that we can determine whether any of the scene meshes have geometry
   // compression enabled.
-  const std::string file = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
-  auto scene = draco::ReadSceneFromTestFile(file);
+  const std::string file_manager = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
+  auto scene = draco::ReadSceneFromTestFile(file_manager);
   ASSERT_NE(scene, nullptr);
   ASSERT_EQ(scene->NumMeshes(), 4);
 
@@ -806,8 +806,8 @@ TEST(SceneUtilsTest, TestIsDracoCompressionEnabled) {
 
 TEST(SceneUtilsTest, TestSetDracoCompressionOptions) {
   // Tests that geometry compression settings can be set for all scene meshes.
-  const std::string file = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
-  auto scene = draco::ReadSceneFromTestFile(file);
+  const std::string file_manager = "CesiumMilkTruck/glTF/CesiumMilkTruck.gltf";
+  auto scene = draco::ReadSceneFromTestFile(file_manager);
   ASSERT_NE(scene, nullptr);
   ASSERT_EQ(scene->NumMeshes(), 4);
 

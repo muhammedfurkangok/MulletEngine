@@ -8,7 +8,7 @@ add_library( # Defines the name of the library.
              # Implements a static library.
              STATIC
 
-             # relative path to source file(s).
+             # relative path to source file_manager(s).
              AndroidJNIIOSystem.cpp
              BundledAssetIOSystem.cpp
 )

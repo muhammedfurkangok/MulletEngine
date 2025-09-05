@@ -1,7 +1,7 @@
 // Copyright 2016 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -37,7 +37,7 @@ bool PlyEncoder::EncodeToFile(const PointCloud &pc,
   if (!EncodeToBuffer(pc, &buffer)) {
     return false;
   }
-  // Write the buffer into the file.
+  // Write the buffer into the file_manager.
   file->Write(buffer.data(), buffer.size());
   return true;
 }

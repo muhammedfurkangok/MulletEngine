@@ -82,9 +82,9 @@ using ByteBuffer = std::vector<int8_t>;
  *  for all importer worker classes.
  *
  * The interface defines two functions: CanRead() is used to check if the
- * importer can handle the format of the given file. If an implementation of
+ * importer can handle the format of the given file_manager. If an implementation of
  * this function returns true, the importer then calls ReadFile() which
- * imports the given file. ReadFile is not overridable, it just calls
+ * imports the given file_manager. ReadFile is not overridable, it just calls
  * InternReadFile() and catches any ImportErrorException that might occur.
  */
 class ASSIMP_API BaseImporter {
@@ -98,16 +98,16 @@ public:
     virtual ~BaseImporter() = default;
 
     // -------------------------------------------------------------------
-    /** Returns whether the class can handle the format of the given file.
+    /** Returns whether the class can handle the format of the given file_manager.
      *
-     * The implementation is expected to perform a full check of the file
-     * structure, possibly searching the first bytes of the file for magic
+     * The implementation is expected to perform a full check of the file_manager
+     * structure, possibly searching the first bytes of the file_manager for magic
      * identifiers or keywords.
      *
-     * @param pFile Path and file name of the file to be examined.
-     * @param pIOHandler The IO handler to use for accessing any file.
+     * @param pFile Path and file_manager name of the file_manager to be examined.
+     * @param pIOHandler The IO handler to use for accessing any file_manager.
      * @param checkSig Legacy; do not use.
-     * @return true if the class can read this file, false if not or if
+     * @return true if the class can read this file_manager, false if not or if
      * unsure.
      */
     virtual bool CanRead(
@@ -116,14 +116,14 @@ public:
             bool checkSig) const = 0;
 
     // -------------------------------------------------------------------
-    /** Imports the given file and returns the imported data.
+    /** Imports the given file_manager and returns the imported data.
      * If the import succeeds, ownership of the data is transferred to
      * the caller. If the import fails, nullptr is returned. The function
      * takes care that any partially constructed data is destroyed
      * beforehand.
      *
      * @param pImp #Importer object hosting this loader.
-     * @param pFile Path of the file to be imported.
+     * @param pFile Path of the file_manager to be imported.
      * @param pIOHandler IO-Handler used to open this and possible other files.
      * @return The imported data or nullptr if failed. If it failed a
      * human-readable error description can be retrieved by calling
@@ -184,8 +184,8 @@ public:
     // -------------------------------------------------------------------
     /** Called by #Importer::GetExtensionList for each loaded importer.
      *  Take the extension list contained in the structure returned by
-     *  #GetInfo and insert all file extensions into the given set.
-     *  @param extension set to collect file extensions in*/
+     *  #GetInfo and insert all file_manager extensions into the given set.
+     *  @param extension set to collect file_manager extensions in*/
     void GetExtensionList(std::set<std::string> &extensions);
 
 protected:
@@ -193,7 +193,7 @@ protected:
     double fileScale = 1.0;
 
     // -------------------------------------------------------------------
-    /** Imports the given file into the given scene structure. The
+    /** Imports the given file_manager into the given scene structure. The
      * function is expected to throw an ImportErrorException if there is
      * an error. If it terminates normally, the data in aiScene is
      * expected to be correct. Override this function to implement the
@@ -218,7 +218,7 @@ protected:
      * <li>There needn't be a material. If none is there a default material
      *   is generated. However, it is recommended practice for loaders
      *   to generate a default material for yourself that matches the
-     *   default material setting for the file format better than Assimp's
+     *   default material setting for the file_manager format better than Assimp's
      *   generic default material. Note that default materials *should*
      *   be named AI_DEFAULT_MATERIAL_NAME if they're just color-shaded
      *   or AI_DEFAULT_TEXTURED_MATERIAL_NAME if they define a (dummy)
@@ -231,10 +231,10 @@ protected:
      * This won't be checked (except by the validation step): Assimp will
      * crash if one of the conditions is not met!
      *
-     * @param pFile Path of the file to be imported.
+     * @param pFile Path of the file_manager to be imported.
      * @param pScene The scene object to hold the imported data.
      * nullptr is not a valid parameter.
-     * @param pIOHandler The IO handler to use for any file access.
+     * @param pIOHandler The IO handler to use for any file_manager access.
      * nullptr is not a valid parameter. */
     virtual void InternReadFile(
             const std::string &pFile,
@@ -245,13 +245,13 @@ public: // static utilities
     // -------------------------------------------------------------------
     /** A utility for CanRead().
      *
-     *  The function searches the header of a file for a specific token
+     *  The function searches the header of a file_manager for a specific token
      *  and returns true if this token is found. This works for text
      *  files only. There is a rudimentary handling of UNICODE files.
      *  The comparison is case independent.
      *
      *  @param pIOSystem IO System to work with
-     *  @param file File name of the file
+     *  @param file File name of the file_manager
      *  @param tokens List of tokens to search for
      *  @param numTokens Size of the token array
      *  @param searchBytes Number of bytes to be searched for the tokens.
@@ -266,8 +266,8 @@ public: // static utilities
             bool noGraphBeforeTokens = false);
 
     // -------------------------------------------------------------------
-    /** @brief Check whether a file has a specific file extension
-     *  @param pFile Input file
+    /** @brief Check whether a file_manager has a specific file_manager extension
+     *  @param pFile Input file_manager
      *  @param ext0 Extension to check for. Lowercase characters only, no dot!
      *  @param ext1 Optional second extension
      *  @param ext2 Optional third extension
@@ -281,8 +281,8 @@ public: // static utilities
             const char *ext3 = nullptr);
 
     // -------------------------------------------------------------------
-    /** @brief Check whether a file has one of the passed file extensions
-     *  @param pFile Input file
+    /** @brief Check whether a file_manager has one of the passed file_manager extensions
+     *  @param pFile Input file_manager
      *  @param extensions Extensions to check for. Lowercase characters only, no dot!
      *  @note Case-insensitive
      */
@@ -291,20 +291,20 @@ public: // static utilities
             const std::set<std::string> &extensions);
 
     // -------------------------------------------------------------------
-    /** @brief Extract file extension from a string
-     *  @param pFile Input file
+    /** @brief Extract file_manager extension from a string
+     *  @param pFile Input file_manager
      *  @return Extension without trailing dot, all lowercase
      */
     static std::string GetExtension(
             const std::string &pFile);
 
     // -------------------------------------------------------------------
-    /** @brief Check whether a file starts with one or more magic tokens
-     *  @param pFile Input file
+    /** @brief Check whether a file_manager starts with one or more magic tokens
+     *  @param pFile Input file_manager
      *  @param pIOHandler IO system to be used
      *  @param magic n magic tokens
      *  @params num Size of magic
-     *  @param offset Offset from file start where tokens are located
+     *  @param offset Offset from file_manager start where tokens are located
      *  @param Size of one token, in bytes. Maximally 16 bytes.
      *  @return true if one of the given tokens was found
      *
@@ -321,7 +321,7 @@ public: // static utilities
             unsigned int size = 4);
 
     // -------------------------------------------------------------------
-    /** An utility for all text file loaders. It converts a file to our
+    /** An utility for all text file_manager loaders. It converts a file_manager to our
      *   UTF8 character set. Errors are reported, but ignored.
      *
      *  @param data File buffer to be converted to UTF8 data. The buffer
@@ -330,7 +330,7 @@ public: // static utilities
             std::vector<char> &data);
 
     // -------------------------------------------------------------------
-    /** An utility for all text file loaders. It converts a file from our
+    /** An utility for all text file_manager loaders. It converts a file_manager from our
      *   UTF8 character set back to ISO-8859-1. Errors are reported, but ignored.
      *
      *  @param data File buffer to be converted from UTF8 to ISO-8859-1. The buffer
@@ -346,12 +346,12 @@ public: // static utilities
     };
 
     // -------------------------------------------------------------------
-    /** Utility for text file loaders which copies the contents of the
-     *  file into a memory buffer and converts it to our UTF8
+    /** Utility for text file_manager loaders which copies the contents of the
+     *  file_manager into a memory buffer and converts it to our UTF8
      *  representation.
      *  @param stream Stream to read from.
      *  @param data Output buffer to be resized and filled with the
-     *   converted text file data. The buffer is terminated with
+     *   converted text file_manager data. The buffer is terminated with
      *   a binary 0.
      *  @param mode Whether it is OK to load empty text files. */
     static void TextFileToBuffer(

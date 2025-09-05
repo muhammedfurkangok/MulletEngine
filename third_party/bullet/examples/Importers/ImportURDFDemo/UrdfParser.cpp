@@ -12,7 +12,7 @@ UrdfParser::UrdfParser(CommonFileIOInterface* fileIO)
 	  m_urdfScaling(1),
 	  m_fileIO(fileIO)
 {
-	m_urdf2Model.m_sourceFile = "IN_MEMORY_STRING";  // if loadUrdf() called later, source file name will be replaced with real
+	m_urdf2Model.m_sourceFile = "IN_MEMORY_STRING";  // if loadUrdf() called later, source file_manager name will be replaced with real
 }
 
 UrdfParser::~UrdfParser()
@@ -122,7 +122,7 @@ bool UrdfParser::parseMaterial(UrdfMaterial& material, XMLElement* config, Error
 
 	if (material.m_textureFilename.length() == 0)
 	{
-		//logger->reportWarning("material has no texture file name");
+		//logger->reportWarning("material has no texture file_manager name");
 	}
 
 	// color
@@ -788,7 +788,7 @@ bool UrdfParser::parseLink(UrdfModel& model, UrdfLink& link, XMLElement* config,
 //modified version of SDF audio_source specification in //http://sdformat.org/spec?ver=1.6&elem=link
 #if 0
 		<audio_source>
-          <uri>file://media/audio/cheer.mp3</uri>
+          <uri>file_manager://media/audio/cheer.mp3</uri>
           <pitch>2.0</pitch>
           <gain>1.0</gain>
           <loop>false</loop>
@@ -2213,7 +2213,7 @@ bool UrdfParser::initTreeAndRoot(UrdfModel& model, ErrorLogger* logger)
 	if (model.m_rootLinks.size() > 1)
 	{
 		std::string multipleRootMessage =
-			"URDF file with multiple root links found:";
+			"URDF file_manager with multiple root links found:";
 
 		for (int i = 0; i < model.m_rootLinks.size(); i++) 
 		{
@@ -2348,7 +2348,7 @@ bool UrdfParser::loadUrdf(const char* urdfText, ErrorLogger* logger, bool forceF
 	}
 	if (m_urdf2Model.m_links.size() == 0)
 	{
-		logger->reportWarning("No links found in URDF file");
+		logger->reportWarning("No links found in URDF file_manager");
 		return false;
 	}
 
@@ -2423,7 +2423,7 @@ bool UrdfParser::loadUrdf(const char* urdfText, ErrorLogger* logger, bool forceF
 
 	if (m_urdf2Model.m_links.size() == 0)
 	{
-		logger->reportWarning("No links found in URDF file");
+		logger->reportWarning("No links found in URDF file_manager");
 		return false;
 	}
 
@@ -2597,7 +2597,7 @@ bool UrdfParser::loadSDF(const char* sdfText, ErrorLogger* logger)
 		}
 		if (localModel->m_links.size() == 0)
 		{
-			logger->reportWarning("No links found in URDF file");
+			logger->reportWarning("No links found in URDF file_manager");
 			return false;
 		}
 

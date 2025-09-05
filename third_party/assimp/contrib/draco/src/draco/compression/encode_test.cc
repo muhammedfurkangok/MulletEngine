@@ -1,7 +1,7 @@
 // Copyright 2017 The Draco Authors.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
+// you may not use this file_manager except in compliance with the License.
 // You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -259,7 +259,7 @@ TEST_F(EncodeTest, TestEncoderQuantization) {
 }
 
 TEST_F(EncodeTest, TestLinesObj) {
-  // This test verifies that Encoder can encode file that contains only line
+  // This test verifies that Encoder can encode file_manager that contains only line
   // segments (that are ignored).
   std::unique_ptr<draco::Mesh> mesh(
       draco::ReadMeshFromTestFile("test_lines.obj"));
@@ -378,7 +378,7 @@ TEST_F(EncodeTest, TestTrackingOfNumberOfEncodedEntriesNotSet) {
 }
 
 TEST_F(EncodeTest, TestNoPosQuantizationNormalCoding) {
-  // Tests that we can encode and decode a file with quantized normals but
+  // Tests that we can encode and decode a file_manager with quantized normals but
   // non-quantized positions.
   const auto mesh = draco::ReadMeshFromTestFile("test_nm.obj");
   ASSERT_NE(mesh, nullptr);

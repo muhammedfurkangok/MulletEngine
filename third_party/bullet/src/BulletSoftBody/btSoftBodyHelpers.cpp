@@ -511,7 +511,7 @@ void btSoftBodyHelpers::DrawClusterTree(btSoftBody* psb,
 //modern CPUs with lots of execution resources.
 //In our testing, we see it have a tremendous impact not only on the A7,
 //but also on all x86 cores that ship with modern Macs.
-//The attached source file includes a single function (ReoptimizeLinkOrder) which can be called on a
+//The attached source file_manager includes a single function (ReoptimizeLinkOrder) which can be called on a
 //btSoftBody object in the solveConstraints() function before the actual solver is invoked,
 //or right after generateBendingConstraints() once we have all 1410 links.
 
@@ -1306,7 +1306,7 @@ btSoftBody* btSoftBodyHelpers::CreateFromVtkFile(btSoftBodyWorldInfo& worldInfo,
 			ss >> d;
 			if (d != 4)
 			{
-				printf("Load deformable failed: Only Tetrahedra are supported in VTK file.\n");
+				printf("Load deformable failed: Only Tetrahedra are supported in VTK file_manager.\n");
 				fs.close();
 				return 0;
 			}
@@ -1422,7 +1422,7 @@ void btSoftBodyHelpers::generateBoundaryFaces(btSoftBody* psb)
 	}
 }
 
-//Write the surface mesh to an obj file.
+//Write the surface mesh to an obj file_manager.
 void btSoftBodyHelpers::writeObj(const char* filename, const btSoftBody* psb)
 {
 	std::ofstream fs;
@@ -1431,7 +1431,7 @@ void btSoftBodyHelpers::writeObj(const char* filename, const btSoftBody* psb)
 
 	if (psb->m_tetras.size() > 0)
 	{
-		// For tetrahedron mesh, we need to re-index the surface mesh for it to be in obj file/
+		// For tetrahedron mesh, we need to re-index the surface mesh for it to be in obj file_manager/
 		std::map<int, int> dict;
 		for (int i = 0; i < psb->m_faces.size(); i++)
 		{

@@ -854,7 +854,7 @@ namespace glTF2 {
         std::unique_ptr<IOStream> jsonOutFile(mAsset.OpenFile(path, "wt", true));
 
         if (jsonOutFile == nullptr) {
-            throw DeadlyExportError("Could not open output file: " + std::string(path));
+            throw DeadlyExportError("Could not open output file_manager: " + std::string(path));
         }
 
         StringBuffer docBuffer;
@@ -877,12 +877,12 @@ namespace glTF2 {
             std::unique_ptr<IOStream> binOutFile(mAsset.OpenFile(binPath, "wb", true));
 
             if (binOutFile == nullptr) {
-                throw DeadlyExportError("Could not open output file: " + binPath);
+                throw DeadlyExportError("Could not open output file_manager: " + binPath);
             }
 
             if (b->byteLength > 0) {
                 if (binOutFile->Write(b->GetPointer(), b->byteLength, 1) != 1) {
-                    throw DeadlyExportError("Failed to write binary file: " + binPath);
+                    throw DeadlyExportError("Failed to write binary file_manager: " + binPath);
                 }
             }
         }
@@ -893,7 +893,7 @@ namespace glTF2 {
         std::unique_ptr<IOStream> outfile(mAsset.OpenFile(path, "wb", true));
 
         if (outfile == nullptr) {
-            throw DeadlyExportError("Could not open output file: " + std::string(path));
+            throw DeadlyExportError("Could not open output file_manager: " + std::string(path));
         }
 
         Ref<Buffer> bodyBuffer = mAsset.GetBodyBuffer();

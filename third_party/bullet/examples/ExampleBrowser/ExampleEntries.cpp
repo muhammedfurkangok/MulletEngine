@@ -174,7 +174,7 @@ static ExampleEntry gDefaultExamples[] =
 					 PhysicsServerCreateFuncBullet2),
 		ExampleEntry(1, "Physics Client (Shared Mem)", "Create a physics client that can communicate with a physics server over shared memory.", PhysicsClientCreateFunc),
 
-		ExampleEntry(1, "Physics Server (Logging)", "Create a physics server that communicates with a physics client over shared memory. It will log all commands to a file.",
+		ExampleEntry(1, "Physics Server (Logging)", "Create a physics server that communicates with a physics client over shared memory. It will log all commands to a file_manager.",
 					 PhysicsServerCreateFuncBullet2, PHYSICS_SERVER_ENABLE_COMMAND_LOGGING),
 		ExampleEntry(1, "Physics Server (Replay Log)", "Create a physics server that replay a command log from disk.",
 					 PhysicsServerCreateFuncBullet2, PHYSICS_SERVER_REPLAY_FROM_COMMAND_LOG),
@@ -293,22 +293,22 @@ static ExampleEntry gDefaultExamples[] =
 		//#endif
 
 		ExampleEntry(0, "Importers"),
-		ExampleEntry(1, "Import .bullet", "Load a binary .bullet file. The serialization mechanism can deal with versioning, differences in endianess, 32 and 64bit, double/single precision. It is easy to save a .bullet file, see the examples/Importers/ImportBullet/SerializeDemo.cpp for a code example how to export a .bullet file.", SerializeBulletCreateFunc),
-		ExampleEntry(1, "Wavefront Obj", "Import a Wavefront .obj file", ImportObjCreateFunc, 0),
+		ExampleEntry(1, "Import .bullet", "Load a binary .bullet file_manager. The serialization mechanism can deal with versioning, differences in endianess, 32 and 64bit, double/single precision. It is easy to save a .bullet file_manager, see the examples/Importers/ImportBullet/SerializeDemo.cpp for a code example how to export a .bullet file_manager.", SerializeBulletCreateFunc),
+		ExampleEntry(1, "Wavefront Obj", "Import a Wavefront .obj file_manager", ImportObjCreateFunc, 0),
 		ExampleEntry(1, "Obj2RigidBody (Show Obj)", "Load a triangle mesh from Wavefront .obj and turn it in a convex hull collision shape, connected to a rigid body. We can use the original .obj mesh data to visualize the rigid body. In 'debug' wireframe mode (press 'w' to toggle) we still see the convex hull data.", ET_RigidBodyFromObjCreateFunc),
 		ExampleEntry(1, "Obj2RigidBody (Show Hull)", "Load a triangle mesh from Wavefront .obj and turn it in a convex hull collision shape, connected to a rigid body", ET_RigidBodyFromObjCreateFunc, ObjUseConvexHullForRendering),
 		ExampleEntry(1, "Obj2RigidBody Optimize", "Load a triangle mesh from Wavefront .obj, remove the vertices that are not on the convex hull", ET_RigidBodyFromObjCreateFunc, OptimizeConvexObj),
 
-		ExampleEntry(1, "Quake BSP", "Import a Quake .bsp file", ImportBspCreateFunc, 0),
-		ExampleEntry(1, "COLLADA dae", "Import the geometric mesh data from a COLLADA file. This is used as part of the URDF importer. This loader can also be used to import collision geometry in general. ",
+		ExampleEntry(1, "Quake BSP", "Import a Quake .bsp file_manager", ImportBspCreateFunc, 0),
+		ExampleEntry(1, "COLLADA dae", "Import the geometric mesh data from a COLLADA file_manager. This is used as part of the URDF importer. This loader can also be used to import collision geometry in general. ",
 					 ImportColladaCreateFunc, 0),
-		ExampleEntry(1, "STL", "Import the geometric mesh data from a STL file. This is used as part of the URDF importer. This loader can also be used to import collision geometry in general. ", ImportSTLCreateFunc, 0),
-		ExampleEntry(1, "URDF (RigidBody)", "Import a URDF file, and create rigid bodies (btRigidBody) connected by constraints.", ImportURDFCreateFunc, 0),
-		ExampleEntry(1, "URDF (MultiBody)", "Import a URDF file and create a single multibody (btMultiBody) with tree hierarchy of links (mobilizers).",
+		ExampleEntry(1, "STL", "Import the geometric mesh data from a STL file_manager. This is used as part of the URDF importer. This loader can also be used to import collision geometry in general. ", ImportSTLCreateFunc, 0),
+		ExampleEntry(1, "URDF (RigidBody)", "Import a URDF file_manager, and create rigid bodies (btRigidBody) connected by constraints.", ImportURDFCreateFunc, 0),
+		ExampleEntry(1, "URDF (MultiBody)", "Import a URDF file_manager and create a single multibody (btMultiBody) with tree hierarchy of links (mobilizers).",
 					 ImportURDFCreateFunc, 1),
-		ExampleEntry(1, "MJCF (MultiBody)", "Import a MJCF xml file, create multiple multibodies etc", ImportMJCFCreateFunc),
+		ExampleEntry(1, "MJCF (MultiBody)", "Import a MJCF xml file_manager, create multiple multibodies etc", ImportMJCFCreateFunc),
 
-		ExampleEntry(1, "SDF (MultiBody)", "Import an SDF file, create multiple multibodies etc", ImportSDFCreateFunc),
+		ExampleEntry(1, "SDF (MultiBody)", "Import an SDF file_manager, create multiple multibodies etc", ImportSDFCreateFunc),
 
 		ExampleEntry(0, "Vehicles"),
 		ExampleEntry(1, "Hinge2 Vehicle", "A rigid body chassis with 4 rigid body wheels attached by a btHinge2Constraint", Hinge2VehicleCreateFunc),
@@ -328,9 +328,9 @@ static ExampleEntry gDefaultExamples[] =
 		ExampleEntry(1, "Robot Control", "Create a physics client and server to create and control robots.",
 					 PhysicsClientCreateFunc, eCLIENTEXAMPLE_SERVER),
 
-		ExampleEntry(1, "R2D2 Grasp", "Load the R2D2 robot from URDF file and control it to grasp objects", R2D2GraspExampleCreateFunc, eROBOTIC_LEARN_GRASP),
+		ExampleEntry(1, "R2D2 Grasp", "Load the R2D2 robot from URDF file_manager and control it to grasp objects", R2D2GraspExampleCreateFunc, eROBOTIC_LEARN_GRASP),
 		ExampleEntry(1, "Kuka IK", "Control a Kuka IIWA robot to follow a target using IK. This IK is not setup properly yet.", KukaGraspExampleCreateFunc, 0),
-		ExampleEntry(1, "URDF Compliant Contact", "Work-in-progress, experiment/improve compliant rigid contact using parameters from URDF file (contact_cfm, contact_erp, lateral_friction, rolling_friction)", R2D2GraspExampleCreateFunc, eROBOTIC_LEARN_COMPLIANT_CONTACT),
+		ExampleEntry(1, "URDF Compliant Contact", "Work-in-progress, experiment/improve compliant rigid contact using parameters from URDF file_manager (contact_cfm, contact_erp, lateral_friction, rolling_friction)", R2D2GraspExampleCreateFunc, eROBOTIC_LEARN_COMPLIANT_CONTACT),
 		ExampleEntry(1, "Rolling friction", "Experiment on multibody rolling friction", R2D2GraspExampleCreateFunc, eROBOTIC_LEARN_ROLLING_FRICTION),
 		ExampleEntry(1, "Gripper Grasp", "Grasp experiment with a gripper to improve contact model", GripperGraspExampleCreateFunc, eGRIPPER_GRASP),
 		ExampleEntry(1, "Two Point Grasp", "Grasp experiment with two point contact to test rolling friction", GripperGraspExampleCreateFunc, eTWO_POINT_GRASP),

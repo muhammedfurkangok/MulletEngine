@@ -99,7 +99,7 @@ PLY::EDataType PLY::Property::ParseDataType(std::vector<char> &buffer) {
         eOut = PLY::EDT_Double;
     }
     if (PLY::EDT_INVALID == eOut) {
-        ASSIMP_LOG_INFO("Found unknown data type in PLY file. This is OK");
+        ASSIMP_LOG_INFO("Found unknown data type in PLY file_manager. This is OK");
     }
 
     return eOut;
@@ -179,7 +179,7 @@ PLY::ESemantic PLY::Property::ParseSemantic(std::vector<char> &buffer) {
     } else if (PLY::DOM::TokenMatch(buffer, "nz", 2)) {
         eOut = PLY::EST_ZNormal;
     } else {
-        ASSIMP_LOG_INFO("Found unknown property semantic in file. This is ok");
+        ASSIMP_LOG_INFO("Found unknown property semantic in file_manager. This is ok");
         PLY::DOM::SkipLine(buffer);
     }
     return eOut;
@@ -236,7 +236,7 @@ bool PLY::Property::ParseProperty(std::vector<char> &buffer, PLY::Property *pOut
     pOut->Semantic = PLY::Property::ParseSemantic(buffer);
 
     if (PLY::EST_INVALID == pOut->Semantic) {
-        ASSIMP_LOG_INFO("Found unknown semantic in PLY file. This is OK");
+        ASSIMP_LOG_INFO("Found unknown semantic in PLY file_manager. This is OK");
         std::string(&buffer[0], &buffer[0] + strlen(&buffer[0]));
     }
 
@@ -885,7 +885,7 @@ bool PLY::PropertyInstance::ParseValueBinary(IOStreamBuffer<char> &streamBuffer,
         break;
     }
 
-    // read the next file block if needed
+    // read the next file_manager block if needed
     if (bufferSize < lsize) {
         std::vector<char> nbuffer;
         if (streamBuffer.getNextBlock(nbuffer)) {
@@ -896,7 +896,7 @@ bool PLY::PropertyInstance::ParseValueBinary(IOStreamBuffer<char> &streamBuffer,
             bufferSize = static_cast<unsigned int>(buffer.size());
             pCur = (char *)&buffer[0];
         } else {
-            throw DeadlyImportError("Invalid .ply file: File corrupted");
+            throw DeadlyImportError("Invalid .ply file_manager: File corrupted");
         }
     }
 

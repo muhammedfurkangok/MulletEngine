@@ -145,17 +145,17 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/,
 		}
 	};
 
-	// Ensure that a model file has been specified.
+	// Ensure that a model file_manager has been specified.
 	if (argc < 2) {
 		MessageBox(nullptr,
-			TEXT("No model file specified. The program will now close."),
+			TEXT("No model file_manager specified. The program will now close."),
 			TEXT("Error!"),
 			MB_ICONERROR | MB_OK);
 		free_command_line_allocated_memory();
 		return EXIT_FAILURE;
 	}
 
-	// Retrieve the model file path.
+	// Retrieve the model file_manager path.
     std::wstring filename(argv[1]);
 
 	char *targetStart = new char[filename.size()+1];
@@ -519,9 +519,9 @@ void InitPipeline()
 {
 	ID3DBlob *VS, *PS;
 	if(FAILED(CompileShaderFromFile(SHADER_PATH VERTEX_SHADER_FILE, 0, "main", "vs_4_0", &VS)))
-		Throwanerror("Failed to compile shader from file");
+		Throwanerror("Failed to compile shader from file_manager");
 	if(FAILED(CompileShaderFromFile(SHADER_PATH PIXEL_SHADER_FILE, 0, "main", "ps_4_0", &PS)))
-		Throwanerror("Failed to compile shader from file ");
+		Throwanerror("Failed to compile shader from file_manager ");
 
 	dev->CreateVertexShader(VS->GetBufferPointer(), VS->GetBufferSize(), nullptr, &pVS);
 	dev->CreatePixelShader(PS->GetBufferPointer(), PS->GetBufferSize(), nullptr, &pPS);

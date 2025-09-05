@@ -2,7 +2,7 @@
 Assimp2Json
 Copyright (c) 2011, Alexander C. Gessler
 
-Licensed under a 3-clause BSD license. See the LICENSE file for more information.
+Licensed under a 3-clause BSD license. See the LICENSE file_manager for more information.
 
 */
 
@@ -788,7 +788,7 @@ static void Write(JSONWriter &out, const aiScene &ai) {
 void ExportAssimp2Json(const char *file, Assimp::IOSystem *io, const aiScene *scene, const Assimp::ExportProperties *pProperties) {
     std::unique_ptr<Assimp::IOStream> str(io->Open(file, "wt"));
     if (!str) {
-        throw DeadlyExportError("could not open output file");
+        throw DeadlyExportError("could not open output file_manager");
     }
 
     // get a copy of the scene so we can modify it

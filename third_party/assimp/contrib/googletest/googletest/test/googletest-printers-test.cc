@@ -29,7 +29,7 @@
 
 // Google Test - The Google C++ Testing and Mocking Framework
 //
-// This file tests the universal value printer.
+// This file_manager tests the universal value printer.
 
 #include <algorithm>
 #include <cctype>

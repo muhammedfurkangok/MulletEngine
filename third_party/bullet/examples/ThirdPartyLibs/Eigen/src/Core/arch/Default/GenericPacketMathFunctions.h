@@ -1,4 +1,4 @@
-// This file is part of Eigen, a lightweight C++ template library
+// This file_manager is part of Eigen, a lightweight C++ template library
 // for linear algebra.
 //
 // Copyright (C) 2007 Julien Pommier
@@ -7,9 +7,9 @@
 //
 // This Source Code Form is subject to the terms of the Mozilla
 // Public License v. 2.0. If a copy of the MPL was not distributed
-// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// with this file_manager, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-/* The exp and log functions of this file initially come from
+/* The exp and log functions of this file_manager initially come from
  * Julien Pommier's sse math library: http://gruntthepeon.free.fr/ssemath/
  */
 
@@ -872,7 +872,7 @@ Packet psqrt_complex(const Packet& a) {
 }
 
 // TODO(rmlarsen): The following set of utilities for double word arithmetic
-// should perhaps be refactored as a separate file, since it would be generally
+// should perhaps be refactored as a separate file_manager, since it would be generally
 // useful for special function implementation etc. Writing the algorithms in
 // terms if a double word type would also make the code more readable.
 

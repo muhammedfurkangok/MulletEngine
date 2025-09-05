@@ -1,7 +1,7 @@
 // dear imgui, v1.60 WIP
 // (headers)
 
-// See imgui.cpp file for documentation.
+// See imgui.cpp file_manager for documentation.
 // Call and read ImGui::ShowDemoWindow() in imgui_demo.cpp for demo code.
 // Read 'Programmer guide' in imgui.cpp for notes on how to setup ImGui in your codebase.
 // Get latest version at https://github.com/ocornut/imgui
@@ -74,7 +74,7 @@ struct ImGuiListClipper;           // Helper to manually clip large list of item
 struct ImGuiPayload;               // User data payload for drag and drop operations
 struct ImGuiContext;               // ImGui context (opaque)
 
-// Typedefs and Enumerations (declared as int for compatibility and to not pollute the top of this file)
+// Typedefs and Enumerations (declared as int for compatibility and to not pollute the top of this file_manager)
 typedef unsigned int ImU32;        // 32-bit unsigned integer (typically used to store packed colors)
 typedef unsigned int ImGuiID;      // unique ID used by widgets (typically hashed from a stack of string)
 typedef unsigned short ImWchar;    // character for keyboard input/display
@@ -107,7 +107,7 @@ typedef unsigned __int64 ImU64;  // 64-bit unsigned integer
 typedef unsigned long long ImU64;  // 64-bit unsigned integer
 #endif
 
-// Others helpers at bottom of the file:
+// Others helpers at bottom of the file_manager:
 // class ImVector<>                 // Lightweight std::vector like class.
 // IMGUI_ONCE_UPON_A_FRAME          // Execute a block of code once per frame only (convenient for creating UI within deep-nested code that runs multiple times)
 
@@ -147,7 +147,7 @@ struct ImVec4
 };
 
 // ImGui end-user API
-// In a namespace so that user can add extra functions in a separate file (e.g. Value() helpers for your vector or common types)
+// In a namespace so that user can add extra functions in a separate file_manager (e.g. Value() helpers for your vector or common types)
 namespace ImGui
 {
 // Context creation and access, if you want to use multiple context, share context between modules (e.g. DLL).
@@ -456,12 +456,12 @@ IMGUI_API bool OpenPopupOnItemClick(const char* str_id = NULL, int mouse_button 
 IMGUI_API bool IsPopupOpen(const char* str_id);                                                                        // return true if the popup is open
 IMGUI_API void CloseCurrentPopup();                                                                                    // close the popup we have begin-ed into. clicking on a MenuItem or Selectable automatically close the current popup.
 
-// Logging/Capture: all text output from interface is captured to tty/file/clipboard. By default, tree nodes are automatically opened during logging.
+// Logging/Capture: all text output from interface is captured to tty/file_manager/clipboard. By default, tree nodes are automatically opened during logging.
 IMGUI_API void LogToTTY(int max_depth = -1);                                // start logging to tty
-IMGUI_API void LogToFile(int max_depth = -1, const char* filename = NULL);  // start logging to file
+IMGUI_API void LogToFile(int max_depth = -1, const char* filename = NULL);  // start logging to file_manager
 IMGUI_API void LogToClipboard(int max_depth = -1);                          // start logging to OS clipboard
-IMGUI_API void LogFinish();                                                 // stop logging (close file, etc.)
-IMGUI_API void LogButtons();                                                // helper to display buttons for logging to tty/file/clipboard
+IMGUI_API void LogFinish();                                                 // stop logging (close file_manager, etc.)
+IMGUI_API void LogButtons();                                                // helper to display buttons for logging to tty/file_manager/clipboard
 IMGUI_API void LogText(const char* fmt, ...) IM_FMTARGS(1);                 // pass text data straight to log (without being displayed)
 
 // Drag and Drop
@@ -562,7 +562,7 @@ enum ImGuiWindowFlags_
 	ImGuiWindowFlags_NoCollapse = 1 << 5,         // Disable user collapsing window by double-clicking on it
 	ImGuiWindowFlags_AlwaysAutoResize = 1 << 6,   // Resize every window to its content every frame
 	//ImGuiWindowFlags_ShowBorders          = 1 << 7,   // Show borders around windows and items (OBSOLETE! Use e.g. style.FrameBorderSize=1.0f to enable borders).
-	ImGuiWindowFlags_NoSavedSettings = 1 << 8,             // Never load/save settings in .ini file
+	ImGuiWindowFlags_NoSavedSettings = 1 << 8,             // Never load/save settings in .ini file_manager
 	ImGuiWindowFlags_NoInputs = 1 << 9,                    // Disable catching mouse or keyboard inputs, hovering test with pass through.
 	ImGuiWindowFlags_MenuBar = 1 << 10,                    // Has a menu-bar
 	ImGuiWindowFlags_HorizontalScrollbar = 1 << 11,        // Allow horizontal scrollbar to appear (off by default). You may use SetNextWindowContentSize(ImVec2(width,0.0f)); prior to calling Begin() to specify width. Read code in imgui_demo in the "Horizontal Scrolling" section.
@@ -915,7 +915,7 @@ enum ImGuiCond_
 {
 	ImGuiCond_Always = 1 << 0,        // Set the variable
 	ImGuiCond_Once = 1 << 1,          // Set the variable once per runtime session (only the first call with succeed)
-	ImGuiCond_FirstUseEver = 1 << 2,  // Set the variable if the window has no saved data (if doesn't exist in the .ini file)
+	ImGuiCond_FirstUseEver = 1 << 2,  // Set the variable if the window has no saved data (if doesn't exist in the .ini file_manager)
 	ImGuiCond_Appearing = 1 << 3      // Set the variable if the window is appearing after being hidden/inactive (or the first time)
 
 // Obsolete names (will be removed)
@@ -968,7 +968,7 @@ struct ImGuiStyle
 };
 
 // This is where your app communicate with ImGui. Access via ImGui::GetIO().
-// Read 'Programmer guide' section in .cpp file for general usage.
+// Read 'Programmer guide' section in .cpp file_manager for general usage.
 struct ImGuiIO
 {
 	//------------------------------------------------------------------
@@ -978,9 +978,9 @@ struct ImGuiIO
 	ImVec2 DisplaySize;             // <unset>              // Display size, in pixels. For clamping windows positions.
 	float DeltaTime;                // = 1.0f/60.0f         // Time elapsed since last frame, in seconds.
 	ImGuiNavFlags NavFlags;         // = 0x00               // See ImGuiNavFlags_. Gamepad/keyboard navigation options.
-	float IniSavingRate;            // = 5.0f               // Maximum time between saving positions/sizes to .ini file, in seconds.
-	const char* IniFilename;        // = "imgui.ini"        // Path to .ini file. NULL to disable .ini saving.
-	const char* LogFilename;        // = "imgui_log.txt"    // Path to .log file (default parameter to ImGui::LogToFile when no file is specified).
+	float IniSavingRate;            // = 5.0f               // Maximum time between saving positions/sizes to .ini file_manager, in seconds.
+	const char* IniFilename;        // = "imgui.ini"        // Path to .ini file_manager. NULL to disable .ini saving.
+	const char* LogFilename;        // = "imgui_log.txt"    // Path to .log file_manager (default parameter to ImGui::LogToFile when no file_manager is specified).
 	float MouseDoubleClickTime;     // = 0.30f              // Time for a double-click, in seconds.
 	float MouseDoubleClickMaxDist;  // = 6.0f               // Distance threshold to stay in to validate a double-click, in pixels.
 	float MouseDragThreshold;       // = 6.0f               // Distance threshold before considering we are dragging.
@@ -1861,7 +1861,7 @@ struct ImFontConfig
 	void* FontData;                //          // TTF/OTF data
 	int FontDataSize;              //          // TTF/OTF data size
 	bool FontDataOwnedByAtlas;     // true     // TTF/OTF data ownership taken by the container ImFontAtlas (will delete memory itself).
-	int FontNo;                    // 0        // Index of font within TTF/OTF file
+	int FontNo;                    // 0        // Index of font within TTF/OTF file_manager
 	float SizePixels;              //          // Size in pixels for rasterizer.
 	int OversampleH, OversampleV;  // 3, 1     // Rasterize at higher quality for sub-pixel positioning. We don't use sub-pixel positions on the Y axis.
 	bool PixelSnapH;               // false    // Align every glyph to pixel boundary. Useful e.g. if you are merging a non-pixel aligned font with the default font. If enabled, you can set OversampleH/V to 1.
