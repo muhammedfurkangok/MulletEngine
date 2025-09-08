@@ -1,40 +1,66 @@
-#pragma once
+#pragma  once
 
 #include <string>
-#include <vector>
 #include <iostream>
+#include <vector>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 class Shader
 {
 public:
     Shader();
 
-    void init(const std::string &vertex_code, const std::string &fragment_code);
+    ~Shader();
 
-    void use();
+    Shader(const Shader &) = delete;
 
-    template<typename T>
-    void setUniform(const std::string &name, T val);
+    Shader &operator=(const Shader &) = delete;
 
-    template<typename T>
-    void setUniform(const std::string &name, T val1, T val2);
+    Shader(Shader &&) = delete;
 
-    template<typename T>
-    void setUniform(const std::string &name, T val1, T val2, T val3);
+    Shader &operator=(Shader &&) = delete;
+
+    void init(const std::string &vertexCode, const std::string &fragmentCode);
+
+    void use() const;
+
+    void setBool(const std::string &name, bool value) const;
+
+    void setInt(const std::string &name, int value) const;
+
+    void setFloat(const std::string &name, float value) const;
+
+    void setVec2(const std::string &name, const glm::vec2 &value) const;
+
+    void setVec2(const std::string &name, float x, float y) const;
+
+    void setVec3(const std::string &name, const glm::vec3 &value) const;
+
+    void setVec3(const std::string &name, float x, float y, float z) const;
+
+    void setVec4(const std::string &name, const glm::vec4 &value) const;
+
+    void setVec4(const std::string &name, float x, float y, float z, float w) const;
+
+    void setMat2(const std::string &name, const glm::mat2 &mat) const;
+
+    void setMat3(const std::string &name, const glm::mat3 &mat) const;
+
+    void setMat4(const std::string &name, const glm::mat4 &mat) const;
 
 private:
-    void checkCompileErr();
+    void checkCompileErr(GLuint shader, const std::string &type);
 
-    void checkLinkingErr();
+    void checkLinkingErr() const;
 
     void compile();
 
     void link();
 
-    unsigned int vertex_id_, fragment_id_, id_;
-    std::string vertex_code_;
-    std::string fragment_code_;
+    GLuint id = 0;
+    GLuint vertexId_ = 0, fragmentId_ = 0;
+    std::string vertexCode_, fragmentCode_;
 };
 
