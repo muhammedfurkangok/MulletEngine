@@ -31,7 +31,7 @@ Below is a checklist of the engine modules, showing what's completed and what's 
 | Character Controller| ⬜ Todo   |
 | Input Manager       | ⬜ Todo   |
 | Material            | ⬜ Todo   |
-| Mesh                | ⬜ Todo   |
+| Mesh                | ☑️ Done   |
 | Model               | ⬜ Todo   |
 | Particle Manager    | ⬜ Todo   |
 | Physics World       | ⬜ Todo   |
