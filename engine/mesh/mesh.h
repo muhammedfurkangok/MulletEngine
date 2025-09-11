@@ -1,4 +1,3 @@
-// engine/mesh/mesh.h
 #pragma once
 
 #include <vector>

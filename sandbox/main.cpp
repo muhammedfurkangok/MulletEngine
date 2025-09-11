@@ -4,6 +4,8 @@
 #include "file_manager/FileManager.h"
 #include "shader/shader.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <iostream>
 #include <ctime>
@@ -29,14 +31,11 @@ static void print_start_info()
 
 void create_triangle(unsigned int &vbo, unsigned int &vao, unsigned int &ebo)
 {
-    // create the triangle
     float triangle_vertices[] = {
-            0.0f, 0.25f, 0.0f,    // position vertex 1
-            1.0f, 0.0f, 0.0f,     // color vertex 1
-            0.25f, -0.25f, 0.0f,  // position vertex 1
-            0.0f, 1.0f, 0.0f,     // color vertex 1
-            -0.25f, -0.25f, 0.0f, // position vertex 1
-            0.0f, 0.0f, 1.0f,     // color vertex 1
+            // pozisyon         // renk
+            0.0f,  0.25f, 0.0f,  1.0f, 1.0f, 0.0f,   // üst köşe (sarı)
+            0.25f, -0.25f, 0.0f, 0.0f, 1.0f, 1.0f,   // sağ alt (camgöbeği)
+            -0.25f, -0.25f, 0.0f, 1.0f, 0.0f, 1.0f    // sol alt (mor)
     };
     unsigned int triangle_indices[] = {
             0, 1, 2};
@@ -112,17 +111,23 @@ glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);           // Required on Ma
 
     // Init shader
     Shader triangle_shader;
-    triangle_shader.init(FileManager::readFile("assets/shaders/simple-shader.vs"),
-                         FileManager::readFile(("assets/shaders/simple-shader.fs")));
-
+    triangle_shader.init(
+            FileManager::readFile("assets/shaders/temp-shader.vs"),
+            FileManager::readFile("assets/shaders/temp-shader.fs")
+    );;
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
         glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // render geometries
         triangle_shader.use();
+
+        // MVP matrisini oluştur ve shader'a gönder
+        glm::mat4 mvp = glm::mat4(1.0f); // Kimlik matrisi (değiştirmek istersen burada değiştir)
+        int mvpLoc = glGetUniformLocation(triangle_shader.id, "mvp");
+        glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, &mvp[0][0]);
+
         glBindVertexArray(vao);
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);

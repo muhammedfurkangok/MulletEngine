@@ -31,7 +31,7 @@ public:
 
     void draw(const Shader& shader) const;
 
-    
+
 
 private:
     std::vector<Texture> textures_loaded_;
