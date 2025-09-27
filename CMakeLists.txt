@@ -28,6 +28,7 @@ target_include_directories(engine PUBLIC
         ${CMAKE_SOURCE_DIR}/third_party/imgui/backends
         ${CMAKE_SOURCE_DIR}/third_party/bullet/src
         ${CMAKE_SOURCE_DIR}/third_party/assimp/include
+        ${CMAKE_SOURCE_DIR}/third_party/fmod/inc
 )
 
 # GLAD (örnek)
